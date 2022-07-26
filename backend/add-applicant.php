@@ -69,6 +69,8 @@ if (isset($_POST['bn-submit'])) {
         $sqlInsert = "INSERT INTO req_annouce(bn_toppic, bn_detail, bn_pic,users_id) VALUES ('$bn_toppic', '$bn_detail', '$bn_img', $users_id)";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
+            mysqli_close($conn);
+
         } else {
             echo "<script type='text/javascript'> error(); </script>";
         }
@@ -76,6 +78,3 @@ if (isset($_POST['bn-submit'])) {
         echo "<script type='text/javascript'> error(); </script>";
     }
 }
-mysqli_close($conn);
-
-?>

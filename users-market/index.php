@@ -41,7 +41,7 @@ require "../backend/market-dashboard.php";
         </div>
     </div>
     <div class="products-feature">
-        <div class="grid-container carousel" data-flickity='{ "groupCells": true,"initialIndex": 1 }'>
+        <div class="grid-container carousel" data-flickity='{ "groupCells": true}'>
             <?php while ($row = $result->fetch_assoc()) : ?>
                 <div class="three columns carousel-cell">
                     <div class="project-box-wrapper">
@@ -52,32 +52,32 @@ require "../backend/market-dashboard.php";
                                 </div>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
                                     <li>
-                                        <a class="edit" href="market-mymarket-edtmarket.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bxs-edit-alt'></i>แก้ไขข้อมูลตลาด</a>
+                                        <a class="edit" href="editmarket-info.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bxs-edit-alt'></i>แก้ไขข้อมูลตลาด</a>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <a class="del" href="market-mymarket-delete.php?mkr_id=<?php echo $row['mkr_id']; ?>" onclick="return confirm('คุณต้องการลบ <?php echo $row['mkr_name'] ?> หรือไม่')"><i class='bx bx-trash-alt'></i>ลบตลาด</a>
+                                        <a class="del" href="../backend/deletemarket.php?mkr_id=<?php echo $row['mkr_id']; ?>" onclick="return confirm('คุณต้องการลบ <?php echo $row['mkr_name'] ?> หรือไม่')"><i class='bx bx-trash-alt'></i>ลบตลาด</a>
                                     </li>
                                 </ul>
                             </div>
                             <div class="project-box-content-header">
                                 <h5 class=""><?php echo $row['mkr_name'] ?></h5>
                             </div>
-                            <div class="row">
-                                <div class=" vstack">
+                            <div class="infomarket row">
+                                <div class="col-6 vstack">
                                     <span class="status-number center">45</span>
                                     <p class="mkrdetail center">การจองทั้งหมด</p>
                                 </div>
-                                <div class="vstack">
+                                <div class="col-6 vstack">
                                     <span class="status-number center">0</span>
                                     <p class="mkrdetail center">จำนวนแผงว่าง</p>
                                 </div>
                             </div>
-                            <div class="project-box-footer hstack gap-2 center">
+                            <div class="project-box-footer vstack center">
                                 <a class="days-left">การจองแผงค้า</a>
-                                <a class="days-left" href="market-allcomplain.php?mkr_id=<?php echo $row['mkr_id']; ?>">การร้องเรียน</a>
+                                <a class="days-left" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">การร้องเรียน</a>
                             </div>
                         </div>
                     </div>
