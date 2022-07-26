@@ -1,0 +1,157 @@
+body {
+    padding: 20px;
+    margin: 50px 68px 10px 146px !important;
+}
+:root {
+    --light: #6dd4f7;
+    --purple: #4B2ED7;
+}
+
+/* ----------------------------------------1.banner------------------------------------------------------------ */
+#carouselExampleCaptions {
+    margin-bottom: 20px;
+}
+
+.carousel-inner {
+    position: relative;
+    height: 25rem;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.carousel-item img {
+    height: 25rem;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.603) !important;
+    color: #fff;
+    border-radius: 10px;
+    padding: auto 1rem;
+}
+
+/* ----------------------------------------2.table------------------------------------------------------------ */
+.toptb {
+    display: inline-flex !important;
+    padding: 0 !important;
+    margin-bottom: 15px;
+}
+
+#addbn {
+    float: right;
+    border-radius: 5px;
+}
+
+#headline {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+#table thead tr th {
+    padding: auto 10px;
+}
+
+/* datatable plugin */
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 5px;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover{
+    background:var(--light) !important;
+    border: none !important;
+
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+    border: none !important;
+}
+.dataTables_scrollBody{
+    overflow: hidden !important;
+}
+/* ------------------------------------responsive-------------------------- */
+
+@media only screen and (max-width: 768px) {
+    .dataTables_scrollBody{
+        overflow: auto !important;
+    }
+    body {
+        padding: 10px;
+        margin: 50px 20px!important;
+    }
+
+    #headline {
+        font-size: 25px;
+    }
+
+    #labelbn {
+        font-size: 20px;
+    }
+
+    .carousel-inner {
+        height: 15rem;
+
+    }
+
+    .carousel-item img {
+        height: 15rem;
+    }
+
+    #addbn {
+        font-size: 14px;
+        width: 140px;
+        margin-right: 60px;
+    }
+
+    #table {
+        font-size: 14px;
+        padding: auto 2px !important;
+    }
+
+    .modal_data {
+        font-size: 14px;
+    }
+
+    .col-md-4 {
+        margin: 2px 6px !important;
+    }
+
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+        margin: 50px 20px!important;
+    }
+    .carousel-inner {
+        height: 13rem;
+
+    }
+
+    .carousel-item img {
+        height: 13rem;
+    }
+
+    #addbn {
+        font-size: 14px;
+        width: 140px;
+        margin-right: 70px;
+    }
+
+    #table {
+        font-size: 14px;
+        padding: auto 2px !important;
+    }
+
+    .modal_data {
+        font-size: 14px;
+    }
+    .col-md-4 {
+        margin: 2px 6px !important;
+    }
+
+
+}

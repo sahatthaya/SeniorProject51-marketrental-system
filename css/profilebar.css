@@ -1,0 +1,223 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Mitr', sans-serif;
+}
+
+
+:root {
+    --white: white;
+    --purple: #4B2ED7;
+    --main: #0032b5;
+    --light: #6dd4f7;
+    --dark: #02155A;
+    --freshblue:#0daafd;
+
+    --icon: #00288F;
+    --link: #0d6efd;
+    --linkhover: #02155A;
+
+    --white: #fff;
+    --yellow:#FCBC41;
+    --input:#EDEEFF;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+.marginform {
+    margin: 10px 10%;
+}
+
+/* ----------------------------------------2.ปุ่มโปรไฟล์------------------------------------------------------------ */
+
+.profileicon {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    margin: 10px;
+    color: var(--dark);
+    z-index: 100;
+    display: flex;
+    border-radius: 50px;
+    background: var(--white);
+    box-shadow: 2px 2px 5px #5c5c5c8c;
+}
+
+.profileicon p {
+    font-size: 15px;
+    margin: 5px;
+}
+
+.profileicon:hover {
+    color:var(--link);
+    transition: 0.5s ease;
+    background:var(--white);
+    box-shadow: inset 5px 5px 10px #dbdbdb,
+        inset -5px -5px 10px #ffffff;
+}
+
+.dropdown-menu.show {
+    margin-left: 10px !important;
+}
+
+.dropdown-item i {
+    margin: 0 5px;
+    margin-top: 2px;
+}
+
+/* ----------------------------------------3.profilebar------------------------------------------------------------ */
+
+.profilebar {
+    position: fixed;
+    top: 0;
+    right: -450px;
+    height: 100%;
+    width: 400px;
+    background:var(--white);
+    z-index: 100;
+    transition: all 0.5s ease;
+    border-top-left-radius: 15px;
+    box-shadow: 5px 10px 10px 8px #5c5c5c8c, -5px -10px 10px #0000001c;
+}
+
+#close-profile-btn {
+    margin: 10px;
+    font-size: 50px;
+    color: var(--dark);
+}
+
+#close-profile-btn:hover {
+    color: var(--lih);
+    transition: 0.5s ease;
+}
+
+.icon {
+    margin: 0 40%;
+}
+
+.input {
+    height: 35px;
+    width: 100%;
+    padding: 0 10px;
+    border-radius: 25px;
+    border: none;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.inputcolor {
+    background: var(--input) !important;
+}
+
+.des_input {
+    font-size: 15px;
+    margin: 0 10px;
+}
+
+.submit {
+    margin-top: 15px;
+    background: var(--main);
+    color: #fff;
+    text-align: center;
+}
+
+.submit:hover {
+    transition: 0.5s ease;
+    background: var(--freshblue);
+
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a.link {
+    font-size: 15px;
+    color: var(--link);
+}
+
+a.link:hover {
+    color:var(--yellow);
+    transition: 0.5s ease;
+}
+.authicon{
+    color:var(--main);
+    font-size:72px;
+    margin:0 40%;
+}
+/* ----------------------------------------4.SignIn------------------------------------------------------------ */
+
+
+#signIn form {
+    margin: 10px 10%;
+}
+
+.forgotpsw {
+    font-size: 15px;
+    margin-left: 75%;
+    color: var(--link);
+}
+
+.forgotpsw:hover {
+    color: var(--yellow);
+    transition: 0.5s ease;
+}
+
+/* ----------------------------------------5.forgotpsw------------------------------------------------------------ */
+
+#forgotpsw {
+    display: none;
+}
+
+#forgotpsw form {
+    margin: 10px 10%;
+}
+
+/* ----------------------------------------6.SignUp------------------------------------------------------------ */
+
+#signUp {
+    display: none;
+}
+
+#signUp form {
+    margin: 10px 10%;
+}
+
+.fullname {
+    display: inline;
+}
+
+.name {
+    display: flex;
+    height: 35px;
+    width: 10%;
+    padding: 0 10px;
+    border-radius: 25px;
+    border: none;
+    font-size: 15px;
+}
+
+.des_half {
+    width: 50%;
+}
+
+.note {
+    color: rgba(255, 0, 0, 0.411);
+    font-size: 10px;
+    float: right;
+}
+
+@media only screen and (max-width: 768px) {
+    .profileicon p {
+        font-size: 10px;
+        margin: 5px;
+        padding: 6px;
+    }
+}

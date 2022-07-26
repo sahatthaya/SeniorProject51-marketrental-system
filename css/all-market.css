@@ -1,0 +1,110 @@
+body {
+    padding: 20px;
+    margin: 55px 68px 0px 146px !important;
+}
+
+/* Market item ---------------------------------------------------- */
+.search_box {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+.box {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+
+}
+
+.marketcard {
+    width: 100%;
+    height: 197px;
+    overflow: hidden;
+    border-radius: 10px;
+    text-decoration: none !important;
+    color: var(--white);
+
+}
+
+.mkrimg {
+    width: 100%;
+    height: 197px;
+}
+
+.overlay {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    width: 100%;
+    height: 197px;
+    background-color: #012166a5;
+    transform: translate(0%, -40%);
+    color: var(--white);
+
+}
+
+.marketcard:hover .overlay {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    transform: translate(0%, -100%);
+    transition: 0.5s ease;
+
+}
+
+/* textในoverlay */
+.markettag {
+    margin-bottom: 10px;
+}
+
+.ptext {
+    font-size: 15px !important;
+    margin: 0;
+    text-decoration: none;
+    width: fit-content;
+
+}
+
+.ptext i {
+    margin: 5px;
+    ;
+}
+
+
+/* responsive--------------------------------------------------------------------- */
+
+@media(max-width: 1400px) {
+
+    .box {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+    }
+}
+
+@media(max-width: 1200px) {
+
+    .box {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+}
+
+@media(max-width: 992px) {
+    .box {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+    }
+
+
+}
+
+@media(max-width:720px) {
+    body {
+        padding: 20px;
+        margin: 50px 10px 0px 10px !important;
+    }
+}

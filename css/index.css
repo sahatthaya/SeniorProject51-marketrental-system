@@ -1,0 +1,229 @@
+* {
+    font-family: 'Mitr', sans-serif;
+}
+
+:root {
+    --white: white;
+    --purple: #4B2ED7;
+    --lightblue: #38B6FF;
+}
+
+body {
+    padding: 20px;
+    margin: 50px 68px 0px 146px !important;
+}
+
+.radius10 {
+    border-radius: 10px !important;
+}
+
+/* ----------------------------------------1.banner------------------------------------------------------------ */
+
+.carousel-inner {
+    position: relative;
+    height: 25rem;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.carousel-item img {
+    height: 25rem;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.603) !important;
+    color: var(--white);
+    border-radius: 5px;
+    padding: auto 1rem !important;
+}
+
+#slidelabel {
+    margin-bottom: 25px;
+}
+
+.banner {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 3fr 250px;
+}
+
+/* ----------------------------------------2.users-guide------------------------------------------------------------ */
+
+.quick {
+    color: var(--white);
+    padding: 1em 2em;
+    border-radius: 10px;
+    border: none;
+    transition: ease .3s;
+    background: var(--purple);
+    box-shadow: 3px 3px 5px #7c7c7c8c;
+    transition: ease 0.5s;
+    float: right !important;
+    height: 195px;
+    width: 250px;
+}
+
+#merchant-btn {
+    margin-top: 15px !important;
+}
+
+.quick:hover {
+    background: var(--lightblue);
+    box-shadow: inset 5px 5px 6px #309bd9,
+        inset -5px -5px 6px #40d1ff;
+    transition: .3s ease;
+}
+
+
+.quick i {
+    font-size: 3rem !important;
+}
+
+.quick p {
+    margin: 0;
+    margin-top: 5px;
+    font-size: 1.2em;
+}
+
+#all-mrk {
+    text-decoration: none !important;
+    color: var(--lightblue);
+}
+
+#all-mrk:hover {
+    color: var(--purple);
+    text-decoration: underline;
+}
+
+
+/* ----------------------------------------3.ตลาดขายดี------------------------------------------------------------ */
+
+.topmkr {
+    margin: 15px 0;
+    width: 100%;
+}
+
+.topmkr .text {
+    border-bottom: 3px solid rgba(0, 0, 0, 0.164);
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+    justify-content: space-between;
+    margin: 15px 0px;
+    margin-right: 10px;
+    padding-top: 20px !important;
+}
+
+/* Market item ---------------------------------------------------- */
+.box {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+
+}
+
+.marketcard {
+    width: 100%;
+    height: 197px;
+    overflow: hidden;
+    border-radius: 10px;
+    text-decoration: none !important;
+    color: var(--white);
+
+}
+
+.mkrimg {
+    width: 100%;
+    height: 197px;
+}
+
+.overlay {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+    width: 100%;
+    height: 197px;
+    background-color: #012166a5;
+    transform: translate(0%, -40%);
+    color: var(--white);
+
+}
+
+.marketcard:hover .overlay {
+    border-top-left-radius: 10px !important;
+    border-top-right-radius: 10px !important;
+    transform: translate(0%, -100%);
+    transition: 0.5s ease;
+
+}
+
+/* textในoverlay */
+.markettag {
+    margin-bottom: 10px;
+}
+
+.ptext {
+    font-size: 15px !important;
+    margin: 0;
+    text-decoration: none;
+    width: fit-content;
+
+}
+
+.ptext i {
+    margin: 5px;
+    ;
+}
+
+
+/* responsive--------------------------------------------------------------------- */
+
+@media(max-width: 1400px) {
+
+    .box {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+
+    .banner {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+    }
+
+    #users-guide {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+    }
+
+    #merchant-btn {
+        margin-top: 0px !important;
+    }
+    .quick{
+        width: 100%;
+    }
+}
+
+@media(max-width: 992px) {
+    .box {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+    }
+
+}
+
+@media(max-width:720px) {
+    #users-guide {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+    }
+    body {
+    padding: 20px;
+    margin: 50px 10px 0px 10px !important;
+}
+}
