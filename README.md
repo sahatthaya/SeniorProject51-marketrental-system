@@ -1,5 +1,6 @@
 # SeniorProject51
 ******frontedend***************************************************************************
+
 หน้าที่ต้องแก้ layout
 - (no-login) market-info.php
 - (market)  editmarket-info.php
@@ -13,6 +14,7 @@
 - (market) จัดการตลาด แผนผัง การจ่ายเงิน สรุปการเช่า จัดการการจอง
 
 ******backend***************************************************************************
+
 func ที่ต้องเขียนเพิ่ม
 - (all users)password edit forgotPassword
 - (merchant) rent payment
