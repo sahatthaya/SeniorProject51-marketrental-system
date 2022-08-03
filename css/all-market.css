@@ -38,7 +38,12 @@ body {
     border-top-right-radius: 0px !important;
     width: 100%;
     height: 197px;
-    background-color: #012166a5;
+    background: rgba( 1, 33, 102, 0.5 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2.5px );
+    -webkit-backdrop-filter: blur( 2.5px );
+    border-radius: 10px;
+    border-radius: 10px;
     transform: translate(0%, -40%);
     color: var(--white);
 
@@ -49,7 +54,11 @@ body {
     border-top-right-radius: 10px !important;
     transform: translate(0%, -100%);
     transition: 0.5s ease;
-
+    background: rgba( 1, 33, 102, 0.55 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    border-radius: 10px;
 }
 
 /* textในoverlay */

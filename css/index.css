@@ -31,10 +31,15 @@ body {
 }
 
 .carousel-caption {
-    background-color: rgba(0, 0, 0, 0.603) !important;
     color: var(--white);
     border-radius: 5px;
     padding: auto 1rem !important;
+
+    background: rgba(0, 0, 0, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 
 #slidelabel {
@@ -143,7 +148,12 @@ body {
     border-top-right-radius: 0px !important;
     width: 100%;
     height: 197px;
-    background-color: #012166a5;
+    background: rgba( 1, 33, 102, 0.5 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 2.5px );
+    -webkit-backdrop-filter: blur( 2.5px );
+    border-radius: 10px;
+    border-radius: 10px;
     transform: translate(0%, -40%);
     color: var(--white);
 
@@ -154,7 +164,11 @@ body {
     border-top-right-radius: 10px !important;
     transform: translate(0%, -100%);
     transition: 0.5s ease;
-
+    background: rgba( 1, 33, 102, 0.55 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 7.5px );
+    -webkit-backdrop-filter: blur( 7.5px );
+    border-radius: 10px;
 }
 
 /* textในoverlay */
@@ -201,7 +215,8 @@ body {
     #merchant-btn {
         margin-top: 0px !important;
     }
-    .quick{
+
+    .quick {
         width: 100%;
     }
 }
@@ -222,8 +237,9 @@ body {
         grid-gap: 20px;
         grid-template-columns: repeat(1, minmax(100px, 1fr));
     }
+
     body {
-    padding: 20px;
-    margin: 50px 10px 0px 10px !important;
-}
+        padding: 20px;
+        margin: 50px 10px 0px 10px !important;
+    }
 }

@@ -81,12 +81,14 @@ require "./backend/qry-index.php";
             </button>
         </div>
 
-        
+
     </div>
     <div class=" topmkr">
         <div class="text row">
             <h3 class="col-10">ตลาดแนะนำ</h3>
-            <a class="col-2 text-end" id="all-mrk" href="all-market.php"><h5>ดูตลาดทั้งหมด</h5></a>
+            <a class="col-2 text-end" id="all-mrk" href="all-market.php">
+                <h5>ดูตลาดทั้งหมด</h5>
+            </a>
         </div>
         <div class="box">
             <?php while ($row1 = $resultmkr->fetch_assoc()) : ?>
@@ -95,10 +97,10 @@ require "./backend/qry-index.php";
                     <div class="overlay">
                         <h4 style="text-align: center;"><?php echo $row1['mkr_name'] ?></h4>
                         <div class="row markettag">
-                                    <p class="col-6  ptext"style="text-align: center;"><i class='bx bxs-navigation'></i> <?php echo $row1['province_name'] ?></p>
-                                    <p class="col-6  ptext"style="text-align: center;"><i class='bx bxs-info-circle'></i> <?php echo $row1['market_type'] ?></p>
+                            <p class="col-6  ptext" style="text-align: center;"><i class='bx bxs-navigation'></i> <?php echo $row1['province_name'] ?></p>
+                            <p class="col-6  ptext" style="text-align: center;"><i class='bx bxs-info-circle'></i> <?php echo $row1['market_type'] ?></p>
 
-                                </div>
+                        </div>
                         <p class="ptext">รายละเอียด : <?php echo $row1['mkr_descrip'] ?></p>
                         <p class="ptext">เบอร์ติดต่อ : <?php echo $row1['tel'] ?></p>
                         <p class="ptext">อีเมล : <?php echo $row1['email'] ?></p>
@@ -110,35 +112,34 @@ require "./backend/qry-index.php";
         </div>
     </div>
     <!-- Modal -->
-        <!-- partner-modal  -->
-        <div class="modal fade" id="partner-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">สำหรับเจ้าของตลาด</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <h3 class="center">ขั้นตอนการสมัครเป็นพาร์ทเนอร์</h3>
-                            <div class="row">
-                                <div class="col c">
-                                    <div class="card">
-                                        <img src="asset/contact/mkr-1.png" class="card-img-top" alt="...">
+    <!-- partner-modal  -->
+    <div class="modal fade" id="partner-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">สำหรับเจ้าของตลาด</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <h3 class="center">ขั้นตอนการสมัครเป็นพาร์ทเนอร์</h3>
+                        <div class="row">
+                            <div class="col c">
+                                <div class="card">
+                                    <img src="asset/contact/mkr-1.png" class="card-img-top" alt="...">
 
-                                    </div>
                                 </div>
-                                <div class="col c">
-                                    <div class="card center">
-                                        <img src="asset/contact/mkr-2.png" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col c">
+                                <div class="card center">
+                                    <img src="asset/contact/mkr-2.png" class="card-img-top" alt="...">
 
-                                    </div>
                                 </div>
-                                <div class="col c">
-                                    <div class="card">
-                                        <img src="asset//contact/mkr-2.png" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col c">
+                                <div class="card">
+                                    <img src="asset//contact/mkr-2.png" class="card-img-top" alt="...">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -146,33 +147,33 @@ require "./backend/qry-index.php";
                 </div>
             </div>
         </div>
-        <!-- merchant-modal  -->
-        <div class="modal fade" id="merchant-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">สำหรับพ่อค้าแม่ค้า</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="container">
-                            <h3 class="center">ขั้นตอนการจองพื้นที่</h3>
-                            <div class="row">
-                                <div class="col c">
-                                    <div class="card">
-                                        <img src="asset/contact/merchant-1.png" class="card-img-top" alt="...">
-                                    </div>
+    </div>
+    <!-- merchant-modal  -->
+    <div class="modal fade" id="merchant-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">สำหรับพ่อค้าแม่ค้า</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <h3 class="center">ขั้นตอนการจองพื้นที่</h3>
+                        <div class="row">
+                            <div class="col c">
+                                <div class="card">
+                                    <img src="asset/contact/merchant-1.png" class="card-img-top" alt="...">
                                 </div>
-                                <div class="col c">
-                                    <div class="card center">
-                                        <img src="asset/contact/merchant-2.png" class="card-img-top" alt="...">
-                                    </div>
+                            </div>
+                            <div class="col c">
+                                <div class="card center">
+                                    <img src="asset/contact/merchant-2.png" class="card-img-top" alt="...">
                                 </div>
-                                <div class="col c">
-                                    <div class="card">
-                                        <img src="asset/contact/merchant-3.png" class="card-img-top" alt="...">
+                            </div>
+                            <div class="col c">
+                                <div class="card">
+                                    <img src="asset/contact/merchant-3.png" class="card-img-top" alt="...">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -180,6 +181,7 @@ require "./backend/qry-index.php";
                 </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
