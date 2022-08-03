@@ -16,7 +16,7 @@
 ******backend***************************************************************************
 
 func ที่ต้องเขียนเพิ่ม
-- (all users)password edit forgotPassword
+- (all users)forgotPassword
 - (merchant) rent payment
 - (market) จัดการตลาด แผนผัง การจ่ายเงิน สรุปการเช่า จัดการการจอง complainReply
 
