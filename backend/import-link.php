@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,5 +47,11 @@
     <!-- flickity -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.11/flickity.pkgd.js'></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/flickity/2.0.11/flickity.css'>
+
+    <!-- jquery ui -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    
 </head>
+
 </html>
