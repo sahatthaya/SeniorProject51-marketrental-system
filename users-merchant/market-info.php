@@ -18,34 +18,34 @@ require "../backend/qry-market-info.php"
 ?>
 
 <body>
+
     <div>
-        <div class="row">
-            <div class="col-5">
-                <p id="mkr_name"><?php echo $row['mkr_name']; ?></p>
-                <div class="hstack gap-2 info-tag">
-                    <button class="type_tag"><i class='bx bxs-info-circle'></i> <?php echo $row['market_type']; ?></button>
-                    <button class="type_tag"><i class='bx bxs-navigation'></i> <?php echo $row['province_name']; ?></button>
-                </div>
-                <h5>รายละเอียด</h5>
-                <p class="text_desc">
-                    <?php echo $row['mkr_descrip']; ?>
-                </p>
-                <h5>ข้อมูลติดต่อ</h5>
-                <p class="text_desc">
-                    เบอร์โทร : <?php echo $row['tel']; ?>
-                    <br>
-                    อีเมล : <?php echo $row['email']; ?>
-                    <br>
-                    ที่อยู่ : <?php echo $row['mkr_address']; ?>
-                </p>
 
-
-
-            </div>
-            <div class="col-7 mkrpic">
-                <img src="../<?php echo $row['mkr_pic'] ?>" class="d-block w-100" alt="...">
-            </div>
+        <div class="mkrpic">
+            <img src="../<?php echo $row['mkr_pic'] ?>" class="d-block w-100" alt="...">
         </div>
+
+        <div class="mrk_info">
+            <p id="mkr_name"><?php echo $row['mkr_name']; ?></p>
+            <div class="hstack gap-2 info-tag">
+                <button class="type_tag"><i class='bx bxs-info-circle'></i> <?php echo $row['market_type']; ?></button>
+                <button class="type_tag"><i class='bx bxs-navigation'></i> <?php echo $row['province_name']; ?></button>
+            </div>
+            <h5>รายละเอียด</h5>
+            <p class="text_desc">
+                <?php echo $row['mkr_descrip']; ?>
+            </p>
+            <h5>ข้อมูลติดต่อ</h5>
+            <p class="text_desc">
+                เบอร์โทร : <?php echo $row['tel']; ?>
+                <br>
+                อีเมล : <?php echo $row['email']; ?>
+                <br>
+                ที่อยู่ : <?php echo $row['mkr_address']; ?>
+            </p>
+
+        </div>
+
         <div id="quick-menu2" class="hstack">
             <a type="button" class="quick-menu2" id="partner-btn" data-bs-toggle="modal" data-bs-target="#partner-modal">
                 <i class='bx bxs-map-alt'></i>
@@ -60,7 +60,19 @@ require "../backend/qry-market-info.php"
                 <p> การร้องเรียน </p>
             </a>
         </div>
+
+        <div class="mrk_news">
+            <h5>ข่าวสารตลาด</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a href=""> An item</a></li>
+                <li class="list-group-item"><a href=""> An item</a></li>
+                <li class="list-group-item"><a href=""> An item</a></li>
+            </ul>
+        </div>
+
+
     </div>
+
 </body>
 
 </html>
