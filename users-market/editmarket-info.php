@@ -43,7 +43,7 @@ require "../backend/edit-matketinfo.php";
       </div>
     </div>
     <div id="quick-menu2" class="hstack">
-      <a type="button" class="quick-menu2 " id="partner-btn" href="./marketPlan.php">
+      <a type="button" class="quick-menu2 " id="partner-btn"  href="marketPlan.php?mkr_id=<?php echo $row['mkr_id']; ?>">
         <i class='bx bxs-map-alt'></i>
         <p> จัดการแผนผังตลาด</p>
       </a>
