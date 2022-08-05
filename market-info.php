@@ -18,7 +18,7 @@ require "backend/qry-market-info.php"
 ?>
 
 <body>
-<div>
+    <div>
         <div class="mkrpic">
             <img src="<?php echo $row['mkr_pic'] ?>" class="d-block w-100" alt="...">
         </div>
