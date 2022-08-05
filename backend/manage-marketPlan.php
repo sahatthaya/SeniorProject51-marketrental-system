@@ -16,7 +16,7 @@ if (isset($_POST['stall-submit'])) {
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script>alert('เพิ่มแผงค้าสำเร็จ');</script>";
         } else {
-            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง55');</script>";
+            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
         }
     } else {
         echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
@@ -28,7 +28,6 @@ if (isset($_POST["sKey"])) {
     $data = "SELECT * FROM stall WHERE (sKey = '$sKey')";
     $output = '';
     $result = mysqli_query($conn, $data);
-    $output .= '<div>';
     while ($row = mysqli_fetch_array($result)) {
         $output .= '
         <label>รหัสแผงค้า :</label>
@@ -60,12 +59,41 @@ if (isset($_POST["sKey"])) {
                             <option value="บาท/เดือน">บาท/เดือน</option>
                         </select>
                     </div>
-         
+                    <input type="number" class="form-control" name="sRent" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" value=' . $row['sKey'] . ' hidden>         
      ';
     }
-    $output .= '
-</div>  
-';
     echo $output;
 }
-mysqli_close($conn);
+
+if (isset($_POST['edtStall-submit'])) {
+    $sKey = $_POST["KeyID"];
+    $sID = $_POST['sID'];
+    $sWidth = $_POST['sWidth'];
+    $sHeight = $_POST['sHeight'];
+    $sAreaUnit = $_POST['sAreaUnit'];
+    $sDept = $_POST['sDept'];
+    $sPayRange = $_POST['sPayRange'];
+    $sRent = $_POST['sRent'];
+
+    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "") {
+        $sqlInsert = "UPDATE `stall` SET `sKey`=$sKey,`sID`='$sID',`sWidth`='$sWidth',`sHeight`='$sHeight',`sAreaUnit`='$sAreaUnit',`sDept`='$sDept',`sRent`='$sRent',`sPayRange`='$sPayRange' WHERE (sKey = '$sKey') ";
+        if (mysqli_query($conn, $sqlInsert)) {
+            echo "<script>alert('แก้ไขแผงค้าสำเร็จ');</script>";
+        } else {
+            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+        }
+    } else {
+        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+    }
+}
+
+if (isset($_GET['delstall']) ){
+    $sKey = $_GET['delstall'];
+    $sqlDelUsers = "DELETE FROM stall WHERE (sKey = $sKey)";
+    if($rsDelUsers = mysqli_query($conn, $sqlDelUsers)){
+       echo "<script>alert('ลบข้อมูลเสร็จสิ้น');</script>" ;
+       mysqli_close($conn);
+    }else{
+        echo "<script>alert ('ผิดพลาด ไม่สามารถลบข้อมูลได้');</script>" ;
+    }
+}
