@@ -32,7 +32,7 @@ if (isset($_POST["sKey"])) {
         $output .= '
         <label>รหัสแผงค้า :</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="stawID" aria-label="รหัสแผงค้า" name="sID" title="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01"require value=' . $row['sID'] . '>
+                        <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" title="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01"require value=' . $row['sID'] . '>
                     </div>
                     <label>ขนาดพื้นที่ :</label>
                     <div class="input-group">

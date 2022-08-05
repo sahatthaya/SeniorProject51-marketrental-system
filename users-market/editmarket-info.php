@@ -44,9 +44,9 @@ require "../backend/edit-matketinfo.php";
     </div>
 
     <div id="quick-menu2" class="hstack">
-      <a type="button" class="quick-menu2 " id="partner-btn" href="marketPlan.php?mkr_id=<?php echo $row['mkr_id']; ?>">
+      <a type="button" class="quick-menu2 " id="partner-btn" href="editStall.php?mkr_id=<?php echo $row['mkr_id']; ?>">
         <i class='bx bxs-map-alt'></i>
-        <p> จัดการแผนผังตลาด</p>
+        <p> จัดการแผงค้า</p>
       </a>
       <a type="button" class="quick-menu2 " id="merchant-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
         <i class='bx bxs-message-square-edit'></i>

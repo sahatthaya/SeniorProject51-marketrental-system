@@ -1,0 +1,37 @@
+:root {
+    --white: white;
+    --purple: #4B2ED7;
+    --lightblue: #38B6FF;
+    --primaryblue: #006bfa;
+    --freshblue: #0daafd;
+    --margenta: #8e18d7;
+    --dark: #02155A;
+}
+body {
+    padding: 20px;
+    margin: 50px 68px 0px 146px !important;
+    /* background-color: #F2F3F5 !important; */
+
+}
+/* ปุ่มเมนู */
+.add-btn i {
+    color: white !important;
+    margin: 2px;
+    font-size: 1em;
+}
+.add-btn{
+    width: 200px;
+    margin-right: 10px;
+}
+/* form add stall ------------------------*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

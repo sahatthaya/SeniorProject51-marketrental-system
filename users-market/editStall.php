@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แก้ไขแผนผังตลาด</title>
+    <title>จัดการแผงค้า</title>
     <!-- css  -->
-    <link rel="stylesheet" href="../css/market-plan.css" type="text/css">
+    <link rel="stylesheet" href="../css/editStall.css" type="text/css">
+    <link rel="stylesheet" href="../css/banner.css" type="text/css">
 
     <?php
     include "profilebar.php";
@@ -22,114 +23,19 @@
     ?>
 
 </head>
-<script>
-    // $(document).ready(function() {
-    //     var x; // To store cloned div
-
-    //     $(".div_1").draggable({
-    //         helper: "clone",
-    //         cursor: "move",
-    //         revert: true
-    //     });
-
-
-    //     $(".plan").droppable({
-    //         drop: function(event, ui) {
-    //             x = ui.helper.clone(); 
-    //             ui.helper.remove(); 
-    //             x.appendTo('.plan'); 
-    //             x.draggable({
-    //                 cursor: "move",
-    //                 revert: true,
-    //                 containment: "parent"
-    //             });
-    //         }
-    //     });
-
-    // });
-
-    $(document).ready(function() {
-        var $boxstall = $(".plan"),
-            $list = $(".list");
-        // $("#sortable").sortable({
-        //     revert: true
-        // });
-        // $( "ul, li" ).disableSelection();
-
-        $(".stallbox", $list).draggable({
-            // connectToSortable: "#sortable",
-            contaiment: ".list",
-            cursor: "move",
-            // revert: "invalid"
-        });
-        $list.droppable({
-            classes: {
-                accept: ".plan > .stallbox"
-            },
-            drop: function(event, ui) {
-                revert(ui.draggable)
-
-            }
-        });
-        $boxstall.droppable({
-            accept: ".list .stallbox",
-            classes: {
-                "ui-droppable-active": "custom-state-active"
-            },
-            drop: function(event, ui) {
-                revertToPlan(ui.draggable);
-
-            }
-        });
-
-
-        function revert($item) {
-            $item.appendTo($list).fadeIn(function() {
-                var $stalllist = $("ul", $list).length ?
-                    $("ul", $list) :
-                    $("<ul class='gallery ui-helper-reset'/>").appendTo($list);
-                $item
-                    .animate({
-                        width: "250px",
-                        height: "50px"
-
-                    })
-            });
-        }
-
-        function revertToPlan($item) {
-            $item.fadeOut(function() {
-                $item
-                    .css("width", "100px")
-                    .css("height", "100px")
-                    .find("img")
-                    .end()
-                    .appendTo($boxstall)
-                    .fadeIn();
-            });
-        }
-    });
-
-    // function stallFunction() {
-    //     var stall = document.getElementById("stallID").value;
-    //     var div = document.createElement('div');
-    //     div.classList.add("stallbox");
-    //     div.setAttribute("name", stall);
-    //     div.innerHTML = stall;
-    //     $(div).appendTo(".plan");
-    // };
-</script>
+<script src="../backend/script.js"></script>
 
 <body>
-    <h1>แก้ไขแผนผังตลาด</h1>
+    <h1>จัดการข้อมูลแผงค้า</h1>
     <div id="quick-menu2" class="hstack">
         <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
             <i class='bx bx-plus-circle'></i>เพิ่มแผงค้า
         </button>
-        <button type="button" class="btn btn-primary add-btn" id="merchant-btn" onclick="window.location='marketPlan.php';">
-            <i class='bx bxs-message-square-edit'></i>จัดการข้อมูลแผงค้า
-        </button>
+        <a type="button" class="btn btn-primary add-btn" id="merchant-btn" href="marketPlan.php?mkr_id=<?php echo $mkr_id = $_GET['mkr_id']; ?>">
+            <i class='bx bxs-message-square-edit'></i>ปรับแก้แผนผังตลาด
+</a>
     </div>
+
     <!-- Modal -->
     <div id="edtmkrinfo-modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
@@ -175,27 +81,69 @@
             </form>
         </div>
     </div>
-    <div class="content">
-        <div class="plan" id="plan">
-        <h3 class="center">แผนผังตลาด</h3>
+    <div id="content">
+        <div id="table2">
+            <table id="myTable" class="display " style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th scope="col">ลำดับ</th>
+                        <th scope="col">รหัสแผงค้า</th>
+                        <th scope="col">ขนาดพื้นที่</th>
+                        <th scope="col">ราคามัดจำ (บาท)</th>
+                        <th scope="col">ราคาค่าเช่า</th>
+                        <th scope="col">สถานะ</th>
+                        <th scope="col">ประวัติการจองแผงค้า</th>
+                        <th scope="col">จัดการ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row1 = $result3->fetch_assoc()) : ?>
+                        <tr>
+                            <td><?php echo $count_n; ?></td>
+                            <td><?php echo $row1['sID']?></td>
+                            <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
+                            <td><?php echo $row1['sDept']; ?></td>
+                            <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>
+                            <td><?php echo $row1['sStatus']; ?></td>
+                            <td>
+                                <button class=" btn btn-outline-info">ดูประวัติการจอง</button>
+                            </td>
+                            <td>
+                                <div class="row" style="justify-content: center;">
+                                    <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;" id="<?php echo $row1['sKey']; ?>">แก้ไข</a>
+                                    <a href="../backend/manage-editStall.php?delstall=<?php echo $row1['sKey']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
+                                </div>
+                            </td>
+                        </tr>
 
-        </div>
-        <div class="list">
-            <h3 class="center">รายการแผงค้า</h3>
-            <ul id="sortable">
-                <?php while ($row1 = $result3->fetch_assoc()) : ?>
-                    <li>
-                        <div class="stallbox">
-                         รหัสแผงค้า:   <?php echo $row1['sID'] ?>
-                        </div>
-                    </li>
-                <?php
-                endwhile ?>
-            </ul>
-
+                    <?php $count_n++;
+                    endwhile ?>
+                </tbody>
+            </table>
         </div>
     </div>
+    <?php require '../backend/modal-editStall.php' ?>
 </body>
 
+<script>
+    // apply detail popup
+    $(document).ready(function() {
+        $('.modal_data').click(function() {
+            var sKey = $(this).attr("id");
+            $.ajax({
+                url: "../backend/manage-editStall.php",
+                method: "POST",
+                data: {
+                    sKey: sKey
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
+        })
+    });
+</script>
 
 </html>

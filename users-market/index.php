@@ -31,7 +31,7 @@ require "../backend/graph-market.php";
                 </div>
             </div>
 
-            <div class="card-emptystaw" id="blank">
+            <div class="card-emptystall" id="blank">
                 <div class="blank-content center vstack">
                     <p>จำนวนแผงว่างทั้งหมด</p>
                     <h1>0</h1>
