@@ -11,8 +11,8 @@
 <?php
 include "profilebar.php";
 include "nav.php";
-include "backend/connectDB.php";
-include "backend/import-link.php";
+include "backend/1-connectDB.php";
+include "backend/1-import-link.php";
 if ($_GET['mkr_id']) {
     $mkr_id = $_GET['mkr_id'];
     $sql = "SELECT market_detail.*,province.province_name , market_type.market_type FROM market_detail 

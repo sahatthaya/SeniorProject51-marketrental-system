@@ -1,5 +1,5 @@
 <?php
-include "../backend/connectDB.php";
+include "../backend/1-connectDB.php";
 
 $count_n = 1;
 $data = "SELECT req_partner.*, users.username FROM req_partner JOIN users ON (req_partner.users_id = users.users_id) WHERE (req_status_id = '1')";

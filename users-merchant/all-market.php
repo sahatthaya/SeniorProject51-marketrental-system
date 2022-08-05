@@ -13,9 +13,9 @@ include "profilebar.php";
 </head>
 <?php
 include "nav.php";
-include "../backend/connectDB.php";
+include "../backend/1-connectDB.php";
 require "../backend/qry-allmarket.php";
-include "../backend/import-link.php";
+include "../backend/1-import-link.php";
 
 ?>
 <body>

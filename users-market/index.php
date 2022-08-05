@@ -13,9 +13,9 @@
 
 include "profilebar.php";
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
-require "../backend/market-dashboard.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
+require "../backend/graph-market.php";
 ?>
 
 <body>
@@ -58,7 +58,7 @@ require "../backend/market-dashboard.php";
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li>
-                                        <a class="del" href="../backend/deletemarket.php?mkr_id=<?php echo $row['mkr_id']; ?>" onclick="return confirm('คุณต้องการลบ <?php echo $row['mkr_name'] ?> หรือไม่')"><i class='bx bx-trash-alt'></i>ลบตลาด</a>
+                                        <a class="del" href="../backend/del-market.php?mkr_id=<?php echo $row['mkr_id']; ?>" onclick="return confirm('คุณต้องการลบ <?php echo $row['mkr_name'] ?> หรือไม่')"><i class='bx bx-trash-alt'></i>ลบตลาด</a>
                                     </li>
                                 </ul>
                             </div>

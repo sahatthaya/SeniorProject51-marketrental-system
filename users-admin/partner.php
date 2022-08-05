@@ -11,9 +11,9 @@
 <?php
 include "profilebar.php";
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
-require "../backend/manageapplicant.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
+require "../backend/manage-applicant.php";
 ?>
 
 <body>
@@ -45,8 +45,8 @@ require "../backend/manageapplicant.php";
                                 </td>
                                 <td>
                                     <div class="row" style="justify-content: center;">
-                                        <a href="../backend/manageapplicant.php?approve=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" style="margin-right: 2px;font-size:14px;">อนุมัติ</a>
-                                        <a href="../backend/manageapplicant.php?denied=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px;font-size:14px;">ปฏิเสธ</a>
+                                        <a href="../backend/manage-applicant.php?approve=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" style="margin-right: 2px;font-size:14px;">อนุมัติ</a>
+                                        <a href="../backend/manage-applicant.php?denied=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px;font-size:14px;">ปฏิเสธ</a>
                                     </div>
                                 </td>
                             </tr>
@@ -57,7 +57,7 @@ require "../backend/manageapplicant.php";
             </div>
         </div>
     </div>
-    <?php require '../backend/applicant-modal.php' ?>
+    <?php require '../backend/modal-applicant.php' ?>
 </body>
 <script>
     // apply detail popup
@@ -65,7 +65,7 @@ require "../backend/manageapplicant.php";
         $('.modal_data1').click(function() {
             var mkrdid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manageapplicant.php",
+                url: "../backend/manage-applicant.php",
                 method: "POST",
                 data: {
                     mkrdid: mkrdid

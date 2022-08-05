@@ -1,5 +1,5 @@
 <?php
-include "../backend/connectDB.php";
+include "../backend/1-connectDB.php";
 if (isset($_POST['bn-submit'])) {
 
     $ct1_fname = $_POST['ct1_fname'];

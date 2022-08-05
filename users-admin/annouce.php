@@ -12,9 +12,9 @@
 <?php
 include "profilebar.php";
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
-require "../backend/manageannouce.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
+require "../backend/manage-annouce.php";
 ?>
 
 <body>
@@ -42,8 +42,8 @@ require "../backend/manageannouce.php";
                             <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
                             <td>
                                 <div class="row" style="justify-content: center;">
-                                    <a href="../backend/manageannouce.php?approve=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" id="" style="margin-right: 2px; font-size:14px;">อนุมัติ</a>
-                                    <a href="../backend/manageannouce.php?denied=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px; font-size:14px;">ลบ</a>
+                                    <a href="../backend/manage-annouce.php?approve=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" id="" style="margin-right: 2px; font-size:14px;">อนุมัติ</a>
+                                    <a href="../backend/manage-annouce.php?denied=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px; font-size:14px;">ลบ</a>
                                 </div>
                             </td>
                         </tr>
@@ -53,7 +53,7 @@ require "../backend/manageannouce.php";
             </table>
         </div>
     </div>
-    <?php require '../backend/applicant-modal.php' ?>
+    <?php require '../backend/modal-applicant.php' ?>
 </body>
 
 <script>
@@ -62,7 +62,7 @@ require "../backend/manageannouce.php";
         $('.modal_data1').click(function() {
             var anid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manageannouce.php",
+                url: "../backend/manage-annouce.php",
                 method: "POST",
                 data: {
                     anid: anid

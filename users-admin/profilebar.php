@@ -12,8 +12,8 @@ if (($_SESSION["userstype"] != "3")) {
     <link rel="stylesheet" href="../css/profilebar.css" type="text/css">
 </head>
 <?php
-    include "../backend/connectDB.php";
-    include "../backend/import-link.php"
+    include "../backend/1-connectDB.php";
+    include "../backend/1-import-link.php"
 ?>
 
 <body>
@@ -27,7 +27,7 @@ if (($_SESSION["userstype"] != "3")) {
             <li>
                 <hr class="dropdown-divider">
             </li>
-            <li><a class="dropdown-item" style="color: red;" href="../backend/logout.php"><i class='bx bx-log-out-circle'></i>ออกจากระบบ</a></li>
+            <li><a class="dropdown-item" style="color: red;" href="../backend/auth-logout.php"><i class='bx bx-log-out-circle'></i>ออกจากระบบ</a></li>
         </ul>
     </div>
 </body>

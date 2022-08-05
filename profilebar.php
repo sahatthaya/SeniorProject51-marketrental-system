@@ -10,10 +10,10 @@ session_start();
     <title> user-profile</title>
     <link rel="stylesheet" href="./css/profilebar.css" type="text/css">
     <?php
-    include "backend/connectDB.php";
-    include "backend/import-link.php";
-    require "backend/auth.php";
-    require "backend/signup.php";
+    include "backend/1-connectDB.php";
+    include "backend/1-import-link.php";
+    require "backend/auth-auth.php";
+    require "backend/auth-signup.php";
 
     ?>
 </head>

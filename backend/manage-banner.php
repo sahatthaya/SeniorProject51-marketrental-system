@@ -1,5 +1,5 @@
 <?php
-include "../backend/connectDB.php";
+include "../backend/1-connectDB.php";
 
 // corusel query
 $query = "SELECT * FROM banner ORDER BY bn_id DESC";

@@ -12,9 +12,9 @@
 <?php
 include "profilebar.php";
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
-require "../backend/managebanner.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
+require "../backend/manage-banner.php";
 ?>
 
 <body>
@@ -124,7 +124,7 @@ require "../backend/managebanner.php";
                                 <td><?php echo $count_n; ?></td>
                                 <td><?php echo $row['bn_toppic']; ?></td>
                                 <td><button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['bn_id']; ?>">ดูรายละเอียด</button></td>
-                                <td> <a href="../backend/managebanner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger" style="margin-left: 5px;">ลบ</a></td>
+                                <td> <a href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger" style="margin-left: 5px;">ลบ</a></td>
                             </tr>
                         <?php $count_n++;
                         endwhile ?>
@@ -133,7 +133,7 @@ require "../backend/managebanner.php";
             </div>
         </div>
     </div>
-    <?php require '../backend/banner-modal.php' ?>
+    <?php require '../backend/modal-banner.php' ?>
 </body>
 <script>
       //detail popup
@@ -141,7 +141,7 @@ require "../backend/managebanner.php";
         $('.modal_data').click(function() {
             var bannerid = $(this).attr("id");
             $.ajax({
-                url: "../backend/managebanner.php",
+                url: "../backend/manage-banner.php",
                 method: "POST",
                 data: {
                     bannerid: bannerid

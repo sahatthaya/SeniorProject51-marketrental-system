@@ -33,8 +33,8 @@ include "profilebar.php";
 </script>
 <?php
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
 
 $userid = $_SESSION['users_id'];
 $sqlqry = "SELECT * FROM users WHERE (users_id = '$userid') ";

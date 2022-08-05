@@ -14,8 +14,8 @@ include "profilebar.php";
 
 <?php
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
 
 // tb rqan query
 $count_n = 1;
@@ -62,7 +62,7 @@ $result3 = mysqli_query($conn, $data2);
     </div>
     <script src="../backend/script.js"></script>
     
-    <?php require '../backend/applicant-modal.php' ?>
+    <?php require '../backend/modal-applicant.php' ?>
 </body>
 <script>
     //detail req popup
@@ -70,7 +70,7 @@ $result3 = mysqli_query($conn, $data2);
         $('.modal_data1').click(function() {
             var anid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manageannouce.php",
+                url: "../backend/manage-annouce.php",
                 method: "POST",
                 data: {
                     anid: anid

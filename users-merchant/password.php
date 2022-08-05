@@ -31,8 +31,8 @@
 <?php
 include "profilebar.php";
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
 $username = $_SESSION['username'];
 $sql = "SELECT * FROM users WHERE username = '$username'";
 $result = mysqli_query($conn, $sql);

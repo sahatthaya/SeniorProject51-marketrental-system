@@ -13,8 +13,8 @@ include "profilebar.php";
 </head>
 <?php
 include "nav.php";
-include "../backend/connectDB.php";
-include "../backend/import-link.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
 
 // req status
 $count_n = 1;
@@ -59,14 +59,14 @@ $result = mysqli_query($conn, $data);
     </div>
 </body>
 <script src="../backend/script.js"></script>
-<?php require '../backend/applicant-modal.php' ?>
+<?php require '../backend/modal-applicant.php' ?>
 <script>
     // apply detail popup
     $(document).ready(function() {
         $('.modal_data1').click(function() {
             var mkrdid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manageapplicant.php",
+                url: "../backend/manage-applicant.php",
                 method: "POST",
                 data: {
                     mkrdid: mkrdid
