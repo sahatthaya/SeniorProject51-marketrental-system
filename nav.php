@@ -73,6 +73,15 @@ include "backend/import-link.php";
                     <li><a class="link_name" href="contact.php">รอแก้ไข(หน้าจัดการข้อมูลการจอง)</a></li>
                 </ul>
             </li>
+            <li class="navlink">
+                <a href="./pay-rent.php">
+                    <i class='bx bxs-heart bx-border'></i>
+                    <span class="link_name">รอแก้ไข(หน้าชำระค่าเช่าแผงค้า-เป็นแค่ส่วนของ pop up )</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="contact.php">รอแก้ไข(หน้าชำระค่าเช่าแผงค้า-เป็นแค่ส่วนของ pop up)</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <script src="backend/script.js"></script>

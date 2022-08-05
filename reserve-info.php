@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="./css/reserve-info.css">
 
-    
+
 </head>
 
 <?php
@@ -135,6 +135,7 @@ require "backend/qry-market-info.php"
 
             </div>
         </div>
+
 
 
 

@@ -1,9 +1,18 @@
+
+/* 
+1. reserve-info
+2. pay-rent
+ */
+
 body {
     padding: 20px;
     margin: 50px 68px 0px 146px !important;
     background: #F2F3F5 !important;
 
 }
+
+
+/*---------- reserve-info --------*/
 
 .res-info {
     text-align: center;
@@ -49,4 +58,35 @@ body {
     border: 1px solid #5CE1E6;
     color: #F2F3F5;
     background-color: #5CE1E6;
+}
+
+/* -----------pay-rent-------------- */
+
+.modal-content{
+    margin: 0 15px;
+}
+.pay-rent-info p{
+    margin: 0 15px;
+}
+
+#file-slip{
+    margin: 10px 15px;
+}
+input{
+    margin: 25px 0px;
+    border-radius: 10px;
+}
+
+#qr-code{
+    width: 150px;
+
+}
+
+
+#confirm{
+    background: #3DC9F9;
+    width: 200px;
+    border-radius: 10px;
+    border: none;
+    margin: 25px 0 25px 250px;
 }
