@@ -55,6 +55,15 @@ include "backend/import-link.php";
                     <li><a class="link_name" href="contact.php">ติดต่อเรา</a></li>
                 </ul>
             </li>
+            <li class="navlink">
+                <a href="reserve-info.php">
+                    <i class='bx bxs-heart bx-border'></i>
+                    <span class="link_name">รอแก้ไข(หน้าข้อมูลการจอง)</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="contact.php">รอแก้ไข(หน้าข้อมูลการจอง)</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <script src="backend/script.js"></script>
