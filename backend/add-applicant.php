@@ -8,9 +8,17 @@ if (isset($_POST['submit-apply'])) {
     $mkrName = $_POST['mkrName'];
     $mkrtype = $_POST['mkrtype'];
     $province = $_POST['province'];
-    $mkrAddress = $_POST['mkrAddress'];
     $mkrDes = $_POST['mkrDes'];
     $userlogin = $_SESSION['users_id'];
+    $HouseNo = $_POST['HouseNo'];
+    $Soi = $_POST['Soi'];
+    $Moo = $_POST['Moo'];
+    $Road = $_POST['Road'];
+    $Subdistrict = $_POST['Subdistrict'];
+    $District = $_POST['District'];
+    $Province = $_POST['Province'];
+    $PostalCode = $_POST['PostalCode'];
+    $mkrAddress = 'ที่อยู่ '.$HouseNo.' ซอย '.$Soi.' หมู่ '.$Moo.' ถนน '.$Road.' ตำบล/แขวง '.$Subdistrict.' อำเภอ/เขต '.$District.' จังหวัด '.$Province.' '.$PostalCode;
 
 
     date_default_timezone_set('Asia/Bangkok');
@@ -35,7 +43,7 @@ if (isset($_POST['submit-apply'])) {
     if (
         isset($_POST["firstName"]) != "" && isset($_POST["lastName"]) != "" && isset($_POST["email"]) != "" && isset($_POST["tel"]) != ""
         && isset($idfilepath) != "" && isset($_POST["mkrName"]) != "" && isset($_POST["mkrtype"]) != "" && isset($_POST["province"]) != ""
-        && isset($_POST["mkrAddress"]) != "" && isset($_POST["mkrDes"]) != "" && isset($mkrfilepath) != ""
+        && isset($_POST["mkrDes"]) != "" && isset($mkrfilepath) != ""
     ) {
         move_uploaded_file($mkrfiletmp, $mkrpath);
         move_uploaded_file($idfiletmp, $idpath);
