@@ -1,0 +1,129 @@
+:root {
+    --white: white;
+    --purple: #4B2ED7;
+    --lightblue: #38B6FF;
+    --primaryblue: #006bfa;
+    --freshblue: #0daafd;
+    --margenta: #8e18d7;
+    --dark: #02155A;
+}
+body {
+    padding: 20px;
+    margin: 50px 68px 0px 146px !important;
+    background-color: #F2F3F5 !important;
+
+}
+/* ปุ่มเมนู */
+.add-btn i {
+    color: white !important;
+    margin: 2px;
+    font-size: 1em;
+}
+.add-btn{
+    width: 200px;
+    margin-right: 10px;
+}
+/* add staw */
+.postbox {
+    margin: 3% 0;
+    color: black;
+    padding: 30px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 5px 5px 5px #e8e8e8;
+}
+
+.add-div {
+    justify-content: flex-end;
+    display: flex;
+}
+
+
+
+/* ผังแผงค้า */
+.plan {
+    border-radius: 10px;
+    margin: 1rem 0;
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    box-shadow: 5px 5px 5px #e8e8e8;
+}
+
+/* แผงค้า */
+.stawbox {
+    color: white !important;
+    background-color: var(--primaryblue);
+    border-radius: 10px;
+    width: 100px;
+    height: 100px;
+    cursor: move;
+    position: absolute;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.mrk-zone {
+    margin: auto .5rem auto 0;
+}
+
+#mrkplan {
+    padding: .2rem 0;
+    width: 200px;
+    border-radius: 10px;
+    color: #fff;
+    background-color: #63B9C3;
+    border: none;
+}
+
+
+
+#free {
+    background-color: #DCAA00;
+    border: none;
+    border-radius: 10px;
+}
+
+#busy {
+    background-color: #E2194B;
+    border: none;
+    border-radius: 10px;
+}
+
+i {
+    font-size: 20px;
+    color: black;
+}
+
+#add-lock {
+    border-radius: 10px;
+}
+
+#delete-lock {
+    border-radius: 10px;
+
+}
+
+#addzone {
+    width: 200px;
+    border-radius: 10px;
+}
+
+/* tool */

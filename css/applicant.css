@@ -126,7 +126,14 @@ body {
 /* end--progressbar */
 
 /* ----------------------------------------2.กล่องฟอร์ม------------------------------------------------------------ */
-
+.first-des-address{
+    margin: 5px auto;
+    padding: 0.5em 10px 0.5em 0;
+}
+.des-address{
+    margin: 5px auto;
+    padding: 0.5em 10px;
+}
 .applybox {
     margin: 78px 68px 10px 146px;
 }
@@ -144,17 +151,20 @@ body {
 
 #stepTwo {
     display: none;
+    
 }
 
 #stepTwo input {
-    margin: 5px auto;
-    padding: .5em 1.5rem;
+    margin: 5px auto !important;
+    padding: .5em 1.5rem !important;
     border-radius: 20px;
 }
 
 .des_input {
-    margin: 0 !important;
+    margin: 10px 0 !important;
     padding: 0 0 0 5px !important;
+    font-size: 18px;
+    color: #031f87;
 
 }
 

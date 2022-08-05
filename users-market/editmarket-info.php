@@ -17,7 +17,6 @@ require "../backend/edit-matketinfo.php";
 ?>
 
 <body>
-  <div class="container">
     <div class="row">
       <div class="col-5">
         <p id="mkr_name"><?php echo $row['mkr_name']; ?></p>
@@ -44,7 +43,7 @@ require "../backend/edit-matketinfo.php";
       </div>
     </div>
     <div id="quick-menu2" class="hstack">
-      <a type="button" class="quick-menu2 " id="partner-btn" data-bs-toggle="modal" data-bs-target="#partner-modal">
+      <a type="button" class="quick-menu2 " id="partner-btn"  href="marketPlan.php?mkr_id=<?php echo $row['mkr_id']; ?>">
         <i class='bx bxs-map-alt'></i>
         <p> จัดการแผนผังตลาด</p>
       </a>
@@ -141,7 +140,6 @@ require "../backend/edit-matketinfo.php";
           </div>
         </form>
       </div>
-    </div>
 </body>
 
 </html>

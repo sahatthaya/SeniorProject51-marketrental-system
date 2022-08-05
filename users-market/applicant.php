@@ -109,7 +109,27 @@ require "../backend/add-applicant.php"
                         </div>
                     </div>
                     <div class="des_input">สถานที่ตั้ง</div>
-                    <input class="form-control col-12" type="text" placeholder="เช่น บ้านเลขที่ ถนน ตำบล อำเภอ จังหวัด" name="mkrAddress" required>
+                    <div class="input-group hstack gap2">
+                        <div class="first-des-address ">ที่อยู่ :</div>
+                        <input class="form-control " type="text" placeholder="ที่อยู่" name="HouseNo" required>
+                        <div class="des-address ">ซอย :</div>
+                        <input class="form-control " type="text" placeholder="ซอย" name="Soi">
+                        <div class="des-address ">หมู่ :</div>
+                        <input class="form-control " type="text" placeholder="หมู่" name="Moo">
+                        <div class="des-address ">ถนน :</div>
+                        <input class="form-control " type="text" placeholder="ถนน" name="Road" required>
+
+                    </div>
+                    <div class="input-group hstack gap2">
+                        <div class="first-des-address ">ตำบล/แขวง :</div>
+                        <input class="form-control" type="text" placeholder="ตำบล/แขวง" name="Subdistrict" required>
+                        <div class="des-address ">อำเภอ/เขต :</div>
+                        <input class="form-control" type="text" placeholder="อำเภอ/เขต" name="District " required>
+                        <div class="des-address ">จังหวัด :</div>
+                        <input class="form-control" type="text" placeholder="จังหวัด" name="Province" required>
+                        <div class="des-address ">รหัสไปรษณีย์ :</div>
+                        <input class="form-control" type="text" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
+                    </div>
                     <div class="des_input">รายละเอียดตลาดโดยสังเขป</div>
                     <input class="form-control col-12" type="text" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" required>
                     <div class="des_input">อัปโหลดเอกสารหรือรูปภาพเพื่อยืนยันตลาด</div>
