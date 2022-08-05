@@ -11,6 +11,8 @@
 body {
     padding: 20px;
     margin: 50px 68px 0px 146px !important;
+    background: #F2F3F5 !important;
+
 }
 
 #headerlabel {
@@ -27,7 +29,9 @@ body {
 }
 
 .info-tag {
-    margin-bottom: 20px;
+    position: absolute !important;
+    top: 30px;
+    right: 50px;
 }
 
 .type_tag {
@@ -66,6 +70,23 @@ body {
 }
 
 /*---------------------------------------- 5. quick-menu2------------------------------------------------------- */
+
+.mrk_info {
+    position: relative;
+    width: 1300px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    top: -10vh;
+    left: 5%;
+    padding: 0 15px;
+}
+
+#quick-menu2 {
+    margin: -35px 50px !important;
+}
+
+
 .quick-menu2 {
     color: #ffffff;
     padding: 1.5em .5em;
@@ -75,16 +96,16 @@ body {
     border: none;
     transition: ease .3s;
     background: #3DC9F9;
-    box-shadow:  2px 3px 4px #00000023;
-    transition:ease 0.5s;
-    margin: 25px 5px;
+    box-shadow: 2px 3px 4px #00000023;
+    transition: ease 0.5s;
+    margin: 10px 10px;
 }
 
 .quick-menu2:hover {
     color: white;
     background: #867FDE;
     box-shadow: inset 5px 5px 6px #6963ad,
-            inset -5px -5px 6px #a39bff;
+        inset -5px -5px 6px #a39bff;
     transition: .2s ease;
 }
 
@@ -99,6 +120,77 @@ body {
     text-align: center;
 
 }
-a{
+
+a {
     text-decoration: none !important;
+}
+
+.mrk_news {
+    margin: 5em 50px !important;
+    border-radius: 10px;
+    background-color: #ffffff;
+    padding: 1.5em .5em;
+}
+
+.list-group{
+    border-radius: 10px;
+}
+
+
+/* responsive--------------------------------------------------------------------- */
+
+@media(max-width: 1400px) {
+
+    #mkr_name {
+        font-size: 2em;
+    }
+
+    .mrk_info {
+        display: grid;
+        position: relative;
+        grid-gap: 10px;
+        width: auto;
+        margin-right: 55px;
+    }
+
+    .type_tag{
+        margin: 10px auto;
+        font-size: 10px;
+        width: 80px;
+    }
+   
+    #quick-menu2 {
+        display: grid;
+        grid-gap: 10px;
+        grid-column: 1 / span 3;
+        width: auto;
+    }
+
+    .quick-menu2 {
+        height: 100px !important;
+        margin: 17px auto;
+    }
+}
+
+@media(max-width: 1200px) {
+
+    #quick-menu2 {
+        grid-gap: 2px;
+      
+    }
+
+}
+
+@media(max-width: 992px) {
+    #quick-menu2 {
+        grid-gap: 1px;
+    }
+
+}
+
+@media(max-width:720px) {
+    body {
+        padding: 20px;
+        margin: 50px 10px 0px 10px !important;
+    }
 }
