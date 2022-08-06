@@ -1,0 +1,80 @@
+
+body {
+    padding: 20px;
+    margin: 50px 68px 0px 146px !important;
+    background: #F2F3F5 !important;
+
+}
+
+.rent-info,.edit-info{
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    box-shadow: 5px 5px 5px #e8e8e8;
+
+}
+.edit-info p{
+    width: 100px;
+}
+.info ,.sub-part{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+.sub-part{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+.sub-part input{
+    width: 65%;
+}
+.sub-part p{
+    width: 120px;
+    margin: 10px 0;
+}
+.info-part {
+    padding: 15px;
+}
+
+.info-part p {
+    width: 120px;
+    margin: 10px 0;
+}
+
+.button-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-row-gap: 5px;
+    }
+
+.invoice {
+    padding: 1em 1em;
+    color: #fff;
+    background-color: #3DC9F9;
+    border: none;
+    border-radius: 10px;
+}
+
+.receipt {
+    padding: 1em 1em;
+    color: #fff;
+    background-color: #5CE1E6;
+    border: none;
+    border-radius: 10px;
+}
+
+#save-data {
+    margin: 25px 20px;
+    padding: .5em 2.5em;
+    border-radius: 10px;
+    border: 1px solid #5CE1E6;
+    color: #F2F3F5;
+    background-color: #5CE1E6;
+}

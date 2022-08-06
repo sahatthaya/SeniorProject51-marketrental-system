@@ -1,3 +1,4 @@
+<?session_start();?>
 <?php
     include "backend/1-connectDB.php";
     // signIn

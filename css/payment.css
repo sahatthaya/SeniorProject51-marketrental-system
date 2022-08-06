@@ -1,0 +1,44 @@
+body {
+    padding: 20px;
+    margin: 50px 68px 0px 146px !important;
+
+}
+.content {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+}
+
+.content p {
+    margin: 10px 0px;
+}
+
+.des-pay {
+    width: 100px;
+}
+
+.form-control {
+    width: 70% !important;
+}
+
+input {
+    margin: 25px 0px;
+    border-radius: 10px;
+}
+
+.pay {
+    border-left: 1px solid black;
+    padding: 15px;
+    padding-top: 0px;
+
+}
+
+#qr-code {
+    width: 145px;
+    margin: 0px 30%;
+}
+
+.pay input{
+    width: 60% !important;
+}

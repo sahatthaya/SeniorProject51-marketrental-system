@@ -76,7 +76,7 @@ require "../backend/graph-market.php";
                                 </div>
                             </div>
                             <div class="project-box-footer vstack center">
-                                <a class="days-left">การจองแผงค้า</a>
+                                <a class="days-left"href="rent.php?mkr_id=<?php echo $row['mkr_id']; ?>">การจองแผงค้า</a>
                                 <a class="days-left" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">การร้องเรียน</a>
                             </div>
                         </div>

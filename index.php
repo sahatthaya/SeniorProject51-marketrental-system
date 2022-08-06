@@ -1,3 +1,6 @@
+<?php
+include "profilebar.php";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +16,6 @@
 <?php
 include "./backend/1-connectDB.php";
 include "nav.php";
-include "profilebar.php";
 include "backend/1-import-link.php";
 require "./backend/qry-index.php";
 ?>

@@ -1,3 +1,5 @@
+<?session_start();?>
+
 <?php
 // signUp
 if (isset($_POST['reg-btn'])) {
