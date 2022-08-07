@@ -15,21 +15,42 @@ include "./nav.php";
 include "./backend/1-connectDB.php";
 include "backend/1-import-link.php";
 require "./backend/qry-allmarket.php";
+
 ?>
+
 <body>
     <div class="wrap">
         <div class="top">
-            <h1 id="headline">ตลาดทั้งหมดs</h1>
+            <h1 id="headline">ตลาดทั้งหมด</h1>
             <div class="search_box">
                 <form name="Searchbox " method="POST">
-                <label for="#search"><h5>ค้นหา : </h5></label>
-                <input class="btn border-secondary" type="text" name="search" id="search" placeholder="กรอกข้อมูลที่ต้องการค้นหา" onkeyup="search(this.value)">
-                <input class="btn btn-primary " id="search" type="submit" name="searchsubmit" value="ค้นหา">
-                <input class="btn btn-danger" id="reset" type="submit" name="reset" value="รีเซ็ต">
-            </form>
+                    <label for="#search">
+                        <h5>ค้นหา : </h5>
+                    </label>
+                    <input class="btn border-secondary" type="text" name="search" id="search" placeholder="กรอกข้อมูลที่ต้องการค้นหา" onkeyup="search(this.value)">
+                    <input class="btn btn-primary " id="search" type="submit" name="searchsubmit" value="ค้นหา">
+                    <input class="btn btn-danger" id="reset" type="submit" name="reset" value="รีเซ็ต">
+                </form>
 
             </div>
+            <div class=" topmkr">
+                <div class="typemkr">
+                    <button class="quick " id="partner-btn" style="background-color: #317DD9;">
+                        <p> ตลาดสด</p>
+                    </button>
+                    <button class="quick" id="partner-btn" style="background-color: #005DB5;">
+                        <p> ตลาดเปิดท้าย</p>
+                    </button>
+                    <button class="quick" id="partner-btn"style="background-color: #004091;">
+                        <p> ตลาดค้าส่ง</p>
+                    </button>
+                    <button class="quick" id="partner-btn"style="background-color: #00256F;">
+                        <p> อื่นๆ</p>
+                    </button>
+                </div>
+            </div>
         </div>
+        <hr>
         <div class="box" id="card">
             <?php while ($row = $result->fetch_assoc()) : ?>
                 <a id="market-item" class="marketcard radius10" href="market-info.php?mkr_id=<?php echo $row['mkr_id']; ?>">

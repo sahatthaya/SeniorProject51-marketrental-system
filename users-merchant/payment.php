@@ -38,11 +38,11 @@ include "../backend/1-import-link.php";
                 </thead>
                 <tbody>
                     <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>1</td>
+                        <td>A01</td>
+                        <td>2 เดือน</td>
+                        <td>08/08/2022</td>
+                        <td>ยังไม่ชำระ</td>
                         <td><button name="view" type="button" class="view_data btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                         </td>
                         <td>

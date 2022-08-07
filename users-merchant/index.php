@@ -71,20 +71,62 @@ include "../backend/1-import-link.php";
             </button>
         </div>
 
-        <!-- users-guide -->
-        <div id="users-guide">
-            <button class="quick" id="partner-btn" data-bs-toggle="modal" data-bs-target="#partner-modal">
-                <i class='bx bxs-store-alt'></i>
-                <p> สำหรับเจ้าของตลาด</p>
-            </button>
-            <button class="quick" id="merchant-btn" data-bs-toggle="modal" data-bs-target="#merchant-modal">
-                <i class='bx bxs-message-square-edit'></i>
-                <p> ค้นหาพื้นที่ขายของ </p>
-            </button>
+        <div class="contentbox web-info">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <p>“ศูนย์กลางที่ให้ผู้ที่สนใจจะหาพื้นที่ขายของที่ตลาด แต่ยังไม่ทราบข้อมูลต่างๆในการที่จะเช่าพื้นที่ และเจ้าของตลาดที่ต้องการจะให้มีคนมาเช่าพื้นที่มาพบเจอกัน ทำให้ง่ายสำหรับทั้งสองฝั่ง โดยเรารวบรวมพื้นที่เช่าตลาดทั้งเล็กและใหญ่มารวมกันไว้ในที่เดียว
+                        ท่านสามารถค้นหาตลาดได้โดยการคัดกรองจากที่อยู่ของตลาดนั้นๆ ราคาของพื้นที่เช่าและเป็นตลาดประเภทอะไร เพื่อให้คุณนั้นง่ายต่อการหาพื้นที่เช่าขายของของคุณได้ที่นี่</p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <cite title="Source Title">MarketRental</cite>
+                </figcaption>
+            </figure>
         </div>
 
-
+        <div class="users-guide">
+            <h3 class="center">ขั้นตอนการจองพื้นที่</h3>
+            <div class="guide">
+                <div>
+                    <h5 class="center">1. เข้าสู่ระบบ</h5>
+                    <img src="../asset/contact/merchant-1.png" class="card-img-top img-fluid" alt="...">
+                </div>
+                <div>
+                    <h5 class="center">2. เลือกตลาดที่ต้องการ</h5>
+                    <img src="../asset/contact/merchant-2.png" class="card-img-top img-fluid"  alt="...">
+                </div>
+                <div>
+                    <h5 class="center">3. จ่ายค่ามัดจำ</h5>
+                    <img src="../asset/contact/merchant-3.png" class="card-img-top img-fluid" alt="...">
+                </div>
+            </div>
+            <div class="text-center guide-btn">
+                <button type="button" class="btn btn-primary btn-lg" onclick="window.location='all-market.php';">ค้นหาพื้นที่ขายของ</button>
+            </div>
+        </div>
     </div>
+    <hr>
+    <div class="users-guide">
+        <h3 class="center">สำหรับเจ้าของตลาดที่ต้องการเป็นพาร์ทเนอร์</h3>
+        <div class="guide">
+            <div>
+                <h5 class="center">1. เข้าสู่ระบบ</h5>
+                <img src="../asset/contact/mkr-1.png" class="card-img-top img-fluid" alt="...">
+            </div>
+            <div>
+                <h5 class="center">2. กรอกข้อมูล</h5>
+                <img src="../asset/contact/mkr-2.png" class="card-img-top img-fluid" alt="...">
+            </div>
+            <div>
+                <h5 class="center">3. รอการอนุมัติจากแอดมิน</h5>
+                <img src="../asset/contact/mkr-3.png" class="card-img-top img-fluid" alt="...">
+            </div>
+        </div>
+        <div class="text-center guide-btn">
+                <button type="button" class="btn btn-primary btn-lg" onclick="window.location='all-market.php';">ค้นหาพื้นที่ขายของ</button>
+            </div>
+    </div>
+    </div>
+    <hr>
     <div class=" topmkr">
         <div class="text row">
             <h3 class="col-10">ตลาดแนะนำ</h3>
@@ -109,78 +151,8 @@ include "../backend/1-import-link.php";
                         <p class="ptext">จำนวนแผงว่าง : 0 จาก 0</p>
                     </div>
                 </a>
-            <?php endwhile ?>
-        </div>
-    </div>
-    <!-- Modal -->
-    <!-- partner-modal  -->
-    <div class="modal fade" id="partner-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">สำหรับเจ้าของตลาด</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <h3 class="center">ขั้นตอนการสมัครเป็นพาร์ทเนอร์</h3>
-                        <div class="row">
-                            <div class="col c">
-                                <div class="card">
-                                    <img src="../asset/contact/mkr-1.png" class="card-img-top" alt="...">
-
-                                </div>
-                            </div>
-                            <div class="col c">
-                                <div class="card center">
-                                    <img src="../asset/contact/mkr-2.png" class="card-img-top" alt="...">
-
-                                </div>
-                            </div>
-                            <div class="col c">
-                                <div class="card">
-                                    <img src="../asset//contact/mkr-2.png" class="card-img-top" alt="...">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- merchant-modal  -->
-    <div class="modal fade" id="merchant-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">สำหรับพ่อค้าแม่ค้า</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container">
-                        <h3 class="center">ขั้นตอนการจองพื้นที่</h3>
-                        <div class="row">
-                            <div class="col c">
-                                <div class="card">
-                                    <img src="../asset/contact/merchant-1.png" class="card-img-top" alt="...">
-                                </div>
-                            </div>
-                            <div class="col c">
-                                <div class="card center">
-                                    <img src="../asset/contact/merchant-2.png" class="card-img-top" alt="...">
-                                </div>
-                            </div>
-                            <div class="col c">
-                                <div class="card">
-                                    <img src="../asset/contact/merchant-3.png" class="card-img-top" alt="...">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <?php
+            endwhile ?>
         </div>
     </div>
 </body>

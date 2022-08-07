@@ -10,7 +10,6 @@
 body {
     padding: 20px;
     margin: 50px 68px 0px 146px !important;
-    background-color: #F2F3F5 !important;
 
 }
 
@@ -36,7 +35,9 @@ body {
     /* width: 80%; */
     height: 100vh;
     background-color: white;
-    box-shadow: 5px 5px 5px #e8e8e8;
+       -webkit-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
+    box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
 }
 .list{
     border-radius: 10px;
@@ -44,7 +45,9 @@ body {
     /* width: 80%; */
     height: 100vh;
     background-color: white;
-    box-shadow: 5px 5px 5px #e8e8e8;
+       -webkit-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
+    box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
 }
 .list ul{
     list-style: none;

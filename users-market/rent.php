@@ -38,12 +38,12 @@ include "../backend/1-import-link.php";
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>1</td>
+                            <td>สหัสทยา</td>
+                            <td>A01</td>
+                            <td>01/08/2022</td>
+                            <td>ร้านขายน้ำ</td>
+                            <td>2 เดือน</td>
                             <td><a name="view" type="button" class="view_data btn btn-outline-primary  " >ดูรายละเอียด</a>
                             </td>
                             <td>

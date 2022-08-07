@@ -27,6 +27,13 @@ if (isset($_POST["reset"])) {
     ORDER BY mkr_id DESC";
     $result = mysqli_query($conn, $data);
 }
+// top mkr query
+$topquerymkr = "SELECT market_detail.*,province.province_name , market_type.market_type FROM market_detail 
+JOIN province ON (market_detail.province_id = province.province_id)
+JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
+ORDER BY mkr_id DESC LIMIT 4";
+$topresultmkr = mysqli_query($conn, $topquerymkr);
+mysqli_close($conn);
 // $output ='';
 
 // if(isset($_POST['query'])){
@@ -72,4 +79,3 @@ if (isset($_POST["reset"])) {
 // }else{
 //     echo "<h3> ไม่พบข้อมูล </h3>";
 // }
-?>

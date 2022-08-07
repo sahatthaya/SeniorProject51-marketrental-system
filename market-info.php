@@ -59,7 +59,7 @@ require "backend/qry-market-info.php"
             </a>
         </div>
 
-        <div class="mrk_news">
+        <div class="mrk_news card">
             <h5>ข่าวสารตลาด</h5>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><a href=""> An item</a></li>
