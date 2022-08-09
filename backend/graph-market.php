@@ -1,13 +1,5 @@
 <?php
-$dataPoints = array(
-    array("y" => 25, "label" => "จันทร์"),
-    array("y" => 15, "label" => "อังคาร"),
-    array("y" => 25, "label" => "พุธ"),
-    array("y" => 5, "label" => "พฤหัสบดี"),
-    array("y" => 10, "label" => "ศุกร์"),
-    array("y" => 0, "label" => "เสาร์"),
-    array("y" => 20, "label" => "อาทิตย์")
-);
+
 
 $username = $_SESSION['username'];
 $sql = "SELECT * FROM users WHERE username = '$username'";

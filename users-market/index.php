@@ -19,25 +19,82 @@ require "../backend/graph-market.php";
 ?>
 
 <body>
+    <script>
+        // gg chart
+        google.charts.load('current', {
+            packages: ['corechart', 'line']
+        });
+        google.charts.setOnLoadCallback(drawBackgroundColor);
+
+        function drawBackgroundColor() {
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'X');
+            data.addColumn('number', 'ยอดการจอง');
+
+            data.addRows([
+                ['ม.ค.', 10],
+                ['ก.พ.', 23],
+                ['มี.ค.', 17],
+                ['เม.ย.', 18],
+                ['พ.ค.', 9],
+                ['มิ.ย.', 11],
+                ['ก.ค.', 27],
+                ['ส.ค.', 33],
+                ['ก.ย.', 40],
+                ['ต.ค.', 32],
+                ['พ.ย.', 35],
+                ['ธ.ค.', 30],
+            ]);
+
+            var options = {
+                hAxis: {
+                    title: 'เดือน'
+                },
+                vAxis: {
+                    title: 'ยอดการจอง'
+                }
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+
+
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var options = {
+                width: 300,
+                height: 300,
+                animation: {
+                    duration: 1000,
+                    easing: 'out'
+                },
+                backgroundColor: ''
+            };
+            var data = google.visualization.arrayToDataTable([
+                ['สถานะ', 'จำนวนแผงค้า'],
+                ['ว่าง', 10],
+                ['ถูกจอง', 90],
+                
+            ]);
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
 
     <div class="box">
-        <div class="graph" id="graph">
+        <div class="graph">
+            <h5 class="center">จำนวนแผงที่ถูกจองต่อจำนวนแผงว่าง</h5>
+            <div class="chartcanvas" id="chart_div"> </div>
         </div>
-        <div class="vstack gap-3">
-            <div class="cardrent" id="rent">
-                <div class="rent-content center vstack">
-                    <p>ยอดการจองทั้งหมด</p>
-                    <h1>0</h1>
-                </div>
-            </div>
-
-            <div class="card-emptystall" id="blank">
-                <div class="blank-content center vstack">
-                    <p>จำนวนแผงว่างทั้งหมด</p>
-                    <h1>0</h1>
-
-                </div>
-            </div>
+        <div class="graph">
+            <h5 class="center">จำนวนการจองต่อจำนวนแผงว่าง</h5>
+            <div class="chartcanvas" id="piechart"></div>
         </div>
     </div>
     <div class="products-feature">
@@ -76,7 +133,7 @@ require "../backend/graph-market.php";
                                 </div>
                             </div>
                             <div class="project-box-footer vstack center">
-                                <a class="days-left"href="rent.php?mkr_id=<?php echo $row['mkr_id']; ?>">การจองแผงค้า</a>
+                                <a class="days-left" href="rent.php?mkr_id=<?php echo $row['mkr_id']; ?>">การจองแผงค้า</a>
                                 <a class="days-left" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">การร้องเรียน</a>
                             </div>
                         </div>

@@ -1,17 +1,16 @@
 body {
   padding: 60px 20px;
-  margin: 5% 3% 0 9% !important;
-
+  margin: 10px 68px 0px 146px !important;
 }
 
 .box {
-  display: grid;
-  grid-gap: 20px;
-  grid-template-columns: 3fr 250px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-column-gap: 10px;
 }
 
 .graph {
-  height: 320px;
+ padding-top: 15px;
   border-radius: 10px;
   border: 10px solid white;
      -webkit-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
@@ -19,7 +18,10 @@ body {
     box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
 
 }
-
+.chartcanvas{
+  width: fit-content!important;
+  height: fit-content !important;
+}
 .cardrent {
   border-radius: 10px;
   height: 150px !important;

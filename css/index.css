@@ -11,7 +11,7 @@
 
 body {
     padding: 20px;
-margin: 50px 68px 0px 146px !important;
+    margin: 50px 68px 0px 146px !important;
 }
 
 .radius10 {
@@ -70,9 +70,11 @@ margin: 50px 68px 0px 146px !important;
 .users-guide button {
     width: 300px;
 }
-.guide-btn{
+
+.guide-btn {
     margin-top: 15px;
 }
+
 .users-guide img {
     width: 470px;
     border-radius: 5px;
@@ -218,13 +220,14 @@ margin: 50px 68px 0px 146px !important;
         grid-template-columns: repeat(1, 1fr);
         text-align: center;
     }
+
     .guide {
         display: grid;
         grid-gap: 10px;
         grid-template-columns: repeat(1, 1fr);
         text-align: center;
     }
-    
+
 
 }
 
