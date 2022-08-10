@@ -68,15 +68,16 @@ body {
 }
 
 .users-guide button {
-    width: 300px;
+    width: 650px;
+
 }
 
 .guide-btn {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .users-guide img {
-    width: 470px;
+    width: 450px;
     border-radius: 5px;
 
 }
@@ -227,6 +228,21 @@ body {
         grid-template-columns: repeat(1, 1fr);
         text-align: center;
     }
+
+    .users-guide button {
+        width: fit-content;
+        font-size: large;
+    }
+    
+    .guide-btn {
+        margin-top: 10px;
+    }
+
+    .contentbox p {
+        font-size: 16px;
+    }
+
+    
 
 
 }

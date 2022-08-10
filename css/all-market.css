@@ -21,11 +21,9 @@ body {
 
 .quick {
     color: var(--white);
-    /* padding: 1em 2em; */
     border-radius: 5px;
     border: none;
     transition: ease .3s;
-    /* background: var(--purple); */
     -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
@@ -159,4 +157,25 @@ body {
         padding: 20px;
         margin: 50px 10px 0px 10px !important;
     }
+
+    .quick {
+        height: 40px;
+       
+    }
+
+    .quick p{
+        font-size: 18px;   
+    }
+
+    #search{
+        margin-top: 5px;
+        margin-bottom: 2px;
+    }
+
+    #reset{
+        margin-top: 5px;
+        margin-bottom: 2px;
+    }
+
+
 }
