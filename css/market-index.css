@@ -19,8 +19,8 @@ body {
 
 }
 .chartcanvas{
-  width: fit-content!important;
-  height: fit-content !important;
+  width: 100% !important;
+  height: 300px !important;
 }
 .cardrent {
   border-radius: 10px;
