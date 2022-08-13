@@ -21,7 +21,7 @@ include "../backend/1-import-link.php";
 <body>
     <h1 id="headline">การเช่าทั้งหมด</h1>
     <div class="d-flex justify-content-between">
-        <div>
+        <div class="w-75">
             <form method="POST" class="hstack gap-3 mt-3">
                 <label>การจองในช่วงวันที่ :</label>
                 <input type="date" class="form-control" style="width: 10%;">
