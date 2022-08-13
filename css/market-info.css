@@ -98,7 +98,7 @@ margin: 50px 68px 0px 146px !important;
     border-radius: 10px;
     border: none;
     transition: ease .3s;
-    background: #3DC9F9;
+    background: #317DD9;
     -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
@@ -109,9 +109,9 @@ margin: 50px 68px 0px 146px !important;
 
 .quick-menu2:hover {
     color: white;
-    background: #867FDE;
-    box-shadow: inset 5px 5px 6px #6963ad,
-        inset -5px -5px 6px #a39bff;
+    background: #3DC9F9;
+    box-shadow: inset 5px 5px 6px #22c5fc,
+        inset -5px -5px 6px #56d2fb;
     transition: .2s ease;
 }
 
