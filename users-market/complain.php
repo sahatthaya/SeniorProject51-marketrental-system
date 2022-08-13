@@ -6,72 +6,97 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/complain.css">
+    <link rel="stylesheet" href="../css/banner.css">
 </head>
 <?php
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
-
-if ($_GET['mkr_id']) {
+require "../backend/manage-complain.php";
+if (isset($_GET['mkr_id'])) {
     $mkr_id = $_GET['mkr_id'];
-    $sql = "SELECT market_detail.*,province.province_name , market_type.market_type FROM market_detail 
-  JOIN province ON (market_detail.province_id = province.province_id)
-  JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id) WHERE (mkr_id = '$mkr_id') ";
+    $sql = "SELECT * FROM market_detail WHERE (mkr_id = '$mkr_id') ";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     extract($row);
-}
 
-$query_toppic = "SELECT * FROM toppic";
-$result_toppic = mysqli_query($conn, $query_toppic);
 
-//qry
-$data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
+    $query_toppic = "SELECT * FROM toppic";
+    $result_toppic = mysqli_query($conn, $query_toppic);
+
+    //qry
+    $count_n = 1;
+    $data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
 JOIN users ON (complain.users_id = users.users_id)
-ORDER BY comp_id DESC";
-$result = mysqli_query($conn, $data);
+ WHERE (mkr_id = '$mkr_id') ";
+    $result = mysqli_query($conn, $data);
+}
 ?>
 
 <body>
     <div>
-        <h1 id="headline">ระบบร้องเรียน <?php echo $row['mkr_name'] ?></h1>
-        <?php while ($row = $result->fetch_assoc()) : ?>
-            <div class="commentbox">
-
-                <div class="row">
-                    <div class="col-4">
-                        <img src="../<?php echo $row['comp_file']; ?>" class="imgcomment" alt="">
-                    </div>
-                    <div class="col-8">
-                        <p class="float-end" id="timestamp"><?php echo $row['timestamp'] ?></p>
-                        <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
-                        <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
-                        <p><?php echo $row['comp_detail'] ?></p>
-                    </div>
-                </div>
+        <h1 id="headline">จัดการคำร้องเรียน <?php echo $row['mkr_name'] ?></h1>
+        <div id="content">
+            <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
+                <table id="myTable" class="display " style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th scope="col">ลำดับ</th>
+                            <th scope="col">วันที่ร้องเรียน</th>
+                            <th scope="col">ประเภทการร้องเรียน</th>
+                            <th scope="col">หัวข้อการร้องเรียน</th>
+                            <th scope="col">ผู้ร้องเรียน</th>
+                            <th scope="col">สถานะ</th>
+                            <th scope="col">จัดการ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()) : ?>
+                            <tr>
+                                <td><?php echo $count_n; ?></td>
+                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo $row['toppic'] ?></td>
+                                <td><?php echo $row['comp_subject'] ?></td>
+                                <td><?php echo $row['username'] ?></td>
+                                <td><?php echo $row['status'] ?></td>
+                                <td>
+                                    <button type="button" class="btn btn-primary modal_data1" id="<?php echo $row['comp_id']; ?>">
+                                        ตอบกลับ
+                                    </button>
+                                </td>
+                            </tr>
+                        <?php $count_n++;
+                        endwhile; ?>
+                    </tbody>
+                </table>
             </div>
-            <div class="reply-box">
-                <label class="reply-head">การตอบกลับจากผู้ดูแล : </label>
-                <label class="reply_detail"><?php echo $row['reply'] ?></label>
-            </div>
-        <?php endwhile; ?>
 
-    </div>
+        </div>
 
 </body>
+<?php require '../backend/modal-complain.php' ?>
+<script src="../backend/script.js"></script>
 <script>
-    function plslogin() {
-        Swal.fire({
-            title: 'คุณยังไม่ได้เข้าสู่ระบบ',
-            text: 'กรุณาเข้าสู่ระบบเพื่อส่งเรื่องร้องเรียน',
-            icon: 'warning',
-            showConfirmButton: false,
-            timer: 3000
+    // apply detail popup
+    $(document).ready(function() {
+        $('.modal_data1').click(function() {
+            var id = $(this).attr("id");
+            $.ajax({
+                url: "../backend/manage-complain.php",
+                method: "POST",
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
         })
-    }
+    });
 </script>
 
 </html>

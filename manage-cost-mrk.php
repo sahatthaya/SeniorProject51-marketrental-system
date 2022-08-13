@@ -28,7 +28,7 @@ include "./backend/1-import-link.php";
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" aria-label="Text input with dropdown button">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">ใส่หน่วย</button>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">zdgfhgjf</a></li>
                             <li><a class="dropdown-item" href="#">,jmhng</a></li>
                             <li><a class="dropdown-item" href="#">fgn</a></li>

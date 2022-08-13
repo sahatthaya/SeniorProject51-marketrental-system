@@ -27,7 +27,7 @@ $result = mysqli_query($conn, $data);
     <div class="content">
     <h1 id="headline">ติดตามสถานะคำร้องขอเป็นพาร์ทเนอร์</h1>
         <div>
-            <div id="table">
+            <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>

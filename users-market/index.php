@@ -130,56 +130,42 @@ require "../backend/graph-market.php";
                             </div>
                             <div class="menu-mrk">
                                 <div class="item ">
-                                    <a href="" class="vstack gap-2">
+                                    <a  href="editStall.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bx-map-alt'></i>
                                         <span>แผนผัง</span> 
                                     </a>
                                 </div>
                                 <div class="item ">
-                                    <a href="" class="vstack gap-2">
+                                    <a href="news.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bxs-news'></i>
                                         <span>ข่าวสาร</span>
                                     </a>
                                 </div>
                                 <div class="item ">
-                                    <a href="" class="vstack gap-2">
+                                    <a href="rent.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bx-message-alt-detail'></i>
                                         <span>การเช่า</span>
                                     </a>
                                 </div>
                                 <div class="item">
-                                    <a href="" class="vstack gap-2">
+                                    <a href="booking.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bx-message-alt-edit'></i>
                                         <span>การจอง</span>
                                     </a>
                                 </div>
                                 <div class="item">
-                                    <a href="" class="vstack gap-2">
+                                    <a href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bxs-megaphone'></i>
                                         <span>ร้องเรียน</span>
                                     </a>
                                 </div>
                                 <div class="item">
-                                    <a href="" class="vstack gap-2">
+                                    <a href="finance.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bxs-credit-card'></i>
                                         <span>ข้อมูลการเงิน</span>
                                     </a>
                                 </div>
                             </div>
-                            <!-- <div class="infomarket row">
-                                <div class="col-6 vstack">
-                                    <span class="status-number center">45</span>
-                                    <p class="mkrdetail center">การจองทั้งหมด</p>
-                                </div>
-                                <div class="col-6 vstack">
-                                    <span class="status-number center">0</span>
-                                    <p class="mkrdetail center">จำนวนแผงว่าง</p>
-                                </div>
-                            </div>
-                            <div class="project-box-footer vstack center">
-                                <a class="days-left" href="rent.php?mkr_id=<?php echo $row['mkr_id']; ?>">การจองแผงค้า</a>
-                                <a class="days-left" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">การร้องเรียน</a>
-                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -190,24 +176,4 @@ require "../backend/graph-market.php";
     </div>
 
 </body>
-<script>
-    window.onload = function() {
-
-        var chart = new CanvasJS.Chart("graph", {
-            title: {
-                text: "ยอดการจองในสัปดาห์นี้"
-            },
-            axisY: {
-                title: "จำนวนการจอง"
-            },
-            data: [{
-                type: "line",
-                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
-            }]
-        });
-        chart.render();
-
-    }
-</script>
-
 </html>

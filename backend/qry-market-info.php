@@ -8,5 +8,8 @@ if ($_GET) {
     $row = mysqli_fetch_array($result);
     extract($row);
 }
+//qry
+$data2 = "SELECT * FROM news WHERE mkr_id = '$mkr_id'";
+$result3 = mysqli_query($conn, $data2);
 mysqli_close($conn);
 ?>

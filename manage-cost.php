@@ -33,7 +33,7 @@ include "./backend/1-import-link.php";
 
 
     <div id="content">
-        <div id="table2">
+        <div id="table2"  class="border mt-3 p-3 shadow-sm rounded">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>

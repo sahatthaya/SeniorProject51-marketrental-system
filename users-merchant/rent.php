@@ -22,7 +22,7 @@ include "../backend/1-import-link.php";
     <div class="content">
         <h1 id="headline">จัดการคำร้องเพิ่มตลาด</h1>
         <div>
-            <div id="table">
+            <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>

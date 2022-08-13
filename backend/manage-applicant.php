@@ -96,7 +96,7 @@ if (isset($_GET['approve'])) {
      $isql2 = mysqli_query($conn, $udusers);
  
      if ($ql = mysqli_query($conn, $approve)&&$isql = mysqli_query($conn, $insert)) {
-         echo "<script>alert('อนุมัติคำร้องเสร็จสิ้น');window.location = '../users-admin/partner.php';</script></script>";
+         echo "<script>alert('อนุมัติคำร้องเสร็จสิ้น');window.location = '../users-admin/partner.php';</script>";
      } else {
          echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง');window.location = '../users-admin/partner.php';</script>";
      }

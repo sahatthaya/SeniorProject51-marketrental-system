@@ -108,7 +108,7 @@ require "../backend/manage-banner.php";
                 </div>
             </div>
 
-            <div id="table" class="bannertb">
+            <div id="table" class="bannertb mt-3 border p-3 shadow-sm rounded">
                 <table id="myTable" class="display" style="width: 100%;">
                     <thead>
                         <tr>

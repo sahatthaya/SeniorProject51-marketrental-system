@@ -29,11 +29,15 @@
     <h1>จัดการข้อมูลแผงค้า</h1>
     <div id="quick-menu2" class="hstack">
         <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
+            <i class='bx bx-plus-circle'></i>จัดการค่าใช้จ่ายเพิ่มเติม
+        </button>
+        
+        <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
             <i class='bx bx-plus-circle'></i>เพิ่มแผงค้า
         </button>
         <a type="button" class="btn btn-primary add-btn" id="merchant-btn" href="marketPlan.php?mkr_id=<?php echo $mkr_id = $_GET['mkr_id']; ?>">
             <i class='bx bxs-message-square-edit'></i>ปรับแก้แผนผังตลาด
-</a>
+        </a>
     </div>
 
     <!-- Modal -->
@@ -82,7 +86,7 @@
         </div>
     </div>
     <div id="content">
-        <div id="table2">
+        <div id="table2" class="bannertb border p-3 shadow-sm rounded mt-3">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>
@@ -100,7 +104,7 @@
                     <?php while ($row1 = $result3->fetch_assoc()) : ?>
                         <tr>
                             <td><?php echo $count_n; ?></td>
-                            <td><?php echo $row1['sID']?></td>
+                            <td><?php echo $row1['sID'] ?></td>
                             <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
                             <td><?php echo $row1['sDept']; ?></td>
                             <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>

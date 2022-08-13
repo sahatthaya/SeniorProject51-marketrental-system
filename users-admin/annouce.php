@@ -20,7 +20,7 @@ require "../backend/manage-annouce.php";
 <body>
     <h1 class="head_contact">จัดการคำร้องขอประชาสัมพันธ์</h1>
     <div id="content">
-        <div id="table2">
+        <div id="table2"  class="border mt-3 p-3 shadow-sm rounded">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>
