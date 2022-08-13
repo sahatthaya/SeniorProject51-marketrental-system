@@ -79,7 +79,7 @@ require "../backend/graph-market.php";
                 ['สถานะ', 'จำนวนแผงค้า'],
                 ['ว่าง', 10],
                 ['ถูกจอง', 90],
-                
+
             ]);
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
@@ -103,26 +103,70 @@ require "../backend/graph-market.php";
                 <div class="three columns carousel-cell">
                     <div class="project-box-wrapper">
                         <div class="project-box">
-                            <div class="dropdown-center">
-                                <div class="project-box-header float-end " type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                                    <i class='bx bx-dots-vertical-rounded'></i>
+                            <div class="head">
+                                <div class="dropdown-center">
+                                    <div class="project-box-header float-end " type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                                        <i class='bx bx-dots-vertical-rounded'></i>
+                                    </div>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+                                        <li>
+                                            <a class="edit" href="editmarket-info.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bxs-edit-alt'></i>แก้ไขข้อมูลตลาด</a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li>
+                                            <a class="del" href="../backend/del-market.php?mkr_id=<?php echo $row['mkr_id']; ?>" onclick="return confirm('คุณต้องการลบ <?php echo $row['mkr_name'] ?> หรือไม่')"><i class='bx bx-trash-alt'></i>ลบตลาด</a>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
-                                    <li>
-                                        <a class="edit" href="editmarket-info.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bxs-edit-alt'></i>แก้ไขข้อมูลตลาด</a>
-                                    </li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li>
-                                        <a class="del" href="../backend/del-market.php?mkr_id=<?php echo $row['mkr_id']; ?>" onclick="return confirm('คุณต้องการลบ <?php echo $row['mkr_name'] ?> หรือไม่')"><i class='bx bx-trash-alt'></i>ลบตลาด</a>
-                                    </li>
-                                </ul>
+                                <div class="project-box-content-header">
+                                    <h5 class=""><?php echo $row['mkr_name'] ?></h5>
+                                </div>
                             </div>
-                            <div class="project-box-content-header">
-                                <h5 class=""><?php echo $row['mkr_name'] ?></h5>
+                            <div>
+                                <img src="../<?php echo $row['mkr_pic'] ?>" alt="">
+                                <hr>
                             </div>
-                            <div class="infomarket row">
+                            <div class="menu-mrk">
+                                <div class="item ">
+                                    <a href="" class="vstack gap-2">
+                                        <i class='bx bx-map-alt'></i>
+                                        <span>แผนผัง</span> 
+                                    </a>
+                                </div>
+                                <div class="item ">
+                                    <a href="" class="vstack gap-2">
+                                        <i class='bx bxs-news'></i>
+                                        <span>ข่าวสาร</span>
+                                    </a>
+                                </div>
+                                <div class="item ">
+                                    <a href="" class="vstack gap-2">
+                                        <i class='bx bx-message-alt-detail'></i>
+                                        <span>การเช่า</span>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="" class="vstack gap-2">
+                                        <i class='bx bx-message-alt-edit'></i>
+                                        <span>การจอง</span>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="" class="vstack gap-2">
+                                        <i class='bx bxs-megaphone'></i>
+                                        <span>ร้องเรียน</span>
+                                    </a>
+                                </div>
+                                <div class="item">
+                                    <a href="" class="vstack gap-2">
+                                        <i class='bx bxs-credit-card'></i>
+                                        <span>ข้อมูลการเงิน</span>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <div class="infomarket row">
                                 <div class="col-6 vstack">
                                     <span class="status-number center">45</span>
                                     <p class="mkrdetail center">การจองทั้งหมด</p>
@@ -135,7 +179,7 @@ require "../backend/graph-market.php";
                             <div class="project-box-footer vstack center">
                                 <a class="days-left" href="rent.php?mkr_id=<?php echo $row['mkr_id']; ?>">การจองแผงค้า</a>
                                 <a class="days-left" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">การร้องเรียน</a>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
