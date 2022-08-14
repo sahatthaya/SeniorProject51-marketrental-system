@@ -249,7 +249,18 @@ input[type=file]::file-selector-button:hover {
 @media(max-width: 992px) {
 
     body {
-        padding: 20px;
+        padding: 2px;
         margin: 50px 10px 0px 10px !important;
+    }
+
+    
+
+}
+
+@media(max-width: 720px) {
+
+    body {
+        padding:2px;
+        margin: 20px 1px 0px 5px !important;
     }
 }
