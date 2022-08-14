@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 26, 2022 at 02:19 PM
+-- Generation Time: Aug 14, 2022 at 08:32 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -74,7 +74,7 @@ CREATE TABLE `complain` (
   `toppic_id` int(11) NOT NULL,
   `comp_file` varchar(99) NOT NULL DEFAULT 'complain_file/nopicture.png',
   `users_id` int(11) NOT NULL,
-  `req_status` int(11) NOT NULL DEFAULT 1,
+  `status` text NOT NULL DEFAULT '1',
   `reply` varchar(99) NOT NULL DEFAULT 'ไม่มีการตอบกลับ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -82,22 +82,22 @@ CREATE TABLE `complain` (
 -- Dumping data for table `complain`
 --
 
-INSERT INTO `complain` (`comp_id`, `comp_subject`, `comp_detail`, `timestamp`, `mkr_id`, `toppic_id`, `comp_file`, `users_id`, `req_status`, `reply`) VALUES
-(35, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 23, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 1, 'ไม่มีการตอบกลับ'),
-(36, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 22, 3, 'asset/complain/nopicture.png', 21, 1, 'ไม่มีการตอบกลับ'),
-(37, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 20, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 1, 'ไม่มีการตอบกลับ'),
-(38, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 19, 3, 'asset/complain/nopicture.png', 21, 1, 'ไม่มีการตอบกลับ'),
-(39, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 15, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 1, 'ไม่มีการตอบกลับ'),
-(40, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 16, 3, 'asset/complain/nopicture.png', 21, 1, 'ไม่มีการตอบกลับ'),
-(41, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 11, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 1, 'ไม่มีการตอบกลับ'),
-(42, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 6, 3, 'asset/complain/nopicture.png', 21, 1, 'ไม่มีการตอบกลับ'),
-(43, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางกรุณาแก้ไขด้วยค่ะ', '2022-04-18 04:04:14', 21, 1, 'asset/complain/nopicture.png', 21, 1, 'ไม่มีการตอบกลับ'),
-(44, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางกรุณาแก้ไขด้วยค่ะ', '2022-04-18 04:04:18', 21, 1, 'asset/complain/nopicture.png', 21, 1, 'ไม่มีการตอบกลับ'),
-(45, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า กรุณษแก้ไขด้วยค่ะ', '2022-04-18 05:30:27', 25, 1, 'asset/complain/sankamphaeng.png', 22, 1, 'ไม่มีการตอบกลับ'),
-(46, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า กรุณษแก้ไขด้วยค่ะ', '2022-04-18 05:30:30', 25, 1, 'asset/complain/sankamphaeng.png', 22, 1, 'ไม่มีการตอบกลับ'),
-(49, 'test', '516', '2022-07-22 10:40:49', 26, 1, 'asset/complain/202207221071315292.jpg', 23, 1, 'ไม่มีการตอบกลับ'),
-(51, 'test', '516', '2022-07-22 10:42:13', 26, 1, 'asset/complain/202207221276638091.jpg', 23, 1, 'ไม่มีการตอบกลับ'),
-(52, 'test', '516', '2022-07-22 10:44:44', 26, 1, 'asset/complain/20220722954422169.jpg', 23, 1, 'ไม่มีการตอบกลับ');
+INSERT INTO `complain` (`comp_id`, `comp_subject`, `comp_detail`, `timestamp`, `mkr_id`, `toppic_id`, `comp_file`, `users_id`, `status`, `reply`) VALUES
+(35, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 23, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(36, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 22, 3, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(37, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 20, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(38, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 19, 3, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(39, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 15, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(40, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 16, 3, 'asset/complain/nopicture.png', 21, 'ตอบกลับแล้ว', '40'),
+(41, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 11, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(42, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 6, 3, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(43, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางกรุณาแก้ไขด้วยค่ะ', '2022-04-18 04:04:14', 21, 1, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(44, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางกรุณาแก้ไขด้วยค่ะ', '2022-04-18 04:04:18', 21, 1, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(45, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า กรุณษแก้ไขด้วยค่ะ', '2022-04-18 05:30:27', 25, 1, 'asset/complain/sankamphaeng.png', 22, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(46, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า กรุณษแก้ไขด้วยค่ะ', '2022-04-18 05:30:30', 25, 1, 'asset/complain/sankamphaeng.png', 22, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(49, 'test', '516', '2022-07-22 10:40:49', 26, 1, 'asset/complain/202207221071315292.jpg', 23, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(51, 'test', '516', '2022-07-22 10:42:13', 26, 1, 'asset/complain/202207221276638091.jpg', 23, 'ยังไม่ตอบกลับ', 'dcfvg'),
+(52, 'test', '516', '2022-07-22 10:44:44', 26, 1, 'asset/complain/20220722954422169.jpg', 23, 'ยังไม่ตอบกลับ', 'dcfvg');
 
 -- --------------------------------------------------------
 
@@ -157,11 +157,11 @@ INSERT INTO `market_detail` (`mkr_id`, `mkr_name`, `mkr_address`, `mkr_descrip`,
 (11, 'ถนนคนเดินสันกำแพง', ' เชียงใหม่', '“ถนนคนเดินสันกำแพง” ตั้งอยู่ที่ ถนนเชียงใหม่-', 'asset/img_market/sankamphaeng.png', 4, 50, 9, '', '0886564535'),
 (12, 'ถนนคนเดินเชียงคาน', 'Chai Kong, Chiang Khan, Chiang Khan District,', 'ถนนคนเดินเชียงคาน สีสันแห่งการมาเที่ยวเชียงคา', 'asset/img_market/chiangkhan.jpg', 4, 42, 13, 'sahatthaya.t@gmail.com', '0637323245'),
 (15, 'ถนนคนเดินขอนแก่น ', ' ขอนแก่น', '17:00-23:59', 'asset/img_market/sankamphaeng.png', 4, 40, 19, ' jamjam@gmail.com', ' 096321458'),
-(16, 'ตลาดเปิดท้าย มข', ' 123 ขอนแก่น มหาวิทยาลัยขอนแก่น 40000', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/20220726557016398.jpg', 2, 10, 9, ' sahatthaya.t@kkumail.com', ' 098295538'),
-(19, '. ศูนย์การค้ายูดีทาวน์แ', '  88 ถ.ทองใหญ่ ต.หมากแข้ง เมืองอุดรธานีอุดรธา', 'แหล่งท่องเที่ยวใน จ.อุดรธานี(UD TOWN : Enjoy ', 'asset/img_market/IMG_3394.jpeg', 4, 41, 9, ' admin@gmail.com', ' 098295538'),
+(16, 'ตลาดเปิดท้าย มข หอกาญ', ' 123 ขอนแก่น มหาวิทยาลัยขอนแก่น 40000', 'ตลาดเปิดท้ายศูนย์กาญ แหล่งรวมสินค้าแฟชั่น สิน', 'asset/img_market/20220726557016398.jpg', 2, 10, 9, ' sahatthaya.t@kkumail.com', ' 098295538'),
+(19, 'ศูนย์การค้ายูดีทาวน์แ', '  88 ถ.ทองใหญ่ ต.หมากแข้ง เมืองอุดรธานีอุดรธา', 'แหล่งท่องเที่ยวใน จ.อุดรธานี(UD TOWN : Enjoy ', 'asset/img_market/IMG_3394.jpeg', 4, 41, 9, ' admin@gmail.com', ' 098295538'),
 (20, 'ถนนคนเดิน อุดรธานี', ' :ตำบลหมากแข้งอำเภอเมืองอุดรธานีจังหวัด', 'สถานที่ท่องเที่ยวตลาดท้องถิ่น', 'asset/img_market/IMG_3396.jpeg', 4, 41, 9, ' admin@gmail.com', ' 098295538'),
 (21, 'ถนนคนเดิน ขอนแก่น', ' ซอยหน้าศูนย์ราชการ ต.ในเมืองอ.เมืองจ.ขอนแก่น', 'สินค้าประเภท สินค้าท าด้วยมืองานศิลปะ งาน หัต', 'asset/img_market/IMG_3397.jpeg', 2, 40, 9, ' admin@gmail.com', ' 098295538'),
-(22, '. ถนนคนเดินเชียงคาน', '  ตำบลเชียงคาน เชียงคาน เลย', 'น สีสันแห่งการมาเที่ยวเชียงคานที่เริ่มตั้งแต่', 'asset/img_market/IMG_3398.jpeg', 2, 42, 9, ' admin@gmail.com', ' 098295538'),
+(22, 'ถนนคนเดินเชียงคาน', '  ตำบลเชียงคาน เชียงคาน เลย', 'น สีสันแห่งการมาเที่ยวเชียงคานที่เริ่มตั้งแต่', 'asset/img_market/IMG_3398.jpeg', 2, 42, 9, ' admin@gmail.com', ' 098295538'),
 (23, ' ตลาดหัวมุม', ' ที่ตลาดหัวมุมเป็นแหล่งช้อปปิ้งสุดชิคที่รวมทุ', ' เลขที่678 ถนนประเสริฐมนูกิจแขวงลาดพร้าว เขตล', 'asset/img_market/IMG_3399.jpeg', 4, 10, 9, ' admin@gmail.com', ' 098295538'),
 (24, 'ถนนคนเดิน2', ' ขอนแก่น', '17:00-23:59', 'asset/img_market/mkr8.jpg', 1, 11, 19, ' ruby@gmail.com', ' 096321458'),
 (25, 'ถนนคนเดิน', ' ขอนแก่น', '17:00-23:59', 'asset/img_market/sankamphaeng.png', 2, 40, 19, ' ruby@gmail.com', ' 096321458'),
@@ -190,6 +190,29 @@ INSERT INTO `market_type` (`market_type_id`, `market_type`) VALUES
 (2, 'ตลาดเปิดท้าย'),
 (3, 'ตลาดค้าส่ง'),
 (4, 'อื่นๆ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `n_id` int(11) NOT NULL,
+  `n_file` varchar(99) NOT NULL,
+  `n_sub` varchar(99) NOT NULL,
+  `n_detail` varchar(99) NOT NULL,
+  `mkr_id` int(11) NOT NULL,
+  `timestamp` date NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`n_id`, `n_file`, `n_sub`, `n_detail`, `mkr_id`, `timestamp`) VALUES
+(18, 'asset/news/202208141254217873.jpg', 'เปิดตลาดใหม่', 'เปิดตลาดใหม่ ในวันที่ 14/08/2022', 16, '2022-08-14'),
+(19, 'asset/news/20220814174817894.jpg', 'เปิดตลาดใหม่', 'เปิดตลาดใหม่ ในวันที่ 14/08/2022', 16, '2022-08-14');
 
 -- --------------------------------------------------------
 
@@ -410,6 +433,45 @@ INSERT INTO `req_status` (`req_status_id`, `req_status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stall`
+--
+
+CREATE TABLE `stall` (
+  `sKey` int(200) NOT NULL,
+  `sID` text NOT NULL,
+  `sWidth` int(200) NOT NULL,
+  `sHeight` int(200) NOT NULL,
+  `sAreaUnit` text NOT NULL,
+  `sDept` int(200) NOT NULL,
+  `sRent` int(200) NOT NULL,
+  `sPayRange` text NOT NULL,
+  `market_id` int(200) NOT NULL,
+  `dropped` int(200) NOT NULL,
+  `sStatus` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `stall`
+--
+
+INSERT INTO `stall` (`sKey`, `sID`, `sWidth`, `sHeight`, `sAreaUnit`, `sDept`, `sRent`, `sPayRange`, `market_id`, `dropped`, `sStatus`) VALUES
+(44, '1', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(45, '2', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
+(49, '3', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(50, '4', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
+(51, '5', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(52, '6', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
+(53, '7', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(54, '8', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
+(55, 'หก', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(56, 'หก', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(57, 'หก', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(58, 'A01', 2, 3, 'เมตร', 500, 1000, 'บาท/เดือน', 16, 0, 'ว่าง'),
+(59, 'A01', 2, 3, 'เมตร', 500, 1000, 'บาท/เดือน', 16, 0, 'ว่าง');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `toppic`
 --
 
@@ -524,6 +586,13 @@ ALTER TABLE `market_type`
   ADD PRIMARY KEY (`market_type_id`);
 
 --
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`n_id`),
+  ADD KEY `mkr_id` (`mkr_id`);
+
+--
 -- Indexes for table `province`
 --
 ALTER TABLE `province`
@@ -552,6 +621,13 @@ ALTER TABLE `req_partner`
 --
 ALTER TABLE `req_status`
   ADD PRIMARY KEY (`req_status_id`);
+
+--
+-- Indexes for table `stall`
+--
+ALTER TABLE `stall`
+  ADD PRIMARY KEY (`sKey`),
+  ADD KEY `market_id` (`market_id`);
 
 --
 -- Indexes for table `toppic`
@@ -607,6 +683,12 @@ ALTER TABLE `market_type`
   MODIFY `market_type_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
 -- AUTO_INCREMENT for table `province`
 --
 ALTER TABLE `province`
@@ -629,6 +711,12 @@ ALTER TABLE `req_partner`
 --
 ALTER TABLE `req_status`
   MODIFY `req_status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `stall`
+--
+ALTER TABLE `stall`
+  MODIFY `sKey` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `toppic`
@@ -663,6 +751,12 @@ ALTER TABLE `market_detail`
   ADD CONSTRAINT `market_detail_ibfk_3` FOREIGN KEY (`market_type_id`) REFERENCES `market_type` (`market_type_id`);
 
 --
+-- Constraints for table `news`
+--
+ALTER TABLE `news`
+  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`mkr_id`) REFERENCES `market_detail` (`mkr_id`);
+
+--
 -- Constraints for table `req_annouce`
 --
 ALTER TABLE `req_annouce`
@@ -677,6 +771,12 @@ ALTER TABLE `req_partner`
   ADD CONSTRAINT `req_partner_ibfk_3` FOREIGN KEY (`req_status_id`) REFERENCES `req_status` (`req_status_id`),
   ADD CONSTRAINT `req_partner_ibfk_4` FOREIGN KEY (`users_id`) REFERENCES `users` (`users_id`),
   ADD CONSTRAINT `req_partner_ibfk_5` FOREIGN KEY (`province_id`) REFERENCES `province` (`province_id`);
+
+--
+-- Constraints for table `stall`
+--
+ALTER TABLE `stall`
+  ADD CONSTRAINT `stall_ibfk_1` FOREIGN KEY (`market_id`) REFERENCES `market_detail` (`mkr_id`);
 
 --
 -- Constraints for table `users`
