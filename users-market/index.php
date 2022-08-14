@@ -88,7 +88,7 @@ require "../backend/graph-market.php";
     </script>
 
     <div class="box">
-        <div class="graph">
+        <div class="graph ">
             <h5 class="center">จำนวนแผงที่ถูกจองต่อจำนวนแผงว่าง</h5>
             <div class="chartcanvas" id="chart_div"> </div>
         </div>
@@ -132,13 +132,7 @@ require "../backend/graph-market.php";
                                 <div class="item ">
                                     <a  href="editStall.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bx-map-alt'></i>
-                                        <span>แผนผัง</span> 
-                                    </a>
-                                </div>
-                                <div class="item ">
-                                    <a href="news.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
-                                        <i class='bx bxs-news'></i>
-                                        <span>ข่าวสาร</span>
+                                        <span>แผนผังตลาด</span> 
                                     </a>
                                 </div>
                                 <div class="item ">
@@ -153,10 +147,17 @@ require "../backend/graph-market.php";
                                         <span>การจอง</span>
                                     </a>
                                 </div>
+                                <div class="item ">
+                                    <a href="news.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
+                                        <i class='bx bxs-news'></i>
+                                        <span>ข่าวสาร</span>
+                                    </a>
+                                </div>
+                               
                                 <div class="item">
                                     <a href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bxs-megaphone'></i>
-                                        <span>ร้องเรียน</span>
+                                        <span>การร้องเรียน</span>
                                     </a>
                                 </div>
                                 <div class="item">
