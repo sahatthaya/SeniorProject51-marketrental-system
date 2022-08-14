@@ -23,7 +23,7 @@ include "../backend/1-import-link.php";
     <div class="d-flex justify-content-between">
         <div class="w-75">
             <form method="POST" class="hstack gap-3 mt-3">
-                <label>การจองในช่วงวันที่ :</label>
+                <label>การเช่าในช่วงวันที่ :</label>
                 <input type="date" class="form-control" style="width: 10%;">
                 <label>ถึง : </label>
                 <input type="date" class="form-control" style="width: 10%;">
@@ -31,7 +31,7 @@ include "../backend/1-import-link.php";
             </form>
         </div>
         <div class="hstack">
-            <button type="button" class="btn btn-primary">จัดการค่าใช้จ่ายต่อเดือน</button>
+            <a type="button" class="btn btn-primary" href="./rent-cost.php">จัดการค่าเช่า</a>
         </div>
     </div>
     <div>
@@ -45,7 +45,7 @@ include "../backend/1-import-link.php";
                         <th scope="col">รหัสแผง</th>
                         <th scope="col">ประเภทร้านค้า</th>
                         <th scope="col">ระยะเวลาการเช่า</th>
-                        <th scope="col">ดูหลักฐานมัดจำ</th>
+                        <th scope="col">ดูรายละเอียด</th>
                         <th scope="col">จัดการ</th>
                     </tr>
                 </thead>
@@ -61,8 +61,7 @@ include "../backend/1-import-link.php";
                         </td>
                         <td>
                             <div class="justify-content-center vstack gap-1">
-                                <a href="rentEdit.php" class=" btn btn-outline-info w-100" style="font-size:14px;">แก้ไขข้อมูล</a>
-                                <a href="admin-req-pn-denied.php?req_partner_id=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger w-100" style="font-size:14px;">ยกเลิกการจอง</a>
+                                <a href="admin-req-pn-denied.php?req_partner_id=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger w-100" style="font-size:14px;">ยกเลิกการเช่า</a>
                             </div>
                         </td>
                     </tr>

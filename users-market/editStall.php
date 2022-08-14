@@ -27,11 +27,11 @@
 
 <body>
     <h1>จัดการข้อมูลแผงค้า</h1>
-    <div id="quick-menu2" class="hstack">
-        <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
-            <i class='bx bx-plus-circle'></i>จัดการค่าใช้จ่ายเพิ่มเติม
+    <div id="quick-menu2" class="hstack mt-3">
+        <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
+            <i class='bx bxs-edit'></i>จัดการค่าใช้จ่ายเพิ่มเติม
         </button>
-        
+
         <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
             <i class='bx bx-plus-circle'></i>เพิ่มแผงค้า
         </button>
@@ -39,8 +39,69 @@
             <i class='bx bxs-message-square-edit'></i>ปรับแก้แผนผังตลาด
         </a>
     </div>
-
     <!-- Modal -->
+    <div class="modal fade" id="editcost-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">จัดการค่าใช้จ่ายเพิ่มเติม</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-4 col-form-label">ค่าน้ำ</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <select class="form-select " aria-label="Default select example">
+                                            <option selected>บาท/หน่วย</option>
+                                            <option value="1">บาท(เหมาจ่าย)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-4 ">ค่าไฟ</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>บาท/หน่วย</option>
+                                            <option value="1">บาท(เหมาจ่าย)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-4"> <input type="text" class="form-control w-50" aria-label="Text input with dropdown button"></div>
+                                <div class="col-sm-7">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>บาท/หน่วย</option>
+                                            <option value="1">บาท(เหมาจ่าย)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                    <button type="button" class="btn btn-primary" >
+                                        <i class='bx bxs-plus-circle'></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--stall Modal -->
     <div id="edtmkrinfo-modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <form method="POST" enctype="multipart/form-data" class="modal-content">
