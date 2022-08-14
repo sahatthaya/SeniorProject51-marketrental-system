@@ -39,6 +39,18 @@ include "../backend/1-import-link.php";
                 <input type="text" class="form-control" >
                 </div>
             </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">ธนาคาร</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" >
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">หมายเลขบัญชี</label>
+                <div class="col-sm-10">
+                <input type="text" class="form-control" >
+                </div>
+            </div>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary w-25" type="button">บันทึก</button>
             </div>

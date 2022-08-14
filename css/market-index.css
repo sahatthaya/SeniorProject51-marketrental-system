@@ -142,10 +142,21 @@ body {
   font-size: 15px;
 }
 
+
 .item a {
   text-decoration: none;
-  color: #9DADBD;
+  color: #9ba0a5;
 }
 .item i {
   font-size: 20px;
 }
+
+.item:hover{
+  background-color: #6dd4f7;
+  border-radius: 5px;
+}
+
+.item a:hover {
+  color: #ffffff;
+}
+
