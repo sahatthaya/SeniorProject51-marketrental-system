@@ -1,12 +1,7 @@
 # SeniorProject51
 ******frontedend***************************************************************************
 
-หน้าที่ต้องแก้ layout
-- (no-login) market-info.php
-- (market)  editmarket-info.php
-
 หน้าที่ยังไม่ responsive
-- (all users) contact.php เหลือขนาดโมบาย
 - (market) index.php
 
 หน้าที่ยังไม่เขียน
@@ -26,6 +21,4 @@ func ที่รอข้อมูลจากfunอื่น
 - (market) editmarket-info.php
 
 func ที่อาจจะเพิ่ม
-- filter complain
 - livesearch allMarket
-- ผัง/พื้นที่ สำหรับประชาสัมพันธ์กิจกรรมตลาด

@@ -23,7 +23,7 @@ include "../backend/1-import-link.php";
 <body>
     <h1 id="headline">ชำระค่าเช่าแผง</h1>
     <div>
-        <div id="table">
+        <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>

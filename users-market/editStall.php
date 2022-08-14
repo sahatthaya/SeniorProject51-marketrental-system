@@ -27,16 +27,83 @@
 
 <body>
     <h1>จัดการข้อมูลแผงค้า</h1>
-    <div id="quick-menu2" class="hstack">
+    <div id="quick-menu2" class="hstack mt-3">
+        <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
+            <i class='bx bxs-edit'></i>จัดการค่าใช้จ่ายเพิ่มเติม
+        </button>
+
         <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
             <i class='bx bx-plus-circle'></i>เพิ่มแผงค้า
         </button>
         <a type="button" class="btn btn-primary add-btn" id="merchant-btn" href="marketPlan.php?mkr_id=<?php echo $mkr_id = $_GET['mkr_id']; ?>">
             <i class='bx bxs-message-square-edit'></i>ปรับแก้แผนผังตลาด
-</a>
+        </a>
     </div>
-
     <!-- Modal -->
+    <div class="modal fade" id="editcost-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">จัดการค่าใช้จ่ายเพิ่มเติม</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="">
+                        <div>
+                            <div class="mb-3 row">
+                                <div class="col-sm-3"> <input type="text" class="form-control w-50" aria-label="Text input with dropdown button"></div>
+                                <div class="col-sm-7">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>บาท/หน่วย</option>
+                                            <option value="1">บาท(เหมาจ่าย)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary">
+                                        <i class='bx bxs-plus-circle'>เพิ่ม</i>
+                                    </button>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">ค่าน้ำ</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <select class="form-select " aria-label="Default select example">
+                                            <option selected>บาท/หน่วย</option>
+                                            <option value="1">บาท(เหมาจ่าย)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 ">ค่าไฟ</label>
+                                <div class="col-sm-7">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option selected>บาท/หน่วย</option>
+                                            <option value="1">บาท(เหมาจ่าย)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                    <button type="button" class="btn btn-primary">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--stall Modal -->
     <div id="edtmkrinfo-modal" class="modal fade" role="dialog">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <form method="POST" enctype="multipart/form-data" class="modal-content">
@@ -82,7 +149,7 @@
         </div>
     </div>
     <div id="content">
-        <div id="table2">
+        <div id="table2" class="bannertb border p-3 shadow-sm rounded mt-3">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>
@@ -100,7 +167,7 @@
                     <?php while ($row1 = $result3->fetch_assoc()) : ?>
                         <tr>
                             <td><?php echo $count_n; ?></td>
-                            <td><?php echo $row1['sID']?></td>
+                            <td><?php echo $row1['sID'] ?></td>
                             <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
                             <td><?php echo $row1['sDept']; ?></td>
                             <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>

@@ -50,7 +50,6 @@ require "../backend/add-applicant.php"
 ?>
 
 <body>
-    <div class="applybox">
         <h1 id="headline">กรอกข้อมูลเพื่อส่งคำร้องขอเพิ่มตลาดใหม่</h1>
         <form id="applyform" method="POST" enctype="multipart/form-data" novalidate>
             <!-- แถบโปรเกสฟอร์ม -->
@@ -139,7 +138,6 @@ require "../backend/add-applicant.php"
                 </div>
             </div>
         </form>
-    </div>
 </body>
 <script src="../backend/script.js"></script>
 

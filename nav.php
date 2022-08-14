@@ -55,60 +55,6 @@ include "backend/1-import-link.php";
                     <li><a class="link_name" href="contact.php">ติดต่อเรา</a></li>
                 </ul>
             </li>
-            <li class="navlink">
-                <a href="./manage-complain.php">
-                    <i class='bx bxs-heart'></i>
-                    <span class="link_name">จัดการการร้องเรียน</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="./manage-complain.php">จัดการการร้องเรียน</a></li>
-                </ul>
-            </li>
-            <li class="navlink">
-                <a href="./manage-rent.php">
-                    <i class='bx bxs-heart'></i>
-                    <span class="link_name">การจองทั้งหมด</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="./manage-rent.php">การจองทั้งหมด</a></li>
-                </ul>
-            </li>
-            <li class="navlink">
-                <a href="./all-rent.php">
-                    <i class='bx bxs-heart'></i>
-                    <span class="link_name">การเช่าทั้งหมด</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="./all-rent.php">การเช่าทั้งหมด</a></li>
-                </ul>
-            </li>
-            <li class="navlink">
-                <a href="./manage-cost-mrk.php">
-                    <i class='bx bxs-heart'></i>
-                    <span class="link_name">จัดการข้อมูลค่าใช้จ่ายของตลาด</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="./manage-cost-mrk.php">จัดการข้อมูลค่าใช้จ่ายของตลาด</a></li>
-                </ul>
-            </li>
-            <li class="navlink">
-                <a href="./manage-market-info.php">
-                    <i class='bx bxs-heart'></i>
-                    <span class="link_name">จัดการข่าวสารตลาด</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="./manage-market-info.php">จัดการข่าวสารตลาด</a></li>
-                </ul>
-            </li>
-            <li class="navlink">
-                <a href="./payment-info.php">
-                    <i class='bx bxs-heart'></i>
-                    <span class="link_name">ข้อมูลการเงิน</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="./payment-info.php">ข้อมูลการเงิน</a></li>
-                </ul>
-            </li>
         </ul>
     </div>
     <script src="backend/script.js"></script>

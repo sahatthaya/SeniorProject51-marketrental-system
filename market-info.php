@@ -14,12 +14,13 @@ include "profilebar.php";
 include "nav.php";
 include "backend/1-connectDB.php";
 include "backend/1-import-link.php";
-require "backend/qry-market-info.php"
+require "backend/qry-market-info.php";
+
 ?>
 
 <body>
     <div class="mkrpic center">
-        <img src="<?php echo $row['mkr_pic'] ?>" class="img-fluid img-thumbnail"  alt="...">
+        <img src="<?php echo $row['mkr_pic'] ?>" class="img-fluid img-thumbnail" alt="...">
     </div>
     <div class="mrk_info">
         <p id="mkr_name"><?php echo $row['mkr_name']; ?></p>
@@ -55,10 +56,17 @@ require "backend/qry-market-info.php"
 
     <div class="mrk_news">
         <h5>ข่าวสารตลาด</h5>
+        <hr>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item"><a href=""> An item</a></li>
-            <li class="list-group-item"><a href=""> An item</a></li>
-            <li class="list-group-item"><a href=""> An item</a></li>
+            <?php while ($row1 = $result3->fetch_assoc()) : ?>
+                <li class="list-group-item">
+                    <a class="hstack gap-3 text-decoration-none" data-bs-toggle="modal" data-bs-target="#merchant-modal">
+                        <p><?php echo $row1['timestamp']; ?></p>
+                        <p><?php echo $row1['n_sub']; ?></p>
+
+                    </a>
+                </li>
+            <?php endwhile ?>
         </ul>
     </div>
 </body>

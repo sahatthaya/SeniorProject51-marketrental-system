@@ -57,7 +57,7 @@ require "../backend/add-applicant.php";
                     <input class="form-control col-6" type="text" placeholder="หัวข้อ" name="bn_toppic" required>
                 
                     <div class="des_input">รายละเอียด</div>
-                    <textarea name="bn_detail" placeholder="รายละเอียด" id="" cols="30" rows="5" style="border-radius: 15px;resize: none;" required></textarea>
+                    <textarea name="bn_detail" class=" form-control" placeholder="รายละเอียด" id="" cols="30" rows="5" style="border-radius: 5px;resize: none; margin-left:5px;" required></textarea>
             
                     <div class="des_input">รูปภาพ</div>
                     <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_img" required>
