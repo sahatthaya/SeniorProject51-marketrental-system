@@ -138,7 +138,7 @@ require "../backend/graph-market.php";
                                 <div class="item ">
                                     <a href="rent.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bx-message-alt-detail'></i>
-                                        <span>การเช่า</span>
+                                        <span>ค่าเช่า</span>
                                     </a>
                                 </div>
                                 <div class="item">

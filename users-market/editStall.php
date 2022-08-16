@@ -43,18 +43,19 @@
     <div class="modal fade" id="editcost-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">จัดการค่าใช้จ่ายเพิ่มเติม</h5>
+                <div class="modal-header ">
+                    <h5 class="modal-title " id="exampleModalLabel">จัดการค่าใช้จ่ายเพิ่มเติม</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form action="">
                         <div>
                             <div class="mb-3 row">
-                                <div class="col-sm-3"> <input type="text" class="form-control w-50" aria-label="Text input with dropdown button"></div>
+                                <h6 class="center mt-3 mb-3">เพิ่มค่าใช้จ่ายที่ต้องการ</h6>
+                                <div class="col-sm-3" > <input type="text" class="form-control w-60" aria-label="Text input with dropdown button" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
                                 <div class="col-sm-7">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100">
                                         <select class="form-select" aria-label="Default select example">
                                             <option selected>บาท/หน่วย</option>
                                             <option value="1">บาท(เหมาจ่าย)</option>
@@ -69,10 +70,11 @@
                             </div>
                             <hr>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 col-form-label">ค่าน้ำ</label>
+                                <h6 class="center mt-3 mb-3">แก้ไขค่าใช้จ่าย</h6>
+                                <label class="col-sm-3 col-form-label text-end">ค่าน้ำ : </label>
                                 <div class="col-sm-7">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100">
                                         <select class="form-select " aria-label="Default select example">
                                             <option selected>บาท/หน่วย</option>
                                             <option value="1">บาท(เหมาจ่าย)</option>
@@ -81,10 +83,10 @@
                                 </div>
                             </div>
                             <div class="mb-3 row">
-                                <label class="col-sm-3 ">ค่าไฟ</label>
+                                <label class="col-sm-3  text-end">ค่าไฟ : </label>
                                 <div class="col-sm-7">
                                     <div class="input-group mb-3">
-                                        <input type="text" class="form-control w-50" aria-label="Text input with dropdown button">
+                                        <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100">
                                         <select class="form-select" aria-label="Default select example">
                                             <option selected>บาท/หน่วย</option>
                                             <option value="1">บาท(เหมาจ่าย)</option>
