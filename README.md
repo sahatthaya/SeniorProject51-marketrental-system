@@ -1,9 +1,12 @@
 nologin******************
+
 (Back)
 - all-maket.php (filter market type)
 - ลืมรหัสผ่าน
 
+
 Admin********************
+
 (Back)
 - password.php
 
@@ -11,6 +14,7 @@ Admin********************
 - banner.php(responsive >>margin body) 
 
 merchant*****************
+
 (Back)
 - all-maket.php (filter market type)
 - rent.php (รอ)
@@ -24,6 +28,7 @@ merchant*****************
 -complain.php(responsive) 
 
 market**********************
+
 (Back)
 - password.php
 - news.php (ลบแล้วกลับมาหน้าเดิมไม่ได้ ดูรายละเอียดไม่ได้ เพิ่มข่าวแล้วเออเร่อ)
