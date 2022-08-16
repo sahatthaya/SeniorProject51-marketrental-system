@@ -87,15 +87,19 @@ if (isset($_GET['approve'])) {
      $tel = $row['tel'];
  
      $approve = "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)";
-     $insert = "INSERT INTO market_detail (mkr_name,mkr_address,mkr_descrip,mkr_pic,market_type_id,users_id,province_id,email,tel) VALUES ('$market_name','$market_address','$market_descrip','$market_pic','$market_type_id','$users_id','$province_id','$email','$tel')";
+     $insert = "INSERT INTO market_detail (mkr_name,mkr_address,mkr_descrip,mkr_pic,market_type_id,users_id,province_id,email,tel) 
+     VALUES ('$market_name','$market_address','$market_descrip','$market_pic','$market_type_id','$users_id','$province_id','$email','$tel')";
      $udusers = "UPDATE users SET type  = '2' WHERE(users_id = $users_id)";
- 
- 
-     
-     
+          
      $isql2 = mysqli_query($conn, $udusers);
- 
-     if ($ql = mysqli_query($conn, $approve)&&$isql = mysqli_query($conn, $insert)) {
+     $ql = mysqli_query($conn, $approve);
+     $isql = mysqli_query($conn, $insert);
+     $mkr_id =  mysqli_insert_id($conn);
+     
+     $InsertcostUnit = "INSERT INTO `cost/unit`(`cu_name`, `cu_price`, `mkr_id`) VALUES ('ค่าน้ำ','0','$mkr_id'),('ค่าไฟ','0','$mkr_id'),('ค่าขยะ','0','$mkr_id')";
+     $sqlCU = mysqli_query($conn, $InsertcostUnit);
+
+     if ( $isql2 && $ql && $isql && $sqlCU) {
          echo "<script>alert('อนุมัติคำร้องเสร็จสิ้น');window.location = '../users-admin/partner.php';</script>";
      } else {
          echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง');window.location = '../users-admin/partner.php';</script>";

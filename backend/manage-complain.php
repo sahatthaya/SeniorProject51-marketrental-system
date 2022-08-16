@@ -28,7 +28,7 @@ if (isset($_POST["id"])) {
                         </div>
         </div>
         <div class="mw-100 mt-3">
-                        <input type="text" name="reply" class="form-control" placeholder="ตอบกลับการร้องเรียน" >
+                        <h6>การตอบกลับ : </h6><input type="text" name="reply" class="form-control" placeholder="ตอบกลับการร้องเรียน" value='. $row['reply'] .'>
                         <input type="number" class="form-control" name="comp_id" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" value='. $row['comp_id'] .' hidden>         
         </div>
      ';
@@ -40,7 +40,7 @@ if (isset($_POST['submit'])) {
     $reply = $_POST['reply'];
 
     if (isset($_POST['reply']) != "") {
-        $sqlInsert = "UPDATE complain SET reply='40',status='ตอบกลับแล้ว' WHERE (comp_id = '$comp_id')";
+        $sqlInsert = "UPDATE complain SET reply='$reply',status='ตอบกลับแล้ว' WHERE (comp_id = '$comp_id')";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script>alert('ตอบกลับสำเร็จ'); </script>";
         } else {

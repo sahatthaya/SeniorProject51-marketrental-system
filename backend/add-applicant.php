@@ -15,7 +15,7 @@ if (isset($_POST['submit-apply'])) {
     $Moo = $_POST['Moo'];
     $Road = $_POST['Road'];
     $Subdistrict = $_POST['Subdistrict'];
-    $District = $_POST['District'];
+    $District = isset($_POST['District']);
     $Province = $_POST['Province'];
     $PostalCode = $_POST['PostalCode'];
     $mkrAddress = 'ที่อยู่ '.$HouseNo.' ซอย '.$Soi.' หมู่ '.$Moo.' ถนน '.$Road.' ตำบล/แขวง '.$Subdistrict.' อำเภอ/เขต '.$District.' จังหวัด '.$Province.' '.$PostalCode;

@@ -124,7 +124,7 @@ require "../backend/add-applicant.php"
                         <div class="first-des-address ">ตำบล/แขวง :</div>
                         <input class="form-control" type="text" placeholder="ตำบล/แขวง" name="Subdistrict" required>
                         <div class="des-address ">อำเภอ/เขต :</div>
-                        <input class="form-control" type="text" placeholder="อำเภอ/เขต" name="District " required>
+                        <input class="form-control" type="text" placeholder="อำเภอ/เขต" name="District" required>
                         <div class="des-address ">จังหวัด :</div>
                         <input class="form-control" type="text" placeholder="จังหวัด" name="Province" required>
                         <div class="des-address ">รหัสไปรษณีย์ :</div>

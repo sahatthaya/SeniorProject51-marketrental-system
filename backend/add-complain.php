@@ -43,6 +43,6 @@ if (isset($_POST['post-btn'])) {
         }
     }
 }
-mysqli_close($conn);
+
 
 ?>

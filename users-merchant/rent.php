@@ -20,7 +20,7 @@ include "../backend/1-import-link.php";
 
 <body>
     <div class="content">
-        <h1 id="headline">จัดการคำร้องเพิ่มตลาด</h1>
+        <h1 id="headline">จัดการการจอง</h1>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
