@@ -1,24 +1,44 @@
-# SeniorProject51
-******frontedend***************************************************************************
+nologin******************
+(Back)
+- all-maket.php (filter market type)
+- ลืมรหัสผ่าน
 
-หน้าที่ยังไม่ responsive
-- (market) index.php
+Admin********************
+(Back)
+- password.php
 
-หน้าที่ยังไม่เขียน
--(merchant) การจ่ายค่าพื้นที่ สลิป 
-- (market) จัดการตลาด แผนผัง การจ่ายเงิน สรุปการเช่า จัดการการจอง
+(Fronted) 
+- banner.php(responsive >>margin body) 
 
-******backend***************************************************************************
+merchant*****************
+(Back)
+- all-maket.php (filter market type)
+- rent.php (รอ)
+- แผนผังพื้นที่  (รอ)
+- สนใจเช่าจองพื้นที่  (รอ)
+-payment.php (รอ)
+- password.php
 
-func ที่ต้องเขียนเพิ่ม
-- (all users)forgotPassword
-- (merchant) rent payment
-- (market) จัดการตลาด แผนผัง การจ่ายเงิน สรุปการเช่า จัดการการจอง complainReply
+(Fronted) 
+-payment.php(responsive >>margin body) 
+-complain.php(responsive) 
 
-func ที่รอข้อมูลจากfunอื่น
-- (all users)market-info.php 
-- (merchant) rentStatus paymentStatus
-- (market) editmarket-info.php
+market**********************
+(Back)
+- password.php
+- news.php (ลบแล้วกลับมาหน้าเดิมไม่ได้ ดูรายละเอียดไม่ได้ เพิ่มข่าวแล้วเออเร่อ)
+-editStall.php (ดูประวัติการจองไม่ได้ จัดการค่าใช้จ่ายเพิ่มเติมไม่ได้)
+-marketPlan.php
+-rent.php
+- booking.php
+-finance.php
 
-func ที่อาจจะเพิ่ม
-- livesearch allMarket
+(Fronted) 
+-จัดการโปรไฟล์ (ลืมใส่หน้า)
+- password.php(ลืมใส่หน้า)
+-index.php
+-applicant.php
+-announce.php
+-editmarket-info.php
+-editStall.php (ปุ่ม)
+-marketPlan.php
