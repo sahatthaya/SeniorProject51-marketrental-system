@@ -122,7 +122,7 @@ include "../backend/1-import-link.php";
             </div>
         </div>
         <div class="text-center guide-btn">
-                <button type="button" class="btn btn-primary btn-lg" onclick="window.location='all-market.php';">ค้นหาพื้นที่ขายของ</button>
+        <button type="button" class="btn btn-primary btn-lg" onclick="window.location='applicant.php';">ส่งคำร้องขอเป็นพาร์ทเนอร์</button>
             </div>
     </div>
     </div>

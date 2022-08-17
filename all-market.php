@@ -33,22 +33,22 @@ require "./backend/qry-allmarket.php";
                 </form>
 
             </div>
-            <div class=" topmkr">
+            <!-- <div class=" topmkr">
                 <div class="typemkr">
-                    <button class="quick " id="partner-btn" style="background-color: #317DD9;">
-                        <p> ตลาดสด</p>
-                    </button>
-                    <button class="quick" id="partner-btn" style="background-color: #005DB5;">
-                        <p> ตลาดเปิดท้าย</p>
-                    </button>
-                    <button class="quick" id="partner-btn"style="background-color: #004091;">
-                        <p> ตลาดค้าส่ง</p>
-                    </button>
-                    <button class="quick" id="partner-btn"style="background-color: #00256F;">
-                        <p> อื่นๆ</p>
-                    </button>
+                    <a class="quick text-decoration-none" id="partner-btn" style="background-color: #317DD9;">
+                        <p class="text-center pt-3 "> ตลาดสด</p>
+                    </a>
+                    <a class="quick text-decoration-none" id="partner-btn" style="background-color: #005DB5;">
+                        <p class="text-center pt-3 "> ตลาดเปิดท้าย</p>
+                    </a>
+                    <a class="quick text-decoration-none" id="partner-btn" style="background-color: #004091;">
+                        <p class="text-center pt-3 "> ตลาดค้าส่ง</p>
+                    </a>
+                    <a class="quick text-decoration-none" id="partner-btn" style="background-color: #00256F;">
+                        <p class="text-center pt-3 "> อื่นๆ</p>
+                    </a>
                 </div>
-            </div>
+            </div> -->
         </div>
         <hr>
         <div class="box" id="card">

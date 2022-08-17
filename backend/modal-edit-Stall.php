@@ -1,5 +1,5 @@
 <?php
-require "../backend/manage-editStall.php";
+require "../backend/manage-edit-Stall.php";
 ?>
 
 <div id="bannerdataModal" class="modal fade" role="dialog">

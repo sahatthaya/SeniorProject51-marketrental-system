@@ -33,7 +33,7 @@ include "../backend/1-import-link.php";
                 </form>
 
             </div>
-            <div class=" topmkr">
+            <!-- <div class=" topmkr">
                 <div class="typemkr">
                     <button class="quick " id="partner-btn" style="background-color: #317DD9;">
                         <p> ตลาดสด</p>
@@ -48,7 +48,7 @@ include "../backend/1-import-link.php";
                         <p> อื่นๆ</p>
                     </button>
                 </div>
-            </div>
+            </div> -->
         </div>
         <hr>
         <div class="box" id="card">
@@ -65,7 +65,7 @@ include "../backend/1-import-link.php";
                         <p class="ptext">รายละเอียด : <?php echo $row['mkr_descrip'] ?></p>
                         <p class="ptext">เบอร์ติดต่อ : <?php echo $row['tel'] ?></p>
                         <p class="ptext">อีเมล : <?php echo $row['email'] ?></p>
-                        <p class="ptext">จำนวนแผงว่าง : 0 จาก 0</p>
+                        <p class="ptext">ราคาแผงเริ่มต้น : 500 บาท/เดือน</p>
                     </div>
                 </a>
             <?php

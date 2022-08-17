@@ -110,7 +110,7 @@ require "../backend/graph-market.php";
                                     </div>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
                                         <li>
-                                            <a class="edit" href="editmarket-info.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bxs-edit-alt'></i>แก้ไขข้อมูลตลาด</a>
+                                            <a class="edit" href="edit-market-info.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bxs-edit-alt'></i>แก้ไขข้อมูลตลาด</a>
                                         </li>
                                         <li>
                                             <hr class="dropdown-divider">
@@ -130,7 +130,7 @@ require "../backend/graph-market.php";
                             </div>
                             <div class="menu-mrk">
                                 <div class="item ">
-                                    <a  href="editStall.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
+                                    <a  href="edit-Stall.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bx-map-alt'></i>
                                         <span>แผนผังตลาด</span> 
                                     </a>

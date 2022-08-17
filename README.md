@@ -33,7 +33,7 @@ market**********************
 (Back)
 - password.php
 - news.php (ลบแล้วกลับมาหน้าเดิมไม่ได้ ดูรายละเอียดไม่ได้ เพิ่มข่าวแล้วเออเร่อ)
--editStall.php (ดูประวัติการจองไม่ได้ จัดการค่าใช้จ่ายเพิ่มเติมไม่ได้)
+-edit-Stall.php (ดูประวัติการจองไม่ได้ จัดการค่าใช้จ่ายเพิ่มเติมไม่ได้)
 -marketPlan.php
 -rent.php
 - booking.php
@@ -46,6 +46,6 @@ market**********************
 -index.php
 -applicant.php
 -announce.php
--editmarket-info.php
--editStall.php (ปุ่ม)
+-edit-market-info.php
+-edit-Stall.php (ปุ่ม)
 -marketPlan.php

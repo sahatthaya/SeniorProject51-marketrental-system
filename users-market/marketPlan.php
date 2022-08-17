@@ -18,7 +18,7 @@
     $count_n = 1;
     $data2 = "SELECT * FROM stall WHERE (market_id = '$mkr_id')";
     $result3 = mysqli_query($conn, $data2);
-    require "../backend/manage-editStall.php";
+    require "../backend/manage-edit-Stall.php";
     ?>
 
 </head>

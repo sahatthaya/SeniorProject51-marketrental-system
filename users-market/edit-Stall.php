@@ -19,7 +19,7 @@
     $count_n = 1;
     $data2 = "SELECT * FROM stall WHERE (market_id = '$mkr_id')";
     $result3 = mysqli_query($conn, $data2);
-    require "../backend/manage-editStall.php";
+    require "../backend/manage-edit-Stall.php";
     ?>
 
 </head>
@@ -180,7 +180,7 @@
                             <td>
                                 <div class="row" style="justify-content: center;">
                                     <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;" id="<?php echo $row1['sKey']; ?>">แก้ไข</a>
-                                    <a href="../backend/manage-editStall.php?delstall=<?php echo $row1['sKey']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
+                                    <a href="../backend/manage-edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
                                 </div>
                             </td>
                         </tr>
@@ -191,7 +191,7 @@
             </table>
         </div>
     </div>
-    <?php require '../backend/modal-editStall.php' ?>
+    <?php require '../backend/modal-edit-Stall.php' ?>
 </body>
 
 <script>
@@ -200,7 +200,7 @@
         $('.modal_data').click(function() {
             var sKey = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-editStall.php",
+                url: "../backend/manage-edit-Stall.php",
                 method: "POST",
                 data: {
                     sKey: sKey
