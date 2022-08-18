@@ -47,7 +47,9 @@ if (isset($_POST['bn-submit'])) {
       mysqli_query($conn, $udlogo);
     }
     move_uploaded_file($ct_logo_tmp, $path);
-    echo "<script>alert('แก้ไขข้อมูลสำเร็จ');</script>";
+    echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
+    echo "<script type='text/javascript'> success(); </script>";
+    
   } else {
     echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
   }

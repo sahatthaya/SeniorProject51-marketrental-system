@@ -4,25 +4,105 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>จัดการแผงค้า</title>
     <!-- css  -->
     <link rel="stylesheet" href="../css/editStall.css" type="text/css">
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
-
-    <?php
-    include "profilebar.php";
-    include "nav.php";
-    include "../backend/1-connectDB.php";
-    include "../backend/1-import-link.php";
-    $mkr_id = $_GET['mkr_id'];
-    $count_n = 1;
-    $data2 = "SELECT * FROM stall WHERE (market_id = '$mkr_id')";
-    $result3 = mysqli_query($conn, $data2);
-    require "../backend/manage-edit-Stall.php";
-    ?>
-
 </head>
+<script type="text/javascript">
+    function success() {
+        Swal.fire({
+            title: 'บันทึกข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+    function delsuccess() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+    function error() {
+        Swal.fire({
+            title: 'ผิดพลาด',
+            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+</script>
+<?php
+include "profilebar.php";
+include "nav.php";
+include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
+$mkr_id = $_GET['mkr_id'];
+$count_n = 1;
+$data2 = "SELECT * FROM stall WHERE (market_id = '$mkr_id')";
+$result3 = mysqli_query($conn, $data2);
+$costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
+$resultCU = mysqli_query($conn, $costunit);
+require "../backend/manage-edit-Stall.php";
+// เพิ่มค่าใช้จ่ายเพิ่มเติม
+if (isset($_POST['addcost'])) {
+    $cu_name = $_POST['cu_name'];
+    $cu_price = $_POST['cu_price'];
+    $cu_type = $_POST['cu_type'];
+    if (isset($cu_name) != "" && isset($cu_price) != "" && isset($cu_type) != "") {
+        $sqladdcost = "INSERT INTO `cost/unit`(cu_name,cu_price,mkr_id,cu_type) VALUES ('$cu_name', '$cu_price', '$mkr_id', '$cu_type')";
+        if ($rssqladdcost = mysqli_query($conn, $sqladdcost)) {
+            echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1"; URL=../edit-stall.php" />';
+        } else {
+            echo "<script>alert ('ผิดพลาด ไม่สามารถเพิ่มข้อมูลได้');</script>";
+        }
+    } else {
+        echo "<script>alert ('ข้อมูลไม่เข้า');</script>";
+    }
+}
+// เพิ่มแผงค้า
+if (isset($_POST['stall-submit'])) {
+    $sID = $_POST['sID'];
+    $sWidth = $_POST['sWidth'];
+    $sHeight = $_POST['sHeight'];
+    $sAreaUnit = $_POST['sAreaUnit'];
+    $sDept = $_POST['sDept'];
+    $sPayRange = $_POST['sPayRange'];
+    $sRent = $_POST['sRent'];
+    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "") {
+        $sqlInsert = "INSERT INTO stall (sID,sWidth,sHeight,sAreaUnit,sDept,sPayRange,dropped,market_id,sRent,sStatus) VALUES ('$sID','$sWidth','$sHeight','$sAreaUnit','$sDept','$sPayRange','0', $mkr_id,$sRent,'ว่าง') ";
+        $sql = mysqli_query($conn, $sqlInsert);
+        if ($sql) {
+            echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
+        } else {
+            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+        }
+    } else {
+        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+    }
+}
+
+// ลบแผงค้า
+if (isset($_GET['delstall'])) {
+    $sKey = $_GET['delstall'];
+    $mkr_id = $_GET['mkr_id'];
+    $sqlDelUsers = "DELETE FROM stall WHERE sKey = ' $sKey'";
+    if (mysqli_query($conn, $sqlDelUsers)) {
+        echo "<script type='text/javascript'> delsuccess(); </script>"; 
+
+    } else {
+        echo "<script type='text/javascript'> error(); </script>";
+    }
+}
+?>
 <script src="../backend/script.js"></script>
 
 <body>
@@ -48,62 +128,59 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="">
+                    <!-- <form action=""> -->
+                    <form method="POST">
                         <div>
                             <div class="mb-3 row">
                                 <h6 class="center mt-3 mb-3">เพิ่มค่าใช้จ่ายที่ต้องการ</h6>
-                                <div class="col-sm-3" > <input type="text" class="form-control w-60" aria-label="Text input with dropdown button" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
+                                <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
                                 <div class="col-sm-7">
                                     <div class="input-group mb-3">
-                                        <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100">
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>บาท/หน่วย</option>
-                                            <option value="1">บาท(เหมาจ่าย)</option>
+                                        <input type="number" name="mkr_id" value="<?php echo $mkr_id ?>" hidden>
+                                        <input type="number" class="form-control w-50" name="cu_price" placeholder="จำนวนเงิน เช่น 100">
+                                        <select class="form-select" aria-label="Default select example" name="cu_type">
+                                            <option selected value="บาท/หน่วย">บาท/หน่วย</option>
+                                            <option value="บาท(เหมาจ่าย)">บาท(เหมาจ่าย)</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-primary">
+                                    <button type="submit" name="addcost" class="btn btn-primary">
                                         <i class='bx bxs-plus-circle'>เพิ่ม</i>
                                     </button>
                                 </div>
                             </div>
-                            <hr>
-                            <div class="mb-3 row">
-                                <h6 class="center mt-3 mb-3">แก้ไขค่าใช้จ่าย</h6>
-                                <label class="col-sm-3 col-form-label text-end">ค่าน้ำ : </label>
-                                <div class="col-sm-7">
-                                    <div class="input-group mb-3">
-                                        <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100">
-                                        <select class="form-select " aria-label="Default select example">
-                                            <option selected>บาท/หน่วย</option>
-                                            <option value="1">บาท(เหมาจ่าย)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                                <label class="col-sm-3  text-end">ค่าไฟ : </label>
-                                <div class="col-sm-7">
-                                    <div class="input-group mb-3">
-                                        <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100">
-                                        <select class="form-select" aria-label="Default select example">
-                                            <option selected>บาท/หน่วย</option>
-                                            <option value="1">บาท(เหมาจ่าย)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </form>
+                    <hr>
+                    <div class="mb-3 row">
+                        <?php while ($row = $resultCU->fetch_assoc()) : ?>
+                            <label class="col-sm-3  text-end"><?php echo $row['cu_name'] ?> : </label>
+                            <div class="col-sm-7">
+                                <div class="input-group mb-3">
+                                    <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_price'] ?>">
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
+                                        <option value="บาท/หน่วย">บาท/หน่วย</option>
+                                        <option value="บาท(เหมาจ่าย)">บาท(เหมาจ่าย)</option>
+                                    </select>
+                                </div>
+                            </div>
+                        <?php
+                        endwhile ?>
+                    </div>
+
+
+
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="button" class="btn btn-primary">บันทึก</button>
-                </div>
+                <!-- </form> -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+                <button type="button" class="btn btn-primary">บันทึก</button>
             </div>
         </div>
+    </div>
     </div>
     <!--stall Modal -->
     <div id="edtmkrinfo-modal" class="modal fade" role="dialog">
@@ -180,7 +257,7 @@
                             <td>
                                 <div class="row" style="justify-content: center;">
                                     <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;" id="<?php echo $row1['sKey']; ?>">แก้ไข</a>
-                                    <a href="../backend/manage-edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
+                                    <a href="edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;" onclick="return confirm('คุณต้องการลบแผงค้านี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
                                 </div>
                             </td>
                         </tr>

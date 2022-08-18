@@ -5,9 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ระบบร้องเรียน</title>
     <link rel="stylesheet" href="../css/complain.css">
 </head>
+<script type="text/javascript">
+    function success() {
+        Swal.fire({
+            title: 'ส่งข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+
+    function error() {
+        Swal.fire({
+            title: 'ผิดพลาด',
+            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+</script>
 <?php
 include "profilebar.php";
 include "nav.php";
@@ -31,6 +51,7 @@ $result_toppic = mysqli_query($conn, $query_toppic);
 $data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
 JOIN users ON (complain.users_id = users.users_id)
+WHERE (mkr_id = '$mkr_id')
 ORDER BY comp_id DESC";
 $result = mysqli_query($conn, $data);
 require "../backend/add-complain.php";

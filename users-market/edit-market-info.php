@@ -7,7 +7,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/applicant.css">
   <title>แก้ไขข้อมูลตลาด</title>
-</head>
+</head>.
+<script type="text/javascript">
+  function success() {
+    Swal.fire({
+      title: 'บันทึกข้อมูลสำเร็จ',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 2500
+    })
+  }
+
+  function error() {
+    Swal.fire({
+      title: 'ผิดพลาด',
+      text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+      icon: 'error',
+      showConfirmButton: false,
+      timer: 2500
+    })
+  }
+</script>
 <?php
 include "profilebar.php";
 include "nav.php";
@@ -15,6 +35,7 @@ include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 require "../backend/edit-matketinfo.php";
 ?>
+
 
 <body>
   <h1>แก้ไขข้อมูลตลาด</h1>
@@ -62,7 +83,7 @@ require "../backend/edit-matketinfo.php";
         <div class="text-start">
           <img style="width:500px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row["mkr_pic"] ?>'>
         </div>
-        <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="ยืนยันคำร้อง">
+        <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="บันทึกข้อมูล">
       </div>
     </div>
   </form>

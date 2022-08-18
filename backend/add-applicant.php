@@ -51,6 +51,7 @@ if (isset($_POST['submit-apply'])) {
         VALUES ('$firstName','$laststName',' $email',' $tel', '$idfilepath','$mkrName',' $mkrtype',' $province',' $mkrAddress','$mkrDes','$mkrfilepath',1,'$userlogin') ";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1";/>';
             mysqli_close($conn);
         } else {
             echo "<script type='text/javascript'> error(); </script>";
@@ -77,6 +78,7 @@ if (isset($_POST['bn-submit'])) {
         $sqlInsert = "INSERT INTO req_annouce(bn_toppic, bn_detail, bn_pic,users_id) VALUES ('$bn_toppic', '$bn_detail', '$bn_img', $users_id)";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1";/>';
             mysqli_close($conn);
 
         } else {

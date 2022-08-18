@@ -9,17 +9,88 @@
     <!-- css  -->
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
+<script type="text/javascript">
+    function success() {
+        Swal.fire({
+            title: 'บันทึกข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+    function delsuccess() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+    function error() {
+        Swal.fire({
+            title: 'ผิดพลาด',
+            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+</script>
 <?php
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
-require "../backend/add-news.php";
+if (isset($_GET['mkr_id'])) {
+    $mkr_id = $_GET['mkr_id'];
+}
 //qry
 $count_n = 1;
-
 $data2 = "SELECT * FROM news WHERE mkr_id = '$mkr_id'";
 $result3 = mysqli_query($conn, $data2);
+
+if (isset($_POST['add-news'])) {
+    $n_sub = $_POST['n_sub'];
+    $n_detail = $_POST['n_detail'];
+    $n_file = '';
+    $n_file = isset($_POST['n_file']);
+
+
+    date_default_timezone_set('Asia/Bangkok');
+    $date = date("Ymd");
+    $numrand = (mt_rand());
+    // ไฟล์ภาพ
+    $n_tmp = $_FILES['n_file']['tmp_name'];
+    $n_nameoldname = strrchr($_FILES['n_file']['name'], ".");
+    $n_name = $date . $numrand . $n_nameoldname;
+    $n_type = $_FILES['n_file']['type'];
+    $n_file = 'asset/news/' . $n_name;
+    $npath = '../asset/news/' . $n_name;
+    if (isset($_POST["n_sub"]) != "" && isset($_POST["n_detail"]) != "") {
+        move_uploaded_file($n_tmp, $npath);
+        $sqlInsert = "INSERT INTO news(n_sub, n_detail, n_file,mkr_id) VALUES ('$n_sub', '$n_detail', '$n_file', $mkr_id)";
+        if (mysqli_query($conn, $sqlInsert)) {
+            echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1"; />';
+        } else {
+            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        }
+    } else {
+        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+    }
+}
+// delete
+if (isset($_GET['del'])) {
+    $del = $_GET['del'];
+    $mkr_id = $_GET['mkr_id'];
+    $sqldel = "DELETE FROM `news` WHERE n_id='$del'";
+    if (mysqli_query($conn, $sqldel)) {
+        echo "<script type='text/javascript'> delsuccess(); </script>";
+        
+    } else {
+        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+    }
+}
 ?>
 
 <body>
@@ -75,7 +146,7 @@ $result3 = mysqli_query($conn, $data2);
                         <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary w-50">ดูรายละเอียด</button></td>
                         <td>
                             <div>
-                                <a href="../backend/add-news.php?del=<?php echo $row1['n_id']; ?>;" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')"  class=" btn btn-outline-danger w-75">ลบ</a>
+                                <a href="news.php?del=<?php echo $row1['n_id']; ?>;&mkr_id=<?php echo $row1['mkr_id']; ?>;" onclick="return confirm('คุณต้องการลบข่าวสารนี้หรือไม่')" class=" btn btn-outline-danger w-75">ลบ</a>
                             </div>
                         </td>
                     <?php $count_n++;

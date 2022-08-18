@@ -22,8 +22,10 @@ if (isset($_POST['post-btn'])) {
             move_uploaded_file($compfiletmp, $comppath);
             $sqlInsert = "INSERT INTO complain (comp_subject,comp_detail,mkr_id,toppic_id,comp_file,users_id) 
             VALUES ('$subject','$comp_detail','$mkr_id','$toppic','$compfilepath','$users_id')";
-            if (mysqli_query($conn, $sqlInsert)) {
-                echo "<script type='text/javascript'> plslogin(); </script>";
+            $chack = mysqli_query($conn, $sqlInsert);
+            if ($chack) {
+                echo '<meta http-equiv="refresh" content="1";/>';
+                echo "<script type='text/javascript'> success(); </script>";
                 $conn->close();
             } else {
                 echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
@@ -33,9 +35,10 @@ if (isset($_POST['post-btn'])) {
         if (isset($toppic) != "" && isset($subject) != "" && isset($comp_detail) != "") {
             $sqlInsert_nopic = "INSERT INTO complain (`comp_subject`, `comp_detail`, `mkr_id`, `toppic_id`,`users_id`) 
             VALUES ('$subject','$comp_detail','$mkr_id','$toppic','$users_id')";
-
-            if (mysqli_query($conn, $sqlInsert_nopic)) {
-                echo "<script type='text/javascript'> plslogin(); </script>";
+            $chack = mysqli_query($conn, $sqlInsert_nopic);
+            if ($chack) {
+                echo '<meta http-equiv="refresh" content="1";/>';
+                echo "<script type='text/javascript'> success(); </script>";
                 $conn->close();
             } else {
                 echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง55');</script>";
@@ -43,6 +46,3 @@ if (isset($_POST['post-btn'])) {
         }
     }
 }
-
-
-?>
