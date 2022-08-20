@@ -59,7 +59,7 @@ require "../backend/qry-market-info.php"
         <ul class="list-group list-group-flush">
             <?php while ($row1 = $result3->fetch_assoc()) : ?>
                 <li class="list-group-item">
-                    <a class="hstack gap-3 text-decoration-none" data-bs-toggle="modal" data-bs-target="#merchant-modal">
+                <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
                         <p><?php echo $row1['timestamp']; ?></p>
                         <p><?php echo $row1['n_sub']; ?></p>
 
@@ -68,6 +68,27 @@ require "../backend/qry-market-info.php"
             <?php endwhile ?>
         </ul>
     </div>
-</body>
+    <?php require '../backend/modal-news.php' ?>
 
+</body>
+<script>
+    //detail popup
+    $(document).ready(function() {
+        $('.modal_data1').click(function() {
+            var newsid = $(this).attr("id");
+            $.ajax({
+                url: "../backend/news.php",
+                method: "POST",
+                data: {
+                    newsid: newsid
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
+        })
+    });
+</script>
 </html>
