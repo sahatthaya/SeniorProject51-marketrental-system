@@ -99,7 +99,17 @@ if (isset($_GET['approve'])) {
      $InsertcostUnit = "INSERT INTO `cost/unit`(`cu_name`, `cu_price`, `mkr_id`) VALUES ('ค่าน้ำ','0','$mkr_id'),('ค่าไฟ','0','$mkr_id'),('ค่าขยะ','0','$mkr_id')";
      $sqlCU = mysqli_query($conn, $InsertcostUnit);
 
-     if ( $isql2 && $ql && $isql && $sqlCU) {
+     $user_info = "SELECT * FROM `users` WHERE(users_id = $users_id)";
+     $qryuser_info = mysqli_query($conn, $user_info);
+     $rowus = mysqli_fetch_array($qryuser_info);
+     $p_name = $rowus['firstName'];
+     $p_surname = $rowus['lastName'];
+
+     $Insertpayment = "INSERT INTO `payment_info`(`p_name`, `p_surname`, `p_promtpay`, `p_bank`, `p_account`, `mkr_id`) VALUES ('$p_name','$p_surname','-','ธนาคารไทยพาณิชย์ (SCB)','-','$mkr_id')";
+     $sqlInsertpayment= mysqli_query($conn, $Insertpayment);
+     
+
+     if ( $isql2 && $ql && $isql && $sqlCU&& $sqlInsertpayment) {
          echo "<script>alert('อนุมัติคำร้องเสร็จสิ้น');window.location = '../users-admin/partner.php';</script>";
      } else {
          echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง');window.location = '../users-admin/partner.php';</script>";

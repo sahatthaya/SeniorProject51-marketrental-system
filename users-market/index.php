@@ -9,8 +9,27 @@
     <title>หน้าหลัก(เจ้าของตลาด)</title>
 
 </head>
-<?php
+<script type="text/javascript">
+    function delsuccess() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
 
+    function error() {
+        Swal.fire({
+            title: 'ผิดพลาด',
+            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+</script>
+<?php
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
@@ -73,7 +92,15 @@ require "../backend/graph-market.php";
                     duration: 1000,
                     easing: 'out'
                 },
-                backgroundColor: ''
+                backgroundColor: '',
+                chartArea: {
+                    'left': 15,
+                    'top': 15,
+                    'right': 0,
+                    'bottom': 0
+                },
+                fontSize: '16',
+               
             };
             var data = google.visualization.arrayToDataTable([
                 ['สถานะ', 'จำนวนแผงค้า'],
@@ -130,9 +157,9 @@ require "../backend/graph-market.php";
                             </div>
                             <div class="menu-mrk">
                                 <div class="item ">
-                                    <a  href="edit-Stall.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
+                                    <a href="edit-Stall.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bx-map-alt'></i>
-                                        <span>แผนผังตลาด</span> 
+                                        <span>แผนผังตลาด</span>
                                     </a>
                                 </div>
                                 <div class="item ">
@@ -153,7 +180,7 @@ require "../backend/graph-market.php";
                                         <span>ข่าวสาร</span>
                                     </a>
                                 </div>
-                               
+
                                 <div class="item">
                                     <a href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bxs-megaphone'></i>
@@ -177,4 +204,5 @@ require "../backend/graph-market.php";
     </div>
 
 </body>
+
 </html>
