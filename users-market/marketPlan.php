@@ -23,101 +23,64 @@
 
 </head>
 <script>
-    // $(document).ready(function() {
-    //     var x; // To store cloned div
-
-    //     $(".div_1").draggable({
-    //         helper: "clone",
-    //         cursor: "move",
-    //         revert: true
-    //     });
-
-
-    //     $(".plan").droppable({
-    //         drop: function(event, ui) {
-    //             x = ui.helper.clone(); 
-    //             ui.helper.remove(); 
-    //             x.appendTo('.plan'); 
-    //             x.draggable({
-    //                 cursor: "move",
-    //                 revert: true,
-    //                 containment: "parent"
-    //             });
-    //         }
-    //     });
-
-    // });
-
     $(document).ready(function() {
+
         var $boxstall = $(".plan"),
-            $list = $(".list");
-        // $("#sortable").sortable({
-        //     revert: true
-        // });
-        // $( "ul, li" ).disableSelection();
+            $list = $(".list"),
+            x;
 
-        $(".stallbox", $list).draggable({
-            // connectToSortable: "#sortable",
-            contaiment: ".list",
+        // sortable list 
+        $("#sortable, #plan").sortable({
+            revert: "invalid",
+            connectWith: ".connectedSortable",
+        }).disableSelection();
+
+        // ลากได้ ถ้าไม่ดรอปจะrevert กลับมา
+        $(".stallbox").draggable({
+            connectToSortable: "#sortable",
+            contaiment: ".list .plan",
             cursor: "move",
-            // revert: "invalid"
-        });
-        $list.droppable({
-            classes: {
-                accept: ".plan > .stallbox"
-            },
-            drop: function(event, ui) {
-                revert(ui.draggable)
+            revert: "invalid",
 
-            }
         });
+
+        // ดรอปไปแพลน
         $boxstall.droppable({
-            accept: ".list .stallbox",
-            classes: {
-                "ui-droppable-active": "custom-state-active"
-            },
             drop: function(event, ui) {
-                revertToPlan(ui.draggable);
-
-            }
-        });
-
-
-        function revert($item) {
-            $item.appendTo($list).fadeIn(function() {
-                var $stalllist = $("ul", $list).length ?
-                    $("ul", $list) :
-                    $("<ul class='gallery ui-helper-reset'/>").appendTo($list);
-                $item
-                    .animate({
-                        width: "250px",
-                        height: "50px"
+                $(ui.helper).draggable({
+                        connectToSortable: "#sortable",
+                        contaiment: ".list .plan",
+                        cursor: "move",
+                        revert: "invalid",
 
                     })
-            });
-        }
+                    .resizable({
+                        contaiment: "parant",
+                        cursor: "move",
+                        css: "position:absolute"
+                    }).css("width", "100")
+                    .css("height", "100");
+            }
+        });
 
-        function revertToPlan($item) {
-            $item.fadeOut(function() {
-                $item
-                    .css("width", "100px")
-                    .css("height", "100px")
-                    .find("img")
-                    .end()
-                    .appendTo($boxstall)
-                    .fadeIn();
-            });
-        }
+        // ดรอปกลับมาที่ลิส
+        $list.droppable({
+            classes: {
+                accept: ".plan .stallbox"
+            },
+
+            drop: function(event, ui) {
+                $(ui.helper).draggable({
+                        connectToSortable: "#sortable",
+                        contaiment: ".list .plan",
+                        cursor: "move",
+                        revert: "invalid",
+
+                    }).css("width", "200")
+                    .css("height", "50").resizable('disable');
+            }
+        });
     });
-
-    // function stallFunction() {
-    //     var stall = document.getElementById("stallID").value;
-    //     var div = document.createElement('div');
-    //     div.classList.add("stallbox");
-    //     div.setAttribute("name", stall);
-    //     div.innerHTML = stall;
-    //     $(div).appendTo(".plan");
-    // };
 </script>
 
 <body>
@@ -126,9 +89,9 @@
         <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
             <i class='bx bx-plus-circle'></i>เพิ่มแผงค้า
         </button>
-        <button type="button" class="btn btn-primary add-btn" id="merchant-btn" onclick="window.location='marketPlan.php';">
+        <a type="button" class="btn btn-primary add-btn" id="merchant-btn" href="edit-stall.php?mkr_id=<?php echo $mkr_id = $_GET['mkr_id']; ?> ">
             <i class='bx bxs-message-square-edit'></i>จัดการข้อมูลแผงค้า
-        </button>
+        </a>
     </div>
     <!-- Modal -->
     <div id="edtmkrinfo-modal" class="modal fade" role="dialog">
@@ -176,23 +139,22 @@
         </div>
     </div>
     <div class="content">
-        <div class="plan" id="plan">
-        <h3 class="center">แผนผังตลาด</h3>
-
+        <div class="plan">
+            <h3 class="center">แผนผังตลาด</h3>
+            <div id="plan"></div>
         </div>
         <div class="list">
             <h3 class="center">รายการแผงค้า</h3>
-            <ul id="sortable">
+            <div class="liststall vstack" id="sortable">
                 <?php while ($row1 = $result3->fetch_assoc()) : ?>
-                    <li>
+                    <li class="m-1 ">
                         <div class="stallbox">
-                         รหัสแผงค้า:   <?php echo $row1['sID'] ?>
+                            รหัสแผงค้า: <?php echo $row1['sID'] ?>
                         </div>
                     </li>
-                <?php
-                endwhile ?>
-            </ul>
+                <?php endwhile ?>
 
+            </div>
         </div>
     </div>
 </body>
