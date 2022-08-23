@@ -65,17 +65,25 @@ body {
     padding: 0 4%;
 }
 #plan{
-    min-width: 100px;
-    min-height: 100px;
+    min-width: 100%;
+    min-height: 100%;
+}
+.save-change {
+    display: inline-flex !important;
+    padding: 0 !important;
 }
 /* แผงค้า */
 .stallbox {
     color: white !important;
     background-color: var(--primaryblue);
     border-radius: 5px;
-    padding: 10px;
+    padding: 2px;
     width: 200px;
-    height: 50px;
+    height: 30px;
     cursor: move;
     font-size: 15px;
+    overflow: hidden;
+}
+.stallnum{
+    font-size:15px;
 }

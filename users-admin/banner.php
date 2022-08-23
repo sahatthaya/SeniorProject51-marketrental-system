@@ -153,7 +153,9 @@ require "../backend/manage-banner.php";
             });
 
         })
+
     });
+
 </script>
 
 

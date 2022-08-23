@@ -22,11 +22,11 @@
   <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
 
   <!-- ajax -->
-  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
-  <!-- jquery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
+  <!-- jquery -->
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
   <!-- js datatable -->
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 

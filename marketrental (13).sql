@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2022 at 08:32 AM
+-- Generation Time: Aug 23, 2022 at 11:40 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -55,9 +55,7 @@ INSERT INTO `banner` (`bn_id`, `bn_toppic`, `bn_detail`, `bn_pic`, `bn_link`) VA
 (84, 'ประชาสัมพันธ์ตลาดใหม่', 'ประชาสัมพันธ์ตลาดใหม่', 'asset/banner/mkr6.jpg', ''),
 (85, 'ประชาสัมพันธ์ตลาดใหม่1', 'ประชาสัมพันธ์ตลาดใหม่1', 'asset/banner/mkr3.jpg', ''),
 (86, 'ทดลอง', 'ทดลองประชาสัมพัน', 'asset/banner/mkr10.jpg', ''),
-(87, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/IMG_3393.jpeg', ''),
-(96, 'ทดลองประชาสัมพันธ์1', 'ทดลองประชาสัมพันธ์1', 'asset/banner/mkr9.jfif', ''),
-(97, 'ประชาสัมพันธ์ตลาดใหม่', 'ประชาสัมพันธ์ตลาดใหม่', 'asset/banner/mkr6.jpg', '');
+(87, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/IMG_3393.jpeg', '');
 
 -- --------------------------------------------------------
 
@@ -72,7 +70,7 @@ CREATE TABLE `complain` (
   `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `mkr_id` int(11) NOT NULL,
   `toppic_id` int(11) NOT NULL,
-  `comp_file` varchar(99) NOT NULL DEFAULT 'complain_file/nopicture.png',
+  `comp_file` varchar(99) NOT NULL DEFAULT 'asset/complain/nopicture.png',
   `users_id` int(11) NOT NULL,
   `status` text NOT NULL DEFAULT '1',
   `reply` varchar(99) NOT NULL DEFAULT 'ไม่มีการตอบกลับ'
@@ -88,7 +86,7 @@ INSERT INTO `complain` (`comp_id`, `comp_subject`, `comp_detail`, `timestamp`, `
 (37, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 20, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
 (38, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 19, 3, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
 (39, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 15, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
-(40, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 16, 3, 'asset/complain/nopicture.png', 21, 'ตอบกลับแล้ว', '40'),
+(40, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 16, 3, 'asset/complain/nopicture.png', 21, 'ตอบกลับแล้ว', 'sdfghj'),
 (41, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางเท้า สกปรกมากค่ะ ช่วยดูแลด้วย', '2022-04-17 17:10:04', 11, 1, 'asset/complain/NjpUs24nCQKx5e1D7drWjErXXAaumqP8vwyCPvc8A9N.jpg', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
 (42, 'ห้องน้ำชำรุด', 'ห้องน้ำชำรุดทุกห้อง ไม่มีที่เข้าห้องน้ำจ้า ช่วยแก้ไขด้วย', '2022-04-17 17:10:36', 6, 3, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
 (43, 'ขยะเต็มทางเท้า', 'ขยะเต็มทางกรุณาแก้ไขด้วยค่ะ', '2022-04-18 04:04:14', 21, 1, 'asset/complain/nopicture.png', 21, 'ยังไม่ตอบกลับ', 'dcfvg'),
@@ -130,6 +128,72 @@ INSERT INTO `contact` (`contact_id`, `ct_logo`, `ct1_fname`, `ct1_lname`, `ct1_e
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cost/unit`
+--
+
+CREATE TABLE `cost/unit` (
+  `cu_id` int(11) NOT NULL,
+  `cu_name` varchar(45) NOT NULL,
+  `cu_price` int(11) NOT NULL,
+  `mkr_id` int(11) NOT NULL,
+  `cu_type` varchar(45) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `cost/unit`
+--
+
+INSERT INTO `cost/unit` (`cu_id`, `cu_name`, `cu_price`, `mkr_id`, `cu_type`) VALUES
+(4, 'ค่าน้ำ', 0, 6, 'บาท/หน่วย'),
+(5, 'ค่าไฟ', 0, 6, 'บาท/หน่วย'),
+(6, 'ค่าขยะ', 0, 6, 'บาท/หน่วย'),
+(7, 'ค่าน้ำ', 0, 9, 'บาท/หน่วย'),
+(8, 'ค่าไฟ', 0, 9, 'บาท/หน่วย'),
+(9, 'ค่าขยะ', 0, 9, 'บาท/หน่วย'),
+(10, 'ค่าน้ำ', 0, 10, 'บาท/หน่วย'),
+(11, 'ค่าไฟ', 0, 10, 'บาท/หน่วย'),
+(12, 'ค่าขยะ', 0, 10, 'บาท/หน่วย'),
+(13, 'ค่าน้ำ', 0, 15, 'บาท/หน่วย'),
+(14, 'ค่าไฟ', 0, 15, 'บาท/หน่วย'),
+(15, 'ค่าขยะ', 0, 15, 'บาท/หน่วย'),
+(16, 'ค่าน้ำ', 0, 16, 'บาท/หน่วย'),
+(17, 'ค่าไฟ', 0, 16, 'บาท/หน่วย'),
+(18, 'ค่าขยะ', 0, 16, 'บาท/หน่วย'),
+(19, 'ค่าน้ำ', 0, 19, 'บาท/หน่วย'),
+(20, 'ค่าไฟ', 0, 19, 'บาท/หน่วย'),
+(21, 'ค่าขยะ', 0, 19, 'บาท/หน่วย'),
+(22, 'ค่าน้ำ', 0, 20, 'บาท/หน่วย'),
+(23, 'ค่าไฟ', 0, 20, 'บาท/หน่วย'),
+(24, 'ค่าขยะ', 0, 20, 'บาท/หน่วย'),
+(25, 'ค่าน้ำ', 0, 21, 'บาท/หน่วย'),
+(26, 'ค่าไฟ', 0, 21, 'บาท/หน่วย'),
+(27, 'ค่าขยะ', 0, 21, 'บาท/หน่วย'),
+(28, 'ค่าน้ำ', 0, 22, 'บาท/หน่วย'),
+(29, 'ค่าไฟ', 0, 22, 'บาท/หน่วย'),
+(30, 'ค่าขยะ', 0, 22, 'บาท/หน่วย'),
+(31, 'ค่าน้ำ', 0, 23, 'บาท/หน่วย'),
+(32, 'ค่าไฟ', 0, 23, 'บาท/หน่วย'),
+(33, 'ค่าขยะ', 0, 23, 'บาท/หน่วย'),
+(34, 'ค่าน้ำ', 0, 24, 'บาท/หน่วย'),
+(35, 'ค่าไฟ', 0, 24, 'บาท/หน่วย'),
+(36, 'ค่าขยะ', 0, 24, 'บาท/หน่วย'),
+(37, 'ค่าน้ำ', 0, 25, 'บาท/หน่วย'),
+(38, 'ค่าไฟ', 0, 25, 'บาท/หน่วย'),
+(39, 'ค่าขยะ', 0, 25, 'บาท/หน่วย'),
+(40, 'ค่าน้ำ', 0, 26, 'บาท/หน่วย'),
+(41, 'ค่าไฟ', 0, 26, 'บาท/หน่วย'),
+(42, 'ค่าขยะ', 0, 26, 'บาท/หน่วย'),
+(43, 'ค่าน้ำ', 0, 27, 'บาท/หน่วย'),
+(44, 'ค่าไฟ', 0, 27, 'บาท/หน่วย'),
+(45, 'ค่าขยะ', 0, 27, 'บาท/หน่วย'),
+(49, 'ค่าน้ำ', 0, 29, 'บาท/หน่วย'),
+(50, 'ค่าไฟ', 0, 29, 'บาท/หน่วย'),
+(51, 'ค่าขยะ', 0, 29, 'บาท/หน่วย'),
+(108, 'หกดเ้่า', 1, 16, 'บาท/หน่วย');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `market_detail`
 --
 
@@ -167,7 +231,6 @@ INSERT INTO `market_detail` (`mkr_id`, `mkr_name`, `mkr_address`, `mkr_descrip`,
 (25, 'ถนนคนเดิน', ' ขอนแก่น', '17:00-23:59', 'asset/img_market/sankamphaeng.png', 2, 40, 19, ' ruby@gmail.com', ' 096321458'),
 (26, 'สหัสทยา', ' มข', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/mkr4.jpg', 2, 11, 14, ' sahatthaya.t@kkumail.com', ' 098999999'),
 (27, 'ตลาดโดมเขียว', ' จ.สุรินทร์', 'ตลาดเปิดท้าย ที่เที่ยวมหาวิทยาลัยขอนแก่น ตั้ง', 'asset/img_market/mkr4.jpg', 4, 32, 21, ' sahatthaya.t@gmail.com', ' 098295538'),
-(28, 'ตลาดมอดินแดง', ' 123 ขอนแก่น มหาวิทยาลัยขอนแก่น 40000', 'ตลาดเปิดท้าย ที่เที่ยวมหาวิทยาลัยขอนแก่น ตั้ง', 'asset/img_market/mkr5.jpg', 4, 40, 9, ' admin@gmail.com', ' 098295538'),
 (29, 'ตลาดโดมเขียว', ' จังหวัดสุรินทร์', 'ตลาดเปิดท้าย ที่เที่ยวมหาวิทยาลัยขอนแก่น ตั้ง', 'asset/img_market/mkr8.jpg', 4, 32, 22, ' sahatthaya.t@gmail.com', ' 098295538');
 
 -- --------------------------------------------------------
@@ -211,8 +274,56 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`n_id`, `n_file`, `n_sub`, `n_detail`, `mkr_id`, `timestamp`) VALUES
-(18, 'asset/news/202208141254217873.jpg', 'เปิดตลาดใหม่', 'เปิดตลาดใหม่ ในวันที่ 14/08/2022', 16, '2022-08-14'),
-(19, 'asset/news/20220814174817894.jpg', 'เปิดตลาดใหม่', 'เปิดตลาดใหม่ ในวันที่ 14/08/2022', 16, '2022-08-14');
+(29, 'asset/news/20220820489974496.png', '5', '55', 16, '2022-08-20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_info`
+--
+
+CREATE TABLE `payment_info` (
+  `p_id` int(11) NOT NULL,
+  `p_name` varchar(45) NOT NULL,
+  `p_surname` varchar(45) NOT NULL,
+  `p_promtpay` varchar(13) NOT NULL,
+  `p_bank` varchar(45) NOT NULL,
+  `p_account` varchar(13) NOT NULL,
+  `mkr_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `payment_info`
+--
+
+INSERT INTO `payment_info` (`p_id`, `p_name`, `p_surname`, `p_promtpay`, `p_bank`, `p_account`, `mkr_id`) VALUES
+(1, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 6),
+(2, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 9),
+(3, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 10),
+(4, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 11),
+(5, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 12),
+(6, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 15),
+(7, 'สหัสทยา', 'เทียนมงคล', '098 295 5381', 'ธนาคารไทยพาณิชย์ (SCB)', '123 4 56789 0', 16),
+(8, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 19),
+(9, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 20),
+(10, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 21),
+(11, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 22),
+(12, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 23),
+(13, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 24),
+(14, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 25),
+(15, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 26),
+(16, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 27),
+(17, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 29),
+(18, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 35),
+(19, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 36),
+(20, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 37),
+(21, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 38),
+(22, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 39),
+(23, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 40),
+(24, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 41),
+(25, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 42),
+(26, 'สหัสทยา', 'เทียนมงคล', '0', 'ธนาคารไทยพาณิชย์ (SCB)', '0', 43),
+(27, '55', '55', '5', '55', '55', 44);
 
 -- --------------------------------------------------------
 
@@ -339,7 +450,7 @@ INSERT INTO `req_annouce` (`req_an_id`, `bn_toppic`, `bn_detail`, `bn_pic`, `use
 (19, 'ทดลองประชาสัมพันธ์1', 'ทดลองประชาสัมพันธ์1', 'asset/banner/mkr9.jfif', 8, 2, '2022-04-08 14:03:25'),
 (20, 'ประชาสัมพันธ์ตลาดใหม่', 'ประชาสัมพันธ์ตลาดใหม่', 'asset/banner/mkr6.jpg', 8, 2, '2022-04-08 14:03:25'),
 (21, 'ประชาสัมพันธ์ตลาดใหม่1', 'ประชาสัมพันธ์ตลาดใหม่1', 'asset/banner/mkr3.jpg', 8, 3, '2022-04-08 14:03:25'),
-(22, 'ทดลอง', 'ทดลองประชาสัมพัน', 'asset/banner/mkr10.jpg', 9, 1, '2022-04-08 14:03:25'),
+(22, 'ทดลอง', 'ทดลองประชาสัมพัน', 'asset/banner/mkr10.jpg', 9, 2, '2022-04-08 14:03:25'),
 (23, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/mkr7.jpg', 9, 1, '2022-04-18 04:22:41'),
 (24, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/mkr7.jpg', 9, 1, '2022-04-18 04:24:20'),
 (25, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/IMG_3393.jpeg', 9, 1, '2022-04-18 05:38:11'),
@@ -347,8 +458,9 @@ INSERT INTO `req_annouce` (`req_an_id`, `bn_toppic`, `bn_detail`, `bn_pic`, `use
 (27, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/mkr7.jpg', 9, 1, '2022-04-18 04:22:41'),
 (28, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/mkr7.jpg', 9, 1, '2022-04-18 04:24:20'),
 (29, 'ตลาดมอดินแดงปรับปรุงใหม่', 'ตลาดมอดินแดงปรับปรุงใหม่ ราคาเดิม', 'asset/banner/IMG_3393.jpeg', 9, 1, '2022-04-18 05:38:11'),
-(30, 'sdfghj', 'dfghyjuki', 'banner/mkr-1.png', 9, 1, '2022-07-23 05:05:17'),
-(31, 'sdfghj', 'dfghyjuki', 'asset/banner/20220723432805262.png', 9, 1, '2022-07-23 05:07:05');
+(30, 'sdfghj', 'dfghyjuki', 'banner/mkr-1.png', 9, 3, '2022-07-23 05:05:17'),
+(31, 'sdfghj', 'dfghyjuki', 'asset/banner/20220723432805262.png', 9, 1, '2022-07-23 05:07:05'),
+(32, 'ฟหกดเ้่', 'หกดเ้่า', 'asset/banner/202208161983227093.png', 9, 1, '2022-08-16 13:12:59');
 
 -- --------------------------------------------------------
 
@@ -405,10 +517,26 @@ INSERT INTO `req_partner` (`req_partner_id`, `market_name`, `market_address`, `m
 (65, 'sdfg', ' sdfghjk', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/467978241.png', 2, 2, 'sfdghjkl', 'adsfghjkl;', ' sahatthaya.t@gmail.com', ' 098999999', 'asset/idcard/467978241.png', 23, 12, '2022-07-19 12:37:54'),
 (66, 'sdfg', ' sdfghjk', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/202207191541995611.png', 2, 2, 'sfdghjkl', 'adsfghjkl;', ' sahatthaya.t@gmail.com', ' 098999999', 'asset/idcard/202207191541995611.png', 23, 12, '2022-07-19 12:38:17'),
 (67, 'ตลาดเปิดท้าย', ' 123 ขอนแก่น มหาวิทยาลัยขอนแก่น 40000', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/202207191266434879.png', 3, 2, 'azxcvbnm,', 'sdgfhjk', ' sahatthaya.t@kkumail.com', ' 098295538', 'asset/idcard/202207191266434879.png', 23, 11, '2022-07-19 12:39:28'),
-(68, 'ตลาดเปิดท้าย', ' 123 ขอนแก่น มหาวิทยาลัยขอนแก่น 40000', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/20220719650411792.png', 3, 1, 'azxcvbnm,', 'sdgfhjk', ' sahatthaya.t@kkumail.com', ' 098295538', 'asset/idcard/20220719650411792.png', 23, 11, '2022-07-19 12:39:32'),
-(72, 'jhgfd', ' เมือง ลพบุรี', 'hgfd', 'asset/img_market/202207221535536878.jpg', 1, 1, 'sdfgh', 'dfghj', ' sahatthaya.t@gmail.com', ' 098295538', 'asset/idcard/202207221535536878.jpg', 23, 10, '2022-07-22 10:45:38'),
-(73, 'zxdcfghjkl', ' มข', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/202207261641852995.png', 1, 1, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202207261641852995.png', 9, 11, '2022-07-26 11:03:16'),
-(74, 'zxdcfghjkl', ' มข', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/202207261148222437.png', 1, 1, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202207261148222437.png', 9, 11, '2022-07-26 11:03:49');
+(68, 'ตลาดเปิดท้าย', ' 123 ขอนแก่น มหาวิทยาลัยขอนแก่น 40000', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/20220719650411792.png', 3, 2, 'azxcvbnm,', 'sdgfhjk', ' sahatthaya.t@kkumail.com', ' 098295538', 'asset/idcard/20220719650411792.png', 23, 11, '2022-07-19 12:39:32'),
+(72, 'jhgfd', ' เมือง ลพบุรี', 'hgfd', 'asset/img_market/202207221535536878.jpg', 1, 2, 'sdfgh', 'dfghj', ' sahatthaya.t@gmail.com', ' 098295538', 'asset/idcard/202207221535536878.jpg', 23, 10, '2022-07-22 10:45:38'),
+(73, 'zxdcfghjkl', ' มข', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/202207261641852995.png', 1, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202207261641852995.png', 9, 11, '2022-07-26 11:03:16'),
+(74, 'zxdcfghjkl', ' มข', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/202207261148222437.png', 1, 3, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202207261148222437.png', 9, 11, '2022-07-26 11:03:49'),
+(75, 'asdfghj', ' ที่อยู่ defrgt ซอย defrgth หมู่ sdfg ถนน defg ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด sdfg sdfg', 'ทดลองกรอกข้อมูลตลาด', 'asset/img_market/20220816668943468.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/20220816668943468.png', 9, 11, '2022-08-16 12:51:29'),
+(76, 'sdfg', ' ที่อยู่ sdfg ซอย sdfgh หมู่ sdfgh ถนน sdfghj ตำบล/แขวง bgnm อำเภอ/เขต  จังหวัด xcvb zxcvbn', 'dcfvgbnm', 'asset/img_market/202208162118827089.png', 2, 1, 'sdf', 'sdfg', ' sahatthaya.t@gmail.com', ' 098765432', 'asset/idcard/202208162118827089.png', 23, 12, '2022-08-16 12:54:52'),
+(77, 'sdfg', ' ที่อยู่ sdfg ซอย sdfgh หมู่ sdfgh ถนน sdfghj ตำบล/แขวง bgnm อำเภอ/เขต  จังหวัด xcvb zxcvbn', 'dcfvgbnm', 'asset/img_market/202208162020562397.png', 2, 1, 'sdf', 'sdfg', ' sahatthaya.t@gmail.com', ' 098765432', 'asset/idcard/202208162020562397.png', 23, 12, '2022-08-16 12:55:22'),
+(78, 'sdfg', ' ที่อยู่ sdfg ซอย sdfgh หมู่ sdfgh ถนน sdfghj ตำบล/แขวง bgnm อำเภอ/เขต  จังหวัด xcvb zxcvbn', 'dcfvgbnm', 'asset/img_market/20220816741027087.png', 2, 1, 'sdf', 'sdfg', ' sahatthaya.t@gmail.com', ' 098765432', 'asset/idcard/20220816741027087.png', 23, 12, '2022-08-16 12:56:05'),
+(79, 'ตลาดมุกุคิกๆคักๆ', ' ที่อยู่ ผแ ซอย ปกแดอิเ หมู่ กดเ้่ ถนน ปแกดอเิ้่ ตำบล/แขวง ปแอิืท อำเภอ/เขต  จังหวัด ปแอิืท ปแอดิเ้ื', 'ตลาดทิพย์', 'asset/img_market/202208161780574801.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202208161780574801.png', 9, 10, '2022-08-16 13:12:51'),
+(80, 'ตลาดเปิดท้าย', ' ที่อยู่ defrgt ซอย sdfgh หมู่ sdfgh ถนน defg ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 40000', 'ตลาดเปิดท้าย ที่เที่ยวมหาวิทยาลัยขอนแก่น ตั้งอยู่บริเวณลานจอดรถด้านศูนย์ประชุมอเนกประสงค์กาญจนาภิเษก มี เฉพาะวันศุกร์-อาทิตย์เวลา17.00-22.00 น. แต่ก็ไม่ได้มีทุกอาทิตย์นะคะ (เพื่อน ๆ สามารถติดตามข่าวสารได้ที่ เปิดท้ายหอ กาญ มข. เลยจ้า)', 'asset/img_market/202208181051384382.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202208181051384382', 9, 13, '2022-08-18 10:26:29'),
+(81, 'ตลาดเปิดท้าย', ' ที่อยู่ defrgt ซอย sdfgh หมู่ sdfgh ถนน defg ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 40000', 'ตลาดเปิดท้าย ที่เที่ยวมหาวิทยาลัยขอนแก่น ตั้งอยู่บริเวณลานจอดรถด้านศูนย์ประชุมอเนกประสงค์กาญจนาภิเษก มี เฉพาะวันศุกร์-อาทิตย์เวลา17.00-22.00 น. แต่ก็ไม่ได้มีทุกอาทิตย์นะคะ (เพื่อน ๆ สามารถติดตามข่าวสารได้ที่ เปิดท้ายหอ กาญ มข. เลยจ้า)', 'asset/img_market/20220818590472872.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/20220818590472872', 9, 13, '2022-08-18 10:28:58'),
+(82, 'ตลาดมุกุคิกๆคักๆ', ' ที่อยู่ defrgt ซอย defrgth หมู่ sdfg ถนน defg ตำบล/แขวง sdfg อำเภอ/เขต 1 จังหวัด Khon Kaen 4001', 'ทดลองกรอก', 'asset/img_market/202208181029269121.png', 2, 1, 'กดเิ', 'ออ', ' sahatthaya.t@gmail.com', ' แแแแ', 'asset/idcard/202208181029269121.png', 23, 11, '2022-08-18 10:47:41'),
+(83, 'ตลาดเปิดท้าย', ' ที่อยู่  ซอย sdfgh หมู่ sdfgh ถนน sdfghj ตำบล/แขวง sdfg อำเภอ/เขต 1 จังหวัด Khon Kaen 4001', 'ทดลองกรอก', 'asset/img_market/202208181724729109.png', 1, 1, 'x', 'x', ' sunisa.th@kkumail.com', ' แแแแ', 'asset/idcard/202208181724729109.png', 23, 10, '2022-08-18 10:48:32'),
+(84, 'jhgfd', ' ที่อยู่ sdfg ซอย defrgth หมู่ sdfg ถนน sdfghj ตำบล/แขวง bgnm อำเภอ/เขต  จังหวัด Khon Kaen 4001', 'ตลาดเปิดท้าย ที่เที่ยวมหาวิทยาลัยขอนแก่น ตั้งอยู่บริเวณลานจอดรถด้านศูนย์ประชุมอเนกประสงค์กาญจนาภิเษก มี เฉพาะวันศุกร์-อาทิตย์เวลา17.00-22.00 น. แต่ก็ไม่ได้มีทุกอาทิตย์นะคะ (เพื่อน ๆ สามารถติดตามข่าวสารได้ที่ เปิดท้ายหอ กาญ มข. เลยจ้า)', 'asset/img_market/20220819764447508.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/20220819764447508.png', 9, 11, '2022-08-19 08:33:19'),
+(88, 'jhgfd', ' ที่อยู่ sdfg ซอย sdfgh หมู่ sdfg ถนน sdfghj ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 4001', 'ตลาดเปิดท้าย ที่เที่ยวมหาวิทยาลัยขอนแก่น ตั้งอยู่บริเวณลานจอดรถด้านศูนย์ประชุมอเนกประสงค์กาญจนาภิเษก มี เฉพาะวันศุกร์-อาทิตย์เวลา17.00-22.00 น. แต่ก็ไม่ได้มีทุกอาทิตย์นะคะ (เพื่อน ๆ สามารถติดตามข่าวสารได้ที่ เปิดท้ายหอ กาญ มข. เลยจ้า)', 'asset/img_market/202208191222554559.png', 1, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202208191222554559.png', 9, 11, '2022-08-19 11:54:57'),
+(89, 'ตลาดเปิดท้าย', ' ที่อยู่ sdfg ซอย defrgth หมู่ sdfgh ถนน defg ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 4001', 'ทดลองกรอก', 'asset/img_market/202208191019079372.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/202208191019079372.png', 9, 11, '2022-08-19 11:56:35'),
+(91, 'ตลาดเปิดท้าย', ' ที่อยู่ sdfg ซอย defrgth หมู่ sdfgh ถนน sdfghj ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 4001', 'ทดลองกรอกข้อมูลตลาด52656548681', 'asset/img_market/20220819975742944.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/20220819975742944.png', 9, 10, '2022-08-19 12:00:03'),
+(92, 'ตลาดเปิดท้าย', ' ที่อยู่ sdfg ซอย defrgth หมู่ sdfgh ถนน sdfghj ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 4001', 'ทดลองกรอกข้อมูลตลาด52656548681', 'asset/img_market/20220819975742944.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/20220819975742944.png', 9, 10, '2022-08-19 12:00:03'),
+(93, 'ตลาดเปิดท้าย', ' ที่อยู่ sdfg ซอย defrgth หมู่ sdfgh ถนน sdfghj ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 4001', 'ทดลองกรอกข้อมูลตลาด52656548681', 'asset/img_market/20220819975742944.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/20220819975742944.png', 9, 10, '2022-08-19 12:00:03'),
+(94, 'ตลาดเปิดท้าย', ' ที่อยู่ sdfg ซอย defrgth หมู่ sdfgh ถนน sdfghj ตำบล/แขวง sdfg อำเภอ/เขต  จังหวัด Khon Kaen 4001', 'ทดลองกรอกข้อมูลตลาด52656548681', 'asset/img_market/20220819975742944.png', 2, 2, 'สหัสทยา', 'เทียนมงคล', ' admin@gmail.com', ' 098295538', 'asset/idcard/20220819975742944.png', 9, 10, '2022-08-19 12:00:03');
 
 -- --------------------------------------------------------
 
@@ -455,19 +583,18 @@ CREATE TABLE `stall` (
 --
 
 INSERT INTO `stall` (`sKey`, `sID`, `sWidth`, `sHeight`, `sAreaUnit`, `sDept`, `sRent`, `sPayRange`, `market_id`, `dropped`, `sStatus`) VALUES
-(44, '1', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
 (45, '2', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
-(49, '3', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
 (50, '4', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
-(51, '5', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
 (52, '6', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
-(53, '7', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
 (54, '8', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 9, 0, 'ว่าง'),
-(55, 'หก', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
-(56, 'หก', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
-(57, 'หก', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
-(58, 'A01', 2, 3, 'เมตร', 500, 1000, 'บาท/เดือน', 16, 0, 'ว่าง'),
-(59, 'A01', 2, 3, 'เมตร', 500, 1000, 'บาท/เดือน', 16, 0, 'ว่าง');
+(70, 'ก', 4, 2, 'เมตร', 2, 2, 'บาท/วัน', 16, 0, 'ว่าง'),
+(72, 'f', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(73, 'x', 555, 41523241, 'เมตร', 321, 5214, 'บาท/วัน', 16, 0, 'ว่าง'),
+(74, 'x', 6, 6, 'เมตร', 6, 6, 'บาท/วัน', 16, 0, 'ว่าง'),
+(75, 'x', 2, 2, 'เมตร', 2, 2, 'บาท/วัน', 16, 0, 'ว่าง'),
+(76, 'x', 2, 2, 'เมตร', 2, 2, 'บาท/วัน', 16, 0, 'ว่าง'),
+(77, 'x', 2, 2, 'เมตร', 2, 2, 'บาท/วัน', 16, 0, 'ว่าง'),
+(78, 'x', 2, 2, 'เมตร', 2, 2, 'บาท/วัน', 16, 0, 'ว่าง');
 
 -- --------------------------------------------------------
 
@@ -523,7 +650,7 @@ INSERT INTO `users` (`users_id`, `username`, `firstName`, `lastName`, `password`
 (20, 'addmrk', 'ton', 'tan', '08be5f005efe3a35d6f5407ddbd6bf97', 'tontan@gmail.com', '0987654321', 2),
 (21, '12345', 'sahat', 'thaya', '25d55ad283aa400af464c76d713c07ad', 'admin@gmail.com', '0982955381', 2),
 (22, 'sahatthaya08', 'สหัสทยา', 'เทียนมงคล', '25d55ad283aa400af464c76d713c07ad', 'sahatthaya.t@gmail.com', '0982955381', 2),
-(23, 'pixel', 'axcvb', 'f', 'e99246d0435963f025fcf84e60b84de7', 'test@gmail.com', '0982955381', 1);
+(23, 'pixel', 'axcvb2', 'ff', 'e99246d0435963f025fcf84e60b84de7', 'test@gmail.com', '0982955381', 1);
 
 -- --------------------------------------------------------
 
@@ -571,6 +698,13 @@ ALTER TABLE `contact`
   ADD PRIMARY KEY (`contact_id`);
 
 --
+-- Indexes for table `cost/unit`
+--
+ALTER TABLE `cost/unit`
+  ADD PRIMARY KEY (`cu_id`),
+  ADD KEY `mkr_id` (`mkr_id`);
+
+--
 -- Indexes for table `market_detail`
 --
 ALTER TABLE `market_detail`
@@ -591,6 +725,12 @@ ALTER TABLE `market_type`
 ALTER TABLE `news`
   ADD PRIMARY KEY (`n_id`),
   ADD KEY `mkr_id` (`mkr_id`);
+
+--
+-- Indexes for table `payment_info`
+--
+ALTER TABLE `payment_info`
+  ADD PRIMARY KEY (`p_id`);
 
 --
 -- Indexes for table `province`
@@ -656,13 +796,13 @@ ALTER TABLE `userstype`
 -- AUTO_INCREMENT for table `banner`
 --
 ALTER TABLE `banner`
-  MODIFY `bn_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `bn_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT for table `complain`
 --
 ALTER TABLE `complain`
-  MODIFY `comp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `comp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT for table `contact`
@@ -671,10 +811,16 @@ ALTER TABLE `contact`
   MODIFY `contact_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `cost/unit`
+--
+ALTER TABLE `cost/unit`
+  MODIFY `cu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+
+--
 -- AUTO_INCREMENT for table `market_detail`
 --
 ALTER TABLE `market_detail`
-  MODIFY `mkr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `mkr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `market_type`
@@ -686,7 +832,13 @@ ALTER TABLE `market_type`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `n_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+
+--
+-- AUTO_INCREMENT for table `payment_info`
+--
+ALTER TABLE `payment_info`
+  MODIFY `p_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `province`
@@ -698,13 +850,13 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT for table `req_annouce`
 --
 ALTER TABLE `req_annouce`
-  MODIFY `req_an_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `req_an_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `req_partner`
 --
 ALTER TABLE `req_partner`
-  MODIFY `req_partner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `req_partner_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT for table `req_status`
@@ -716,7 +868,7 @@ ALTER TABLE `req_status`
 -- AUTO_INCREMENT for table `stall`
 --
 ALTER TABLE `stall`
-  MODIFY `sKey` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `sKey` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT for table `toppic`
@@ -738,7 +890,6 @@ ALTER TABLE `users`
 -- Constraints for table `complain`
 --
 ALTER TABLE `complain`
-  ADD CONSTRAINT `complain_ibfk_1` FOREIGN KEY (`mkr_id`) REFERENCES `market_detail` (`mkr_id`),
   ADD CONSTRAINT `complain_ibfk_3` FOREIGN KEY (`toppic_id`) REFERENCES `toppic` (`toppic_id`),
   ADD CONSTRAINT `complain_ibfk_4` FOREIGN KEY (`users_id`) REFERENCES `users` (`users_id`);
 
@@ -749,12 +900,6 @@ ALTER TABLE `market_detail`
   ADD CONSTRAINT `market_detail_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`users_id`),
   ADD CONSTRAINT `market_detail_ibfk_2` FOREIGN KEY (`province_id`) REFERENCES `province` (`province_id`),
   ADD CONSTRAINT `market_detail_ibfk_3` FOREIGN KEY (`market_type_id`) REFERENCES `market_type` (`market_type_id`);
-
---
--- Constraints for table `news`
---
-ALTER TABLE `news`
-  ADD CONSTRAINT `news_ibfk_1` FOREIGN KEY (`mkr_id`) REFERENCES `market_detail` (`mkr_id`);
 
 --
 -- Constraints for table `req_annouce`
@@ -771,12 +916,6 @@ ALTER TABLE `req_partner`
   ADD CONSTRAINT `req_partner_ibfk_3` FOREIGN KEY (`req_status_id`) REFERENCES `req_status` (`req_status_id`),
   ADD CONSTRAINT `req_partner_ibfk_4` FOREIGN KEY (`users_id`) REFERENCES `users` (`users_id`),
   ADD CONSTRAINT `req_partner_ibfk_5` FOREIGN KEY (`province_id`) REFERENCES `province` (`province_id`);
-
---
--- Constraints for table `stall`
---
-ALTER TABLE `stall`
-  ADD CONSTRAINT `stall_ibfk_1` FOREIGN KEY (`market_id`) REFERENCES `market_detail` (`mkr_id`);
 
 --
 -- Constraints for table `users`

@@ -74,9 +74,9 @@ $(document).ready(function () {
             "paginate": {
                 "previous": "ก่อนหน้า",
                 "next": "หน้าถัดไป",
-                
-              }
-          }
+
+            }
+        }
     });
 
 });
