@@ -106,7 +106,7 @@ require "./backend/qry-index.php";
     </div>
     <hr>
     <div class="users-guide">
-        <h3 class="center">สำหรับเจ้าของตลาดที่ต้องการเป็นพาร์ทเนอร์</h3>
+        <h3 class="center">สำหรับพ่อค้าแม่ค้าการจองแผงค้า</h3>
         <div class="guide">
             <div>
                 <h5 class="center">1. เข้าสู่ระบบ</h5>
