@@ -84,7 +84,7 @@ include "../backend/1-import-link.php";
         </div>
 
         <div class="users-guide">
-            <h3 class="center">สำหรับพ่อค้าแม่ค้าการจองแผงค้า</h3>
+            <h3 class="center">สำหรับพ่อค้าแม่ค้าที่ต้องการจองแผงค้า</h3>
             <div class="guide">
                 <div>
                     <h5 class="center">1. เข้าสู่ระบบ</h5>
