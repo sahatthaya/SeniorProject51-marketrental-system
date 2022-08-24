@@ -63,6 +63,8 @@ body {
 
 .liststall {
     padding: 0 4%;
+    min-height: 100%;
+
 }
 #plan{
     min-width: 100%;

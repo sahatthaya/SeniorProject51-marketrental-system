@@ -79,7 +79,7 @@ if (isset($_POST["newsid"])) {
                <td width="70%">' . $row["n_detail"] . '</td>  
           </tr>    
           <tr>  
-               <td width="30%"><label>รูปภาพแบนเนอร์</label></td>  
+               <td width="30%"><label>รูปภาพที่เกี่ยวข้อง</label></td>  
                <td width="70%"><img style="width:300px;" src=../' . $row["n_file"] . '></td>  
           </tr>  
           

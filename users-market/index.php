@@ -116,7 +116,7 @@ require "../backend/graph-market.php";
 
     <div class="box">
         <div class="graph ">
-            <h5 class="center">จำนวนแผงที่ถูกจองต่อจำนวนแผงว่าง</h5>
+            <h5 class="center">ยอดการจองแผงค้าในแต่ละเดือน</h5>
             <div class="chartcanvas" id="chart_div"> </div>
         </div>
         <div class="graph">

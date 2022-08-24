@@ -44,7 +44,7 @@
     $(document).ready(function() {
 
         var $boxstall = $("#plan"),
-            $list = $(".list");
+            $list = $(".liststall");
 
         // sortable list 
         $("#sortable, #plan").sortable({
@@ -55,7 +55,7 @@
         // ลาก แก้ไซส์
         $(".stallbox").draggable({
             connectToSortable: "#sortable",
-            contaiment: ".list #plan",
+            contaiment: ".liststall #plan",
             cursor: "move",
             revert: "invalid",
 
@@ -71,7 +71,7 @@
             drop: function(event, ui) {
                 $(ui.helper).draggable({
                         connectToSortable: "#sortable",
-                        contaiment: ".list #plan",
+                        contaiment: ".liststall #plan",
                         cursor: "move",
                         revert: "invalid",
                         stack: "#plan div",
@@ -99,7 +99,7 @@
             drop: function(event, ui) {
                 $(ui.helper).draggable({
                         connectToSortable: "#sortable",
-                        contaiment: ".list .plan",
+                        contaiment: ".liststall #plan",
                         cursor: "move",
                         revert: "invalid",
 
@@ -107,6 +107,7 @@
                     .css("height", "30");
             }
         });
+        
         $('.save-stall').click(function save() {
             
             $.ajax({
