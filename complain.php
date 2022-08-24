@@ -30,6 +30,7 @@ $result_toppic = mysqli_query($conn, $query_toppic);
 $data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
 JOIN users ON (complain.users_id = users.users_id)
+WHERE (mkr_id = '$mkr_id')
 ORDER BY comp_id DESC";
 $result = mysqli_query($conn, $data);
 

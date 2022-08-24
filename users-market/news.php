@@ -96,10 +96,10 @@ require "../backend/news.php";
                         <td><?php echo $count_n;?></td>
                         <td><?php echo $row1['timestamp'] ?></td>
                         <td><?php echo $row1['n_sub']; ?></td>
-                        <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary w-50" id="<?php echo $row1['n_id']; ?>">ดูรายละเอียด</button></td>
+                        <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary w-100" id="<?php echo $row1['n_id']; ?>">ดูรายละเอียด</button></td>
                         <td>
                             <div>
-                                <a href="news.php?del=<?php echo $row1['n_id']; ?>;&mkr_id=<?php echo $row1['mkr_id']; ?>;" onclick="return confirm('คุณต้องการลบข่าวสารนี้หรือไม่')" class=" btn btn-outline-danger w-75">ลบ</a>
+                                <a href="news.php?del=<?php echo $row1['n_id']; ?>;&mkr_id=<?php echo $row1['mkr_id']; ?>;" onclick="return confirm('คุณต้องการลบข่าวสารนี้หรือไม่')" class=" btn btn-outline-danger w-100">ลบ</a>
                             </div>
                         </td>
                     <?php $count_n++;

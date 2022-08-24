@@ -28,18 +28,18 @@ include "../backend/1-import-link.php";
                         <tr>
                             <th scope="col">ลำดับ</th>
                             <th scope="col">รหัสแผงค้า</th>
-                            <th scope="col">ระยะเวลาเช่า</th>
-                            <th scope="col">ราคามัดจำ</th>
+                            <th scope="col">วันเริ่มเช่า</th>
+                            <th scope="col">วันสิ้นสุดการเช่า</th>
                             <th scope="col">รายละเอียด</th>
                             <th scope="col">จัดการ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>1</td>
+                            <td>A01</td>
+                            <td>01/08/2022</td>
+                            <td>01/09/2022</td>
                             <td><button name="view" type="button" class="view_data btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                             </td>
                             <td>

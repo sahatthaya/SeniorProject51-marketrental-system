@@ -39,11 +39,11 @@ require "../backend/qry-market-info.php"
     </div>
 
     <div id="quick-menu2" class="guide">
-        <a type="button" class="quick-menu2" id="partner-btn" data-bs-toggle="modal" data-bs-target="#partner-modal">
+        <a type="button" class="quick-menu2" id="partner-btn" href="marketPlan.php?mkr_id=<?php echo $row['mkr_id']; ?>">
             <i class='bx bxs-map-alt'></i>
             <p> แผนผังตลาด</p>
         </a>
-        <a type="button" class="quick-menu2 " id="merchant-btn" data-bs-toggle="modal" data-bs-target="#merchant-modal">
+        <a type="button" class="quick-menu2 " id="merchant-btn" href="booking.php?mkr_id=<?php echo $row['mkr_id']; ?>">
             <i class='bx bxs-message-square-edit'></i>
             <p> สนใจเช่าจองพื้นที่ </p>
         </a>

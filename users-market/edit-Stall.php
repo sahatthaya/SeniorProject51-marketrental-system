@@ -20,6 +20,7 @@
             timer: 2500
         })
     }
+
     function delsuccess() {
         Swal.fire({
             title: 'ลบข้อมูลสำเร็จ',
@@ -28,6 +29,7 @@
             timer: 2500
         })
     }
+
     function error() {
         Swal.fire({
             title: 'ผิดพลาด',
@@ -49,7 +51,16 @@ $data2 = "SELECT * FROM stall WHERE (market_id = '$mkr_id')";
 $result3 = mysqli_query($conn, $data2);
 $costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
 $resultCU = mysqli_query($conn, $costunit);
+$numCU = mysqli_num_rows($resultCU);
+
 require "../backend/manage-edit-Stall.php";
+
+if (isset($_POST['submit-edit'])) {
+    $costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
+    $resultCU = mysqli_query($conn, $costunit);
+    $num = mysqli_num_rows($resultCU);
+}
+
 // เพิ่มค่าใช้จ่ายเพิ่มเติม
 if (isset($_POST['addcost'])) {
     $cu_name = $_POST['cu_name'];
@@ -96,17 +107,31 @@ if (isset($_GET['delstall'])) {
     $mkr_id = $_GET['mkr_id'];
     $sqlDelUsers = "DELETE FROM stall WHERE sKey = ' $sKey'";
     if (mysqli_query($conn, $sqlDelUsers)) {
-        echo "<script type='text/javascript'> delsuccess(); </script>"; 
-
+        echo "<script type='text/javascript'> delsuccess(); </script>";
     } else {
         echo "<script type='text/javascript'> error(); </script>";
     }
 }
+
+if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
+    $cu_id = $_GET['delcu_id'];
+    $mkr_id = $_GET['mkr_id'];
+
+    $delCU = "DELETE FROM `cost/unit` WHERE  cu_id = $cu_id";
+    $sqldelCU = mysqli_query($conn, $delCU);
+    if ($sqldelCU) {
+        echo "<script type='text/javascript'> delsuccess(); </script>";
+    } else {
+        echo "<script type='text/javascript'> error(); </script>";
+    }
+}
+
 ?>
 <script src="../backend/script.js"></script>
 
 <body>
     <h1>จัดการข้อมูลแผงค้า</h1>
+
     <div id="quick-menu2" class="hstack mt-3">
         <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
             <i class='bx bxs-edit'></i>จัดการค่าใช้จ่ายเพิ่มเติม
@@ -128,7 +153,6 @@ if (isset($_GET['delstall'])) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <!-- <form action=""> -->
                     <form method="POST">
                         <div>
                             <div class="mb-3 row">
@@ -146,40 +170,46 @@ if (isset($_GET['delstall'])) {
                                 </div>
                                 <div class="col-sm-2">
                                     <button type="submit" name="addcost" class="btn btn-primary">
-                                        <i class='bx bxs-plus-circle'>เพิ่ม</i>
+                                        <i class='bx bxs-plus-circle me-2'></i>เพิ่ม
                                     </button>
                                 </div>
                             </div>
                     </form>
                     <hr>
-                    <div class="mb-3 row">
-                        <?php while ($row = $resultCU->fetch_assoc()) : ?>
-                            <label class="col-sm-3  text-end"><?php echo $row['cu_name'] ?> : </label>
-                            <div class="col-sm-7">
-                                <div class="input-group mb-3">
-                                    <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_price'] ?>">
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
-                                        <option value="บาท/หน่วย">บาท/หน่วย</option>
-                                        <option value="บาท(เหมาจ่าย)">บาท(เหมาจ่าย)</option>
-                                    </select>
+                    <form method="POST">
+                        <div class="mb-3 row">
+                            <?php while ($row = $resultCU->fetch_assoc()) : ?>
+                                <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
+                                <div class="col-sm-7">
+                                    <div class="input-group mb-3">
+                                        <input type="number" class="form-control w-50" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_price'] ?>">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
+                                            <option value="บาท/หน่วย">บาท/หน่วย</option>
+                                            <option value="บาท(เหมาจ่าย)">บาท(เหมาจ่าย)</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        <?php
-                        endwhile ?>
-                    </div>
-
-
-
-
+                                <div class="col-sm-2">
+                                    <a type="button" name="delcost" class="btn btn-danger" href="edit-Stall.php?delcu_id=<?php echo $row['cu_id'] ?>&mkr_id=<?php echo $row['mkr_id'] ?>">
+                                        <i class='bx bxs-x-circle me-2'></i>ลบ
+                                    </a>
+                                </div>
+                            <?php
+                            endwhile ?>
+                        </div>
+                        <hr>
+                        <div class="d-flex ">
+                            <button type="submit" name="submit-edit" class="btn btn-primary">บันทึกการแก้ไข</button>
+                        </div>
+                    </form>
                 </div>
-                <!-- </form> -->
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                <button type="button" class="btn btn-primary">บันทึก</button>
             </div>
         </div>
+        <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
+            </div> -->
+    </div>
     </div>
     </div>
     <!--stall Modal -->

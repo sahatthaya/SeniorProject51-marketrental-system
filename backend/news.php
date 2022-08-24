@@ -27,17 +27,23 @@ if (isset($_POST['add-news'])) {
     $n_type = $_FILES['n_file']['type'];
     $n_file = 'asset/news/' . $n_name;
     $npath = '../asset/news/' . $n_name;
-    if (isset($_POST["n_sub"]) != "" && isset($_POST["n_detail"]) != "") {
+    if (isset($_POST["n_sub"]) != "" && isset($_POST["n_detail"]) != "" && isset($_POST["n_file"]) != "") {
         move_uploaded_file($n_tmp, $npath);
         $sqlInsert = "INSERT INTO news(n_sub, n_detail, n_file,mkr_id) VALUES ('$n_sub', '$n_detail', '$n_file', $mkr_id)";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
-            echo '<meta http-equiv="refresh" content="1"; />';
+            echo '<meta http-equiv="refresh" content="1" ; />';
         } else {
             echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
         }
     } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        $sqlInsert = "INSERT INTO news(n_sub, n_detail, n_file,mkr_id) VALUES ('$n_sub', '$n_detail', 'asset/news/nopicture.png	', $mkr_id)";
+        if (mysqli_query($conn, $sqlInsert)) {
+            echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1" ; />';
+        } else {
+            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        }
     }
 }
 // delete

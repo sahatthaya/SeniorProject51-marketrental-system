@@ -68,6 +68,7 @@ if (isset($_POST['edtStall-submit'])) {
     }
 }
 
+
 if(isset($_POST['x'])&& isset($_POST['y'])&&isset($_POST['skey'])){
     $x = $_POST['x'];
     $y=$_POST['y'];
@@ -75,4 +76,3 @@ if(isset($_POST['x'])&& isset($_POST['y'])&&isset($_POST['skey'])){
 
     echo "<script>alert('$x.$y.$skey')</script>";
 }
-?>
