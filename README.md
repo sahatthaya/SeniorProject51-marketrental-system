@@ -1,21 +1,24 @@
 nologin******************
 
 (Back)
+
 - all-maket.php (filter market type)
 - ลืมรหัสผ่าน
-
 
 Admin********************
 
 (Back)
+
 - password.php
 
 (Fronted) 
+
 - banner.php(responsive >>margin body) 
 
 merchant*****************
 
 (Back)
+
 - all-maket.php (filter market type)
 - rent.php (รอ)
 - แผนผังพื้นที่  (รอ)
@@ -31,13 +34,12 @@ merchant*****************
 market**********************
 
 (Back)
+
 - password.php
-- news.php (ลบแล้วกลับมาหน้าเดิมไม่ได้ ดูรายละเอียดไม่ได้ เพิ่มข่าวแล้วเออเร่อ)
--edit-Stall.php (ดูประวัติการจองไม่ได้ จัดการค่าใช้จ่ายเพิ่มเติมไม่ได้)
--marketPlan.php
+-editStall.php (ดูประวัติการจองไม่ได้:รอข้อมูล)
+-marketPlan.php  (บันทึกผังตาราง)
 -rent.php
 - booking.php
--finance.php
 
 (Fronted) 
 
@@ -46,6 +48,6 @@ market**********************
 -index.php
 -applicant.php
 -announce.php
--edit-market-info.php
--edit-Stall.php (ปุ่ม)
+-editmarket-info.php
+-editStall.php (ปุ่ม)
 -marketPlan.php
