@@ -29,6 +29,8 @@
         })
     }
 </script>
+
+
 <?php
 include "profilebar.php";
 include "nav.php";
@@ -38,6 +40,7 @@ require "../backend/graph-market.php";
 ?>
 
 <body>
+
     <script>
         // gg chart
         google.charts.load('current', {
@@ -100,7 +103,7 @@ require "../backend/graph-market.php";
                     'bottom': 0
                 },
                 fontSize: '16',
-               
+
             };
             var data = google.visualization.arrayToDataTable([
                 ['สถานะ', 'จำนวนแผงค้า'],
@@ -113,19 +116,21 @@ require "../backend/graph-market.php";
             chart.draw(data, options);
         }
     </script>
+    </div>
 
-    <div class="box">
-        <div class="graph ">
+    <div class="box ">
+        <div class="graph">
             <h5 class="center">ยอดการจองแผงค้าในแต่ละเดือน</h5>
             <div class="chartcanvas" id="chart_div"> </div>
         </div>
         <div class="graph">
             <h5 class="center">จำนวนการจองต่อจำนวนแผงว่าง</h5>
-            <div class="chartcanvas" id="piechart"></div>
+            <div class="chartcanvas center" id="piechart"></div>
         </div>
     </div>
-    <div class="products-feature">
-        <div class="grid-container carousel" data-flickity='{ "groupCells": true}'>
+
+    <div class="products-feature ">
+        <div class="grid-container carousel " data-flickity='{ "groupCells": true}'>
             <?php while ($row = $result->fetch_assoc()) : ?>
                 <div class="three columns carousel-cell">
                     <div class="project-box-wrapper">
@@ -180,7 +185,6 @@ require "../backend/graph-market.php";
                                         <span>ข่าวสาร</span>
                                     </a>
                                 </div>
-
                                 <div class="item">
                                     <a href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="vstack gap-2">
                                         <i class='bx bxs-megaphone'></i>
@@ -199,9 +203,17 @@ require "../backend/graph-market.php";
                 </div>
             <?php
             endwhile ?>
-
         </div>
     </div>
+
+
+
+
+
+
+
+
+
 
 </body>
 

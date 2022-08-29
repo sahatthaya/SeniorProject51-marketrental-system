@@ -71,8 +71,8 @@ require "../backend/add-complain.php";
                 </select>
 
                 <label>หัวเรื่อง : </label>
-                <input name="subject" type="text" required>
-                <input name="compfile" type="file">
+                <input class="subject" name="subject" type="text" required>
+                <input class="compfile" name="compfile" type="file">
                 <br>
                 <label>เรื่องร้องเรียน : </label>
                 <br>
@@ -82,12 +82,11 @@ require "../backend/add-complain.php";
         </div>
         <?php while ($row = $result->fetch_assoc()) : ?>
             <div class="commentbox">
-
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-md-4">
                         <img src="../<?php echo $row['comp_file']; ?>" class="imgcomment" alt="">
                     </div>
-                    <div class="col-8">
+                    <div class="col-md-8">
                         <p class="float-end" id="timestamp"><?php echo $row['timestamp'] ?></p>
                         <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
                         <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
@@ -100,7 +99,6 @@ require "../backend/add-complain.php";
                 <label class="reply_detail"><?php echo $row['reply'] ?></label>
             </div>
         <?php endwhile; ?>
-
     </div>
 
 </body>

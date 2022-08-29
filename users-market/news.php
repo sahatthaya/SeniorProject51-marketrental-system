@@ -50,7 +50,6 @@ require "../backend/news.php";
     <h1 class="head_contact">จัดการข่าวสารตลาด</h1>
 
     <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm">
-
         <h4 class="mb-2">เพิ่มข่าวสารใหม่</h4>
         <hr>
         <div class="mt-4 mb-3 row">

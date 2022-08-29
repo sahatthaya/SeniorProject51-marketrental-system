@@ -58,10 +58,10 @@ include "../backend/1-import-link.php";
             <li class="navlink">
                 <a href="contact.php">
                     <i class='bx bxs-contact'></i>
-                    <span class="link_name">ติดต่อเรา</span>
+                    <span class="link_name">เกี่ยวกับเว็บไซต์</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="contact.php">ติดต่อเรา</a></li>
+                    <li><a class="link_name" href="contact.php">เกี่ยวกับเว็บไซต์</a></li>
                 </ul>
             </li>
         </ul>

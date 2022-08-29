@@ -1,7 +1,6 @@
-body {
-    padding: 20px;
-margin: 50px 68px 0px 146px !important;
-
+body{
+    padding: 10px;
+    margin:50px 20px ;
 }
 .content {
     padding: 10px;
@@ -42,3 +41,4 @@ input {
 .pay input{
     width: 60% !important;
 }
+

@@ -101,7 +101,7 @@ require "../backend/edit-market-payment.php";
                 </div>
             </div>
             <div class="d-flex justify-content-end">
-            <input type="submit" name="submit-apply" class="btn btn-primary w-25" id="submit" value="บันทึกข้อมูล">
+            <input type="submit" name="submit-apply" class="btn btn-primary  submit" id="submit" value="บันทึกข้อมูล">
             </div>
         </div>
 

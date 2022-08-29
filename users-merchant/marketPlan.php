@@ -35,7 +35,7 @@
     <div class="plan">
         <div class="w-100 hstack px-1 pt-3 gap-2">
             <label>ประเภทร้านค้า : </label>
-            <select class="form-select w-25" aria-label="Default select example">
+            <select class="form-select" aria-label="Default select example" style="width: 25%;">
                 <option selected>ทั้งหมด</option>
                 <option value="1">ร้านเสื้อผ้า</option>
                 <option value="2">ร้านอาหาร</option>

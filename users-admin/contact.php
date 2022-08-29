@@ -19,7 +19,7 @@ require "../backend/manage-contact.php";
 
 <body>
 
-    <h1>ติดต่อเรา</h1>
+    <h1>เกี่ยวกับเว็บไซต์</h1>
     <button id="addbn" type="button" class="btn btn-primary rigth" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <i class='bx bxs-edit'></i> แก้ไขข้อมูลติดต่อ
     </button>
