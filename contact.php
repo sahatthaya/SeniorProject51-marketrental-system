@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ติดต่อเรา</title>
+    <title>เกี่ยวกับเว็บไซต์</title>
     <!-- css  -->
     <link rel="stylesheet" href="./css/contact.css" type="text/css">
 </head>
@@ -19,7 +19,7 @@ require "backend/qry-contact.php";
 
 <body>
 
-    <h1>ติดต่อเรา</h1>
+    <h1>เกี่ยวกับเว็บไซต์</h1>
 
     <div class="logo_img center">
         <img src="<?php echo $row["ct_logo"] ?>" alt="logo_marketremtal" class="img-fluid">

@@ -10,7 +10,7 @@ include "profilebar.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ชำระค่าเช่า</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
-    <link rel="stylesheet" href="../css/payment.css">
+    <link rel="stylesheet" href="../css/payment.css" type="text/css">
 
 </head>
 <?php

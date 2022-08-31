@@ -159,6 +159,10 @@ a {
         grid-template-columns: repeat(1, minmax(100px, 1fr));
     }
 
+    .quick-menu2{
+        margin: 10px 0;
+    }
+
 }
 
 @media(max-width:720px) {
