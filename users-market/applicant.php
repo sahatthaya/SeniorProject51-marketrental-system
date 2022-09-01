@@ -30,6 +30,8 @@ include "profilebar.php";
             timer: 2500
         })
     }
+    const exampleEl = document.getElementById('example')
+    const tooltip = new bootstrap.Tooltip(exampleEl, options)
 </script>
 <?php
 include "nav.php";
@@ -56,7 +58,7 @@ require "../backend/add-applicant.php"
 
             <!-- form--1 -->
             <div id="stepOne" class="row border shadow-sm p-5 mt-3">
-                <h4 class="p-0">ขั้นที่ 1 กรอกข้อมูลส่วนตัว</h4>
+                <h4 class="p-0"><span class="text-secondary">ขั้นที่ 1</span> กรอกข้อมูลส่วนตัว</h4>
                 <div class="progress p-0 my-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">1/2 </div>
                 </div>
@@ -67,14 +69,14 @@ require "../backend/add-applicant.php"
                 <div class="des_input">อีเมล</div>
                 <input class="sqr-input col-12 form-control " type="email" placeholder="อีเมล" name="email" value="<?php echo $row['email']; ?>" required>
                 <div class="des_input">เบอร์โทรศัพท์</div>
-                <input name="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" value="<?php echo $row['tel']; ?>" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
+                <input name="tel" id="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" value="<?php echo $row['tel']; ?>" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
                 <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
                 <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
                 <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn()" id="next">
             </div>
             <!-- form--2 -->
             <div id="stepTwo" class="row border shadow-sm p-5 mt-3">
-                <h4 class="p-0">ขั้นที่ 2 กรอกข้อมูลตลาด</h4>
+                <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> กรอกข้อมูลตลาด</h4>
                 <div class="progress p-0 my-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">2/2 </div>
                 </div>
@@ -124,7 +126,7 @@ require "../backend/add-applicant.php"
                     <div class="des-address ">รหัสไปรษณีย์ :</div>
                     <input class="form-control" type="text" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
                 </div>
-                <div class="des_input">รายละเอียดตลาดโดยสังเขป</div>
+                <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป <a class="mt-2" id="example" data-bs-toggle="tooltip" data-bs-title="Default tooltip"><i class='bx bx-info-circle'></i></a></div>
                 <input class="form-control col-12" type="text" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" required>
                 <div class="des_input">อัปโหลดเอกสารหรือรูปภาพเพื่อยืนยันตลาด</div>
                 <input class="sqr-input col-12 form-control" type="file" placeholder="เช่น ตลาดขายปลีก ใจกลางเมือง ทำเลดี ติดถนนใหญ่" name="mkrFile" required>
@@ -135,5 +137,12 @@ require "../backend/add-applicant.php"
     </form>
 </body>
 <script src="../backend/script.js"></script>
+<script>
+    $(":input").inputmask();
+
+    $("#tel").inputmask({
+        "mask": "9999999999"
+    });
+</script>
 
 </html>
