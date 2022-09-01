@@ -21,7 +21,7 @@ $(function () {
             var result = JSON.parse(data);
             $.each(result, function (index, item) {
                 amphureObject.append(
-                    $('<option></option>').val(item.id).html(item.name_th)
+                    $('<option></option>').val(item.id).html(item.amphure_name)
                 );
             });
             $('.selectpicker').selectpicker('refresh');
@@ -38,7 +38,7 @@ $(function () {
             var result = JSON.parse(data);
             $.each(result, function (index, item) {
                 districtObject.append(
-                    $('<option></option>').val(item.id).html(item.name_th)
+                    $('<option></option>').val(item.id).html(item.district_name)
                 );
             });
             $('.selectpicker').selectpicker('refresh');

@@ -16,9 +16,18 @@
     include "backend/1-import-link.php";
     if ($_GET) {
         $mkr_id = $_GET['mkr_id'];
-        $sql = "SELECT market_detail.*,province.province_name , market_type.market_type FROM market_detail 
-      JOIN province ON (market_detail.province_id = province.province_id)
-      JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id) WHERE (mkr_id = '$mkr_id') ";
+        $sql = "SELECT market_detail.*,users.username ,
+        provinces.province_name,
+        amphures.amphure_name,
+        districts.district_name , 
+        market_type.market_type
+        FROM market_detail 
+            JOIN users ON (market_detail.users_id = users.users_id)
+            JOIN provinces ON (market_detail.province_id = provinces.id)
+            JOIN amphures ON (market_detail.	amphure_id = amphures.id)
+            JOIN districts ON (market_detail.district_id = districts.id)
+            JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
+             WHERE (mkr_id = '$mkr_id') ";
         $result = mysqli_query($conn, $sql);
         $row = mysqli_fetch_array($result);
         extract($row);
@@ -41,7 +50,7 @@
                 <option value="2">ร้านอาหาร</option>
                 <option value="3">ร้านน้ำ</option>
             </select>
-            <button type="button" class="btn btn-outline-primary save-stall" id="save"><i class='bx bx-search' ></i> ค้นหา </button>
+            <button type="button" class="btn btn-outline-primary save-stall" id="save"><i class='bx bx-search'></i> ค้นหา </button>
         </div>
         <hr>
         <div id="plan">

@@ -117,7 +117,7 @@ require "../backend/add-applicant.php"
                     <div class="col-4 p-0">
                         <select name="province_id" id="province" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกจังหวัด">
                             <?php while ($result = mysqli_fetch_assoc($result_province)) : ?>
-                                <option value="<?= $result['id'] ?>"><?= $result['name_th'] ?></option>
+                                <option value="<?= $result['id'] ?>"><?= $result['province_name'] ?></option>
                             <?php endwhile; ?>
                         </select>
                     </div>

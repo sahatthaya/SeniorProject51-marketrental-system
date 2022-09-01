@@ -2,7 +2,20 @@
 include "../backend/1-connectDB.php";
 
 $count_n = 1;
-$data = "SELECT req_partner.*, users.username FROM req_partner JOIN users ON (req_partner.users_id = users.users_id) WHERE (req_status_id = '1')";
+$data = "SELECT req_partner.*, 
+    users.username ,
+    provinces.province_name,
+    amphures.amphure_name,
+    districts.district_name , 
+    market_type.market_type,
+    req_status.req_status
+    FROM req_partner 
+        JOIN users ON (req_partner.users_id = users.users_id)
+        JOIN provinces ON (req_partner.province_id = provinces.id)
+        JOIN amphures ON (req_partner.	amphure_id = amphures.id)
+        JOIN districts ON (req_partner.district_id = districts.id)
+        JOIN market_type ON (req_partner.market_type_id = market_type.market_type_id)
+        JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id) WHERE (req_partner.req_status_id = '1')";
 $result = mysqli_query($conn, $data);
 
 if (isset($_POST["mkrdid"])) {
@@ -82,20 +95,28 @@ if (isset($_GET['approve'])) {
      $qry = mysqli_query($conn, $sqlqry);
      $row = mysqli_fetch_array($qry);
      extract($row);
+  
      $market_name = $row['market_name'];
-     $market_address = $row['market_address'];
      $market_descrip = $row['market_descrip'];
      $market_pic = $row['market_pic'];
      $market_type_id = $row['market_type_id'];
      $users_id = $row['users_id'];
-     $province_id = $row['province_id'];
-     $users_id = $row['users_id'];
      $email = $row['email'];
      $tel = $row['tel'];
 
+     $house_no = $row['house_no'];
+     $soi = $row['soi'];
+     $moo = $row['moo'];
+     $road = $row['road'];
+     $district_id = $row['district_id'];
+     $amphure_id = $row['amphure_id'];
+     $province_id = $row['province_id'];
+     $postalcode = $row['postalcode'];
+     
+
      $approve = "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)";
-     $insert = "INSERT INTO market_detail (mkr_name,mkr_address,mkr_descrip,mkr_pic,market_type_id,users_id,province_id,email,tel) 
-     VALUES ('$market_name','$market_address','$market_descrip','$market_pic','$market_type_id','$users_id','$province_id','$email','$tel')";
+     $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`) 
+     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode')";
      $udusers = "UPDATE users SET type  = '2' WHERE(users_id = $users_id)";
 
      $isql2 = mysqli_query($conn, $udusers);
