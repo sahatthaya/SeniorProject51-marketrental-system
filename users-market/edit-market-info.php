@@ -87,7 +87,7 @@ $result_province = mysqli_query($conn, $query_province);
           <div class="col-2 p-0 pt-2">จังหวัด :</div>
           <div class="col-4 p-0">
             <select name="province_id" id="province" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกจังหวัด">
-            <?php while ($result = mysqli_fetch_assoc($result_province)) : ?>
+              <?php while ($result = mysqli_fetch_assoc($result_province)) : ?>
                 <option value="<?= $result['id'] ?>"><?= $result['province_name'] ?></option>
               <?php endwhile; ?>
             </select>
@@ -109,21 +109,22 @@ $result_province = mysqli_query($conn, $query_province);
           <div class="col-4 p-0">
             <input class="form-control" type="text" id="zip-code" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
           </div>
-          <div class="des_input">รายละเอียดตลาด</div>
-          <textarea type="text" class="form-control" name="mkr_descrip"><?php echo $row["mkr_descrip"] ?></textarea>
-          <div class="des_input">อีเมล</div>
-          <input type="text" class="form-control" name="email" value="<?php echo $row["email"] ?>">
-          <div class="des_input">เบอร์โทรศัพท์</div>
-          <input type="text" class="form-control" name="tel" value="<?php echo $row["tel"] ?>">
-          <div class="des_input">รูปภาพตลาด</div>
-          <input type="file" class="form-control" name="ct_logo">
-          <div class="des_input">รูปภาพตลาดปัจุบัน : </div>
-          <div class="text-start">
-            <img style="width:500px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row["mkr_pic"] ?>'>
-          </div>
-          <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="บันทึกข้อมูล">
         </div>
+        <div class="des_input">รายละเอียดตลาด</div>
+        <textarea type="text" class="form-control" name="mkr_descrip"><?php echo $row["mkr_descrip"] ?></textarea>
+        <div class="des_input">อีเมล</div>
+        <input type="text" class="form-control" name="email" value="<?php echo $row["email"] ?>">
+        <div class="des_input">เบอร์โทรศัพท์</div>
+        <input type="text" class="form-control" name="tel" value="<?php echo $row["tel"] ?>">
+        <div class="des_input">รูปภาพตลาด</div>
+        <input type="file" class="form-control" name="ct_logo">
+        <div class="des_input">รูปภาพตลาดปัจุบัน : </div>
+        <div class="text-start">
+          <img style="width:500px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row["mkr_pic"] ?>'>
+        </div>
+        <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="บันทึกข้อมูล">
       </div>
+    </div>
   </form>
   <script src="script.js"></script>
 
