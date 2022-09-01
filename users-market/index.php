@@ -42,7 +42,7 @@ require "../backend/graph-market.php";
 <body>
 
     <?php
-    if ($num <= 0) {
+    if (mysqli_num_rows($result) <= 0) {
         echo "<script>
         // gg chart
         google.charts.load('current', {

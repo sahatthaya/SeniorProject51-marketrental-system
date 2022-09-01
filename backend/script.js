@@ -58,6 +58,7 @@ function previousbtn() {
     document.getElementById("stepTwo").style.display = "none";
     document.getElementById("Twostep").classList.add("current-item");
 }
+
 //banner--------------------------------------------------------------------------------------------------------------  
 $(document).ready(function () {
     $("#myTable").DataTable({
@@ -80,4 +81,3 @@ $(document).ready(function () {
     });
 
 });
-

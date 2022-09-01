@@ -42,7 +42,7 @@ body {
     padding: 0 250px;
 }
 
-#stepOne input {
+#applyform input {
     margin: 5px auto;
     padding: .5em 1.5rem;
 }
@@ -50,11 +50,6 @@ body {
 #stepTwo {
     display: none;
 
-}
-
-#stepTwo input {
-    margin: 5px auto !important;
-    padding: .5em 1.5rem !important;
 }
 
 .des_input {
@@ -106,6 +101,7 @@ input[type=file]::file-selector-button {
     color: var(--white);
     border-style: none;
     padding: .2em .4em;
+    border-radius: 5px;
     background-color: #ff9910 !important;
     transition: ease 1s;
 }
@@ -119,6 +115,7 @@ input[type=file]::file-selector-button:hover {
     color: #212529 !important;
     background-color: var(--white) !important;
     border: 1px solid #ced4da !important;
+    height: 42px;
 }
 
 #mkrtype {
@@ -134,7 +131,9 @@ input[type=file]::file-selector-button:hover {
     margin: 0 !important;
     padding: 0 !important;
 }
-
+.tooltip-inner{
+    max-width: 5000px !important;
+}
 @media(max-width: 992px) {
 
     body {

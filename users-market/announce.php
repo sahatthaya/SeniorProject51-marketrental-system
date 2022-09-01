@@ -52,7 +52,7 @@ require "../backend/add-applicant.php";
         <form id="applyform" method="POST" enctype="multipart/form-data">
             <div class="form-outer" style="overflow: visible;">
                 <!-- form--1 -->
-                <div id="stepOne" class="row">
+                <div id="stepOne" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
                     <div class="des_input">หัวข้อ</div>
                     <input class="form-control col-6" type="text" placeholder="หัวข้อ" name="bn_toppic" required>
                 

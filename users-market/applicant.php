@@ -30,8 +30,6 @@ include "profilebar.php";
             timer: 2500
         })
     }
-    const exampleEl = document.getElementById('example')
-    const tooltip = new bootstrap.Tooltip(exampleEl, options)
 </script>
 <?php
 include "nav.php";
@@ -45,7 +43,7 @@ $row = mysqli_fetch_array($qry);
 
 $query_mkrType = "SELECT * FROM market_type ORDER BY market_type_id";
 $result_mkrType = mysqli_query($conn, $query_mkrType);
-$query_province = "SELECT * FROM province";
+$query_province = "SELECT * FROM provinces";
 $result_province = mysqli_query($conn, $query_province);
 
 require "../backend/add-applicant.php"
@@ -57,7 +55,7 @@ require "../backend/add-applicant.php"
             <h1 id="headline">กรอกข้อมูลเพื่อส่งคำร้องขอเพิ่มตลาดใหม่</h1>
 
             <!-- form--1 -->
-            <div id="stepOne" class="row border shadow-sm p-5 mt-3">
+            <div id="stepOne" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
                 <h4 class="p-0"><span class="text-secondary">ขั้นที่ 1</span> กรอกข้อมูลส่วนตัว</h4>
                 <div class="progress p-0 my-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">1/2 </div>
@@ -75,73 +73,107 @@ require "../backend/add-applicant.php"
                 <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn()" id="next">
             </div>
             <!-- form--2 -->
-            <div id="stepTwo" class="row border shadow-sm p-5 mt-3">
+            <div id="stepTwo" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
+
                 <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> กรอกข้อมูลตลาด</h4>
                 <div class="progress p-0 my-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">2/2 </div>
                 </div>
                 <div class="des_input">ชื่อตลาด</div>
                 <input class=" col-12 form-control" type="text" placeholder="ชื่อตลาด" name="mkrName" required>
-                <div class="row" id="dropdown">
-                    <div class="col-6" id="mkrtype">
-                        <div class="des_input">ประเภทตลาด</div>
-                        <div class="search_select_box">
-                            <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
-                                <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :; ?>
-                                    <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-6" id="provincebox">
-                        <div class="des_input">จังหวัด</div>
-                        <div class="search_select_box">
-                            <select name="province" id="province" class="selectpicker" data-live-search="true" title="เลือกจังหวัด" data-width="100%" data-size="5" required>
-                                <?php while ($row1 = mysqli_fetch_array($result_province)) :; ?>
-                                    <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
-                                <?php endwhile; ?>
-                            </select>
-                        </div>
+                <div id="mkrtype">
+                    <div class="des_input">ประเภทตลาด</div>
+                    <div class="search_select_box">
+                        <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
+                            <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :; ?>
+                                <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
+                            <?php endwhile; ?>
+                        </select>
                     </div>
                 </div>
                 <div class="des_input">สถานที่ตั้ง</div>
-                <div class="input-group hstack gap2">
-                    <div class="first-des-address ">ที่อยู่ :</div>
-                    <input class="form-control " type="text" placeholder="ที่อยู่" name="HouseNo" required>
-                    <div class="des-address ">ซอย :</div>
-                    <input class="form-control " type="text" placeholder="ซอย" name="Soi">
-                    <div class="des-address ">หมู่ :</div>
-                    <input class="form-control " type="text" placeholder="หมู่" name="Moo">
-                    <div class="des-address ">ถนน :</div>
-                    <input class="form-control " type="text" placeholder="ถนน" name="Road" required>
+                <div class="row p-0 m-0 mt-2">
+                    <div class="col-2 p-0 pt-2">บ้านเลขที่ :</div>
+                    <div class="col-4 p-0">
+                        <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" required>
+                    </div>
+                    <div class="col-2 pt-2">ซอย :</div>
+                    <div class="col-4 p-0">
+                        <input class="form-control" type="text" placeholder="ซอย" name="Soi" required>
+                    </div>
+                </div>
+                <div class="row p-0 m-0 mt-2">
+                    <div class="col-2 p-0 pt-2">หมู่ :</div>
+                    <div class="col-4 p-0">
+                        <input class="form-control" type="text" placeholder="หมู่" name="Moo" required>
+                    </div>
+                    <div class="col-2 pt-2">ถนน :</div>
+                    <div class="col-4 p-0">
+                        <input class="form-control" type="text" placeholder="ถนน" name="Road" required>
+                    </div>
+                </div>
+                <div class="row p-0 m-0 mt-2">
+                    <div class="col-2 p-0 pt-2">จังหวัด :</div>
+                    <div class="col-4 p-0">
+                        <select name="province_id" id="province" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกจังหวัด">
+                            <?php while ($result = mysqli_fetch_assoc($result_province)) : ?>
+                                <option value="<?= $result['id'] ?>"><?= $result['name_th'] ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </div>
+                    <div class="col-2 pt-2">อำเภอ/เขต :</div>
+                    <div class="col-4 p-0">
+                        <select name="amphure_id" id="amphure" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกอำเภอ/เขต">
 
+                        </select>
+                    </div>
                 </div>
-                <div class="input-group hstack gap2">
-                    <div class="first-des-address ">ตำบล/แขวง :</div>
-                    <input class="form-control" type="text" placeholder="ตำบล/แขวง" name="Subdistrict" required>
-                    <div class="des-address ">อำเภอ/เขต :</div>
-                    <input class="form-control" type="text" placeholder="อำเภอ/เขต" name="District " required>
-                    <div class="des-address ">จังหวัด :</div>
-                    <input class="form-control" type="text" placeholder="จังหวัด" name="Province" required>
-                    <div class="des-address ">รหัสไปรษณีย์ :</div>
-                    <input class="form-control" type="text" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
+                <div class="row p-0 m-0 mt-2">
+                    <div class="col-2 p-0 pt-2">ตำบล/แขวง :</div>
+                    <div class="col-4 p-0">
+                        <select name="district_id" id="district" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกตำบล/แขวง">
+                        </select>
+                    </div>
+                    <div class="col-2 pt-2">รหัสไปรษณีย์ :</div>
+                    <div class="col-4 p-0">
+                        <input class="form-control" type="text" id="zip-code" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
+                    </div>
                 </div>
-                <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป <a class="mt-2" id="example" data-bs-toggle="tooltip" data-bs-title="Default tooltip"><i class='bx bx-info-circle'></i></a></div>
+                <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
+                    <div data-toggle="tooltip" title="เช่น ตลาดค้าส่ง ทำเลดี ติดถนนใหญ่ใกล้สี่แยกไฟแดง" class="mt-1">
+                        <i class='bx bx-info-circle'></i>
+                    </div>
+                </div>
                 <input class="form-control col-12" type="text" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" required>
-                <div class="des_input">อัปโหลดเอกสารหรือรูปภาพเพื่อยืนยันตลาด</div>
+                <div class="des_input hstack gap-2">อัปโหลดเอกสารหรือรูปภาพเพื่อยืนยันตลาด
+                    <div data-toggle="tooltip" title="เช่น ภาพถ่ายตลาด หรือ เอกสารจดทะเบียนตลาด เป็นต้น" class="mt-1">
+                        <i class='bx bx-info-circle'></i>
+                    </div>
+                </div>
                 <input class="sqr-input col-12 form-control" type="file" placeholder="เช่น ตลาดขายปลีก ใจกลางเมือง ทำเลดี ติดถนนใหญ่" name="mkrFile" required>
                 <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn()" id="back">
                 <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง">
             </div>
         </div>
     </form>
+    <script src="../backend/script.js"></script>
+    <script src="script.js"></script>
+
 </body>
-<script src="../backend/script.js"></script>
 <script>
+    $(document).ready(function() {
+        $("body").tooltip({
+            selector: '[data-toggle=tooltip]',
+            placement: 'right'
+        });
+    });
     $(":input").inputmask();
 
     $("#tel").inputmask({
         "mask": "9999999999"
+    });
+    $("#zip-code").inputmask({
+        "mask": "99999"
     });
 </script>
 
