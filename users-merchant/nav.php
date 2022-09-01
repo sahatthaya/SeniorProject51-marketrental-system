@@ -36,15 +36,6 @@ include "../backend/1-import-link.php";
                     <li><a class="link_name" href="all-market.php">ตลาดทั้งหมด</a></li>
                 </ul>
             </li>
-            <li class="navlink">
-                <a href="applicant.php">
-                    <i class='bx bxs-store-alt' style='color:#ffffff'></i>
-                    <span class="link_name">สมัครเป็นพาร์ทเนอร์</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="applicant.php">สมัครเป็นพาร์ทเนอร์</a></li>
-                </ul>
-            </li>
             <li class="navlink arrowdrop">
                 <a class="iocn-link">
                     <i class='bx bxs-cog'></i>
@@ -54,7 +45,7 @@ include "../backend/1-import-link.php";
                 <ul class="sub-menu dropdown">
                     <li class="drop"><a href="rent.php"><i class='bx bxs-edit-alt'></i>จัดการการจอง</a></li>
                     <li class="drop"><a href="payment.php"><i class='bx bx-wallet'></i>ชำระค่าเช่า</a></li>
-                    <li class="drop"><a href="request.php"><i class='bx bx-circle'></i>ติดตามสถานะคำร้อง</a></li>
+                    <li class="drop"><a href="comp-status.php"><i class='bx bx-circle'></i>ติดตามคำร้องเรียน</a></li>
                 </ul>
             </li>
 

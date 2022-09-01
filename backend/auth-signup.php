@@ -9,6 +9,8 @@ if (isset($_POST['reg-btn'])) {
     $lastName = $_POST['lastName-reg'];
     $email = $_POST['email-reg'];
     $tel = $_POST['tel-reg'];
+    $type = $_POST['type'];
+
 
 
     if (isset($_POST["email-reg"]) != "" && isset($_POST["tel-reg"]) != "" && isset($_POST["username-reg"]) != "" && isset($_POST["password"]) != "" && isset($_POST["firstName-reg"]) != "" && isset($_POST["lastName-reg"]) != "") {
@@ -18,7 +20,7 @@ if (isset($_POST['reg-btn'])) {
         if ($rowCheck > 0) {
             echo "<script>alert('ชื่อผู้ใข้ซำ กรุณาเปลี่ยนชื่อผู้ใช้');</script>";
         } else {
-            $sqlInsert = "INSERT INTO users (username, password, email, tel ,type,firstName,lastName) VALUES ('$username_reg', '$password_reg',  '$email', '$tel','1','$firstName','$lastName')";
+            $sqlInsert = "INSERT INTO users (username, password, email, tel ,type,firstName,lastName) VALUES ('$username_reg', '$password_reg',  '$email', '$tel','$type','$firstName','$lastName')";
             if (mysqli_query($conn, $sqlInsert)) {
                 echo "<script>alert('ลงทะเบียนสำเร็จ');</script>";
             } else {
