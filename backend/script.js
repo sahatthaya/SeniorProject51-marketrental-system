@@ -50,13 +50,25 @@ function validatePassword() {
 function nextbtn() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "block";
-    document.getElementById("Twostep").classList.remove("current-item");
+    document.getElementById("stepThree").style.display = "none";
+    
 }
 // previousbtn
 function previousbtn() {
     document.getElementById("stepOne").style.display = "block";
     document.getElementById("stepTwo").style.display = "none";
-    document.getElementById("Twostep").classList.add("current-item");
+    document.getElementById("stepThree").style.display = "none";
+
+}
+function gotostep3(){
+    document.getElementById("stepOne").style.display = "none";
+    document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepThree").style.display = "block";
+}
+function backtostep2(){
+    document.getElementById("stepOne").style.display = "none";
+    document.getElementById("stepTwo").style.display = "block";
+    document.getElementById("stepThree").style.display = "none";
 }
 
 //banner--------------------------------------------------------------------------------------------------------------  
