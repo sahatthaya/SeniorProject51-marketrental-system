@@ -85,7 +85,9 @@ body {
   background-color: #38B6FF !important;
 
 }
-
+.flickity-page-dots {
+  bottom: -50px !important;
+}
 /* market box */
 .project-box {
   height: 400px;

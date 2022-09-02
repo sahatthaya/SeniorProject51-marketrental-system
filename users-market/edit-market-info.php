@@ -46,47 +46,50 @@ $result_province = mysqli_query($conn, $query_province);
     <div class="form-outer" style="overflow: visible;">
       <h1>แก้ไขข้อมูลตลาด</h1>
       <!-- form--1 -->
-      <div id="stepOne" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
+      <div id="stepOne" class="row border shadow-sm pt-5 pb-3 px-5 mt-3 mb-3 rounded">
         <div class="des_input">ชื่อตลาด</div>
         <input class="form-control col-6" type="text" value="<?php echo $row['mkr_name']; ?>" name="mkr_name" required>
-        <div class="row" id="dropdown">
-          <div class="col-md-6" id="mkrtype">
-            <div class="des_input">ประเภทตลาด</div>
-            <div class="search_select_box">
-              <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
-                <option value="<?php echo $row['market_type_id']; ?>" selected="selected"><?php echo $row['market_type']; ?></option>
-                <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :; ?>
-                  <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
-                <?php endwhile; ?>
-              </select>
-            </div>
+        <div id="mkrtype" class="mb-3">
+          <div class="des_input">ประเภทตลาด</div>
+          <div class="search_select_box">
+            <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
+              <option value="<?php echo $row['market_type_id']; ?>" selected="selected"><?php echo $row['market_type']; ?></option>
+              <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :; ?>
+                <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
+              <?php endwhile; ?>
+            </select>
           </div>
         </div>
-        <div class="des_input">สถานที่ตั้ง</div>
+        <div class="des_input mt-3 hstack gap-2">สถานที่ตั้ง
+          <div data-toggle="tooltip" title="หากต้องการเปลี่ยนแปลงจังหวัด อำเภอ หรือ ตำบลใหม่ ต้องทำการเลือก จังหวัด อำเภอ และตำบลใหม่" class="mt-1">
+            <i class='bx bx-info-circle'></i>
+          </div>
+        </div>
         <div class="row p-0 m-0 mt-2">
           <div class="col-2 p-0 pt-2">บ้านเลขที่ :</div>
           <div class="col-4 p-0">
-            <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" required>
+            <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" required value="<?php echo $row['house_no']; ?>">
           </div>
           <div class="col-2 pt-2">ซอย :</div>
           <div class="col-4 p-0">
-            <input class="form-control" type="text" placeholder="ซอย" name="Soi" required>
+            <input class="form-control" type="text" placeholder="ซอย" name="Soi" required value="<?php echo $row['soi']; ?>">
           </div>
         </div>
         <div class="row p-0 m-0 mt-2">
           <div class="col-2 p-0 pt-2">หมู่ :</div>
           <div class="col-4 p-0">
-            <input class="form-control" type="text" placeholder="หมู่" name="Moo" required>
+            <input class="form-control" type="text" placeholder="หมู่" name="Moo" required value="<?php echo $row['moo']; ?>">
           </div>
           <div class="col-2 pt-2">ถนน :</div>
           <div class="col-4 p-0">
-            <input class="form-control" type="text" placeholder="ถนน" name="Road" required>
+            <input class="form-control" type="text" placeholder="ถนน" name="Road" required value="<?php echo $row['road']; ?>">
           </div>
         </div>
         <div class="row p-0 m-0 mt-2">
           <div class="col-2 p-0 pt-2">จังหวัด :</div>
           <div class="col-4 p-0">
             <select name="province_id" id="province" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกจังหวัด">
+              <option value="<?php echo $row['province_id']; ?>" selected><?php echo $row['province_name']; ?></option>
               <?php while ($result = mysqli_fetch_assoc($result_province)) : ?>
                 <option value="<?= $result['id'] ?>"><?= $result['province_name'] ?></option>
               <?php endwhile; ?>
@@ -95,7 +98,7 @@ $result_province = mysqli_query($conn, $query_province);
           <div class="col-2 pt-2">อำเภอ/เขต :</div>
           <div class="col-4 p-0">
             <select name="amphure_id" id="amphure" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกอำเภอ/เขต">
-
+              <option value="<?php echo $row['amphure_id']; ?>" selected><?php echo $row['amphure_name']; ?></option>
             </select>
           </div>
         </div>
@@ -103,31 +106,52 @@ $result_province = mysqli_query($conn, $query_province);
           <div class="col-2 p-0 pt-2">ตำบล/แขวง :</div>
           <div class="col-4 p-0">
             <select name="district_id" id="district" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกตำบล/แขวง">
+              <option value="<?php echo $row['district_id']; ?>" selected><?php echo $row['district_name']; ?></option>
             </select>
           </div>
           <div class="col-2 pt-2">รหัสไปรษณีย์ :</div>
           <div class="col-4 p-0">
-            <input class="form-control" type="text" id="zip-code" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
+            <input class="form-control" type="text" id="zip-code" placeholder="รหัสไปรษณีย์" name="PostalCode" value="<?php echo $row['postalcode']; ?>" required>
           </div>
         </div>
-        <div class="des_input">รายละเอียดตลาด</div>
+        <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
+          <div data-toggle="tooltip" title="เช่น ตลาดค้าส่ง ทำเลดี ติดถนนใหญ่ใกล้สี่แยกไฟแดง" class="mt-1">
+            <i class='bx bx-info-circle'></i>
+          </div>
+        </div>
         <textarea type="text" class="form-control" name="mkr_descrip"><?php echo $row["mkr_descrip"] ?></textarea>
         <div class="des_input">อีเมล</div>
         <input type="text" class="form-control" name="email" value="<?php echo $row["email"] ?>">
         <div class="des_input">เบอร์โทรศัพท์</div>
-        <input type="text" class="form-control" name="tel" value="<?php echo $row["tel"] ?>">
+        <input type="text" id="tel" class="form-control" name="tel" value="<?php echo $row["tel"] ?>">
         <div class="des_input">รูปภาพตลาด</div>
         <input type="file" class="form-control" name="ct_logo">
         <div class="des_input">รูปภาพตลาดปัจุบัน : </div>
-        <div class="text-start">
-          <img style="width:500px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row["mkr_pic"] ?>'>
+        <div class="p-0">
+          <img style="width:750px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row["mkr_pic"] ?>'>
         </div>
-        <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="บันทึกข้อมูล">
+        <input type="submit" class="btn btn-primary mt-3" id="add-data" name="bn-submit" value="บันทึกข้อมูล">
       </div>
     </div>
   </form>
   <script src="script.js"></script>
 
 </body>
+<script>
+  $(document).ready(function() {
+    $("body").tooltip({
+      selector: '[data-toggle=tooltip]',
+      placement: 'right'
+    });
+  });
+  $(":input").inputmask();
+
+  $("#tel").inputmask({
+    "mask": "9999999999"
+  });
+  $("#zip-code").inputmask({
+    "mask": "99999"
+  });
+</script>
 
 </html>

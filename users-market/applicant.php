@@ -81,7 +81,7 @@ require "../backend/add-applicant.php"
                 </div>
                 <div class="des_input">ชื่อตลาด</div>
                 <input class=" col-12 form-control" type="text" placeholder="ชื่อตลาด" name="mkrName" required>
-                <div id="mkrtype">
+                <div id="mkrtype" class="mb-3">
                     <div class="des_input">ประเภทตลาด</div>
                     <div class="search_select_box">
                         <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
@@ -91,7 +91,7 @@ require "../backend/add-applicant.php"
                         </select>
                     </div>
                 </div>
-                <div class="des_input">สถานที่ตั้ง</div>
+                <div class="des_input mt-3">สถานที่ตั้ง</div>
                 <div class="row p-0 m-0 mt-2">
                     <div class="col-2 p-0 pt-2">บ้านเลขที่ :</div>
                     <div class="col-4 p-0">
