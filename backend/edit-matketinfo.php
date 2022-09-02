@@ -12,7 +12,7 @@ if ($_GET) {
       JOIN amphures ON (market_detail.	amphure_id = amphures.id)
       JOIN districts ON (market_detail.district_id = districts.id)
       JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-       WHERE (mkr_id = '$mkr_id') ";
+       WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
   extract($row);

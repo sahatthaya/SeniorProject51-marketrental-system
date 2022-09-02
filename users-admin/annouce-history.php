@@ -18,14 +18,14 @@ require "../backend/manage-annouce.php";
 ?>
 
 <body>
-    <h1 class="head_contact">จัดการคำร้องขอประชาสัมพันธ์</h1>
+    <h1 class="head_contact">ประวัติคำร้องประชาสัมพันธ์ทั้งหมด</h1>
     <div id="labelbn" class="col-12 toptb">
         <div id="labelbn" class="col-8">
         </div>
         <!-- Button modal -->
         <div id="addbn" class="col-4">
-            <a id="addbn" type="button" class="btn btn-primary" href="./annouce-history.php">
-            <i class='bx bx-history'></i> ดูประวัติคำร้องประชาสัมพันธ์ทั้งหมด
+            <a id="addbn" type="button" class="btn btn-primary" href="./annouce.php">
+            <i class='bx bx-clipboard'></i> จัดการคำร้องขอประชาสัมพันธ์
             </a>
         </div>
     </div>
@@ -39,11 +39,11 @@ require "../backend/manage-annouce.php";
                         <th scope="col">หัวข้อ</th>
                         <th scope="col">ผู้ส่งคำร้อง</th>
                         <th scope="col">ดูรายละเอียด</th>
-                        <th scope="col">จัดการ</th>
+                        <th scope="col">สถานะ</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php while ($row1 = $result3->fetch_assoc()) : ?>
+                    <?php while ($row1 = $result4->fetch_assoc()) : ?>
                         <tr>
                             <td><?php echo $count_n; ?></td>
                             <td><?php echo $row1['timestamp'] ?></td>
@@ -51,10 +51,7 @@ require "../backend/manage-annouce.php";
                             <td><?php echo $row1['username']; ?></td>
                             <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
                             <td>
-                                <div class="row" style="justify-content: center;">
-                                    <a href="../backend/manage-annouce.php?approve=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" id="" style="margin-right: 2px; font-size:14px;">อนุมัติ</a>
-                                    <a href="../backend/manage-annouce.php?denied=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px; font-size:14px;">ลบ</a>
-                                </div>
+                            <?php echo $row1['req_status']; ?>
                             </td>
                         </tr>
                     <?php $count_n++;

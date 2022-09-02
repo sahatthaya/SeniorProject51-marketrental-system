@@ -19,14 +19,14 @@ require "../backend/manage-applicant.php";
 
 <body>
     <div class="content">
-        <h1 id="headline">จัดการคำร้องเพิ่มตลาด</h1>
+        <h1 id="headline">ประวัติคำร้องเพิ่มตลาดทั้งหมด</h1>
         <div id="labelbn" class="col-12 toptb">
             <div id="labelbn" class="col-8">
             </div>
             <!-- Button modal -->
             <div id="addbn" class="col-4">
-                <a id="addbn" type="button" class="btn btn-primary" href="./partner-history.php">
-                    <i class='bx bx-history'></i> ดูประวัติคำร้องเพิ่มตลาดทั้งหมด
+                <a id="addbn" type="button" class="btn btn-primary" href="./partner.php">
+                    <i class='bx bxs-store-alt'></i> จัดการคำร้องเพิ่มตลาด
                 </a>
             </div>
         </div>
@@ -41,11 +41,11 @@ require "../backend/manage-applicant.php";
                             <th scope="col">ชื่อ-นามสกุล</th>
                             <th scope="col">ชื่อตลาด</th>
                             <th scope="col">รายละเอียด</th>
-                            <th scope="col">จัดการ</th>
+                            <th scope="col">สถานะ</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result2->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
                                 <td><?php echo $row['timestamp'] ?></td>
@@ -55,10 +55,7 @@ require "../backend/manage-applicant.php";
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 </td>
                                 <td>
-                                    <div class="row" style="justify-content: center;">
-                                        <a href="../backend/manage-applicant.php?approve=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" style="margin-right: 2px;font-size:14px;">อนุมัติ</a>
-                                        <a href="../backend/manage-applicant.php?denied=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px;font-size:14px;">ปฏิเสธ</a>
-                                    </div>
+                                    <?php echo $row['req_status']; ?>
                                 </td>
                             </tr>
                         <?php $count_n++;

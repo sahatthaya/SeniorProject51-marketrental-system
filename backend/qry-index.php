@@ -16,6 +16,7 @@ FROM market_detail
     JOIN amphures ON (market_detail.	amphure_id = amphures.id)
     JOIN districts ON (market_detail.district_id = districts.id)
     JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-ORDER BY mkr_id DESC LIMIT 4";
+    WHERE (a_id='1')
+ORDER BY mkr_id DESC LIMIT 4 ";
 $resultmkr = mysqli_query($conn, $querymkr);
 mysqli_close($conn);

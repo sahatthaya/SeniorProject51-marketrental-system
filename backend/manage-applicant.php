@@ -17,6 +17,21 @@ $data = "SELECT req_partner.*,
         JOIN market_type ON (req_partner.market_type_id = market_type.market_type_id)
         JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id) WHERE (req_partner.req_status_id = '1')";
 $result = mysqli_query($conn, $data);
+$data1 = "SELECT req_partner.*, 
+    users.username ,
+    provinces.province_name,
+    amphures.amphure_name,
+    districts.district_name , 
+    market_type.market_type,
+    req_status.req_status
+    FROM req_partner 
+        JOIN users ON (req_partner.users_id = users.users_id)
+        JOIN provinces ON (req_partner.province_id = provinces.id)
+        JOIN amphures ON (req_partner.	amphure_id = amphures.id)
+        JOIN districts ON (req_partner.district_id = districts.id)
+        JOIN market_type ON (req_partner.market_type_id = market_type.market_type_id)
+        JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id)";
+$result2 = mysqli_query($conn, $data1);
 
 if (isset($_POST["mkrdid"])) {
      $id = $_POST["mkrdid"];
