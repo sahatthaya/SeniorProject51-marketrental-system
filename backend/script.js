@@ -51,14 +51,12 @@ function nextbtn() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "block";
     document.getElementById("stepThree").style.display = "none";
-    
 }
 // previousbtn
 function previousbtn() {
     document.getElementById("stepOne").style.display = "block";
     document.getElementById("stepTwo").style.display = "none";
     document.getElementById("stepThree").style.display = "none";
-
 }
 function gotostep3(){
     document.getElementById("stepOne").style.display = "none";
