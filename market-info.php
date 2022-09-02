@@ -34,7 +34,8 @@ require "backend/qry-market-info.php";
             <br>
             อีเมล : <?php echo $row['email']; ?>
             <br>
-            ที่อยู่ : <?php echo $row['mkr_address']; ?>
+            ที่อยู่ : <?php echo $row['house_no']; ?> ซอย <?php echo $row['soi']; ?> หมู่ <?php echo $row['moo']; ?> ถนน <?php echo $row['road']; ?> ตำบล/แขวง <?php echo $row['district_name']; ?> อำเภอ/เขต <?php echo $row['amphure_name']; ?> จังหวัด <?php echo $row['province_name']; ?> รหัสไปรษณีย์ <?php echo $row['postalcode']; ?>
+
         </p>
 
     </div>

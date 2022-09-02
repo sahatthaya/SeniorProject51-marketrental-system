@@ -1,13 +1,18 @@
 <?php
-$query_mkrType = "SELECT * FROM market_type ORDER BY market_type_id";
-$result_mkrType = mysqli_query($conn, $query_mkrType);
-$query_province = "SELECT * FROM province";
-$result_province = mysqli_query($conn, $query_province);
 if ($_GET) {
   $mkr_id = $_GET['mkr_id'];
-  $sql = "SELECT market_detail.*,province.province_name , market_type.market_type FROM market_detail 
-  JOIN province ON (market_detail.province_id = province.province_id)
-  JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id) WHERE (mkr_id = '$mkr_id') ";
+  $sql = "SELECT market_detail.*,users.username ,
+  provinces.province_name,
+  amphures.amphure_name,
+  districts.district_name , 
+  market_type.market_type
+  FROM market_detail 
+      JOIN users ON (market_detail.users_id = users.users_id)
+      JOIN provinces ON (market_detail.province_id = provinces.id)
+      JOIN amphures ON (market_detail.	amphure_id = amphures.id)
+      JOIN districts ON (market_detail.district_id = districts.id)
+      JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
+       WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
   $result = mysqli_query($conn, $sql);
   $row = mysqli_fetch_array($result);
   extract($row);
@@ -15,14 +20,20 @@ if ($_GET) {
 
 
 if (isset($_POST['bn-submit'])) {
-
   $mkr_name = $_POST['mkr_name'];
   $mkrtype = $_POST['mkrtype'];
-  $province = $_POST['province'];
-  $mkr_address = $_POST['mkr_address'];
   $mkr_descrip = $_POST['mkr_descrip'];
   $email = $_POST['email'];
   $tel = $_POST['tel'];
+
+  $house_no = $_POST['HouseNo'];
+  $soi = $_POST['Soi'];
+  $moo = $_POST['Moo'];
+  $road = $_POST['Road'];
+  $province_id = $_POST['province_id'];
+  $amphure_id = $_POST['amphure_id'];
+  $district_id = $_POST['district_id'];
+  $postalcode = $_POST['PostalCode'];
 
 
   date_default_timezone_set('Asia/Bangkok');
@@ -35,23 +46,32 @@ if (isset($_POST['bn-submit'])) {
   $ct_logo_name = $date . $numrand . $ct_logo_oldname;
   $ct_logo_type = $_FILES['ct_logo']['type'];
   $ct_logo = 'asset/img_market/' . $ct_logo_name;
-  $path ='../asset/img_market/'. $ct_logo_name;
+  $path = '../asset/img_market/' . $ct_logo_name;
 
 
 
-  if (isset($ct_logo) != "" && isset($_POST["mkr_name"]) != "" && isset($_POST["mkrtype"]) != "" && isset($_POST["province"]) != "" && isset($_POST["mkr_address"]) != "" && isset($_POST["mkr_descrip"]) != "" && isset($_POST["email"]) != "" && isset($_POST["tel"]) != "") {
-    $sqlInsert = "UPDATE market_detail  SET mkr_name='$mkr_name',market_type_id='$mkrtype',province_id='$province',mkr_address='$mkr_address',mkr_descrip='$mkr_descrip',email='$email',tel='$tel'WHERE (mkr_id = '$mkr_id') ";
-    mysqli_query($conn, $sqlInsert);
+  if (($mkr_name && $mkrtype && $mkr_descrip && $email && $tel && $house_no && $soi && $moo && $road && $province_id && $amphure_id && $district_id  && $postalcode) != '') {
+    
     if ($ct_logo_tmp != "") {
       $udlogo = "UPDATE market_detail  SET mkr_pic='$ct_logo'WHERE (mkr_id = '$mkr_id')";
-      mysqli_query($conn, $udlogo);
+      $sqlInsert = "UPDATE market_detail  SET mkr_name='$mkr_name',market_type_id='$mkrtype',mkr_descrip='$mkr_descrip',email='$email',tel='$tel', house_no='$house_no',soi='$soi',moo='$moo',road='$road',district_id='$district_id',amphure_id='$amphure_id',province_id='$province_id',postalcode='$postalcode' WHERE (mkr_id = '$mkr_id') ";
+      if (mysqli_query($conn, $sqlInsert) && mysqli_query($conn, $udlogo)) {
+        move_uploaded_file($ct_logo_tmp, $path);
+        echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
+        echo "<script type='text/javascript'> success(); </script>";
+      } else {
+        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+      }
+    } else {
+      $sqlInsert = "UPDATE market_detail  SET mkr_name='$mkr_name',market_type_id='$mkrtype',mkr_descrip='$mkr_descrip',email='$email',tel='$tel', house_no='$house_no',soi='$soi',moo='$moo',road='$road',district_id='$district_id',amphure_id='$amphure_id',province_id='$province_id',postalcode='$postalcode' WHERE (mkr_id = '$mkr_id') ";
+      if (mysqli_query($conn, $sqlInsert)) {
+        echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
+        echo "<script type='text/javascript'> success(); </script>";
+      } else {
+        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+      }
     }
-    move_uploaded_file($ct_logo_tmp, $path);
-    echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
-    echo "<script type='text/javascript'> success(); </script>";
-    
   } else {
     echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
   }
 }
-?>

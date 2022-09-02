@@ -1,6 +1,3 @@
-<?php
-include "profilebar.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,31 +5,39 @@ include "profilebar.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ชำระค่าเช่า</title>
+    <title>จัดการตลาด</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
+
 </head>
 <?php
+include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
-
-// req status
-$count_n = 1;
-$userid = $_SESSION['users_id'];
-$data = "SELECT req_partner.*, users.username, req_status.req_status FROM req_partner JOIN users ON (req_partner.users_id = users.users_id)JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id) WHERE (req_partner.users_id = '$userid')";
-$result = mysqli_query($conn, $data);
+require "../backend/manage-applicant.php";
 ?>
 
 <body>
     <div class="content">
-    <h1 id="headline">ติดตามสถานะคำร้องขอเป็นพาร์ทเนอร์</h1>
+        <h1 id="headline">ประวัติคำร้องเพิ่มตลาดทั้งหมด</h1>
+        <div id="labelbn" class="col-12 toptb">
+            <div id="labelbn" class="col-8">
+            </div>
+            <!-- Button modal -->
+            <div id="addbn" class="col-4">
+                <a id="addbn" type="button" class="btn btn-primary" href="./partner.php">
+                    <i class='bx bxs-store-alt'></i> จัดการคำร้องเพิ่มตลาด
+                </a>
+            </div>
+        </div>
         <div>
-            <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
+            <div id="table" class="bannertb border p-3 shadow-sm rounded">
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>
-                        <th scope="col">ลำดับ</th>
+                            <th scope="col">ลำดับ</th>
                             <th scope="col">วันที่ส่งคำร้อง</th>
+                            <th scope="col">ชื่อผู้ใช้</th>
                             <th scope="col">ชื่อ-นามสกุล</th>
                             <th scope="col">ชื่อตลาด</th>
                             <th scope="col">รายละเอียด</th>
@@ -40,15 +45,18 @@ $result = mysqli_query($conn, $data);
                         </tr>
                     </thead>
                     <tbody>
-                    <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result2->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
                                 <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                                 <td><?php echo $row['market_name']; ?></td>
-                                <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
+                                <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 </td>
-                                <td><?php echo $row['req_status']; ?></td>
+                                <td>
+                                    <?php echo $row['req_status']; ?>
+                                </td>
                             </tr>
                         <?php $count_n++;
                         endwhile ?>
@@ -57,9 +65,8 @@ $result = mysqli_query($conn, $data);
             </div>
         </div>
     </div>
+    <?php require '../backend/modal-applicant.php' ?>
 </body>
-<script src="../backend/script.js"></script>
-<?php require '../backend/modal-applicant.php' ?>
 <script>
     // apply detail popup
     $(document).ready(function() {

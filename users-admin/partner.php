@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +20,18 @@ require "../backend/manage-applicant.php";
 <body>
     <div class="content">
         <h1 id="headline">จัดการคำร้องเพิ่มตลาด</h1>
+        <div id="labelbn" class="col-12 toptb">
+            <div id="labelbn" class="col-8">
+            </div>
+            <!-- Button modal -->
+            <div id="addbn" class="col-4">
+                <a id="addbn" type="button" class="btn btn-primary" href="./partner-history.php">
+                    <i class='bx bx-history'></i> ดูประวัติคำร้องเพิ่มตลาดทั้งหมด
+                </a>
+            </div>
+        </div>
         <div>
-            <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
+            <div id="table" class="bannertb border p-3 shadow-sm rounded">
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>

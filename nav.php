@@ -38,15 +38,6 @@ include "backend/1-import-link.php";
                 </ul>
             </li>
             <li class="navlink">
-                <a href="applicant.php">
-                    <i class='bx bxs-store-alt'></i>
-                    <span class="link_name">สมัครเป็นพาร์ทเนอร์</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="applicant.php">สมัครเป็นพาร์ทเนอร์</a></li>
-                </ul>
-            </li>
-            <li class="navlink">
                 <a href="contact.php">
                     <i class='bx bxs-contact'></i>
                     <span class="link_name">เกี่ยวกับเว็บไซต์</span>

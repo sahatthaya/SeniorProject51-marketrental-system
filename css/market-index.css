@@ -1,8 +1,19 @@
 body {
   padding: 60px 20px;
   margin: 10px 68px 0px 146px !important;
+  min-width:375px;
 }
-
+/* ยังไม่มีตลาด */
+.no-market{
+  margin-top:15px ;
+  padding:15px 0 ;
+  height: 250px;
+  border-radius: 10px;
+  border: 10px solid white;
+  -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+  -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+  box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+}
 /* grap  */
 .box {
   display: grid;
@@ -74,7 +85,9 @@ body {
   background-color: #38B6FF !important;
 
 }
-
+.flickity-page-dots {
+  bottom: -50px !important;
+}
 /* market box */
 .project-box {
   height: 400px;

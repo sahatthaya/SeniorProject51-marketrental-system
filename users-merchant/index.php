@@ -92,7 +92,7 @@ include "../backend/1-import-link.php";
                 </div>
                 <div>
                     <h5 class="center">2. เลือกตลาดที่ต้องการ</h5>
-                    <img src="../asset/contact/merchant-2.png" class="card-img-top img-fluid"  alt="...">
+                    <img src="../asset/contact/merchant-2.png" class="card-img-top img-fluid" alt="...">
                 </div>
                 <div>
                     <h5 class="center">3. จ่ายค่ามัดจำ</h5>
@@ -105,26 +105,6 @@ include "../backend/1-import-link.php";
         </div>
     </div>
     <hr>
-    <div class="users-guide">
-        <h3 class="center">สำหรับเจ้าของตลาดที่ต้องการเป็นพาร์ทเนอร์</h3>
-        <div class="guide">
-            <div>
-                <h5 class="center">1. เข้าสู่ระบบ</h5>
-                <img src="../asset/contact/mkr-1.png" class="card-img-top img-fluid" alt="...">
-            </div>
-            <div>
-                <h5 class="center">2. กรอกข้อมูล</h5>
-                <img src="../asset/contact/mkr-2.png" class="card-img-top img-fluid" alt="...">
-            </div>
-            <div>
-                <h5 class="center">3. รอการอนุมัติจากแอดมิน</h5>
-                <img src="../asset/contact/mkr-3.png" class="card-img-top img-fluid" alt="...">
-            </div>
-        </div>
-        <div class="text-center guide-btn">
-        <button type="button" class="btn btn-primary btn-lg" onclick="window.location='applicant.php';">ส่งคำร้องขอเป็นพาร์ทเนอร์</button>
-            </div>
-    </div>
     </div>
     <hr>
     <div class=" topmkr">

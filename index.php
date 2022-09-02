@@ -122,7 +122,7 @@ require "./backend/qry-index.php";
             </div>
         </div>
         <div class="text-center guide-btn">
-            <button type="button" class="btn btn-primary btn-lg" onclick="window.location='applicant.php';">ส่งคำร้องขอเป็นพาร์ทเนอร์</button>
+            <button type="button" class="btn btn-primary btn-lg" onclick="signIn();showsignup()">สมัครสมาชิก</button>
         </div>
     </div>
     </div>

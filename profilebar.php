@@ -66,8 +66,16 @@ session_start();
 
             <h1>สมัครสมาชิก</h1>
             <form id="signin" method="POST">
-                <div class="des_input">ชื่อบัญชีผู้ใช้
-                </div>
+                <div class="des_input">ปรเภทผู้ใช้</div>
+                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="1" checked>
+                <label class="form-check-label" for="flexRadioDefault1">
+                    พ่อค้า/แม่ค้า
+                </label>
+                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="2">
+                <label class="form-check-label" for="flexRadioDefault1">
+                    เจ้าของตลาด
+                </label>
+                <div class="des_input mt-1">ชื่อบัญชีผู้ใช้</div>
                 <input class="input inputcolor" placeholder="ชื่อบัญชีผู้ใช้" type="text" name="username-reg" required>
                 <br>
                 <div class="des_input">ชื่อ-นามสกุล</div>
@@ -76,10 +84,10 @@ session_start();
                     <input class="input inputcolor" placeholder="ชื่อนามสกุล" style="width: 48%;" type="text" name="lastName-reg" required>
                 </div>
                 <div class="des_input">อีเมล</div>
-                <input class="input inputcolor" type="email" name="email-reg" placeholder="อีเมล" required>
+                <input class="input inputcolor" id="email" type="email" name="email-reg" placeholder="อีเมล" required>
                 <br>
                 <div class="des_input">เบอร์โทรศัพท์</div>
-                <input class="input inputcolor" type="tel" name="tel-reg" placeholder="เบอร์โทรศัพท์" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
+                <input class="input inputcolor" id="tel" type="tel" name="tel-reg" placeholder="เบอร์โทรศัพท์" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
                 <br>
                 <div class="des_input">รหัสผ่าน</div>
                 <input class="input inputcolor" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" required>
@@ -97,5 +105,12 @@ session_start();
 
 
 <script src="backend/script.js" type="text/javascript"></script>
+<script>
+    $(":input").inputmask();
 
+    $("#tel").inputmask({
+        "mask": "9999999999"
+    });
+   
+</script>
 </html>

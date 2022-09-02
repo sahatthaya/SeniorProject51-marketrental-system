@@ -7,19 +7,17 @@ if (isset($_POST['submit-apply'])) {
     $tel = $_POST['tel'];
     $mkrName = $_POST['mkrName'];
     $mkrtype = $_POST['mkrtype'];
-    $province = $_POST['province'];
     $mkrDes = $_POST['mkrDes'];
     $userlogin = $_SESSION['users_id'];
-    $HouseNo = $_POST['HouseNo'];
-    $Soi = $_POST['Soi'];
-    $Moo = $_POST['Moo'];
-    $Road = $_POST['Road'];
-    $Subdistrict = $_POST['Subdistrict'];
-    $District = isset($_POST['District']);
-    $Province = $_POST['Province'];
-    $PostalCode = $_POST['PostalCode'];
-    $mkrAddress = 'ที่อยู่ '.$HouseNo.' ซอย '.$Soi.' หมู่ '.$Moo.' ถนน '.$Road.' ตำบล/แขวง '.$Subdistrict.' อำเภอ/เขต '.$District.' จังหวัด '.$Province.' '.$PostalCode;
 
+    $house_no = $_POST['HouseNo'];
+    $soi = $_POST['Soi'];
+    $moo = $_POST['Moo'];
+    $road = $_POST['Road'];
+    $province_id = $_POST['province_id'];
+    $amphure_id = $_POST['amphure_id'];
+    $district_id = $_POST['district_id'];
+    $postalcode = $_POST['PostalCode'];
 
     date_default_timezone_set('Asia/Bangkok');
     $date = date("Ymd");
@@ -42,13 +40,12 @@ if (isset($_POST['submit-apply'])) {
 
     if (
         isset($_POST["firstName"]) != "" && isset($_POST["lastName"]) != "" && isset($_POST["email"]) != "" && isset($_POST["tel"]) != ""
-        && isset($idfilepath) != "" && isset($_POST["mkrName"]) != "" && isset($_POST["mkrtype"]) != "" && isset($_POST["province"]) != ""
-        && isset($_POST["mkrDes"]) != "" && isset($mkrfilepath) != ""
+        && isset($idfilepath) != "" && isset($_POST["mkrName"]) != "" && isset($_POST["mkrtype"]) != "" && isset($mkrfilepath) != ""
     ) {
         move_uploaded_file($mkrfiletmp, $mkrpath);
         move_uploaded_file($idfiletmp, $idpath);
-        $sqlInsert = "INSERT INTO req_partner (firstName,lastName,email,tel,cardIDcpy,market_name,market_type_id,province_id,market_address,market_descrip,market_pic,req_status_id,users_id)
-        VALUES ('$firstName','$laststName',' $email',' $tel', '$idfilepath','$mkrName',' $mkrtype',' $province',' $mkrAddress','$mkrDes','$mkrfilepath',1,'$userlogin') ";
+        $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`)
+        VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName',' $email',' $tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode') ";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1";/>';
@@ -73,14 +70,13 @@ if (isset($_POST['bn-submit'])) {
     $bn_type = $_FILES['bn_img']['type'];
     $bn_img = 'asset/banner/' . $bn_name;
     $bnpath = '../asset/banner/' . $bn_name;
-    if (isset($_POST["bn_toppic"]) != "" && isset($_POST["bn_detail"]) != "" && isset($_POST["bn_toppic"]) != ""&& isset($bn_img) != "") {
+    if (isset($_POST["bn_toppic"]) != "" && isset($_POST["bn_detail"]) != "" && isset($_POST["bn_toppic"]) != "" && isset($bn_img) != "") {
         move_uploaded_file($bn_tmp, $bnpath);
         $sqlInsert = "INSERT INTO req_annouce(bn_toppic, bn_detail, bn_pic,users_id) VALUES ('$bn_toppic', '$bn_detail', '$bn_img', $users_id)";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1";/>';
             mysqli_close($conn);
-
         } else {
             echo "<script type='text/javascript'> error(); </script>";
         }

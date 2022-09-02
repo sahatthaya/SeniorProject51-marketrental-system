@@ -1,6 +1,8 @@
 body{
     padding: 10px;
     margin:50px 20px ;
+    min-width: 375px;
+
 }
 .content {
     padding: 10px;

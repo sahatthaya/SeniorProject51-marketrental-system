@@ -19,19 +19,33 @@ include "../backend/1-import-link.php";
 // req status
 $count_n = 1;
 $userid = $_SESSION['users_id'];
-$data = "SELECT req_partner.*, users.username, req_status.req_status FROM req_partner JOIN users ON (req_partner.users_id = users.users_id)JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id) WHERE (req_partner.users_id = '$userid')";
+$data = "SELECT req_partner.*, 
+ users.username ,
+    provinces.province_name,
+    amphures.amphure_name,
+    districts.district_name , 
+    market_type.market_type,
+    req_status.req_status
+FROM req_partner 
+    JOIN users ON (req_partner.users_id = users.users_id)
+    JOIN provinces ON (req_partner.province_id = provinces.id)
+    JOIN amphures ON (req_partner.	amphure_id = amphures.id)
+    JOIN districts ON (req_partner.district_id = districts.id)
+    JOIN market_type ON (req_partner.market_type_id = market_type.market_type_id)
+    JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id)
+    WHERE (req_partner.users_id = '$userid')";
 $result = mysqli_query($conn, $data);
 ?>
 
 <body>
     <div class="content">
-    <h1 id="headline">ติดตามสถานะคำร้องขอเป็นพาร์ทเนอร์</h1>
+        <h1 id="headline">ติดตามสถานะคำร้องขอเป็นพาร์ทเนอร์</h1>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>
-                        <th scope="col">ลำดับ</th>
+                            <th scope="col">ลำดับ</th>
                             <th scope="col">วันที่ส่งคำร้อง</th>
                             <th scope="col">ชื่อ-นามสกุล</th>
                             <th scope="col">ชื่อตลาด</th>
@@ -40,7 +54,7 @@ $result = mysqli_query($conn, $data);
                         </tr>
                     </thead>
                     <tbody>
-                    <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
                                 <td><?php echo $row['timestamp'] ?></td>

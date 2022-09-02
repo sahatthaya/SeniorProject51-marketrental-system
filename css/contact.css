@@ -1,7 +1,7 @@
 body {
     padding: 20px 70px;
-margin: 50px 68px 0px 146px !important;
-
+    margin: 50px 68px 0px 146px !important;
+    min-width: 375px;
 }
 
 .logo_img img {
@@ -10,9 +10,9 @@ margin: 50px 68px 0px 146px !important;
     height: 20rem;
     border-radius: 10px;
     background: white;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
-    box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
 
 }
 
@@ -28,9 +28,9 @@ margin: 50px 68px 0px 146px !important;
     margin-top: 30px;
     background: white;
     overflow: hidden;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
-    box-shadow: 1px 2px 5px 1px rgba(207,207,207,1);
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
 }
 
 .cardcontact img {
@@ -111,7 +111,7 @@ margin: 50px 68px 0px 146px !important;
         margin: 50px 10px 0px 10px !important;
     }
 
-    h1{
+    h1 {
         font-size: 24px !important;
     }
 }

@@ -11,7 +11,7 @@
 body {
     padding: 20px;
     margin: 50px 68px 0px 146px;
-
+    min-width:1492px;
 }
 
 .add-btn i {
