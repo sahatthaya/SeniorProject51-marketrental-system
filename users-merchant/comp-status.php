@@ -19,39 +19,45 @@ include "../backend/1-import-link.php";
 // req status
 $count_n = 1;
 $userid = $_SESSION['users_id'];
-$data = "SELECT req_partner.*, users.username, req_status.req_status FROM req_partner JOIN users ON (req_partner.users_id = users.users_id)JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id) WHERE (req_partner.users_id = '$userid')";
+$count_n = 1;
+$data = "SELECT complain.*, toppic.toppic FROM complain 
+JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
+ WHERE (users_id = '$userid') ";
 $result = mysqli_query($conn, $data);
 ?>
 
 <body>
     <div class="content">
-    <h1 id="headline">ติดตามสถานะคำร้องขอเป็นพาร์ทเนอร์</h1>
+        <h1 id="headline">ติดตามสถานะคำร้องเรียน</h1>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>
-                        <th scope="col">ลำดับ</th>
-                            <th scope="col">วันที่ส่งคำร้อง</th>
-                            <th scope="col">ชื่อ-นามสกุล</th>
-                            <th scope="col">ชื่อตลาด</th>
-                            <th scope="col">รายละเอียด</th>
+                            <th scope="col">ลำดับ</th>
+                            <th scope="col">วันที่ร้องเรียน</th>
+                            <th scope="col">ประเภทการร้องเรียน</th>
+                            <th scope="col">หัวข้อการร้องเรียน</th>
                             <th scope="col">สถานะ</th>
+                            <th scope="col">ดูรายละเอียด</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
                                 <td><?php echo $row['timestamp'] ?></td>
-                                <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
-                                <td><?php echo $row['market_name']; ?></td>
-                                <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
+                                <td><?php echo $row['toppic'] ?></td>
+                                <td><?php echo $row['comp_subject'] ?></td>
+                                <td><?php echo $row['status'] ?></td >
+                                <td>
+                                    <button type="button" class="btn btn-outline-primary modal_data1" id="<?php echo $row['comp_id']; ?>">
+                                        ดูรายละเอียด
+                                    </button>
                                 </td>
-                                <td><?php echo $row['req_status']; ?></td>
                             </tr>
                         <?php $count_n++;
-                        endwhile ?>
+                        endwhile; ?>
                     </tbody>
                 </table>
             </div>
@@ -59,17 +65,18 @@ $result = mysqli_query($conn, $data);
     </div>
 </body>
 <script src="../backend/script.js"></script>
-<?php require '../backend/modal-applicant.php' ?>
+<?php require '../backend/modal-seecomplain.php' ?>
+
 <script>
-    // apply detail popup
-    $(document).ready(function() {
+   // apply detail popup
+   $(document).ready(function() {
         $('.modal_data1').click(function() {
-            var mkrdid = $(this).attr("id");
+            var seeid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-applicant.php",
+                url: "../backend/manage-complain.php",
                 method: "POST",
                 data: {
-                    mkrdid: mkrdid
+                    seeid: seeid
                 },
                 success: function(data) {
                     $('#bannerdetail').html(data);
