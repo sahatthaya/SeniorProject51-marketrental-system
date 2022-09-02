@@ -18,7 +18,7 @@ require "../backend/manage-banner.php";
 ?>
 
 <body>
-    <h1 id="headline">จัดการแบบเนอร์</h1>
+    <h1 id="headline">จัดการแบนเนอร์</h1>
     <!-- carousel -->
     <div id="labelbn" class="col-12 toptb">
         <div id="labelbn" class="col-10">
