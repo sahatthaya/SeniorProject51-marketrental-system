@@ -154,6 +154,10 @@ body {
 
 }
 
+#stepThree{
+    display: none;
+}
+
 #stepTwo input {
     margin: 5px auto !important;
     padding: .5em 1.5rem !important;

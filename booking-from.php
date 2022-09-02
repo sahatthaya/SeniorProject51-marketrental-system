@@ -1,6 +1,3 @@
-<?php
-include "profilebar.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,45 +5,17 @@ include "profilebar.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ส่งคำร้องขอเป็นพาร์ทเนอร์</title>
-    <link rel="stylesheet" href="../css/applicant.css" type="text/css">
+    <title>ฟอร์มจองแผงค้า</title>
+    <link rel="stylesheet" href="./css/applicant.css" type="text/css">
+
 </head>
-<script type="text/javascript">
-    function success() {
-        Swal.fire({
-            title: 'ส่งข้อมูลสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
 
-    function error() {
-        Swal.fire({
-            title: 'ผิดพลาด',
-            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-</script>
 <?php
+
+include "profilebar.php";
 include "nav.php";
-include "../backend/1-connectDB.php";
-include "../backend/1-import-link.php";
-
-$userid = $_SESSION['users_id'];
-$sqlqry = "SELECT * FROM users WHERE (users_id = '$userid') ";
-$qry = mysqli_query($conn, $sqlqry);
-$row = mysqli_fetch_array($qry);
-
-$query_mkrType = "SELECT * FROM market_type ORDER BY market_type_id";
-$result_mkrType = mysqli_query($conn, $query_mkrType);
-$query_province = "SELECT * FROM province";
-$result_province = mysqli_query($conn, $query_province);
-
-require "../backend/add-applicant.php"
+include "backend/1-connectDB.php";
+include "backend/1-import-link.php";
 ?>
 
 <body>
@@ -64,6 +33,10 @@ require "../backend/add-applicant.php"
                         <span class="progress-count">2</span>
                         <span class="progress-label">ข้อมูลตลาด</span>
                     </li>
+                    <li id="Threestep" class="step-wizard-item  current-item">
+                        <span class="progress-count">3</span>
+                        <span class="progress-label">ตรวจสอบข้อมูล</span>
+                    </li>
                 </ul>
             </section>
 
@@ -80,9 +53,30 @@ require "../backend/add-applicant.php"
                     <input name="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
                     <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
                     <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
-                    <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn2()" id="next">
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top: 20px;">
+                        <button class="btn btn-primary w-25" type="button" onclick="nextbtn()" id="next">ถัดไป</button>
+                    </div>
                 </div>
-                <!-- form--2 -->
+
+                <!-- form--2-->
+                <div id="stepThree" class="row">
+                    <div class="des_input">ชื่อนะจ๊ะ</div>
+                    <input class="form-control col-6" type="text" placeholder="ชื่อ" name="firstName" pattern="[^0-9]+" required autofocus>
+                    <div class="des_input">นามสกุล</div>
+                    <input class="form-control col-6" type="text" placeholder="นามสกุล" name="lastName" pattern="[^0-9]+" required>
+                    <div class="des_input">อีเมล</div>
+                    <input class="sqr-input col-12 form-control " type="email" placeholder="อีเมล" name="email" required>
+                    <div class="des_input">เบอร์โทรศัพท์</div>
+                    <input name="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
+                    <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
+                    <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top: 20px;">
+                        <button name="previous" class="btn btn-primary me-md-4 w-25" type="button" onclick="previousbtn()" id="back">ย้อนกลับ</button>
+                        <button class="btn btn-primary w-25" type="button" onclick="nextbtn2()" id="next">ถัดไป</button>
+                    </div>
+                </div>
+
+                <!-- form--3 -->
                 <div id="stepTwo" class="row">
                     <div class="des_input">ชื่อตลาด</div>
                     <input class=" col-12 form-control" type="text" placeholder="ชื่อตลาด" name="mkrName" required>
@@ -118,7 +112,6 @@ require "../backend/add-applicant.php"
                         <input class="form-control " type="text" placeholder="หมู่" name="Moo">
                         <div class="des-address ">ถนน :</div>
                         <input class="form-control " type="text" placeholder="ถนน" name="Road" required>
-
                     </div>
                     <div class="input-group hstack gap2">
                         <div class="first-des-address ">ตำบล/แขวง :</div>
@@ -135,13 +128,15 @@ require "../backend/add-applicant.php"
                     <input class="form-control col-12" type="text" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" required>
                     <div class="des_input">อัปโหลดเอกสารหรือรูปภาพเพื่อยืนยันตลาด</div>
                     <input class="sqr-input col-12 form-control" type="file" placeholder="เช่น ตลาดขายปลีก ใจกลางเมือง ทำเลดี ติดถนนใหญ่" name="mkrFile" required>
-                    <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn()" id="back">
+                    <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn2()" id="back">
                     <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง">
+
                 </div>
             </div>
         </form>
     </div>
+
 </body>
-<script src="../backend/script.js"></script>
+<script src="./backend/script.js"></script>
 
 </html>

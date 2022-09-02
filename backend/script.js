@@ -49,13 +49,38 @@ function validatePassword() {
 // nextbtn
 function nextbtn() {
     document.getElementById("stepOne").style.display = "none";
-    document.getElementById("stepTwo").style.display = "block";
+    document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepThree").style.display = "block";
     document.getElementById("Twostep").classList.remove("current-item");
 }
+function nextbtn2() {
+    document.getElementById("stepOne").style.display = "none";
+    document.getElementById("stepTwo").style.display = "block";
+    document.getElementById("stepThree").style.display = "none";
+    document.getElementById("Twostep").classList.remove("current-item");
+}
+
+function nextbtn3() {
+    document.getElementById("stepOne").style.display = "none";
+    document.getElementById("stepTwo").style.display = "block";
+    document.getElementById("stepThree").style.display = "none";
+    document.getElementById("Twostep").classList.remove("current-item");
+}
+
+
 // previousbtn
 function previousbtn() {
     document.getElementById("stepOne").style.display = "block";
     document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepThree").style.display = "none";
+    document.getElementById("Twostep").classList.add("current-item");
+}
+
+// ยังไม่แก้ไข
+function previousbtn2() {
+    document.getElementById("stepOne").style.display = "none";
+    document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepThree").style.display = "block";
     document.getElementById("Twostep").classList.add("current-item");
 }
 //banner--------------------------------------------------------------------------------------------------------------  

@@ -132,7 +132,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
 <body>
     <h1>จัดการข้อมูลแผงค้า</h1>
 
-    <div id="quick-menu2" class="hstack mt-3">
+    <div id="quick-menu2" class="mt-3">
         <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
             <i class='bx bxs-edit'></i>จัดการค่าใช้จ่ายเพิ่มเติม
         </button>

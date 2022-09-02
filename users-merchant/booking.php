@@ -41,7 +41,7 @@
         <div>5. ชำระค่ามัดจำ</div>
     </div>
     <hr>
-    <div class="plan">
+    <div class="plan">  
         <div class="w-100 hstack px-1 pt-3 gap-2">
             <label>ช่วงวันที่ : </label>
             <input type="date" class="form-control" style="width: 10%;" id="customRange1">
@@ -56,6 +56,7 @@
         </div>
         <hr>
         <div id="plan">
+
             <div class="liststall vstack" id="sortable">
                 <?php while ($row1 = $result3->fetch_assoc()) : ?>
                     <a class="m-1 text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal">

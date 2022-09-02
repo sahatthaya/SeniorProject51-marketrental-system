@@ -108,7 +108,7 @@ require "../backend/news.php";
     </div>
 
     <script src="../backend/script.js"></script>
-    <?php require '../backend/modal-news.php' ?>
+    <?php require '../backend/modal-news.php' ?> 
 </body>
 <script>
     //detail popup
