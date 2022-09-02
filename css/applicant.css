@@ -52,20 +52,7 @@ body {
 
 }
 
-<<<<<<< HEAD
 #applyform .des_input {
-=======
-#stepThree{
-    display: none;
-}
-
-#stepTwo input {
-    margin: 5px auto !important;
-    padding: .5em 1.5rem !important;
-}
-
-.des_input {
->>>>>>> bf4c0d0521e0ca4b454c1b394b4b2ada745bdf72
     margin: 5px 0 !important;
     padding: 0 0 0 5px !important;
     font-size: 20px;
