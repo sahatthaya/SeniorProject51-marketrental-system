@@ -15,7 +15,8 @@
 
 body {
     padding: 20px;
-margin: 50px 68px 0px 146px !important;
+    margin: 50px 68px 0px 146px !important;
+    min-width: 375px;
 }
 
 /* ----------------------------------------1.ข้อมูลทั่วไปตลาด (บนซ้าย)------------------------------------------------------------ */
@@ -68,6 +69,7 @@ margin: 50px 68px 0px 146px !important;
     -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
 }
+
 .mrk_info {
     position: relative;
     background: #ffffff;
@@ -79,6 +81,7 @@ margin: 50px 68px 0px 146px !important;
     -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
 }
+
 /*---------------------------------------- 5. quick-menu2------------------------------------------------------- */
 .guide {
     display: grid;
@@ -143,7 +146,7 @@ a {
 }
 
 .list-group-item {
-    padding-left:0 !important;
+    padding-left: 0 !important;
 }
 
 
@@ -153,13 +156,14 @@ a {
     #mkr_name {
         font-size: 2em;
     }
+
     .guide {
         display: grid;
         grid-gap: 5px;
         grid-template-columns: repeat(1, minmax(100px, 1fr));
     }
 
-    .quick-menu2{
+    .quick-menu2 {
         margin: 10px 0;
     }
 
@@ -170,14 +174,17 @@ a {
         padding: 20px;
         margin: 50px 10px 0px 10px !important;
     }
+
     .mkrpic img {
         height: 201px;
     }
-    .mrk_info{
+
+    .mrk_info {
         top: -15vh;
         padding-top: 15vh !important;
     }
-    .guide{
+
+    .guide {
         margin-top: -12vh;
     }
 }

@@ -1,6 +1,7 @@
 body {
     padding: 20px;
     margin: 50px 68px 10px 146px !important;
+    min-width:375px;
 }
 
 :root {

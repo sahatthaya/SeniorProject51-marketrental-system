@@ -1,6 +1,7 @@
 body {
   padding: 60px 20px;
   margin: 10px 68px 0px 146px !important;
+  min-width:375px;
 }
 /* ยังไม่มีตลาด */
 .no-market{
