@@ -42,7 +42,8 @@ if (isset($_POST["searchsubmit"])) {
         JOIN amphures ON (market_detail.	amphure_id = amphures.id)
         JOIN districts ON (market_detail.district_id = districts.id)
         JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-    ORDER BY mkr_id DESC WHERE (a_id='1')";
+        WHERE (a_id='1')
+    ORDER BY mkr_id DESC ";
     $result = mysqli_query($conn, $data);
 }
 if (isset($_POST["reset"])) {
@@ -57,7 +58,8 @@ if (isset($_POST["reset"])) {
         JOIN amphures ON (market_detail.	amphure_id = amphures.id)
         JOIN districts ON (market_detail.district_id = districts.id)
         JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-    ORDER BY mkr_id DESC WHERE (a_id='1')";
+        WHERE (a_id='1')
+    ORDER BY mkr_id DESC ";
     $result = mysqli_query($conn, $data);
 }
 // top mkr query
@@ -72,7 +74,8 @@ FROM market_detail
     JOIN amphures ON (market_detail.	amphure_id = amphures.id)
     JOIN districts ON (market_detail.district_id = districts.id)
     JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-ORDER BY mkr_id DESC LIMIT 4 WHERE (a_id='1')";
+    WHERE (a_id='1')
+ORDER BY mkr_id DESC LIMIT 4 ";
 $topresultmkr = mysqli_query($conn, $topquerymkr);
 mysqli_close($conn);
 // $output ='';

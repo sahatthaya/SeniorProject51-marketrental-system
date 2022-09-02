@@ -124,7 +124,10 @@ require "../backend/manage-banner.php";
                                 <td><?php echo $count_n; ?></td>
                                 <td><?php echo $row['bn_toppic']; ?></td>
                                 <td><button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['bn_id']; ?>">ดูรายละเอียด</button></td>
-                                <td> <a href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger" style="margin-left: 5px;">ลบ</a></td>
+                                <td >
+                                    <a style="width: 30%;" href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger" style="margin-left: 5px;">ลบ</a>
+                                    <a style="width: 30%;" href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-warning" style="margin-left: 5px;">แก้ไข</a>
+                                </td>
                             </tr>
                         <?php $count_n++;
                         endwhile ?>
@@ -136,8 +139,8 @@ require "../backend/manage-banner.php";
     <?php require '../backend/modal-banner.php' ?>
 </body>
 <script>
-      //detail popup
-      $(document).ready(function() {
+    //detail popup
+    $(document).ready(function() {
         $('.modal_data').click(function() {
             var bannerid = $(this).attr("id");
             $.ajax({
@@ -155,7 +158,6 @@ require "../backend/manage-banner.php";
         })
 
     });
-
 </script>
 
 
