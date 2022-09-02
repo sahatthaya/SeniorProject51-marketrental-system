@@ -11,7 +11,10 @@
 body {
   padding: 20px;
   margin: 50px 68px 0px 146px !important;
+<<<<<<< HEAD
   min-width: 375px;
+=======
+>>>>>>> bf4c0d0521e0ca4b454c1b394b4b2ada745bdf72
 
 }
 
@@ -38,4 +41,47 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+
+
+/* ------------------------------------responsive-------------------------- */
+@media(max-width: 992px) {
+
+  body {
+    padding: 20px;
+    margin: 50px 10px 0px 100px !important;
+  }
+  
+}
+
+@media only screen and (max-width: 768px) {
+  .dataTables_scrollBody {
+    overflow: auto !important;
+  }
+
+  body {
+    padding: 10px;
+    margin: 50px 20px !important;
+  }
+
+
+  .add-btn{
+    margin: 5px 0px ;
+    width: 100%;
+    text-align: left !important;
+  }
+
+}
+
+
+@media only screen and (max-width: 600px) {
+  body {
+    padding: 10px;
+    margin: 50px 20px !important;
+  }
+
+
+
+
 }
