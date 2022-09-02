@@ -49,7 +49,7 @@ $result_province = mysqli_query($conn, $query_province);
       <div id="stepOne" class="row border shadow-sm pt-5 pb-3 px-5 mt-3 mb-3 rounded">
         <div class="des_input">ชื่อตลาด</div>
         <input class="form-control col-6" type="text" value="<?php echo $row['mkr_name']; ?>" name="mkr_name" required>
-        <div id="mkrtype">
+        <div id="mkrtype" class="mb-3">
           <div class="des_input">ประเภทตลาด</div>
           <div class="search_select_box">
             <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
@@ -60,7 +60,11 @@ $result_province = mysqli_query($conn, $query_province);
             </select>
           </div>
         </div>
-        <div class="des_input mt-3">สถานที่ตั้ง</div>
+        <div class="des_input mt-3 hstack gap-2">สถานที่ตั้ง
+          <div data-toggle="tooltip" title="หากต้องการเปลี่ยนแปลงจังหวัด อำเภอ หรือ ตำบลใหม่ ต้องทำการเลือก จังหวัด อำเภอ และตำบลใหม่" class="mt-1">
+            <i class='bx bx-info-circle'></i>
+          </div>
+        </div>
         <div class="row p-0 m-0 mt-2">
           <div class="col-2 p-0 pt-2">บ้านเลขที่ :</div>
           <div class="col-4 p-0">
