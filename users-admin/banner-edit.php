@@ -76,7 +76,7 @@ if (isset($_GET["bn_id"])) {
                     </div>
                     <input class="form-control col-6" type="text" placeholder="หัวข้อ" name="bn_id" value="<?php echo $row2['bn_id'] ?>" hidden>
 
-                    <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="ยืนยันคำร้อง">
+                    <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="บันทึกข้อมูล">
                 </div>
             </div>
         </form>

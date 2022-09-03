@@ -58,12 +58,12 @@ function previousbtn() {
     document.getElementById("stepTwo").style.display = "none";
     document.getElementById("stepThree").style.display = "none";
 }
-function gotostep3(){
+function gotostep3() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "none";
     document.getElementById("stepThree").style.display = "block";
 }
-function backtostep2(){
+function backtostep2() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "block";
     document.getElementById("stepThree").style.display = "none";
@@ -91,3 +91,4 @@ $(document).ready(function () {
     });
 
 });
+
