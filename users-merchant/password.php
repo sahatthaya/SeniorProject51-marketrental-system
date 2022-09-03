@@ -34,15 +34,25 @@ if (isset($_POST['submit-edtpsw'])) {
 <body>
     <h1 id="headline">เปลี่ยนรหัสผ่าน</h1>
     <form method="POST" id="edtpsw">
-        <div class="des_input">รหัสผ่านปัจุบัน</div>
-        <input class="input inputcolor" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
-        <div class="des_input">รหัสผ่านใหม่</div>
-        <input class="input inputcolor" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
-        <span class="note">**กรุณาตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร</span>
-        <br>
-        <div class="des_input">ยืนยันรหัสผ่าน</div>
-        <input class="input inputcolor" type="password" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" require>
-        <input class="input submit" type="submit" name="submit-edtpsw" onclick="validatePassword()" value="บันทึกการแก้ไข">
+
+        <div class="row border shadow-sm pt-5 pb-3 px-4 mt-3 mb-3 rounded">
+            <div class="col-12">
+                <label for="inputAddress " class="form-label des_input">รหัสผ่านปัจุบัน</label>
+                <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
+            </div>
+            <div class="col-12">
+                <label for="inputEmail4" class="form-label des_input">รหัสผ่านใหม่</label>
+                <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
+                <span class="note">**กรุณาตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร</span>
+            </div>
+            <div class="col-12">
+                <label for="inputPassword4" class="form-label des_input">ยืนยันรหัสผ่าน</label>
+                <input class="input inputcolor form-control" type="password" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" require>
+            </div>
+            <div class="col-12">
+            <input class="input submit btn btn-primary" type="submit" name="submit-edtpsw" onclick="validatePassword()" value="บันทึกการแก้ไข">
+            </div>
+        </div>
     </form>
 
 </body>

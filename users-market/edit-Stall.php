@@ -9,7 +9,7 @@
     <title>จัดการแผงค้า</title>
     <!-- css  -->
     <link rel="stylesheet" href="../css/editStall.css" type="text/css">
-    <link rel="stylesheet" href="../css/banner.css" type="text/css">
+    <!-- <link rel="stylesheet" href="../css/banner.css" type="text/css"> -->
 </head>
 <?php
 include "profilebar.php";
@@ -201,7 +201,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                     </div>
                     <label>ขนาดพื้นที่ :</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" placeholder="กว้าง" name="sWidth" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                        <input type="number" class="form-control "  placeholder="กว้าง" name="sWidth" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
                         <span class="input-group-text">*</span>
                         <input type="number" class="form-control" placeholder="ยาว" name="sHeight" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
                         <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">

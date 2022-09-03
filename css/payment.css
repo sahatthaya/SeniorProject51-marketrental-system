@@ -1,9 +1,10 @@
-body{
+body {
     padding: 10px;
-    margin:50px 20px ;
+    margin: 50px 20px;
     min-width: 375px;
 
 }
+
 .content {
     padding: 10px;
     display: grid;
@@ -40,7 +41,63 @@ input {
     margin: 0px 30%;
 }
 
-.pay input{
+.pay input {
     width: 60% !important;
 }
 
+
+/* ------------------------------------responsive-------------------------- */
+@media(max-width: 992px) {
+
+    body {
+        padding: 20px;
+        margin: 50px 10px 0px 100px !important;
+    }
+
+    .content {
+        display: block !important;
+    }
+
+    .pay {
+        border-left: none;
+        border-top: 1px solid rgb(205, 205, 205);
+        padding: 15px;
+        padding-top: 15px;
+        margin-top: 10px;
+    
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    .dataTables_scrollBody {
+        overflow: auto !important;
+    }
+
+    body {
+        padding: 10px;
+        margin: 50px 20px !important;
+    }
+
+    #headline {
+        font-size: 25px;
+    }
+
+    .content {
+        display: block !important;
+    }
+
+
+
+}
+
+
+@media only screen and (max-width: 600px) {
+    body {
+        padding: 10px;
+        margin: 50px 20px !important;
+    }
+
+
+
+}

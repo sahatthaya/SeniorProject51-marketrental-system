@@ -69,6 +69,31 @@ function backtostep2() {
     document.getElementById("stepThree").style.display = "none";
 }
 
+
+// check stall-------------------------------------------------------------------------------------------------------
+function checkInfo() {
+    var fristname = document.getElementById("fristname").value;
+    var lastname = document.getElementById("lastname").value;
+    var myemail = document.getElementById("myemail").value;
+    var mytel = document.getElementById("mytel").value;
+    var stallName = document.getElementById("stallName").value;
+    var rentperiod = document.getElementById("rentperiod").value;
+    var productType = document.getElementById("productType").value;
+    var dateRent = document.getElementById("dateRent").value;
+    var Infomrk = document.getElementById("Infomrk").value;
+    document.getElementById("demofristname").innerHTML = fristname;
+    document.getElementById("demolastname").innerHTML = lastname;
+    document.getElementById("demoemail").innerHTML = myemail;
+    document.getElementById("demotel").innerHTML = mytel;
+    document.getElementById("demostallName").innerHTML = stallName;
+    document.getElementById("demorentperiod").innerHTML = rentperiod;
+    document.getElementById("demoproductType").innerHTML = productType;
+    document.getElementById("demodateRent").innerHTML = dateRent;
+    document.getElementById("demoInfomrk").innerHTML = Infomrk;
+
+}
+
+
 //banner--------------------------------------------------------------------------------------------------------------  
 $(document).ready(function () {
     $("#myTable").DataTable({

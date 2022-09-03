@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/complain.css">
+    <link rel="stylesheet" href="./css/banner.css">
 </head>
 <?php
 include "profilebar.php";
@@ -46,7 +47,7 @@ $result = mysqli_query($conn, $data);
 ?>
 
 <body onload="plslogin( event );">
-    <div>
+<div>
         <h1 id="headline">ระบบร้องเรียน <?php echo $row['mkr_name'] ?></h1>
         <div class="postbox">
             <form method="POST" enctype="multipart/form-data">
@@ -59,23 +60,22 @@ $result = mysqli_query($conn, $data);
                 </select>
 
                 <label>หัวเรื่อง : </label>
-                <input name="subject" type="text" required>
-                <input name="compfile" type="file">
+                <input class="subject" name="subject" type="text" required>
+                <input class="compfile" name="compfile" type="file">
                 <br>
                 <label>เรื่องร้องเรียน : </label>
                 <br>
                 <textarea name="comp_detail" required></textarea>
-                <button type="button" name="post-btn" onclick="plslogin( event );" class="btn btn-light">ส่ง <i class='bx bxs-paper-plane'></i></button>
+                <button name="post-btn" type="submit" class="btn btn-light">ส่ง <i class='bx bxs-paper-plane'></i></button>
             </form>
         </div>
         <?php while ($row = $result->fetch_assoc()) : ?>
             <div class="commentbox">
-
                 <div class="row">
-                    <div class="col-4">
-                        <img src="<?php echo $row['comp_file']; ?>" class="imgcomment" alt="">
+                    <div class="col-md-4">
+                        <img src="../<?php echo $row['comp_file']; ?>" class="imgcomment" alt="">
                     </div>
-                    <div class="col-8">
+                    <div class="col-md-8">
                         <p class="float-end" id="timestamp"><?php echo $row['timestamp'] ?></p>
                         <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
                         <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
@@ -88,7 +88,6 @@ $result = mysqli_query($conn, $data);
                 <label class="reply_detail"><?php echo $row['reply'] ?></label>
             </div>
         <?php endwhile; ?>
-
     </div>
 
 </body>
