@@ -1,6 +1,7 @@
 <?php
 include "../backend/1-connectDB.php";
 
+// stall info----------------------------------------------------------------
 if (isset($_POST["sKey"])) {
     $sKey = $_POST["sKey"];
     $data = "SELECT * FROM stall WHERE (sKey = '$sKey')";
@@ -43,6 +44,8 @@ if (isset($_POST["sKey"])) {
     echo $output;
 }
 
+// edit stall info----------------------------------------------------------------
+
 if (isset($_POST['edtStall-submit'])) {
     $sKey = $_POST["KeyID"];
     $sID = $_POST['sID'];
@@ -58,10 +61,8 @@ if (isset($_POST['edtStall-submit'])) {
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1"; />';
-
         } else {
             echo "<script type='text/javascript'> error(); </script>";
-
         }
     } else {
         echo "<script type='text/javascript'> error(); </script>";
@@ -69,10 +70,31 @@ if (isset($_POST['edtStall-submit'])) {
 }
 
 
-if(isset($_POST['x'])&& isset($_POST['y'])&&isset($_POST['skey'])){
+if (isset($_POST['x']) && isset($_POST['y']) && isset($_POST['skey'])) {
     $x = $_POST['x'];
-    $y=$_POST['y'];
+    $y = $_POST['y'];
     $sKey = $_POST['skey'];
 
     echo "<script>alert('$x.$y.$skey')</script>";
+}
+
+// update cost/unit----------------------------------------------------------------
+if (isset($_POST['editcost'])) {
+    $cu_id = $_POST['cu_id'];
+    $cu_name = $_POST['cu_name'];
+    $cu_price = $_POST['cu_price'];
+    $cu_type = $_POST['cu_type'];
+
+    if (isset($cu_id) != '' && isset($cu_name) != '' && isset($cu_price) != '' && isset($cu_type) != '') {
+        $updatesql = mysqli_query($conn, "UPDATE `cost/unit` SET cu_name ='$cu_name',`cu_price`='$cu_price',`cu_type`='$cu_type' WHERE (`cu_id` = '$cu_id')");
+
+        if ($updatesql != '') {
+            echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1"; />';
+        } else {
+            echo "<script type='text/javascript'> error(); </script>";
+        }
+    } else {
+        echo "<script type='text/javascript'> error(); </script>";
+    }
 }
