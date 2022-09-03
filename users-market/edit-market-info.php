@@ -106,10 +106,9 @@ $result_province = mysqli_query($conn, $query_province);
         <div class="des_input">เบอร์โทรศัพท์</div>
         <input type="text" id="tel" class="form-control" name="tel" value="<?php echo $row["tel"] ?>">
         <div class="des_input">รูปภาพตลาด</div>
-        <input type="file" class="form-control" name="ct_logo">
-        <div class="des_input">รูปภาพตลาดปัจุบัน : </div>
+        <input type="file" class="form-control" name="ct_logo" id="mkr">
         <div class="p-0">
-          <img style="width:750px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row["mkr_pic"] ?>'>
+          <img style="width:750px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row["mkr_pic"] ?>' id="mkrpic">
         </div>
         <input type="submit" class="btn btn-primary mt-3" id="add-data" name="bn-submit" value="บันทึกข้อมูล">
       </div>
@@ -133,6 +132,12 @@ $result_province = mysqli_query($conn, $query_province);
   $("#zip-code").inputmask({
     "mask": "99999"
   });
-</script>
 
+  mkr.onchange = evt => {
+        const [file] = mkr.files
+        if (file) {
+            mkrpic.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 </html>

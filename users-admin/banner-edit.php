@@ -49,10 +49,10 @@ if (isset($_GET["bn_id"])) {
                     <textarea name="bn_detail" class=" form-control" placeholder="รายละเอียด" id="" cols="30" rows="5" style="border-radius: 5px;resize: none; margin-left:5px;" required> <?php echo $row2['bn_detail'] ?></textarea>
 
                     <div class="des_input">รูปภาพ</div>
-                    <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_pic">
+                    <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_pic" id="imgInp">
                     <div class="des_input">รูปภาพปัจุบัน : </div>
                     <div class="p-0">
-                        <img style="width:750px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row2["bn_pic"] ?>'>
+                        <img style="width:750px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row2["bn_pic"] ?>' id="blah">
                     </div>
                     <input class="form-control col-6" type="text" placeholder="หัวข้อ" name="bn_id" value="<?php echo $row2['bn_id'] ?>" hidden>
 
@@ -62,5 +62,13 @@ if (isset($_GET["bn_id"])) {
         </form>
     </div>
 </body>
+<script>
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 
 </html>

@@ -36,10 +36,10 @@ require "../backend/manage-contact.php";
                     <div class="inputct">
                         <h6>รูปภาพโลโก้</h6>
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control" name="ct_logo">
+                            <input type="file" class="form-control" name="ct_logo" id="logo">
                         </div>
                         <div class="mb-3 center">
-                            <img style="height:200px;" src="../<?php echo $row["ct_logo"] ?>" class="img-thumbnail round">
+                            <img style="height:200px;" src="../<?php echo $row["ct_logo"] ?>" class="img-thumbnail round" id="logoex">
                         </div>
                     </div>
                     <div class="inputct">
@@ -58,10 +58,10 @@ require "../backend/manage-contact.php";
                             <input type="text" name="ct1_email" class="form-control" placeholder="อีเมล" aria-describedby="basic-addon3" value="<?php echo $row["ct1_email"] ?>">
                         </div>
                         <div class="input-group mb-3">
-                            <input type="file" name="ct1_pic" class="form-control">
+                            <input type="file" name="ct1_pic" class="form-control" id="con1">
                         </div>
                         <div class="mb-3 center">
-                            <img style="height:200px;" src="../<?php echo $row["ct1_pic"] ?>" class="img-thumbnail round">
+                            <img style="height:200px;" src="../<?php echo $row["ct1_pic"] ?>" class="img-thumbnail round" id="con1ex">
                         </div>
                     </div>
                     <div class="inputct">
@@ -80,10 +80,10 @@ require "../backend/manage-contact.php";
                             <input type="text" name="ct2_email" class="form-control" placeholder="อีเมล" aria-describedby="basic-addon3" value="<?php echo $row["ct2_email"] ?>">
                         </div>
                         <div class="input-group mb-3">
-                            <input type="file" name="ct2_pic" class="form-control">
+                            <input type="file" name="ct2_pic" class="form-control" id="con2">
                         </div>
                         <div class="mb-3 center">
-                            <img style="height:200px;" src="../<?php echo $row["ct2_pic"] ?>" class="img-thumbnail round">
+                            <img style="height:200px;" src="../<?php echo $row["ct2_pic"] ?>" class="img-thumbnail round" id="con2ex">
                         </div>
 
                     </div>
@@ -112,7 +112,7 @@ require "../backend/manage-contact.php";
                     <div class="card-body">
                         <h2 class="center"><?php echo $row["ct1_fname"] . " " . $row["ct1_lname"] ?></h2>
                         <p class="center"><?php echo $row["ct1_email"] ?>
-  
+
                         </p>
                         <p class="center"> <?php echo $row["ct1_tel"] ?></p>
 
@@ -144,5 +144,26 @@ require "../backend/manage-contact.php";
 
 
 </body>
+<script>
+    logo.onchange = evt => {
+        const [file] = logo.files
+        if (file) {
+            logoex.src = URL.createObjectURL(file)
+        }
+    }
+
+    con1.onchange = evt => {
+        const [file] = con1.files
+        if (file) {
+            con1ex.src = URL.createObjectURL(file)
+        }
+    }
+    con2.onchange = evt => {
+        const [file] = con2.files
+        if (file) {
+            con2ex.src = URL.createObjectURL(file)
+        }
+    }
+</script>
 
 </html>
