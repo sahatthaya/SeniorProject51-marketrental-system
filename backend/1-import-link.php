@@ -86,13 +86,13 @@
             text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
             icon: 'error',
             showConfirmButton: false,
-            timer: 2500
+            timer: 2500 
         })
     }
     function plslogin() {
         Swal.fire({
             title: 'คุณยังไม่ได้เข้าสู่ระบบ',
-            text: 'กรุณาเข้าสู่ระบบเพื่อทำการจองแผงค้า',
+            text: 'กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ',
             icon: 'warning',
             showConfirmButton: false,
             timer: 3000
