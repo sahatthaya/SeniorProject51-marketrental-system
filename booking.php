@@ -88,7 +88,7 @@
                                             <tr>
                                                 <td>ขนาดแผงค้า</td>
                                                 <td><?php echo $row1['sWidth'] ?> * <?php echo $row1['sHeight'] ?> <?php echo $row1['sAreaUnit'] ?></td>
-                                               
+
                                             </tr>
                                             <tr>
                                                 <td>ค่ามัดจำ</td>
@@ -116,16 +116,5 @@
         </div>
     </div>
 </body>
-<script>
-    function plslogin() {
-        Swal.fire({
-            title: 'คุณยังไม่ได้เข้าสู่ระบบ',
-            text: 'กรุณาเข้าสู่ระบบเพื่อทำการจองแผงค้า',
-            icon: 'warning',
-            showConfirmButton: false,
-            timer: 3000
-        })
-    }
-</script>
 
 </html>

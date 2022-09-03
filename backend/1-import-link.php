@@ -61,5 +61,43 @@
   <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
 </head>
+<script type="text/javascript">
+    function success() {
+        Swal.fire({
+            title: 'บันทึกข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+
+    function delsuccess() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+
+    function error() {
+        Swal.fire({
+            title: 'ผิดพลาด',
+            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+    function plslogin() {
+        Swal.fire({
+            title: 'คุณยังไม่ได้เข้าสู่ระบบ',
+            text: 'กรุณาเข้าสู่ระบบเพื่อทำการจองแผงค้า',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }
+</script>
 
 </html>

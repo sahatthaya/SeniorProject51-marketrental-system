@@ -8,26 +8,7 @@
     <link rel="stylesheet" href="../css/password.css" type="text/css">
     <title>เปลี่ยนรหัสผ่าน</title>
 </head>
-<script type="text/javascript">
-    function success() {
-        Swal.fire({
-            title: 'แก้ไขข้อมูลสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
 
-    function error() {
-        Swal.fire({
-            title: 'ผิดพลาด',
-            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-</script>
 <?php
 include "profilebar.php";
 include "nav.php";

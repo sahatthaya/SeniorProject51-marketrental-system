@@ -92,16 +92,6 @@ $result = mysqli_query($conn, $data);
     </div>
 
 </body>
-<script>
-    function plslogin() {
-        Swal.fire({
-            title: 'คุณยังไม่ได้เข้าสู่ระบบ',
-            text: 'กรุณาเข้าสู่ระบบเพื่อส่งเรื่องร้องเรียน',
-            icon: 'warning',
-            showConfirmButton: false,
-            timer: 3000
-        })
-    }
-</script>
+
 
 </html>

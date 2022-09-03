@@ -11,35 +11,7 @@
     <link rel="stylesheet" href="../css/editStall.css" type="text/css">
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
-<script type="text/javascript">
-    function success() {
-        Swal.fire({
-            title: 'บันทึกข้อมูลสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
 
-    function delsuccess() {
-        Swal.fire({
-            title: 'ลบข้อมูลสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-
-    function error() {
-        Swal.fire({
-            title: 'ผิดพลาด',
-            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-</script>
 <?php
 include "profilebar.php";
 include "nav.php";

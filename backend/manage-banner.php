@@ -27,12 +27,15 @@ if (isset($_POST['bn-submit'])) {
         move_uploaded_file($bn_tmp, $bn_img);
         $sqlInsert = "INSERT INTO banner (bn_toppic,bn_detail,bn_pic) VALUES ('$bn_toppic','$bn_detail','$path') ";
         if (mysqli_query($conn, $sqlInsert)) {
-            echo "<script>alert('ลงทะเบียนสำเร็จ');</script>";
+            echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1"; />';
         } else {
-            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+            echo "<script type='text/javascript'> error(); </script>";
+
         }
     } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        echo "<script type='text/javascript'> error(); </script>";
+
     }
 }
 
@@ -74,10 +77,8 @@ if ($_GET) {
     $sqlDelUsers = "DELETE FROM banner WHERE bn_id = '$bn_id'";
     if ($rsDelUsers = mysqli_query($conn, $sqlDelUsers)) {
         echo "<script>alert('ลบข้อมูลเสร็จสิ้น');window.location = '../users-admin/banner.php';</script>";
-        mysqli_close($conn);
     } else {
         echo "<script>alert ('ผิดพลาด ไม่สามารถลบข้อมูลได้');window.location = '../users-admin/banner.php';</script>";
     }
 }
 
-mysqli_close($conn);

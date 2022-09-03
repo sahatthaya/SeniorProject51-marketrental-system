@@ -17,6 +17,7 @@ include "../backend/1-import-link.php";
 require "../backend/manage-banner.php";
 ?>
 
+
 <body>
     <h1 id="headline">จัดการแบนเนอร์</h1>
     <!-- carousel -->

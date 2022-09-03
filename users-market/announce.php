@@ -9,26 +9,7 @@
     <link rel="stylesheet" href="../css/applicant.css" type="text/css">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<script type="text/javascript">
-    function success() {
-        Swal.fire({
-            title: 'ส่งข้อมูลสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
 
-    function error() {
-        Swal.fire({
-            title: 'ผิดพลาด',
-            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-</script>
 <?php
 include "profilebar.php";
 include "nav.php";

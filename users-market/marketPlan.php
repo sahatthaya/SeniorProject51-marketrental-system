@@ -23,24 +23,6 @@
 
 </head>
 <script type="text/javascript">
-    function success() {
-        Swal.fire({
-            title: 'บันทึกการเปลี่ยนแปลงสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-
-    function error() {
-        Swal.fire({
-            title: 'ผิดพลาด',
-            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
     $(document).ready(function() {
 
         var $boxstall = $("#plan"),

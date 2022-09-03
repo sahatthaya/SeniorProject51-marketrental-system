@@ -8,26 +8,7 @@
     <title>ระบบร้องเรียน</title>
     <link rel="stylesheet" href="../css/complain.css">
 </head>
-<script type="text/javascript">
-    function success() {
-        Swal.fire({
-            title: 'ส่งข้อมูลสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
 
-    function error() {
-        Swal.fire({
-            title: 'ผิดพลาด',
-            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-</script>
 <?php
 include "profilebar.php";
 include "nav.php";
@@ -111,16 +92,6 @@ require "../backend/add-complain.php";
     </div>
 
 </body>
-<script>
-    function plslogin() {
-        Swal.fire({
-            title: 'คุณยังไม่ได้เข้าสู่ระบบ',
-            text: 'กรุณาเข้าสู่ระบบเพื่อส่งเรื่องร้องเรียน',
-            icon: 'warning',
-            showConfirmButton: false,
-            timer: 3000
-        })
-    }
-</script>
+
 
 </html>

@@ -9,27 +9,6 @@
     <title>หน้าหลัก(เจ้าของตลาด)</title>
 
 </head>
-<script type="text/javascript">
-    function delsuccess() {
-        Swal.fire({
-            title: 'ลบข้อมูลสำเร็จ',
-            icon: 'success',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-
-    function error() {
-        Swal.fire({
-            title: 'ผิดพลาด',
-            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
-            icon: 'error',
-            showConfirmButton: false,
-            timer: 2500
-        })
-    }
-</script>
-
 
 <?php
 include "profilebar.php";
