@@ -55,6 +55,16 @@ include "backend/1-import-link.php";
                     <li><a class="link_name" href="booking-from.php">กรอกข้อมูลจองแผง</a></li>
                 </ul>
             </li>
+
+            <li class="navlink">
+                <a href="modal-rent.php">
+                    <i class='bx bxs-heart'></i>
+                    <span class="link_name">จองแผงค้า modal</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="modal-rent.php">จองแผงค้า modal</a></li>
+                </ul>
+            </li>
         </ul>
     </div>
     <script src="backend/script.js"></script>
