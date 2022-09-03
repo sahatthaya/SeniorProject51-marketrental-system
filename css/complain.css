@@ -194,6 +194,42 @@ input[type=file]::file-selector-button:hover {
 
 }
 
+@media(max-width: 768px) {
+
+    body {
+        margin: 50px 10px 0px 20px !important;
+    }
+
+
+    .commentbox img {
+        width: 100%;
+    }
+
+    .postbox .subject {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 230px;
+        margin: 10px 0 0 3px;
+    }
+
+    .postbox select {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 230px;
+        margin: 0 0 0 17px;
+    }
+
+    .postbox .compfile {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 200px;
+        margin: 10px 0;
+    }
+
+}
 
 @media(max-width:720px) {
     body {
@@ -210,18 +246,82 @@ input[type=file]::file-selector-button:hover {
         font-size: medium;
     }
 
-    
+
     .float-end{
         font-size: small;
         margin-bottom: 10px;
         margin-top: 10px;
     }
 
+    .postbox{
+        margin-right: 20px;
+    }
+
+    .commentbox img {
+        width: 100%;
+    }
+
+    .postbox .subject {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 200px;
+        margin: 10px 0 0 3px;
+    }
+
+    .postbox select {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 200px;
+        margin: 0 0 0 17px;
+    }
+
+    .postbox .compfile {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 200px;
+        margin: 10px 0;
+    }
+
 
 }
 
 
-@media(max-width:370px) {
+@media(max-width:350px) {
+
+    .commentbox img {
+        width: 100%;
+    }
+
+    .postbox .subject {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 230px;
+        margin: 20px 0 0 3px;
+    }
+
+    .postbox select {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 230px;
+        margin: 0 0 0 17px;
+    }
+
+    .postbox .compfile {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 230px;
+        margin: 10px 0;
+    }
+
+}
+
+@media(max-width:327px) {
 
     .commentbox img {
         width: 100%;
@@ -252,4 +352,5 @@ input[type=file]::file-selector-button:hover {
     }
 
 }
+
 

@@ -167,7 +167,7 @@ input:invalid{
     }
 
     .col-sm-10{
-        margin: opx !important;
+        margin: 0px !important;
     }
 
 
@@ -206,10 +206,6 @@ input:invalid{
 
     .col-md-4 {
         margin: 2px 6px !important;
-    }
-
-    .gap-3 {
-        display: block !important; 
     }
 
     .form-control {

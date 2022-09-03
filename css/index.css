@@ -12,7 +12,7 @@
 body {
     padding: 20px;
     margin: 50px 68px 0px 146px !important;
-    min-width:375px;
+    min-width: 375px;
 
 }
 
@@ -217,6 +217,10 @@ body {
 }
 
 @media(max-width: 992px) {
+    body {
+        padding: 20px;
+        margin: 50px 10px 0px 90px !important;
+    }
     .box {
         display: grid;
         grid-gap: 20px;
@@ -261,7 +265,7 @@ body {
         margin: 50px 10px 0px 10px !important;
     }
 
-   
+
 
     h3 .col-10 {
         font-size: 14px !important;
@@ -275,10 +279,37 @@ body {
 }
 
 
-@media(max-width:370px) {
+@media(max-width:327px) {
 
     body {
         padding: 10px;
+    }
+
+    .box {
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+    }
+
+    .guide {
+        display: grid;
+        grid-gap: 10px;
+        grid-template-columns: repeat(1, 1fr);
+        text-align: center;
+    }
+
+    .users-guide button {
+        width: fit-content;
+        font-size: large;
+    }
+
+    .guide-btn {
+        margin-top: 10px;
+    }
+
+    .contentbox p {
+        font-size: 16px;
     }
 
 

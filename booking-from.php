@@ -19,124 +19,107 @@ include "backend/1-import-link.php";
 ?>
 
 <body>
-    <div class="applybox">
-        <h1 id="headline">กรอกข้อมูลเพื่อสร้างคำร้องขอเป็นพาร์ทเนอร์</h1>
-        <form id="applyform" method="POST" enctype="multipart/form-data" novalidate>
-            <!-- แถบโปรเกสฟอร์ม -->
-            <section class="step-wizard">
-                <ul class="step-wizard-list">
-                    <li id="Onestep" class="step-wizard-item">
-                        <span class="progress-count">1</span>
-                        <span class="progress-label">ข้อมูลส่วนตัว</span>
-                    </li>
-                    <li id="Twostep" class="step-wizard-item  current-item">
-                        <span class="progress-count">2</span>
-                        <span class="progress-label">ข้อมูลตลาด</span>
-                    </li>
-                    <li id="Threestep" class="step-wizard-item  current-item">
-                        <span class="progress-count">3</span>
-                        <span class="progress-label">ตรวจสอบข้อมูล</span>
-                    </li>
-                </ul>
-            </section>
 
-            <div class="form-outer form-group" style="overflow: visible;">
-                <!-- form--1 -->
-                <div id="stepOne" class="row">
-                    <div class="des_input">ชื่อ</div>
-                    <input class="form-control col-6" type="text" placeholder="ชื่อ" name="firstName" pattern="[^0-9]+" required autofocus>
-                    <div class="des_input">นามสกุล</div>
-                    <input class="form-control col-6" type="text" placeholder="นามสกุล" name="lastName" pattern="[^0-9]+" required>
-                    <div class="des_input">อีเมล</div>
-                    <input class="sqr-input col-12 form-control " type="email" placeholder="อีเมล" name="email" required>
-                    <div class="des_input">เบอร์โทรศัพท์</div>
-                    <input name="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
-                    <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
-                    <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top: 20px;">
-                        <button class="btn btn-primary w-25" type="button" onclick="nextbtn()" id="next">ถัดไป</button>
-                    </div>
+    <form id="applyform" method="POST" enctype="multipart/form-data" novalidate>
+        <div class="form-outer form-group " style="overflow: visible;">
+            <h1 id="headline">กรอกข้อมูลเพื่อส่งคำร้องขอเพิ่มตลาดใหม่</h1>
+
+            <!-- form--1 -->
+            <div id="stepOne" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
+                <h4 class="p-0"><span class="text-secondary">ขั้นที่ 1</span> กรอกข้อมูลส่วนตัว</h4>
+                <div class="progress p-0 my-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 33.3%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">1/3 </div>
                 </div>
-
-                <!-- form--2-->
-                <div id="stepThree" class="row">
-                    <div class="des_input">ชื่อนะจ๊ะ</div>
-                    <input class="form-control col-6" type="text" placeholder="ชื่อ" name="firstName" pattern="[^0-9]+" required autofocus>
-                    <div class="des_input">นามสกุล</div>
-                    <input class="form-control col-6" type="text" placeholder="นามสกุล" name="lastName" pattern="[^0-9]+" required>
-                    <div class="des_input">อีเมล</div>
-                    <input class="sqr-input col-12 form-control " type="email" placeholder="อีเมล" name="email" required>
-                    <div class="des_input">เบอร์โทรศัพท์</div>
-                    <input name="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
-                    <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
-                    <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end" style="margin-top: 20px;">
-                        <button name="previous" class="btn btn-primary me-md-4 w-25" type="button" onclick="previousbtn()" id="back">ย้อนกลับ</button>
-                        <button class="btn btn-primary w-25" type="button" onclick="nextbtn2()" id="next">ถัดไป</button>
-                    </div>
-                </div>
-
-                <!-- form--3 -->
-                <div id="stepTwo" class="row">
-                    <div class="des_input">ชื่อตลาด</div>
-                    <input class=" col-12 form-control" type="text" placeholder="ชื่อตลาด" name="mkrName" required>
-                    <div class="row" id="dropdown">
-                        <div class="col-6" id="mkrtype">
-                            <div class="des_input">ประเภทตลาด</div>
-                            <div class="search_select_box">
-                                <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
-                                    <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :; ?>
-                                        <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-6" id="provincebox">
-                            <div class="des_input">จังหวัด</div>
-                            <div class="search_select_box">
-                                <select name="province" id="province" class="selectpicker" data-live-search="true" title="เลือกจังหวัด" data-width="100%" data-size="5" required>
-                                    <?php while ($row1 = mysqli_fetch_array($result_province)) :; ?>
-                                        <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
-                                    <?php endwhile; ?>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="des_input">สถานที่ตั้ง</div>
-                    <div class="input-group hstack gap2">
-                        <div class="first-des-address ">ที่อยู่ :</div>
-                        <input class="form-control " type="text" placeholder="ที่อยู่" name="HouseNo" required>
-                        <div class="des-address ">ซอย :</div>
-                        <input class="form-control " type="text" placeholder="ซอย" name="Soi">
-                        <div class="des-address ">หมู่ :</div>
-                        <input class="form-control " type="text" placeholder="หมู่" name="Moo">
-                        <div class="des-address ">ถนน :</div>
-                        <input class="form-control " type="text" placeholder="ถนน" name="Road" required>
-                    </div>
-                    <div class="input-group hstack gap2">
-                        <div class="first-des-address ">ตำบล/แขวง :</div>
-                        <input class="form-control" type="text" placeholder="ตำบล/แขวง" name="Subdistrict" required>
-                        <div class="des-address ">อำเภอ/เขต :</div>
-                        <input class="form-control" type="text" placeholder="อำเภอ/เขต" name="District" required>
-                        <div class="des-address ">จังหวัด :</div>
-                        <input class="form-control" type="text" placeholder="จังหวัด" name="Province" required>
-                        <div class="des-address ">รหัสไปรษณีย์ :</div>
-                        <input class="form-control" type="text" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
-                    </div>
-
-                    <div class="des_input">รายละเอียดตลาดโดยสังเขป</div>
-                    <input class="form-control col-12" type="text" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" required>
-                    <div class="des_input">อัปโหลดเอกสารหรือรูปภาพเพื่อยืนยันตลาด</div>
-                    <input class="sqr-input col-12 form-control" type="file" placeholder="เช่น ตลาดขายปลีก ใจกลางเมือง ทำเลดี ติดถนนใหญ่" name="mkrFile" required>
-                    <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn2()" id="back">
-                    <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง">
-
-                </div>
+                <div class="des_input">ชื่อ</div>
+                <input class="form-control col-6" type="text" placeholder="ชื่อ" name="firstName" pattern="[^0-9]+" required autofocus>
+                <div class="des_input">นามสกุล</div>
+                <input class="form-control col-6" type="text" placeholder="นามสกุล" name="lastName" pattern="[^0-9]+" required>
+                <div class="des_input">อีเมล</div>
+                <input class="sqr-input col-12 form-control " type="email" placeholder="อีเมล" name="email" required>
+                <div class="des_input">เบอร์โทรศัพท์</div>
+                <input name="tel" id="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
+                <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
+                <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
+                <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn()" id="next">
             </div>
-        </form>
-    </div>
+            <!-- form--2 -->
+            <div id="stepTwo" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
+
+                <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> กรอกข้อมูลตลาด</h4>
+                <div class="progress p-0 my-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width:  67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100">2/3 </div>
+                </div>
+                <div class="des_input">ชื่อร้านค้า</div>
+                <input class=" col-12 form-control" type="text" placeholder="ชื่อร้านค้า" name="storeName" required>
+                <div class="des_input">ระยะเวลาการเช่า</div>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <div class="des_input">ประเภทสินค้า</div>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Open this select menu</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+
+               
+
+                <div class="des_input">วันที่เริ่มเช่า</div>
+                <input class=" col-12 form-control" type="date" placeholder="ชื่อร้านค้า" name="storeName" required>
+
+
+                <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
+                    <div data-toggle="tooltip" title="เช่น ตลาดค้าส่ง ทำเลดี ติดถนนใหญ่ใกล้สี่แยกไฟแดง" class="mt-1">
+                        <i class='bx bx-info-circle'></i>
+                    </div>
+                </div>
+                <input class="form-control col-12" type="text" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" required>
+                <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn()" id="back">
+                <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="gotostep3()" id="next">
+
+            </div>
+
+            <!-- form--3 -->
+            <div id="stepThree" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
+
+                <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 3</span> กรอกข้อมูลตลาด</h4>
+                <div class="progress p-0 my-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">3/3 </div>
+                </div>
+
+
+
+                <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="backtostep2()" id="back">
+                <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง">
+            </div>
+
+        </div>
+    </form>
+    <script src="../backend/script.js"></script>
+    <script src="script.js"></script>
 
 </body>
+<script>
+    $(document).ready(function() {
+        $("body").tooltip({
+            selector: '[data-toggle=tooltip]',
+            placement: 'right'
+        });
+    });
+    $(":input").inputmask();
+
+    $("#tel").inputmask({
+        "mask": "9999999999"
+    });
+    $("#zip-code").inputmask({
+        "mask": "99999"
+    });
+</script>
+
 <script src="./backend/script.js"></script>
 
 </html>

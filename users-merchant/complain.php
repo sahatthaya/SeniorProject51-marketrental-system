@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ระบบร้องเรียน</title>
     <link rel="stylesheet" href="../css/complain.css">
+    <link rel="stylesheet" href="../css/banner.css">
+
 </head>
 <script type="text/javascript">
     function success() {
