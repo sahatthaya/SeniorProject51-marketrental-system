@@ -107,7 +107,7 @@ include "../backend/1-import-link.php";
                 <div class="des_input">รายละเอียดตลาดโดยสังเขป</div>
                 <input class="form-control col-6" id="demoInfomrk" disabled>
                 <input type="button" name="previous" class="btn btn-info" style="color: white;" value="ย้อนกลับ" onclick="backtostep2()" id="back">
-                <input  name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง" data-bs-toggle="modal" data-bs-target="#payment-rent">
+                <input type="button" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง" data-bs-toggle="modal" data-bs-target="#payment-rent">
             </div>
 
             <!-- Modal -->
