@@ -1,6 +1,4 @@
-<?php
-include "profilebar.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,9 +6,12 @@ include "profilebar.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ติดตามสถานะคำร้องขอเป็นพาร์ทเนอร์</title>
+    <title> MarketRental - ติดตามสถานะคำร้องขอเพิ่มตลาด</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
+<?php
+include "profilebar.php";
+?>
 <?php
 include "nav.php";
 include "../backend/1-connectDB.php";
@@ -25,7 +26,8 @@ $data = "SELECT req_partner.*,
     amphures.amphure_name,
     districts.district_name , 
     market_type.market_type,
-    req_status.req_status
+    req_status.req_status,
+    req_status.color
 FROM req_partner 
     JOIN users ON (req_partner.users_id = users.users_id)
     JOIN provinces ON (req_partner.province_id = provinces.id)
@@ -39,7 +41,7 @@ $result = mysqli_query($conn, $data);
 
 <body>
     <div class="content">
-        <h1 id="headline">ติดตามสถานะคำร้องขอเป็นพาร์ทเนอร์</h1>
+        <h1 id="headline">ติดตามสถานะคำร้องขอเพิ่มตลาด</h1>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
@@ -62,7 +64,7 @@ $result = mysqli_query($conn, $data);
                                 <td><?php echo $row['market_name']; ?></td>
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 </td>
-                                <td><?php echo $row['req_status']; ?></td>
+                                <td> <div style="background-color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div></td>
                             </tr>
                         <?php $count_n++;
                         endwhile ?>

@@ -1,6 +1,4 @@
-<?php
-include "profilebar.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,9 +7,11 @@ include "profilebar.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
-    <title>ติดตามคำร้องพาร์ทเนอร์</title>
+    <title> MarketRental - ติดตามสถานะคำร้องขอประชาสัมพันธ์</title>
 </head>
-
+<?php
+include "profilebar.php";
+?>
 <?php
 include "nav.php";
 include "../backend/1-connectDB.php";
@@ -21,7 +21,7 @@ include "../backend/1-import-link.php";
 $count_n = 1;
 $userid = $_SESSION['users_id'];
 
-$data2 = "SELECT req_annouce.*, users.username , req_status.req_status FROM req_annouce 
+$data2 = "SELECT req_annouce.*, users.username , req_status.req_status,req_status.color FROM req_annouce 
 JOIN users ON (req_annouce.users_id = users.users_id) 
 JOIN req_status ON (req_annouce.req_status_id = req_status.req_status_id) WHERE (req_annouce.users_id = '$userid')";
 $result3 = mysqli_query($conn, $data2);
@@ -51,7 +51,7 @@ $result3 = mysqli_query($conn, $data2);
                                 <td><?php echo $row1['bn_toppic']; ?></td>
                                 <td><?php echo $row1['username']; ?></td>
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
-                                <td><?php echo $row1['req_status']; ?></td>
+                                <td> <div style="background-color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row1['req_status']; ?></div></td>
                             </tr>
                         <?php $count_n++;
                         endwhile ?>

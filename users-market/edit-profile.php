@@ -1,6 +1,4 @@
-<?php
-include "profilebar.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,9 +8,11 @@ include "profilebar.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/password.css" type="text/css">
     <link rel="stylesheet" href="../css/applicant.css">
-    <title>แก้ไขข้อมูลบัญชีผู้ใช้</title>
+    <title> MarketRental - แก้ไขข้อมูลบัญชีผู้ใช้</title>
 </head>
-
+<?php
+include "profilebar.php";
+?>
 <?php
 include "nav.php";
 include "../backend/1-connectDB.php";
@@ -22,7 +22,7 @@ require "../backend/edit-profile.php";
 ?>
 
 <body>
-    <h1 id="headline">แก้ไขโปรไฟล์</h1>
+    <h1 id="headline">แก้ไขข้อมูลบัญชีผู้ใช้</h1>
     <form id="signin" method="POST">
         <div class="row border shadow-sm pt-5 pb-3 px-5 mt-3 mb-3 rounded">
             <div class="col-12">

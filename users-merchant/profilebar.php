@@ -10,7 +10,7 @@ if (($_SESSION["userstype"] != "1")) {
 
 <head>
     <meta charset="UTF-8">
-    <title> user-profile</title>
+    <title> MarketRental -  user-profile</title>
     <link rel="stylesheet" href="../css/profilebar.css" type="text/css">
 </head>
 <?php

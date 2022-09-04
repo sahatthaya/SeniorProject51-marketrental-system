@@ -7,7 +7,7 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <title> user-profile</title>
+    <title> MarketRental -  user-profile</title>
     <link rel="stylesheet" href="./css/profilebar.css" type="text/css">
     <?php
     include "backend/1-connectDB.php";
