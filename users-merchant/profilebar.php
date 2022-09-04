@@ -1,22 +1,26 @@
 <?php
-session_start();?>
+session_start(); ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
 <?php
 if (($_SESSION["userstype"] != "1")) {
     echo "<script>alert('คุณยังไม่ได้เข้าสู่ระบบ/คุณไม่ใช่แอดมินระบบ');window.location='../index.php';";
-} ?>
+}
+include "../backend/1-connectDB.php";
+$sqllg = "SELECT * FROM contact ";
+$resultlg = mysqli_query($conn, $sqllg);
+$lg = mysqli_fetch_array($resultlg);
+extract($lg);
+?>
 
 <head>
     <meta charset="UTF-8">
-    <title> MarketRental -  user-profile</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../asset/contact/logo.png" />
+    <title> MarketRental - user-profile</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../<?php echo $lg['ct_logo'] ?>" />
     <link rel="stylesheet" href="../css/profilebar.css" type="text/css">
 </head>
-<?php
-include "../backend/1-connectDB.php";
-?>
+
 
 <body>
     <div>

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - หน้าหลัก</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../asset/contact/logo.png" />
     <!-- css  -->
     <link rel="stylesheet" href="./css/index.css" type="text/css">
+    
 </head>
 <?php
 include "profilebar.php";
@@ -18,6 +18,7 @@ include "./backend/1-connectDB.php";
 include "nav.php";
 include "backend/1-import-link.php";
 require "./backend/qry-index.php";
+
 ?>
 
 <body>
@@ -84,7 +85,7 @@ require "./backend/qry-index.php";
         </div>
 
         <div class="users-guide">
-        <h3 class="center">สำหรับพ่อค้าแม่ค้าที่ต้องการจองแผงค้า</h3>
+            <h3 class="center">สำหรับพ่อค้าแม่ค้าที่ต้องการจองแผงค้า</h3>
             <div class="guide">
                 <div>
                     <h5 class="center">1. เข้าสู่ระบบ</h5>

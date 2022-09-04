@@ -4,20 +4,25 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<?php
+include "backend/1-connectDB.php";
+$sqllg = "SELECT * FROM contact ";
+$resultlg = mysqli_query($conn, $sqllg);
+$lg = mysqli_fetch_array($resultlg);
+extract($lg);
+?>
 
 <head>
     <meta charset="UTF-8">
-    <title> MarketRental -  user-profile</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../asset/contact/logo.png" />
+    <title> MarketRental - user-profile</title>
     <link rel="stylesheet" href="./css/profilebar.css" type="text/css">
-    <?php
-    include "backend/1-connectDB.php";
-    include "backend/1-import-link.php";
-    require "backend/auth-auth.php";
-    require "backend/auth-signup.php";
-
-    ?>
+    <link rel="shortcut icon" type="image/x-icon" href="./<?php echo $lg['ct_logo'] ?>" />
 </head>
+<?php
+include "backend/1-import-link.php";
+require "backend/auth-auth.php";
+require "backend/auth-signup.php";
+?>
 
 <body>
     <div class="profileicon" onclick="signIn()">
@@ -112,6 +117,6 @@ session_start();
     $("#tel").inputmask({
         "mask": "9999999999"
     });
-   
 </script>
+
 </html>

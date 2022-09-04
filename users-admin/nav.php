@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+<?php include "../backend/1-connectDB.php";
+$sqllg = "SELECT * FROM contact ";
+$resultlg = mysqli_query($conn, $sqllg);
+$lg = mysqli_fetch_array($resultlg);
+extract($lg);
+?>
 
 <head>
     <meta charset="UTF-8">
-    <title> MarketRental -  sidebar menu</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../asset/contact/logo.png" />
+    <title> MarketRental - sidebar menu</title>
+
     <link rel="stylesheet" href="../css/nav.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -15,7 +21,7 @@ include "../backend/1-import-link.php";
 <body>
     <div class="sidebar close">
         <div class="logo-details">
-            <img class="img-menu" src="../asset/contact/logo.png" alt="logo">
+            <img class="img-menu" src="../<?php echo $lg['ct_logo'] ?>" alt="logo">
             <span class="logo_name">Market Rental</span>
         </div>
         <ul class="nav-links">

@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - ชำระค่าเช่าแผง</title>
-    <link rel="shortcut icon" type="image/x-icon" href="../asset/contact/logo.png" />
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
     <link rel="stylesheet" href="../css/payment.css" type="text/css">
 
