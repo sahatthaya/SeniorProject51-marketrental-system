@@ -112,8 +112,8 @@ $(document).ready(function () {
                 "next": "หน้าถัดไป",
 
             }
-        }
+        },
+        "bDestroy": true
     });
 
 });
-
