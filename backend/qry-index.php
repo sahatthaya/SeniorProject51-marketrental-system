@@ -19,4 +19,10 @@ FROM market_detail
     WHERE (a_id='1')
 ORDER BY mkr_id DESC LIMIT 4 ";
 $resultmkr = mysqli_query($conn, $querymkr);
+
+$sqllg = "SELECT * FROM contact ";
+$resultlg = mysqli_query($conn, $sqllg);
+$lg = mysqli_fetch_array($resultlg);
+extract($lg);
+
 mysqli_close($conn);

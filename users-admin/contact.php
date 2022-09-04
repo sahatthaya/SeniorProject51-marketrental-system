@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - แก้ไขข้อมูลติดต่อ</title>
-    
+
     <!-- css  -->
     <link rel="stylesheet" href="../css/contact.css">
 </head>
@@ -42,7 +42,13 @@ require "../backend/manage-contact.php";
                         <div class="mb-3 center">
                             <img style="height:200px;" src="../<?php echo $row["ct_logo"] ?>" class="img-thumbnail round" id="logoex">
                         </div>
+                        <h6>ข้อความเกี่ยวกับเว็บไซต์</h6>
+                        <div class="input-group mb-3">
+                            <textarea class="form-control" name="ct_webinfo"><?php echo $row["ct_webinfo"] ?></textarea>
+                        </div>
+
                     </div>
+                    <hr>
                     <div class="inputct">
                         <h6>ข้อมูลติดต่อ 1 </h6>
                         <div class="input-group mb-3">
@@ -65,6 +71,7 @@ require "../backend/manage-contact.php";
                             <img style="height:200px;" src="../<?php echo $row["ct1_pic"] ?>" class="img-thumbnail round" id="con1ex">
                         </div>
                     </div>
+                    <hr>
                     <div class="inputct">
                         <h6>ข้อมูลติดต่อ 2 </h6>
                         <div class="input-group mb-3">
@@ -100,8 +107,20 @@ require "../backend/manage-contact.php";
     </div>
 
 
-    <div class="logo_img center">
-        <img src="../<?php echo $row["ct_logo"] ?>" alt="logo_marketremtal" class="img-fluid">
+    <div class="parent mt-3">
+        <div class="logo_img">
+            <img src="../<?php echo $row["ct_logo"] ?>" alt="logo_marketremtal" class="img-fluid p-3">
+        </div>
+        <div class="contentbox web-info">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <p>“<?php echo $row["ct_webinfo"] ?></p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <cite title="Source Title">MarketRental</cite>
+                </figcaption>
+            </figure>
+        </div>
     </div>
     <div class="boxcard">
         <div class=" cardcontact" id="ct1">

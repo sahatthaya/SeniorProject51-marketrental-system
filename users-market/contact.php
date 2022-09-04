@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - เกี่ยวกับเว็บไซต์</title>
-    
+
     <!-- css  -->
     <link rel="stylesheet" href="../css/contact.css" type="text/css">
 </head>
@@ -26,8 +25,20 @@ include "../backend/1-import-link.php";
 
     <h1>เกี่ยวกับเว็บไซต์</h1>
 
-    <div class="logo_img center">
-        <img src="../<?php echo $row["ct_logo"] ?>" alt="logo_marketremtal" class="img-fluid">
+    <div class="parent mt-3">
+        <div class="logo_img">
+            <img src="../<?php echo $row["ct_logo"] ?>" alt="logo_marketremtal" class="img-fluid p-3">
+        </div>
+        <div class="contentbox web-info">
+            <figure class="text-center">
+                <blockquote class="blockquote">
+                    <p>“<?php echo $row["ct_webinfo"] ?></p>
+                </blockquote>
+                <figcaption class="blockquote-footer">
+                    <cite title="Source Title">MarketRental</cite>
+                </figcaption>
+            </figure>
+        </div>
     </div>
     <div class="boxcard">
         <div class=" cardcontact" id="ct1">
@@ -39,7 +50,7 @@ include "../backend/1-import-link.php";
                     <div class="card-body">
                         <h2 class="center"><?php echo $row["ct1_fname"] . " " . $row["ct1_lname"] ?></h2>
                         <p class="center"><?php echo $row["ct1_email"] ?>
-  
+
                         </p>
                         <p class="center"> <?php echo $row["ct1_tel"] ?></p>
 

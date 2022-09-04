@@ -4,10 +4,24 @@ body {
     min-width: 375px;
 }
 
+.parent {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-column-gap: 30px;
+}
+
+.contentbox {
+    padding: 30px;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+}
+
+
 .logo_img img {
-    margin-top: 30px;
-    width: 25%;
-    border-radius: 10px;
+    height: 100%;
+    border-radius: 5px;
     background: #0032B5;
     -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
@@ -46,16 +60,14 @@ body {
 }
 
 /* ----------------------------------------3.ฟอร์มแก้ไขคอนแทค------------------------------------------------------------ */
-
-/* กรอบของส่วน */
-.inputct {
-    margin-bottom: 10px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.438);
+#logoex {
+    background-color: #004AAD;
 }
 
 /* ขนาดรูปในฟอร์ม */
 .ctimg {
     width: 300px !important;
+
 }
 
 #cancel {
@@ -80,6 +92,17 @@ body {
 
 
 @media(max-width: 1200px) {
+    .logo_img {
+        display: flex;
+        justify-content: center;
+    }
+
+    .parent {
+        display: grid;
+        grid-gap: 30px;
+        grid-template-columns: 1fr;
+    }
+
     .boxcard {
         display: grid;
         grid-gap: 0px;
@@ -98,9 +121,9 @@ body {
 }
 
 @media(max-width: 720px) {
-    .box {
+    .parent, .box {
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 20px !important;
         grid-template-columns: 1fr;
         text-align: center;
     }

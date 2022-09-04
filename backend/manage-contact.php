@@ -2,6 +2,7 @@
 include "../backend/1-connectDB.php";
 if (isset($_POST['bn-submit'])) {
 
+    $ct_webinfo = $_POST['ct_webinfo'];
     $ct1_fname = $_POST['ct1_fname'];
     $ct1_lname = $_POST['ct1_lname'];
     $ct1_tel = $_POST['ct1_tel'];
@@ -42,8 +43,8 @@ if (isset($_POST['bn-submit'])) {
     $ct2_pic = 'asset/contact/' . $ct2_pic_name;
 
 
-    if (isset($ct_logo) != "" && isset($_POST["ct1_fname"]) != "" && isset($_POST["ct1_lname"]) != "" && isset($_POST["ct1_tel"]) != "" && isset($_POST["ct1_email"]) != "" && isset($ct1_pic) != "" && isset($_POST["ct2_fname"]) != "" && isset($_POST["ct2_lname"]) != "" && isset($_POST["ct2_tel"]) != "" && isset($_POST["ct2_email"]) != "" && isset($ct2_pic) != "") {
-        $sqlInsert = "UPDATE contact  SET ct1_fname='$ct1_fname',ct1_lname='$ct1_lname',ct1_tel='$ct1_tel',ct1_email='$ct1_email',ct2_fname='$ct2_fname',ct2_lname='$ct2_lname',ct2_tel='$ct2_tel',ct2_email='$ct2_email'";
+    if (isset($ct_logo) != "" && isset($_POST["ct1_fname"]) != "" && isset($_POST["ct1_lname"]) != "" && isset($_POST["ct1_tel"]) != "" && isset($_POST["ct1_email"]) != "" && isset($ct1_pic) != "" && isset($_POST["ct2_fname"]) != "" && isset($_POST["ct2_lname"]) != "" && isset($_POST["ct2_tel"]) != "" && isset($_POST["ct2_email"]) != "" && isset($ct2_pic) != ""&& isset($_POST["ct_webinfo"]) != "") {
+        $sqlInsert = "UPDATE contact  SET ct1_fname='$ct1_fname',ct1_lname='$ct1_lname',ct1_tel='$ct1_tel',ct1_email='$ct1_email',ct2_fname='$ct2_fname',ct2_lname='$ct2_lname',ct2_tel='$ct2_tel',ct2_email='$ct2_email',ct_webinfo='$ct_webinfo'";
         mysqli_query($conn, $sqlInsert);
 
         if ($ct_logo_tmp != "") {
@@ -66,9 +67,11 @@ if (isset($_POST['bn-submit'])) {
         move_uploaded_file($ct_logo_tmp, $ct_logo_path);
         move_uploaded_file($ct1_picc, $ct1_path);
         move_uploaded_file($ct2_picc, $ct2_path);
-        echo "<script>alert('ลงทะเบียนสำเร็จ');</script>";
+        echo "<script type='text/javascript'> success(); </script>";
+        echo '<meta http-equiv="refresh" content="1"; />';
     } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        echo "<script type='text/javascript'> error(); </script>";
+
     }
 }
 
@@ -77,4 +80,3 @@ $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 extract($row);
 mysqli_close($conn);
-?>
