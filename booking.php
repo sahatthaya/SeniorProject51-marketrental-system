@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แก้ไขแผนผังตลาด</title>
     <!-- css  -->
-    <link rel="stylesheet" href="./css/market-plan.css" type="text/css">
+    <link rel="stylesheet" href="./css/stallplan.css" type="text/css">
 
     <?php
     include "profilebar.php";
@@ -92,11 +92,15 @@
                                             </tr>
                                             <tr>
                                                 <td>ค่ามัดจำ</td>
-                                                <td><?php echo $row1['sDept'] ?></td>
+                                                <td><?php echo $row1['sDept'] ?> บาท</td>
                                             </tr>
                                             <tr>
                                                 <td>ค่าเช่า</td>
                                                 <td><?php echo $row1['sRent'] ?> <?php echo $row1['sPayRange'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>โซน/ประเภทร้านค้า</td>
+                                                <td>อาหาร</td>
                                             </tr>
                                             <tr>
                                                 <td>สถานะ</td>
@@ -106,7 +110,7 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="plslogin()">จองแผงค้า</button>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="plslogin();signIn();">จองแผงค้า</button>
                                 </div>
                             </div>
                         </div>

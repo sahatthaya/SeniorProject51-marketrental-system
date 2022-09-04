@@ -164,7 +164,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
-                                    <button type="submit" name="editcost" class="btn btn-success" style="width: 45%;">
+                                    <button type="submit" name="editcost" class="btn btn-info" style="width: 45%;color:white !important;">
                                         <i class='bx bxs-save me-2'></i>บันทึก
                                     </button>
                                     <a type="button" name="delcost" class="btn btn-danger" style="width: 45%;" href="edit-Stall.php?delcu_id=<?php echo $row['cu_id'] ?>&mkr_id=<?php echo $row['mkr_id'] ?>">

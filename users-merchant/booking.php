@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>แก้ไขแผนผังตลาด</title>
     <!-- css  -->
-    <link rel="stylesheet" href="../css/market-plan.css" type="text/css">
+    <link rel="stylesheet" href="../css/stallplan.css" type="text/css">
 
     <?php
     include "profilebar.php";
@@ -50,7 +50,7 @@
         <div>5. ชำระค่ามัดจำ</div>
     </div>
     <hr>
-    <div class="plan">  
+    <div class="plan">
         <div class="w-100 hstack px-1 pt-3 gap-2">
             <label>ช่วงวันที่ : </label>
             <input type="date" class="form-control" style="width: 10%;" id="customRange1">
@@ -89,7 +89,7 @@
                                             <tr>
                                                 <td>ขนาดแผงค้า</td>
                                                 <td><?php echo $row1['sWidth'] ?> * <?php echo $row1['sHeight'] ?> <?php echo $row1['sAreaUnit'] ?></td>
-                                               
+
                                             </tr>
                                             <tr>
                                                 <td>ค่ามัดจำ</td>
@@ -98,6 +98,10 @@
                                             <tr>
                                                 <td>ค่าเช่า</td>
                                                 <td><?php echo $row1['sRent'] ?> <?php echo $row1['sPayRange'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td>โซน/ประเภทร้านค้า</td>
+                                                <td>อาหาร</td>
                                             </tr>
                                             <tr>
                                                 <td>สถานะ</td>

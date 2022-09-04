@@ -70,7 +70,7 @@ function backtostep2() {
 }
 
 
-// check stall-------------------------------------------------------------------------------------------------------
+// check booking info-------------------------------------------------------------------------------------------------------
 function checkInfo() {
     var fristname = document.getElementById("fristname").value;
     var lastname = document.getElementById("lastname").value;
@@ -81,15 +81,15 @@ function checkInfo() {
     var productType = document.getElementById("productType").value;
     var dateRent = document.getElementById("dateRent").value;
     var Infomrk = document.getElementById("Infomrk").value;
-    document.getElementById("demofristname").innerHTML = fristname;
-    document.getElementById("demolastname").innerHTML = lastname;
-    document.getElementById("demoemail").innerHTML = myemail;
-    document.getElementById("demotel").innerHTML = mytel;
-    document.getElementById("demostallName").innerHTML = stallName;
-    document.getElementById("demorentperiod").innerHTML = rentperiod;
-    document.getElementById("demoproductType").innerHTML = productType;
-    document.getElementById("demodateRent").innerHTML = dateRent;
-    document.getElementById("demoInfomrk").innerHTML = Infomrk;
+    document.getElementById("demofristname").value = fristname;
+    document.getElementById("demolastname").value = lastname;
+    document.getElementById("demoemail").value = myemail;
+    document.getElementById("demotel").value = mytel;
+    document.getElementById("demostallName").value = stallName;
+    document.getElementById("demorentperiod").value = rentperiod;
+    document.getElementById("demoproductType").value = productType;
+    document.getElementById("demodateRent").value = dateRent;
+    document.getElementById("demoInfomrk").value = Infomrk;
 
 }
 

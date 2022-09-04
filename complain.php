@@ -50,24 +50,24 @@ $result = mysqli_query($conn, $data);
 <div>
         <h1 id="headline">ระบบร้องเรียน <?php echo $row['mkr_name'] ?></h1>
         <div class="postbox">
-            <form method="POST" enctype="multipart/form-data">
+            <!-- <form method="POST" enctype="multipart/form-data"> -->
                 <h5>เพิ่มการร้องเรียนใหม่</h5>
                 <label>หัวข้อ :</label>
-                <select name="toppic" data-width="100%" data-style="btn-outline-secondary" data-size="5" required>
+                <select name="toppic" data-width="100%" data-style="btn-outline-secondary" data-size="5" disabled>
                     <?php while ($row1 = mysqli_fetch_array($result_toppic)) :; ?>
                         <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
                     <?php endwhile; ?>
                 </select>
 
                 <label>หัวเรื่อง : </label>
-                <input class="subject" name="subject" type="text" required>
-                <input class="compfile" name="compfile" type="file">
+                <input class="subject" name="subject" type="text" disabled>
+                <input class="compfile" name="compfile" type="file" disabled>
                 <br>
                 <label>เรื่องร้องเรียน : </label>
                 <br>
-                <textarea name="comp_detail" required></textarea>
-                <button name="post-btn" type="submit" class="btn btn-light">ส่ง <i class='bx bxs-paper-plane'></i></button>
-            </form>
+                <textarea name="comp_detail" disabled></textarea>
+                <button name="post-btn" class="btn btn-light" onclick="plslogin();signIn();">ส่ง <i class='bx bxs-paper-plane'></i></button>
+            <!-- </form> -->
         </div>
         <?php while ($row = $result->fetch_assoc()) : ?>
             <div class="commentbox">

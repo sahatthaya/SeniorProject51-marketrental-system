@@ -61,6 +61,7 @@
   <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
 </head>
+<script src="../backend/script.js"></script>
 <script type="text/javascript">
     function success() {
         Swal.fire({
