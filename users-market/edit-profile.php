@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/password.css" type="text/css">
     <link rel="stylesheet" href="../css/applicant.css">
     <title> MarketRental - แก้ไขข้อมูลบัญชีผู้ใช้</title>
+    <link rel="shortcut icon" type="image/x-icon" href="../asset/contact/logo.png" />
 </head>
 <?php
 include "profilebar.php";
