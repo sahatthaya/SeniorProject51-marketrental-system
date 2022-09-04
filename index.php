@@ -1,6 +1,3 @@
-<?php
-include "profilebar.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +10,9 @@ include "profilebar.php";
     <!-- css  -->
     <link rel="stylesheet" href="./css/index.css" type="text/css">
 </head>
-
+<?php
+include "profilebar.php";
+?>
 <?php
 include "./backend/1-connectDB.php";
 include "nav.php";
