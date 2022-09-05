@@ -7,10 +7,10 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - จัดการแผงค้า</title>
-    
+
     <!-- css  -->
     <link rel="stylesheet" href="../css/editStall.css" type="text/css">
-    <!-- <link rel="stylesheet" href="../css/banner.css" type="text/css"> -->
+
 </head>
 <?php
 include "profilebar.php";
@@ -24,7 +24,8 @@ $result3 = mysqli_query($conn, $data2);
 $costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
 $resultCU = mysqli_query($conn, $costunit);
 $numCU = mysqli_num_rows($resultCU);
-
+$z_qry = "SELECT * FROM `zone`";
+$z = mysqli_query($conn, $z_qry);
 require "../backend/manage-edit-Stall.php";
 
 if (isset($_POST['submit-edit'])) {
@@ -59,14 +60,24 @@ if (isset($_POST['stall-submit'])) {
     $sDept = $_POST['sDept'];
     $sPayRange = $_POST['sPayRange'];
     $sRent = $_POST['sRent'];
-    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "") {
-        $sqlInsert = "INSERT INTO stall (sID,sWidth,sHeight,sAreaUnit,sDept,sPayRange,dropped,market_id,sRent,sStatus) VALUES ('$sID','$sWidth','$sHeight','$sAreaUnit','$sDept','$sPayRange','0', $mkr_id,$sRent,'ว่าง') ";
-        $sql = mysqli_query($conn, $sqlInsert);
-        if ($sql) {
-            echo "<script type='text/javascript'> success(); </script>";
+    $z_id = $_POST['z_id'];
+
+    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != ""&& isset($_POST['z_id']) != "") {
+        $sqlCheck = "SELECT * FROM stall WHERE (market_id = '$mkr_id')AND (sID = '$sID')";
+        $rsCheck = mysqli_query($conn, $sqlCheck);
+        $rowCheck = mysqli_num_rows($rsCheck);
+        if ($rowCheck > 0) {
+            echo "<script type='text/javascript'> stalldoubly(); </script>";
             echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
         } else {
-            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+            $sqlInsert = "INSERT INTO stall (sID,sWidth,sHeight,sAreaUnit,sDept,sPayRange,dropped,market_id,sRent,z_id) VALUES ('$sID','$sWidth','$sHeight','$sAreaUnit','$sDept','$sPayRange','0', $mkr_id,$sRent,$z_id) ";
+            $sql = mysqli_query($conn, $sqlInsert);
+            if ($sql) {
+                echo "<script type='text/javascript'> success(); </script>";
+                echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
+            } else {
+                echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+            }
         }
     } else {
         echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
@@ -100,23 +111,21 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
 
 ?>
 <script src="../backend/script.js"></script>
+<script src="script.js"></script>
+
 
 <body>
     <h1>จัดการข้อมูลแผงค้า</h1>
 
     <div id="quick-menu2" class="hstack mt-3">
-        <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
+        <button type="button" class="btn btn-primary add-btn" id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
             <i class='bx bxs-edit'></i>จัดการค่าใช้จ่ายเพิ่มเติม
-        </button>
-
-        <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
-            <i class='bx bx-plus-circle'></i>เพิ่มแผงค้า
         </button>
         <a type="button" class="btn btn-primary add-btn" id="merchant-btn" href="marketPlan.php?mkr_id=<?php echo $mkr_id = $_GET['mkr_id']; ?>">
             <i class='bx bxs-message-square-edit'></i>ปรับแก้แผนผังตลาด
         </a>
     </div>
-    <!-- Modal -->
+    <!-- unit/cost Modal -->
     <div class="modal fade" id="editcost-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -142,10 +151,11 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                 </div>
                                 <div class="col-sm-4">
                                     <button type="submit" name="addcost" class="btn btn-primary" style="width: 95%;">
-                                    <i class='bx bx-plus-circle me-2'></i>เพิ่มข้อมูล
+                                        <i class='bx bx-plus-circle me-2'></i>เพิ่มข้อมูล
                                     </button>
                                 </div>
                             </div>
+                        </div>
                     </form>
                     <hr>
                     <div class="mb-3">
@@ -180,59 +190,59 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                 </div>
             </div>
         </div>
-        <!-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-            </div> -->
     </div>
-    </div>
-    </div>
-    <!--stall Modal -->
-    <div id="edtmkrinfo-modal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-            <form method="POST" enctype="multipart/form-data" class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">เพิ่มแผงค้า</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
 
-                <div class="modal-body">
-                    <label>รหัสแผงค้า :</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" title="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
-                    </div>
-                    <label>ขนาดพื้นที่ :</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control "  placeholder="กว้าง" name="sWidth" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <span class="input-group-text">*</span>
-                        <input type="number" class="form-control" placeholder="ยาว" name="sHeight" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
-                            <option selected value="เมตร">เมตร</option>
-                            <option value="เซนติเมตร">เซนติเมตร</option>
-                        </select>
-                    </div>
-                    <label>ราคามัดจำ :</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" name="sDept" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <span class="input-group-text">บาท</span>
-                    </div>
-                    <label>ราคาค่าเช่า :</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" name="sRent" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <select class="input-group-text" name="sPayRange">
-                            <option value="บาท/วัน">บาท/วัน</option>
-                            <option value="บาท/เดือน">บาท/เดือน</option>
-                        </select>
-                    </div>
+    <!-- content -->
+    <div class="border rounded shadow-sm p-3 mt-3">
+        <form method="POST">
+            <h3 class="modal-title">เพิ่มแผงค้า</h3>
+            <label class="hstack mt-2">รหัสแผงค้า :
+                <div data-toggle="tooltip" title="รหัสแผงค้าภายในตลาดเดียวกัน จะไม่สามารถซ้ำกันได้" class="mt-1 ms-2">
+                    <i class='bx bx-info-circle'></i>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-primary" name="stall-submit">บันทึกข้อมูล</button>
-                </div>
-            </form>
-        </div>
+            </label>
+            <div class="input-group">
+                <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
+            </div>
+            <label for="" class="mt-2">ประเภทแผงค้า</label>
+            <div class="search_select_box">
+                <select class="selectpicker dropdown" title="เลือกประเภท" name="z_id" data-live-search="true" data-width="100%" data-size="5"  required>
+                    <?php while ($zone = mysqli_fetch_array($z)) :; ?>
+                        <option value="<?php echo $zone['z_id']; ?>"><?php echo $zone['z_name']; ?></option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
+            <label class="mt-2">ขนาดพื้นที่ :</label>
+            <div class="input-group">
+                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                <span class="input-group-text">*</span>
+                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
+                    <option selected value="เมตร">เมตร</option>
+                    <option value="เซนติเมตร">เซนติเมตร</option>
+                </select>
+            </div>
+            <label class="mt-2">ราคามัดจำ :</label>
+            <div class="input-group">
+                <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                <span class="input-group-text">บาท</span>
+            </div>
+            <label class="mt-2">ราคาค่าเช่า :</label>
+            <div class="input-group">
+                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                <select class="input-group-text" name="sPayRange">
+                    <option value="บาท/วัน">บาท/วัน</option>
+                    <option value="บาท/เดือน">บาท/เดือน</option>
+                </select>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary mt-3" name="stall-submit">บันทึกข้อมูล</button>
+            </div>
+        </form>
     </div>
-    <div id="content">
-        <div id="table2" class="bannertb border p-3 shadow-sm rounded mt-3">
+    <div id="content" class="mt-3">
+        <div id="table2" class="bannertb border  p-3 shadow-sm rounded mt-3">
+            <h3 class="modal-title">ข้อมูลแผงค้า</h3>
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>
@@ -241,26 +251,26 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         <th scope="col">ขนาดพื้นที่</th>
                         <th scope="col">ราคามัดจำ (บาท)</th>
                         <th scope="col">ราคาค่าเช่า</th>
-                        <th scope="col">สถานะ</th>
-                        <th scope="col">ประวัติการจองแผงค้า</th>
+                        <!-- <th scope="col">สถานะ</th> -->
+                        <th scope="col" style="width:15% ;">ประวัติการจองแผงค้า</th>
                         <th scope="col">จัดการ</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php while ($row1 = $result3->fetch_assoc()) : ?>
                         <tr>
-                            <td><?php echo $count_n; ?></td>
+                            <td style="width:5% ;"><?php echo $count_n; ?></td>
                             <td><?php echo $row1['sID'] ?></td>
                             <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
                             <td><?php echo $row1['sDept']; ?></td>
                             <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>
-                            <td><?php echo $row1['sStatus']; ?></td>
-                            <td>
+                            <!-- <td><?php echo $row1['sStatus']; ?></td> -->
+                            <td style="width:15% ;">
                                 <button class=" btn btn-outline-info">ดูประวัติการจอง</button>
                             </td>
                             <td>
                                 <div class="row" style="justify-content: center;">
-                                    <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;" id="<?php echo $row1['sKey']; ?>">แก้ไข</a>
+                                    <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;"  href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
                                     <a href="edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;" onclick="return confirm('คุณต้องการลบแผงค้านี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
                                 </div>
                             </td>
@@ -272,27 +282,14 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
             </table>
         </div>
     </div>
-    <?php require '../backend/modal-edit-Stall.php' ?>
 </body>
 
 <script>
-    // apply detail popup
     $(document).ready(function() {
-        $('.modal_data').click(function() {
-            var sKey = $(this).attr("id");
-            $.ajax({
-                url: "../backend/manage-edit-Stall.php",
-                method: "POST",
-                data: {
-                    sKey: sKey
-                },
-                success: function(data) {
-                    $('#bannerdetail').html(data);
-                    $('#bannerdataModal').modal('show');
-                }
-            });
-
-        })
+        $("body").tooltip({
+            selector: '[data-toggle=tooltip]',
+            placement: 'right'
+        });
     });
 </script>
 

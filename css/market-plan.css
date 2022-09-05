@@ -10,8 +10,7 @@
 
 body {
     padding: 20px;
-    margin: 50px 68px 0px 146px;
-    min-width:1492px;
+    margin: 50px 68px 0px 146px !important;
 }
 
 .add-btn i {
@@ -80,7 +79,6 @@ body {
 /* แผงค้า */
 .stallbox {
     color: white !important;
-    background-color: var(--primaryblue);
     border-radius: 5px;
     padding: 2px;
     width: 200px;
@@ -94,7 +92,7 @@ body {
     font-size: 15px;
 }
 
-/* responsive--------------------------------------------------------------------- */
+/* responsive---------------------------------------------------------------------
 
 @media(min-width: 1200px) {
     body {
@@ -135,4 +133,4 @@ body {
 
 }
 
-@media only screen and (max-width:375px) {}
+@media only screen and (max-width:375px) {} */

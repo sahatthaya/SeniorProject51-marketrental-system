@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - แก้ไขแผนผังตลาด</title>
-    
+
     <!-- css  -->
     <link rel="stylesheet" href="../css/market-plan.css" type="text/css">
 
@@ -17,8 +17,9 @@
     include "../backend/1-import-link.php";
     $mkr_id = $_GET['mkr_id'];
     $count_n = 1;
-    $data2 = "SELECT * FROM stall WHERE (market_id = '$mkr_id')";
+    $data2 = "SELECT stall.*, zone.z_color FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
     $result3 = mysqli_query($conn, $data2);
+    $zone = mysqli_query($conn, "SELECT * FROM `zone`");
     require "../backend/manage-edit-Stall.php";
     ?>
 
@@ -90,9 +91,9 @@
                     .css("height", "30");
             }
         });
-        
+
         $('.save-stall').click(function save() {
-            
+
             $.ajax({
                 type: "POST",
                 url: "../backend/manage-edit-Stall.php",
@@ -137,65 +138,12 @@
 
 <body>
     <h1>แก้ไขแผนผังตลาด</h1>
-    <div id="quick-menu2" class="hstack">
-        <button type="button" class="btn btn-primary add-btn " id="partner-btn" data-bs-toggle="modal" data-bs-target="#edtmkrinfo-modal">
-            <i class='bx bx-plus-circle'></i>เพิ่มแผงค้า
-        </button>
-        <a type="button" class="btn btn-primary add-btn" id="merchant-btn" href="edit-stall.php?mkr_id=<?php echo $mkr_id = $_GET['mkr_id']; ?> ">
-            <i class='bx bxs-message-square-edit'></i>จัดการข้อมูลแผงค้า
-        </a>
-    </div>
-    <!-- Modal -->
-    <div id="edtmkrinfo-modal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-scrollable modal-lg">
-            <form method="POST" enctype="multipart/form-data" class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">เพิ่มแผงค้า</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <div class="modal-body">
-                    <label>รหัสแผงค้า :</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" title="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
-                    </div>
-                    <label>ขนาดพื้นที่ :</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" placeholder="กว้าง" name="sWidth" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <span class="input-group-text">*</span>
-                        <input type="number" class="form-control" placeholder="ยาว" name="sHeight" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
-                            <option selected value="เมตร">เมตร</option>
-                            <option value="เซนติเมตร">เซนติเมตร</option>
-                        </select>
-                    </div>
-                    <label>ราคามัดจำ :</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" name="sDept" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <span class="input-group-text">บาท</span>
-                    </div>
-                    <label>ราคาค่าเช่า :</label>
-                    <div class="input-group">
-                        <input type="number" class="form-control" name="sRent" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                        <select class="input-group-text" name="sPayRange">
-                            <option value="บาท/วัน">บาท/วัน</option>
-                            <option value="บาท/เดือน">บาท/เดือน</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ยกเลิก</button>
-                    <button type="submit" class="btn btn-primary" name="stall-submit">บันทึกข้อมูล</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <div class="content">
         <div class="plan">
             <div class="w-100 hstack justify-content-between px-1 pt-3">
-                <h3 class="ms-3">แผนผังตลาด</h3>
-                <button type="button" class="btn btn-outline-success save-stall" id="save"><i class='bx bx-save me-2'></i>บันทึกแผนผัง</button>
+                <h3 class="ms-3">แผนผังตลาด </h3>
+                <button type="button" class="btn btn-outline-success save-stall" id="save">บันทึกแผนผัง</button>
             </div>
             <hr>
             <div id="plan">
@@ -204,13 +152,13 @@
         </div>
         <div class="list">
             <div class="w-100  pt-3 pb-1">
-                <h3 class="center">รายการแผงค้า</h3>
+                <h3 class="center hstack gap-2">รายการแผงค้า <i class='bx bx-info-circle opacity-50 text-primary' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h3>
             </div>
             <hr>
             <div class="liststall vstack" id="sortable">
                 <?php while ($row1 = $result3->fetch_assoc()) : ?>
                     <li class="m-1 ">
-                        <div class="stallbox" data-need="<?php echo $row1['sKey'] ?>">
+                        <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;" data-need="<?php echo $row1['sKey'] ?>">
                             <div class="text-center stallnum">
                                 <div class="mx-auto text-wrap">แผงค้า : <span><?php echo $row1['sID'] ?></span></div>
                             </div>
@@ -218,6 +166,43 @@
                     </li>
                 <?php endwhile ?>
 
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">เกี่ยวกับรายการแผงค้า</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    แผงค้าจะมีสีตามประเภทที่ได้กำหนดไว้ดังนี้
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">ประเภท</th>
+                                <th scope="col">สี</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($z = $zone->fetch_assoc()) : ?>
+
+                                <tr>
+                                    <td> <?php echo $count_n ?></td>
+                                    <td><?php echo $z['z_name'] ?></td>
+                                    <td>
+                                        <div class="text-center rounded" style="background-color:<?php echo $z['z_color'] ?> ;width:150px;color:white;"> ตัวอย่างแผงค้า</div>
+                                    </td>
+
+                                <?php $count_n++;
+                            endwhile ?>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

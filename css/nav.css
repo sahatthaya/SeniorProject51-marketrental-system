@@ -22,7 +22,7 @@
     height: 97%;
     width: 320px;
     background: var(--main);
-    z-index: 2000 !important;
+    z-index: 500 !important;
     transition: all 0.5s ease;
     border-radius: 15px;
     box-shadow: 4px 1px 5px -1px #7c7c7c8c;

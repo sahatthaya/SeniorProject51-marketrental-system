@@ -99,6 +99,14 @@
             timer: 3000
         })
     }
+    function stalldoubly() {
+        Swal.fire({
+            title: 'มีรหัสแผงค้านี้ในตลาดแล้ว',
+            icon: 'warning',
+            showConfirmButton: false,
+            timer: 3000
+        })
+    }
 </script>
 
 </html>

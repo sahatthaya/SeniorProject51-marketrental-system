@@ -7,7 +7,7 @@ $(function () {
     var provinceObject = $('#province');
     var amphureObject = $('#amphure');
     var districtObject = $('#district');
-    var zipcodeObject = $('#zip_code');
+    var stallID = $('#stallID');
 
 
     // on change province
