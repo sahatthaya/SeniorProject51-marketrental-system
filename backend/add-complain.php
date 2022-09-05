@@ -28,7 +28,7 @@ if (isset($_POST['post-btn'])) {
                 echo "<script type='text/javascript'> success(); </script>";
                 $conn->close();
             } else {
-                echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+                echo "<script>error();</script>";
             }
         }
     } else {
@@ -41,7 +41,7 @@ if (isset($_POST['post-btn'])) {
                 echo "<script type='text/javascript'> success(); </script>";
                 $conn->close();
             } else {
-                echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง55');</script>";
+                echo "<script>error();</script>";
             }
         }
     }

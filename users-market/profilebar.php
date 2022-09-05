@@ -5,7 +5,7 @@ session_start();?>
 
 <?php
 if (($_SESSION["userstype"] != "2")) {
-    echo "<script>alert('คุณยังไม่ได้เข้าสู่ระบบ/คุณไม่ใช่แอดมินระบบ');window.location='../index.php';";
+    echo "<script>plslogin();window.location='../index.php';";
 }
 include "../backend/1-connectDB.php";
 $sqllg = "SELECT * FROM contact ";

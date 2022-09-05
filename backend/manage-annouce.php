@@ -50,9 +50,9 @@ if (isset($_GET['approve'])) {
     $insert = "INSERT INTO banner (bn_toppic,bn_detail,bn_pic) VALUES ('$bn_toppic','$bn_detail','$bn_pic')";
 
     if ($ql = mysqli_query($conn, $approve)&&$isql = mysqli_query($conn, $insert)) {
-        echo "<script>alert('อนุมัติคำร้องเสร็จสิ้น');window.location = '../users-admin/annouce.php';</script></script>";
+        echo "<script>Approvesuccess();</script>";
     } else {
-        echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง');window.location='../users-admin/annouce.php';</script>";
+        echo "<script>error();</script>";
     }
 }
 
@@ -60,10 +60,10 @@ if (isset($_GET['denied']) ){
     $deniedid = $_GET['denied'];
     $denied = "UPDATE req_annouce SET req_status_id = '3' WHERE (req_an_id = $deniedid)";
     if (mysqli_query($conn, $denied)) {
-        echo "<script>alert('ยกเลิกคำร้องเสร็จสิ้น');window.location = '../users-admin/annouce.php';</script>";
+        echo "<script>Deninedsuccess();</script>";
 
     } else {
-        echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง');window.location='../users-admin/annouce.php';</script>";
+        echo "<script>error();</script>";
     }
 }
 mysqli_close($conn);

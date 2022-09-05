@@ -45,7 +45,7 @@ if (isset($_POST['add-news'])) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1" ; />';
         } else {
-            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+            echo "<script>error();</script>";
         }
     } else {
         $sqlInsert = "INSERT INTO news(n_sub, n_detail, n_file,mkr_id) VALUES ('$n_sub', '$n_detail', 'asset/news/nopicture.png	', $mkr_id)";
@@ -53,7 +53,7 @@ if (isset($_POST['add-news'])) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1" ; />';
         } else {
-            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+            echo "<script>error();</script>";
         }
     }
 }
@@ -65,7 +65,7 @@ if (isset($_GET['del'])) {
     if (mysqli_query($conn, $sqldel)) {
         echo "<script type='text/javascript'> delsuccess(); </script>";
     } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        echo "<script>error();</script>";
     }
 }
 // see detail (modal)-------------------------------------------------------------------------------------------------------------------
@@ -143,7 +143,7 @@ if (isset($_POST['edit-news-submit'])) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1" ; />';
         } else {
-            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+            echo "<script>error();</script>";
         }
     } else {
         $sqlupdate = "UPDATE `news` SET `n_sub`='$n_sub',`n_detail`='$n_detail' WHERE n_id = '$n_id'";
@@ -152,7 +152,7 @@ if (isset($_POST['edit-news-submit'])) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1" ; />';
         } else {
-            echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+            echo "<script>error();</script>";
         }
     }
 }

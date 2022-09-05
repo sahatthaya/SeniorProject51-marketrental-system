@@ -153,18 +153,18 @@ if (isset($_GET['approve'])) {
 
 
      if ($isql2 && $ql && $isql && $sqlCU && $sqlInsertpayment) {
-          echo "<script>alert('อนุมัติคำร้องเสร็จสิ้น');window.location = '../users-admin/partner.php';</script>";
+          echo "<script>Approvesuccess();</script>";
      } else {
-          echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง');window.location = '../users-admin/partner.php';</script>";
+          echo "<script>error();</script>";
      }
 }
 if (isset($_GET['denied'])) {
      $deniedid = $_GET['denied'];
      $denied = "UPDATE req_partner SET req_status_id = '3' WHERE (req_partner_id = $deniedid)";
      if (mysqli_query($conn, $denied)) {
-          echo "<script>alert('ยกเลิกคำร้องเสร็จสิ้น');window.location = '../users-admin/partner.php';</script></script>";
+          echo "<script>Deninedsuccess();</script>";
      } else {
-          echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง');window.location = '../users-admin/partner.php';</script>";
+          echo "<script>error();</script>";
      }
 }
 mysqli_close($conn);

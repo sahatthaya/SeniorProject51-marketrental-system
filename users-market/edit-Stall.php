@@ -45,10 +45,11 @@ if (isset($_POST['addcost'])) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1"; URL=../edit-stall.php" />';
         } else {
-            echo "<script>alert ('ผิดพลาด ไม่สามารถเพิ่มข้อมูลได้');</script>";
+            echo "<script>error();</script>";
         }
     } else {
-        echo "<script>alert ('ข้อมูลไม่เข้า');</script>";
+        echo "<script>error();</script>";
+
     }
 }
 // เพิ่มแผงค้า
@@ -76,11 +77,11 @@ if (isset($_POST['stall-submit'])) {
                 echo "<script type='text/javascript'> success(); </script>";
                 echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
             } else {
-                echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+                echo "<script>error();</script>";
             }
         }
     } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        echo "<script>error();</script>";
     }
 }
 

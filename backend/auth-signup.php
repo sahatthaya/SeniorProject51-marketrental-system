@@ -18,17 +18,17 @@ if (isset($_POST['reg-btn'])) {
         $rsCheck = mysqli_query($conn, $sqlCheck);
         $rowCheck = mysqli_num_rows($rsCheck);
         if ($rowCheck > 0) {
-            echo "<script>alert('ชื่อผู้ใข้ซำ กรุณาเปลี่ยนชื่อผู้ใช้');</script>";
+            echo "<script>username_doubly();</script>";
         } else {
             $sqlInsert = "INSERT INTO users (username, password, email, tel ,type,firstName,lastName) VALUES ('$username_reg', '$password_reg',  '$email', '$tel','$type','$firstName','$lastName')";
             if (mysqli_query($conn, $sqlInsert)) {
-                echo "<script>alert('ลงทะเบียนสำเร็จ');</script>";
+                echo "<script>signUPsuccess();</script>";
             } else {
-                echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+                echo "<script>error();</script>";
             }
         }
     } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง');</script>";
+        echo "<script>error();</script>";
     }
 }
 ?>

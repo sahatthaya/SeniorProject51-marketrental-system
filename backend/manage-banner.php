@@ -76,9 +76,9 @@ if ($_GET) {
 
     $sqlDelUsers = "DELETE FROM banner WHERE bn_id = '$bn_id'";
     if ($rsDelUsers = mysqli_query($conn, $sqlDelUsers)) {
-        echo "<script>alert('ลบข้อมูลเสร็จสิ้น');window.location = '../users-admin/banner.php';</script>";
+        echo "<script>delsuccess();</script>";
     } else {
-        echo "<script>alert ('ผิดพลาด ไม่สามารถลบข้อมูลได้');window.location = '../users-admin/banner.php';</script>";
+        echo "<script type='text/javascript'> error(); </script>";
     }
 }
 

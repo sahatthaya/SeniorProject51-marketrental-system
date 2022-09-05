@@ -25,7 +25,7 @@
                 }
             }
         } else {
-            echo "<script>alert('บัญชีผู้ใช้งาน หรือ รหัสผ่านของคุณไม่ถูกต้อง กรุณาตรวจสอบครั้ง'),window.location='index.php';</script>";
+            echo "<script>autherror();</script>";
         }
     }
 

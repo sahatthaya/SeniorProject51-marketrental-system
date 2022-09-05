@@ -60,7 +60,7 @@ if (isset($_POST['bn-submit'])) {
         echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
         echo "<script type='text/javascript'> success(); </script>";
       } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        echo "<script>error();</script>";
       }
     } else {
       $sqlInsert = "UPDATE market_detail  SET mkr_name='$mkr_name',market_type_id='$mkrtype',mkr_descrip='$mkr_descrip',email='$email',tel='$tel', house_no='$house_no',soi='$soi',moo='$moo',road='$road',district_id='$district_id',amphure_id='$amphure_id',province_id='$province_id',postalcode='$postalcode' WHERE (mkr_id = '$mkr_id') ";
@@ -68,10 +68,10 @@ if (isset($_POST['bn-submit'])) {
         echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
         echo "<script type='text/javascript'> success(); </script>";
       } else {
-        echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+        echo "<script>error();</script>";
       }
     }
   } else {
-    echo "<script>alert('เกิดข้อผิดพลาดกรุณาลองอีกครั้ง);</script>";
+    echo "<script>error();</script>";
   }
 }

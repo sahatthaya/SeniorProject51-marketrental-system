@@ -1,5 +1,5 @@
 <?php
-session_start();
-session_destroy();
-echo "<script>alert('ออกจากระบบสำเร็จ'); window.location = '../index.php';</script>";
-?>
+if (session_start()&&session_destroy()){
+include "./1-import-link.php";
+    echo "<script>logoutsuccess(); </script> ";
+}
