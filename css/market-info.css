@@ -15,7 +15,7 @@
 
 body {
     padding: 20px;
-    margin: 50px 68px 0px 146px !important;
+    margin: 10px 68px 0px 146px !important;
     min-width: 375px;
 }
 
@@ -172,7 +172,7 @@ a {
 @media(max-width:720px) {
     body {
         padding: 20px;
-        margin: 50px 10px 0px 10px !important;
+        margin: 10px 10px 0px 10px !important;
     }
 
     .mkrpic img {

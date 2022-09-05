@@ -8,7 +8,7 @@
     <title> MarketRental - หน้าหลัก</title>
     <!-- css  -->
     <link rel="stylesheet" href="./css/index.css" type="text/css">
-    
+
 </head>
 <?php
 include "profilebar.php";
@@ -22,6 +22,7 @@ require "./backend/qry-index.php";
 ?>
 
 <body>
+
     <!-- banner -->
     <div class=" banner">
         <div id="banner" class="carousel slide topcontent" data-bs-ride="carousel">

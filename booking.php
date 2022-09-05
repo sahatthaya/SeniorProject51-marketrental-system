@@ -40,6 +40,13 @@
 </head>
 
 <body onload="plslogin( event );">
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="./all-market.php" class="text-decoration-none">ตลาดทั้งหมด</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="market-info.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none"><?php echo $row['mkr_name']; ?></a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">จองแผงค้า<?php echo $row['mkr_name']; ?></li>
+        </ol>
+    </nav>
     <h1>จองแผงค้า<?php echo $row['mkr_name']; ?></h1>
     <div class="border rounded shadow-sm p-3 pt-3 mt-3">
         <h5>ขั้นตอนการจองแผงค้า</h5>

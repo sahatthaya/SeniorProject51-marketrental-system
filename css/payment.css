@@ -1,6 +1,6 @@
 body {
     padding: 10px;
-    margin: 50px 20px;
+    margin: 10px 20px;
     min-width: 375px;
 
 }
@@ -47,7 +47,7 @@ body {
 
     body {
         padding: 20px;
-        margin: 50px 10px 0px 100px !important;
+        margin: 10px 10px 0px 100px !important;
     }
 
     .content {
@@ -72,7 +72,7 @@ body {
 
     body {
         padding: 10px;
-        margin: 50px 20px !important;
+        margin: 10px 20px !important;
     }
 
     #headline {
@@ -91,7 +91,7 @@ body {
 @media only screen and (max-width: 600px) {
     body {
         padding: 10px;
-        margin: 50px 20px !important;
+        margin: 10px 20px !important;
     }
 
 

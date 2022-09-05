@@ -155,7 +155,7 @@ body {
 
 @media(max-width:720px) {
     body {
-        margin: 50px 10px 0px 10px !important;
+        margin: 10px 10px 0px 10px !important;
     }
 
     .quick {
@@ -183,7 +183,7 @@ body {
 @media(max-width:327px) {
     body {
         padding: 20px;
-        margin: 50px 10px 0px 10px !important;
+        margin: 10px 10px 0px 10px !important;
     }
 
     .quick {

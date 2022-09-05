@@ -1,6 +1,6 @@
 body {
     padding: 20px;
-    margin: 50px 68px 10px 146px !important;
+    margin: 10px 68px 10px 146px !important;
     min-width:375px;
 }
 
@@ -103,7 +103,7 @@ input:invalid{
 
     body {
         padding: 20px;
-        margin: 50px 10px 0px 100px !important;
+        margin: 10px 10px 0px 100px !important;
     }
 
     .form-control {
@@ -119,7 +119,7 @@ input:invalid{
 
     body {
         padding: 10px;
-        margin: 50px 20px !important;
+        margin: 10px 20px !important;
     }
 
     #headline {
@@ -177,7 +177,7 @@ input:invalid{
 @media only screen and (max-width: 600px) {
     body {
         padding: 10px;
-        margin: 50px 20px !important;
+        margin: 10px 20px !important;
     }
 
     .carousel-inner {
