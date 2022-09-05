@@ -16,10 +16,31 @@ include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 require "../backend/news.php";
-
+$sql = "SELECT market_detail.*,users.username ,
+    provinces.province_name,
+    amphures.amphure_name,
+    districts.district_name , 
+    market_type.market_type
+    FROM market_detail 
+        JOIN users ON (market_detail.users_id = users.users_id)
+        JOIN provinces ON (market_detail.province_id = provinces.id)
+        JOIN amphures ON (market_detail.	amphure_id = amphures.id)
+        JOIN districts ON (market_detail.district_id = districts.id)
+        JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
+         WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
+extract($row);
 ?>
 
 <body>
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="news.php?mkr_id=<?php echo $row['mkr_id'] ?>" class="text-decoration-none" >จัดการข่าวสาร <?php echo $row['mkr_name']; ?></a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">แก้ไขข่าวสาร</li>
+        </ol>
+    </nav>
     <h1 class="head_contact mb-3">แก้ไขข่าวสาร</h1>
 
     <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm">

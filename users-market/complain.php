@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - Document</title>
-    
+
     <link rel="stylesheet" href="../css/banner.css">
     <link rel="stylesheet" href="../css/complain.css">
 
@@ -40,6 +40,12 @@ JOIN users ON (complain.users_id = users.users_id)
 ?>
 
 <body>
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">จัดการคำร้องเรียน <?php echo $row['mkr_name'] ?></li>
+        </ol>
+    </nav>
     <div>
         <h1 id="headline">จัดการคำร้องเรียน <?php echo $row['mkr_name'] ?></h1>
         <div id="content">

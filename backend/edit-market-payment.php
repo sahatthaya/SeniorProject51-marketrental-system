@@ -3,7 +3,7 @@ include "../backend/1-connectDB.php";
 
 if (isset($_GET['mkr_id'])) {
     $mkr_id = $_GET['mkr_id'];
-    $sql = "SELECT * FROM market_detail WHERE (a_id='1' ANDmkr_id = '$mkr_id') ";
+    $sql = "SELECT * FROM market_detail WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     extract($row);

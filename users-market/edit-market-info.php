@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/applicant.css">
   <title> MarketRental - แก้ไขข้อมูลตลาด</title>
-    
+
 </head>.
 
 <?php
@@ -24,9 +24,15 @@ $result_province = mysqli_query($conn, $query_province);
 
 
 <body>
+  <nav aria-label="breadcrumb mb-3">
+    <ol class="breadcrumb ">
+      <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+      <li class="breadcrumb-item active fs-5" aria-current="page">แก้ไขข้อมูล <?php echo $row['mkr_name']; ?></li>
+    </ol>
+  </nav>
   <form id="applyform" method="POST" enctype="multipart/form-data">
     <div class="form-outer" style="overflow: visible;">
-      <h1>แก้ไขข้อมูลตลาด</h1>
+      <h1>แก้ไขข้อมูล <?php echo $row['mkr_name']; ?></h1>
       <!-- form--1 -->
       <div id="stepOne" class="row border shadow-sm pt-5 pb-3 px-5 mt-3 mb-3 rounded">
         <div class="des_input">ชื่อตลาด</div>
@@ -135,10 +141,11 @@ $result_province = mysqli_query($conn, $query_province);
   });
 
   mkr.onchange = evt => {
-        const [file] = mkr.files
-        if (file) {
-            mkrpic.src = URL.createObjectURL(file)
-        }
+    const [file] = mkr.files
+    if (file) {
+      mkrpic.src = URL.createObjectURL(file)
     }
+  }
 </script>
+
 </html>

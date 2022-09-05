@@ -26,6 +26,21 @@ $resultCU = mysqli_query($conn, $costunit);
 $numCU = mysqli_num_rows($resultCU);
 $z_qry = "SELECT * FROM `zone`";
 $z = mysqli_query($conn, $z_qry);
+$sql = "SELECT market_detail.*,users.username ,
+    provinces.province_name,
+    amphures.amphure_name,
+    districts.district_name , 
+    market_type.market_type
+    FROM market_detail 
+        JOIN users ON (market_detail.users_id = users.users_id)
+        JOIN provinces ON (market_detail.province_id = provinces.id)
+        JOIN amphures ON (market_detail.	amphure_id = amphures.id)
+        JOIN districts ON (market_detail.district_id = districts.id)
+        JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
+         WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
+$result = mysqli_query($conn, $sql);
+$row = mysqli_fetch_array($result);
+extract($row);
 require "../backend/manage-edit-Stall.php";
 
 if (isset($_POST['submit-edit'])) {
@@ -49,7 +64,6 @@ if (isset($_POST['addcost'])) {
         }
     } else {
         echo "<script>error();</script>";
-
     }
 }
 // เพิ่มแผงค้า
@@ -63,7 +77,7 @@ if (isset($_POST['stall-submit'])) {
     $sRent = $_POST['sRent'];
     $z_id = $_POST['z_id'];
 
-    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != ""&& isset($_POST['z_id']) != "") {
+    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "" && isset($_POST['z_id']) != "") {
         $sqlCheck = "SELECT * FROM stall WHERE (market_id = '$mkr_id')AND (sID = '$sID')";
         $rsCheck = mysqli_query($conn, $sqlCheck);
         $rowCheck = mysqli_num_rows($rsCheck);
@@ -116,6 +130,13 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
 
 
 <body>
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">จัดการข้อมูลแผงค้า <?php echo $row['mkr_name']; ?></li>
+        </ol>
+    </nav>
+
     <h1>จัดการข้อมูลแผงค้า</h1>
 
     <div id="quick-menu2" class="hstack mt-3">
@@ -207,7 +228,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
             </div>
             <label for="" class="mt-2">ประเภทแผงค้า</label>
             <div class="search_select_box">
-                <select class="selectpicker dropdown" title="เลือกประเภท" name="z_id" data-live-search="true" data-width="100%" data-size="5"  required>
+                <select class="selectpicker dropdown" title="เลือกประเภท" name="z_id" data-live-search="true" data-width="100%" data-size="5" required>
                     <?php while ($zone = mysqli_fetch_array($z)) :; ?>
                         <option value="<?php echo $zone['z_id']; ?>"><?php echo $zone['z_name']; ?></option>
                     <?php endwhile; ?>
@@ -271,7 +292,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                             </td>
                             <td>
                                 <div class="row" style="justify-content: center;">
-                                    <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;"  href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
+                                    <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;" href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
                                     <a href="edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;" onclick="return confirm('คุณต้องการลบแผงค้านี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
                                 </div>
                             </td>

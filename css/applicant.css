@@ -4,7 +4,7 @@
 
 body {
     justify-content: center;
-    margin: 78px 68px 10px 146px !important;
+    margin: 78px 68px 10px 146px ;
     min-width: 375px;
 }
 
@@ -20,7 +20,9 @@ body {
 
 /* ----------------------------------------1.ส่วนบน------------------------------------------------------------ */
 
-
+.breadcrumb{
+    padding:0 8rem !important;
+}
 /* ----------------------------------------2.กล่องฟอร์ม------------------------------------------------------------ */
 #headline {
     text-align: center;
@@ -38,7 +40,7 @@ body {
 
 
 .form-outer {
-    margin: 0px 68px 0px 146px !important;
+    margin: 0px 68px 0px 146px ;
     padding: 0 250px;
 }
 
@@ -144,6 +146,7 @@ input[type=file]::file-selector-button:hover {
 
 .tooltip-inner {
     max-width: 5000px !important;
+    background-color: var(--freshblue) !important;
 }
 
 
@@ -154,11 +157,11 @@ input[type=file]::file-selector-button:hover {
 
     body {
         padding: 2px;
-        margin: 10px 10px 0px 10px !important;
+        margin: 50px 10px 0px 10px ;
     }
 
     .form-outer {
-        margin: 0px 50px 0px 140px !important;
+        margin: 0px 50px 0px 140px ;
         padding: 0px;
     }
 
@@ -183,7 +186,7 @@ input[type=file]::file-selector-button:hover {
 
     body {
         padding: 2px;
-        margin: 70px 1px 0px 5px !important;
+        margin: 70px 1px 0px 5px ;
     }
 
     #headline {
@@ -192,7 +195,7 @@ input[type=file]::file-selector-button:hover {
     }
 
     .form-outer {
-        margin: 10px !important;
+        margin: 50px !important;
         padding: 0px;
     }
 
@@ -229,7 +232,7 @@ input[type=file]::file-selector-button:hover {
 
     body {
         padding: 2px;
-        margin: 70px 1px 0px 5px !important;
+        margin: 70px 1px 0px 5px ;
     }
 
     #stepTwo {
