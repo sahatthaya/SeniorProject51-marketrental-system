@@ -7,8 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - กรอกข้อมูลเพื่อจองแผงค้า</title>
     <link rel="stylesheet" href="../css/applicant.css" type="text/css">
-    <link rel="stylesheet" href="../css/payment.css" type="text/css">
-
 
 </head>
 
@@ -18,10 +16,35 @@ include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
+if ($_GET) {
+    $mkr_id = $_GET['mkr_id'];
+    $sql = "SELECT market_detail.*,users.username ,
+    provinces.province_name,
+    amphures.amphure_name,
+    districts.district_name , 
+    market_type.market_type
+    FROM market_detail 
+        JOIN users ON (market_detail.users_id = users.users_id)
+        JOIN provinces ON (market_detail.province_id = provinces.id)
+        JOIN amphures ON (market_detail.	amphure_id = amphures.id)
+        JOIN districts ON (market_detail.district_id = districts.id)
+        JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
+         WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_array($result);
+    extract($row);
+}
 ?>
 
 <body>
-
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb mt-4">
+            <li class="breadcrumb-item fs-5 "><a href="./all-market.php" class="text-decoration-none">ตลาดทั้งหมด</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="market-info.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none"><?php echo $row['mkr_name']; ?></a></li>
+            <li class="breadcrumb-item fs-5 "><a href="booking.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none">จองแผงค้า<?php echo $row['mkr_name']; ?></a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">กรอกข้อมูลเพื่อจองแผงค้า <?php echo $row['mkr_name']; ?></li>
+        </ol>
+    </nav>
     <form id="applyform" method="POST" enctype="multipart/form-data" novalidate>
         <div class="form-outer form-group " style="overflow: visible;">
             <h1 id="headline">กรอกข้อมูลเพื่อจองแผงค้า</h1>

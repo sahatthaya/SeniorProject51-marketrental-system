@@ -18,7 +18,13 @@ require "../backend/qry-market-info.php"
 ?>
 
 <body>
-<div class="mkrpic center">
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="all-market.php?mkr_id=<?php echo $row['mkr_id'] ?>" class="text-decoration-none">ตลาดทั้งหมด</a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page"><?php echo $row['mkr_name'] ?></li>
+        </ol>
+    </nav>
+    <div class="mkrpic center">
         <img src="../<?php echo $row['mkr_pic'] ?>" class="img-fluid img-thumbnail" alt="...">
     </div>
     <div class="mrk_info">
@@ -59,7 +65,7 @@ require "../backend/qry-market-info.php"
         <ul class="list-group list-group-flush">
             <?php while ($row1 = $result3->fetch_assoc()) : ?>
                 <li class="list-group-item">
-                <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
+                    <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
                         <p><?php echo $row1['timestamp']; ?></p>
                         <p><?php echo $row1['n_sub']; ?></p>
 
@@ -91,4 +97,5 @@ require "../backend/qry-market-info.php"
         })
     });
 </script>
+
 </html>
