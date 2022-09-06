@@ -1,7 +1,7 @@
 body {
     padding: 20px;
     margin: 55px 68px 0px 146px !important;
-    min-width:375px;
+    min-width: 375px;
 }
 
 :root {
@@ -48,6 +48,8 @@ body {
 .search_box {
     margin-top: 25px;
     margin-bottom: 20px;
+    display: flex;
+    gap: 0.5rem;
 }
 
 .box {
@@ -123,27 +125,27 @@ body {
 
 @media(max-width: 1400px) {
 
-    .box,.typemkr {
+    .box, .typemkr {
         display: grid;
         grid-gap: 20px;
         grid-template-columns: repeat(3, minmax(100px, 1fr));
     }
 
-    
+
 }
 
 @media(max-width: 1200px) {
 
-    .box,.typemkr {
+    .box, .typemkr {
         display: grid;
         grid-gap: 20px;
         grid-template-columns: repeat(2, minmax(100px, 1fr));
     }
-    
+
 }
 
 @media(max-width: 992px) {
-    .box,.typemkr {
+    .box, .typemkr {
         display: grid;
         grid-gap: 20px;
         grid-template-columns: repeat(1, 1fr);
@@ -153,6 +155,29 @@ body {
 
 }
 
+@media(max-width: 495px) {
+    .search-input {
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+    }
+    .search-input label{
+        margin-top: 6px;
+    }
+    .search_box {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
+    }
+
+    .search-btn {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 10px;
+    }
+}
+
 @media(max-width:720px) {
     body {
         margin: 10px 10px 0px 10px !important;
@@ -160,19 +185,19 @@ body {
 
     .quick {
         height: 40px;
-       
+
     }
 
-    .quick p{
-        font-size: 18px;   
+    .quick p {
+        font-size: 18px;
     }
 
-    #search{
+    #search {
         margin-top: 5px;
         margin-bottom: 2px;
     }
 
-    #reset{
+    #reset {
         margin-top: 5px;
         margin-bottom: 2px;
     }
@@ -188,24 +213,24 @@ body {
 
     .quick {
         height: 40px;
-       
+
     }
 
-    .quick p{
-        font-size: 18px;   
+    .quick p {
+        font-size: 18px;
     }
 
-    #search{
+    #search {
         margin-top: 5px;
         margin-bottom: 2px;
     }
 
-    #reset{
+    #reset {
         margin-top: 5px;
         margin-bottom: 2px;
     }
 
-    .box,.typemkr {
+    .box, .typemkr {
         display: grid;
         grid-gap: 20px;
         grid-template-columns: repeat(1, 1fr);

@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,21 +19,23 @@ require "../backend/qry-allmarket.php";
 include "../backend/1-import-link.php";
 
 ?>
+
 <body>
     <div class="wrap">
-    <div class="top">
+        <div class="top">
             <h1 id="headline">ตลาดทั้งหมด</h1>
-            <div class="search_box">
-                <form name="Searchbox " method="POST">
+            <form name="Searchbox" method="POST" class="search_box">
+                <div class="search-input">
                     <label for="#search">
                         <h5>ค้นหา : </h5>
                     </label>
                     <input class="btn border-secondary" type="text" name="search" id="search" placeholder="กรอกข้อมูลที่ต้องการค้นหา" onkeyup="search(this.value)">
+                </div>
+                <div class="search-btn">
                     <input class="btn btn-primary " id="search" type="submit" name="searchsubmit" value="ค้นหา">
                     <input class="btn btn-danger" id="reset" type="submit" name="reset" value="รีเซ็ต">
-                </form>
-
-            </div>
+                </div>
+            </form>
             <!-- <div class=" topmkr">
                 <div class="typemkr">
                     <button class="quick " id="partner-btn" style="background-color: #317DD9;">
