@@ -121,7 +121,7 @@ input[type=file]::file-selector-button:hover {
 @media(min-width: 1000px) {
     body {
         padding: 20px;
-        margin: 10px 10px 0px 90px !important;
+        margin: 50px 10px 0px 90px !important;
     }
 
 
@@ -159,7 +159,7 @@ input[type=file]::file-selector-button:hover {
 
     body {
         padding: 20px;
-        margin: 10px 10px 0px 100px !important;
+        margin: 70px 10px 0px 100px !important;
     }
 
 
@@ -196,7 +196,7 @@ input[type=file]::file-selector-button:hover {
 @media(max-width: 768px) {
 
     body {
-        margin: 10px 10px 0px 20px !important;
+        margin: 70px 10px 0px 20px !important;
     }
 
 
@@ -233,7 +233,7 @@ input[type=file]::file-selector-button:hover {
 @media(max-width:720px) {
     body {
         padding: 10px;
-        margin: 10px 10px 0px 10px !important;
+        margin: 70px 10px 0px 10px !important;
 
     }
 

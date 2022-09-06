@@ -97,19 +97,10 @@ body {
 @media(min-width: 1200px) {
     body {
         padding: 20px;
-        margin: 10px 10px 0px 90px !important;
+        margin: 50px 10px 0px 90px !important;
     }
 
 
-
-}
-
-@media(max-width: 992px) {
-
-    body {
-        padding: 20px;
-        margin: 10px 10px 0px 100px !important;
-    }
 
 }
 
@@ -133,4 +124,3 @@ body {
 
 }
 
-@media only screen and (max-width:375px) {}

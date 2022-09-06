@@ -156,8 +156,7 @@ input[type=file]::file-selector-button:hover {
 @media(max-width: 992px) {
 
     body {
-        padding: 2px;
-        margin: 50px 10px 0px 10px ;
+        margin: 70px 10px 0px 10px ;
     }
 
     .form-outer {
@@ -185,7 +184,6 @@ input[type=file]::file-selector-button:hover {
 @media(max-width: 720px) {
 
     body {
-        padding: 2px;
         margin: 70px 1px 0px 5px ;
     }
 
@@ -231,7 +229,6 @@ input[type=file]::file-selector-button:hover {
 @media(min-width: 370px) {
 
     body {
-        padding: 2px;
         margin: 70px 1px 0px 5px ;
     }
 

@@ -57,7 +57,7 @@ input[type=number] {
 
   body {
     padding: 20px;
-    margin: 10px 10px 0px 100px !important;
+    margin: 50px 10px 0px 100px !important;
   }
 
 }
@@ -69,7 +69,7 @@ input[type=number] {
 
   body {
     padding: 10px;
-    margin: 10px 20px !important;
+    margin: 50px 10px 10px 10px !important;
   }
 
   .col-sm-3 {
@@ -136,11 +136,6 @@ input[type=number] {
 
 
 @media only screen and (max-width: 600px) {
-  body {
-    padding: 10px;
-    margin: 10px 20px !important;
-  }
-
 
   .hstack {
     display: grid !important;
