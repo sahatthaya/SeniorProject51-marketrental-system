@@ -89,6 +89,7 @@ h1 {
     margin: 10px;
     font-size: 50px;
     color: var(--dark);
+    
 }
 
 #close-profile-btn:hover {
@@ -233,5 +234,15 @@ a.link:hover {
     }
     #close-profile-btn{
         margin: 20px;
+        position: absolute;
     }
+
+    .authicon {
+       display: none !important;
+    }
+    #signIn ,#signUp ,#forgotpsw{
+        margin-top: 40px;
+    }
+
+    
 }
