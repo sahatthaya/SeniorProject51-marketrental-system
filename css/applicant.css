@@ -145,10 +145,15 @@ input[type=file]::file-selector-button:hover {
 
 
 /* -------------------responsive-------------- */
+@media(max-width: 1400px) {
+    .form-outer {
+        padding: 0px;
+    }
+
+}
 
 @media(max-width: 992px) {
     .form-outer {
-        margin: 0px 50px 0px 140px ;
         padding: 0px;
     }
 
