@@ -148,7 +148,7 @@ input[type=file]::file-selector-button:hover {
 
 @media(max-width: 992px) {
     .form-outer {
-        margin: 0px 50px 0px 140px ;
+        margin: 0px;
         padding: 0px;
     }
 
@@ -167,8 +167,6 @@ input[type=file]::file-selector-button:hover {
 
 
 }
-
-
 @media(max-width: 720px) {
 
     body {
@@ -191,7 +189,7 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
     .row {
-        display: inline-flexbox !important;
+        display: flex !important;
     }
 
     .form-control {
@@ -202,14 +200,4 @@ input[type=file]::file-selector-button:hover {
         padding: 0px !important;
         width: 35% !important;
     }
-
-    #stepTwo {
-        display: none;
-    
-    }
-    
-    #stepThree {
-        display: none;
-    }
-
 }

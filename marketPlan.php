@@ -49,14 +49,16 @@
     </nav>
     <h1>แผนผัง<?php echo $row['mkr_name']; ?></h1>
     <div class="plan">
-        <div class="w-100 hstack px-1 pt-3 gap-2">
-            <label>ประเภทร้านค้า : </label>
-            <select class="form-select w-25" aria-label="Default select example">
-                <option selected>ทั้งหมด</option>
-                <option value="1">ร้านเสื้อผ้า</option>
-                <option value="2">ร้านอาหาร</option>
-                <option value="3">ร้านน้ำ</option>
-            </select>
+        <div class="w-100 hstack px-1 pt-3 gap-2 searchlabel">
+            <div class="selectlabel">
+                <label class="mt-1">ประเภทร้านค้า : </label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>ทั้งหมด</option>
+                    <option value="1">ร้านเสื้อผ้า</option>
+                    <option value="2">ร้านอาหาร</option>
+                    <option value="3">ร้านน้ำ</option>
+                </select>
+            </div>
             <button type="button" class="btn btn-outline-primary save-stall" id="save"><i class='bx bx-search'></i> ค้นหา </button>
         </div>
         <hr>

@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/market-index.css">
     <title> MarketRental - หน้าหลัก(เจ้าของตลาด)</title>
-    
+
 
 </head>
 
@@ -97,6 +97,10 @@ require "../backend/graph-market.php";
     
             chart.draw(data, options);
         }
+        $(window).resize(function(){
+            drawBackgroundColor();
+            drawChart();
+          });
     </script>";
         echo '
     <div class="box ">
@@ -191,6 +195,10 @@ require "../backend/graph-market.php";
     
             chart.draw(data, options);
         }
+        $(window).resize(function(){
+            drawBackgroundColor();
+            drawChart();
+          });
     </script>";
         echo '
     <div class="box ">

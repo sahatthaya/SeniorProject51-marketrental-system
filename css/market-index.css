@@ -1,13 +1,14 @@
 body {
-    margin: 30px 68px 20px 146px !important;
-    min-width: 370px;
-    padding-top: 40px;
+  margin: 30px 68px 20px 146px !important;
+  min-width: 370px;
+  padding-top: 40px;
 
 }
+
 /* ยังไม่มีตลาด */
-.no-market{
-  margin-top:15px ;
-  padding:15px 0 ;
+.no-market {
+  margin-top: 15px;
+  padding: 15px 0;
   height: 250px;
   border-radius: 10px;
   border: 10px solid white;
@@ -15,6 +16,7 @@ body {
   -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
   box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
 }
+
 /* grap  */
 .box {
   display: grid;
@@ -86,9 +88,11 @@ body {
   background-color: #38B6FF !important;
 
 }
+
 .flickity-page-dots {
   bottom: -50px !important;
 }
+
 /* market box */
 .project-box {
   height: 400px;
@@ -209,17 +213,10 @@ body {
   }
 }
 
-@media (max-width:720px) {
-  body {
-    padding-right: 10px;
-    margin: 60px 10px 0px 15px !important;
-}
-
-
+@media (max-width:933px) {
   .three.columns {
     width: 100%;
   }
-
 
   .project-box-wrapper {
     clear: both;
@@ -240,3 +237,11 @@ body {
   }
 }
 
+@media (max-width:720px) {
+  body {
+    padding-right: 10px;
+    margin: 60px 10px 0px 15px !important;
+  }
+
+
+}
