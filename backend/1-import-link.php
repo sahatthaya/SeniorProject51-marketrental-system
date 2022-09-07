@@ -59,7 +59,12 @@
 
     <!-- input mask -->
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-
+    
+    <style>
+        .swal2-popup {
+            font-family: 'Mitr', sans-serif !important;
+        }
+    </style>
 </head>
 <script src="../backend/script.js"></script>
 <script type="text/javascript">
@@ -92,6 +97,7 @@
             timer: 2500
         })
     }
+
     function signUPsuccess() {
         Swal.fire({
             title: 'ลงทะเบียนสำเร็จ',
@@ -109,6 +115,7 @@
             timer: 2500
         })
     }
+
     function Deninedsuccess() {
         Swal.fire({
             title: 'ยกเลิกคำร้องเสร็จสิ้น',
@@ -171,7 +178,7 @@
         })
     }
 
-    
+
     function username_doubly() {
         Swal.fire({
             title: 'ชื่อผู้ใช้ซ้ำ',
@@ -180,8 +187,6 @@
             timer: 3000
         })
     }
-
-    
 </script>
 
 </html>

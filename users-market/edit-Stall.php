@@ -19,7 +19,7 @@ include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 $mkr_id = $_GET['mkr_id'];
 $count_n = 1;
-$data2 = "SELECT * FROM stall WHERE (market_id = '$mkr_id')";
+$data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
 $result3 = mysqli_query($conn, $data2);
 $costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
 $resultCU = mysqli_query($conn, $costunit);
@@ -270,6 +270,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                     <tr>
                         <th scope="col">ลำดับ</th>
                         <th scope="col">รหัสแผงค้า</th>
+                        <th scope="col">ประเภทร้านค้า</th>
                         <th scope="col">ขนาดพื้นที่</th>
                         <th scope="col">ราคามัดจำ (บาท)</th>
                         <th scope="col">ราคาค่าเช่า</th>
@@ -283,6 +284,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         <tr>
                             <td style="width:5% ;"><?php echo $count_n; ?></td>
                             <td><?php echo $row1['sID'] ?></td>
+                            <td><?php echo $row1['z_name'] ?></td>
                             <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
                             <td><?php echo $row1['sDept']; ?></td>
                             <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>

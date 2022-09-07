@@ -17,7 +17,7 @@
     include "../backend/1-import-link.php";
     $mkr_id = $_GET['mkr_id'];
     $count_n = 1;
-    $data2 = "SELECT stall.*, zone.z_color FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
+    $data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
     $result3 = mysqli_query($conn, $data2);
     $zone = mysqli_query($conn, "SELECT * FROM `zone`");
     require "../backend/manage-edit-Stall.php";
@@ -192,6 +192,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -204,7 +205,7 @@
                     <br>
                     <table class="table">
                         <thead>
-                            <tr>
+                            <tr></tr>
                                 <th scope="col">#</th>
                                 <th scope="col">ประเภท</th>
                                 <th scope="col">สี</th>
