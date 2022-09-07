@@ -31,10 +31,11 @@ if (isset($_GET['mkr_id'])) {
 
     //qry
     $count_n = 1;
-    $data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
-JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
-JOIN users ON (complain.users_id = users.users_id)
- WHERE (mkr_id = '$mkr_id') ";
+    $data = "SELECT complain.*, toppic.toppic,users.username , comp_status.* FROM complain 
+    JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
+    JOIN users ON (complain.users_id = users.users_id)
+    JOIN comp_status ON (complain.status = comp_status.cs_id)
+    WHERE (mkr_id = '$mkr_id') ";
     $result = mysqli_query($conn, $data);
 }
 ?>
@@ -70,7 +71,9 @@ JOIN users ON (complain.users_id = users.users_id)
                                 <td><?php echo $row['toppic'] ?></td>
                                 <td><?php echo $row['comp_subject'] ?></td>
                                 <td><?php echo $row['username'] ?></td>
-                                <td><?php echo $row['status'] ?></td>
+                                <td>
+                                <div style="background-color: <?php echo $row['cs_color']; ?>;" class="p-1 rounded text-center"><?php echo $row['cs_name']; ?></div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-primary modal_data1" id="<?php echo $row['comp_id']; ?>">
                                         ตอบกลับ

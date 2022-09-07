@@ -23,7 +23,7 @@ $data1 = "SELECT req_partner.*,
     amphures.amphure_name,
     districts.district_name , 
     market_type.market_type,
-    req_status.req_status
+    req_status.*
     FROM req_partner 
         JOIN users ON (req_partner.users_id = users.users_id)
         JOIN provinces ON (req_partner.province_id = provinces.id)
@@ -110,7 +110,7 @@ if (isset($_GET['approve'])) {
      $qry = mysqli_query($conn, $sqlqry);
      $row = mysqli_fetch_array($qry);
      extract($row);
-  
+
      $market_name = $row['market_name'];
      $market_descrip = $row['market_descrip'];
      $market_pic = $row['market_pic'];
@@ -127,7 +127,7 @@ if (isset($_GET['approve'])) {
      $amphure_id = $row['amphure_id'];
      $province_id = $row['province_id'];
      $postalcode = $row['postalcode'];
-     
+
 
      $approve = "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)";
      $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`) 
@@ -154,6 +154,7 @@ if (isset($_GET['approve'])) {
 
      if ($isql2 && $ql && $isql && $sqlCU && $sqlInsertpayment) {
           echo "<script>Approvesuccess();</script>";
+          echo '<meta http-equiv="refresh" content="1"; />';
      } else {
           echo "<script>error();</script>";
      }
@@ -163,6 +164,7 @@ if (isset($_GET['denied'])) {
      $denied = "UPDATE req_partner SET req_status_id = '3' WHERE (req_partner_id = $deniedid)";
      if (mysqli_query($conn, $denied)) {
           echo "<script>Deninedsuccess();</script>";
+          echo '<meta http-equiv="refresh" content="1"; />';
      } else {
           echo "<script>error();</script>";
      }

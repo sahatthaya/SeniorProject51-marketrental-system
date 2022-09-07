@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - กรอกข้อมูลเพื่อจองแผงค้า</title>
     <link rel="stylesheet" href="../css/applicant.css" type="text/css">
+    <link rel="stylesheet" href="../css/payment.css" type="text/css">
+
 
 </head>
 
@@ -38,7 +40,7 @@ if ($_GET) {
 
 <body>
     <nav aria-label="breadcrumb mb-3">
-        <ol class="breadcrumb mt-4">
+        <ol class="breadcrumb">
             <li class="breadcrumb-item fs-5 "><a href="./all-market.php" class="text-decoration-none">ตลาดทั้งหมด</a></li>
             <li class="breadcrumb-item fs-5 "><a href="market-info.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none"><?php echo $row['mkr_name']; ?></a></li>
             <li class="breadcrumb-item fs-5 "><a href="booking.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none">จองแผงค้า<?php echo $row['mkr_name']; ?></a></li>

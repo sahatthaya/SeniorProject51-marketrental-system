@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - คำร้องประชาสัมพันธ์</title>
-    
+
     <!-- css  -->
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
@@ -26,12 +26,12 @@ require "../backend/manage-annouce.php";
         <!-- Button modal -->
         <div id="addbn" class="col-4">
             <a id="addbn" type="button" class="btn btn-primary" href="./annouce.php">
-            <i class='bx bx-clipboard'></i> จัดการคำร้องขอประชาสัมพันธ์
+                <i class='bx bx-clipboard'></i> จัดการคำร้องขอประชาสัมพันธ์
             </a>
         </div>
     </div>
     <div id="content">
-        <div id="table2"  class="border p-3 shadow-sm rounded">
+        <div id="table2" class="border p-3 shadow-sm rounded">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>
@@ -52,7 +52,7 @@ require "../backend/manage-annouce.php";
                             <td><?php echo $row1['username']; ?></td>
                             <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
                             <td>
-                            <?php echo $row1['req_status']; ?>
+                                <div style="background-color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row1['req_status']; ?></div>
                             </td>
                         </tr>
                     <?php $count_n++;

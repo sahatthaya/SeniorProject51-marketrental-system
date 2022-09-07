@@ -1,5 +1,5 @@
 body {
-    margin: 60px 78px 20px 156px !important;
+    margin: 30px 68px 20px 146px !important;
     min-width: 375px;
 }
 
@@ -134,5 +134,10 @@ body {
 
     h1 {
         font-size: 24px !important;
+    }
+
+    .cardcontact img {
+        width: 660px !important;
+        height: 250px !important;
     }
 }

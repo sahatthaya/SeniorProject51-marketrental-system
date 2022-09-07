@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +20,9 @@ include "../backend/1-import-link.php";
 $count_n = 1;
 $userid = $_SESSION['users_id'];
 $count_n = 1;
-$data = "SELECT complain.*, toppic.toppic FROM complain 
+$data = "SELECT complain.*, toppic.toppic , comp_status.* FROM complain 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
+JOIN comp_status ON (complain.status = comp_status.cs_id)
  WHERE (users_id = '$userid') ";
 $result = mysqli_query($conn, $data);
 ?>
@@ -50,7 +50,9 @@ $result = mysqli_query($conn, $data);
                                 <td><?php echo $row['timestamp'] ?></td>
                                 <td><?php echo $row['toppic'] ?></td>
                                 <td><?php echo $row['comp_subject'] ?></td>
-                                <td><?php echo $row['status'] ?></td >
+                                <td>
+                                    <div style="background-color: <?php echo $row['cs_color']; ?>;" class="p-1 rounded text-center"><?php echo $row['cs_name']; ?></div>
+                                </td>
                                 <td>
                                     <button type="button" class="btn btn-outline-primary modal_data1" id="<?php echo $row['comp_id']; ?>">
                                         ดูรายละเอียด
@@ -69,8 +71,8 @@ $result = mysqli_query($conn, $data);
 <?php require '../backend/modal-seecomplain.php' ?>
 
 <script>
-   // apply detail popup
-   $(document).ready(function() {
+    // apply detail popup
+    $(document).ready(function() {
         $('.modal_data1').click(function() {
             var seeid = $(this).attr("id");
             $.ajax({

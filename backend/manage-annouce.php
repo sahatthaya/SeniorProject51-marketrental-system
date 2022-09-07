@@ -4,7 +4,7 @@ include "../backend/1-connectDB.php";
 $count_n = 1;
 $data2 = "SELECT req_annouce.*, users.username FROM req_annouce JOIN users ON (req_annouce.users_id = users.users_id) WHERE (req_status_id = '1')";
 $result3 = mysqli_query($conn, $data2);
-$data3 = "SELECT req_annouce.*, users.username, req_status.req_status FROM req_annouce JOIN users ON (req_annouce.users_id = users.users_id) JOIN req_status ON (req_annouce.req_status_id = req_status.req_status_id)";
+$data3 = "SELECT req_annouce.*, users.username, req_status.* FROM req_annouce JOIN users ON (req_annouce.users_id = users.users_id) JOIN req_status ON (req_annouce.req_status_id = req_status.req_status_id)";
 $result4 = mysqli_query($conn, $data3);
 
 if (isset($_POST["anid"])) {
@@ -14,7 +14,7 @@ if (isset($_POST["anid"])) {
     $result = mysqli_query($conn, $data);
     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
     while ($row = mysqli_fetch_array($result)) {
-         $output .= '
+        $output .= '
           <tr>  
                <td width="30%"><label>หัวข้อเรื่อง</label></td>  
                <td width="70%">' . $row["bn_toppic"] . '</td>  
@@ -49,19 +49,20 @@ if (isset($_GET['approve'])) {
     $approve = "UPDATE req_annouce SET req_status_id = '2' WHERE (req_an_id = $approveid)";
     $insert = "INSERT INTO banner (bn_toppic,bn_detail,bn_pic) VALUES ('$bn_toppic','$bn_detail','$bn_pic')";
 
-    if ($ql = mysqli_query($conn, $approve)&&$isql = mysqli_query($conn, $insert)) {
+    if ($ql = mysqli_query($conn, $approve) && $isql = mysqli_query($conn, $insert)) {
         echo "<script>Approvesuccess();</script>";
+        echo '<meta http-equiv="refresh" content="1"; />';
     } else {
         echo "<script>error();</script>";
     }
 }
 
-if (isset($_GET['denied']) ){
+if (isset($_GET['denied'])) {
     $deniedid = $_GET['denied'];
     $denied = "UPDATE req_annouce SET req_status_id = '3' WHERE (req_an_id = $deniedid)";
     if (mysqli_query($conn, $denied)) {
         echo "<script>Deninedsuccess();</script>";
-
+        echo '<meta http-equiv="refresh" content="1"; />';
     } else {
         echo "<script>error();</script>";
     }

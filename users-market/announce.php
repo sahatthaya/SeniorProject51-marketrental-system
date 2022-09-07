@@ -28,7 +28,7 @@ require "../backend/add-applicant.php";
 
 ?>
 
-<body>
+<body class="mt-5">
     <div class="applybox">
         <form id="applyform" method="POST" enctype="multipart/form-data">
             <div class="form-outer" style="overflow: visible;">

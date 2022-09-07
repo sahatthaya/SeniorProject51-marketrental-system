@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - จัดการตลาด</title>
-    
+
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 
 </head>
@@ -54,9 +54,8 @@ require "../backend/manage-applicant.php";
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                                 <td><?php echo $row['market_name']; ?></td>
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
-                                </td>
                                 <td>
-                                    <?php echo $row['req_status']; ?>
+                                    <div style="background-color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div>
                                 </td>
                             </tr>
                         <?php $count_n++;

@@ -6,6 +6,8 @@
   --freshblue: #0daafd;
   --margenta: #8e18d7;
   --dark: #02155A;
+  --light: #6dd4f7;
+
 }
 
 body {
@@ -40,6 +42,7 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
 .tooltip-inner {
   max-width: 5000px !important;
 }
@@ -133,6 +136,34 @@ input[type=number] {
   }
 }
 
+/* datatable plugin */
+.dataTables_wrapper .dataTables_filter input {
+  width: 70%;
+  padding: 0.2rem 0.6rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background: var(--light) !important;
+  border: none !important;
+
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  border: none !important;
+}
+
+.dataTables_scrollBody {
+
+  overflow: hidden !important;
+}
 
 
 @media only screen and (max-width: 600px) {

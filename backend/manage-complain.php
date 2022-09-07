@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
     $reply = $_POST['reply'];
 
     if (isset($_POST['reply']) != "") {
-        $sqlInsert = "UPDATE complain SET reply='$reply',status='ตอบกลับแล้ว' WHERE (comp_id = '$comp_id')";
+        $sqlInsert = "UPDATE complain SET reply='$reply',`status`='2' WHERE (comp_id = '$comp_id')";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script>success(); </script>";
         } else {

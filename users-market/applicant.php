@@ -31,7 +31,7 @@ $result_province = mysqli_query($conn, $query_province);
 require "../backend/add-applicant.php"
 ?>
 
-<body>
+<body class="mt-5">
     <form id="applyform" method="POST" enctype="multipart/form-data" novalidate>
         <div class="form-outer form-group " style="overflow: visible;">
             <h1 id="headline">กรอกข้อมูลเพื่อส่งคำร้องขอเพิ่มตลาดใหม่</h1>
