@@ -1,6 +1,6 @@
 body {
     margin: 30px 68px 20px 146px !important;
-    min-width: 375px;
+    min-width: 370px;
 }
 
 :root {
@@ -156,8 +156,8 @@ body {
 
 @media(max-width:720px) {
     body {
-        padding: 20px;
-        margin: 50px 10px 0px 10px !important;
+        margin: 60px 10px 0px 15px !important;
+        padding-right: 10px;
     }
 
     .quick {
@@ -206,6 +206,7 @@ body {
 }
 
 @media(max-width:375px) {
+
 
     .quick {
         height: 40px;

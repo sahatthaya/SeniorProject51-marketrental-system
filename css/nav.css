@@ -22,7 +22,7 @@
     height: 97%;
     width: 320px;
     background: var(--main);
-    z-index: 500 !important;
+    z-index: 700 !important;
     transition: all 0.5s ease;
     border-radius: 15px;
     box-shadow: 4px 1px 5px -1px #7c7c7c8c;
@@ -32,6 +32,7 @@
 .sidebar.close {
     margin: 10px;
     width: 78px;
+    z-index: 500 !important;
 }
 
 .sidebar .nav-links li.showMenu i.arrow {

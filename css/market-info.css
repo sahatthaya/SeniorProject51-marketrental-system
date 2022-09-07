@@ -14,8 +14,8 @@
 }
 
 body {
-    margin: 10px 68px 0px 146px !important;
-    min-width: 375px;
+    margin: 30px 68px 20px 146px !important;
+    min-width: 370px;
 }
 
 /* ----------------------------------------1.ข้อมูลทั่วไปตลาด (บนซ้าย)------------------------------------------------------------ */
@@ -170,8 +170,8 @@ a {
 
 @media(max-width:720px) {
     body {
-        padding: 20px;
-        margin: 50px 10px 0px 10px !important;
+        padding-right: 10px;
+        margin: 60px 10px 0px 10px !important;
     }
 
     .mkrpic img {

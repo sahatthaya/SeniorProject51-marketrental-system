@@ -41,7 +41,7 @@ h1 {
     padding: 5px;
     margin: 10px;
     color: var(--dark);
-    z-index: 100;
+    z-index: 600;
     display: flex;
     border-radius: 50px;
     background: var(--white);
@@ -79,7 +79,7 @@ h1 {
     height: 100%;
     width: 400px;
     background:var(--white);
-    z-index: 100;
+    z-index: 1000;
     transition: all 0.5s ease;
     border-top-left-radius: 15px;
     box-shadow: 5px 10px 10px 8px #5c5c5c8c, -5px -10px 10px #0000001c;
@@ -216,8 +216,22 @@ a.link:hover {
 
 @media only screen and (max-width: 768px) {
     .profileicon p {
-        font-size: 10px;
-        margin: 5px;
-        padding: 6px;
+        display: none;
+    }
+
+    .profileicon{
+        height: 50px;
+        width: 50px;
+        border-radius: 100px;
+        transition: all 0.4s ease;
+    }
+
+    .profileicon i {
+        margin: 3px 3px;
+        width: 35px;
+        transition: all 0.4s ease;
+    }
+    #close-profile-btn{
+        margin: 20px;
     }
 }

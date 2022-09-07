@@ -10,7 +10,8 @@
 
 body {
     margin: 30px 68px 20px 146px !important;
-    min-width: 1400px;
+    min-width: 370px;
+
 }
 
 .add-btn i {
@@ -92,3 +93,29 @@ body {
     font-size: 15px;
 }
 
+/* responsive--------------------------------------------------------------------- */
+
+@media only screen and (max-width: 768px) {
+
+    .gap-2 {
+        display: grid !important;
+    }
+
+    .form-control {
+        width: 100% !important;
+    }
+
+    .form-select {
+        width: 100% !important;
+    }
+
+}
+
+@media(max-width:720px) {
+
+    body {
+        padding-right: 10px;
+        margin: 60px 10px 0px 15px !important;
+    }
+
+}
