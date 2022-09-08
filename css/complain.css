@@ -161,7 +161,7 @@ input[type=file]::file-selector-button:hover {
         border-radius: 5px !important;
         border-style: none;
         padding: 0 5px;
-        width: 200px;
+        width: 180px;
         margin: 10px 0 0 3px;
     }
 
@@ -169,7 +169,7 @@ input[type=file]::file-selector-button:hover {
         border-radius: 5px !important;
         border-style: none;
         padding: 0 5px;
-        width: 200px;
+        width: 180px;
         margin: 0 0 0 17px;
     }
 
@@ -193,7 +193,7 @@ input[type=file]::file-selector-button:hover {
         border-radius: 5px !important;
         border-style: none;
         padding: 0 5px;
-        width: 230px;
+        width: 150px;
         margin: 10px 0 0 3px;
     }
 
@@ -201,7 +201,7 @@ input[type=file]::file-selector-button:hover {
         border-radius: 5px !important;
         border-style: none;
         padding: 0 5px;
-        width: 230px;
+        width: 150px;
         margin: 0 0 0 17px;
     }
 
@@ -267,3 +267,40 @@ input[type=file]::file-selector-button:hover {
 
 }
 
+@media(max-width:640px) {
+    
+    .postbox .subject {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 80%;
+        margin: 10px 0 0 3px;
+    }
+
+    .postbox select {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 80%;
+        margin: 0 0 0 17px;
+    }
+}
+
+@media(max-width:445px) {
+    .postbox .subject {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 220px;
+        margin: 10px 0 0 3px;
+    }
+
+    .postbox select {
+        border-radius: 5px !important;
+        border-style: none;
+        padding: 0 5px;
+        width: 220px;
+        margin: 0 0 0 17px;
+    }
+
+}

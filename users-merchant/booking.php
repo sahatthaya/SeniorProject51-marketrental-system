@@ -68,7 +68,7 @@
             <input type="number" class="form-control" style="width: 10%;" id="customRange1">
             <label>ถึง</label>
             <input type="number" class="form-control" style="width: 10%;" id="customRange1">
-            <button type="button" class="btn btn-outline-primary save-stall" id="save"><i class='bx bx-search'></i> ค้นหา </button>
+            <button type="button" class="btn btn-outline-primary save-stall " id="save"><i class='bx bx-search'></i> ค้นหา </button>
         </div>
         <hr>
         <div id="plan">
