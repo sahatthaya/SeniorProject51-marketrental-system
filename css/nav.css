@@ -1,6 +1,7 @@
 * {
     font-family: 'Mitr', sans-serif;
 }
+
 :root {
     --main: #0032b5;
     --light: #6dd4f7;
@@ -25,7 +26,7 @@
     z-index: 700 !important;
     transition: all 0.5s ease;
     border-radius: 15px;
-    box-shadow: 2px 2px 5px 2px #00000069;
+    box-shadow: 2px 2px 5px 2px #5c5c5c8c, -2px -5px 10px #0000001c;
 
 }
 
@@ -110,7 +111,7 @@
     display: flex;
     background: var(--light) !important;
     border-radius: 15px 0 0 15px;
-    
+
 }
 
 .sidebar.close .nav-links .navlink a:hover {
@@ -275,15 +276,18 @@
         top: 0px;
         left: 0px;
     }
-    .sidebar.close .logo-details{
-        height: 55px ;
+
+    .sidebar.close .logo-details {
+        height: 55px;
     }
+
     .sidebar.close .logo-details img {
         margin: -4px 7px;
         width: 35px;
         transition: all 0.4s ease;
     }
-    .sidebar.close .nav-links{
+
+    .sidebar.close .nav-links {
         display: none;
     }
 }
