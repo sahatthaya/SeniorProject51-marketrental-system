@@ -111,7 +111,7 @@
                                             </tr>
                                             <tr>
                                                 <td>สถานะ</td>
-                                                <td><?php echo $row1['sStatus'] ?></td>
+                                                <td>ว่าง</td>
                                             </tr>
                                         </tbody>
                                     </table>
