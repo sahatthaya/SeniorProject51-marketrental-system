@@ -188,7 +188,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                 <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
                                 <div class="col-sm-5">
                                     <div class="input-group mb-3">
-                                        <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_price'] ?>" name="cu_price">
+                                        <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo number_format($row['cu_price']) ?>" name="cu_price">
                                         <select class="form-select" aria-label="Default select example" name="cu_type">
                                             <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
                                             <option value="บาท/หน่วย">บาท/หน่วย</option>
@@ -285,9 +285,9 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                             <td style="width:5% ;"><?php echo $count_n; ?></td>
                             <td><?php echo $row1['sID'] ?></td>
                             <td><?php echo $row1['z_name'] ?></td>
-                            <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
-                            <td><?php echo $row1['sDept']; ?></td>
-                            <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>
+                            <td><?php echo number_format($row1['sWidth']) . ' * ' . number_format($row1['sHeight']) . ' ' . $row1['sAreaUnit']; ?></td>
+                            <td><?php echo number_format($row1['sDept']) ?></td>
+                            <td><?php echo number_format($row1['sRent']) . ' ' . $row1['sPayRange']; ?></td>
                             <!-- <td><?php echo $row1['sStatus']; ?></td> -->
                             <td style="width:15% ;">
                                 <button class=" btn btn-outline-info">ดูประวัติการจอง</button>
