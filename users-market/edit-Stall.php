@@ -123,10 +123,52 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
         echo "<script type='text/javascript'> error(); </script>";
     }
 }
-
 ?>
 <script src="../backend/script.js"></script>
-<script src="script.js"></script>
+<script>
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var options = {
+            width: 500,
+            height: 300,
+            animation: {
+                duration: 1000,
+                easing: 'out'
+            },
+            backgroundColor: '',
+            chartArea: {
+                'left': 15,
+                'top': 15,
+                'right': 0,
+                'bottom': 0
+            },
+            fontSize: '16',
+
+        };
+        var data = google.visualization.arrayToDataTable([
+            ['ประเภทแผงค้า', 'จำนวนแผงค้า'],
+            <?php
+            $queryz = "SELECT zone.* , COUNT(stall.z_id) AS countZ  FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id') GROUP BY stall.z_id ";
+            $rsz = mysqli_query($conn, $queryz);
+            foreach ($rsz as $rs_c) {
+                echo "['" . $rs_c['z_name'] . "'," . $rs_c['countZ'] . "],";
+            }
+            ?>
+
+        ]);
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+    $(window).resize(function() {
+        drawBackgroundColor();
+        drawChart();
+    });
+</script>
 
 
 <body>
@@ -188,7 +230,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                 <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
                                 <div class="col-sm-5">
                                     <div class="input-group mb-3">
-                                        <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_price'] ?>" name="cu_price">
+                                        <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo number_format($row['cu_price']) ?>" name="cu_price">
                                         <select class="form-select" aria-label="Default select example" name="cu_type">
                                             <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
                                             <option value="บาท/หน่วย">บาท/หน่วย</option>
@@ -215,52 +257,58 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
     </div>
 
     <!-- content -->
-    <div class="border rounded shadow-sm p-3 mt-3">
-        <form method="POST">
-            <h3 class="modal-title">เพิ่มแผงค้า</h3>
-            <label class="hstack mt-2">รหัสแผงค้า :
-                <div data-toggle="tooltip" title="รหัสแผงค้าภายในตลาดเดียวกัน จะไม่สามารถซ้ำกันได้" class="mt-1 ms-2">
-                    <i class='bx bx-info-circle'></i>
+    <div class="top">
+        <div class="border rounded shadow-sm p-3 mt-3">
+            <h3>จำนวนของแผงค้าในแต่ละประเภท</h3>
+            <div class="chartcanvas center mt-5 ms-5" id="piechart"></div>
+        </div>
+        <div class="border rounded shadow-sm p-3 mt-3">
+            <form method="POST">
+                <h3 class="modal-title">เพิ่มแผงค้า</h3>
+                <label class="hstack mt-2">รหัสแผงค้า :
+                    <div data-toggle="tooltip" title="รหัสแผงค้าภายในตลาดเดียวกัน จะไม่สามารถซ้ำกันได้" class="mt-1 ms-2">
+                        <i class='bx bx-info-circle'></i>
+                    </div>
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
                 </div>
-            </label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
-            </div>
-            <label for="" class="mt-2">ประเภทแผงค้า</label>
-            <div class="search_select_box">
-                <select class="selectpicker dropdown" title="เลือกประเภท" name="z_id" data-live-search="true" data-width="100%" data-size="5" required>
-                    <?php while ($zone = mysqli_fetch_array($z)) :; ?>
-                        <option value="<?php echo $zone['z_id']; ?>"><?php echo $zone['z_name']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <label class="mt-2">ขนาดพื้นที่ :</label>
-            <div class="input-group">
-                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <span class="input-group-text">*</span>
-                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
-                    <option selected value="เมตร">เมตร</option>
-                    <option value="เซนติเมตร">เซนติเมตร</option>
-                </select>
-            </div>
-            <label class="mt-2">ราคามัดจำ :</label>
-            <div class="input-group">
-                <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <span class="input-group-text">บาท</span>
-            </div>
-            <label class="mt-2">ราคาค่าเช่า :</label>
-            <div class="input-group">
-                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <select class="input-group-text" name="sPayRange">
-                    <option value="บาท/วัน">บาท/วัน</option>
-                    <option value="บาท/เดือน">บาท/เดือน</option>
-                </select>
-            </div>
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary mt-3" name="stall-submit">บันทึกข้อมูล</button>
-            </div>
-        </form>
+                <label for="" class="mt-2">ประเภทแผงค้า</label>
+                <div class="search_select_box">
+                    <select class="selectpicker dropdown" title="เลือกประเภท" name="z_id" data-live-search="true" data-width="100%" data-size="5" required>
+                        <?php while ($zone = mysqli_fetch_array($z)) :; ?>
+                            <option value="<?php echo $zone['z_id']; ?>"><?php echo $zone['z_name']; ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                <label class="mt-2">ขนาดพื้นที่ :</label>
+                <div class="input-group">
+                    <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <span class="input-group-text">*</span>
+                    <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
+                        <option selected value="เมตร">เมตร</option>
+                        <option value="เซนติเมตร">เซนติเมตร</option>
+                    </select>
+                </div>
+                <label class="mt-2">ราคามัดจำ :</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <span class="input-group-text">บาท</span>
+                </div>
+                <label class="mt-2">ราคาค่าเช่า :</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <select class="input-group-text" name="sPayRange">
+                        <option value="บาท/วัน">บาท/วัน</option>
+                        <option value="บาท/เดือน">บาท/เดือน</option>
+                    </select>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary mt-3" name="stall-submit">บันทึกข้อมูล</button>
+                </div>
+            </form>
+        </div>
     </div>
     <div id="content" class="mt-3">
         <div id="table2" class="bannertb border  p-3 shadow-sm rounded mt-3">
@@ -285,9 +333,9 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                             <td style="width:5% ;"><?php echo $count_n; ?></td>
                             <td><?php echo $row1['sID'] ?></td>
                             <td><?php echo $row1['z_name'] ?></td>
-                            <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
-                            <td><?php echo $row1['sDept']; ?></td>
-                            <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>
+                            <td><?php echo number_format($row1['sWidth']) . ' * ' . number_format($row1['sHeight']) . ' ' . $row1['sAreaUnit']; ?></td>
+                            <td><?php echo number_format($row1['sDept']) ?></td>
+                            <td><?php echo number_format($row1['sRent']) . ' ' . $row1['sPayRange']; ?></td>
                             <!-- <td><?php echo $row1['sStatus']; ?></td> -->
                             <td style="width:15% ;">
                                 <button class=" btn btn-outline-info">ดูประวัติการจอง</button>

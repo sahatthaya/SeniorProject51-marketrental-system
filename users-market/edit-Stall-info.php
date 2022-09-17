@@ -19,7 +19,10 @@ include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 $sKey = $_GET['sKey'];
 $count_n = 1;
-$data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (sKey = '$sKey')";
+$data2 = "SELECT stall.*, zone.* ,market_detail.* FROM stall 
+JOIN zone ON (stall.z_id = zone.z_id)
+JOIN market_detail ON (stall.market_id = market_detail.mkr_id)
+ WHERE (sKey = '$sKey')";
 $row = mysqli_query($conn, $data2);
 $s = mysqli_fetch_array($row);
 extract($s);
@@ -33,6 +36,13 @@ require "../backend/manage-edit-Stall.php";
 
 
 <body>
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="edit-Stall.php?mkr_id=<?php echo $s['mkr_id']; ?>" class="text-decoration-none">จัดการข้อมูลแผงค้า <?php echo $s['mkr_name']; ?></a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">แก้ไขข้อมูลแผงค้า <?php echo $s['mkr_name']; ?></li>
+        </ol>
+    </nav>
     <h1>แก้ไขข้อมูลแผงค้า</h1>
     <!-- content -->
     <div class="border rounded shadow-sm p-3 mt-3">
@@ -57,9 +67,9 @@ require "../backend/manage-edit-Stall.php";
             </div>
             <label class="mt-2">ขนาดพื้นที่ :</label>
             <div class="input-group">
-                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sWidth']; ?>">
+                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sWidth'] ?>" >
                 <span class="input-group-text">*</span>
-                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sHeight']; ?>">
+                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sHeight'] ?>" >
                 <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
                     <option selected value="<?php echo $s['sAreaUnit']; ?>"><?php echo $s['sAreaUnit']; ?></option>
                     <option value="เมตร">เมตร</option>
@@ -68,12 +78,12 @@ require "../backend/manage-edit-Stall.php";
             </div>
             <label class="mt-2">ราคามัดจำ :</label>
             <div class="input-group">
-                <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sDept']; ?>">
+                <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sDept'] ?>">
                 <span class="input-group-text">บาท</span>
             </div>
             <label class="mt-2">ราคาค่าเช่า :</label>
             <div class="input-group">
-                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sRent']; ?>">
+                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sRent'] ?>">
                 <select class="input-group-text" name="sPayRange">
                     <option value="<?php echo $s['sPayRange']; ?>"><?php echo $s['sPayRange']; ?></option>
                     <option value="บาท/วัน">บาท/วัน</option>

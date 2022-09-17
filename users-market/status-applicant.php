@@ -26,8 +26,7 @@ $data = "SELECT req_partner.*,
     amphures.amphure_name,
     districts.district_name , 
     market_type.market_type,
-    req_status.req_status,
-    req_status.color
+    req_status.*
 FROM req_partner 
     JOIN users ON (req_partner.users_id = users.users_id)
     JOIN provinces ON (req_partner.province_id = provinces.id)
@@ -64,7 +63,7 @@ $result = mysqli_query($conn, $data);
                                 <td><?php echo $row['market_name']; ?></td>
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 </td>
-                                <td> <div style="background-color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div></td>
+                                <td> <div style="background-color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div></td>
                             </tr>
                         <?php $count_n++;
                         endwhile ?>

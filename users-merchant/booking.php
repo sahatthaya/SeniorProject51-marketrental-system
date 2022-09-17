@@ -95,16 +95,16 @@
                                         <tbody>
                                             <tr>
                                                 <td>ขนาดแผงค้า</td>
-                                                <td><?php echo $row1['sWidth'] ?> * <?php echo $row1['sHeight'] ?> <?php echo $row1['sAreaUnit'] ?></td>
+                                                <td><?php echo number_format($row1['sWidth']) ?> * <?php echo number_format($row1['sHeight']) ?> <?php echo $row1['sAreaUnit'] ?></td>
 
                                             </tr>
                                             <tr>
                                                 <td>ค่ามัดจำ</td>
-                                                <td><?php echo $row1['sDept'] ?></td>
+                                                <td><?php echo number_format($row1['sDept']) ?></td>
                                             </tr>
                                             <tr>
                                                 <td>ค่าเช่า</td>
-                                                <td><?php echo $row1['sRent'] ?> <?php echo $row1['sPayRange'] ?></td>
+                                                <td><?php echo number_format($row1['sRent']) ?> <?php echo $row1['sPayRange'] ?></td>
                                             </tr>
                                             <tr>
                                                 <td>โซน/ประเภทร้านค้า</td>
