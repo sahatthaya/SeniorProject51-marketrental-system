@@ -63,12 +63,10 @@ body {
 /* flickyti style */
 .carousel {
   margin-top: 15px;
-  height: 410px;
+  height: 430px;
 }
 
-.carousel-cell {
-  padding: 20px;
-}
+
 
 .flickity-viewport {
   overflow: visible;
@@ -95,7 +93,7 @@ body {
 
 /* market box */
 .project-box {
-  height: 400px;
+  height: 425px;
   border-radius: 10px;
   padding: 16px !important;
   background-color: white;

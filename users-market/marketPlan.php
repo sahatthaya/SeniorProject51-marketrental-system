@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - แก้ไขแผนผังตลาด</title>
 
+
     <!-- css  -->
     <link rel="stylesheet" href="../css/market-plan.css" type="text/css">
 
@@ -40,6 +41,7 @@
 
 </head>
 <script type="text/javascript">
+    let pos_x, pos_y, need;
     $(document).ready(function() {
 
         var $boxstall = $("#plan"),
@@ -75,18 +77,22 @@
                         revert: "invalid",
                         stack: "#plan div",
                         stop: function(event, ui) {
-                            var pos_x = ui.offset.left;
-                            var pos_y = ui.offset.top;
-                            var need = ui.helper.data("need");
+                            pos_x = ui.offset.left;
+                            pos_y = ui.offset.top;
+                            need = ui.helper.data("need");
 
-                            console.log(pos_x);
-                            console.log(pos_y);
-                            console.log(need);
+                            // console.log(pos_x);
+                            // console.log(pos_y);
+                            // console.log(need);
+
                         }
 
                     })
                     .css("position", "absolute");
+                return console.log(pos_x, " : ", pos_y, "-", need);
+
             }
+
         });
 
         // ดรอปกลับมาที่ลิส
@@ -166,7 +172,7 @@
         <div class="plan">
             <div class="w-100 hstack justify-content-between px-1 pt-3">
                 <h3 class="ms-3">แผนผังตลาด </h3>
-                <button type="button" class="btn btn-outline-success save-stall" id="save">บันทึกแผนผัง</button>
+                <button type="button" class="btn btn-outline-success save-stall" id="save" namw>บันทึกแผนผัง</button>
             </div>
             <hr>
             <div id="plan">
@@ -182,7 +188,7 @@
                 <?php while ($row1 = $result3->fetch_assoc()) : ?>
                     <li class="m-1 ">
                         <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;" data-need="<?php echo $row1['sKey'] ?>">
-                            <div class="text-center stallnum">
+                            <div class="ps-3 stallnum">
                                 <div class="mx-auto text-wrap">แผงค้า : <span><?php echo $row1['sID'] ?></span></div>
                             </div>
                         </div>
@@ -206,9 +212,9 @@
                     <table class="table">
                         <thead>
                             <tr></tr>
-                                <th scope="col">#</th>
-                                <th scope="col">ประเภท</th>
-                                <th scope="col">สี</th>
+                            <th scope="col">#</th>
+                            <th scope="col">ประเภท</th>
+                            <th scope="col">สี</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -104,6 +104,9 @@ input:invalid{
         width: 30% !important;
     }
 
+    .dataTables_scrollHead{
+        overflow: auto !important;
+      }
 }
 
 @media only screen and (max-width: 768px) {

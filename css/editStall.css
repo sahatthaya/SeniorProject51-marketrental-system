@@ -82,13 +82,57 @@ input[type=number] {
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
   border: none !important;
 }
+.editbtn {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  grid-row-gap: px;
+}
+.editbtn .btn {
+  width: 100% !important;
+}
+
+.col-md-4 .btn {
+  width: 100% !important;
+
+}
 
 /* ------------------------------------responsive-------------------------- */
 @media only screen and (max-width: 1190px) {
   .top {
     display: contents !important;
   }
+  .dataTables_scrollHead{
+    overflow: auto !important;
+  }
+}
 
+@media only screen and (max-width: 992px) {
+  .editbtn {
+    margin-top: 10px !important;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: px;
+  }
+
+  .editbtn .btn {
+    width: 100% !important;
+  }
+
+  .col-md-4 {
+    width: 100% !important;
+
+  }
+
+  .col-lg-3 {
+    flex: 0 0 auto;
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
 }
 
 @media only screen and (max-width: 720px) {
@@ -99,29 +143,31 @@ input[type=number] {
 
   }
 
-  .col-sm-3 {
-    flex: 0 0 auto;
+  .col-md-2 {
     width: 100% !important;
   }
 
-  .col-sm-7 {
+  .col-lg-3 {
     flex: 0 0 auto;
     width: 100% !important;
-    margin-top: 10px;
+    margin-bottom: 10px;
+
+  }
+
+  .col-md-4 .btn {
+    width: 100% !important;
+
+  }
+
+  .col-md-7 {
+    flex: 0 0 auto;
+    width: 100% !important;
   }
 
   .add-btn {
     width: 100%;
     text-align: left !important;
     margin-bottom: 15px;
-  }
-
-  .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
-    margin-bottom: 10px;
-  }
-
-  .input-group:not(.has-validation)>:not(:last-child):not(.dropdown-toggle):not(.dropdown-menu) {
-    margin-bottom: 10px;
   }
 
   .input-group {
@@ -133,12 +179,17 @@ input[type=number] {
     margin-top: 10px
   }
 
-  .col-sm-2 {
-    width: 100% !important;
+  .editbtn {
+    margin-top: 10px !important;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: px;
   }
 
-  .col-sm-7 {
-    flex: 0 0 auto;
+  .editbtn .btn {
     width: 100% !important;
   }
 
@@ -156,32 +207,22 @@ input[type=number] {
 
 @media only screen and (max-width: 600px) {
 
-  .hstack {
-    display: grid !important;
-  }
-
   .input-group {
     width: 100% !important;
     top: 10px !important;
   }
 
-
-  .form-control {
-    margin-top: 10px;
-  }
-
-  .input-group>:not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-
-  .col-sm-2 {
+  .col-md-2 {
     width: 100% !important;
   }
 
-  .col-sm-7 {
+  .col-md-7 {
     flex: 0 0 auto;
     width: 100% !important;
+  }
+
+  .editbtn {
+    margin-top: 20px !important;
   }
 
   button,

@@ -126,7 +126,9 @@ include "../backend/1-import-link.php";
                         </div>
                         <p class="ptext">รายละเอียด : <?php echo $row1['mkr_descrip'] ?></p>
                         <p class="ptext">เบอร์ติดต่อ : <?php echo $row1['tel'] ?></p>
-                        <p class="ptext">อีเมล : <?php echo $row1['email'] ?></p>
+                        <p class="ptext">อีเมล : <a href="mailto:<?php echo $row1['email'] ?>">
+                                <?php echo $row1['email']; ?>
+                            </a></p>
                         <p class="ptext">จำนวนแผงว่าง : 0 จาก 0</p>
                     </div>
                 </a>

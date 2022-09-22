@@ -11,8 +11,6 @@
 </head>
 <?php
 include "profilebar.php";
-?>
-<?php
 include "nav.php";
 include "../backend/1-connectDB.php";
 require "../backend/qry-allmarket.php";
@@ -67,7 +65,8 @@ include "../backend/1-import-link.php";
                         </div>
                         <p class="ptext">รายละเอียด : <?php echo $row['mkr_descrip'] ?></p>
                         <p class="ptext">เบอร์ติดต่อ : <?php echo $row['tel'] ?></p>
-                        <p class="ptext">อีเมล : <?php echo $row['email'] ?></p>
+                        <p class="ptext">อีเมล : <?php echo $row['email'] ?>
+                    </p>
                         <p class="ptext">ราคาแผงเริ่มต้น : 500 บาท/เดือน</p>
                     </div>
                 </a>

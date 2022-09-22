@@ -202,8 +202,8 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         <div>
                             <div class="mb-3 row">
                                 <h6 class="center mt-3 mb-3">เพิ่มค่าใช้จ่ายที่ต้องการ</h6>
-                                <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
-                                <div class="col-sm-5">
+                                <div class="col-lg-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
+                                <div class="col-lg-5">
                                     <div class="input-group mb-3">
                                         <input type="number" name="mkr_id" value="<?php echo $mkr_id ?>" hidden>
                                         <input type="number" class="form-control" style="width: 35%;" name="cu_price" placeholder="จำนวนเงิน เช่น 100">
@@ -213,8 +213,8 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <button type="submit" name="addcost" class="btn btn-primary" style="width: 95%;">
+                                <div class="col-md-4">
+                                    <button type="submit" name="addcost" class="btn btn-primary text-center" style="width: 95%;">
                                         <i class='bx bx-plus-circle me-2'></i>เพิ่มข้อมูล
                                     </button>
                                 </div>
@@ -227,9 +227,9 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         <?php while ($row = $resultCU->fetch_assoc()) : ?>
                             <form method="POST" class="row">
                                 <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_id'] ?>" name="cu_id" hidden>
-                                <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
-                                <div class="col-sm-5">
-                                    <div class="input-group mb-3">
+                                <div class="col-lg-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
+                                <div class="col-lg-5">
+                                    <div class="input-group">
                                         <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo number_format($row['cu_price']) ?>" name="cu_price">
                                         <select class="form-select" aria-label="Default select example" name="cu_type">
                                             <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
@@ -238,11 +238,11 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <button type="submit" name="editcost" class="btn btn-info" style="width: 45%;color:white !important;">
+                                <div class="col-md-4 mb-3 editbtn">
+                                    <button type="submit" name="editcost" class="btn btn-info hstack " style="width: 45%;color:white !important;">
                                         <i class='bx bxs-save me-2'></i>บันทึก
                                     </button>
-                                    <a type="button" name="delcost" class="btn btn-danger" style="width: 45%;" href="edit-Stall.php?delcu_id=<?php echo $row['cu_id'] ?>&mkr_id=<?php echo $row['mkr_id'] ?>">
+                                    <a type="button" name="delcost" class="btn btn-danger hstack" style="width: 45%;" href="edit-Stall.php?delcu_id=<?php echo $row['cu_id'] ?>&mkr_id=<?php echo $row['mkr_id'] ?>">
                                         <i class='bx bxs-x-circle me-2'></i>ลบ
                                     </a>
                                 </div>
