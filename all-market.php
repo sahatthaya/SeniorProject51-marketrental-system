@@ -22,18 +22,18 @@ require "./backend/qry-allmarket.php";
     <div class="wrap">
         <div class="top">
             <h1 id="headline">ตลาดทั้งหมด</h1>
-                <form name="Searchbox" method="POST" class="search_box">
-                    <div class="search-input">
-                        <label for="#search">
-                            <h5>ค้นหา : </h5>
-                        </label>
-                        <input class="btn border-secondary" type="text" name="search" id="search" placeholder="กรอกข้อมูลที่ต้องการค้นหา" onkeyup="search(this.value)">
-                    </div>
-                    <div class="search-btn">
-                        <input class="btn btn-primary " id="search" type="submit" name="searchsubmit" value="ค้นหา">
-                        <input class="btn btn-danger" id="reset" type="submit" name="reset" value="รีเซ็ต">
-                    </div>
-                </form>
+            <form name="Searchbox" method="POST" class="search_box">
+                <div class="search-input">
+                    <label for="#search">
+                        <h5>ค้นหา : </h5>
+                    </label>
+                    <input class="btn border-secondary" type="text" name="search" id="search" placeholder="กรอกข้อมูลที่ต้องการค้นหา" onkeyup="search(this.value)">
+                </div>
+                <div class="search-btn">
+                    <input class="btn btn-primary " id="search" type="submit" name="searchsubmit" value="ค้นหา">
+                    <input class="btn btn-danger" id="reset" type="submit" name="reset" value="รีเซ็ต">
+                </div>
+            </form>
             <!-- <div class=" topmkr">
                 <div class="typemkr">
                     <a class="quick text-decoration-none" id="partner-btn" style="background-color: #317DD9;">
@@ -55,7 +55,7 @@ require "./backend/qry-allmarket.php";
         <div class="box" id="card">
             <?php while ($row = $result->fetch_assoc()) : ?>
                 <a id="market-item" class="marketcard radius10" href="market-info.php?mkr_id=<?php echo $row['mkr_id']; ?>">
-                    <img src="<?php echo $row['mkr_pic'] ?>" class="radius10 mkrimg " alt="...">
+                    <img src="./<?php echo $row['mkr_pic'] ?>" class="radius10 mkrimg " alt="...">
                     <div class="overlay">
                         <h4 style="text-align: center;"><?php echo $row['mkr_name'] ?></h4>
                         <div class="row markettag">
@@ -66,7 +66,7 @@ require "./backend/qry-allmarket.php";
                         <p class="ptext">รายละเอียด : <?php echo $row['mkr_descrip'] ?></p>
                         <p class="ptext">เบอร์ติดต่อ : <?php echo $row['tel'] ?></p>
                         <p class="ptext">อีเมล : <?php echo $row['email'] ?></p>
-                        <p class="ptext">จำนวนแผงว่าง : 0 จาก 0</p>
+                        <p class="ptext">ราคาแผงเริ่มต้น : 500 บาท/เดือน</p>
                     </div>
                 </a>
             <?php

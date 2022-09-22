@@ -49,7 +49,10 @@ include "../backend/1-import-link.php";
                 <div class="col-md-7">
                     <div class="card-body">
                         <h2 class="center"><?php echo $row["ct1_fname"] . " " . $row["ct1_lname"] ?></h2>
-                        <p class="center"><?php echo $row["ct1_email"] ?>
+                        <p class="center">
+                        <a href="mailto:<?php echo $row['ct1_email'] ?>">
+                                <?php echo $row['ct1_email']; ?>
+                            </a>
   
                         </p>
                         <p class="center"> <?php echo $row["ct1_tel"] ?></p>
@@ -68,7 +71,10 @@ include "../backend/1-import-link.php";
                 <div class="col-md-7">
                     <div class="card-body">
                         <h2 class="center"><?php echo $row["ct2_fname"] . " " . $row["ct2_lname"] ?></h2>
-                        <p class="center"><?php echo $row["ct2_email"] ?>
+                        <p class="center">
+                        <a href="mailto:<?php echo $row['ct2_email'] ?>">
+                                <?php echo $row['ct2_email']; ?>
+                            </a>
                         </p>
                         <p class="center"><?php echo $row["ct2_tel"] ?></p>
 
