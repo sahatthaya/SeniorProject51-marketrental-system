@@ -41,6 +41,8 @@ $sql = "SELECT market_detail.*,users.username ,
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 extract($row);
+$data2 = "SELECT stall.*,zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = $mkr_id)";
+$result3 = mysqli_query($conn, $data2);
 ?>
 <script src="../backend/script.js"></script>
 <script>
@@ -51,7 +53,7 @@ extract($row);
 
     function drawChart() {
         var options = {
-            width: 500,
+            width: 347,
             height: 300,
             animation: {
                 duration: 1000,
@@ -82,6 +84,46 @@ extract($row);
 
         chart.draw(data, options);
     }
+    // gg chart
+    google.charts.load('current', {
+        packages: ['corechart', 'line']
+    });
+    google.charts.setOnLoadCallback(drawBackgroundColor);
+
+    function drawBackgroundColor() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'X');
+        data.addColumn('number', 'ยอดการจอง');
+
+        data.addRows([
+            ['ม.ค.', 10],
+            ['ก.พ.', 23],
+            ['มี.ค.', 17],
+            ['เม.ย.', 18],
+            ['พ.ค.', 9],
+            ['มิ.ย.', 11],
+            ['ก.ค.', 27],
+            ['ส.ค.', 33],
+            ['ก.ย.', 40],
+            ['ต.ค.', 32],
+            ['พ.ย.', 35],
+            ['ธ.ค.', 30],
+        ]);
+
+        var options = {
+            width: 830,
+            height: 350,
+            hAxis: {
+                title: 'เดือน'
+            },
+            vAxis: {
+                title: 'ยอดการจอง'
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
     $(window).resize(function() {
         drawBackgroundColor();
         drawChart();
@@ -100,9 +142,9 @@ extract($row);
     <h1>ภาพรวมตลาด <?php echo $row['mkr_name']; ?></h1>
     <div class="border rounded shadow-sm mt-4 p-3 box">
         <img src="../<?php echo $row['mkr_pic'] ?>" class="rounded" alt="">
-        <div>
+        <div class="ms-2">
             <div class="d-flex justify-content-between ">
-                <h3 class="mt-2 mb-0"><?php echo $row['mkr_name']; ?></h3>
+                <h4 class="mt-2 mb-0"><?php echo $row['mkr_name']; ?></h4>
                 <a href="edit-market-info.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลตลาด</a>
             </div>
             <hr class="my-2">
@@ -133,11 +175,181 @@ extract($row);
             </div>
         </div>
     </div>
-    <!-- content -->
-    <div class="top">
+    <div class="box-3">
+        <div class="border rounded shadow-sm mt-3 p-3 ">
+            <h4 class="center">จำนวนคำร้องเรียนทั้งหมด</h4>
+            <h1>
+                <?php
+                $queryz = "SELECT * FROM complain  WHERE (mkr_id = $mkr_id)";
+                $rsz = mysqli_query($conn, $queryz);
+                echo $countcomp = mysqli_num_rows($rsz);
+                ?>
+            </h1>
+        </div>
+        <div class="border rounded shadow-sm mt-3 p-3 ">
+            <h4 class="center">คำร้องเรียนที่ยังไม่ได้ตอบกลับ</h4>
+            <h1>
+                <?php
+                $queryz = "SELECT * FROM complain  WHERE (mkr_id = $mkr_id AND status = 1)";
+                $rsz = mysqli_query($conn, $queryz);
+                echo $countcomp = mysqli_num_rows($rsz);
+                ?>
+            </h1>
+            <div class="text-end">
+                <a href="complain.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class='bx bxs-send'></i> ตอบกลับ</a>
+            </div>
+        </div>
+        <div class="border rounded shadow-sm mt-3 p-3 ">
+            <h4 class="center">3 อันดับหัวข้อที่มีการร้องเรียนที่มากที่สุด</h4>
+            <ul class="list-group list-group-flush">
+                <?php
+                $queryz = "SELECT toppic.toppic , COUNT(complain.comp_id) AS countZ  FROM complain JOIN toppic ON (complain.toppic_id = toppic.toppic_id) WHERE (mkr_id = $mkr_id) GROUP BY complain.toppic_id ORDER BY countZ DESC LIMIT 3";
+                $rsz = mysqli_query($conn, $queryz);
+                $count_n = 1;
+                foreach ($rsz as $rs_c) {
+                    echo ' <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                    <div class="col-2 ps-0">
+                    ' . $count_n . '.
+                    </div>
+                    <div class="col-6">
+                    ' . $rs_c['toppic'] . '
+                    </div>
+                    <div class="col-4 text-end pe-0">
+                    จำนวน ' . $rs_c['countZ'] . ' ครั้ง
+                    </div>
+                    </ก>
+                </li>';
+                }
+                $count_n++;
+                ?>
+            </ul>
+        </div>
+    </div>
+    <div class="box-2-1">
         <div class="border rounded shadow-sm p-3 mt-3">
-            <h3>จำนวนของแผงค้าในแต่ละประเภท</h3>
+            <h3 class="center">จำนวนของแผงค้าในแต่ละประเภท</h3>
             <div class="chartcanvas center mt-5 ms-5" id="piechart"></div>
+            <div class="text-end">
+                <a href="edit-Stall.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลแผงค้า</a>
+            </div>
+        </div>
+        <div class="border rounded shadow-sm p-3 mt-3">
+            <h3 class="center">ยอดการจองแผงค้าในแต่ละเดือน</h3>
+            <div class="chartcanvas" id="chart_div"> </div>
+            <div class="text-end">
+                <a href="booking.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> จัดการการจอง</a>
+            </div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="border rounded shadow-sm p-3 mt-3">
+            <h4 class="center">3 อันดับประเภทแผงค้าที่ถูกจองมากที่สุด</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                        <div class="col-2 ps-0">
+                            1.
+                        </div>
+                        <div class="col-6">
+                            ประเภทเนื้อสัตว์
+                        </div>
+                        <div class="col-4 text-end pe-0">
+                            จำนวน 5 ครั้ง
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                        <div class="col-2 ps-0">
+                            2.
+                        </div>
+                        <div class="col-6">
+                            ประเภทเนื้อสัตว์
+                        </div>
+                        <div class="col-4 text-end pe-0">
+                            จำนวน 5 ครั้ง
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                        <div class="col-2 ps-0">
+                            3.
+                        </div>
+                        <div class="col-6">
+                            ประเภทเนื้อสัตว์
+                        </div>
+                        <div class="col-4 text-end pe-0">
+                            จำนวน 5 ครั้ง
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="border rounded shadow-sm p-3 mt-3">
+            <h4 class="center">3 อันดับประเภทแผงค้าที่ถูกจองมากที่สุด</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                        <div class="col-2 ps-0">
+                            1.
+                        </div>
+                        <div class="col-6">
+                            สหัสทยา เทียนมงคล
+                        </div>
+                        <div class="col-4 text-end pe-0">
+                            จำนวน 5 ครั้ง
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                        <div class="col-2 ps-0">
+                            2.
+                        </div>
+                        <div class="col-6">
+                            สหัสทยา เทียนมงคล
+                        </div>
+                        <div class="col-4 text-end pe-0">
+                            จำนวน 5 ครั้ง
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                        <div class="col-2 ps-0">
+                            3.
+                        </div>
+                        <div class="col-6">
+                            สหัสทยา เทียนมงคล
+                        </div>
+                        <div class="col-4 text-end pe-0">
+                            จำนวน 5 ครั้ง
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="plan border rounded shadow-sm p-3 mt-3">
+        <div class="d-flex justify-content-between">
+            <h4 class="center">แผนผังตลาด</h4>
+            <a href="marketPlan.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขแผนผังตลาด</a>
+        </div>
+        <hr>
+        <div id="plan">
+            <div class="liststall vstack" id="sortable">
+                <?php while ($row1 = $result3->fetch_assoc()) : ?>
+                    <li class="m-1 ">
+                        <div style="background-color: <?php echo $row1['z_color'] ?>;" class="stallbox" data-need="<?php echo $row1['sKey'] ?>">
+                            <div class="text-center stallnum">
+                                <div class="mx-auto text-wrap">แผงค้า : <span><?php echo $row1['sID'] ?></span></div>
+                            </div>
+                        </div>
+                    </li>
+                <?php endwhile ?>
+            </div>
         </div>
     </div>
 </body>
