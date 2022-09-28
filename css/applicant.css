@@ -206,4 +206,13 @@ input[type=file]::file-selector-button:hover {
         padding: 0px !important;
         width: 35% !important;
     }
+
+    #stepTwo {
+        display: none;
+
+    }
+
+    #stepThree {
+        display: none;
+    }
 }
