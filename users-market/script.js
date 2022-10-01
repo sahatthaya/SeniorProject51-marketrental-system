@@ -7,6 +7,7 @@ $(function () {
     var provinceObject = $('#province');
     var amphureObject = $('#amphure');
     var districtObject = $('#district');
+    var zipObject = $('#zipcode');
 
 
     // on change province
@@ -15,6 +16,8 @@ $(function () {
 
         amphureObject.empty();
         districtObject.empty();
+        zipObject.val('');
+
 
         $.get('get_amphure.php?province_id=' + provinceId, function (data) {
             var result = JSON.parse(data);
@@ -32,6 +35,9 @@ $(function () {
         var amphureId = $(this).val();
 
         districtObject.empty();
+        zipObject.val('');
+
+
 
         $.get('get_district.php?amphure_id=' + amphureId, function (data) {
             var result = JSON.parse(data);
@@ -44,4 +50,18 @@ $(function () {
         });
     });
 
+    // on change district
+
+    districtObject.on('change', function () {
+        var districtId = $(this).val();
+
+        zipObject.val('');
+
+        $.get('get_zip.php?district_id=' + districtId, function (data) {
+            var result = JSON.parse(data);
+            $.each(result, function (index, item) {
+                zipObject.val(item.zip_code).html(item.zip_code)
+            });
+        });
+    });
 });

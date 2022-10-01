@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - ส่งคำร้องขอเพิ่มตลาดใหม่</title>
-    
+
     <link rel="stylesheet" href="../css/applicant.css" type="text/css">
 </head>
 <?php
@@ -106,7 +105,6 @@ require "../backend/add-applicant.php"
                     <div class="col-2 pt-2">อำเภอ/เขต :</div>
                     <div class="col-4 p-0">
                         <select name="amphure_id" id="amphure" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกอำเภอ/เขต">
-
                         </select>
                     </div>
                 </div>
@@ -118,9 +116,11 @@ require "../backend/add-applicant.php"
                     </div>
                     <div class="col-2 pt-2">รหัสไปรษณีย์ :</div>
                     <div class="col-4 p-0">
-                        <input class="form-control" type="text" id="zip-code" placeholder="รหัสไปรษณีย์" name="PostalCode" required>
+                        <input name="PostalCode" id="zipcode" class="form-control" placeholder="รหัสไปรษณีย์">
+                        </input>
                     </div>
                 </div>
+
                 <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
                     <div data-toggle="tooltip" title="เช่น ตลาดค้าส่ง ทำเลดี ติดถนนใหญ่ใกล้สี่แยกไฟแดง" class="mt-1">
                         <i class='bx bx-info-circle'></i>
