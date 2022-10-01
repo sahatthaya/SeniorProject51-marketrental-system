@@ -86,7 +86,7 @@ $result_province = mysqli_query($conn, $query_province);
           </div>
           <div class="col-2 pt-2">อำเภอ/เขต :</div>
           <div class="col-4 p-0">
-            <select name="amphure_id" id="amphure" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกอำเภอ/เขต">
+            <select name="amphure_id" id="amphure" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกอำเภอ/เขต" >
               <option value="<?php echo $row['amphure_id']; ?>" selected><?php echo $row['amphure_name']; ?></option>
             </select>
           </div>
@@ -100,7 +100,8 @@ $result_province = mysqli_query($conn, $query_province);
           </div>
           <div class="col-2 pt-2">รหัสไปรษณีย์ :</div>
           <div class="col-4 p-0">
-            <input class="form-control" type="text" id="zip-code" placeholder="รหัสไปรษณีย์" name="PostalCode" value="<?php echo $row['postalcode']; ?>" required>
+            <input name="PostalCode" id="zipcode" class="form-control" style="height:45px ;" value="<?php echo $row['postalcode']; ?>" placeholder="รหัสไปรษณีย์">
+            </input>
           </div>
         </div>
         <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
@@ -137,7 +138,7 @@ $result_province = mysqli_query($conn, $query_province);
   $("#tel").inputmask({
     "mask": "9999999999"
   });
-  $("#zip-code").inputmask({
+  $("#zipcode").inputmask({
     "mask": "99999"
   });
 
