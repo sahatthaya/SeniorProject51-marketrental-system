@@ -25,12 +25,6 @@ body {
 }
 
 /* ผังแผงค้า */
-.content {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 20px;
-}
 
 .plan {
     padding: 10px;
@@ -38,34 +32,10 @@ body {
     margin: 1rem 0;
     height: 100vh;
     background-color: white;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
 }
-
-.list {
-    padding: 10px;
-    border-radius: 10px;
-    margin: 1rem 0;
-    width: 260px !important;
-    height: 100vh;
-    background-color: white;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-}
-
-.list li,
 .plan li {
     list-style: none;
 }
-
-.liststall {
-    padding: 0 4%;
-    min-height: 100%;
-
-}
-
 #plan {
     min-width: 100%;
     min-height: 100%;
@@ -81,7 +51,7 @@ body {
     color: white !important;
     border-radius: 5px;
     padding: 2px;
-    width: 200px;
+    width: 100px;
     height: 30px;
     cursor: move;
     font-size: 15px;

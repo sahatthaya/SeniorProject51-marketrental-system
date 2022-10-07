@@ -41,120 +41,171 @@
 
 </head>
 <script type="text/javascript">
-    let pos_x, pos_y, need;
     $(document).ready(function() {
-
-        var $boxstall = $("#plan"),
-            $list = $(".liststall");
-
-        // sortable list 
-        $("#sortable, #plan").sortable({
-            revert: "invalid",
-            connectWith: ".connectedSortable",
-        }).disableSelection().css("position", "relative");
-
-        // ลาก แก้ไซส์
         $(".stallbox").draggable({
-            connectToSortable: "#sortable",
-            contaiment: ".liststall #plan",
+            containment: "#plan",
             cursor: "move",
-            revert: "invalid",
+            stop: function(event, ui) {
+                var elem = $(this),
+                    id = elem.attr('id'),
+                    desc = elem.attr('data-desc'),
+                    pos = elem.position(),
+                    posleft = pos.left,
+                    postop = pos.top,
+                    info = {
+                        id: id,
+                        posleft: posleft,
+                        postop: postop
+                    };
+                // elempos.push(info);
+                var
+                    inputleft = document.getElementById('left' + id),
+                    inputtop = document.getElementById('top' + id);
 
-        }).resizable({
-            contaiment: "parant",
-            cursor: "move",
-            autoHide: true,
+                inputleft.value = posleft;
+                inputtop.value = postop;
 
-        });
-
-        // ดรอปไปแพลน
-        $boxstall.droppable({
-            drop: function(event, ui) {
-                $(ui.helper).draggable({
-                        connectToSortable: "#sortable",
-                        contaiment: ".liststall #plan",
-                        cursor: "move",
-                        revert: "invalid",
-                        stack: "#plan div",
-                        stop: function(event, ui) {
-                            pos_x = ui.offset.left;
-                            pos_y = ui.offset.top;
-                            need = ui.helper.data("need");
-
-                            // console.log(pos_x);
-                            // console.log(pos_y);
-                            // console.log(need);
-
-                        }
-
-                    })
-                    .css("position", "absolute");
-                return console.log(pos_x, " : ", pos_y, "-", need);
 
             }
-
         });
+        $(".stallbox").resizable({
+            containment: "#plan",
+            cursor: "move",
+            stop: function(evt, ui) {
+                $(ui.helper).css("position","absolute")
+                var elem = $(this),
+                    id = elem.attr('id'),
+                    widthsize = elem.css("width"),
+                    heightsize = elem.css("height"),
+                    size = {
+                        id: id,
+                        width: widthsize,
+                        height: heightsize,
+                    };
+                // elemsize.push(size);
+                var
+                    inputw = document.getElementById('w' + id),
+                    inputh = document.getElementById('h' + id);
 
-        // ดรอปกลับมาที่ลิส
-        $list.droppable({
-            classes: {
-                accept: "#plan .stallbox"
-            },
-
-            drop: function(event, ui) {
-                $(ui.helper).draggable({
-                        connectToSortable: "#sortable",
-                        contaiment: ".liststall #plan",
-                        cursor: "move",
-                        revert: "invalid",
-
-                    }).css("width", "200")
-                    .css("height", "30");
+                inputw.value = widthsize;
+                inputh.value = heightsize;
             }
         });
-
-        $('.save-stall').click(function save() {
-
-            $.ajax({
-                type: "POST",
-                url: "../backend/manage-edit-Stall.php",
-                data: {
-                    x: pos_x,
-                    y: pos_y,
-                    skey: need
-                },
-                success: function(data) {
-                    alert(data);
-                }
-            });
-
-        })
-
-
     });
+    // var elempos = [],
+    //     elemsize = [];
 
     // $(document).ready(function() {
-    //     $('#save').click(function() {
-    //         $(ui.helper).on("dragstop", function(event, ui) {
-    //             var pos_x =  $(ui.helper).offset.left;
-    //             var pos_y =  $(ui.helper).offset.top;
-    //             var need =  $(ui.helper).data("need");
-    //         });
+
+    //     var $boxstall = $("#plan"),
+    //         $list = $(".liststall");
+    //     // sortable list 
+    //     $("#sortable, #plan").sortable({
+    //         revert: "invalid",
+    //         connectWith: ".connectedSortable",
+    //     }).disableSelection().css("position", "relative");
+
+    //     // ลาก แก้ไซส์
+    //     $(".stallbox").draggable({
+    //         connectToSortable: "#sortable",
+    //         containment: ".liststall #plan",
+    //         cursor: "move",
+    //         revert: "invalid",
+
+    //     });
+
+
+    //     // ดรอปไปแพลน
+    //     $boxstall.droppable({
+    //         drop: function(event, ui) {
+    //             $(ui.helper).draggable({
+    //                     cursor: "move",
+    //                     revert: "invalid",
+    //                     stack: "#plan div",
+    //                     stop: function(event, ui) {
+    //                         var elem = $(this),
+    //                             id = elem.attr('id'),
+    //                             desc = elem.attr('data-desc'),
+    //                             pos = elem.position(),
+    //                             posleft = pos.left,
+    //                             postop = pos.top,
+    //                             info = {
+    //                                 id: id,
+    //                                 posleft: posleft,
+    //                                 postop: postop
+    //                             };
+    //                         elempos.push(info);
+    //                     }
+    //                 })
+    //                 .css("position", "absolute");
+    //             $(ui.helper).resizable({
+    //                 cursor: "move",
+    //                 stop: function(evt, ui) {
+    //                     var elem = $(this),
+    //                         id = elem.attr('id'),
+    //                         widthsize = elem.css("width"),
+    //                         heightsize = elem.css("height"),
+    //                         size = {
+    //                             id: id,
+    //                             width: widthsize,
+    //                             height: heightsize,
+    //                         };
+    //                     elemsize.push(size);
+    //                 }
+    //             });
+    //             $(event.toElement).addClass("dropped");
+    //         },
+    //         out: function(event, ui) {
+    //             $(event.toElement).removeClass('dropped');
+
+    //         }
+    //     });
+
+    //     // ดรอปกลับมาที่ลิส
+    //     $list.droppable({
+    //         drop: function(event, ui) {
+    //             $(ui.helper).draggable({
+    //                     connectToSortable: "#sortable",
+    //                     containment: ".liststall #plan",
+    //                     cursor: "move",
+    //                     revert: "invalid",
+
+    //                 }).css("width", "200")
+    //                 .css("height", "30")
+    //         }
+    //     });
+
+    //     console.log(elempos);
+    //     console.log(elemsize);
+
+    //     // submit button click
+    //     $("#saveplan").click(function() {
+
+    //         var data = [{'room_id': 1, 'adult': 2},{'room_id': 3, 'adult': 4}];
     //         $.ajax({
+    //             url: "../backend/plansave.php",
     //             type: "POST",
-    //             url: "../backend/manage-edit-Stall.php",
-    //             data: {
-    //                 x: pos_x,
-    //                 y: pos_y,
-    //                 skey: need
-    //             },
-    //             success: function(data) {
-    //                 alert(data);
+    //             data:data,
+    //             success: function(rs) {
+    //                 alert(rs);
     //             }
     //         });
-
-    //     })
+    //     });
     // });
+    // // $(document).ready(function() {
+    // //     $("#saveplan").click(function() {
+
+    // //         $.ajax({
+    // //             url: '../backend/plansave.php',
+    // //             type: 'post',
+    // //             data: elempos,
+    // //             dataType: 'JSON',
+    // //             success: function(data) {
+    // //                 console.log(data);
+    // //             }
+    // //         });
+    // //     });
+    // // });
 </script>
 
 <body>
@@ -169,32 +220,31 @@
     <h1>แก้ไขแผนผังตลาด</h1>
 
     <div class="content">
-        <div class="plan">
+        <div class="plan border shadow-sm rounded">
             <div class="w-100 hstack justify-content-between px-1 pt-3">
-                <h3 class="ms-3">แผนผังตลาด </h3>
-                <button type="button" class="btn btn-outline-success save-stall" id="save" namw>บันทึกแผนผัง</button>
+                <h3 class="center hstack gap-2">แผนผังตลาด <i class='bx bx-info-circle opacity-50 text-primary' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h3>
+                <button type="button" class="btn btn-outline-success save-stall" id="saveplan">บันทึกแผนผัง</button>
             </div>
             <hr>
             <div id="plan">
-
-            </div>
-        </div>
-        <div class="list">
-            <div class="w-100  pt-3 pb-1">
-                <h3 class="center hstack gap-2">รายการแผงค้า <i class='bx bx-info-circle opacity-50 text-primary' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h3>
-            </div>
-            <hr>
-            <div class="liststall vstack" id="sortable">
                 <?php while ($row1 = $result3->fetch_assoc()) : ?>
-                    <li class="m-1 ">
-                        <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;" data-need="<?php echo $row1['sKey'] ?>">
-                            <div class="ps-3 stallnum">
-                                <div class="mx-auto text-wrap">แผงค้า : <span><?php echo $row1['sID'] ?></span></div>
+                    <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;" id="<?php echo $count_n ?>">
+                        <div class="ps-3 stallnum">
+                            <div class="mx-auto text-wrap">แผงค้า : <span><?php echo $row1['sID'] ?></span></div>
+                            <div id="despos">
+                                <input type="text" value="<?php echo $row1['sKey'] ?>" id="<?php echo "id" . $count_n ?>" name="<?php echo "id" . $count_n ?>" hidden>
+                                <input type="text" value="" id="<?php echo "left" . $count_n ?>" name="<?php echo "left" . $count_n ?>" hidden>
+                                <input type="text" value="" id="<?php echo "top" . $count_n ?>" name="<?php echo "top" . $count_n ?>" hidden>
+                            </div>
+                            <div id="dessize">
+                                <input type="text" value="" id="<?php echo "w" . $count_n ?>" name="<?php echo "w" . $count_n ?>" hidden>
+                                <input type="text" value="" id="<?php echo "h" . $count_n ?>" name="<?php echo "h" . $count_n ?>" hidden>
                             </div>
                         </div>
-                    </li>
-                <?php endwhile ?>
-
+                    </div>
+                <?php
+                    $count_n++;
+                endwhile ?>
             </div>
         </div>
     </div>
@@ -219,17 +269,15 @@
                         </thead>
                         <tbody>
                             <?php while ($z = $zone->fetch_assoc()) : ?>
-
                                 <tr>
                                     <td> <?php echo $count_n ?></td>
                                     <td><?php echo $z['z_name'] ?></td>
                                     <td>
-                                        <div class="text-center rounded" style="background-color:<?php echo $z['z_color'] ?> ;width:150px;color:white;"> ตัวอย่างแผงค้า</div>
+                                        <div class="text-center rounded" style="background-color:<?php echo $z['z_color'] ?> ;width:150px;color:white; "> ตัวอย่างแผงค้า</div>
                                     </td>
-
-                                <?php $count_n++;
-                            endwhile ?>
                                 </tr>
+                            <?php $count_n++;
+                            endwhile ?>
                         </tbody>
                     </table>
                 </div>
