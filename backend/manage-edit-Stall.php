@@ -8,13 +8,19 @@ if (isset($_POST['edtStall-submit'])) {
     $sKey = $_POST["sKey"];
     $sWidth = $_POST['sWidth'];
     $sHeight = $_POST['sHeight'];
-    $sAreaUnit = $_POST['sAreaUnit'];
     $sDept = $_POST['sDept'];
     $sPayRange = $_POST['sPayRange'];
     $sRent = $_POST['sRent'];
     $z_id = $_POST['z_id'];
-    if (isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "") {
-        $sqlInsert = "UPDATE `stall` SET `sKey`=$sKey,`sID`='$sID',`sWidth`='$sWidth',`sHeight`='$sHeight',`sAreaUnit`='$sAreaUnit',`sDept`='$sDept',`sRent`='$sRent',`sPayRange`='$sPayRange',`z_id`='$z_id' WHERE (sKey = '$sKey') ";
+
+    if (!isset($_POST['show'])) {
+        $show = "0";
+    } else {
+        $show = "1";
+    }
+
+    if (isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "" && $show != "") {
+        $sqlInsert = "UPDATE `stall` SET `sKey`=$sKey,`sID`='$sID',`sWidth`='$sWidth',`sHeight`='$sHeight',`sDept`='$sDept',`sRent`='$sRent',`sPayRange`='$sPayRange',`z_id`='$z_id',`show`='$show' WHERE (sKey = '$sKey') ";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1"; />';
@@ -24,15 +30,6 @@ if (isset($_POST['edtStall-submit'])) {
     } else {
         echo "<script type='text/javascript'> error(); </script>";
     }
-}
-
-
-if (isset($_POST['x']) && isset($_POST['y']) && isset($_POST['skey'])) {
-    $x = $_POST['x'];
-    $y = $_POST['y'];
-    $sKey = $_POST['skey'];
-
-    echo "<script>alert('$x.$y.$skey')</script>";
 }
 
 // update cost/unit----------------------------------------------------------------

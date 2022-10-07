@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MarketRental - จัดการแผงค้า</title>
+    <title> MarketRental - แก้ไขข้อมูลแผงค้า</title>
 
     <!-- css  -->
     <link rel="stylesheet" href="../css/editStall.css" type="text/css">
@@ -29,6 +29,7 @@ extract($s);
 
 $z_qry = "SELECT * FROM `zone`";
 $z = mysqli_query($conn, $z_qry);
+
 
 require "../backend/manage-edit-Stall.php";
 ?>
@@ -67,14 +68,11 @@ require "../backend/manage-edit-Stall.php";
             </div>
             <label class="mt-2">ขนาดพื้นที่ :</label>
             <div class="input-group">
-                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sWidth'] ?>" >
+                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sWidth'] ?>">
                 <span class="input-group-text">*</span>
-                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sHeight'] ?>" >
-                <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
-                    <option selected value="<?php echo $s['sAreaUnit']; ?>"><?php echo $s['sAreaUnit']; ?></option>
-                    <option value="เมตร">เมตร</option>
-                    <option value="เซนติเมตร">เซนติเมตร</option>
-                </select>
+                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sHeight'] ?>">
+                <span class="input-group-text">เมตร</span>
+
             </div>
             <label class="mt-2">ราคามัดจำ :</label>
             <div class="input-group">
@@ -89,6 +87,12 @@ require "../backend/manage-edit-Stall.php";
                     <option value="บาท/วัน">บาท/วัน</option>
                     <option value="บาท/เดือน">บาท/เดือน</option>
                 </select>
+            </div>
+            <div class="mt-2 hstack gap-2">
+                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="show" <?php echo ($s['show'] == "1" ? "checked" : ""); ?>>
+                <label class="form-check-label" for="flexCheckDefault">
+                    แสดงแผงค้านี้บนแผนผังตลาด
+                </label>
             </div>
             <div class="text-end">
                 <button type="submit" class="btn btn-primary mt-3" name="edtStall-submit">บันทึกข้อมูล</button>

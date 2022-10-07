@@ -18,7 +18,7 @@
     include "../backend/1-import-link.php";
     $mkr_id = $_GET['mkr_id'];
     $count_n = 1;
-    $data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
+    $data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id' AND `show` = '1')";
     $result3 = mysqli_query($conn, $data2);
     $zone = mysqli_query($conn, "SELECT * FROM `zone`");
     require "../backend/manage-edit-Stall.php";
@@ -37,6 +37,72 @@
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_array($result);
     extract($row);
+
+
+    // // แบบแก้ไซส์ได้
+    // if (isset($_POST['save'])) {
+    //     $numRows = mysqli_num_rows($result3);
+    //     for ($i = 1; $i <= $numRows; $i++) {
+    //         $idi = "id$i";
+    //         $lefti = "left$i";
+    //         $topi = "top$i";
+    //         $wi = "w$i";
+    //         $hi = "h$i";
+    //         $id = $_POST[$idi];
+    //         $left = $_POST[$lefti];
+    //         $top = $_POST[$topi];
+    //         $w = $_POST[$wi];
+    //         $h = $_POST[$hi];
+    //         if (isset($id) && isset($top) && isset($left) && isset($w) && isset($h)) {
+    //             $InsertSameCrop = mysqli_query($conn, "UPDATE `stall` SET `left`='$left',`top`='$top',`width`='$w',`height`='$h' WHERE `sKey`= '$id'");
+    //             if ($InsertSameCrop) {
+    //             } else {
+    //                 echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง')</script>";
+    //             }
+    //         } else {
+    //             echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง ไม่พบข้อมูลความกว้าง + ยาว')</script>";
+    //         }
+    //     }
+    //     echo "<script>alert('ok')</script>";
+    // }
+
+    if (isset($_POST['save'])) {
+        $numRows = mysqli_num_rows($result3);
+        for ($i = 1; $i <= $numRows; $i++) {
+            $idi = "id$i";
+            $lefti = "left$i";
+            $topi = "top$i";
+            $id = $_POST[$idi];
+            $left = $_POST[$lefti];
+            $top = $_POST[$topi];
+            if (isset($id) && isset($top) && isset($left)) {
+                $InsertSameCrop = mysqli_query($conn, "UPDATE `stall` SET `left`='$left',`top`='$top' WHERE `sKey`= '$id'");
+                if ($InsertSameCrop) {
+                } else {
+                    echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง')</script>";
+                }
+            } else {
+                echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง ไม่พบข้อมูล')</script>";
+            }
+        }
+        echo "<script type='text/javascript'> success(); </script>";
+        echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
+    }
+
+    if (isset($_POST['save-ratio'])) {
+        $ratio = $_POST['ratio'];
+        if (isset($ratio) != "") {
+            $udratio = mysqli_query($conn, "UPDATE `market_detail` SET `ratio_plan`='$ratio' WHERE mkr_id = '$mkr_id'");
+            if ($udratio) {
+                echo "<script type='text/javascript'> success(); </script>";
+                echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
+            } else {
+                echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง')</script>";
+            }
+        } else {
+            echo "<script>alert('ผิดพลาดกรุณาลองอีกครั้ง ไม่พบข้อมูล')</script>";
+        }
+    }
     ?>
 
 </head>
@@ -45,6 +111,7 @@
         $(".stallbox").draggable({
             containment: "#plan",
             cursor: "move",
+            grid: [ 10, 10 ],
             stop: function(event, ui) {
                 var elem = $(this),
                     id = elem.attr('id'),
@@ -68,144 +135,30 @@
 
             }
         });
-        $(".stallbox").resizable({
-            containment: "#plan",
-            cursor: "move",
-            stop: function(evt, ui) {
-                $(ui.helper).css("position","absolute")
-                var elem = $(this),
-                    id = elem.attr('id'),
-                    widthsize = elem.css("width"),
-                    heightsize = elem.css("height"),
-                    size = {
-                        id: id,
-                        width: widthsize,
-                        height: heightsize,
-                    };
-                // elemsize.push(size);
-                var
-                    inputw = document.getElementById('w' + id),
-                    inputh = document.getElementById('h' + id);
+        // $(".stallbox").resizable({
+        //     containment: "#plan",
+        //     cursor: "move",
+        //     stop: function(evt, ui) {
+        //         $(ui.helper).css("position", "absolute")
+        //         var elem = $(this),
+        //             id = elem.attr('id'),
+        //             widthsize = elem.css("width"),
+        //             heightsize = elem.css("height"),
+        //             size = {
+        //                 id: id,
+        //                 width: widthsize,
+        //                 height: heightsize,
+        //             };
+        //         // elemsize.push(size);
+        //         var
+        //             inputw = document.getElementById('w' + id),
+        //             inputh = document.getElementById('h' + id);
 
-                inputw.value = widthsize;
-                inputh.value = heightsize;
-            }
-        });
+        //         inputw.value = widthsize;
+        //         inputh.value = heightsize;
+        //     }
+        // });
     });
-    // var elempos = [],
-    //     elemsize = [];
-
-    // $(document).ready(function() {
-
-    //     var $boxstall = $("#plan"),
-    //         $list = $(".liststall");
-    //     // sortable list 
-    //     $("#sortable, #plan").sortable({
-    //         revert: "invalid",
-    //         connectWith: ".connectedSortable",
-    //     }).disableSelection().css("position", "relative");
-
-    //     // ลาก แก้ไซส์
-    //     $(".stallbox").draggable({
-    //         connectToSortable: "#sortable",
-    //         containment: ".liststall #plan",
-    //         cursor: "move",
-    //         revert: "invalid",
-
-    //     });
-
-
-    //     // ดรอปไปแพลน
-    //     $boxstall.droppable({
-    //         drop: function(event, ui) {
-    //             $(ui.helper).draggable({
-    //                     cursor: "move",
-    //                     revert: "invalid",
-    //                     stack: "#plan div",
-    //                     stop: function(event, ui) {
-    //                         var elem = $(this),
-    //                             id = elem.attr('id'),
-    //                             desc = elem.attr('data-desc'),
-    //                             pos = elem.position(),
-    //                             posleft = pos.left,
-    //                             postop = pos.top,
-    //                             info = {
-    //                                 id: id,
-    //                                 posleft: posleft,
-    //                                 postop: postop
-    //                             };
-    //                         elempos.push(info);
-    //                     }
-    //                 })
-    //                 .css("position", "absolute");
-    //             $(ui.helper).resizable({
-    //                 cursor: "move",
-    //                 stop: function(evt, ui) {
-    //                     var elem = $(this),
-    //                         id = elem.attr('id'),
-    //                         widthsize = elem.css("width"),
-    //                         heightsize = elem.css("height"),
-    //                         size = {
-    //                             id: id,
-    //                             width: widthsize,
-    //                             height: heightsize,
-    //                         };
-    //                     elemsize.push(size);
-    //                 }
-    //             });
-    //             $(event.toElement).addClass("dropped");
-    //         },
-    //         out: function(event, ui) {
-    //             $(event.toElement).removeClass('dropped');
-
-    //         }
-    //     });
-
-    //     // ดรอปกลับมาที่ลิส
-    //     $list.droppable({
-    //         drop: function(event, ui) {
-    //             $(ui.helper).draggable({
-    //                     connectToSortable: "#sortable",
-    //                     containment: ".liststall #plan",
-    //                     cursor: "move",
-    //                     revert: "invalid",
-
-    //                 }).css("width", "200")
-    //                 .css("height", "30")
-    //         }
-    //     });
-
-    //     console.log(elempos);
-    //     console.log(elemsize);
-
-    //     // submit button click
-    //     $("#saveplan").click(function() {
-
-    //         var data = [{'room_id': 1, 'adult': 2},{'room_id': 3, 'adult': 4}];
-    //         $.ajax({
-    //             url: "../backend/plansave.php",
-    //             type: "POST",
-    //             data:data,
-    //             success: function(rs) {
-    //                 alert(rs);
-    //             }
-    //         });
-    //     });
-    // });
-    // // $(document).ready(function() {
-    // //     $("#saveplan").click(function() {
-
-    // //         $.ajax({
-    // //             url: '../backend/plansave.php',
-    // //             type: 'post',
-    // //             data: elempos,
-    // //             dataType: 'JSON',
-    // //             success: function(data) {
-    // //                 console.log(data);
-    // //             }
-    // //         });
-    // //     });
-    // // });
 </script>
 
 <body>
@@ -217,28 +170,49 @@
         </ol>
     </nav>
 
-    <h1>แก้ไขแผนผังตลาด</h1>
+    <h1>แก้ไขแผนผังตลาด<i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
 
     <div class="content">
         <div class="plan border shadow-sm rounded">
+
             <div class="w-100 hstack justify-content-between px-1 pt-3">
-                <h3 class="center hstack gap-2">แผนผังตลาด <i class='bx bx-info-circle opacity-50 text-primary' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h3>
-                <button type="button" class="btn btn-outline-success save-stall" id="saveplan">บันทึกแผนผัง</button>
+                <div class="hstack gap-3">
+                    <h3>แผนผังตลาด</h3>
+                    <form method="POST">
+                        <div class="hstack gap-2">
+                            (กำหนดสัดส่วนขนาดของแผงค้า 1เมตร : <input name="ratio" type="number" class="form-control" style="width:70px;height:30px;" value="<?php echo $row['ratio_plan']; ?>">พิกเซล
+                            <button type="submit" class="btn btn-outline-primary p-0" name="save-ratio" style="width:70px;height:30px;">บันทึก</button>)
+                        </div>
+                    </form>
+                </div>
+                <form method="POST">
+                    <button type="submit" class="btn btn-outline-success save-stall" id="saveplan" name="save">บันทึกแผนผัง</button>
             </div>
             <hr>
             <div id="plan">
                 <?php while ($row1 = $result3->fetch_assoc()) : ?>
-                    <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;" id="<?php echo $count_n ?>">
-                        <div class="ps-3 stallnum">
-                            <div class="mx-auto text-wrap">แผงค้า : <span><?php echo $row1['sID'] ?></span></div>
+                    <?php
+                    $w = $row1['sWidth'];
+                    $h = $row1['sHeight'];
+
+                    $ratio_plan = $row['ratio_plan'];
+                    
+                    @$width = ($w * $ratio_plan);
+                    @$height = ($h * $ratio_plan);
+
+                    @$fs = ($ratio_plan/3);
+                    ?>
+                    <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;" id="<?php echo $count_n ?>">
+                        <div class="stallnum">
+                            <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?></div>
                             <div id="despos">
                                 <input type="text" value="<?php echo $row1['sKey'] ?>" id="<?php echo "id" . $count_n ?>" name="<?php echo "id" . $count_n ?>" hidden>
-                                <input type="text" value="" id="<?php echo "left" . $count_n ?>" name="<?php echo "left" . $count_n ?>" hidden>
-                                <input type="text" value="" id="<?php echo "top" . $count_n ?>" name="<?php echo "top" . $count_n ?>" hidden>
+                                <input type="text" value="<?php echo $row1['left'] ?>" id="<?php echo "left" . $count_n ?>" name="<?php echo "left" . $count_n ?>" hidden>
+                                <input type="text" value="<?php echo $row1['top'] ?>" id="<?php echo "top" . $count_n ?>" name="<?php echo "top" . $count_n ?>" hidden>
                             </div>
                             <div id="dessize">
-                                <input type="text" value="" id="<?php echo "w" . $count_n ?>" name="<?php echo "w" . $count_n ?>" hidden>
-                                <input type="text" value="" id="<?php echo "h" . $count_n ?>" name="<?php echo "h" . $count_n ?>" hidden>
+                                <input type="text" value="<?php echo $row1['w'] ?>" id="<?php echo "w" . $count_n ?>" name="<?php echo "w" . $count_n ?>" hidden>
+                                <input type="text" value="<?php echo $row1['h'] ?>" id="<?php echo "h" . $count_n ?>" name="<?php echo "h" . $count_n ?>" hidden>
                             </div>
                         </div>
                     </div>
@@ -246,7 +220,9 @@
                     $count_n++;
                 endwhile ?>
             </div>
+            </form>
         </div>
+
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
