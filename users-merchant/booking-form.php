@@ -36,6 +36,11 @@ if ($_GET) {
     $row = mysqli_fetch_array($result);
     extract($row);
 }
+
+$userid = $_SESSION['users_id'];
+$sqlqry = "SELECT * FROM users WHERE (users_id = '$userid') ";
+$qry = mysqli_query($conn, $sqlqry);
+$rowus = mysqli_fetch_array($qry);
 ?>
 
 <body>
@@ -58,13 +63,13 @@ if ($_GET) {
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 33.3%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100">1/3 </div>
                 </div>
                 <div class="des_input">ชื่อ</div>
-                <input class="form-control col-6" type="text" id="fristname" placeholder="ชื่อ" name="firstName" required autofocus>
+                <input class="form-control col-6" type="text" id="fristname" placeholder="ชื่อ" name="firstName" value="<?php echo $rowus['firstName'] ?>" required autofocus>
                 <div class="des_input">นามสกุล</div>
-                <input class="form-control col-6" type="text" id="lastname" placeholder="นามสกุล" name="lastName" required>
+                <input class="form-control col-6" type="text" id="lastname" placeholder="นามสกุล" name="lastName" value="<?php echo $rowus['lastName'] ?>" required>
                 <div class="des_input">อีเมล</div>
-                <input class="sqr-input col-12 form-control " id="myemail" type="email" placeholder="อีเมล" name="email" required>
+                <input class="sqr-input col-12 form-control " id="myemail" type="email" placeholder="อีเมล" name="email" value="<?php echo $rowus['email'] ?>" required>
                 <div class="des_input">เบอร์โทรศัพท์</div>
-                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
+                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $rowus['tel'] ?>" required>
                 <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
                 <input class="sqr-input col-12 form-control" id="imgInp" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
                 <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn()" id="next">

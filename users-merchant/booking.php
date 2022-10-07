@@ -37,6 +37,11 @@
     ?>
 
 </head>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#exampleModal').modal('show');
+    });
+</script>
 
 <body>
     <nav aria-label="breadcrumb mb-3">
@@ -46,6 +51,7 @@
             <li class="breadcrumb-item active fs-5" aria-current="page">จองแผงค้า<?php echo $row['mkr_name']; ?></li>
         </ol>
     </nav>
+
     <h1>จองแผงค้า<?php echo $row['mkr_name']; ?></h1>
     <!-- <div class="border rounded shadow-sm p-3 pt-3 mt-3">
         <h5>ขั้นตอนการจองแผงค้า</h5>
@@ -83,7 +89,7 @@
 
                 @$fs = ($ratio_plan / 3);
                 ?>
-                <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;" id="<?php echo $count_n ?>">
+                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;" id="<?php echo $count_n ?>">
                     <div class="stallnum">
                         <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?></div>
                         <div id="despos">
@@ -144,7 +150,66 @@
             </div>
         </div>
     </div> -->
+    <!-- tutorial modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="exampleModalLabel">ขั้นตอนการจองแผงค้า</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="parent">
+                        <div>
+                            <h5 class="center">1.เข้าสู่ระบบ</h5>
+                            <img src="../asset/booking_tutorial/login.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">2.เลือกตลาดที่สนใจ</h5>
+                            <img src="../asset/booking_tutorial/choosemarket.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">3.เลือกแผงค้าที่ต้องการ</h5>
+                            <img src="../asset/booking_tutorial/choosestall.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">4.กรอกข้อมูล</h5>
+                            <img src="../asset/booking_tutorial/fillform.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">5.ชำระค่ามัดจำ</h5>
+                            <img src="../asset/booking_tutorial/pay.jpg" class="w-100">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <?php require '../backend/modal-stallinfo.php' ?>
+
 </body>
 
+<script>
+    //detail popup
+    $(document).ready(function() {
+        $('.modal_data1').click(function() {
+            var s_id = $(this).attr("id");
+            $.ajax({
+                url: "../backend/booking.php",
+                method: "POST",
+                data: {
+                    s_id: s_id
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
+        })
+    });
+</script>
 
 </html>
