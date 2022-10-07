@@ -332,26 +332,6 @@ $result3 = mysqli_query($conn, $data2);
             </ul>
         </div>
     </div>
-    <div class="plan border rounded shadow-sm p-3 mt-3">
-        <div class="d-flex justify-content-between">
-            <h4 class="center">แผนผังตลาด</h4>
-            <a href="marketPlan.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขแผนผังตลาด</a>
-        </div>
-        <hr>
-        <div id="plan">
-            <div class="liststall vstack" id="sortable">
-                <?php while ($row1 = $result3->fetch_assoc()) : ?>
-                    <li class="m-1 ">
-                        <div style="background-color: <?php echo $row1['z_color'] ?>;" class="stallbox" data-need="<?php echo $row1['sKey'] ?>">
-                            <div class="text-center stallnum">
-                                <div class="mx-auto text-wrap">แผงค้า : <span><?php echo $row1['sID'] ?></span></div>
-                            </div>
-                        </div>
-                    </li>
-                <?php endwhile ?>
-            </div>
-        </div>
-    </div>
 </body>
 
 <script>

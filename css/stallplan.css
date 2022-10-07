@@ -85,7 +85,6 @@ body {
     padding: 2px;
     width: 200px;
     height: 30px;
-    cursor: move;
     font-size: 15px;
     overflow: hidden;
 }
