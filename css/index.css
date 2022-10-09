@@ -157,7 +157,7 @@ body {
     backdrop-filter: blur(2.5px);
     -webkit-backdrop-filter: blur(2.5px);
     border-radius: 5px;
-    transform: translate(0%, -40%);
+    transform: translate(0%, -45%);
     color: var(--white);
 
 }

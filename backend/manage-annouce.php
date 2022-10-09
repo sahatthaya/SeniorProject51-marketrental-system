@@ -2,9 +2,9 @@
 include "../backend/1-connectDB.php";
 // tb rqan query
 $count_n = 1;
-$data2 = "SELECT req_annouce.*, users.username FROM req_annouce JOIN users ON (req_annouce.users_id = users.users_id) WHERE (req_status_id = '1')";
+$data2 = "SELECT req_annouce.*, users.username FROM req_annouce JOIN users ON (req_annouce.users_id = users.users_id) WHERE (req_status_id = '1') ORDER BY `timestamp` ASC";
 $result3 = mysqli_query($conn, $data2);
-$data3 = "SELECT req_annouce.*, users.username, req_status.* FROM req_annouce JOIN users ON (req_annouce.users_id = users.users_id) JOIN req_status ON (req_annouce.req_status_id = req_status.req_status_id)";
+$data3 = "SELECT req_annouce.*, users.username, req_status.* FROM req_annouce JOIN users ON (req_annouce.users_id = users.users_id) JOIN req_status ON (req_annouce.req_status_id = req_status.req_status_id) ORDER BY `timestamp` ASC";
 $result4 = mysqli_query($conn, $data3);
 
 if (isset($_POST["anid"])) {

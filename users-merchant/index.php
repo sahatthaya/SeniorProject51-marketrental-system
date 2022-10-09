@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -117,20 +116,20 @@ include "../backend/1-import-link.php";
             <?php while ($row1 = $resultmkr->fetch_assoc()) : ?>
                 <a class="marketcard radius10" href="market-info.php?mkr_id=<?php echo $row1['mkr_id']; ?>">
                     <img src="../<?php echo $row1['mkr_pic'] ?>" class="radius10 mkrimg " alt="...">
-                    <div class="overlay">
+                    <div class="overlay p-3">
                         <h4 style="text-align: center;"><?php echo $row1['mkr_name'] ?></h4>
-                        <div class="row markettag">
-                            <p class="col-6  ptext" style="text-align: center;"><i class='bx bxs-navigation'></i> <?php echo $row1['province_name'] ?></p>
-                            <p class="col-6  ptext" style="text-align: center;"><i class='bx bxs-info-circle'></i> <?php echo $row1['market_type'] ?></p>
-
+                        <div class="d-flex justify-content-between markettag px-3">
+                            <div class="ptext"><i class='bx bxs-navigation'></i> <?php echo $row1['province_name'] ?></div>
+                            <div class="ptext"><i class='bx bxs-info-circle'></i> <?php echo $row1['market_type'] ?></div>
                         </div>
-                        <p class="ptext">รายละเอียด : <?php echo $row1['mkr_descrip'] ?></p>
                         <p class="ptext">เบอร์ติดต่อ : <?php echo $row1['tel'] ?></p>
-                        <p class="ptext">อีเมล : 
-                                <?php echo $row1['email']; ?>
+                        <p class="ptext">อีเมล :
+                            <?php echo $row1['email']; ?>
                         </p>
-                        <p class="ptext">จำนวนแผงว่าง : 0 จาก 0</p>
                     </div>
+                    <p class="ptext">วันทำการ :
+                        <?php echo $row['opening']; ?>
+                    </p>
                 </a>
             <?php
             endwhile ?>

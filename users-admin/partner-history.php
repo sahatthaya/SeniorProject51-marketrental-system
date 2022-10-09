@@ -37,6 +37,7 @@ require "../backend/manage-applicant.php";
                     <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>
+                            <th scope="col">เวลาที่ส่งคำร้อง</th>
                             <th scope="col">วันที่ส่งคำร้อง</th>
                             <th scope="col">ชื่อผู้ใช้</th>
                             <th scope="col">ชื่อ-นามสกุล</th>
@@ -49,7 +50,8 @@ require "../backend/manage-applicant.php";
                         <?php while ($row = $result2->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
-                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
+                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                                 <td><?php echo $row['market_name']; ?></td>
