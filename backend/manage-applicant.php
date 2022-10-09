@@ -63,6 +63,10 @@ if (isset($_POST["mkrdid"])) {
           <tr>  
                <td width="30%"><label>ประเภทตลาด</label></td>  
                <td width="70%">' . $row["market_type"] . '</td>  
+          </tr> 
+          <tr>  
+                <td width="30%"><label>การเปิดทำการ</label></td>  
+               <td width="70%">' . $row["opening"] . '</td>  
           </tr>  
           <tr>  
                <td width="30%"><label>สถานที่ตั้ง</label></td>  

@@ -121,6 +121,12 @@ require "../backend/add-applicant.php"
                     </div>
                 </div>
 
+                <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
+                <select class="form-select" name="opening" aria-label="Default select example">
+                    <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
+                    <option value="เปิดทำการทุกวัน (ยกเว้นวันหยุดสุดสัปดาห์)">เปิดทำการทุกวัน (ยกเว้นวันหยุดสุดสัปดาห์)</option>
+                    <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
+                </select>
                 <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
                     <div data-toggle="tooltip" title="เช่น ตลาดค้าส่ง ทำเลดี ติดถนนใหญ่ใกล้สี่แยกไฟแดง" class="mt-1">
                         <i class='bx bx-info-circle'></i>

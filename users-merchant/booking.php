@@ -34,14 +34,24 @@
     }
     $count_n = 1;
     $result3 = mysqli_query($conn, "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id' AND `show` = '1')");
+    $maxrentqry = mysqli_query($conn, "SELECT MAX(`sRent`) AS max FROM `stall` WHERE (market_id = '$mkr_id' AND `show` = '1')");
+    $maxrent =  mysqli_fetch_array($maxrentqry);
+    extract($maxrent);
+
+    $maxofrange = $maxrent['max'];
+    @$max = $maxofrange + 100;
+    $val = $max;
+    if (isset($_POST['save-range'])) {
+        $val = $_POST['rangeinput'];
+        // echo "<script type='text/javascript'> success(); </script>";
+        // echo '<meta http-equiv="refresh" content="1"; />';
+    }
+    $range = $val;
+    $count_zone = 1;
+    $zone = mysqli_query($conn, "SELECT * FROM `zone`");
     ?>
 
 </head>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#exampleModal').modal('show');
-    });
-</script>
 
 <body>
     <nav aria-label="breadcrumb mb-3">
@@ -52,29 +62,24 @@
         </ol>
     </nav>
 
-    <h1>จองแผงค้า<?php echo $row['mkr_name']; ?></h1>
-    <!-- <div class="border rounded shadow-sm p-3 pt-3 mt-3">
-        <h5>ขั้นตอนการจองแผงค้า</h5>
-        <div>1. เข้าสู่ระบบ</div>
-        <div>2. เลือกตลาดที่สนใจ</div>
-        <div>3. เลือกแผงค้าที่ต้องการ</div>
-        <div>4. กรอกข้อมูล</div>
-        <div>5. ชำระค่ามัดจำ</div>
-    </div>
-    <hr> -->
+    <h1>จองแผงค้า<?php echo $row['mkr_name']; ?><i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
     <div class="plan">
-        <div class="w-100 hstack px-1 pt-3 gap-2">
-            <label>ช่วงวันที่ : </label>
-            <input type="date" class="form-control" style="width: 10%;" id="customRange1">
-            <label>ถึง</label>
-            <input type="date" class="form-control" style="width: 10%;" id="customRange1">
+        <form method="POST">
+            <div class="row px-3">
+                <div class="hstack  px-1 gap-2 col-sm-6">
+                    <label>ค้นหา ราคาค่าเช่าไม่เกิน : </label>
+                    <div class="range-slider hstack gap-2">
+                        <input id="range" name="rangeinput" class="range-slider__range form-range" type="range" value="<?php echo $range ?>" min="0" step="100" max="<?php echo $max ?>">
+                        <div class="" style="min-width:55px;"><span id="showrangevalue" class="range-slider__value"><?php echo $range ?></span></div>บาท
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
+                </div>
+                <div class="text-end col-sm-6">
+                    <i class='ms-1 bx bx-info-circle text-primary fs-4 my-3 mx-2' data-bs-toggle="modal" data-bs-target="#stalltypemodal"></i>
+                </div>
+            </div>
+        </form>
 
-            <label>ช่วงราคาค่าเช่า : </label>
-            <input type="number" class="form-control" style="width: 10%;" id="customRange1">
-            <label>ถึง</label>
-            <input type="number" class="form-control" style="width: 10%;" id="customRange1">
-            <button type="button" class="btn btn-outline-primary save-stall " id="save"><i class='bx bx-search'></i> ค้นหา </button>
-        </div>
         <hr>
         <div id="plan">
             <?php while ($row1 = $result3->fetch_assoc()) : ?>
@@ -89,7 +94,8 @@
 
                 @$fs = ($ratio_plan / 3);
                 ?>
-                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;" id="<?php echo $count_n ?>">
+
+                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo ($row1['sRent'] < $val ? "1" : "0.2"); ?>;" id="<?php echo $count_n ?>">
                     <div class="stallnum">
                         <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?></div>
                         <div id="despos">
@@ -109,47 +115,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">แผงค้า : <span><?php echo $row1['sID'] ?></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>ขนาดแผงค้า</td>
-                                <td><?php echo number_format($row1['sWidth']) ?> * <?php echo number_format($row1['sHeight']) ?> <?php echo $row1['sAreaUnit'] ?></td>
-
-                            </tr>
-                            <tr>
-                                <td>ค่ามัดจำ</td>
-                                <td><?php echo number_format($row1['sDept']) ?> บาท</td>
-                            </tr>
-                            <tr>
-                                <td>ค่าเช่า</td>
-                                <td><?php echo number_format($row1['sRent']) ?> <?php echo $row1['sPayRange'] ?></td>
-                            </tr>
-                            <tr>
-                                <td>โซน/ประเภทร้านค้า</td>
-                                <td>อาหาร</td>
-                            </tr>
-                            <tr>
-                                <td>สถานะ</td>
-                                <td>ว่าง</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="plslogin();signIn();">จองแผงค้า</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <!-- tutorial modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered">
@@ -187,6 +152,42 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="stalltypemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">เกี่ยวกับรายการแผงค้า</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    แผงค้าจะมีสีตามประเภทที่ได้กำหนดไว้ดังนี้
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr></tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ประเภท</th>
+                            <th scope="col">สี</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($z = $zone->fetch_assoc()) : ?>
+                                <tr>
+                                    <td> <?php echo $count_zone ?></td>
+                                    <td><?php echo $z['z_name'] ?></td>
+                                    <td>
+                                        <div class="text-center rounded" style="background-color:<?php echo $z['z_color'] ?> ;width:150px;color:white; "> ตัวอย่างแผงค้า</div>
+                                    </td>
+                                </tr>
+                            <?php $count_zone++;
+                            endwhile ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php require '../backend/modal-stallinfo.php' ?>
 
 </body>
@@ -210,6 +211,27 @@
 
         })
     });
+
+    // range input
+    var rangeSlider = function() {
+        var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+
+        slider.each(function() {
+
+            value.each(function() {
+                var value = $(this).prev().attr('value');
+                $(this).html(value);
+            });
+
+            range.on('input', function() {
+                $(this).next(value).html(this.value);
+            });
+        });
+    };
+
+    rangeSlider();
 </script>
 
 </html>

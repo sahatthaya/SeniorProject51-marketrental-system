@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
     </style>
@@ -27,7 +26,7 @@
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    
+
     <!-- js datatable -->
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
@@ -60,7 +59,11 @@
 
     <!-- input mask -->
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-    
+
+    <!-- datepicker -->
+    <link href="../asset/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="../asset/mobiscroll/js/mobiscroll.javascript.min.js"></script>
+
     <style>
         .swal2-popup {
             font-family: 'Mitr', sans-serif !important;

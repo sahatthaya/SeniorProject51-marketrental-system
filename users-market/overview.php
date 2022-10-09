@@ -175,6 +175,17 @@ $result3 = mysqli_query($conn, $data2);
             </div>
         </div>
     </div>
+    <div class="border rounded shadow-sm mt-4 p-3">
+        <div class="d-flex justify-content-between ">
+            <h4 class="mt-2 mb-3">ปฏิทินวันทำการของตลาด</h4>
+            <a href="edit-market-info.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลตลาด</a>
+        </div>
+        <div class="w-100">
+            <div class="mbsc-form-group">
+                <div id="demo-colored"></div>
+            </div>
+        </div>
+    </div>
     <div class="box-3">
         <div class="border rounded shadow-sm mt-3 p-3 ">
             <h4 class="center">จำนวนคำร้องเรียนทั้งหมด</h4>
@@ -182,7 +193,7 @@ $result3 = mysqli_query($conn, $data2);
                 <?php
                 $queryz = "SELECT * FROM complain  WHERE (mkr_id = $mkr_id)";
                 $rsz = mysqli_query($conn, $queryz);
-                echo $countcomp = mysqli_num_rows($rsz);
+                echo mysqli_num_rows($rsz);
                 ?>
             </h1>
         </div>
@@ -340,6 +351,31 @@ $result3 = mysqli_query($conn, $data2);
             selector: '[data-toggle=tooltip]',
             placement: 'right'
         });
+    });
+
+    // datepicker
+    mobiscroll.setOptions({
+        locale: mobiscroll.localeTh,
+        theme: 'ios',
+        themeVariant: 'light'
+    });
+
+    var now = new Date();
+
+    mobiscroll.datepicker('#demo-colored', {
+        controls: ['calendar'],
+        display: 'inline',
+        // colors: [{
+        //         date: new Date(now.getFullYear(), now.getMonth(), 2),
+        //         highlight: '#46c4f3'
+        //     }
+        // ],
+        // invalid: [{
+        //     recurring: {
+        //         repeat: 'weekly',
+        //         weekDays: 'SA,SU'
+        //     }
+        // }]
     });
 </script>
 

@@ -56,6 +56,7 @@ if (isset($_GET['mkr_id'])) {
                         <tr>
                             <th scope="col">ลำดับ</th>
                             <th scope="col">วันที่ร้องเรียน</th>
+                            <th scope="col">เวลาร้องเรียน</th>
                             <th scope="col">ประเภทการร้องเรียน</th>
                             <th scope="col">หัวข้อการร้องเรียน</th>
                             <th scope="col">ผู้ร้องเรียน</th>
@@ -67,12 +68,13 @@ if (isset($_GET['mkr_id'])) {
                         <?php while ($row = $result->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
-                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
+                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
                                 <td><?php echo $row['toppic'] ?></td>
                                 <td><?php echo $row['comp_subject'] ?></td>
                                 <td><?php echo $row['username'] ?></td>
                                 <td>
-                                <div style="background-color: <?php echo $row['cs_color']; ?>;" class="p-1 rounded text-center"><?php echo $row['cs_name']; ?></div>
+                                    <div style="background-color: <?php echo $row['cs_color']; ?>;" class="p-1 rounded text-center"><?php echo $row['cs_name']; ?></div>
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary modal_data1" id="<?php echo $row['comp_id']; ?>">

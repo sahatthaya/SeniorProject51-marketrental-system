@@ -81,10 +81,10 @@ $result = mysqli_query($conn, $data);
             <div class="commentbox">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="../<?php echo $row['comp_file']; ?>" class="imgcomment" alt="">
+                        <img src="./<?php echo $row['comp_file']; ?>" class="imgcomment" alt="">
                     </div>
                     <div class="col-md-8">
-                        <p class="float-end" id="timestamp"><?php echo $row['timestamp'] ?></p>
+                        <p class="float-end" id="timestamp"><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?></p>
                         <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
                         <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
                         <p><?php echo $row['comp_detail'] ?></p>

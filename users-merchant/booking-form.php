@@ -81,6 +81,19 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="progress p-0 my-2">
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width:  67%" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100">2/3 </div>
                 </div>
+                <div class="w-100">
+                    <div class="mbsc-row">
+                        <div class="mbsc-col-sm-12 mbsc-col-md-4">
+                            <div class="mbsc-form-group">
+                                <div class="mbsc-form-group-title">
+                                    <div class="des_input">วันที่ต้องการเช่า</div>
+                                </div>
+                                <div id="demo-multi-day"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
                 <div class="des_input">ชื่อร้านค้า</div>
                 <input class=" col-12 form-control" id="stallName" type="text" placeholder="ชื่อร้านค้า" name="storeName" required>
                 <div class="des_input">ระยะเวลาการเช่า</div>
@@ -89,13 +102,6 @@ $rowus = mysqli_fetch_array($qry);
                     <option value="1 เดือน">1 เดือน</option>
                     <option value="3 เดือน">3 เดือน</option>
                     <option value="1 ปี">1 ปี</option>
-                </select>
-                <div class="des_input">ประเภทสินค้า</div>
-                <select class="form-select" id="productType" aria-label="Default select example">
-                    <option selected>ประเภทสินค้า</option>
-                    <option value="เสื้อผ้า">เสื้อผ้า</option>
-                    <option value="ของกิน">ของกิน</option>
-                    <option value="สตรีทฟู้ด">สตรีทฟู้ด</option>
                 </select>
                 <div class="des_input">วันที่เริ่มเช่า</div>
                 <input class=" col-12 form-control" id="dateRent" type="date" name="storeName" required>
@@ -189,7 +195,6 @@ $rowus = mysqli_fetch_array($qry);
             </div>
         </div>
     </form>
-    <script src="script.js"></script>
 </body>
 <script>
     $(document).ready(function() {
@@ -210,6 +215,34 @@ $rowus = mysqli_fetch_array($qry);
             blah.src = URL.createObjectURL(file)
         }
     }
+
+    // datepicker
+    mobiscroll.setOptions({
+        locale: mobiscroll.localeTh,
+        theme: 'ios',
+        themeVariant: 'light'
+    });
+
+    mobiscroll.datepicker('#demo-multi-day', {
+        controls: ['calendar'],
+        display: 'inline',
+        selectMultiple: true
+    });
+
+    mobiscroll.datepicker('#demo-max-days', {
+        controls: ['calendar'],
+        display: 'inline',
+        selectMultiple: true,
+        selectMax: 5,
+        headerText: 'Pick up to 5 days'
+    });
+
+    mobiscroll.datepicker('#demo-counter', {
+        controls: ['calendar'],
+        display: 'inline',
+        selectMultiple: true,
+        selectCounter: true
+    });
 </script>
 
 
