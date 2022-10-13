@@ -14,26 +14,7 @@
     include "nav.php";
     include "backend/1-connectDB.php";
     include "backend/1-import-link.php";
-    if ($_GET) {
-        $mkr_id = $_GET['mkr_id'];
-        $sql = "SELECT market_detail.*,users.username ,
-        provinces.province_name,
-        amphures.amphure_name,
-        districts.district_name , 
-        market_type.market_type
-        FROM market_detail 
-            JOIN users ON (market_detail.users_id = users.users_id)
-            JOIN provinces ON (market_detail.province_id = provinces.id)
-            JOIN amphures ON (market_detail.	amphure_id = amphures.id)
-            JOIN districts ON (market_detail.district_id = districts.id)
-            JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-             WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
-        $result = mysqli_query($conn, $sql);
-        $row = mysqli_fetch_array($result);
-        extract($row);
-    }
-    $count_n = 1;
-    $result3 = mysqli_query($conn, "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id' AND `show` = '1')");
+    include "backend/qry-booking.php";
     ?>
 
 </head>
@@ -46,29 +27,24 @@
             <li class="breadcrumb-item active fs-5" aria-current="page">จองแผงค้า<?php echo $row['mkr_name']; ?></li>
         </ol>
     </nav>
-    <h1>จองแผงค้า<?php echo $row['mkr_name']; ?></h1>
-    <!-- <div class="border rounded shadow-sm p-3 pt-3 mt-3">
-        <h5>ขั้นตอนการจองแผงค้า</h5>
-        <div>1. เข้าสู่ระบบ</div>
-        <div>2. เลือกตลาดที่สนใจ</div>
-        <div>3. เลือกแผงค้าที่ต้องการ</div>
-        <div>4. กรอกข้อมูล</div>
-        <div>5. ชำระค่ามัดจำ</div>
-    </div>
-    <hr> -->
+    <h1>จองแผงค้า<?php echo $row['mkr_name']; ?><i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
     <div class="plan">
-        <div class="w-100 hstack px-1 pt-3 gap-2">
-            <label>ช่วงวันที่ : </label>
-            <input type="date" class="form-control" style="width: 10%;" id="customRange1">
-            <label>ถึง</label>
-            <input type="date" class="form-control" style="width: 10%;" id="customRange1">
+        <form method="POST">
+            <div class="row px-3">
+                <div class="hstack  px-1 gap-2 col-sm-6">
+                    <label>ค้นหา ราคาค่าเช่าไม่เกิน : </label>
+                    <div class="range-slider hstack gap-2">
+                        <input id="range" name="rangeinput" class="range-slider__range form-range" type="range" value="<?php echo $range ?>" min="0" step="100" max="<?php echo $max ?>">
+                        <div class="" style="min-width:55px;"><span id="showrangevalue" class="range-slider__value"><?php echo $range ?></span></div>บาท
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
+                </div>
+                <div class="text-end col-sm-6">
+                    <i class='ms-1 bx bx-info-circle text-primary fs-4 my-3 mx-2' data-bs-toggle="modal" data-bs-target="#stalltypemodal"></i>
+                </div>
+            </div>
+        </form>
 
-            <label>ช่วงราคาค่าเช่า : </label>
-            <input type="number" class="form-control" style="width: 10%;" id="customRange1">
-            <label>ถึง</label>
-            <input type="number" class="form-control" style="width: 10%;" id="customRange1">
-            <button type="button" class="btn btn-outline-primary save-stall" id="save"><i class='bx bx-search'></i> ค้นหา </button>
-        </div>
         <hr>
         <div id="plan">
             <?php while ($row1 = $result3->fetch_assoc()) : ?>
@@ -83,7 +59,8 @@
 
                 @$fs = ($ratio_plan / 3);
                 ?>
-                <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;" id="<?php echo $count_n ?>">
+
+                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo ($row1['sRent'] < $val ? "1" : "0.2"); ?>;" id="<?php echo $count_n ?>">
                     <div class="stallnum">
                         <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?></div>
                         <div id="despos">
@@ -103,47 +80,101 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <!-- tutorial modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">แผงค้า : <span><?php echo $row1['sID'] ?></h5>
+                    <h3 class="modal-title" id="exampleModalLabel">ขั้นตอนการจองแผงค้า</h3>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <table class="table">
-                        <tbody>
-                            <tr>
-                                <td>ขนาดแผงค้า</td>
-                                <td><?php echo number_format($row1['sWidth']) ?> * <?php echo number_format($row1['sHeight']) ?> <?php echo $row1['sAreaUnit'] ?></td>
+                    <div class="parent">
+                        <div>
+                            <h5 class="center">1.เข้าสู่ระบบ</h5>
+                            <img src="../asset/booking_tutorial/login.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">2.เลือกตลาดที่สนใจ</h5>
+                            <img src="../asset/booking_tutorial/choosemarket.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">3.เลือกแผงค้าที่ต้องการ</h5>
+                            <img src="../asset/booking_tutorial/choosestall.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">4.กรอกข้อมูล</h5>
+                            <img src="../asset/booking_tutorial/fillform.jpg" class="w-100">
+                        </div>
+                        <div>
+                            <h5 class="center">5.ชำระค่ามัดจำ</h5>
+                            <img src="../asset/booking_tutorial/pay.jpg" class="w-100">
+                        </div>
+                    </div>
 
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="stalltypemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">เกี่ยวกับรายการแผงค้า</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    แผงค้าจะมีสีตามประเภทที่ได้กำหนดไว้ดังนี้
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr></tr>
+                            <th scope="col">#</th>
+                            <th scope="col">ประเภท</th>
+                            <th scope="col">สี</th>
                             </tr>
-                            <tr>
-                                <td>ค่ามัดจำ</td>
-                                <td><?php echo number_format($row1['sDept']) ?> บาท</td>
-                            </tr>
-                            <tr>
-                                <td>ค่าเช่า</td>
-                                <td><?php echo number_format($row1['sRent']) ?> <?php echo $row1['sPayRange'] ?></td>
-                            </tr>
-                            <tr>
-                                <td>โซน/ประเภทร้านค้า</td>
-                                <td>อาหาร</td>
-                            </tr>
-                            <tr>
-                                <td>สถานะ</td>
-                                <td>ว่าง</td>
-                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php while ($z = $zone->fetch_assoc()) : ?>
+                                <tr>
+                                    <td> <?php echo $count_zone ?></td>
+                                    <td><?php echo $z['z_name'] ?></td>
+                                    <td>
+                                        <div class="text-center rounded" style="background-color:<?php echo $z['z_color'] ?> ;width:150px;color:white; "> ตัวอย่างแผงค้า</div>
+                                    </td>
+                                </tr>
+                            <?php $count_zone++;
+                            endwhile ?>
                         </tbody>
                     </table>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="plslogin();signIn();">จองแผงค้า</button>
-                </div>
             </div>
         </div>
-    </div> -->
-</body>
+    </div>
+    <?php require '../backend/modal-stallinfo.php' ?>
 
 </html>
+<script>
+    // range input
+    var rangeSlider = function() {
+        var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
+
+        slider.each(function() {
+
+            value.each(function() {
+                var value = $(this).prev().attr('value');
+                $(this).html(value);
+            });
+
+            range.on('input', function() {
+                $(this).next(value).html(this.value);
+            });
+        });
+    };
+
+    rangeSlider();
+</script>

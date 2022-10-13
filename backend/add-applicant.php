@@ -10,6 +10,7 @@ if (isset($_POST['submit-apply'])) {
     $mkrDes = $_POST['mkrDes'];
     $userlogin = $_SESSION['users_id'];
     $opening = $_POST['opening'];
+    $min_rent = $_POST['min_rent'];
 
     $house_no = $_POST['HouseNo'];
     $soi = $_POST['Soi'];
@@ -42,12 +43,12 @@ if (isset($_POST['submit-apply'])) {
     if (
         isset($_POST["firstName"]) != "" && isset($_POST["lastName"]) != "" && isset($_POST["email"]) != "" && isset($_POST["tel"]) != ""
         && isset($idfilepath) != "" && isset($_POST["mkrName"]) != "" && isset($_POST["mkrtype"]) != "" && isset($mkrfilepath) != ""
-        && isset($opening) !=""
+        && isset($opening) !="" && isset($min_rent)!=""
     ) {
         move_uploaded_file($mkrfiletmp, $mkrpath);
         move_uploaded_file($idfiletmp, $idpath);
-        $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`)
-        VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName',' $email',' $tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening') ";
+        $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`)
+        VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName',' $email',' $tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent') ";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
             echo '<meta http-equiv="refresh" content="1";/>';

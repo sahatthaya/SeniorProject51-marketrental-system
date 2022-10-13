@@ -54,9 +54,9 @@ require "../backend/manage-annouce.php";
                             <td><?php echo $row1['username']; ?></td>
                             <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
                             <td>
-                                <div class="row" style="justify-content: center;">
-                                    <a href="../backend/manage-annouce.php?approve=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" id="" style="margin-right: 2px; font-size:14px;">อนุมัติ</a>
-                                    <a href="../backend/manage-annouce.php?denied=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px; font-size:14px;">ลบ</a>
+                                <div class="parent" style="justify-content: center;">
+                                    <a href="../backend/manage-annouce.php?approve=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success mw-100 text-center">อนุมัติ</a>
+                                    <a href="../backend/manage-annouce.php?denied=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการลบคำร้องนี้หรือไม่')" class=" btn btn-outline-danger mw-100 text-center">ลบ</a>
                                 </div>
                             </td>
                         </tr>

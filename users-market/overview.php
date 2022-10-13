@@ -17,32 +17,7 @@ include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
-$mkr_id = $_GET['mkr_id'];
-$count_n = 1;
-$data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
-$result3 = mysqli_query($conn, $data2);
-$costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
-$resultCU = mysqli_query($conn, $costunit);
-$numCU = mysqli_num_rows($resultCU);
-$z_qry = "SELECT * FROM `zone`";
-$z = mysqli_query($conn, $z_qry);
-$sql = "SELECT market_detail.*,users.username ,
-    provinces.province_name,
-    amphures.amphure_name,
-    districts.district_name , 
-    market_type.market_type
-    FROM market_detail 
-        JOIN users ON (market_detail.users_id = users.users_id)
-        JOIN provinces ON (market_detail.province_id = provinces.id)
-        JOIN amphures ON (market_detail.	amphure_id = amphures.id)
-        JOIN districts ON (market_detail.district_id = districts.id)
-        JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-         WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-extract($row);
-$data2 = "SELECT stall.*,zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = $mkr_id)";
-$result3 = mysqli_query($conn, $data2);
+include "../backend/qry-overview.php";
 ?>
 <script src="../backend/script.js"></script>
 <script>
@@ -163,6 +138,11 @@ $result3 = mysqli_query($conn, $data2);
                     </a>
                     </p>
 
+                    <p class="fs-5 mb-0">
+                    <div class="fw-bold">วันเปิดทำการ</div>
+                    <?php echo $row['opening']; ?>
+                    </p>
+
                 </div>
                 <div>
                     <p class="fs-5 mb-0">
@@ -175,17 +155,8 @@ $result3 = mysqli_query($conn, $data2);
             </div>
         </div>
     </div>
-    <div class="border rounded shadow-sm mt-4 p-3">
-        <div class="d-flex justify-content-between ">
-            <h4 class="mt-2 mb-3">ปฏิทินวันทำการของตลาด</h4>
-            <a href="edit-market-info.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลตลาด</a>
-        </div>
-        <div class="w-100">
-            <div class="mbsc-form-group">
-                <div id="demo-colored"></div>
-            </div>
-        </div>
-    </div>
+    <?php echo $opening_period ?>
+
     <div class="box-3">
         <div class="border rounded shadow-sm mt-3 p-3 ">
             <h4 class="center">จำนวนคำร้องเรียนทั้งหมด</h4>
@@ -365,17 +336,21 @@ $result3 = mysqli_query($conn, $data2);
     mobiscroll.datepicker('#demo-colored', {
         controls: ['calendar'],
         display: 'inline',
-        // colors: [{
-        //         date: new Date(now.getFullYear(), now.getMonth(), 2),
-        //         highlight: '#46c4f3'
-        //     }
-        // ],
-        // invalid: [{
-        //     recurring: {
-        //         repeat: 'weekly',
-        //         weekDays: 'SA,SU'
-        //     }
-        // }]
+        colors: [
+            <?php while ($q = $qrycalendar->fetch_assoc()) : ?> {
+                    start: new Date(<?php
+                        $start = strtotime(str_replace('-','/',$q['start']));
+                        echo date("Y,m,d", strtotime("-1 month",$start)) 
+                         ?>),
+                    end: new Date(<?php
+                     $end = strtotime(str_replace('-','/',$q['end']));
+                     echo date("Y,m,d", strtotime("-1 month",$end))
+                      ?>)   ,
+                    background: '#46c4f3'
+                },
+            <?php endwhile ?>
+        ]
+
     });
 </script>
 

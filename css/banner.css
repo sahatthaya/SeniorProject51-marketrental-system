@@ -57,7 +57,12 @@ a {
     padding: auto 10px;
 }
 
-
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+}
 
 /* datatable plugin */
 .dataTables_wrapper .dataTables_filter input {
@@ -84,17 +89,19 @@ a {
 }
 
 .dataTables_scrollBody {
-    
+
     overflow: hidden !important;
 }
+
 .btn-light {
     padding: 8px 24px;
     color: #212529 !important;
     background-color: var(--white) !important;
     border: 1px solid #ced4da !important;
 }
+
 .valid,
-input:invalid{
+input:invalid {
     border-color: #429032 !important;
 }
 
@@ -104,9 +111,9 @@ input:invalid{
         width: 30% !important;
     }
 
-    .dataTables_scrollHead{
+    .dataTables_scrollHead {
         overflow: auto !important;
-      }
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -154,11 +161,11 @@ input:invalid{
         width: 100% !important;
     }
 
-    .submit{
+    .submit {
         width: 100% !important;
     }
 
-    .col-sm-10{
+    .col-sm-10 {
         margin: 0px !important;
     }
 

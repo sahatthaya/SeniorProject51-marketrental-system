@@ -1,4 +1,5 @@
 <?php
+// qry market info
 if ($_GET) {
     $mkr_id = $_GET['mkr_id'];
     $sql = "SELECT market_detail.*,users.username ,
@@ -17,8 +18,29 @@ if ($_GET) {
     $row = mysqli_fetch_array($result);
     extract($row);
 }
-//qry
+
+//qry news
 $data2 = "SELECT * FROM news WHERE mkr_id = '$mkr_id'";
 $result3 = mysqli_query($conn, $data2);
+
+// qrycalendar
+$qrycalendar = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE mkr_id = $mkr_id");
+
+$qryperiod = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE (mkr_id = $mkr_id) ORDER BY `start` ASC");
+if ($row['opening'] == "เปิดทำการเป็นรอบ") {
+    $opening_period = '    <div class="mrk_news mb-4">
+    <div class="d-flex justify-content-between ">
+        <h4 class="mt-2 mb-0">ปฏิทินรอบการเปิดทำการของตลาด</h4>
+    </div>
+    <div class="w-100">
+        <div class="mbsc-form-group">
+            <div id="demo-colored"></div>
+        </div>
+    </div>
+</div>';
+} else {
+    $opening_period = '';
+}
+
 mysqli_close($conn);
 ?>

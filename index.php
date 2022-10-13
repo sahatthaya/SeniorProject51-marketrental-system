@@ -88,7 +88,7 @@
              <div class="guide">
                  <div>
                      <h5 class="center">1. เข้าสู่ระบบ</h5>
-                     <img src="./asset/contact/merchant-1.png" class="card-img-top img-fluid" alt="...">
+                     <img src="./asset/contact/merchant-1.png" class="card-img-top img-fluid " alt="...">
                  </div>
                  <div>
                      <h5 class="center">2. เลือกตลาดที่ต้องการ</h5>
@@ -128,7 +128,7 @@
                              <?php echo $row1['email']; ?>
                          </p>
                          <p class="ptext">วันทำการ :
-                             <?php echo $row['opening']; ?>
+                             <?php echo $row1['opening']; ?>
                          </p>
                      </div>
                  </a>

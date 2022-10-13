@@ -321,7 +321,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
     <div id="content" class="mt-3">
         <div id="table2" class="bannertb border  p-3 shadow-sm rounded mt-3">
             <h3 class="modal-title">ข้อมูลแผงค้า</h3>
-            <table id="myTable" class="display " style="width: 100%;">
+            <table id="myTable" class="display" style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
@@ -330,7 +330,7 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         <th scope="col">ขนาดพื้นที่ (เมตร)</th>
                         <th scope="col">ราคามัดจำ</th>
                         <th scope="col">ราคาค่าเช่า</th>
-                        <th scope="col">(หน่วย)</th>
+                        <!-- <th scope="col">(หน่วย)</th> -->
                         <th scope="col">การแสดงแผงค้า</th>
                         <th scope="col" style="width:15% ;">ประวัติการจอง</th>
                         <th scope="col">แก้ไขข้อมูล</th>
@@ -344,9 +344,21 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                             <td><?php echo $row1['sID'] ?></td>
                             <td><?php echo $row1['z_name'] ?></td>
                             <td><?php echo number_format($row1['sWidth']) . ' * ' . number_format($row1['sHeight']) ?></td>
-                            <td><?php echo number_format($row1['sDept']) ?></td>
-                            <td><?php echo number_format($row1['sRent']); ?></td>
-                            <td>(<?php echo $row1['sPayRange']; ?>)</td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                    <?php echo number_format($row1['sDept']) ?>
+                                    <div>บาท</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                    <?php echo number_format($row1['sRent']); ?>
+                                    <div>
+                                        (<?php echo $row1['sPayRange']; ?>)
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- <td>(<?php echo $row1['sPayRange']; ?>)</td> -->
                             <td>
                                 <div class="p-2 rounded text-center" style="color:white;background-color: <?php echo ($row1['show'] == "1" ? "green" : "grey"); ?> ;">
                                     <?php echo ($row1['show'] == "1" ? "แสดง" : "ซ่อนอยู่"); ?>

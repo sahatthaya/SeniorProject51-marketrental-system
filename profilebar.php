@@ -72,7 +72,7 @@ require "backend/auth-signup.php";
 
             <h1>สมัครสมาชิก</h1>
             <form id="signin" method="POST">
-                <div class="des_input">ปรเภทผู้ใช้</div>
+                <div class="des_input">ประเภทผู้ใช้</div>
                 <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="1" checked>
                 <label class="form-check-label" for="flexRadioDefault1">
                     พ่อค้า/แม่ค้า

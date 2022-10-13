@@ -32,45 +32,8 @@ body {
     grid-row-gap: 0px;
 }
 
-.content {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 20px;
-}
-
-.plan {
-    height: 100vh;
-}
-
-.plan li {
-    list-style: none;
-}
-
-.liststall {
-    padding: 0 4%;
-    min-height: 100%;
-
-}
-
-#plan {
-    min-width: 100%;
-    min-height: 100%;
-}
-/* แผงค้า */
-.stallbox {
-    color: white;
-    border-radius: 5px;
-    padding: 2px;
-    width: 200px;
-    height: 30px;
-    cursor: move;
-    font-size: 15px;
-    overflow: hidden;
-}
-
-.stallnum {
-    font-size: 15px;
+.mbsc-block, .mbsc-form-group {
+    margin: 0.5em 0 !important;
 }
 
 @media(max-width: 720px) {

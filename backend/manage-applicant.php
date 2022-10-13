@@ -125,6 +125,7 @@ if (isset($_GET['approve'])) {
      $email = $row['email'];
      $tel = $row['tel'];
      $opening = $row['opening'];
+     $min_rent = $row['min_rent'];
 
      $house_no = $row['house_no'];
      $soi = $row['soi'];
@@ -137,8 +138,8 @@ if (isset($_GET['approve'])) {
 
 
      $approve = "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)";
-     $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`) 
-     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening')";
+     $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`) 
+     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening'.'$min_rent')";
      $udusers = "UPDATE users SET type  = '2' WHERE(users_id = $users_id)";
 
      $isql2 = mysqli_query($conn, $udusers);

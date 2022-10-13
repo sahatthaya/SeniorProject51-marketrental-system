@@ -58,9 +58,9 @@ require "../backend/manage-applicant.php";
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 </td>
                                 <td>
-                                    <div class="row" style="justify-content: center;">
-                                        <a href="../backend/manage-applicant.php?approve=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" style="margin-right: 2px;font-size:14px;">อนุมัติ</a>
-                                        <a href="../backend/manage-applicant.php?denied=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px;font-size:14px;">ปฏิเสธ</a>
+                                    <div class=" parent" style="justify-content: center;">
+                                        <a href="../backend/manage-applicant.php?approve=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success mw-100 text-center">อนุมัติ</a>
+                                        <a href="../backend/manage-applicant.php?denied=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger mw-100 text-center">ปฏิเสธ</a>
                                     </div>
                                 </td>
                             </tr>
