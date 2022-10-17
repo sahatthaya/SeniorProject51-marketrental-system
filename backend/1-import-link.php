@@ -102,6 +102,17 @@
         })
     }
 
+    function delsuccessmarket() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {
+            window.location = "../users-market/index.php";
+        });
+    }
+
     function signUPsuccess() {
         Swal.fire({
             title: 'ลงทะเบียนสำเร็จ',

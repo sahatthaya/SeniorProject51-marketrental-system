@@ -139,10 +139,9 @@ if (isset($_GET['approve'])) {
 
      $approve = "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)";
      $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`) 
-     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening'.'$min_rent')";
-     $udusers = "UPDATE users SET type  = '2' WHERE(users_id = $users_id)";
+     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent')";
+     // $udusers = "UPDATE users SET type  = '2' WHERE(users_id = $users_id)";
 
-     $isql2 = mysqli_query($conn, $udusers);
      $ql = mysqli_query($conn, $approve);
      $isql = mysqli_query($conn, $insert);
      $mkr_id =  mysqli_insert_id($conn);
@@ -160,13 +159,15 @@ if (isset($_GET['approve'])) {
      $sqlInsertpayment = mysqli_query($conn, $Insertpayment);
 
 
-     if ($isql2 && $ql && $isql && $sqlCU && $sqlInsertpayment) {
+     if ($ql && $isql && $sqlCU && $sqlInsertpayment) {
           echo "<script>Approvesuccess();</script>";
-          echo '<meta http-equiv="refresh" content="1"; />';
+          // echo '<meta http-equiv="refresh" content="1"; />';
      } else {
           echo "<script>error();</script>";
      }
 }
+
+
 if (isset($_GET['denied'])) {
      $deniedid = $_GET['denied'];
      $denied = "UPDATE req_partner SET req_status_id = '3' WHERE (req_partner_id = $deniedid)";

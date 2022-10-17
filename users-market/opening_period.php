@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MarketRental - ภาพรวมตลาด</title>
+    <title> MarketRental - จัดการรอบการเปิดทำการตลาด</title>
 
     <!-- css  -->
     <link rel="stylesheet" href="../css/overview.css" type="text/css">
@@ -33,7 +33,7 @@ include "../backend/qry-overview.php";
         </ol>
     </nav>
 
-    <h1>ภาพรวมตลาด <?php echo $row['mkr_name']; ?></h1>
+    <h1>จัดการรอบการเปิดทำการตลาด <?php echo $row['mkr_name']; ?></h1>
     <!-- <?php echo $opening_period ?> -->
     <div class="box">
         <div class="border rounded shadow-sm mt-4 p-3 ">
@@ -80,7 +80,12 @@ include "../backend/qry-overview.php";
                         <td><?php
                             echo floor((strtotime($row1['end']) - strtotime($row1['start'])) /  (60 * 60 * 24));
                             ?></td>
-                        <td></td>
+                        <td>
+                            <div class="box">
+                                <button type="button" class="btn btn-outline-warning">แก้ไข</button>
+                                <button type="button" class="btn btn-outline-danger">ลบ</button>
+                            </div>
+                        </td>
                     </tr>
                 <?php $count_n++;
                 endwhile ?>
@@ -113,21 +118,22 @@ include "../backend/qry-overview.php";
         showRangeLabels: false,
 
     });
-    var randomColor = Math.floor(Math.random()*16777215).toString(16);
+    var randomColor = Math.floor(Math.random() * 16777215).toString(16);
     mobiscroll.datepicker('#demo-colored', {
         controls: ['calendar'],
         display: 'inline',
         colors: [
             <?php while ($q = $qrycalendar->fetch_assoc()) : ?> {
                     start: new Date(<?php
-                        $start = strtotime(str_replace('-','/',$q['start']));
-                        echo date("Y,m,d", strtotime("-1 month",$start)) 
-                         ?>),
+                                    $start = strtotime(str_replace('-', '/', $q['start']));
+                                    echo date("Y,m,d", strtotime("-1 month", $start))
+                                    ?>),
                     end: new Date(<?php
-                     $end = strtotime(str_replace('-','/',$q['end']));
-                     echo date("Y,m,d", strtotime("-1 month",$end))
-                      ?>)   ,
-                    background: '#46c4f3'
+                                    $end = strtotime(str_replace('-', '/', $q['end']));
+                                    echo date("Y,m,d", strtotime("-1 month", $end))
+                                    ?>),
+                    background: '#' + Math.floor(Math.random() * 16777215).toString(16)
+
                 },
             <?php endwhile ?>
         ]

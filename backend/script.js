@@ -77,19 +77,16 @@ function checkInfo() {
     var myemail = document.getElementById("myemail").value;
     var mytel = document.getElementById("mytel").value;
     var stallName = document.getElementById("stallName").value;
-    var rentperiod = document.getElementById("rentperiod").value;
-    var productType = document.getElementById("productType").value;
-    var dateRent = document.getElementById("dateRent").value;
     var Infomrk = document.getElementById("Infomrk").value;
+    var daterange = document.getElementsByName("daterange").value;
+
     document.getElementById("demofristname").value = fristname;
     document.getElementById("demolastname").value = lastname;
     document.getElementById("demoemail").value = myemail;
     document.getElementById("demotel").value = mytel;
     document.getElementById("demostallName").value = stallName;
-    document.getElementById("demorentperiod").value = rentperiod;
-    document.getElementById("demoproductType").value = productType;
-    document.getElementById("demodateRent").value = dateRent;
     document.getElementById("demoInfomrk").value = Infomrk;
+    document.getElementById("demorentperiod").value = daterange;
 
 }
 

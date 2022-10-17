@@ -86,7 +86,6 @@ include "../backend/qry-overview.php";
         ]);
 
         var options = {
-            width: 830,
             height: 350,
             hAxis: {
                 title: 'เดือน'
@@ -270,7 +269,7 @@ include "../backend/qry-overview.php";
             </ul>
         </div>
         <div class="border rounded shadow-sm p-3 mt-3">
-            <h4 class="center">3 อันดับประเภทแผงค้าที่ถูกจองมากที่สุด</h4>
+            <h4 class="center">3 อันดับผู้ใช้งานที่มีการจองมากที่สุด</h4>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                     <div class=" row text-decoration-none">
@@ -339,14 +338,15 @@ include "../backend/qry-overview.php";
         colors: [
             <?php while ($q = $qrycalendar->fetch_assoc()) : ?> {
                     start: new Date(<?php
-                        $start = strtotime(str_replace('-','/',$q['start']));
-                        echo date("Y,m,d", strtotime("-1 month",$start)) 
-                         ?>),
+                                    $start = strtotime(str_replace('-', '/', $q['start']));
+                                    echo date("Y,m,d", strtotime("-1 month", $start))
+                                    ?>),
                     end: new Date(<?php
-                     $end = strtotime(str_replace('-','/',$q['end']));
-                     echo date("Y,m,d", strtotime("-1 month",$end))
-                      ?>)   ,
-                    background: '#46c4f3'
+                                    $end = strtotime(str_replace('-', '/', $q['end']));
+                                    echo date("Y,m,d", strtotime("-1 month", $end))
+                                    ?>),
+                    background: '#' + Math.floor(Math.random() * 16777215).toString(16)
+
                 },
             <?php endwhile ?>
         ]

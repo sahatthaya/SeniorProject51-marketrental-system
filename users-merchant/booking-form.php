@@ -97,12 +97,8 @@ $rowus = mysqli_fetch_array($qry);
                 <img class="img-fluid" id="blah" src="#" />
                 <div class="des_input">ชื่อร้านค้า</div>
                 <input class="form-control col-6" id="demostallName" disabled>
-                <div class="des_input">ระยะเวลาการเช่า</div>
-                <input class="form-control col-6" id="demorentperiod" disabled>
-                <div class="des_input">ประเภทสินค้า</div>
-                <input class="form-control col-6" id="demoproductType" disabled>
-                <div class="des_input">วันที่เริ่มเช่า</div>
-                <input class="form-control col-6" id="demodateRent" disabled>
+                <div class="des_input">วันที่เลือกเช่า</div>
+                <input class="form-control col-6" type="text" id="demorentperiod" disabled>
                 <div class="des_input">รายละเอียดสินค้าโดยสังเขป</div>
                 <input class="form-control col-6" id="demoInfomrk" disabled>
                 <input type="button" name="previous" class="btn btn-info" style="color: white;" value="ย้อนกลับ" onclick="backtostep2()" id="back">
