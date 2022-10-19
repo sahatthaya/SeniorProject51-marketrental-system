@@ -1,5 +1,6 @@
 <?php
 include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
 
 $count_n = 1;
 $data = "SELECT req_partner.*, 
@@ -35,6 +36,7 @@ $data1 = "SELECT req_partner.*,
         ORDER BY `timestamp` ASC";
 $result2 = mysqli_query($conn, $data1);
 
+// ดูข้อมูลคำร้องเพิ่มตลาด
 if (isset($_POST["mkrdid"])) {
      $id = $_POST["mkrdid"];
      $data = "SELECT req_partner.*, 
@@ -110,6 +112,8 @@ if (isset($_POST["mkrdid"])) {
      echo $output;
 }
 
+// อนุมัติตลาด
+
 if (isset($_GET['approve'])) {
      $approveid = $_GET['approve'];
      $sqlqry = "SELECT * FROM req_partner WHERE (req_partner_id=$approveid) ";
@@ -159,21 +163,19 @@ if (isset($_GET['approve'])) {
      $sqlInsertpayment = mysqli_query($conn, $Insertpayment);
 
 
-     if ($ql && $isql && $sqlCU && $sqlInsertpayment) {
+     if ($ql) {
           echo "<script>Approvesuccess();</script>";
-          // echo '<meta http-equiv="refresh" content="1"; />';
      } else {
           echo "<script>error();</script>";
      }
 }
 
-
+// ไม่อนุมัติตลาด
 if (isset($_GET['denied'])) {
      $deniedid = $_GET['denied'];
      $denied = "UPDATE req_partner SET req_status_id = '3' WHERE (req_partner_id = $deniedid)";
      if (mysqli_query($conn, $denied)) {
           echo "<script>Deninedsuccess();</script>";
-          echo '<meta http-equiv="refresh" content="1"; />';
      } else {
           echo "<script>error();</script>";
      }

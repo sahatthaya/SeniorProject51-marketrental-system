@@ -128,7 +128,9 @@
             icon: 'success',
             showConfirmButton: false,
             timer: 2500
-        })
+        }).then(function() {
+            window.location = "../users-admin/partner.php";
+        });
     }
 
     function Deninedsuccess() {
@@ -137,7 +139,9 @@
             icon: 'success',
             showConfirmButton: false,
             timer: 2500
-        })
+        }).then(function() {
+            window.location = "../users-admin/partner.php";
+        });
     }
     // error------------------------------------------------------------
 
