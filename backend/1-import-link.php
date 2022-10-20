@@ -102,6 +102,17 @@
         })
     }
 
+    function delbannersuccess() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {
+            window.location = "../users-admin/banner.php";
+        });
+    }
+
     function delsuccessmarket() {
         Swal.fire({
             title: 'ลบข้อมูลสำเร็จ',
@@ -141,6 +152,28 @@
             timer: 2500
         }).then(function() {
             window.location = "../users-admin/partner.php";
+        });
+    }
+
+    function ApprovesuccessAN() {
+        Swal.fire({
+            title: 'อนุมัติคำร้องเสร็จสิ้น',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(function() {
+            window.location = "../users-admin/annouce.php";
+        });
+    }
+
+    function DeninedsuccessAN() {
+        Swal.fire({
+            title: 'ยกเลิกคำร้องเสร็จสิ้น',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(function() {
+            window.location = "../users-admin/annouce.php";
         });
     }
     // error------------------------------------------------------------

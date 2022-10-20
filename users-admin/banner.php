@@ -146,7 +146,7 @@ require "../backend/manage-banner.php";
         $('.modal_data').click(function() {
             var bannerid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-banner.php",
+                url: "../backend/modal-banner.php",
                 method: "POST",
                 data: {
                     bannerid: bannerid

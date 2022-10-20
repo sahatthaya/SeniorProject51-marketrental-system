@@ -75,7 +75,7 @@ require "../backend/manage-annouce.php";
         $('.modal_data1').click(function() {
             var anid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-annouce.php",
+                url: "../backend/modal-applicant.php",
                 method: "POST",
                 data: {
                     anid: anid
