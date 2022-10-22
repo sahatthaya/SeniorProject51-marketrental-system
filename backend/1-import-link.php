@@ -61,8 +61,14 @@
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
     <!-- datepicker -->
-    <link href="../asset/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
-    <script src="../asset/mobiscroll/js/mobiscroll.javascript.min.js"></script>
+    <link href="lib/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="lib/mobiscroll/js/mobiscroll.javascript.min.js"></script>
+    <link href="../lib/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="../lib/mobiscroll/js/mobiscroll.javascript.min.js"></script>
+    <!-- <script type="text/javascript" src="../lib/fullcalendar-2.1.1/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../lib/fullcalendar-2.1.1/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="../lib/fullcalendar-2.1.1/lang/th.js"></script>
+    <script type="text/javascript" src="../lib/js/fullcalendar_script.js"></script> -->
 
     <style>
         .swal2-popup {
