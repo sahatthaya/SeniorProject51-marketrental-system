@@ -32,6 +32,7 @@ $sql = "SELECT market_detail.*,users.username ,
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($result);
 extract($row);
+
 ?>
 
 <body>

@@ -1,5 +1,6 @@
 <?php
 include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
 
 // corusel query
 $query = "SELECT * FROM banner ORDER BY bn_id DESC";
@@ -39,44 +40,15 @@ if (isset($_POST['bn-submit'])) {
     }
 }
 
-if (isset($_POST["bannerid"])) {
-    $id = $_POST["bannerid"];
-    $data = "SELECT * FROM banner WHERE bn_id = '$id'";
-    $output = '';
-    $resultdata = mysqli_query($conn, $data);
-    $output .= '<div class="table-responsive">  <table class="table table-bordered">';
-    while ($row = mysqli_fetch_array($resultdata)) {
-        $output .= '
-          <tr>  
-               <td width="30%"><label>หัวข้อเรื่อง</label></td>  
-               <td width="70%">' . $row["bn_toppic"] . '</td>  
-          </tr>  
-          <tr>  
-               <td width="30%"><label>รายละเอียด</label></td>  
-               <td width="70%">' . $row["bn_detail"] . '</td>  
-          </tr>    
-          <tr>  
-               <td width="30%"><label>รูปภาพแบนเนอร์</label></td>  
-               <td width="70%"><img style="width:300px;" src=../' . $row["bn_pic"] . '></td>  
-          </tr>  
-          
-     ';
-    }
-    $output .= '  
-     </table>  
-</div>  
-';
-    echo $output;
-}
 
 
-
-if ($_GET) {
+if (isset($_GET['bn_id'])) {
     $bn_id = $_GET['bn_id'];
 
     $sqlDelUsers = "DELETE FROM banner WHERE bn_id = '$bn_id'";
     if ($rsDelUsers = mysqli_query($conn, $sqlDelUsers)) {
-        echo "<script>delsuccess();</script>";
+        echo "<script>delbannersuccess();</script>";
+        
     } else {
         echo "<script type='text/javascript'> error(); </script>";
     }

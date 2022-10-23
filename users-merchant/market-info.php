@@ -28,7 +28,7 @@ require "../backend/qry-market-info.php"
         <img src="../<?php echo $row['mkr_pic'] ?>" class="img-fluid img-thumbnail" alt="...">
     </div>
     <div class="mrk_info">
-        <p id="mkr_name"><?php echo $row['mkr_name']; ?></p>
+        <p id="mkr_name"><?php echo $row['mkr_name']; ?> <span class="fs-5">(<?php echo $row['opening'] ?>)</span></p>
         <h5>รายละเอียด</h5>
         <p class="text_desc">
             <?php echo $row['mkr_descrip']; ?>
@@ -37,9 +37,12 @@ require "../backend/qry-market-info.php"
         <p class="text_desc">
             เบอร์โทร : <?php echo $row['tel']; ?>
             <br>
-            อีเมล : <?php echo $row['email']; ?>
+            อีเมล : <a href="mailto:<?php echo $row['email'] ?>">
+                <?php echo $row['email']; ?>
+            </a>
             <br>
             ที่อยู่ : <?php echo $row['house_no']; ?> ซอย <?php echo $row['soi']; ?> หมู่ <?php echo $row['moo']; ?> ถนน <?php echo $row['road']; ?> ตำบล/แขวง <?php echo $row['district_name']; ?> อำเภอ/เขต <?php echo $row['amphure_name']; ?> จังหวัด <?php echo $row['province_name']; ?> รหัสไปรษณีย์ <?php echo $row['postalcode']; ?>
+
         </p>
 
     </div>
@@ -58,7 +61,7 @@ require "../backend/qry-market-info.php"
             <p> การร้องเรียน </p>
         </a>
     </div>
-
+    <?php echo $opening_period ?>
     <div class="mrk_news">
         <h5>ข่าวสารตลาด</h5>
         <hr>
@@ -66,7 +69,7 @@ require "../backend/qry-market-info.php"
             <?php while ($row1 = $result3->fetch_assoc()) : ?>
                 <li class="list-group-item">
                     <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
-                        <p><?php echo $row1['timestamp']; ?></p>
+                        <p><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></p>
                         <p><?php echo $row1['n_sub']; ?></p>
 
                     </a>
@@ -95,6 +98,35 @@ require "../backend/qry-market-info.php"
             });
 
         })
+    });
+
+    // datepicker
+    mobiscroll.setOptions({
+        locale: mobiscroll.localeTh,
+        theme: 'ios',
+        themeVariant: 'light'
+    });
+
+    var now = new Date();
+
+    mobiscroll.datepicker('#demo-colored', {
+        controls: ['calendar'],
+        display: 'inline',
+        colors: [
+            <?php while ($q = $qrycalendar->fetch_assoc()) : ?> {
+                    start: new Date(<?php
+                                    $start = strtotime(str_replace('-', '/', $q['start']));
+                                    echo date("Y,m,d", strtotime("-1 month", $start))
+                                    ?>),
+                    end: new Date(<?php
+                                    $end = strtotime(str_replace('-', '/', $q['end']));
+                                    echo date("Y,m,d", strtotime("-1 month", $end))
+                                    ?>),
+                    background: '#46c4f3'
+                },
+            <?php endwhile ?>
+        ]
+
     });
 </script>
 

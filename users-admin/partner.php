@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - จัดการตลาด</title>
-    
+
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 
 </head>
@@ -14,7 +14,6 @@
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
-include "../backend/1-import-link.php";
 require "../backend/manage-applicant.php";
 ?>
 
@@ -38,6 +37,7 @@ require "../backend/manage-applicant.php";
                         <tr>
                             <th scope="col">ลำดับ</th>
                             <th scope="col">วันที่ส่งคำร้อง</th>
+                            <th scope="col">เวลาที่ส่งคำร้อง</th>
                             <th scope="col">ชื่อผู้ใช้</th>
                             <th scope="col">ชื่อ-นามสกุล</th>
                             <th scope="col">ชื่อตลาด</th>
@@ -49,16 +49,17 @@ require "../backend/manage-applicant.php";
                         <?php while ($row = $result->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
-                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
+                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                                 <td><?php echo $row['market_name']; ?></td>
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 </td>
                                 <td>
-                                    <div class="row" style="justify-content: center;">
-                                        <a href="../backend/manage-applicant.php?approve=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success col-md-4" style="margin-right: 2px;font-size:14px;">อนุมัติ</a>
-                                        <a href="../backend/manage-applicant.php?denied=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="margin-left: 2px;font-size:14px;">ปฏิเสธ</a>
+                                    <div class=" parent" style="justify-content: center;">
+                                        <a href="../backend/manage-applicant.php?approve=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success mw-100 text-center">อนุมัติ</a>
+                                        <a href="../backend/manage-applicant.php?denied=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger mw-100 text-center">ปฏิเสธ</a>
                                     </div>
                                 </td>
                             </tr>
@@ -77,7 +78,7 @@ require "../backend/manage-applicant.php";
         $('.modal_data1').click(function() {
             var mkrdid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-applicant.php",
+                url: "../backend/modal-applicant.php",
                 method: "POST",
                 data: {
                     mkrdid: mkrdid

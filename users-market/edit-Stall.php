@@ -71,13 +71,17 @@ if (isset($_POST['stall-submit'])) {
     $sID = $_POST['sID'];
     $sWidth = $_POST['sWidth'];
     $sHeight = $_POST['sHeight'];
-    $sAreaUnit = $_POST['sAreaUnit'];
     $sDept = $_POST['sDept'];
     $sPayRange = $_POST['sPayRange'];
     $sRent = $_POST['sRent'];
     $z_id = $_POST['z_id'];
+    if (!isset($_POST['show'])) {
+        $show = "0";
+    } else {
+        $show = "1";
+    }
 
-    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sAreaUnit']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "" && isset($_POST['z_id']) != "") {
+    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "" && isset($_POST['z_id']) != "" && $show != "") {
         $sqlCheck = "SELECT * FROM stall WHERE (market_id = '$mkr_id')AND (sID = '$sID')";
         $rsCheck = mysqli_query($conn, $sqlCheck);
         $rowCheck = mysqli_num_rows($rsCheck);
@@ -85,7 +89,7 @@ if (isset($_POST['stall-submit'])) {
             echo "<script type='text/javascript'> stalldoubly(); </script>";
             echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
         } else {
-            $sqlInsert = "INSERT INTO stall (sID,sWidth,sHeight,sAreaUnit,sDept,sPayRange,dropped,market_id,sRent,z_id) VALUES ('$sID','$sWidth','$sHeight','$sAreaUnit','$sDept','$sPayRange','0', $mkr_id,$sRent,$z_id) ";
+            $sqlInsert = "INSERT INTO stall (sID,sWidth,sHeight,sDept,sPayRange,market_id,sRent,z_id,`show`) VALUES ('$sID','$sWidth','$sHeight','$sDept','$sPayRange', $mkr_id,$sRent,$z_id,$show) ";
             $sql = mysqli_query($conn, $sqlInsert);
             if ($sql) {
                 echo "<script type='text/javascript'> success(); </script>";
@@ -123,10 +127,52 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
         echo "<script type='text/javascript'> error(); </script>";
     }
 }
-
 ?>
 <script src="../backend/script.js"></script>
-<script src="script.js"></script>
+<script>
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var options = {
+            width: 500,
+            height: 300,
+            animation: {
+                duration: 1000,
+                easing: 'out'
+            },
+            backgroundColor: '',
+            chartArea: {
+                'left': 15,
+                'top': 15,
+                'right': 0,
+                'bottom': 0
+            },
+            fontSize: '16',
+
+        };
+        var data = google.visualization.arrayToDataTable([
+            ['ประเภทแผงค้า', 'จำนวนแผงค้า'],
+            <?php
+            $queryz = "SELECT zone.* , COUNT(stall.z_id) AS countZ  FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id') GROUP BY stall.z_id ";
+            $rsz = mysqli_query($conn, $queryz);
+            foreach ($rsz as $rs_c) {
+                echo "['" . $rs_c['z_name'] . "'," . $rs_c['countZ'] . "],";
+            }
+            ?>
+
+        ]);
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+    }
+    $(window).resize(function() {
+        drawBackgroundColor();
+        drawChart();
+    });
+</script>
 
 
 <body>
@@ -160,8 +206,8 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         <div>
                             <div class="mb-3 row">
                                 <h6 class="center mt-3 mb-3">เพิ่มค่าใช้จ่ายที่ต้องการ</h6>
-                                <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
-                                <div class="col-sm-5">
+                                <div class="col-lg-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
+                                <div class="col-lg-5">
                                     <div class="input-group mb-3">
                                         <input type="number" name="mkr_id" value="<?php echo $mkr_id ?>" hidden>
                                         <input type="number" class="form-control" style="width: 35%;" name="cu_price" placeholder="จำนวนเงิน เช่น 100">
@@ -171,8 +217,8 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <button type="submit" name="addcost" class="btn btn-primary" style="width: 95%;">
+                                <div class="col-md-4">
+                                    <button type="submit" name="addcost" class="btn btn-primary text-center" style="width: 95%;">
                                         <i class='bx bx-plus-circle me-2'></i>เพิ่มข้อมูล
                                     </button>
                                 </div>
@@ -185,10 +231,10 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         <?php while ($row = $resultCU->fetch_assoc()) : ?>
                             <form method="POST" class="row">
                                 <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_id'] ?>" name="cu_id" hidden>
-                                <div class="col-sm-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
-                                <div class="col-sm-5">
-                                    <div class="input-group mb-3">
-                                        <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_price'] ?>" name="cu_price">
+                                <div class="col-lg-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
+                                <div class="col-lg-5">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo number_format($row['cu_price']) ?>" name="cu_price">
                                         <select class="form-select" aria-label="Default select example" name="cu_type">
                                             <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
                                             <option value="บาท/หน่วย">บาท/หน่วย</option>
@@ -196,11 +242,11 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
-                                    <button type="submit" name="editcost" class="btn btn-info" style="width: 45%;color:white !important;">
+                                <div class="col-md-4 mb-3 editbtn">
+                                    <button type="submit" name="editcost" class="btn btn-info hstack " style="width: 45%;color:white !important;">
                                         <i class='bx bxs-save me-2'></i>บันทึก
                                     </button>
-                                    <a type="button" name="delcost" class="btn btn-danger" style="width: 45%;" href="edit-Stall.php?delcu_id=<?php echo $row['cu_id'] ?>&mkr_id=<?php echo $row['mkr_id'] ?>">
+                                    <a type="button" name="delcost" class="btn btn-danger hstack" style="width: 45%;" href="edit-Stall.php?delcu_id=<?php echo $row['cu_id'] ?>&mkr_id=<?php echo $row['mkr_id'] ?>">
                                         <i class='bx bxs-x-circle me-2'></i>ลบ
                                     </a>
                                 </div>
@@ -215,68 +261,80 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
     </div>
 
     <!-- content -->
-    <div class="border rounded shadow-sm p-3 mt-3">
-        <form method="POST">
-            <h3 class="modal-title">เพิ่มแผงค้า</h3>
-            <label class="hstack mt-2">รหัสแผงค้า :
-                <div data-toggle="tooltip" title="รหัสแผงค้าภายในตลาดเดียวกัน จะไม่สามารถซ้ำกันได้" class="mt-1 ms-2">
-                    <i class='bx bx-info-circle'></i>
+    <div class="top">
+        <div class="border rounded shadow-sm p-3 mt-3">
+            <h3>จำนวนของแผงค้าในแต่ละประเภท</h3>
+            <div class="chartcanvas center mt-5 ms-5" id="piechart"></div>
+        </div>
+        <div class="border rounded shadow-sm p-3 mt-3">
+            <form method="POST">
+                <h3 class="modal-title">เพิ่มแผงค้า</h3>
+                <label class="hstack mt-2">รหัสแผงค้า :
+                    <div data-toggle="tooltip" title="รหัสแผงค้าภายในตลาดเดียวกัน จะไม่สามารถซ้ำกันได้" class="mt-1 ms-2">
+                        <i class='bx bx-info-circle'></i>
+                    </div>
+                </label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
                 </div>
-            </label>
-            <div class="input-group">
-                <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
-            </div>
-            <label for="" class="mt-2">ประเภทแผงค้า</label>
-            <div class="search_select_box">
-                <select class="selectpicker dropdown" title="เลือกประเภท" name="z_id" data-live-search="true" data-width="100%" data-size="5" required>
-                    <?php while ($zone = mysqli_fetch_array($z)) :; ?>
-                        <option value="<?php echo $zone['z_id']; ?>"><?php echo $zone['z_name']; ?></option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <label class="mt-2">ขนาดพื้นที่ :</label>
-            <div class="input-group">
-                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <span class="input-group-text">*</span>
-                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <select class="input-group-text" id="inputGroupSelect01" name="sAreaUnit">
-                    <option selected value="เมตร">เมตร</option>
-                    <option value="เซนติเมตร">เซนติเมตร</option>
-                </select>
-            </div>
-            <label class="mt-2">ราคามัดจำ :</label>
-            <div class="input-group">
-                <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <span class="input-group-text">บาท</span>
-            </div>
-            <label class="mt-2">ราคาค่าเช่า :</label>
-            <div class="input-group">
-                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
-                <select class="input-group-text" name="sPayRange">
-                    <option value="บาท/วัน">บาท/วัน</option>
-                    <option value="บาท/เดือน">บาท/เดือน</option>
-                </select>
-            </div>
-            <div class="text-end">
-                <button type="submit" class="btn btn-primary mt-3" name="stall-submit">บันทึกข้อมูล</button>
-            </div>
-        </form>
+                <label for="" class="mt-2">ประเภทแผงค้า</label>
+                <div class="search_select_box">
+                    <select class="selectpicker dropdown" title="เลือกประเภท" name="z_id" data-live-search="true" data-width="100%" data-size="5" required>
+                        <?php while ($zone = mysqli_fetch_array($z)) :; ?>
+                            <option value="<?php echo $zone['z_id']; ?>"><?php echo $zone['z_name']; ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+                <label class="mt-2">ขนาดพื้นที่ :</label>
+                <div class="input-group">
+                    <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <span class="input-group-text">*</span>
+                    <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <span class="input-group-text">เมตร</span>
+
+                </div>
+                <label class="mt-2">ราคามัดจำ :</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <span class="input-group-text">บาท</span>
+                </div>
+                <label class="mt-2">ราคาค่าเช่า :</label>
+                <div class="input-group">
+                    <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <select class="input-group-text" name="sPayRange">
+                        <option value="บาท/วัน">บาท/วัน</option>
+                        <option value="บาท/เดือน">บาท/เดือน</option>
+                    </select>
+                </div>
+                <div class="mt-2 hstack gap-2">
+                    <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="show" checked>
+                    <label class="form-check-label" for="flexCheckDefault">
+                        แสดงแผงค้านี้บนแผนผังตลาด
+                    </label>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary mt-3" name="stall-submit">บันทึกข้อมูล</button>
+                </div>
+            </form>
+        </div>
     </div>
     <div id="content" class="mt-3">
         <div id="table2" class="bannertb border  p-3 shadow-sm rounded mt-3">
             <h3 class="modal-title">ข้อมูลแผงค้า</h3>
-            <table id="myTable" class="display " style="width: 100%;">
+            <table id="myTable" class="display" style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">รหัสแผงค้า</th>
+                        <th scope="col">รหัส</th>
                         <th scope="col">ประเภทร้านค้า</th>
-                        <th scope="col">ขนาดพื้นที่</th>
-                        <th scope="col">ราคามัดจำ (บาท)</th>
+                        <th scope="col">ขนาดพื้นที่ (เมตร)</th>
+                        <th scope="col">ราคามัดจำ</th>
                         <th scope="col">ราคาค่าเช่า</th>
-                        <!-- <th scope="col">สถานะ</th> -->
-                        <th scope="col" style="width:15% ;">ประวัติการจองแผงค้า</th>
-                        <th scope="col">จัดการ</th>
+                        <!-- <th scope="col">(หน่วย)</th> -->
+                        <th scope="col">การแสดงแผงค้า</th>
+                        <th scope="col" style="width:15% ;">ประวัติการจอง</th>
+                        <th scope="col">แก้ไขข้อมูล</th>
+                        <th scope="col">ลบข้อมูล</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -285,18 +343,35 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                             <td style="width:5% ;"><?php echo $count_n; ?></td>
                             <td><?php echo $row1['sID'] ?></td>
                             <td><?php echo $row1['z_name'] ?></td>
-                            <td><?php echo $row1['sWidth'] . ' * ' . $row1['sHeight'] . ' ' . $row1['sAreaUnit']; ?></td>
-                            <td><?php echo $row1['sDept']; ?></td>
-                            <td><?php echo $row1['sRent'] . ' ' . $row1['sPayRange']; ?></td>
-                            <!-- <td><?php echo $row1['sStatus']; ?></td> -->
+                            <td><?php echo number_format($row1['sWidth']) . ' * ' . number_format($row1['sHeight']) ?></td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                    <?php echo number_format($row1['sDept']) ?>
+                                    <div>บาท</div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d-flex justify-content-between">
+                                    <?php echo number_format($row1['sRent']); ?>
+                                    <div>
+                                        (<?php echo $row1['sPayRange']; ?>)
+                                    </div>
+                                </div>
+                            </td>
+                            <!-- <td>(<?php echo $row1['sPayRange']; ?>)</td> -->
+                            <td>
+                                <div class="p-2 rounded text-center" style="color:white;background-color: <?php echo ($row1['show'] == "1" ? "green" : "grey"); ?> ;">
+                                    <?php echo ($row1['show'] == "1" ? "แสดง" : "ซ่อนอยู่"); ?>
+                                </div>
+                            </td>
                             <td style="width:15% ;">
                                 <button class=" btn btn-outline-info">ดูประวัติการจอง</button>
                             </td>
                             <td>
-                                <div class="row" style="justify-content: center;">
-                                    <a class="btn btn-outline-success col-md-4 modal_data" style="text-align:center;padding: 4px 0;" href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
-                                    <a href="edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;" onclick="return confirm('คุณต้องการลบแผงค้านี้หรือไม่')" class=" btn btn-outline-danger col-md-4" style="text-align:center;padding: 4px 0;margin-left:2px;">ลบ</a>
-                                </div>
+                                <a class="btn btn-outline-success modal_data w-100" href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
+                            </td>
+                            <td>
+                                <a href="edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;" onclick="return confirm('คุณต้องการลบแผงค้านี้หรือไม่')" class=" btn btn-outline-danger w-100">ลบ</a>
                             </td>
                         </tr>
 

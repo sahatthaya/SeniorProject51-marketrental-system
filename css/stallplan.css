@@ -70,11 +70,21 @@ body {
 #plan {
     min-width: 100%;
     min-height: 100%;
+    display: flex;
+
 }
 
 .save-change {
     display: inline-flex !important;
     padding: 0 !important;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
 /* แผงค้า */
@@ -85,7 +95,6 @@ body {
     padding: 2px;
     width: 200px;
     height: 30px;
-    cursor: move;
     font-size: 15px;
     overflow: hidden;
 }
@@ -146,4 +155,3 @@ body {
     }
 
 }
-

@@ -37,6 +37,7 @@ $result = mysqli_query($conn, $data);
                         <tr>
                             <th scope="col">ลำดับ</th>
                             <th scope="col">วันที่ร้องเรียน</th>
+                            <th scope="col">เวลาที่ร้องเรียน</th>
                             <th scope="col">ประเภทการร้องเรียน</th>
                             <th scope="col">หัวข้อการร้องเรียน</th>
                             <th scope="col">สถานะ</th>
@@ -47,7 +48,8 @@ $result = mysqli_query($conn, $data);
                         <?php while ($row = $result->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
-                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
+                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
                                 <td><?php echo $row['toppic'] ?></td>
                                 <td><?php echo $row['comp_subject'] ?></td>
                                 <td>

@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
     </style>
@@ -27,6 +26,7 @@
 
     <!-- jquery -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
     <!-- js datatable -->
     <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 
@@ -59,7 +59,17 @@
 
     <!-- input mask -->
     <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
-    
+
+    <!-- datepicker -->
+    <link href="lib/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="lib/mobiscroll/js/mobiscroll.javascript.min.js"></script>
+    <link href="../lib/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
+    <script src="../lib/mobiscroll/js/mobiscroll.javascript.min.js"></script>
+    <!-- <script type="text/javascript" src="../lib/fullcalendar-2.1.1/lib/moment.min.js"></script>
+    <script type="text/javascript" src="../lib/fullcalendar-2.1.1/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="../lib/fullcalendar-2.1.1/lang/th.js"></script>
+    <script type="text/javascript" src="../lib/js/fullcalendar_script.js"></script> -->
+
     <style>
         .swal2-popup {
             font-family: 'Mitr', sans-serif !important;
@@ -98,6 +108,28 @@
         })
     }
 
+    function delbannersuccess() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {
+            window.location = "../users-admin/banner.php";
+        });
+    }
+
+    function delsuccessmarket() {
+        Swal.fire({
+            title: 'ลบข้อมูลสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 1000
+        }).then(function() {
+            window.location = "../users-market/index.php";
+        });
+    }
+
     function signUPsuccess() {
         Swal.fire({
             title: 'ลงทะเบียนสำเร็จ',
@@ -113,7 +145,9 @@
             icon: 'success',
             showConfirmButton: false,
             timer: 2500
-        })
+        }).then(function() {
+            window.location = "../users-admin/partner.php";
+        });
     }
 
     function Deninedsuccess() {
@@ -122,7 +156,31 @@
             icon: 'success',
             showConfirmButton: false,
             timer: 2500
-        })
+        }).then(function() {
+            window.location = "../users-admin/partner.php";
+        });
+    }
+
+    function ApprovesuccessAN() {
+        Swal.fire({
+            title: 'อนุมัติคำร้องเสร็จสิ้น',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(function() {
+            window.location = "../users-admin/annouce.php";
+        });
+    }
+
+    function DeninedsuccessAN() {
+        Swal.fire({
+            title: 'ยกเลิกคำร้องเสร็จสิ้น',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(function() {
+            window.location = "../users-admin/annouce.php";
+        });
     }
     // error------------------------------------------------------------
 

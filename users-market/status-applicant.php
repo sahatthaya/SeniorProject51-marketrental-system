@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,8 +25,7 @@ $data = "SELECT req_partner.*,
     amphures.amphure_name,
     districts.district_name , 
     market_type.market_type,
-    req_status.req_status,
-    req_status.color
+    req_status.*
 FROM req_partner 
     JOIN users ON (req_partner.users_id = users.users_id)
     JOIN provinces ON (req_partner.province_id = provinces.id)
@@ -49,6 +47,7 @@ $result = mysqli_query($conn, $data);
                         <tr>
                             <th scope="col">ลำดับ</th>
                             <th scope="col">วันที่ส่งคำร้อง</th>
+                            <th scope="col">เวลาที่ส่งคำร้อง</th>
                             <th scope="col">ชื่อ-นามสกุล</th>
                             <th scope="col">ชื่อตลาด</th>
                             <th scope="col">รายละเอียด</th>
@@ -59,12 +58,15 @@ $result = mysqli_query($conn, $data);
                         <?php while ($row = $result->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
-                                <td><?php echo $row['timestamp'] ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
+                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                                 <td><?php echo $row['market_name']; ?></td>
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 </td>
-                                <td> <div style="background-color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div></td>
+                                <td>
+                                    <div style="background-color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div>
+                                </td>
                             </tr>
                         <?php $count_n++;
                         endwhile ?>

@@ -37,6 +37,7 @@ $result3 = mysqli_query($conn, $data2);
                         <tr>
                             <th scope="col">ลำดับ</th>
                             <th scope="col">วันที่ส่งคำร้อง</th>
+                            <th scope="col">เวลาที่ส่งคำร้อง</th>
                             <th scope="col">หัวข้อ</th>
                             <th scope="col">ผู้ส่งคำร้อง</th>
                             <th scope="col">ดูรายละเอียด</th>
@@ -47,7 +48,8 @@ $result3 = mysqli_query($conn, $data2);
                         <?php while ($row1 = $result3->fetch_assoc()) : ?>
                             <tr>
                                 <td><?php echo $count_n; ?></td>
-                                <td><?php echo $row1['timestamp'] ?></td>
+                                <td><?php echo date( "d/m/Y", strtotime($row1['timestamp'])) ?></td>
+                                <td><?php echo date( "h:i a", strtotime($row1['timestamp'])) ?></td>
                                 <td><?php echo $row1['bn_toppic']; ?></td>
                                 <td><?php echo $row1['username']; ?></td>
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>

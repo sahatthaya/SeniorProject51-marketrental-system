@@ -14,7 +14,6 @@
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
-include "../backend/1-import-link.php";
 require "../backend/manage-banner.php";
 ?>
 
@@ -146,7 +145,7 @@ require "../backend/manage-banner.php";
         $('.modal_data').click(function() {
             var bannerid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-banner.php",
+                url: "../backend/modal-banner.php",
                 method: "POST",
                 data: {
                     bannerid: bannerid

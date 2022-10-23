@@ -245,7 +245,8 @@ require "../backend/graph-market.php";
                 </div>
                 <div>
                     <img src="../' . $row['mkr_pic'] . '" alt="">
-                    <hr>
+                  
+                    <hr class="my-2">
                 </div>
                 <div class="menu-mrk">
                     <div class="item ">
@@ -285,6 +286,8 @@ require "../backend/graph-market.php";
                         </a>
                     </div>
                 </div>
+                <hr class="my-2">
+                <a href="overview.php?mkr_id=' . $row['mkr_id'] . '" type="button" class="btn btn-primary " style="width:100%;">ดูภาพรวม ' . $row['mkr_name'] . ' </a>
             </div>
         </div>
     </div>';

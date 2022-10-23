@@ -4,11 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="../css/applicant.css">
   <title> MarketRental - แก้ไขข้อมูลตลาด</title>
 
-</head>.
+</head>
 
 <?php
 include "profilebar.php";
@@ -99,8 +100,24 @@ $result_province = mysqli_query($conn, $query_province);
           </div>
           <div class="col-2 pt-2">รหัสไปรษณีย์ :</div>
           <div class="col-4 p-0">
-            <input class="form-control" type="text" id="zip-code" placeholder="รหัสไปรษณีย์" name="PostalCode" value="<?php echo $row['postalcode']; ?>" required>
+            <input name="PostalCode" id="zipcode" class="form-control" style="height:45px ;" value="<?php echo $row['postalcode']; ?>" placeholder="รหัสไปรษณีย์">
+            </input>
           </div>
+          <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
+          <select class="form-select" name="opening" aria-label="Default select example">
+            <option value="<?php echo $row['opening'] ?>" selected hidden><?php echo $row['opening'] ?></option>
+            <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
+            <option value="เปิดทำการทุกวัน (ยกเว้นวันหยุดสุดสัปดาห์)">เปิดทำการทุกวัน (ยกเว้นวันหยุดสุดสัปดาห์)</option>
+            <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
+          </select>
+          <div class="des_input hstack gap-2">ระยะเวลาขั้นต่ำที่เปิดให้จอง</div>
+          <select class="form-select" name="min_rent" aria-label="Default select example">
+          <option value="<?php echo $row['min_rent'] ?>" selected hidden><?php echo $row['min_rent'] ?></option>
+            <option value="1 วัน">1 วัน</option>
+            <option value="1 สัปดาห์">1 สัปดาห์</option>
+            <option value="1 เดือน">1 เดือน</option>
+            <option value="1 ปี">1 ปี</option>
+          </select>
         </div>
         <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
           <div data-toggle="tooltip" title="เช่น ตลาดค้าส่ง ทำเลดี ติดถนนใหญ่ใกล้สี่แยกไฟแดง" class="mt-1">
@@ -136,7 +153,7 @@ $result_province = mysqli_query($conn, $query_province);
   $("#tel").inputmask({
     "mask": "9999999999"
   });
-  $("#zip-code").inputmask({
+  $("#zipcode").inputmask({
     "mask": "99999"
   });
 

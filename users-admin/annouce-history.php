@@ -14,7 +14,6 @@
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
-include "../backend/1-import-link.php";
 require "../backend/manage-annouce.php";
 ?>
 
@@ -36,6 +35,7 @@ require "../backend/manage-annouce.php";
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
+                        <th scope="col">เวลาที่ส่งคำร้อง</th>
                         <th scope="col">วันที่ส่งคำร้อง</th>
                         <th scope="col">หัวข้อ</th>
                         <th scope="col">ผู้ส่งคำร้อง</th>
@@ -47,7 +47,8 @@ require "../backend/manage-annouce.php";
                     <?php while ($row1 = $result4->fetch_assoc()) : ?>
                         <tr>
                             <td><?php echo $count_n; ?></td>
-                            <td><?php echo $row1['timestamp'] ?></td>
+                            <td><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></td>
+                            <td><?php echo date("h:i a", strtotime($row1['timestamp'])) ?></td>
                             <td><?php echo $row1['bn_toppic']; ?></td>
                             <td><?php echo $row1['username']; ?></td>
                             <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
