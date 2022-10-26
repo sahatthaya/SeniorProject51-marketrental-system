@@ -71,26 +71,71 @@ function backtostep2() {
 
 
 // check booking info-------------------------------------------------------------------------------------------------------
-function checkInfo() {
+function checkInfo1() {
     var fristname = document.getElementById("fristname").value;
-    var lastname = document.getElementById("lastname").value;
-    var myemail = document.getElementById("myemail").value;
-    var mytel = document.getElementById("mytel").value;
-    var stallName = document.getElementById("stallName").value;
-    var Infomrk = document.getElementById("Infomrk").value;
-    var daterange = document.getElementsByName("daterange").value;
-
     document.getElementById("demofristname").value = fristname;
+
+    var lastname = document.getElementById("lastname").value;
     document.getElementById("demolastname").value = lastname;
+
+    var myemail = document.getElementById("myemail").value;
     document.getElementById("demoemail").value = myemail;
+
+    var mytel = document.getElementById("mytel").value;
     document.getElementById("demotel").value = mytel;
+
+    var stallName = document.getElementById("stallName").value;
     document.getElementById("demostallName").value = stallName;
+
+    var Infomrk = document.getElementById("Infomrk").value;
     document.getElementById("demoInfomrk").value = Infomrk;
-    document.getElementById("demorentperiod").value = daterange;
+
+    var imgInp = document.getElementById("imgInp").value;
+    var filename = imgInp.replace(/^.*[\\\/]/, '')
+    document.getElementById("demoimg").value = filename;
+
+    var datestart = document.getElementById("datestart").value;
+    document.getElementById("demodatestart").value = datestart;
+
+    var dateend = document.getElementById("dateend").value;
+    document.getElementById("demodateend").value = dateend;
+
+}
+function checkInfo2() {
+    var fristname = document.getElementById("fristname").value;
+    document.getElementById("demofristname").value = fristname;
+
+    var lastname = document.getElementById("lastname").value;
+    document.getElementById("demolastname").value = lastname;
+
+    var myemail = document.getElementById("myemail").value;
+    document.getElementById("demoemail").value = myemail;
+
+    var mytel = document.getElementById("mytel").value;
+    document.getElementById("demotel").value = mytel;
+
+    var stallName = document.getElementById("stallName").value;
+    document.getElementById("demostallName").value = stallName;
+
+    var Infomrk = document.getElementById("Infomrk").value;
+    document.getElementById("demoInfomrk").value = Infomrk;
+
+    var imgInp = document.getElementById("imgInp").value;
+    var filename = imgInp.replace(/^.*[\\\/]/, '')
+    document.getElementById("demoimg").value = filename;
+
+    var e = document.getElementById("daterangerent");
+    document.getElementById("daterange").value = e.options[e.selectedIndex].text;
 
 }
 
+function validateForm() {
+    var fname = document.getElementById("fristname");
 
+    if (fname == "") {
+        alert("Name must be filled out");
+    }
+}
 //banner--------------------------------------------------------------------------------------------------------------  
 $(document).ready(function () {
     $("#myTable").DataTable({

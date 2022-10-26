@@ -74,7 +74,7 @@ require "../backend/manage-applicant.php";
         $('.modal_data1').click(function() {
             var mkrdid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-applicant.php",
+                url: "../backend/modal-applicant.php",
                 method: "POST",
                 data: {
                     mkrdid: mkrdid

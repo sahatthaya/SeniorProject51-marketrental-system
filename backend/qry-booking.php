@@ -32,37 +32,3 @@ if (isset($_POST['save-range'])) {
 $range = $val;
 $count_zone = 1;
 $zone = mysqli_query($conn, "SELECT * FROM `zone`");
-
-
-
-// qry calendar
-$qrycalendar = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE mkr_id = $mkr_id");
-$qrycalendar1 = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE mkr_id = $mkr_id");
-$qrycalendar2 = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE mkr_id = $mkr_id ORDER BY `start` ASC");
-
-// สำหรับตลาดที่เปิดเป็นรอบ
-$qryperiod = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE (mkr_id = $mkr_id) ORDER BY `start` ASC");
-
-if ($row['opening'] == "เปิดทำการเป็นรอบ") {
-    $opening_period1 = '<div class="des_input">รอบที่ต้องการเช่า</div>
-    <select class="form-control" title="เลือกรอบที่ต้องการเช่า" name="mkrtype" data-width="100%" data-size="5" required>';
-    while ($rowcalen = mysqli_fetch_array($qrycalendar2)) {
-        $opening_period2 = '<option value="' . $rowcalen['id'] . '">
-            รอบวันที่ ' . date("d/m/Y", strtotime($rowcalen['start'])) . ' ถึง ' . date("d/m/Y", strtotime($rowcalen['end'])) . '
-        </option>';
-    }
-    $opening_period3 = '</select>';
-    $opening_period = $opening_period1 . $opening_period2 . $opening_period3;
-} else {
-    if ($row['opening'] == "เปิดทำการทุกวัน") {
-        $opening_period = '<div class="des_input ">วันที่ต้องการเช่า <span class="fs-6">(การจองขั้นต่ำ ' . $row['min_rent'] . ')</span></div>
-        <div class="w-100 mb-2 p-0">
-            <input id="demo-range-selection" name="daterange" hidden />
-        </div>';
-    } else {
-        $opening_period = '<div class="des_input ">วันที่ต้องการเช่า <span class="fs-6">(การจองขั้นต่ำ ' . $row['min_rent'] . ')</span></div>
-        <div class="w-100 mb-2 p-0">
-            <input id="datepicker" name="daterange" hidden />
-        </div>';
-    }
-}

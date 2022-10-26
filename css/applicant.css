@@ -64,7 +64,13 @@ body {
     color: #031f87;
 
 }
+#checkoutForm .des_input {
+    margin: 5px 0 !important;
+    padding: 0 0 0 5px !important;
+    font-size: 20px;
+    color: #031f87;
 
+}
 .action-button {
     margin-top: 20px !important;
 }
