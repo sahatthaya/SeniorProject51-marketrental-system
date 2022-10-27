@@ -51,22 +51,39 @@ function nextbtn() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "block";
     document.getElementById("stepThree").style.display = "none";
+    document.getElementById("stepFour").style.display = "none";
 }
 // previousbtn
 function previousbtn() {
     document.getElementById("stepOne").style.display = "block";
     document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepFour").style.display = "none";
     document.getElementById("stepThree").style.display = "none";
 }
 function gotostep3() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepFour").style.display = "none";
     document.getElementById("stepThree").style.display = "block";
 }
 function backtostep2() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "block";
     document.getElementById("stepThree").style.display = "none";
+    document.getElementById("stepFour").style.display = "none";
+
+}
+function gotostep4() {
+    document.getElementById("stepOne").style.display = "none";
+    document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepThree").style.display = "none";
+    document.getElementById("stepFour").style.display = "block";
+}
+function backtostep3() {
+    document.getElementById("stepOne").style.display = "none";
+    document.getElementById("stepTwo").style.display = "none";
+    document.getElementById("stepFour").style.display = "none";
+    document.getElementById("stepThree").style.display = "block";
 }
 
 

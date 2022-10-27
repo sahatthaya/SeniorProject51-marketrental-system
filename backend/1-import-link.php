@@ -95,6 +95,16 @@
         });
     }
 
+    function pay_dept_success() {
+        Swal.fire({
+            title: 'ชำระเงินสำเร็จ',
+            text: 'สามารถตรวจสอบการจองได้ที่เมนูจัดการการจอง',
+            icon: 'success'
+        }).then(function() {
+            window.location = "../users-merchant/rent.php";
+        });
+    }
+
     function delsuccess() {
         Swal.fire({
             title: 'ลบข้อมูลสำเร็จ',
@@ -180,6 +190,18 @@
         });
     }
     // error------------------------------------------------------------
+
+    function errorpay() {
+        Swal.fire({
+            title: 'ผิดพลาด',
+            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(function() {
+            window.location = "../users-market/index.php";
+        });
+    }
 
     function error() {
         Swal.fire({

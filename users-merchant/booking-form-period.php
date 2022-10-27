@@ -36,7 +36,7 @@ $rowus = mysqli_fetch_array($qry);
             <li class="breadcrumb-item active fs-5" aria-current="page">กรอกข้อมูลเพื่อจองแผงค้า <?php echo $row['mkr_name']; ?></li>
         </ol>
     </nav>
-    <form id="checkoutForm" method="POST" action="../backend/checkout-dept.php" enctype="multipart/form-data" novalidate>
+    <form id="checkoutForm" method="POST" action="../backend/checkout-dept-period.php" enctype="multipart/form-data" novalidate>
         <div class="form-outer form-group " style="overflow: visible;">
             <h1 id="headline">กรอกข้อมูลเพื่อจองแผงค้า</h1>
             <!-- form--1 -->
@@ -46,11 +46,11 @@ $rowus = mysqli_fetch_array($qry);
                     <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width:25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1/4 </div>
                 </div>
                 <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="opentype" value="<?php echo $opentype ?>" required hidden>
-                <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="stall_id" value="<?php echo $s_id ?>" required hidden>
 
                 <div class="row p-0 m-0">
                     <div class="col-6 ps-0">
                         <div class="des_input">รหัสแผงค้า</div>
+                        <input class="form-control col-6" name="stall_id" value="<?php echo $rowstall['sKey'] ?>" hidden>
                         <input class="form-control col-6" value="<?php echo $rowstall['sID'] ?>" disabled>
                     </div>
                     <div class="col-6 pe-0">
@@ -63,12 +63,24 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input">ราคาค่ามัดจำ</div>
                 <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
 
-                <div class="des_input ">วันที่ต้องการเช่า <span class="fs-6">(การจองขั้นต่ำ <?php echo $row['min_rent'] ?>)</span></div>
-                <div class="w-100 mb-2 p-0">
-                    <div id="demo-range-selection" name="daterange"></div>
-                    <input id="datestart" name="b_start" hidden />
-                    <input id="dateend" name="b_end" hidden />
-                </div>
+                <div class="des_input" style="display:<?php echo $display ?> ;">รอบที่ต้องการจอง</div>
+                <select name="op_id" id="daterangerent" class="form-select" style="display:<?php echo $display ?> ;">
+                    <?php while ($rowcalen = mysqli_fetch_assoc($qryrentperiod)) : ?>
+                        <?php
+                        if ($rowcalen['s_id'] == $s_id) {
+                            if ($rowcalen['bp_id'] == '') {
+                                $disalbed = '';
+                            } else {
+                                $disalbed = 'hidden disabled';
+                            }
+                        } else {
+                            $disalbed = '';
+                        }
+                        ?>
+                        <option value="<?php echo $rowcalen['id'] ?>" <?php echo $disalbed; ?>>รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
+                    <?php endwhile; ?>
+                </select>
+                <hr class="m-0 my-3 ">
                 <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn(),validateForm()" id="next">
 
             </div>
@@ -87,7 +99,7 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input">อีเมล</div>
                 <input class="sqr-input col-12 form-control " id="myemail" type="email" placeholder="อีเมล" name="email" value="<?php echo $rowus['email'] ?>" required>
                 <div class="des_input">เบอร์โทรศัพท์</div>
-                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="tel" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $rowus['tel'] ?>" required>
+                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $rowus['tel'] ?>" required>
                 <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
                 <input class="sqr-input col-12 form-control" id="imgInp" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
                 <h5 class="p-0 mt-4 fw-semibold">ข้อมูลร้านค้า</h5>
@@ -131,16 +143,8 @@ $rowus = mysqli_fetch_array($qry);
                 <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
                 <div class="des_input">ราคาค่ามัดจำ</div>
                 <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
-                <div class="row px-0 mx-0">
-                    <div class="col-6 ps-0">
-                        <div class="des_input" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;">วันที่เริ่มเช่า</div>
-                        <input class="form-control col-6" type="text" id="demodatestart" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;" disabled>
-                    </div>
-                    <div class="col-6 pe-0">
-                        <div class="des_input" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;">วันที่สิ้นสุดการเช่า</div>
-                        <input class="form-control col-6" type="text" id="demodateend" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;" disabled>
-                    </div>
-                </div>
+                <div class="des_input" style="display:<?php echo $display ?> ;">รอบที่เลือกเช่า</div>
+                <input class="form-control col-6" type="text" id="daterange" style="display:<?php echo $display ?> ;" disabled>
                 <h5 class="p-0 mt-4 fw-semibold">ข้อมูลส่วนตัว</h5>
                 <hr class="m-1">
                 <div class="row p-0 m-0">
@@ -200,6 +204,7 @@ $rowus = mysqli_fetch_array($qry);
                 <input type="hidden" name="omiseToken">
                 <input type="hidden" name="omiseSource">
                 <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept']?>">
+
                 <?php
                 @$price = $rowstall['sDept'];
                 @$totalcal = $price * 100;
@@ -253,70 +258,6 @@ $rowus = mysqli_fetch_array($qry);
 
     $("#mytel").inputmask({
         "mask": "9999999999"
-    });
-
-    // datepicker
-    mobiscroll.setOptions({
-        locale: mobiscroll.localeTh,
-        theme: 'ios',
-        themeVariant: 'light'
-    });
-    // ประกาษตัวแปรและธีมสี
-    const today = new Date()
-    const tomorrow = new Date(today)
-    var colorset = [
-        '#abdee6',
-        '#cbaacb',
-        '#ffffb5',
-        '#ffccb6',
-        '#f3b0c3',
-        '#c6dbda',
-        '#fee1e8',
-        '#fed7c3',
-        '#f6eac2',
-        '#ecd5e3',
-        'ff968a'
-    ];
-    // จองตลาดเปิดปกติ
-    mobiscroll.datepicker('#demo-range-selection', {
-        controls: ['calendar'],
-        display: 'inline',
-        rangeSelectMode: 'wizard',
-        select: 'range',
-        selectSize: 10,
-        showOuterDays: false,
-        startInput: '#datestart',
-        endInput: '#dateend',
-        min: tomorrow.setDate(tomorrow.getDate() + 1),
-        minRange: <?php $rentrange = $row['min_rent'];
-                    if ($rentrange == "1 วัน") {
-                        echo $rr = 1;
-                    } else {
-                        if ($rentrange == "1 สัปดาห์") {
-                            echo $rr = 7;
-                        } else {
-                            if ($rentrange == "1 เดือน") {
-                                echo $rr = 28;
-                            } else {
-                                echo $rr = 365;
-                            }
-                        }
-                    }
-                    ?>,
-        invalid: [<?php while ($q1 = $qryinvalid->fetch_assoc()) : ?> {
-                    start: new Date(<?php
-                                    $start1 = strtotime(str_replace('-', '/', $q1['b_start']));
-                                    echo date("Y,m,d", strtotime("-1 month", $start1))
-                                    ?>),
-                    end: new Date(<?php
-                                    $end1 = strtotime(str_replace('-', '/', $q1['b_end']));
-                                    echo date("Y,m,d", strtotime("-1 month", $end1))
-                                    ?>),
-
-                },
-            <?php endwhile ?>
-        ]
-
     });
 </script>
 

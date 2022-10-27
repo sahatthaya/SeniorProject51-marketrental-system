@@ -42,16 +42,16 @@ body {
     padding: .5em 1.5rem;
 }
 
-#stepTwo {
+#stepTwo ,
+#stepThree,
+#stepFour{
     display: none;
 
 }
 
-#stepThree {
-    display: none;
-}
-
-#stepTwo input {
+#stepTwo input,
+#stepThree input,
+#stepFour input {
     margin: 5px auto !important;
     padding: .5em 1.5rem !important;
 }
@@ -146,8 +146,6 @@ input[type=file]::file-selector-button:hover {
 .tooltip-inner {
     max-width: 5000px !important;
 }
-
-
 
 /* -------------------responsive-------------- */
 @media(max-width: 1400px) {

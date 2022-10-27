@@ -63,7 +63,7 @@ if (isset($_POST['sdate'])) {
     $date = $_POST['daterange'];
     if (isset($date) != '') {
         $e = explode("-", $date);
-        // $start =  date("Y/m/d", strtotime($e[0]));
+        $start =  date("Y/m/d", strtotime($e[0]));
         $date2 = strtr($e[0], '/', '-');
         $start  = date('Y-m-d', strtotime($date2));
         $date1 = strtr($e[1], '/', '-');

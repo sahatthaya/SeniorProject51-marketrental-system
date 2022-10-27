@@ -3,13 +3,14 @@ include "../backend/1-connectDB.php";
 
 if (isset($_POST["s_id"])) {
     $id = $_POST["s_id"];
-    $data = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE  sKey = '$id'";
+    $data = "SELECT stall.*, zone.*,market_detail.* FROM stall JOIN zone ON (stall.z_id = zone.z_id)  JOIN market_detail ON (stall.market_id = market_detail.mkr_id) WHERE  sKey = '$id'";
     $output = '';
     $result = mysqli_query($conn, $data);
     $output .= '<table class="table">
     <tbody>
         ';
     while ($row1 = mysqli_fetch_array($result)) {
+        $row1['opening'] == 'เปิดทำการทุกวัน' ? $path = '../users-merchant/booking-form.php' : $path = '../users-merchant/booking-form-period.php';
         $output .= '
         <tr>
             <td>รหัสแผงค้า</td>
@@ -39,7 +40,7 @@ if (isset($_POST["s_id"])) {
 </table>
     <div class="text-end">
         <button type="button" class="btn btn-secondary" id="cancel" data-bs-dismiss="modal">ยกเลิก</button>
-        <a type="button" class="btn btn-primary" href="../users-merchant/booking-form.php?s_id=' . $row1['sKey'] . '&&mkr_id='.$row1['market_id'].'" >จองแผงค้า</a>
+        <a type="button" class="btn btn-primary" href="' . $path . '?s_id=' . $row1['sKey'] . '&&mkr_id=' . $row1['market_id'] . '" >จองแผงค้า</a>
     </div>
      ';
     }
