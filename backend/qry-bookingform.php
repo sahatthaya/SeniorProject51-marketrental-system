@@ -26,7 +26,7 @@ if ($_GET) {
 $qryrentperiod= mysqli_query($conn,"SELECT * FROM opening_period LEFT JOIN booking_period ON (booking_period.op_id = opening_period.id) WHERE mkr_id = $mkr_id  ORDER BY `start` ASC");
 
 // วันที่ถูกจองไปแล้ว
-$qryinvalid = mysqli_query($conn,"SELECT * FROM `booking` WHERE `stall_id`= $s_id");
+$qryinvalid = mysqli_query($conn,"SELECT * FROM `booking_range` WHERE `stall_id`= $s_id");
 
 if ($row['opening'] == "เปิดทำการเป็นรอบ") {
     $display = "block";

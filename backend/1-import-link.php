@@ -99,7 +99,8 @@
         Swal.fire({
             title: 'ชำระเงินสำเร็จ',
             text: 'สามารถตรวจสอบการจองได้ที่เมนูจัดการการจอง',
-            icon: 'success'
+            icon: 'success',
+            button: "ตกลง",
         }).then(function() {
             window.location = "../users-merchant/rent.php";
         });
@@ -259,9 +260,35 @@
     function username_doubly() {
         Swal.fire({
             title: 'ชื่อผู้ใช้ซ้ำ',
-            icon: 'กรุณาเปลี่ยนชื่อผู้ใช้',
+            icon: 'warning',
+            text: 'กรุณาเปลี่ยนชื่อผู้ใช้',
             showConfirmButton: false,
             timer: 3000
+        })
+    }
+
+    function cancelbook() {
+        var message = "โปรดทราบ\n หากคุณทำการยกเลิกการจอง\n คุณจะไม่ได้รับเงินมัดจำคืน";
+
+        Swal.fire({
+            title: 'ต้องการยกเลิกการจอง?',
+            html: "<strong>โปรดทราบ !</strong> หากผู้จองทำการยกเลิกการจอง<br />ผู้จองจะ<strong><u>ไม่ได้รับเงินมัดจำคืน</u></strong>",
+            text: message,
+            icon: 'warning',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'ฉันต้องการยกเลิกการจอง',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'ยกเลิกการจองสำเร็จ',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
         })
     }
 </script>

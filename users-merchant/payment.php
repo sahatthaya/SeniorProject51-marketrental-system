@@ -90,20 +90,7 @@ include "../backend/1-import-link.php";
 
                         </div>
 
-                        <div class="pay">
-                            <h5 class="center">แสกน QRCode เพื่อชำระเงิน</h5>
-                            <img id="qr-code" src="../asset/qrcode/qr.png" alt="">
-                            <div class="hstack gap-3">
-                                <p class="des-pay">ใบเสร็จการโอน</p>:<input type="file" class="form-control">
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">วันที่โอน</p>:<input type="date" class="form-control">
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">เวลาที่โอน</p>:<input type="time" class="form-control">
-                            </div>
-                        </div>
-                        <!-- </div> -->
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

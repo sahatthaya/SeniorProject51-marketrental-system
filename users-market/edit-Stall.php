@@ -312,6 +312,8 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
                         แสดงแผงค้านี้บนแผนผังตลาด
                     </label>
                 </div>
+                <div class="text-danger">*หมายเหตุ* <br /> 1. เมื่อทำการบันทึกข้อมูล รหัสแผงค้าจะไม่สามารถแก้ไขได้ <br>2. แผงค้าใดที่มีผู้เช่าหรือจองอยู่จะไม่สามารถลบแผงค้าได้</div>
+
                 <div class="text-end">
                     <button type="submit" class="btn btn-primary mt-3" name="stall-submit">บันทึกข้อมูล</button>
                 </div>

@@ -9,11 +9,12 @@ $b_tel = $_POST['tel'];
 $b_email = $_POST['email'];
 $shopname = $_POST['storeName'];
 $start = strtr($_REQUEST['b_start'], '/', '-');
-$b_start =  date("Y/m/d", strtotime($start)); 
+$b_start =  date("Y/m/d", strtotime($start));
 $end = strtr($_REQUEST['b_end'], '/', '-');
 $b_end =  date("Y/m/d", strtotime($end));
 $shop_detail = $_POST['shopdes'];
 $dept_pay = $_POST['dept_pay'];
+$users_id = $_POST['users_id'];
 
 // คำนวนจำนวนวัน
 $startcal  = date('Y-m-d', strtotime($b_start));
@@ -46,10 +47,11 @@ $status = ($charge['status']);
 
 if ($status == 'successful') {
     if (isset($b_fname) && isset($b_lname) && isset($cardID_copytmp) && isset($b_tel) && isset($b_email) && isset($shopname) && isset($b_start) && isset($b_end) && isset($day) && isset($shop_detail) && isset($dept_pay) && isset($stall_id) != '') {
-        $insertbooking = mysqli_query($conn, "INSERT INTO `booking`(`b_fname`,`b_lname`,`cardID_copy`,`b_tel`,`b_email`,`shopname`,`b_start`,`b_end`,`day`,`shop_detail`,`dept_pay`,`stall_id`)
-        VALUES('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$b_start','$b_end','$day','$shop_detail','$dept_pay','$stall_id')");
+        $insertbooking = mysqli_query($conn, "INSERT INTO `booking_range`(`b_fname`, `b_lname`, `cardID_copy`, `b_tel`, `b_email`, `shopname`, `b_start`, `b_end`, `day`, `shop_detail`, `dept_pay`, `stall_id`,`users_id`)
+        VALUES('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$b_start','$b_end','$day','$shop_detail','$dept_pay','$stall_id','$users_id')");
 
         if ($insertbooking) {
+            move_uploaded_file($cardID_copytmp, $cardID_copypath);
             echo '<script>pay_dept_success()</script>';
         } else {
             echo '<script>errorpay()</script>';

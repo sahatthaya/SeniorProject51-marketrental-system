@@ -47,7 +47,7 @@ $rowus = mysqli_fetch_array($qry);
                 </div>
                 <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="opentype" value="<?php echo $opentype ?>" required hidden>
                 <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="stall_id" value="<?php echo $s_id ?>" required hidden>
-
+                <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="users_id" value="<?php echo $_SESSION['users_id']; ?>" required hidden>
                 <div class="row p-0 m-0">
                     <div class="col-6 ps-0">
                         <div class="des_input">รหัสแผงค้า</div>
@@ -190,18 +190,20 @@ $rowus = mysqli_fetch_array($qry);
                 <input class="form-control col-6" value="<?php echo $row['mkr_name']; ?>" disabled>
                 <div class="des_input">ค่ามัดจำ</div>
                 <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
-                <div class="des_input">ค่าธรรมเนียม</div>
-                <input class="form-control col-6" value="0  บาท" disabled>
+                <?php
+                @$fee = (4.07 / 100) * $rowstall['sDept'];
+                @$price = $rowstall['sDept'] + $fee;
+                ?>
+                <div class="des_input">ค่าธรรมเนียม <span class="text-secondary" style="font-size: 15px;">(4.07%)</span></div>
+                <input class="form-control col-6" value="<?php echo $fee ?>  บาท" disabled>
                 <div class="des_input">รวมทั้งสิ้น</div>
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
-                <div class="text-danger">**หมายเหตุ** การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก</div>
-
+                <input class="form-control col-6" value="<?php echo $price . ' บาท' ?>" disabled>
+                <div class="text-danger">*หมายเหตุ* <br /> 1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br> 3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
                 <input type="button" name="previous" class="btn btn-info mt-3" style="color: white;" value="ย้อนกลับ" onclick="backtostep3()" id="back">
                 <input type="hidden" name="omiseToken">
                 <input type="hidden" name="omiseSource">
-                <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept']?>">
+                <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept'] ?>">
                 <?php
-                @$price = $rowstall['sDept'];
                 @$totalcal = $price * 100;
                 @$total = $price;
                 ?>

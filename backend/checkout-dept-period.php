@@ -12,6 +12,7 @@ $shopname = $_POST['storeName'];
 $op_id = $_POST['op_id'];
 $shop_detail = $_POST['shopdes'];
 $dept_pay = $_POST['dept_pay'];
+$users_id = $_POST['users_id'];
 
 // ไฟล์ภาพบัตรปชช
 date_default_timezone_set('Asia/Bangkok');
@@ -39,10 +40,11 @@ $status = ($charge['status']);
 
 if ($status == 'successful') {
     if (isset($b_fname) && isset($b_lname) && isset($cardID_copytmp) && isset($b_tel) && isset($b_email) && isset($shopname) && isset($op_id) && isset($shop_detail) && isset($dept_pay) && isset($stall_id) != '') {
-        $insertbooking = mysqli_query($conn, "INSERT INTO `booking_period`(`bp_fname`, `bp_lname`, `bp_cardID_copy`, `bp_tel`, `bp_email`, `bp_shopname`, `bp_shopdetail`, `stall_id`, `op_id`, `dept_pay`) 
-        VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id','$op_id','$dept_pay')");
+        $insertbooking = mysqli_query($conn, "INSERT INTO `booking_period`(`bp_fname`, `bp_lname`, `bp_cardID_copy`, `bp_tel`, `bp_email`, `bp_shopname`, `bp_shopdetail`, `stall_id`, `op_id`, `dept_pay`,`users_id`) 
+        VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id','$op_id','$dept_pay','$users_id')");
 
         if ($insertbooking) {
+            move_uploaded_file($cardID_copytmp, $cardID_copypath);
             echo '<script>pay_dept_success()</script>';
         } else {
             echo '<script>errorpay()</script>';
