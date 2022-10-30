@@ -8,6 +8,9 @@
     <title> MarketRental - จัดการการจอง</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
+<script>
+    var message = "โปรดทราบ\n หากคุณทำการยกเลิกการจอง\n คุณจะไม่ได้รับเงินมัดจำคืน";
+</script>
 <?php
 include "profilebar.php";
 ?>
@@ -17,16 +20,60 @@ include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 $users_id = $_SESSION['users_id'];
 $count_n = 1;
-$queryrangecalen = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id");
-$queryperiodcalen = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id");
+$queryrangecalen = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id and status = '1'");
+$queryperiodcalen = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id and status = '1'");
 
-$queryrange = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id");
-$queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id");
+$queryrange = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id and status = '1'");
+$queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id and status = '1'");
+
+if (isset($_GET['id-del']) != '') {
+    $id = $_GET['id-del'];
+    $type = $_GET['type'];
+    echo "<script>";
+    echo "
+    Swal.fire({
+        title: 'ต้องการยกเลิกการจอง?',
+        html: '<strong>โปรดทราบ !</strong> หากผู้จองทำการยกเลิกการจอง<br />ผู้จองจะ<strong><u>ไม่ได้รับเงินมัดจำคืน</u></strong>',
+        text: message,
+        icon: 'warning',
+        confirmButtonColor: '#d33',
+        confirmButtonText: 'ฉันต้องการยกเลิกการจอง',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = 'rent.php?action=confirm&id=" . $id . "&type=" . $type . "'
+        } else{
+            window.location.href = './rent.php'
+        }
+      })";
+    echo "</script>";
+}
+if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
+    $id = $_GET['id'];
+    $type = $_GET['type'];
+
+    if ($type == 'range') {
+        $sql = mysqli_query($conn, "UPDATE `booking_range` SET `status`='0' WHERE `b_id`=$id");
+        if ($sql) {
+            echo "<script>cancelsuccess()</script>";
+        } else {
+            echo "<script>alert('error range')</script>";
+
+        }
+    } else {
+        $sql = mysqli_query($conn, "UPDATE `booking_period` SET `status`='0' WHERE `bp_id`=$id");
+        if ($sql) {
+            echo "<script>cancelsuccess()</script>";
+        } else {
+            echo "<script>alert('error period')</script>";
+
+        }
+    }
+}
 
 ?>
 
 
-<body >
+<body>
     <div class="content">
         <h1 id="headline">จัดการการจอง</h1>
         <div>
@@ -76,8 +123,18 @@ $queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,o
                                 <td><?php echo date("d/m/Y", strtotime($row['b_start'])) ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
                                 <td><?php echo $row['day']; ?></td>
+                                <?php
+                                $curr_date = date('Y/m/d');
+                                $start = strtotime(str_replace('-', '/', $row['b_start']));
+                                $startdate = date("Y/m/d", strtotime("-7 day", $start));
+                                if (strtotime($curr_date) < strtotime($startdate)) {
+                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=range">ยกเลิกการจอง</a>';
+                                } else {
+                                    $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
+                                }
+                                ?>
                                 <td>
-                                    <button type="button" class=" btn btn-outline-danger" onclick="cancelbook( event );">ยกเลิกการจอง</button>
+                                    <?php echo $cancel; ?>
                                 </td>
                             </tr>
                         <?php $count_n++;
@@ -92,8 +149,18 @@ $queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,o
                                 <td><?php echo date("d/m/Y", strtotime($row2['start'])) ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row2['end'])) ?></td>
                                 <td><?php echo $row2['day']; ?></td>
+                                <?php
+                                $curr_date = date('Y/m/d');
+                                $start = strtotime(str_replace('-', '/', $row2['start']));
+                                $startdate = date("Y/m/d", strtotime("-7 day", $start));
+                                if (strtotime($curr_date) < strtotime($startdate)) {
+                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['bp_id'] . '&type=period">ยกเลิกการจอง</a>';
+                                } else {
+                                    $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
+                                }
+                                ?>
                                 <td>
-                                    <button type="button" class=" btn btn-outline-danger" onclick="cancelbook( event );">ยกเลิกการจอง</button>
+                                    <?php echo $cancel; ?>
                                 </td>
                             </tr>
                         <?php $count_n++;
@@ -107,25 +174,6 @@ $queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,o
 <script src="../backend/script.js"></script>
 
 <script>
-    // apply detail popup
-    $(document).ready(function() {
-        $('.view_data').click(function() {
-            var mkrdid = $(this).attr("id");
-            $.ajax({
-                url: "admin-req-pn-select.php",
-                method: "POST",
-                data: {
-                    mkrdid: mkrdid
-                },
-                success: function(data) {
-                    $('#detail').html(data);
-                    $('#dataModal').modal('show');
-                }
-            });
-
-        })
-    });
-
     mobiscroll.setOptions({
         locale: mobiscroll.localeTh,
         theme: 'ios',

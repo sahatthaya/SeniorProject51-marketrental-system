@@ -1,5 +1,6 @@
 <?php
 include "../backend/1-connectDB.php";
+include "../backend/1-import-link.php";
 
 if (isset($_POST["s_id"])) {
     $id = $_POST["s_id"];
