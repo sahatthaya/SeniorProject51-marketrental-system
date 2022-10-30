@@ -65,10 +65,6 @@
     <script src="lib/mobiscroll/js/mobiscroll.javascript.min.js"></script>
     <link href="../lib/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
     <script src="../lib/mobiscroll/js/mobiscroll.javascript.min.js"></script>
-    <!-- <script type="text/javascript" src="../lib/fullcalendar-2.1.1/lib/moment.min.js"></script>
-    <script type="text/javascript" src="../lib/fullcalendar-2.1.1/fullcalendar.min.js"></script>
-    <script type="text/javascript" src="../lib/fullcalendar-2.1.1/lang/th.js"></script>
-    <script type="text/javascript" src="../lib/js/fullcalendar_script.js"></script> -->
 
     <style>
         .swal2-popup {
@@ -99,6 +95,17 @@
         });
     }
 
+    function pay_dept_success() {
+        Swal.fire({
+            title: 'ชำระเงินสำเร็จ',
+            text: 'สามารถตรวจสอบการจองได้ที่เมนูจัดการการจอง',
+            icon: 'success',
+            button: "ตกลง",
+        }).then(function() {
+            window.location = "../users-merchant/rent.php";
+        });
+    }
+
     function delsuccess() {
         Swal.fire({
             title: 'ลบข้อมูลสำเร็จ',
@@ -107,6 +114,7 @@
             timer: 2500
         })
     }
+
 
     function delbannersuccess() {
         Swal.fire({
@@ -184,6 +192,18 @@
     }
     // error------------------------------------------------------------
 
+    function errorpay() {
+        Swal.fire({
+            title: 'ผิดพลาด',
+            text: 'เกิดข้อผิดพลาดกรุณาลองอีกครั้ง',
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(function() {
+            window.location = "../users-market/index.php";
+        });
+    }
+
     function error() {
         Swal.fire({
             title: 'ผิดพลาด',
@@ -240,9 +260,35 @@
     function username_doubly() {
         Swal.fire({
             title: 'ชื่อผู้ใช้ซ้ำ',
-            icon: 'กรุณาเปลี่ยนชื่อผู้ใช้',
+            icon: 'warning',
+            text: 'กรุณาเปลี่ยนชื่อผู้ใช้',
             showConfirmButton: false,
             timer: 3000
+        })
+    }
+
+    function cancelbook() {
+        var message = "โปรดทราบ\n หากคุณทำการยกเลิกการจอง\n คุณจะไม่ได้รับเงินมัดจำคืน";
+
+        Swal.fire({
+            title: 'ต้องการยกเลิกการจอง?',
+            html: "<strong>โปรดทราบ !</strong> หากผู้จองทำการยกเลิกการจอง<br />ผู้จองจะ<strong><u>ไม่ได้รับเงินมัดจำคืน</u></strong>",
+            text: message,
+            icon: 'warning',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'ฉันต้องการยกเลิกการจอง',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: 'ยกเลิกการจองสำเร็จ',
+                    icon: 'success',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            } else if (result.isDenied) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
         })
     }
 </script>

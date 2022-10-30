@@ -1,14 +1,15 @@
 <?php
 include "../backend/1-connectDB.php";
 
+
 if (isset($_POST["anid"])) {
-    $id = $_POST["anid"];
-    $data = "SELECT * FROM req_annouce WHERE req_an_id = '$id'";
-    $output = '';
-    $result = mysqli_query($conn, $data);
-    $output .= '<div class="table-responsive">  <table class="table table-bordered">';
-    while ($row = mysqli_fetch_array($result)) {
-        $output .= '
+     $id = $_POST["anid"];
+     $data = "SELECT * FROM req_annouce WHERE req_an_id = '$id'";
+     $output = '';
+     $result = mysqli_query($conn, $data);
+     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
+     while ($row = mysqli_fetch_array($result)) {
+          $output .= '
           <tr>  
                <td width="30%"><label>หัวข้อเรื่อง</label></td>  
                <td width="70%">' . $row["bn_toppic"] . '</td>  
@@ -23,17 +24,17 @@ if (isset($_POST["anid"])) {
           </tr>  
           
      ';
-    }
-    $output .= '  
+     }
+     $output .= '  
      </table>  
 </div>  
 ';
-    echo $output;
+     echo $output;
 };
 // ดูข้อมูลคำร้องเพิ่มตลาด
 if (isset($_POST["mkrdid"])) {
-    $id = $_POST["mkrdid"];
-    $data = "SELECT req_partner.*, 
+     $id = $_POST["mkrdid"];
+     $data = "SELECT req_partner.*, 
    users.username ,
    provinces.province_name,
    amphures.amphure_name,
@@ -48,11 +49,11 @@ if (isset($_POST["mkrdid"])) {
        JOIN market_type ON (req_partner.market_type_id = market_type.market_type_id)
        JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id)
    WHERE req_partner_id = '$id'";
-    $output = '';
-    $result = mysqli_query($conn, $data);
-    $output .= '<div class="table-responsive">  <table class="table table-bordered">';
-    while ($row = mysqli_fetch_array($result)) {
-        $output .= '
+     $output = '';
+     $result = mysqli_query($conn, $data);
+     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
+     while ($row = mysqli_fetch_array($result)) {
+          $output .= '
         <tr> <h5>ข้อมูลตลาด</h5></tr>  
          <tr>  
               <td width="30%"><label>ชื่อตลาด</label></td>  
@@ -77,7 +78,7 @@ if (isset($_POST["mkrdid"])) {
          </tr>  
          <tr>  
          <td width="30%"><label>รูปภาพตลาด</label></td>  
-         <td width="70%"><img style="width:300px;" src=../' . $row["market_pic"] . '></td>  
+         <td><a href="../' . $row["market_pic"] . '" target="_blank">' . $row["market_pic"] . '</a></td>
         </tr> </table>  <div class="table-responsive">  <table class="table table-bordered">
           <h5>ข้อมูลผู้ส่งคำร้อง</h5>  
          <tr>  
@@ -94,31 +95,31 @@ if (isset($_POST["mkrdid"])) {
          </tr>  
          <tr>  
               <td width="30%"><label>สำเนาบัตรประจำตัวประชาชน</label></td>  
-              <td width="70%"><img style="width:300px;" src=../' . $row["cardIDcpy"] . '></td>  
+         <td><a href="../' . $row["cardIDcpy"] . '" target="_blank">' . $row["cardIDcpy"] . '</a></td>
          </tr>  
         
     ';
-    }
-    $output .= '  
+     }
+     $output .= '  
     </table>  
 </div>  
 ';
-    echo $output;
+     echo $output;
 }
 
 ?>
 
 <div id="bannerdataModal" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">รายละเอียดคำร้อง</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" id="bannerdetail">
+     <div class="modal-dialog modal-dialog-centered modal-lg">
+          <div class="modal-content">
+               <div class="modal-header">
+                    <h5 class="modal-title">รายละเอียดคำร้อง</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+               </div>
+               <div class="modal-body" id="bannerdetail">
 
-            </div>
+               </div>
 
-        </div>
-    </div>
+          </div>
+     </div>
 </div>

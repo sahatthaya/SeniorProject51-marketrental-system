@@ -331,12 +331,28 @@ include "../backend/qry-overview.php";
     });
 
     var now = new Date();
+    var colorset = [
+        '#abdee6',
+        '#cbaacb',
+        '#ffffb5',
+        '#ffccb6',
+        '#f3b0c3',
+        '#c6dbda',
+        '#fee1e8',
+        '#fed7c3',
+        '#f6eac2',
+        '#ecd5e3',
+        'ff968a'
+    ];
+
 
     mobiscroll.datepicker('#demo-colored', {
         controls: ['calendar'],
         display: 'inline',
         colors: [
-            <?php while ($q = $qrycalendar->fetch_assoc()) : ?> {
+            <?php
+            $countcolor = 0;
+            while ($q = $qrycalendar->fetch_assoc()) : ?> {
                     start: new Date(<?php
                                     $start = strtotime(str_replace('-', '/', $q['start']));
                                     echo date("Y,m,d", strtotime("-1 month", $start))
@@ -345,10 +361,16 @@ include "../backend/qry-overview.php";
                                     $end = strtotime(str_replace('-', '/', $q['end']));
                                     echo date("Y,m,d", strtotime("-1 month", $end))
                                     ?>),
-                    background: '#' + Math.floor(Math.random() * 16777215).toString(16)
+                    background: colorset[<?php echo $countcolor; ?>]
+
 
                 },
-            <?php endwhile ?>
+            <?php
+                $countcolor++;
+                if ($countcolor > 10) {
+                    $countcolor = 0;
+                }
+            endwhile ?>
         ]
 
     });
