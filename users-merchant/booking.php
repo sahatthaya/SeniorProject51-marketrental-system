@@ -164,7 +164,7 @@
         $('.modal_data1').click(function() {
             var s_id = $(this).attr("id");
             $.ajax({
-                url: "../backend/booking.php",
+                url: "../backend/modal-stallinfo.php",
                 method: "POST",
                 data: {
                     s_id: s_id

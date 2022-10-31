@@ -30,8 +30,15 @@ $sql = "SELECT market_detail.*,users.username ,
         JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
          WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
 $result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-extract($row);
+$row1 = mysqli_fetch_array($result);
+extract($row1);
+
+$count_n = 1;
+if ($row1['opening'] == 'เปิดทำการทุกวัน') {
+    $query = mysqli_query($conn, "SELECT * FROM `booking_range`JOIN `stall` ON (booking_range.stall_id = stall.sKey) WHERE `stall`.market_id = $mkr_id ORDER BY `b_start` ASC");
+} else {
+    $query = mysqli_query($conn, "SELECT * FROM `booking_period`JOIN `stall` ON (booking_period.stall_id = stall.sKey)JOIN `opening_period` ON (booking_period.op_id = opening_period.id) WHERE `stall`.market_id = $mkr_id ORDER BY `start` ASC");
+}
 
 ?>
 
@@ -39,7 +46,7 @@ extract($row);
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
             <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
-            <li class="breadcrumb-item active fs-5" aria-current="page">การจองทั้งหมด <?php echo $row['mkr_name']; ?></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">การจองทั้งหมด <?php echo $row1['mkr_name']; ?></li>
         </ol>
     </nav>
     <div class="content">
@@ -57,32 +64,48 @@ extract($row);
                     <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>
-                            <th scope="col">ชื่อบัญชีผู้ใช้</th>
+                            <th scope="col">วันที่เริ่มจอง</th>
+                            <th scope="col">วันที่สิ้นสุด</th>
                             <th scope="col">รหัสแผงค้า</th>
-                            <th scope="col">วันที่เริ่มเช่า</th>
-                            <th scope="col">ประเภทร้านค้า</th>
-                            <th scope="col">ระยะเวลาเช่า</th>
-                            <th scope="col">ใบเสร็จค่ามัดจำ</th>
-                            <th scope="col">จัดการ</th>
+                            <th scope="col">วันที่จอง</th>
+                            <th scope="col">หมายเหตุ</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>สหัสทยา</td>
-                            <td>A01</td>
-                            <td>01/08/2022</td>
-                            <td>ร้านขายน้ำ</td>
-                            <td>2 เดือน</td>
-                            <td><a name="view" type="button" class="view_data btn btn-outline-primary  ">ดูรายละเอียด</a>
-                            </td>
-                            <td>
-                                <div class="justify-content-center vstack gap-1">
-                                    <a href="rentEdit.php" class=" btn btn-outline-info w-100" style="font-size:14px;">แก้ไขข้อมูล</a>
-                                    <a href="admin-req-pn-denied.php?req_partner_id=<?php echo $row['req_partner_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger w-100" style="font-size:14px;">ยกเลิกการจอง</a>
-                                </div>
-                            </td>
-                        </tr>
+                        <?php while ($row = $query->fetch_assoc()) : ?>
+                            <?php if ($row1['opening'] == 'เปิดทำการทุกวัน') {
+                                $start = date('d/m/Y', strtotime($row['b_start']));
+                                $end = date('d/m/Y', strtotime($row['b_end']));
+                                $timestamp = date('d/m/Y', strtotime($row['timestamp']));
+                                $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
+                                $table = "  <tr>
+                                            <td>" . $count_n . "</td>
+                                            <td> " . $start . " </td>
+                                            <td>" . $end . "</td>
+                                            <td>" . $row['sID'] . "</td>
+                                            <td>" . $timestamp . "</td>
+                                            <td>" . $status . "</td>
+                                            </tr>";
+                                echo $table;
+                            } else {
+                                $start = date('d/m/Y', strtotime($row['start']));
+                                $end = date('d/m/Y', strtotime($row['end']));
+                                $timestamp = date('d/m/Y', strtotime($row['timestamp']));
+                                $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
+                                $table = "  <tr>
+                                <td>" . $count_n . "</td>
+                                <td> " . $start . " </td>
+                                <td>" . $end . "</td>
+                                <td>" . $row['sID'] . "</td>
+                                <td>" . $timestamp . "</td>
+                                <td>" . $status . "</td>
+                                </tr>";
+                                echo $table;
+                            } ?>
+
+                        <?php $count_n++;
+                        endwhile; ?>
+                    </tbody>
                     </tbody>
                 </table>
             </div>
@@ -90,26 +113,5 @@ extract($row);
     </div>
 </body>
 <script src="../backend/script.js"></script>
-
-<script>
-    // apply detail popup
-    $(document).ready(function() {
-        $('.view_data').click(function() {
-            var mkrdid = $(this).attr("id");
-            $.ajax({
-                url: "admin-req-pn-select.php",
-                method: "POST",
-                data: {
-                    mkrdid: mkrdid
-                },
-                success: function(data) {
-                    $('#detail').html(data);
-                    $('#dataModal').modal('show');
-                }
-            });
-
-        })
-    });
-</script>
 
 </html>

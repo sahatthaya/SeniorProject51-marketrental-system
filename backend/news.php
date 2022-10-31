@@ -103,7 +103,39 @@ if (isset($_POST["newsid"])) {
 ';
     echo $output;
 };
-
+if (isset($_POST["news_id"])) {
+    $id = $_POST["news_id"];
+    $data = "SELECT * FROM `news` WHERE  n_id = '$id'";
+    $output = '';
+    $result = mysqli_query($conn, $data);
+    $output .= '<div class="table-responsive">  <table class="table table-bordered">';
+    while ($row = mysqli_fetch_array($result)) {
+        $output .= '
+          <tr>  
+               <td width="30%"><label>หัวข้อเรื่อง</label></td>  
+               <td width="70%">' . $row["n_sub"] . '</td>  
+          </tr>  
+          <tr>  
+          <td width="30%"><label>วันที่เพิ่มข่าวสาร</label></td>  
+          <td width="70%">' . $row["timestamp"] . '</td>  
+          </tr>  
+          <tr>  
+               <td width="30%"><label>รายละเอียด</label></td>  
+               <td width="70%">' . $row["n_detail"] . '</td>  
+          </tr>    
+          <tr>  
+               <td width="30%"><label>รูปภาพที่เกี่ยวข้อง</label></td>  
+               <td width="70%"><img style="width:300px;" src=./' . $row["n_file"] . '></td>  
+          </tr>  
+          
+     ';
+    }
+    $output .= '  
+     </table>  
+</div>  
+';
+    echo $output;
+};
 // edit news qry----------------------------------------------------------------------------------------------------
 if (isset($_GET['edit-news'])) {
     $n_id = $_GET['edit-news'];

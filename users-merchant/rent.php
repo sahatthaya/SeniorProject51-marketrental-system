@@ -143,7 +143,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                             <tr>
                                 <td><?php echo $count_n; ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row2['timestamp'])) ?></td>
-                                <td><?php echo $row2['bp_shopname']; ?></td>
+                                <td><?php echo $row2['b_shopname']; ?></td>
                                 <td><?php echo $row2['mkr_name']; ?></td>
                                 <td><?php echo $row2['sID']; ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row2['start'])) ?></td>
@@ -154,7 +154,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                 $start = strtotime(str_replace('-', '/', $row2['start']));
                                 $startdate = date("Y/m/d", strtotime("-7 day", $start));
                                 if (strtotime($curr_date) < strtotime($startdate)) {
-                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['bp_id'] . '&type=period">ยกเลิกการจอง</a>';
+                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=period">ยกเลิกการจอง</a>';
                                 } else {
                                     $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
                                 }

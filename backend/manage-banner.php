@@ -47,7 +47,7 @@ if (isset($_GET['bn_id'])) {
 
     $sqlDelUsers = "DELETE FROM banner WHERE bn_id = '$bn_id'";
     if ($rsDelUsers = mysqli_query($conn, $sqlDelUsers)) {
-        echo "<script>delbannersuccess();</script>";
+        echo "<script>delbannersuccess().then(window.location='../users-admin/banner.php');</script>";
         
     } else {
         echo "<script type='text/javascript'> error(); </script>";

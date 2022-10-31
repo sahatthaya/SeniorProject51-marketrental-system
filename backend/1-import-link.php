@@ -247,6 +247,14 @@
         });
     }
     // warning------------------------------------------------------------
+    function signIn() {
+        document.getElementById("profilebar").style.right = "0";
+        document.getElementById("signIn").style.display = "block";
+        document.getElementById("forgotpsw").style.display = "none";
+        document.getElementById("signUp").style.display = "none";
+        document.getElementById("profilebar").style.transition = "0.5s ease";
+
+    }
 
     function plslogin() {
         Swal.fire({
@@ -255,7 +263,7 @@
             icon: 'warning',
             showConfirmButton: false,
             timer: 3000
-        })
+        }).then(signIn(event))
     }
 
     function stalldoubly() {
