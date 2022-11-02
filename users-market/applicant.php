@@ -122,10 +122,27 @@ require "../backend/add-applicant.php"
                 </div>
 
                 <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
-                <select class="form-select" name="opening" aria-label="Default select example">
+                <select class="form-select" id="open" name="opening" aria-label="Default select example" onchange="myFunction()">
+                    <option value="" disabled selected>เลือกวันที่เปิดทำการ</option>
                     <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
                     <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
                 </select>
+                <div class="row px-0 mx-0 ">
+                    <div class="col-6 ps-0">
+                        <div class="des_input hstack gap-2">กำหนดวันที่ออกบิล</div>
+                        <select class="form-select" id="billdaystart" name="bill_daystart" aria-label="Default select example">
+                            <option value="" disabled selected>เลือกวันที่ออกบิล</option>
+
+                        </select>
+                    </div>
+                    <div class="col-6 pe-0">
+                        <div class="des_input hstack gap-2">กำหนดวันที่สิ้นสุดการชำระเงิน</div>
+                        <select class="form-select" id="billdayend" name="bill_expired" aria-label="Default select example">
+                            <option value="" disabled selected>เลือกวันที่สิ้นสุดการชำระเงิน</option>
+
+                        </select>
+                    </div>
+                </div>
                 <div class="des_input hstack gap-2">ระยะเวลาขั้นต่ำที่เปิดให้จอง</div>
                 <select class="form-select" name="min_rent" aria-label="Default select example">
                     <option value="1 วัน">1 วัน</option>
@@ -169,6 +186,47 @@ require "../backend/add-applicant.php"
     $("#zip-code").inputmask({
         "mask": "99999"
     });
+
+    function myFunction() {
+        var x = document.getElementById("open").value;
+        const selectstart = document.getElementById("billdaystart");
+        const selectend = document.getElementById("billdayend");
+        const TOTAL_OPTIONS = 31;
+
+        if (x == 'เปิดทำการทุกวัน') {
+            $('#billdaystart').empty();
+            $('#billdayend').empty();
+            for (let i = 1; i <= TOTAL_OPTIONS; i++) {
+                const option1 = document.createElement("option");
+                option1.value = i;
+                option1.innerHTML = `ทุกวันที่ ${i} ของทุกเดือน`;
+                selectstart.appendChild(option1);
+            }
+
+            for (let i = 1; i <= TOTAL_OPTIONS; i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.innerHTML = `ทุกวันที่ ${i} ของทุกเดือน`;
+
+                selectend.appendChild(option);
+            }
+        } else {
+            $('#billdaystart').empty();
+            $('#billdayend').empty();
+            const option1 = document.createElement("option");
+            option1.value = 'ทุกวันสุดท้ายของรอบที่เปิด';
+            option1.innerHTML = `ทุกวันสุดท้ายของรอบที่เปิด`;
+            selectstart.appendChild(option1);
+
+            for (let i = 1; i <= TOTAL_OPTIONS; i++) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.innerHTML = `ไม่เกิน ${i} หลังวันที่กำหนดชำระ`;
+
+                selectend.appendChild(option);
+            }
+        }
+    }
 </script>
 
 </html>

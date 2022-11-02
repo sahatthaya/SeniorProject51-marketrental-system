@@ -21,9 +21,7 @@ $mkr_id = $_GET['mkr_id'];
 $count_n = 1;
 $data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
 $result3 = mysqli_query($conn, $data2);
-$costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
-$resultCU = mysqli_query($conn, $costunit);
-$numCU = mysqli_num_rows($resultCU);
+
 $z_qry = "SELECT * FROM `zone`";
 $z = mysqli_query($conn, $z_qry);
 $sql = "SELECT market_detail.*,users.username ,
@@ -43,29 +41,9 @@ $row = mysqli_fetch_array($result);
 extract($row);
 require "../backend/manage-edit-Stall.php";
 
-if (isset($_POST['submit-edit'])) {
-    $costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
-    $resultCU = mysqli_query($conn, $costunit);
-    $num = mysqli_num_rows($resultCU);
-}
 
-// เพิ่มค่าใช้จ่ายเพิ่มเติม
-if (isset($_POST['addcost'])) {
-    $cu_name = $_POST['cu_name'];
-    $cu_price = $_POST['cu_price'];
-    $cu_type = $_POST['cu_type'];
-    if (isset($cu_name) != "" && isset($cu_price) != "" && isset($cu_type) != "") {
-        $sqladdcost = "INSERT INTO `cost/unit`(cu_name,cu_price,mkr_id,cu_type) VALUES ('$cu_name', '$cu_price', '$mkr_id', '$cu_type')";
-        if ($rssqladdcost = mysqli_query($conn, $sqladdcost)) {
-            echo "<script type='text/javascript'> success(); </script>";
-            echo '<meta http-equiv="refresh" content="1"; URL=../edit-stall.php" />';
-        } else {
-            echo "<script>error();</script>";
-        }
-    } else {
-        echo "<script>error();</script>";
-    }
-}
+
+
 // เพิ่มแผงค้า
 if (isset($_POST['stall-submit'])) {
     $sID = $_POST['sID'];
@@ -115,18 +93,6 @@ if (isset($_GET['delstall'])) {
     }
 }
 
-if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
-    $cu_id = $_GET['delcu_id'];
-    $mkr_id = $_GET['mkr_id'];
-
-    $delCU = "DELETE FROM `cost/unit` WHERE  cu_id = $cu_id";
-    $sqldelCU = mysqli_query($conn, $delCU);
-    if ($sqldelCU) {
-        echo "<script type='text/javascript'> delsuccess(); </script>";
-    } else {
-        echo "<script type='text/javascript'> error(); </script>";
-    }
-}
 ?>
 <script src="../backend/script.js"></script>
 <script>
@@ -186,79 +152,11 @@ if (isset($_GET['delcu_id']) && isset($_GET['mkr_id'])) {
     <h1>จัดการข้อมูลแผงค้า</h1>
 
     <div id="quick-menu2" class="hstack mt-3">
-        <button type="button" class="btn btn-primary add-btn" id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
-            <i class='bx bxs-edit'></i>จัดการค่าใช้จ่ายเพิ่มเติม
-        </button>
         <a type="button" class="btn btn-primary add-btn" id="merchant-btn" href="marketPlan.php?mkr_id=<?php echo $mkr_id = $_GET['mkr_id']; ?>">
             <i class='bx bxs-message-square-edit'></i>ปรับแก้แผนผังตลาด
         </a>
     </div>
-    <!-- unit/cost Modal -->
-    <div class="modal fade" id="editcost-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header ">
-                    <h5 class="modal-title " id="exampleModalLabel">จัดการค่าใช้จ่ายเพิ่มเติม</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST">
-                        <div>
-                            <div class="mb-3 row">
-                                <h6 class="center mt-3 mb-3">เพิ่มค่าใช้จ่ายที่ต้องการ</h6>
-                                <div class="col-lg-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ "></div>
-                                <div class="col-lg-5">
-                                    <div class="input-group mb-3">
-                                        <input type="number" name="mkr_id" value="<?php echo $mkr_id ?>" hidden>
-                                        <input type="number" class="form-control" style="width: 35%;" name="cu_price" placeholder="จำนวนเงิน เช่น 100">
-                                        <select class="form-select" aria-label="Default select example" name="cu_type">
-                                            <option selected value="บาท/หน่วย">บาท/หน่วย</option>
-                                            <option value="บาท(เหมาจ่าย)">บาท(เหมาจ่าย)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <button type="submit" name="addcost" class="btn btn-primary text-center" style="width: 95%;">
-                                        <i class='bx bx-plus-circle me-2'></i>เพิ่มข้อมูล
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                    <hr>
-                    <div class="mb-3">
-                        <h6 class="center mt-3 mb-3">แก้ไขค่าใช้จ่าย</h6>
-                        <?php while ($row = $resultCU->fetch_assoc()) : ?>
-                            <form method="POST" class="row">
-                                <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo $row['cu_id'] ?>" name="cu_id" hidden>
-                                <div class="col-lg-3"> <input type="text" class="form-control w-60" name="cu_name" placeholder="ค่าใช้จ่าย เช่น ค่าขยะ " value="<?php echo $row['cu_name'] ?>"></div>
-                                <div class="col-lg-5">
-                                    <div class="input-group">
-                                        <input type="number" class="form-control" style="width: 35%;" aria-label="Text input with dropdown button" placeholder="จำนวนเงิน เช่น 100" value="<?php echo number_format($row['cu_price']) ?>" name="cu_price">
-                                        <select class="form-select" aria-label="Default select example" name="cu_type">
-                                            <option value="<?php echo $row['cu_type'] ?>" selected><?php echo $row['cu_type'] ?></option>
-                                            <option value="บาท/หน่วย">บาท/หน่วย</option>
-                                            <option value="บาท(เหมาจ่าย)">บาท(เหมาจ่าย)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 mb-3 editbtn">
-                                    <button type="submit" name="editcost" class="btn btn-info hstack " style="width: 45%;color:white !important;">
-                                        <i class='bx bxs-save me-2'></i>บันทึก
-                                    </button>
-                                    <a type="button" name="delcost" class="btn btn-danger hstack" style="width: 45%;" href="edit-Stall.php?delcu_id=<?php echo $row['cu_id'] ?>&mkr_id=<?php echo $row['mkr_id'] ?>">
-                                        <i class='bx bxs-x-circle me-2'></i>ลบ
-                                    </a>
-                                </div>
-                            </form>
-                        <?php
-                        endwhile ?>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- content -->
     <div class="top">
