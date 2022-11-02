@@ -64,12 +64,13 @@ if (isset($_GET['approve'])) {
      $amphure_id = $row['amphure_id'];
      $province_id = $row['province_id'];
      $postalcode = $row['postalcode'];
+     $bill_daystart = $row['bill_daystart'];
+     $bill_expired = $row['bill_expired'];
 
 
      $approve = "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)";
-     $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`) 
-     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent')";
-     // $udusers = "UPDATE users SET type  = '2' WHERE(users_id = $users_id)";
+     $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`,`bill_expired`,`bill_daystart`) 
+     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent','$bill_expired','$bill_daystart')";
 
      $ql = mysqli_query($conn, $approve);
      $isql = mysqli_query($conn, $insert);

@@ -229,6 +229,9 @@ require "../backend/graph-market.php";
                         </div>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
                             <li>
+                                <a class="edit" href="finance.php?mkr_id=' . $row['mkr_id'] . '">  <i class="bx bxs-credit-card"></i>แก้ไขข้อมูลการเงิน</a>
+                            </li>
+                            <li>
                                 <a class="edit" href="edit-market-info.php?mkr_id=' . $row['mkr_id'] . '"><i class="bx bxs-edit-alt"></i>แก้ไขข้อมูลตลาด</a>
                             </li>
                             <li>
@@ -249,22 +252,28 @@ require "../backend/graph-market.php";
                     <hr class="my-2">
                 </div>
                 <div class="menu-mrk">
+                <div class="item ">
+                    <a href="rent.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
+                        <i class="bx bx-message-alt-detail"></i>
+                        <span>ค่าเช่า</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="booking.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
+                        <i class="bx bx-message-alt-edit"></i>
+                        <span>การจอง</span>
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="cost.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
+                        <i class="bx bx-tachometer"></i>
+                        <span>ค่าใช้จ่ายเพิ่มเติม</span>
+                    </a>
+                </div>
                     <div class="item ">
                         <a href="edit-Stall.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
                             <i class="bx bx-map-alt"></i>
                             <span>แผนผังตลาด</span>
-                        </a>
-                    </div>
-                    <div class="item ">
-                        <a href="rent.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
-                            <i class="bx bx-message-alt-detail"></i>
-                            <span>ค่าเช่า</span>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="booking.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
-                            <i class="bx bx-message-alt-edit"></i>
-                            <span>การจอง</span>
                         </a>
                     </div>
                     <div class="item ">
@@ -279,12 +288,7 @@ require "../backend/graph-market.php";
                             <span>การร้องเรียน</span>
                         </a>
                     </div>
-                    <div class="item">
-                        <a href="finance.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
-                            <i class="bx bxs-credit-card"></i>
-                            <span>ข้อมูลการเงิน</span>
-                        </a>
-                    </div>
+                    
                 </div>
                 <hr class="my-2">
                 <a href="overview.php?mkr_id=' . $row['mkr_id'] . '" type="button" class="btn btn-primary " style="width:100%;">ดูภาพรวม ' . $row['mkr_name'] . ' </a>

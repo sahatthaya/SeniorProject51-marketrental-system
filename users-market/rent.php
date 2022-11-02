@@ -41,14 +41,8 @@ extract($row);
     </nav>
     <h1 class="head_contact">จัดการค่าเช่า</h1>
 
-    <div class="w-100">
-        <form method="POST" class="hstack gap-3 mt-3">
-            <label>การเช่าในช่วงวันที่ :</label>
-            <input type="date" class="form-control" style="width: 10%;">
-            <label>ถึง : </label>
-            <input type="date" class="form-control" style="width: 10%;">
-            <button type="button" class="btn btn-primary">ค้นหา</button>
-        </form>
+    <div class="w-100 text-end">
+        <button type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>สร้างใบเรียกเก็บเงิน</button>
     </div>
 
     <div id="content">
@@ -57,37 +51,23 @@ extract($row);
                 <thead>
                     <tr>
                         <th style=" width:4% ; ">ลำดับ</th>
-                        <th style=" width:5% ; ">งวดวันที่</th>
-                        <th style=" width:8% ; ">รหัสแผง</th>
-                        <th style=" width:10% ; ">ชื่อบัญชีผู้ใช้</th>
+                        <th style=" width:5% ; ">วันที่สร้างใบเรียกเก็บเงิน</th>
+                        <th style=" width:5% ; ">งวดที่</th>
+                        <th style=" width:8% ; ">รหัสแผงค้า</th>
+                        <th style=" width:10% ; ">จำนวนเงิน (บาท)</th>
+                        <th style=" width:10% ; ">ผู้จอง</th>
                         <th style=" width:8% ; ">สถานะ</th>
-                        <th style=" width:10% ; ">ค่าเช่าแผง (บาท)</th>
-                        <th style=" width:5% ; ">ค่าน้ำ (หน่วย)</th>
-                        <th style=" width:5% ; ">ค่าไฟ (หน่วย)</th>
-                        <th style=" width:7% ; ">ค่าขยะ (บาท)</th>
-                        <th style=" width:10% ; ">จัดการ</th>
-                        <th style=" width:13% ; ">ดูรายละเอียด</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1</td>
                         <td>1/08/2022</td>
+                        <td>1 </td>
                         <td>A01</td>
-                        <td>สหัสทยา</td>
+                        <td>1000.00</td>
+                        <td>สหัสทยา เทียนมงคล</td>
                         <td class="text-danger">ยังไม่ชำระ</td>
-                        <td>1000</td>
-                        <td><input name="view" type="text" class="form-control"></td>
-                        <td><input name="view" type="text" class="form-control"></td>
-                        <td><input name="view" type="text" class="form-control"></td>
-                        <td>
-                            <a href="" class=" btn btn-outline-primary w-100">บันทึก</a>
-                        </td>
-                        <td class="vstack gap-2">
-                            <a href="" class=" btn btn-outline-info">ใบแจ้งหนี้</a>
-                            <a href="" class=" btn btn-outline-success">หลักฐานการชำระ</a>
-
-                        </td>
                 </tbody>
             </table>
         </div>
