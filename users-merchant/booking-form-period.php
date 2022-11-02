@@ -69,7 +69,7 @@ $rowus = mysqli_fetch_array($qry);
                     <?php while ($rowcalen = mysqli_fetch_assoc($qryrentperiod)) : ?>
                         <?php
                         if ($rowcalen['s_id'] == $s_id) {
-                            if ($rowcalen['bp_id'] == '') {
+                            if ($rowcalen['b_id'] == '') {
                                 $disalbed = '';
                             } else {
                                 $disalbed = 'hidden disabled';

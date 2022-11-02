@@ -190,6 +190,17 @@
             window.location = "../users-admin/annouce.php";
         });
     }
+
+    function cancelsuccess() {
+        Swal.fire({
+            title: 'ยกเลิกการจองสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        }).then(function() {
+            window.location = "../users-merchant/rent.php";
+        });
+    }
     // error------------------------------------------------------------
 
     function errorpay() {
@@ -236,6 +247,14 @@
         });
     }
     // warning------------------------------------------------------------
+    function signIn() {
+        document.getElementById("profilebar").style.right = "0";
+        document.getElementById("signIn").style.display = "block";
+        document.getElementById("forgotpsw").style.display = "none";
+        document.getElementById("signUp").style.display = "none";
+        document.getElementById("profilebar").style.transition = "0.5s ease";
+
+    }
 
     function plslogin() {
         Swal.fire({
@@ -244,7 +263,7 @@
             icon: 'warning',
             showConfirmButton: false,
             timer: 3000
-        })
+        }).then(signIn(event))
     }
 
     function stalldoubly() {
@@ -264,31 +283,6 @@
             text: 'กรุณาเปลี่ยนชื่อผู้ใช้',
             showConfirmButton: false,
             timer: 3000
-        })
-    }
-
-    function cancelbook() {
-        var message = "โปรดทราบ\n หากคุณทำการยกเลิกการจอง\n คุณจะไม่ได้รับเงินมัดจำคืน";
-
-        Swal.fire({
-            title: 'ต้องการยกเลิกการจอง?',
-            html: "<strong>โปรดทราบ !</strong> หากผู้จองทำการยกเลิกการจอง<br />ผู้จองจะ<strong><u>ไม่ได้รับเงินมัดจำคืน</u></strong>",
-            text: message,
-            icon: 'warning',
-            confirmButtonColor: '#d33',
-            confirmButtonText: 'ฉันต้องการยกเลิกการจอง',
-        }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: 'ยกเลิกการจองสำเร็จ',
-                    icon: 'success',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info')
-            }
         })
     }
 </script>

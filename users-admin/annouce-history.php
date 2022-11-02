@@ -67,23 +67,23 @@ require "../backend/manage-annouce.php";
 
 <script>
     //detail req popup
-    $(document).ready(function() {
-        $('.modal_data1').click(function() {
-            var anid = $(this).attr("id");
-            $.ajax({
-                url: "../backend/modal-applicant.php",
-                method: "POST",
-                data: {
-                    anid: anid
-                },
-                success: function(data) {
-                    $('#bannerdetail').html(data);
-                    $('#bannerdataModal').modal('show');
-                }
-            });
+    // $(document).ready(function() {
+    //     $('.modal_data1').click(function() {
+    //         var anid = $(this).attr("id");
+    //         $.ajax({
+    //             url: "../backend/modal-applicant.php",
+    //             method: "POST",
+    //             data: {
+    //                 anid: anid
+    //             },
+    //             success: function(data) {
+    //                 $('#bannerdetail').html(data);
+    //                 $('#bannerdataModal').modal('show');
+    //             }
+    //         });
 
-        })
-    });
+    //     })
+    // });
 </script>
 
 </html>

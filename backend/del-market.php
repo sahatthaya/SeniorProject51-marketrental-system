@@ -9,6 +9,7 @@ if (isset($_GET['mkr_id'])) {
     $rsDelUsers = mysqli_query($conn, $sqlDelUsers);
     if ($rsDelUsers) {
         echo "<script>delsuccessmarket();</script>";
+        echo "<script>window.location='../users-market/index.php';</script>";
         mysqli_close($conn);
     } 
 }

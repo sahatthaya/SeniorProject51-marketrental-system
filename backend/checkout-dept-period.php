@@ -40,7 +40,7 @@ $status = ($charge['status']);
 
 if ($status == 'successful') {
     if (isset($b_fname) && isset($b_lname) && isset($cardID_copytmp) && isset($b_tel) && isset($b_email) && isset($shopname) && isset($op_id) && isset($shop_detail) && isset($dept_pay) && isset($stall_id) != '') {
-        $insertbooking = mysqli_query($conn, "INSERT INTO `booking_period`(`bp_fname`, `bp_lname`, `bp_cardID_copy`, `bp_tel`, `bp_email`, `bp_shopname`, `bp_shopdetail`, `stall_id`, `op_id`, `dept_pay`,`users_id`) 
+        $insertbooking = mysqli_query($conn, "INSERT INTO `booking_period`(`b_fname`, `b_lname`, `b_cardID_copy`, `b_tel`, `b_email`, `b_shopname`, `b_shopdetail`, `stall_id`, `op_id`, `dept_pay`,`users_id`) 
         VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id','$op_id','$dept_pay','$users_id')");
 
         if ($insertbooking) {

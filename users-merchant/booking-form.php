@@ -191,14 +191,14 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input">ค่ามัดจำ</div>
                 <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
                 <?php
-                @$fee = (4.07 / 100) * $rowstall['sDept'];
+                @$fee = number_format((4.07 / 100) * $rowstall['sDept'], 2, '.', '');
                 @$price = $rowstall['sDept'] + $fee;
                 ?>
                 <div class="des_input">ค่าธรรมเนียม <span class="text-secondary" style="font-size: 15px;">(4.07%)</span></div>
                 <input class="form-control col-6" value="<?php echo $fee ?>  บาท" disabled>
                 <div class="des_input">รวมทั้งสิ้น</div>
                 <input class="form-control col-6" value="<?php echo $price . ' บาท' ?>" disabled>
-                <div class="text-danger">*หมายเหตุ* <br /> 1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br> 3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
+                <div class="text-danger">*หมายเหตุ* <br />1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br>3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
                 <input type="button" name="previous" class="btn btn-info mt-3" style="color: white;" value="ย้อนกลับ" onclick="backtostep3()" id="back">
                 <input type="hidden" name="omiseToken">
                 <input type="hidden" name="omiseSource">
