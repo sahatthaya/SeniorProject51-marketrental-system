@@ -277,7 +277,7 @@ require "../backend/graph-market.php";
                         </a>
                     </div>
                     <div class="item ">
-                        <a href="news.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
+                        <a href="news.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2"></a>
                             <i class="bx bxs-news"></i>
                             <span>ข่าวสาร</span>
                         </a>
