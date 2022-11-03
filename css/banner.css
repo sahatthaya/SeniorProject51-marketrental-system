@@ -44,6 +44,8 @@ body {
     border-radius: 5px;
 }
 
+
+
 #headline {
     text-align: center;
 }
@@ -107,10 +109,6 @@ input:invalid {
 
 /* ------------------------------------responsive-------------------------- */
 @media(max-width: 992px) {
-    .form-control {
-        width: 30% !important;
-    }
-
     .dataTables_scrollHead {
         overflow: auto !important;
     }
@@ -141,8 +139,10 @@ input:invalid {
     #addbn {
         font-size: 14px;
         width: 140px;
-        margin-right: 60px;
+        float: left;
+        margin-left: -10px;
     }
+
 
     #table {
         font-size: 14px;
@@ -177,22 +177,16 @@ input:invalid {
     body {
         padding-right: 10px;
         margin: 60px 10px 0px 15px !important;
-
-    }
+      }
+    
 
     .carousel-inner {
         height: 13rem;
-
     }
 
     .carousel-item img {
         height: 13rem;
-    }
 
-    #addbn {
-        font-size: 14px;
-        width: 140px;
-        margin-right: 70px;
     }
 
     #table {
@@ -213,5 +207,11 @@ input:invalid {
         margin-bottom: 10px;
     }
 
+    .pe-0 {
+        margin-top: 7px !important;
+    }
 
+    .me-0{
+      margin-left: -12px !important;
+    }
 }

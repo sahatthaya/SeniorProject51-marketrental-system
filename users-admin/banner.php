@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - หน้าหลักสำหรับผู้ดูแลระบบ</title>
-    
+
     <!-- css  -->
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
@@ -22,10 +22,10 @@ require "../backend/manage-banner.php";
     <h1 id="headline">จัดการแบนเนอร์</h1>
     <!-- carousel -->
     <div id="labelbn" class="col-12 toptb">
-        <div id="labelbn" class="col-10">
+        <div id="labelbn" class="col-8">
         </div>
         <!-- Button modal -->
-        <div id="addbn" class="col-2">
+        <div id="addbn" class="col-4">
             <button id="addbn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <i class='bx bxs-plus-circle'></i> เพิ่มแบนเนอร์
             </button>
@@ -111,7 +111,7 @@ require "../backend/manage-banner.php";
 
             <div id="table" class="bannertb mt-3 border p-3 shadow-sm rounded">
                 <table id="myTable" class="display " style="width: 100%;">
-                    <thead >
+                    <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>
                             <th scope="col">หัวข้อ</th>
@@ -126,8 +126,13 @@ require "../backend/manage-banner.php";
                                 <td><?php echo $row['bn_toppic']; ?></td>
                                 <td><button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['bn_id']; ?>">ดูรายละเอียด</button></td>
                                 <td>
-                                    <a style="width: 30%;" href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning" style="margin-left: 5px;">แก้ไข</a>
-                                    <a style="width: 30%;" href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger" style="margin-left: 5px;">ลบ</a>
+
+                                    <div class="row">
+                                        <div class="col-sm-6"> <a style="width: 100%;" href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning col-md-6" style="margin-left: 5px;">แก้ไข</a>
+                                        </div>
+                                        <div class="col-sm-6"> <a style="width: 100%;" href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger col-md-6" style="margin-left: 5px;">ลบ</a>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         <?php $count_n++;

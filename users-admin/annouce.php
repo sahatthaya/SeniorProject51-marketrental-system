@@ -23,8 +23,8 @@ require "../backend/manage-annouce.php";
         <div id="labelbn" class="col-8">
         </div>
         <!-- Button modal -->
-        <div id="addbn" class="col-4">
-            <a id="addbn" type="button" class="btn btn-primary" href="./annouce-history.php">
+        <div id="addbn" class="col-4 " >
+            <a id="addbn" type="button" class="btn btn-primary" href="./annouce-history.php" style="float: rigth;">
                 <i class='bx bx-history'></i> ดูประวัติคำร้องประชาสัมพันธ์ทั้งหมด
             </a>
         </div>

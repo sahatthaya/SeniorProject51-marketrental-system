@@ -277,7 +277,7 @@ require "../backend/graph-market.php";
                         </a>
                     </div>
                     <div class="item ">
-                        <a href="news.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2"></a>
+                        <a href="news.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
                             <i class="bx bxs-news"></i>
                             <span>ข่าวสาร</span>
                         </a>
@@ -287,10 +287,10 @@ require "../backend/graph-market.php";
                             <i class="bx bxs-megaphone"></i>
                             <span>การร้องเรียน</span>
                         </a>
+                    </div> 
                     </div>
-                    
-                </div>
-                <hr class="my-2">
+              
+                    <hr class="my-2">
                 <a href="overview.php?mkr_id=' . $row['mkr_id'] . '" type="button" class="btn btn-primary " style="width:100%;">ดูภาพรวม ' . $row['mkr_name'] . ' </a>
             </div>
         </div>
