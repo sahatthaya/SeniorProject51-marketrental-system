@@ -252,16 +252,16 @@ require "../backend/graph-market.php";
                     <hr class="my-2">
                 </div>
                 <div class="menu-mrk">
-                <div class="item ">
-                    <a href="rent.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
-                        <i class="bx bx-message-alt-detail"></i>
-                        <span>ค่าเช่า</span>
-                    </a>
-                </div>
                 <div class="item">
                     <a href="booking.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
                         <i class="bx bx-message-alt-edit"></i>
                         <span>การจอง</span>
+                    </a>
+                 </div>
+                <div class="item ">
+                    <a href="rent.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
+                        <i class="bx bx-message-alt-detail"></i>
+                        <span>ค่าเช่า</span>
                     </a>
                 </div>
                 <div class="item">

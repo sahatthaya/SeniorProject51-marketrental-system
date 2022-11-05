@@ -120,12 +120,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                 <td><?php echo $row['shopname']; ?></td>
                                 <td><?php echo $row['mkr_name']; ?></td>
                                 <td><?php echo $row['sID']; ?></td>
-                                <td><?php echo date("d/m/Y", strtotime($row['b_start'])) ?></td>
-                                <td><?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['start'])) ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['end'])) ?></td>
                                 <td><?php echo $row['day']; ?></td>
                                 <?php
                                 $curr_date = date('Y/m/d');
-                                $start = strtotime(str_replace('-', '/', $row['b_start']));
+                                $start = strtotime(str_replace('-', '/', $row['start']));
                                 $startdate = date("Y/m/d", strtotime("-7 day", $start));
                                 if (strtotime($curr_date) < strtotime($startdate)) {
                                     $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=range">ยกเลิกการจอง</a>';
@@ -247,11 +247,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             $countcolor = 0;
             while ($q1 = $queryrangecalen->fetch_assoc()) : ?> {
                     start: new Date(<?php
-                                    $start1 = strtotime(str_replace('-', '/', $q1['b_start']));
+                                    $start1 = strtotime(str_replace('-', '/', $q1['start']));
                                     echo date("Y,m,d", strtotime("-1 month", $start1))
                                     ?>),
                     end: new Date(<?php
-                                    $end1 = strtotime(str_replace('-', '/', $q1['b_end']));
+                                    $end1 = strtotime(str_replace('-', '/', $q1['end']));
                                     echo date("Y,m,d", strtotime("-1 month", $end1))
                                     ?>),
                     title: 'ตลาด<?php echo $q1['mkr_name'] . ' รหัสแผงค้า: ' . $q1['sID']; ?>',

@@ -74,8 +74,8 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
                     <tbody>
                         <?php while ($row = $query->fetch_assoc()) : ?>
                             <?php if ($row1['opening'] == 'เปิดทำการทุกวัน') {
-                                $start = date('d/m/Y', strtotime($row['b_start']));
-                                $end = date('d/m/Y', strtotime($row['b_end']));
+                                $start = date('d/m/Y', strtotime($row['start']));
+                                $end = date('d/m/Y', strtotime($row['end']));
                                 $timestamp = date('d/m/Y', strtotime($row['timestamp']));
                                 $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
                                 $table = "  <tr>

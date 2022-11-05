@@ -307,11 +307,11 @@ $rowus = mysqli_fetch_array($qry);
                     ?>,
         invalid: [<?php while ($q1 = $qryinvalid->fetch_assoc()) : ?> {
                     start: new Date(<?php
-                                    $start1 = strtotime(str_replace('-', '/', $q1['b_start']));
+                                    $start1 = strtotime(str_replace('-', '/', $q1['start']));
                                     echo date("Y,m,d", strtotime("-1 month", $start1))
                                     ?>),
                     end: new Date(<?php
-                                    $end1 = strtotime(str_replace('-', '/', $q1['b_end']));
+                                    $end1 = strtotime(str_replace('-', '/', $q1['end']));
                                     echo date("Y,m,d", strtotime("-1 month", $end1))
                                     ?>),
 

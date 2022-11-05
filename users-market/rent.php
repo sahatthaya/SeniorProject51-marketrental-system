@@ -14,22 +14,8 @@ include "./profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
-$mkr_id = $_GET['mkr_id'];
-$sql = "SELECT market_detail.*,users.username ,
-    provinces.province_name,
-    amphures.amphure_name,
-    districts.district_name , 
-    market_type.market_type
-    FROM market_detail 
-        JOIN users ON (market_detail.users_id = users.users_id)
-        JOIN provinces ON (market_detail.province_id = provinces.id)
-        JOIN amphures ON (market_detail.	amphure_id = amphures.id)
-        JOIN districts ON (market_detail.district_id = districts.id)
-        JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-         WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-extract($row);
+require "../backend/invoice.php";
+
 ?>
 
 <body>
@@ -40,9 +26,8 @@ extract($row);
         </ol>
     </nav>
     <h1 class="head_contact">จัดการค่าเช่า</h1>
-
     <div class="w-100 text-end">
-        <button type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>สร้างใบเรียกเก็บเงิน</button>
+        <a href="./invoice.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>ส่งใบเรียกเก็บค่าเช่า</a>
     </div>
 
     <div id="content">
@@ -51,7 +36,7 @@ extract($row);
                 <thead>
                     <tr>
                         <th style=" width:4% ; ">ลำดับ</th>
-                        <th style=" width:5% ; ">วันที่สร้างใบเรียกเก็บเงิน</th>
+                        <th style=" width:5% ; ">วันที่ส่งใบเรียกเก็บค่าเช่า</th>
                         <th style=" width:5% ; ">งวดที่</th>
                         <th style=" width:8% ; ">รหัสแผงค้า</th>
                         <th style=" width:10% ; ">จำนวนเงิน (บาท)</th>
