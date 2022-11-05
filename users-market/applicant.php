@@ -51,10 +51,10 @@ require "../backend/add-applicant.php"
                 <input name="tel" id="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" value="<?php echo $row['tel']; ?>" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
                 <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
                 <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
-                <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn()" id="next">
+                <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn()                                              " id="next">
             </div>
             <!-- form--2 -->
-            <div id="stepTwo" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
+            <div id="stepTwo" class="row border shadow-sm p-5 mt-3 mb-3 rounded stepTwo">
 
                 <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> กรอกข้อมูลตลาด</h4>
                 <div class="progress p-0 my-2">
@@ -227,6 +227,8 @@ require "../backend/add-applicant.php"
             }
         }
     }
+
+
 </script>
 
 </html>

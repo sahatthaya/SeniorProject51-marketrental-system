@@ -42,11 +42,10 @@ body {
     padding: .5em 1.5rem;
 }
 
-#stepTwo ,
+#stepTwo,
 #stepThree,
-#stepFour{
+#stepFour {
     display: none;
-
 }
 
 #stepTwo input,
@@ -64,6 +63,7 @@ body {
     color: #031f87;
 
 }
+
 #checkoutForm .des_input {
     margin: 5px 0 !important;
     padding: 0 0 0 5px !important;
@@ -71,6 +71,7 @@ body {
     color: #031f87;
 
 }
+
 .action-button {
     margin-top: 20px !important;
 }
@@ -165,17 +166,8 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
 
-    #stepTwo {
-        display: none;
-
-    }
-
-    #stepThree {
-        display: none;
-    }
-
-
 }
+
 @media(max-width: 720px) {
 
     body {
@@ -197,6 +189,7 @@ input[type=file]::file-selector-button:hover {
     pt-5 {
         width: 100%;
     }
+
     .row {
         display: flex !important;
     }
@@ -210,12 +203,17 @@ input[type=file]::file-selector-button:hover {
         width: 35% !important;
     }
 
-    #stepTwo {
-        display: none;
 
+}
+
+@media(max-width: 645px){
+    .col-6 {
+        display: contents;
     }
 
-    #stepThree {
+    #stepTwo{
         display: none;
     }
+
+
 }

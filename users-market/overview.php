@@ -119,7 +119,7 @@ include "../backend/qry-overview.php";
         <div class="ms-2">
             <div class="d-flex justify-content-between ">
                 <h4 class="mt-2 mb-0"><?php echo $row['mkr_name']; ?></h4>
-                <a href="edit-market-info.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลตลาด</a>
+                <a href="edit-market-info.php?mkr_id=<?php echo $row['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content; "><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลตลาด</a>
             </div>
             <hr class="my-2">
             <div class="box mt-4 pe-3">
