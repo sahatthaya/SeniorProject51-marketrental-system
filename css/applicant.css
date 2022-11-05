@@ -190,10 +190,6 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
 
-    .row {
-        display: flex !important;
-    }
-
     .form-control {
         width: 200% !important;
     }
@@ -206,14 +202,3 @@ input[type=file]::file-selector-button:hover {
 
 }
 
-@media(max-width: 645px){
-    .col-6 {
-        display: contents;
-    }
-
-    #stepTwo{
-        display: none;
-    }
-
-
-}

@@ -271,4 +271,9 @@ input:invalid {
     .me-0{
       margin-left: -12px !important;
     }
+
+    .b-date .form-control{
+        width: 30% !important;
+        margin: 5px;
+    }
 }
