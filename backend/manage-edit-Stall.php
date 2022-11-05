@@ -32,23 +32,3 @@ if (isset($_POST['edtStall-submit'])) {
     }
 }
 
-// update cost/unit----------------------------------------------------------------
-if (isset($_POST['editcost'])) {
-    $cu_id = $_POST['cu_id'];
-    $cu_name = $_POST['cu_name'];
-    $cu_price = $_POST['cu_price'];
-    $cu_type = $_POST['cu_type'];
-
-    if (isset($cu_id) != '' && isset($cu_name) != '' && isset($cu_price) != '' && isset($cu_type) != '') {
-        $updatesql = mysqli_query($conn, "UPDATE `cost/unit` SET cu_name ='$cu_name',`cu_price`='$cu_price',`cu_type`='$cu_type' WHERE (`cu_id` = '$cu_id')");
-
-        if ($updatesql != '') {
-            echo "<script type='text/javascript'> success(); </script>";
-            echo '<meta http-equiv="refresh" content="1"; />';
-        } else {
-            echo "<script type='text/javascript'> error(); </script>";
-        }
-    } else {
-        echo "<script type='text/javascript'> error(); </script>";
-    }
-}

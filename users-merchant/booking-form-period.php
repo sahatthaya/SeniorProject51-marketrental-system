@@ -68,7 +68,7 @@ $rowus = mysqli_fetch_array($qry);
                 <select name="op_id" id="daterangerent" class="form-select" style="display:<?php echo $display ?> ;">
                     <?php while ($rowcalen = mysqli_fetch_assoc($qryrentperiod)) : ?>
                         <?php
-                        if ($rowcalen['s_id'] == $s_id) {
+                        if ($rowcalen['stall_id'] == $s_id) {
                             if ($rowcalen['b_id'] == '') {
                                 $disalbed = '';
                             } else {

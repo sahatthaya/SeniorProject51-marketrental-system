@@ -21,9 +21,6 @@ if (isset($_POST['submit-apply'])) {
     $district_id = $_POST['district_id'];
     $postalcode = $_POST['PostalCode'];
 
-    $bill_daystart = $_POST['bill_daystart'];
-    $bill_expired = $_POST['bill_expired'];
-
     date_default_timezone_set('Asia/Bangkok');
     $date = date("Ymd");
     $numrand = (mt_rand());
@@ -46,18 +43,19 @@ if (isset($_POST['submit-apply'])) {
     if (
         isset($_POST["firstName"]) != "" && isset($_POST["lastName"]) != "" && isset($_POST["email"]) != "" && isset($_POST["tel"]) != ""
         && isset($idfilepath) != "" && isset($_POST["mkrName"]) != "" && isset($_POST["mkrtype"]) != "" && isset($mkrfilepath) != ""
-        && isset($opening) !="" && isset($min_rent)!=""&& isset($bill_expired)&&isset($bill_daystart)
+        && isset($opening) !="" && isset($min_rent)!=""
     ) {
         move_uploaded_file($mkrfiletmp, $mkrpath);
         move_uploaded_file($idfiletmp, $idpath);
-        $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`,`bill_daystart`,`bill_expired`)
-        VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName',' $email',' $tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent','$bill_daystart','$bill_expired') ";
+        $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`)
+        VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName',' $email',' $tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent') ";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
-            echo '<meta http-equiv="refresh" content="1";/>';
+            echo "<script> alert('เพิ่ท') </script>";
             mysqli_close($conn);
         } else {
             echo "<script type='text/javascript'> error(); </script>";
+
         }
     }
 }
