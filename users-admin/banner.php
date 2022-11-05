@@ -128,9 +128,9 @@ require "../backend/manage-banner.php";
                                 <td>
 
                                     <div class="row">
-                                        <div class="col-sm-6"> <a style="width: 100%;" href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning col-md-6" style="margin-left: 5px;">แก้ไข</a>
+                                        <div class="col-sm-6 mt-1"> <a style="width: 100%;" href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning col-md-6" style="margin-left: 5px;">แก้ไข</a>
                                         </div>
-                                        <div class="col-sm-6"> <a style="width: 100%;" href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger col-md-6" style="margin-left: 5px;">ลบ</a>
+                                        <div class="col-sm-6 mt-1"> <a style="width: 100%;" href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger col-md-6" style="margin-left: 5px;">ลบ</a>
                                         </div>
                                     </div>
                                 </td>

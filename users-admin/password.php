@@ -32,8 +32,8 @@ if (isset($_POST['submit-edtpsw'])) {
 }
 ?>
 
-<body>
-    <h1 id="headline">แก้ไขโปรไฟล์</h1>
+<body></body>
+    <h1 id="headline">เปลี่ยนรหัสผ่าน</h1>
     <form method="POST" id="edtpsw">
         <div class="des_input">รหัสผ่านปัจุบัน</div>
         <input class="input inputcolor" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>

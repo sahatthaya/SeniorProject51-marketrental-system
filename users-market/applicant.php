@@ -227,8 +227,6 @@ require "../backend/add-applicant.php"
             }
         }
     }
-
-
 </script>
 
 </html>
