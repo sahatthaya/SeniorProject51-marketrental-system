@@ -57,7 +57,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             echo "<script>cancelsuccess()</script>";
         } else {
             echo "<script>alert('error range')</script>";
-
         }
     } else {
         $sql = mysqli_query($conn, "UPDATE `booking_period` SET `status`='0' WHERE `bp_id`=$id");
@@ -65,7 +64,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             echo "<script>cancelsuccess()</script>";
         } else {
             echo "<script>alert('error period')</script>";
-
         }
     }
 }
@@ -108,7 +106,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                             <th scope="col">รหัสแผงค้า</th>
                             <th scope="col">วันเริ่มเช่า</th>
                             <th scope="col">วันสิ้นสุดการเช่า</th>
-                            <th scope="col">ระยะเวลา <br>(วัน)</th>
+                            <th scope="col">รายละเอียด</th>
                             <th scope="col">จัดการ</th>
                         </tr>
                     </thead>
@@ -122,7 +120,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                 <td><?php echo $row['sID']; ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row['start'])) ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row['end'])) ?></td>
-                                <td><?php echo $row['day']; ?></td>
                                 <?php
                                 $curr_date = date('Y/m/d');
                                 $start = strtotime(str_replace('-', '/', $row['start']));
@@ -133,6 +130,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                     $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
                                 }
                                 ?>
+                                <td>
+                                    <button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</button>
+                                </td>
                                 <td>
                                     <?php echo $cancel; ?>
                                 </td>
@@ -148,17 +148,19 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                 <td><?php echo $row2['sID']; ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row2['start'])) ?></td>
                                 <td><?php echo date("d/m/Y", strtotime($row2['end'])) ?></td>
-                                <td><?php echo $row2['day']; ?></td>
                                 <?php
                                 $curr_date = date('Y/m/d');
                                 $start = strtotime(str_replace('-', '/', $row2['start']));
                                 $startdate = date("Y/m/d", strtotime("-7 day", $start));
                                 if (strtotime($curr_date) < strtotime($startdate)) {
-                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=period">ยกเลิกการจอง</a>';
+                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row2['b_id'] . '&type=period">ยกเลิกการจอง</a>';
                                 } else {
                                     $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
                                 }
                                 ?>
+                                <td>
+                                    <button name="view" type="button" class="modal_data2 btn btn-outline-primary" id="<?php echo $row2['b_id']; ?>">ดูรายละเอียด</button>
+                                </td>
                                 <td>
                                     <?php echo $cancel; ?>
                                 </td>
@@ -170,10 +172,48 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             </div>
         </div>
     </div>
+    <?php require '../backend/modal-bookdetail.php' ?>
 </body>
 <script src="../backend/script.js"></script>
 
 <script>
+    $(document).ready(function() {
+        $('.modal_data').click(function() {
+            var b_id = $(this).attr("id");
+            $.ajax({
+                url: "../backend/modal-bookdetail.php",
+                method: "POST",
+                data: {
+                    b_id: b_id
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
+        })
+
+    });
+
+    $(document).ready(function() {
+        $('.modal_data2').click(function() {
+            var b_id2 = $(this).attr("id");
+            $.ajax({
+                url: "../backend/modal-bookdetail.php",
+                method: "POST",
+                data: {
+                    b_id2: b_id2
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
+        })
+
+    });
     mobiscroll.setOptions({
         locale: mobiscroll.localeTh,
         theme: 'ios',

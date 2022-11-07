@@ -27,7 +27,7 @@ if (isset($_POST['add-news'])) {
     $n_file = '';
     $n_file = isset($_POST['n_file']);
 
-
+    $mkr_id = $_POST['mkr_id'];
     date_default_timezone_set('Asia/Bangkok');
     $date = date("Ymd");
     $numrand = (mt_rand());
@@ -63,7 +63,17 @@ if (isset($_GET['del'])) {
     $mkr_id = $_GET['mkr_id'];
     $sqldel = "DELETE FROM `news` WHERE n_id='$del'";
     if (mysqli_query($conn, $sqldel)) {
-        echo "<script type='text/javascript'> delsuccess(); </script>";
+        echo "<script>";
+        echo "
+        Swal.fire({
+        title: 'ลบข้อมูลสำเร็จ',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      }).then((result) => {
+          window.location.href = '../users-market/news.php?mkr_id=" . $mkr_id . "'
+      })";
+        echo "</script>";
     } else {
         echo "<script>error();</script>";
     }
@@ -167,7 +177,7 @@ if (isset($_POST['edit-news-submit'])) {
     $n_file = 'asset/news/' . $n_name;
     $npath = '../asset/news/' . $n_name;
 
-    if (isset($_POST["n_sub"]) != "" && isset($_POST["n_detail"]) != "" && isset($_FILES["n_file"]) != "") {
+    if ( isset($_FILES["n_file"]) != "") {
         $sqlupdatewithfile = "UPDATE `news` SET `n_file`='$n_file',`n_sub`='$n_sub',`n_detail`='$n_detail' WHERE n_id = '$n_id'";
         $updatewithfile = mysqli_query($conn, $sqlupdatewithfile);
         if ($updatewithfile) {

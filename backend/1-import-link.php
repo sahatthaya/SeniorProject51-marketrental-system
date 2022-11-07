@@ -211,9 +211,7 @@
             icon: 'error',
             showConfirmButton: false,
             timer: 2500
-        }).then(function() {
-            window.location = "../users-market/index.php";
-        });
+        })
     }
 
     function error() {

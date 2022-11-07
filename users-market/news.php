@@ -16,6 +16,7 @@ include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 require "../backend/news.php";
+$mkr_id = $_GET['mkr_id'];
 $sql = "SELECT market_detail.*,users.username ,
     provinces.province_name,
     amphures.amphure_name,
@@ -49,6 +50,7 @@ extract($row);
             <label class="col-sm-2 col-form-label">หัวเรื่อง</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" name="n_sub">
+                <input type="text" class="form-control" value="<?php echo $mkr_id ?>" name="mkr_id" hidden >
             </div>
         </div>
         <div class="mb-3 row">
