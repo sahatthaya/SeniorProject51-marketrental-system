@@ -51,17 +51,15 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
     </nav>
     <div class="content">
         <h1 id="headline">การจองทั้งหมด</h1>
-<<<<<<< HEAD
+
         <form method="POST" class="hstack gap-3 mt-3 b-date">
-=======
-        <!-- <form method="POST" class="hstack gap-3 mt-3">
->>>>>>> origin/master
+
             <label>การจองในช่วงวันที่ :</label>
             <input type="date" class="form-control" style="width: 10%;">
             <label>ถึง : </label>
             <input type="date" class="form-control" style="width: 10%;">
             <button type="button" class="btn btn-primary">ค้นหา</button>
-        </form> -->
+        </form>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
