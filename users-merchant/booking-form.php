@@ -66,8 +66,8 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input ">วันที่ต้องการเช่า <span class="fs-6">(การจองขั้นต่ำ <?php echo $row['min_rent'] ?>)</span></div>
                 <div class="w-100 mb-2 p-0">
                     <div id="demo-range-selection" name="daterange"></div>
-                    <input id="datestart" name="b_start" hidden />
-                    <input id="dateend" name="b_end" hidden />
+                    <input id="datestart" name="start" hidden />
+                    <input id="dateend" name="end" hidden />
                 </div>
                 <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn(),validateForm()" id="next">
 
@@ -203,6 +203,8 @@ $rowus = mysqli_fetch_array($qry);
                 <input type="hidden" name="omiseToken">
                 <input type="hidden" name="omiseSource">
                 <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept'] ?>">
+                <input type="hidden" name="fee_pay" value="<?php echo $fee ?>">
+
                 <?php
                 @$totalcal = $price * 100;
                 @$total = $price;

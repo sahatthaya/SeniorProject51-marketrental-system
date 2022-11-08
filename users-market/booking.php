@@ -51,13 +51,17 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
     </nav>
     <div class="content">
         <h1 id="headline">การจองทั้งหมด</h1>
+<<<<<<< HEAD
         <form method="POST" class="hstack gap-3 mt-3 b-date">
+=======
+        <!-- <form method="POST" class="hstack gap-3 mt-3">
+>>>>>>> origin/master
             <label>การจองในช่วงวันที่ :</label>
             <input type="date" class="form-control" style="width: 10%;">
             <label>ถึง : </label>
             <input type="date" class="form-control" style="width: 10%;">
             <button type="button" class="btn btn-primary">ค้นหา</button>
-        </form>
+        </form> -->
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
                 <table id="myTable" class="display " style="width: 100%;">
@@ -67,42 +71,50 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
                             <th scope="col">วันที่เริ่มจอง</th>
                             <th scope="col">วันที่สิ้นสุด</th>
                             <th scope="col">รหัสแผงค้า</th>
-                            <th scope="col">วันที่จอง</th>
+                            <th scope="col">ชื่อผู้จอง</th>
+                            <th scope="col">จองเมื่อวันที่</th>
                             <th scope="col">หมายเหตุ</th>
+                            <th scope="col">ดูรายละเอียด</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php while ($row = $query->fetch_assoc()) : ?>
-                            <?php if ($row1['opening'] == 'เปิดทำการทุกวัน') {
-                                $start = date('d/m/Y', strtotime($row['start']));
-                                $end = date('d/m/Y', strtotime($row['end']));
-                                $timestamp = date('d/m/Y', strtotime($row['timestamp']));
-                                $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
-                                $table = "  <tr>
+                            <tr>
+                                <?php if ($row1['opening'] == 'เปิดทำการทุกวัน') {
+                                    $start = date('d/m/Y', strtotime($row['start']));
+                                    $end = date('d/m/Y', strtotime($row['end']));
+                                    $timestamp = date('d/m/Y', strtotime($row['timestamp']));
+                                    $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
+                                    $table = " 
                                             <td>" . $count_n . "</td>
                                             <td> " . $start . " </td>
                                             <td>" . $end . "</td>
                                             <td>" . $row['sID'] . "</td>
+                                            <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
                                             <td>" . $timestamp . "</td>
                                             <td>" . $status . "</td>
-                                            </tr>";
-                                echo $table;
-                            } else {
-                                $start = date('d/m/Y', strtotime($row['start']));
-                                $end = date('d/m/Y', strtotime($row['end']));
-                                $timestamp = date('d/m/Y', strtotime($row['timestamp']));
-                                $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
-                                $table = "  <tr>
+                                            <td><button name='view' type='button' class='modal_data2 btn btn-outline-primary' id='". $row['b_id'] ."'>ดูรายละเอียด</button></td>
+                                           ";
+                                    echo $table;
+                                } else {
+                                    $start = date('d/m/Y', strtotime($row['start']));
+                                    $end = date('d/m/Y', strtotime($row['end']));
+                                    $timestamp = date('d/m/Y', strtotime($row['timestamp']));
+                                    $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
+                                    $table = "  
                                 <td>" . $count_n . "</td>
                                 <td> " . $start . " </td>
                                 <td>" . $end . "</td>
                                 <td>" . $row['sID'] . "</td>
+                                <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
                                 <td>" . $timestamp . "</td>
                                 <td>" . $status . "</td>
-                                </tr>";
-                                echo $table;
-                            } ?>
-
+                                <td><button name='view' type='button' class='modal_data2 btn btn-outline-primary' id='". $row['b_id'] ."'>ดูรายละเอียด</button></td>
+                               ";
+                                    echo $table;
+                                } ?>
+                                
+                            </tr>
                         <?php $count_n++;
                         endwhile; ?>
                     </tbody>
@@ -112,6 +124,46 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
         </div>
     </div>
 </body>
+<?php require '../backend/modal-bookdetail.php' ?>
 <script src="../backend/script.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.modal_data').click(function() {
+            var b_id = $(this).attr("id");
+            $.ajax({
+                url: "../backend/modal-bookdetail.php",
+                method: "POST",
+                data: {
+                    b_id: b_id
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
+        })
+
+    });
+
+    $(document).ready(function() {
+        $('.modal_data2').click(function() {
+            var b_id2 = $(this).attr("id");
+            $.ajax({
+                url: "../backend/modal-bookdetail.php",
+                method: "POST",
+                data: {
+                    b_id2: b_id2
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
+
+        })
+
+    });
+</script>
 
 </html>

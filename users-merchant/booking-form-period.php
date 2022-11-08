@@ -208,6 +208,7 @@ $rowus = mysqli_fetch_array($qry);
                 <input type="hidden" name="omiseToken">
                 <input type="hidden" name="omiseSource">
                 <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept'] ?>">
+                <input type="hidden" name="fee_pay" value="<?php echo $fee ?>">
                 <?php
                 @$totalcal = $price * 100;
                 @$total = $price;
