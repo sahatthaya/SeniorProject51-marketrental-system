@@ -107,17 +107,18 @@ body {
 /* responsive--------------------------------------------------------------------- */
 
 
-@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 1200px) {
+    .plan{
+      position: absolute !important;
+      width: 300% !important;
+    }
+}
 
 @media(max-width:720px) {
 
     body {
         padding-right: 10px;
         margin: 60px 10px 0px 15px !important;
-    }
-
-    .hstack {
-        display: inherit !important;
     }
 
     label {
@@ -135,10 +136,6 @@ body {
     button {
         float: right;
         margin-right: 6% !important;
-    }
-
-    hr {
-        margin-top: 3rem !important;
     }
 
 }

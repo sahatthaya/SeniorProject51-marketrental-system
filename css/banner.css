@@ -277,3 +277,10 @@ input:invalid {
         margin: 5px;
     }
 }
+
+@media only screen and (max-width: 480px) {
+    .add-btn{
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+}

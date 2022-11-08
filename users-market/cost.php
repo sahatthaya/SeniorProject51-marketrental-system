@@ -28,9 +28,9 @@ require "../backend/manage_cost.php";
         </ol>
     </nav>
     <h1 class="head_contact">ค่าใช้จ่ายเพิ่มเติม</h1>
-    <button type="button" class="btn btn-primary add-btn text-light" id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
+    <a type="button" class="btn btn-primary add-btn text-light" id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
         <i class='bx bxs-edit me-2'></i>จัดการค่าใช้จ่ายเพิ่มเติม
-    </button>
+    </a>
     <a type="button" class="btn btn-primary add-btn text-light" id="partner-btn" href="cost-history.php?mkr_id=<?php echo $row1['mkr_id']?>">
     <i class='bx bx-history'></i>ประวัติการจดค่าใช้จ่ายเพิ่มเติม
     </a>
@@ -171,7 +171,7 @@ require "../backend/manage_cost.php";
                     <div class="col-6">
                         <button type="submit" class="btn btn-primary w-100" id="partner-btn" name="save-table">บันทึกข้อมูล</button>
                     </div>
-                    <div class="col-6 pe-0">
+                    <div class="col-6">
                         <button type="button" class="btn btn-danger w-100" id="partner-btn" data-bs-toggle="modal" onclick="reset()">ล้างข้อมูล</button>
                     </div>
                 </div>
