@@ -101,7 +101,7 @@
             title: 'ชำระเงินสำเร็จ',
             text: 'สามารถตรวจสอบการจองได้ที่เมนูจัดการการจอง',
             icon: 'success',
-            button: "ตกลง",
+            confirmButtonText: "ตกลง",
         }).then(function() {
             window.location = "../users-merchant/rent.php";
         });
@@ -200,6 +200,14 @@
             timer: 2500
         }).then(function() {
             window.location = "../users-merchant/rent.php";
+        });
+    }
+    function sentinvoice() {
+        Swal.fire({
+            title: 'ส่งใบแจ้งค่าเช่าสำเร็จ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
         });
     }
     // error------------------------------------------------------------

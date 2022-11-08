@@ -15,7 +15,7 @@ include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 require "../backend/invoice.php";
-
+$open = $row['opening'];
 ?>
 
 <body>
@@ -37,30 +37,62 @@ require "../backend/invoice.php";
                     <tr>
                         <th style=" width:4% ; ">ลำดับ</th>
                         <th style=" width:5% ; ">วันที่ส่งใบเรียกเก็บค่าเช่า</th>
-                        <th style=" width:5% ; ">งวดที่</th>
+                        <th style=" width:5% ; ">รหัสใบเรียกเก็บค่าเช่า</th>
                         <th style=" width:8% ; ">รหัสแผงค้า</th>
                         <th style=" width:10% ; ">จำนวนเงิน (บาท)</th>
                         <th style=" width:10% ; ">ผู้จอง</th>
                         <th style=" width:8% ; ">สถานะ</th>
+                        <th style=" width:8% ; ">ดูรายละเอียด</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>1/08/2022</td>
-                        <td>1 </td>
-                        <td>A01</td>
-                        <td>1000.00</td>
-                        <td>สหัสทยา เทียนมงคล</td>
-                        <td class="text-danger">ยังไม่ชำระ</td>
+                    <?php while ($row = $querystatusinv->fetch_assoc()) :
+                    ?>
+                        <tr>
+                            <td><?php echo  $count_n ?></td>
+                            <td><?php echo  date("วันที่ d/m/Y เวลา h:ia", strtotime($row['INV_created'])) ?></td>
+                            <td><?php echo $row['INV_id'] ?></td>
+                            <td><?php echo $row['sID'] ?></td>
+                            <td><?php echo $row['INV_total'] ?></td>
+                            <td><?php echo $row['b_fname'] . ' ' . $row['b_lname'] ?></td>
+                            <?php
+                            if ($row['status'] == '1') {
+                                echo '<td class="text-danger">ยังไม่ชำระ</td>';
+                            } else {
+                                echo '<td class="text-success">ชำระแล้ว</td>';
+                            }
+                            ?>
+                            <td><button type="button" id="<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary modal_data2">ดูรายละเอียด</button></td>
+                        </tr>
+                    <?php $count_n++;
+                    endwhile; ?>
                 </tbody>
             </table>
         </div>
     </div>
     <script src="../backend/script.js"></script>
-
 </body>
+<?php require '../backend/modal-invoice.php' ?>
 
+<script>
+    $(document).ready(function() {
+        $('.modal_data2').click(function() {
+            var INV_id = $(this).attr("id");
+            $.ajax({
+                url: "../backend/modal-invoice.php",
+                method: "POST",
+                data: {
+                    INV_id: INV_id
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
 
+        })
+
+    });
+</script>
 
 </html>

@@ -107,7 +107,6 @@ $result_province = mysqli_query($conn, $query_province);
           <select class="form-select" name="opening" aria-label="Default select example">
             <option value="<?php echo $row['opening'] ?>" selected hidden><?php echo $row['opening'] ?></option>
             <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
-            <option value="เปิดทำการทุกวัน (ยกเว้นวันหยุดสุดสัปดาห์)">เปิดทำการทุกวัน (ยกเว้นวันหยุดสุดสัปดาห์)</option>
             <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
           </select>
           <div class="des_input hstack gap-2">ระยะเวลาขั้นต่ำที่เปิดให้จอง</div>

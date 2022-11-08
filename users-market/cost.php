@@ -28,11 +28,11 @@ require "../backend/manage_cost.php";
         </ol>
     </nav>
     <h1 class="head_contact">ค่าใช้จ่ายเพิ่มเติม</h1>
-    <button type="button" class="btn btn-primary add-btn text-light" id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
+    <a type="button" class="btn btn-primary add-btn text-light" id="partner-btn" data-bs-toggle="modal" data-bs-target="#editcost-modal">
         <i class='bx bxs-edit me-2'></i>จัดการค่าใช้จ่ายเพิ่มเติม
-    </button>
-    <a type="button" class="btn btn-primary add-btn text-light" id="partner-btn" href="cost-history.php?mkr_id=<?php echo $row1['mkr_id']?>">
-    <i class='bx bx-history'></i>ประวัติการจดค่าใช้จ่ายเพิ่มเติม
+    </a>
+    <a type="button" class="btn btn-primary add-btn text-light" id="partner-btn" href="cost-history.php?mkr_id=<?php echo $row1['mkr_id'] ?>">
+        <i class='bx bx-history'></i>ประวัติการจดค่าใช้จ่ายเพิ่มเติม
     </a>
 
     <!-- unit/cost Modal -->
@@ -112,7 +112,7 @@ require "../backend/manage_cost.php";
                 <div style="width: 15.5%;">
                     <select class="form-select w-100" aria-label="Default select example" id="costtype" name="cu_id" onchange="selecttype()">
                         <?php while ($type = $costunit->fetch_assoc()) : ?>
-                            <option value="<?php echo $type['cu_id'] ?>" id="<?php echo $type['cu_price'] ?>"><?php echo $type['cu_name'] ?></option>
+                            <option value="<?php echo $type['cu_id'] ?>" id="<?php echo $type['cu_price'] ?>" name="<?php echo $type['cu_type'] ?>"><?php echo $type['cu_name'] ?></option>
                         <?php
                         endwhile ?>
                     </select>
@@ -125,6 +125,8 @@ require "../backend/manage_cost.php";
                 </div>
             </div>
             <hr>
+            <!-- <input type="text" id="unittype" name="sKey<?php echo $count ?>" class="form-control unit" value="" > -->
+
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>
@@ -134,7 +136,7 @@ require "../backend/manage_cost.php";
                         <th>
                             รหัสแผงค้า
                         </th>
-                        <th>
+                        <th id="unit_th">
                             หน่วยที่ใช้
                         </th>
                     </tr>
@@ -151,7 +153,7 @@ require "../backend/manage_cost.php";
                                 <input type="number" id="unit" name="sKey<?php echo $count ?>" class="form-control unit" value="<?php echo $table['sKey'] ?>" hidden>
                             </td>
                             <td>
-                                <input type="number" id="unit" name="c_unit<?php echo $count ?>" class="form-control unit" value="0" require>
+                                <input type="number" id="unit" name="c_unit<?php echo $count ?>" class="form-control unit costinput" value="0" require>
                             </td>
                         </tr>
                     <?php
@@ -191,11 +193,30 @@ require "../backend/manage_cost.php";
 
     function selecttype() {
         var sel = document.getElementById("costtype");
-        var b = sel.options[sel.selectedIndex];
-        var a = $(b).attr('id');
-        // const span = document.getElementById("span");
-        // $('#span').empty();
-        document.getElementById("cu_price").value = a;
+        var b = sel.options[sel.selectedIndex].getAttribute("name");
+        var a = sel.options[sel.selectedIndex].value;
+        // var a = $(b).attr('id');
+        // // const span = document.getElementById("span");
+        // // $('#span').empty();
+        // document.getElementById("cu_price").value = a;
+        if (b == 'บาท(เหมาจ่าย)') {
+            var list = document.getElementsByClassName('costinput');
+            var n;
+            for (n = 0; n < list.length; ++n) {
+                list[n].value = a;
+            }
+            document.getElementById("unit_th").innerHTML = "";
+            document.getElementById("unit_th").innerHTML = "บาท(เหมาจ่าย)";
+        } else {
+            var list = document.getElementsByClassName('costinput');
+            var n;
+            for (n = 0; n < list.length; ++n) {
+                list[n].value = '0';
+            }
+            document.getElementById("unit_th").innerHTML = "";
+            document.getElementById("unit_th").innerHTML = "หน่วยที่ใช้ (บาท)";
+        }
+
     }
     mobiscroll.datepicker('#date', {
         controls: ['date'],

@@ -85,6 +85,23 @@ if (isset($_POST['stall-submit'])) {
 if (isset($_GET['delstall'])) {
     $sKey = $_GET['delstall'];
     $mkr_id = $_GET['mkr_id'];
+
+    $qrybooking = mysqli_query($conn, "SELECT * FROM `booking_range` WHERE sKey = ' $sKey' ");
+    $numRows = mysqli_num_rows($qrybooking);
+    if ($numRows > 0) {
+        echo "<script>";
+        echo "
+        Swal.fire({
+        title: 'ไม่สามารถลบแผงค้าได้',
+        text: 'ไม่สามารถลบแผงค้าได้ เนื่องจากแผงค้ามีผู้เช่า/จอง ทำการจองอยู่'
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      }).then((result) => {
+          window.location.href = '../users-market/news.php?mkr_id=" . $mkr_id . "'
+      })";
+        echo "</script>";
+    }
     $sqlDelUsers = "DELETE FROM stall WHERE sKey = ' $sKey'";
     if (mysqli_query($conn, $sqlDelUsers)) {
         echo "<script type='text/javascript'> delsuccess(); </script>";
@@ -234,7 +251,7 @@ if (isset($_GET['delstall'])) {
                         <th scope="col">การแสดงแผงค้า</th>
                         <th scope="col" style="width:15% ;">ประวัติการจอง</th>
                         <th scope="col">แก้ไขข้อมูล</th>
-                        <th scope="col">ลบข้อมูล</th>
+                        <!-- <th scope="col">ลบข้อมูล</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -270,9 +287,9 @@ if (isset($_GET['delstall'])) {
                             <td>
                                 <a class="btn btn-outline-success modal_data w-100" href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
                             </td>
-                            <td>
+                            <!-- <td>
                                 <a href="edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;" onclick="return confirm('คุณต้องการลบแผงค้านี้หรือไม่')" class=" btn btn-outline-danger w-100">ลบ</a>
-                            </td>
+                            </td> -->
                         </tr>
 
                     <?php $count_n++;
