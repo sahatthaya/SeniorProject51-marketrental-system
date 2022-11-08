@@ -74,7 +74,7 @@ include "../backend/1-import-link.php";
         <div class="contentbox web-info">
             <figure class="text-center">
                 <blockquote class="blockquote">
-                    <p>“<?php echo $lg["ct_webinfo"] ?></p>
+                    <p><?php echo $lg["ct_webinfo"] ?></p>
                 </blockquote>
                 <figcaption class="blockquote-footer">
                     <cite title="Source Title">MarketRental</cite>
