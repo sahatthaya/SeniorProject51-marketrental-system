@@ -36,8 +36,8 @@ require "../backend/manage-applicant.php";
                     <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>
-                            <th scope="col">เวลาที่ส่งคำร้อง</th>
                             <th scope="col">วันที่ส่งคำร้อง</th>
+                            <th scope="col">เวลาที่ส่งคำร้อง</th>
                             <th scope="col">ชื่อผู้ใช้</th>
                             <th scope="col">ชื่อ-นามสกุล</th>
                             <th scope="col">ชื่อตลาด</th>

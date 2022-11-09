@@ -17,9 +17,9 @@ $row1 = mysqli_fetch_array($result);
 extract($row1);
 
 $resultCU = mysqli_query($conn, "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'");
-$costunit = mysqli_query($conn, "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id' and cu_type = 'บาท/หน่วย'");
+$costunit = mysqli_query($conn, "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'");
 $stall = mysqli_query($conn, "SELECT * FROM `stall` WHERE `show`=1 AND `market_id`=$mkr_id");
-$querycost = mysqli_query($conn,"SELECT cost.*,stall.*,`cost/unit`.* FROM `cost` JOIN stall ON (cost.sKey = stall.sKey) JOIN `cost/unit` ON (cost.cu_id = `cost/unit`.cu_id) WHERE cost.`mkr_id`= $mkr_id ORDER BY `cost_period` DESC");
+$querycost = mysqli_query($conn, "SELECT cost.*,stall.*,`cost/unit`.* FROM `cost` JOIN stall ON (cost.sKey = stall.sKey) JOIN `cost/unit` ON (cost.cu_id = `cost/unit`.cu_id) WHERE cost.`mkr_id`= $mkr_id ORDER BY `cost_period` DESC");
 // เพิ่มค่าใช้จ่ายเพิ่มเติม
 if (isset($_POST['addcost'])) {
     $cu_name = $_POST['cu_name'];

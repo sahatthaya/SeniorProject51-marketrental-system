@@ -15,6 +15,7 @@ include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 require "../backend/invoice.php";
+$open = $row['opening'];
 ?>
 
 <body>
@@ -42,8 +43,18 @@ require "../backend/invoice.php";
                     <button type="button" class="btn btn-outline-primary">ค้นหา</button>
                 </div>
             </form> -->
-                <div class="text-end">
-                    <button type="submit" class="btn btn-primary" name="save-table"><i class='bx bx-send me-2'></i>ส่งบิล</button>
+                <div class="d-flex justify-content-between">
+                    <div class="hstack gap-2">
+                        วันที่ :
+                        <div style="width: 20%;">
+                            <input id="date" name="cost_period" class="form-control" value="<?php echo date("Y-m-d"); ?>" disabled />
+                        </div>
+                        ชำระภายในวันที่ :
+                        <div style="width:20%;">
+                            <input id="date" name="INV_expired" class="form-control" value="<?php echo date('Y-m-d', strtotime(date("Y-m-d") . ' + 7 days')); ?>" />
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="save-table"><i class='bx bx-send me-2'></i>ส่งใบเรียกเก็บค่าเช่า</button>
                 </div>
                 <hr>
                 <table id="myTable_nosort" class="display " style="width: 100%;">
@@ -67,8 +78,8 @@ require "../backend/invoice.php";
                         ?>
                             <tr>
                                 <td class='text-center'><input type='checkbox' class='form-check-input table-checked chk' name="chk[]" value="<?php echo $row['b_id'] ?>" checked></td>
-                                <td><?php echo $row['b_id'] ?></td>
-                                <!-- <td><?php echo $count_n ?></td> -->
+                                <!-- <td><?php echo $row['b_id'] ?></td> -->
+                                <td><?php echo $count_n ?></td>
                                 <td><?php echo date('d/m/Y', strtotime($row['start'])) ?></td>
                                 <td><?php echo date('d/m/Y', strtotime($row['end'])) ?></td>
                                 <td><?php echo $row['sID'] ?></td>
@@ -77,12 +88,13 @@ require "../backend/invoice.php";
                                 <td>
                                     <?php $date = date('Y-m-d');
                                     if ($row['start'] <= $date) {
-                                        if ($row['end'] < $date) {
+                                        if ($row['end'] >= $date) {
                                             echo '<button class="btn btn-info w-100" disabled>อยู่ในระหว่างการเช่า</button>';
                                         } else {
                                             echo '<button class="btn btn-secondary w-100" disabled>การเช่าสิ้นสุดแล้ว</button>';
                                         }
-                                    } ?></td>
+                                    } ?>
+                                </td>
                             </tr>
                         <?php $count_n++;
                         endwhile; ?>
@@ -94,18 +106,6 @@ require "../backend/invoice.php";
     <script src="../backend/script.js"></script>
 
 </body>
-<?php
-
-if (isset($_POST['save-table'])) {
-    $data_chk = serialize($_POST['chk']);
-    $rev_data = unserialize($data_chk);
-    $data_c = count($rev_data);
-    for ($i = 0; $i < $data_c; $i++) {
-        echo $i + 1 . ' = '. $rev_data[$i] . '<br />';
-    }
-}
-
-?>
 <script type="text/javascript">
     function toggle(source) {
         checkboxes = document.getElementsByClassName('chk');
@@ -113,6 +113,12 @@ if (isset($_POST['save-table'])) {
             checkboxes[i].checked = source.checked;
         }
     }
+    mobiscroll.datepicker('#date', {
+        controls: ['date'],
+        dateFormat: 'DD/MM/YYYY',
+        themeVariant: 'light',
+        locale: mobiscroll.localeTh,
+    });
 </script>
 
 </html>
