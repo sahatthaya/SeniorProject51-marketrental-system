@@ -249,7 +249,7 @@ if (isset($_GET['delstall'])) {
                         <th scope="col">ราคาค่าเช่า</th>
                         <!-- <th scope="col">(หน่วย)</th> -->
                         <th scope="col">การแสดงแผงค้า</th>
-                        <th scope="col" style="width:15% ;">ประวัติการจอง</th>
+                        <!-- <th scope="col" style="width:15% ;">ประวัติการจอง</th> -->
                         <th scope="col">แก้ไขข้อมูล</th>
                         <!-- <th scope="col">ลบข้อมูล</th> -->
                     </tr>
@@ -281,9 +281,9 @@ if (isset($_GET['delstall'])) {
                                     <?php echo ($row1['show'] == "1" ? "แสดง" : "ซ่อนอยู่"); ?>
                                 </div>
                             </td>
-                            <td style="width:15% ;">
+                            <!-- <td style="width:15% ;">
                                 <button class=" btn btn-outline-info">ดูประวัติการจอง</button>
-                            </td>
+                            </td> -->
                             <td>
                                 <a class="btn btn-outline-success modal_data w-100" href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
                             </td>

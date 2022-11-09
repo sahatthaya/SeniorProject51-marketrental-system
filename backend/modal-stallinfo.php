@@ -33,10 +33,6 @@ if (isset($_POST["s_id"])) {
             <td>โซน/ประเภทร้านค้า</td>
             <td>' . $row1['z_name'] . '</td>
         </tr>
-        <tr>
-            <td>สถานะ</td>
-            <td>ว่าง</td>
-        </tr>
     </tbody>
 </table>
     <div class="text-end">

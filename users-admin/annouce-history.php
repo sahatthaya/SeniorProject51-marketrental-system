@@ -35,8 +35,8 @@ require "../backend/manage-annouce.php";
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
-                        <th scope="col">เวลาที่ส่งคำร้อง</th>
                         <th scope="col">วันที่ส่งคำร้อง</th>
+                        <th scope="col">เวลาที่ส่งคำร้อง</th>
                         <th scope="col">หัวข้อ</th>
                         <th scope="col">ผู้ส่งคำร้อง</th>
                         <th scope="col">ดูรายละเอียด</th>
@@ -66,24 +66,24 @@ require "../backend/manage-annouce.php";
 </body>
 
 <script>
-    //detail req popup
-    // $(document).ready(function() {
-    //     $('.modal_data1').click(function() {
-    //         var anid = $(this).attr("id");
-    //         $.ajax({
-    //             url: "../backend/modal-applicant.php",
-    //             method: "POST",
-    //             data: {
-    //                 anid: anid
-    //             },
-    //             success: function(data) {
-    //                 $('#bannerdetail').html(data);
-    //                 $('#bannerdataModal').modal('show');
-    //             }
-    //         });
+    // detail req popup
+    $(document).ready(function() {
+        $('.modal_data1').click(function() {
+            var anid = $(this).attr("id");
+            $.ajax({
+                url: "../backend/modal-applicant.php",
+                method: "POST",
+                data: {
+                    anid: anid
+                },
+                success: function(data) {
+                    $('#bannerdetail').html(data);
+                    $('#bannerdataModal').modal('show');
+                }
+            });
 
-    //     })
-    // });
+        })
+    });
 </script>
 
 </html>
