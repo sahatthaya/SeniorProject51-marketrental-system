@@ -37,7 +37,7 @@ require "../backend/manage-banner.php";
                     <textarea name="bn_detail" class=" form-control" placeholder="รายละเอียด" id="" cols="30" rows="5" style="border-radius: 5px;resize: none; margin-left:5px;" > <?php echo $row2['bn_detail'] ?></textarea>
 
                     <div class="des_input">รูปภาพ</div>
-                    <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_pic" id="imgInp">
+                    <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_pic" id="imgInp" accept="image/png, image/gif, image/jpeg">
                     <div class="des_input">รูปภาพปัจุบัน : </div>
                     <div class="p-0">
                         <img style="width:750px;margin-top:10px;" class="img-fluid rounded" src='../<?php echo $row2["bn_pic"] ?>' id="blah">

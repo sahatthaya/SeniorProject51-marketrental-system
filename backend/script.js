@@ -176,6 +176,7 @@ $(document).ready(function () {
     });
 
 });
+
 $(document).ready(function () {
     $("#myTable_nosort").DataTable({
         scrollY: '550px',

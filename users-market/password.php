@@ -36,13 +36,13 @@ if (isset($_POST['submit-edtpsw'])) {
     <form method="POST" id="edtpsw">
         <div class="row border shadow-sm pt-5 pb-3 px-5 mt-3 mb-3 rounded">
             <div class="des_input">รหัสผ่านปัจุบัน</div>
-            <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
+            <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" required>
             <div class="des_input">รหัสผ่านใหม่</div>
-            <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
+            <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" required>
             <span class="note">**กรุณาตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร</span>
             <br>
             <div class="des_input">ยืนยันรหัสผ่าน</div>
-            <input class="input inputcolor form-control" type="password" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" require>
+            <input class="input inputcolor form-control" type="password" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" required>
             <input class="input submit btn btn-primary mt-3" type="submit" name="submit-edtpsw" onclick="validatePassword()" value="บันทึกการแก้ไข">
         </div>
     </form>

@@ -90,13 +90,13 @@ require "../backend/manage-banner.php";
                         </div>
                         <form method="post" enctype="multipart/form-data" class="was-validated">
                             <div class="modal-body">
-                                <h6>หัวข้อ</h6>
+                                <h6 class="mt-2">หัวข้อ</h6>
                                 <input type="text" class="form-control" placeholder="หัวข้อ" name="bn_toppic">
-                                <h6>รายละเอียด</h6>
+                                <h6  class="mt-2">รายละเอียด</h6>
                                 <textarea type="text" class="form-control" placeholder="รายละเอียด" name="bn_detail"></textarea>
                                 <div class="form-group">
-                                    <h6>เพิ่มรูปภาพ</h6>
-                                    <input type="file" class="form-control" name="bn_img" id="imgInp" required>
+                                    <h6  class="mt-2">เพิ่มรูปภาพ</h6>
+                                    <input type="file" class="form-control" name="bn_img" id="imgInp" accept="image/png, image/gif, image/jpeg" required>
                                     <div class="valid-feedback"></div>
                                     <div class="invalid-feedback">กรุณาเลือกรูปภาพ</div>
                                 </div>
