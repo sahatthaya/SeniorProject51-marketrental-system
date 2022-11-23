@@ -10,6 +10,14 @@ body {
     --lightpurple: #619FFF;
 }
 
+.btn-light {
+    padding: 8px 24px;
+    color: #212529 !important;
+    background-color: var(--white) !important;
+    border: 1px solid #ced4da !important;
+    height: 42px;
+}
+
 /* ประเภทตลาด */
 .typemkr {
     display: grid;
