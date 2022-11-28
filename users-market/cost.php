@@ -153,7 +153,7 @@ require "../backend/manage_cost.php";
                                 <input type="number" id="unit" name="sKey<?php echo $count ?>" class="form-control unit" value="<?php echo $table['sKey'] ?>" hidden>
                             </td>
                             <td>
-                                <input type="number" id="unit" name="c_unit<?php echo $count ?>" class="form-control unit costinput" value="0" require>
+                                <input type="number" id="unit" name="c_unit<?php echo $count ?>" class="form-control unit costinput" value="0" required>
                             </td>
                         </tr>
                     <?php

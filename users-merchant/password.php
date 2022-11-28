@@ -14,58 +14,40 @@ include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
-$username = $_SESSION['username'];
-$sql = "SELECT * FROM users WHERE username = '$username'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-if (isset($_POST['submit-edtpsw'])) {
-    $password_reg = md5($_POST['password']);
-    if (isset($_POST["password"]) != "") {
-        $sqlInsert = "UPDATE users SET password='$password_reg'  WHERE (username = '$username') ";
-        if (mysqli_query($conn, $sqlInsert)) {
-            echo "<script type='text/javascript'> success(); </script>";
-        } else {
-            echo "<script type='text/javascript'> error(); </script>";
-        }
-    }
-}
+include "../backend/edit-profile.php";
 ?>
 
 <body>
     <h1 id="headline">เปลี่ยนรหัสผ่าน</h1>
     <form method="POST" id="edtpsw">
-
-        <div class="row border shadow-sm pt-5 pb-3 px-4 mt-3 mb-3 rounded">
-            <div class="col-12">
-                <label for="inputAddress " class="form-label des_input">รหัสผ่านปัจุบัน</label>
-                <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
-            </div>
-            <div class="col-12">
-                <label for="inputEmail4" class="form-label des_input">รหัสผ่านใหม่</label>
-                <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" require>
-                <span class="note">**กรุณาตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร</span>
-            </div>
-            <div class="col-12">
-                <label for="inputPassword4" class="form-label des_input">ยืนยันรหัสผ่าน</label>
-                <input class="input inputcolor form-control" type="password" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" require>
-            </div>
-            <div class="col-12">
-            <input class="input submit btn btn-primary" type="submit" name="submit-edtpsw" onclick="validatePassword()" value="บันทึกการแก้ไข">
-            </div>
+        <div class="row border shadow-sm pt-5 pb-3 px-5 mt-3 mb-3 rounded" id="StepTwo">
+            <div class="des_input">รหัสผ่านปัจุบัน</div>
+            <input class="input inputcolor form-control" type="password" id="oldpassword" name="oldpassword" placeholder="รหัสผ่าน" pattern=".{8,}" required>
+            <div class="des_input">รหัสผ่านใหม่ <span class="text-danger fs-6 fw-lighter">(กรุณาตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร)</span></div>
+            <input class="input inputcolor form-control" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" onchange="validatePassword()" required>
+            <br>
+            <div class="des_input">ยืนยันรหัสผ่าน</div>
+            <input class="input inputcolor form-control" type="password" id="confirm_password" name="confirm_password" placeholder="ยืนยันรหัสผ่าน" onchange="validatePassword()" required>
+            <div id="chkpsw" class="text-end p-0"><span class="text-danger fs-6 fw-lighter">กรุณากรอกรหัสผ่านให้ตรงกัน</span></div>
+            <button class="input submit btn btn-primary mt-3" id="myBtn" type="submit" name="submit-edtpsw" disabled>บันทึกการแก้ไข</button>
         </div>
     </form>
 
 </body>
 <script>
-    // // เชครหัสตรงกัน
-    var password = document.getElementById("password"),
-        confirm_password = document.getElementById("confirm_password");
-
     function validatePassword() {
+        var password = document.getElementById("password"),
+            confirm_password = document.getElementById("confirm_password");
         if (password.value == confirm_password.value) {
+            document.getElementById("chkpsw").innerHTML = "";
+            document.getElementById("myBtn").disabled = false;
+            document.getElementById("chkpsw").innerHTML = "";
+            document.getElementById("chkpsw").innerHTML = '<span class="text-success text-end fs-6 fw-lighter"><i class="bx bx-check-double"></i>รหัสผ่านตรงกัน</span>';
             return true;
         } else {
-            alert("กรุณากรอกรหัสผ่านให้ตรงกัน");
+            document.getElementById("chkpsw").innerHTML = "";
+            document.getElementById("chkpsw").innerHTML = '<span class="text-danger text-end fs-6 fw-lighter">กรุณากรอกรหัสผ่านให้ตรงกัน</span>';
+            document.getElementById("myBtn").disabled = true;
             return false;
         }
     }

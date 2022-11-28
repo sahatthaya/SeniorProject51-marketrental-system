@@ -11,8 +11,6 @@
 </head>
 <?php
 include "profilebar.php";
-?>
-<?php
 include "nav.php";
 include "./backend/1-connectDB.php";
 require "./backend/qry-index.php";

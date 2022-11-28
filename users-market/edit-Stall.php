@@ -190,7 +190,7 @@ if (isset($_GET['delstall'])) {
                     </div>
                 </label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" require>
+                    <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" required>
                 </div>
                 <label for="" class="mt-2">ประเภทแผงค้า</label>
                 <div class="search_select_box">
@@ -202,20 +202,20 @@ if (isset($_GET['delstall'])) {
                 </div>
                 <label class="mt-2">ขนาดพื้นที่ :</label>
                 <div class="input-group">
-                    <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
                     <span class="input-group-text">*</span>
-                    <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
                     <span class="input-group-text">เมตร</span>
 
                 </div>
                 <label class="mt-2">ราคามัดจำ :</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
                     <span class="input-group-text">บาท</span>
                 </div>
                 <label class="mt-2">ราคาค่าเช่า :</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require>
+                    <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
                     <select class="input-group-text" name="sPayRange">
                         <option value="บาท/วัน">บาท/วัน</option>
                         <option value="บาท/เดือน">บาท/เดือน</option>

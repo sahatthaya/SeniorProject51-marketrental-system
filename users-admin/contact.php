@@ -37,7 +37,7 @@ require "../backend/manage-contact.php";
                     <div class="inputct">
                         <h6>รูปภาพโลโก้</h6>
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control" name="ct_logo" id="logo">
+                            <input type="file" class="form-control" name="ct_logo" id="logo" accept="image/png, image/gif, image/jpeg">
                         </div>
                         <div class="mb-3 center">
                             <img style="height:200px;" src="../<?php echo $row["ct_logo"] ?>" class="img-thumbnail round" id="logoex">
@@ -65,7 +65,7 @@ require "../backend/manage-contact.php";
                             <input type="text" name="ct1_email" class="form-control" placeholder="อีเมล" aria-describedby="basic-addon3" value="<?php echo $row["ct1_email"] ?>">
                         </div>
                         <div class="input-group mb-3">
-                            <input type="file" name="ct1_pic" class="form-control" id="con1">
+                            <input type="file" name="ct1_pic" class="form-control" id="con1" accept="image/png, image/gif, image/jpeg">
                         </div>
                         <div class="mb-3 center">
                             <img style="height:200px;" src="../<?php echo $row["ct1_pic"] ?>" class="img-thumbnail round" id="con1ex">
@@ -88,7 +88,7 @@ require "../backend/manage-contact.php";
                             <input type="text" name="ct2_email" class="form-control" placeholder="อีเมล" aria-describedby="basic-addon3" value="<?php echo $row["ct2_email"] ?>">
                         </div>
                         <div class="input-group mb-3">
-                            <input type="file" name="ct2_pic" class="form-control" id="con2">
+                            <input type="file" name="ct2_pic" class="form-control" id="con2" accept="image/png, image/gif, image/jpeg">
                         </div>
                         <div class="mb-3 center">
                             <img style="height:200px;" src="../<?php echo $row["ct2_pic"] ?>" class="img-thumbnail round" id="con2ex">

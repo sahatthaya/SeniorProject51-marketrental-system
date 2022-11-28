@@ -6,8 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - หน้าหลักสำหรับผู้ดูแลระบบ</title>
-
-    <!-- css  -->
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
 <?php
@@ -90,15 +88,19 @@ require "../backend/manage-banner.php";
                             <h5 class="modal-title" id="staticBackdropLabel">เพิ่มแบนเนอร์</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <form method="POST" enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data" class="was-validated">
                             <div class="modal-body">
-                                <h6>หัวข้อ</h6>
-                                <input type="text" class="form-control" placeholder="หัวข้อ" name="bn_toppic" require>
-                                <h6>รายละเอียด</h6>
-                                <textarea type="text" class="form-control" placeholder="รายละเอียด" name="bn_detail" require></textarea>
-                                <h6>เพิ่มรูปภาพ</h6>
-                                <input type="file" class="form-control" name="bn_img">
-
+                                <h6 class="mt-2">หัวข้อ</h6>
+                                <input type="text" class="form-control" placeholder="หัวข้อ" name="bn_toppic">
+                                <h6  class="mt-2">รายละเอียด</h6>
+                                <textarea type="text" class="form-control" placeholder="รายละเอียด" name="bn_detail"></textarea>
+                                <div class="form-group">
+                                    <h6  class="mt-2">เพิ่มรูปภาพ</h6>
+                                    <input type="file" class="form-control" name="bn_img" id="imgInp" accept="image/png, image/gif, image/jpeg" required>
+                                    <div class="valid-feedback"></div>
+                                    <div class="invalid-feedback">กรุณาเลือกรูปภาพ</div>
+                                </div>
+                                <img style="width:750px;margin-top:10px;" class="img-fluid rounded" id="blah">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">ยกเลิก</button>
@@ -126,13 +128,8 @@ require "../backend/manage-banner.php";
                                 <td><?php echo $row['bn_toppic']; ?></td>
                                 <td><button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['bn_id']; ?>">ดูรายละเอียด</button></td>
                                 <td>
-
-                                    <div class="row">
-                                        <div class="col-sm-6 mt-1"> <a style="width: 100%;" href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning col-md-6" style="margin-left: 5px;">แก้ไข</a>
-                                        </div>
-                                        <div class="col-sm-6 mt-1"> <a style="width: 100%;" href="../backend/manage-banner.php?bn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger col-md-6" style="margin-left: 5px;">ลบ</a>
-                                        </div>
-                                    </div>
+                                    <a style="width: 30%;" href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning" style="margin-left: 5px;">แก้ไข</a>
+                                    <a style="width: 30%;" href="../backend/manage-banner.php?delbn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger" style="margin-left: 5px;">ลบ</a>
                                 </td>
                             </tr>
                         <?php $count_n++;
@@ -164,6 +161,13 @@ require "../backend/manage-banner.php";
         })
 
     });
+
+    imgInp.onchange = evt => {
+        const [file] = imgInp.files
+        if (file) {
+            blah.src = URL.createObjectURL(file)
+        }
+    }
 </script>
 
 

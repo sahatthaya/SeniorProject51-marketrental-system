@@ -5,6 +5,14 @@
     font-family: 'Mitr', sans-serif;
 }
 
+.prevent-select {
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
 
 :root {
     --white: white;
@@ -12,15 +20,15 @@
     --main: #0032b5;
     --light: #6dd4f7;
     --dark: #02155A;
-    --freshblue:#0daafd;
+    --freshblue: #0daafd;
 
     --icon: #00288F;
     --link: #0d6efd;
     --linkhover: #02155A;
 
     --white: #fff;
-    --yellow:#FCBC41;
-    --input:#EDEEFF;
+    --yellow: #FCBC41;
+    --input: #EDEEFF;
 }
 
 
@@ -54,9 +62,9 @@ h1 {
 }
 
 .profileicon:hover {
-    color:var(--link);
+    color: var(--link);
     transition: 0.5s ease;
-    background:var(--white);
+    background: var(--white);
     box-shadow: inset 5px 5px 10px #dbdbdb,
         inset -5px -5px 10px #ffffff;
 }
@@ -78,7 +86,7 @@ h1 {
     right: -450px;
     height: 100%;
     width: 400px;
-    background:var(--white);
+    background: var(--white);
     z-index: 1000;
     transition: all 0.5s ease;
     border-top-left-radius: 15px;
@@ -89,7 +97,7 @@ h1 {
     margin: 10px;
     font-size: 50px;
     color: var(--dark);
-    
+
 }
 
 #close-profile-btn:hover {
@@ -145,14 +153,16 @@ a.link {
 }
 
 a.link:hover {
-    color:var(--yellow);
+    color: var(--yellow);
     transition: 0.5s ease;
 }
-.authicon{
-    color:var(--main);
-    font-size:72px;
-    margin:0 40%;
+
+.authicon {
+    color: var(--main);
+    font-size: 72px;
+    margin: 0 40%;
 }
+
 /* ----------------------------------------4.SignIn------------------------------------------------------------ */
 
 
@@ -220,7 +230,7 @@ a.link:hover {
         display: none;
     }
 
-    .profileicon{
+    .profileicon {
         height: 50px;
         width: 50px;
         border-radius: 100px;
@@ -232,17 +242,19 @@ a.link:hover {
         width: 35px;
         transition: all 0.4s ease;
     }
-    #close-profile-btn{
+
+    #close-profile-btn {
         margin: 20px;
         position: absolute;
     }
 
     .authicon {
-       display: none !important;
+        display: none !important;
     }
-    #signIn ,#signUp ,#forgotpsw{
+
+    #signIn, #signUp, #forgotpsw {
         margin-top: 80px;
     }
 
-    
+
 }

@@ -36,7 +36,7 @@ require "backend/auth-signup.php";
         <div id="signIn">
             <i class='bx bxs-user-circle authicon'></i>
             <h1>เข้าสู่ระบบ</h1>
-            <form id="signin" method="POST">
+            <form method="POST">
                 <div class="des_input">ชื่อบัญชีผู้ใช้
                 </div>
                 <input class="input inputcolor" type="text" name="username-login" placeholder="ชื่อบัญชีผู้ใช้" required>
@@ -54,7 +54,7 @@ require "backend/auth-signup.php";
             <i class='bx bxs-user-circle authicon'></i>
 
             <h1>ลืมรหัสผ่าน</h1>
-            <form id="signin" method="POST">
+            <form method="POST">
                 <div class="des_input">ชื่อบัญชีผู้ใช้
                 </div>
                 <input class="input inputcolor" type="text" name="username-forgot" required>
@@ -71,14 +71,14 @@ require "backend/auth-signup.php";
             <i class='bx bxs-user-circle authicon'></i>
 
             <h1>สมัครสมาชิก</h1>
-            <form id="signin" method="POST">
+            <form method="POST">
                 <div class="des_input">ประเภทผู้ใช้</div>
                 <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="1" checked>
                 <label class="form-check-label" for="flexRadioDefault1">
                     พ่อค้า/แม่ค้า
                 </label>
-                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault1" value="2">
-                <label class="form-check-label" for="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="type" id="flexRadioDefault2" value="2">
+                <label class="form-check-label" for="flexRadioDefault2">
                     เจ้าของตลาด
                 </label>
                 <div class="des_input mt-1">ชื่อบัญชีผู้ใช้</div>

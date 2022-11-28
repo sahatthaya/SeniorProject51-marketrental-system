@@ -54,7 +54,7 @@ require "../backend/manage-applicant.php";
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                                 <td><?php echo $row['market_name']; ?></td>
-                                <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
+                                <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                                 <td>
                                     <div style="background-color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div>
                                 </td>
@@ -71,9 +71,10 @@ require "../backend/manage-applicant.php";
 <script>
     // apply detail popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
+        $('.modal_data1').on('click', function(e) {
             var mkrdid = $(this).attr("id");
             $.ajax({
+                type: 'POST',
                 url: "../backend/modal-applicant.php",
                 method: "POST",
                 data: {
@@ -84,7 +85,7 @@ require "../backend/manage-applicant.php";
                     $('#bannerdataModal').modal('show');
                 }
             });
-
+            e.preventDefault();
         })
     });
 </script>
