@@ -23,7 +23,7 @@ require "../backend/manage-banner.php";
         <div id="labelbn" class="col-8">
         </div>
         <!-- Button modal -->
-        <div id="addbn" class="col-4">
+        <div id="addbn" class="col-4 ">
             <button id="addbn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 <i class='bx bxs-plus-circle'></i> เพิ่มแบนเนอร์
             </button>
@@ -128,8 +128,8 @@ require "../backend/manage-banner.php";
                                 <td><?php echo $row['bn_toppic']; ?></td>
                                 <td><button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['bn_id']; ?>">ดูรายละเอียด</button></td>
                                 <td>
-                                    <a style="width: 30%;" href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning" style="margin-left: 5px;">แก้ไข</a>
-                                    <a style="width: 30%;" href="../backend/manage-banner.php?delbn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger" style="margin-left: 5px;">ลบ</a>
+                                    <a  href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning btnac" style="margin-left: 5px; width:30%;">แก้ไข</a>
+                                    <a  href="../backend/manage-banner.php?delbn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger btnac" style="margin-left: 5px; width:30%;">ลบ</a>
                                 </td>
                             </tr>
                         <?php $count_n++;

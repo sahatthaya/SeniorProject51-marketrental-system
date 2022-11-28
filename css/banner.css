@@ -59,6 +59,7 @@ a {
     padding: auto 10px;
 }
 
+
 .parent {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -127,24 +128,17 @@ input:invalid {
 
     .carousel-inner {
         height: 15rem;
-
+        margin-left: 10px ;
     }
 
     .carousel-item img {
         height: 15rem;
     }
 
-    #addbn {
-        font-size: 14px;
-        width: 140px;
-        float: left;
-        margin-left: -10px;
-    }
-
-
     #table {
         font-size: 14px;
         padding: auto 2px !important;
+        /* margin: auto -10px 0 10px; */
     }
 
     .modal_data {
@@ -193,14 +187,6 @@ input:invalid {
         height: 15rem;
     }
 
-    #addbn {
-        font-size: 14px;
-        width: 140px;
-        float: left;
-        margin-left: -10px;
-    }
-
-
     #table {
         font-size: 14px;
         padding: auto 2px !important;
@@ -238,21 +224,26 @@ input:invalid {
     
 
     .carousel-inner {
-        height: 13rem;
+        height: 15rem;
+        width: 100%;
     }
 
     .carousel-item img {
-        height: 13rem;
+        height: 15rem;
 
-    }
-
-    #table {
-        font-size: 14px;
-        padding: auto 2px !important;
     }
 
     .modal_data {
         font-size: 14px;
+    }
+
+    #addbn{
+        margin-right: 10px ;
+    }
+
+    .btnac{
+        width: 80% !important;
+        margin: 5px auto ;
     }
 
     .col-md-4 {
@@ -276,6 +267,7 @@ input:invalid {
         width: 30% !important;
         margin: 5px;
     }
+
 }
 
 @media only screen and (max-width: 480px) {
@@ -283,4 +275,16 @@ input:invalid {
         width: 100% !important;
         margin-bottom: 10px;
     }
+
+    #table{
+        margin-left: 10px;
+        width: 100%;
+    }
+
+    #addbn{
+        font-size: 14px ;
+        width: 150px;
+        margin-right: 20px;
+    }
+
 }
