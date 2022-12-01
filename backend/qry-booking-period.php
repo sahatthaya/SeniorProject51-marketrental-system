@@ -25,7 +25,10 @@ $datefilter = $curr_date;
 $count_n = 1;
 $result3 = mysqli_query($conn, "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id' AND `show` = '1')");
 $qryrentperiod = mysqli_query($conn, "SELECT * FROM opening_period WHERE mkr_id = $mkr_id AND '$curr_date' >= `start` AND '$curr_date' <= `end` ORDER BY `start` ASC");
-
+$qryrentperiod2 = mysqli_query($conn, "SELECT * FROM opening_period WHERE mkr_id = $mkr_id AND '$curr_date' >= `start` AND '$curr_date' <= `end`  ORDER BY `start` ASC");
+$rowp = mysqli_fetch_array($qryrentperiod2);
+extract($rowp);
+$op_id = $rowp['id'];
 // max rent / rent filter
 $maxrentqry = mysqli_query($conn, "SELECT MAX(`sRent`) AS max FROM `stall` WHERE (market_id = '$mkr_id' AND `show` = '1')");
 $maxrent =  mysqli_fetch_array($maxrentqry);
@@ -34,9 +37,9 @@ $maxofrange = $maxrent['max'];
 @$max = $maxofrange;
 $val = $max;
 
-if (isset($_POST['save-range'])) {
+if (isset($_POST['save-period'])) {
     $val = str_replace(',', '', $_POST['rangeinput']);
-    $datefilter = $_POST['datefilter'];
+    $op_id = $_POST['op_id'];
 }
 $range = $val;
 

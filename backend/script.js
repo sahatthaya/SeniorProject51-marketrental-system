@@ -51,46 +51,84 @@ function nextbtn() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "block";
     document.getElementById("stepThree").style.display = "none";
-    document.getElementById("stepFour").style.display = "none";
+    // document.getElementById("stepFour").style.display = "none";
 }
 // previousbtn
 function previousbtn() {
     document.getElementById("stepOne").style.display = "block";
     document.getElementById("stepTwo").style.display = "none";
-    document.getElementById("stepFour").style.display = "none";
     document.getElementById("stepThree").style.display = "none";
 }
 function gotostep3() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "none";
-    document.getElementById("stepFour").style.display = "none";
     document.getElementById("stepThree").style.display = "block";
 }
 function backtostep2() {
     document.getElementById("stepOne").style.display = "none";
     document.getElementById("stepTwo").style.display = "block";
     document.getElementById("stepThree").style.display = "none";
-    document.getElementById("stepFour").style.display = "none";
 
 }
-function gotostep4() {
-    document.getElementById("stepOne").style.display = "none";
-    document.getElementById("stepTwo").style.display = "none";
-    document.getElementById("stepThree").style.display = "none";
-    document.getElementById("stepFour").style.display = "block";
-}
-function backtostep3() {
-    document.getElementById("stepOne").style.display = "none";
-    document.getElementById("stepTwo").style.display = "none";
-    document.getElementById("stepFour").style.display = "none";
-    document.getElementById("stepThree").style.display = "block";
+function checkform1() {
+    var datestart = document.getElementById("datestart").value;
+    var dateend = document.getElementById("dateend").value;
+
+    if (datestart != "") {
+        if (dateend != "") {
+            document.getElementById("next1").disabled = false;
+        } else {
+            document.getElementById("next1").disabled = true;
+        }
+    } else {
+        document.getElementById("next1").disabled = true;
+    }
 }
 
+function checkform2() {
+    var firstname = document.getElementById("firstname").value;
+    var lastname = document.getElementById("lastname").value;
+    var myemail = document.getElementById("myemail").value;
+    var mytel = document.getElementById("mytel").value;
+    var imgInp = document.getElementById("imgInp").value;
+    var stallName = document.getElementById("stallName").value;
+    var Infomrk = document.getElementById("Infomrk").value;
+
+    if (firstname != "") {
+        if (lastname != "") {
+            if (myemail != "") {
+                if (mytel != "") {
+                    if (imgInp != "") {
+                        if (stallName != "") {
+                            if (Infomrk != "") {
+                                document.getElementById("next2").disabled = false;
+                            } else {
+                                document.getElementById("next2").disabled = true;
+                            }
+                        } else {
+                            document.getElementById("next2").disabled = true;
+                        }
+                    } else {
+                        document.getElementById("next2").disabled = true;
+                    }
+                } else {
+                    document.getElementById("next2").disabled = true;
+                }
+            } else {
+                document.getElementById("next2").disabled = true;
+            }
+        } else {
+            document.getElementById("next2").disabled = true;
+        }
+    } else {
+        document.getElementById("next2").disabled = true;
+    }
+}
 
 // check booking info-------------------------------------------------------------------------------------------------------
 function checkInfo1() {
-    var fristname = document.getElementById("fristname").value;
-    document.getElementById("demofristname").value = fristname;
+    var firstname = document.getElementById("firstname").value;
+    document.getElementById("demofirstname").value = firstname;
 
     var lastname = document.getElementById("lastname").value;
     document.getElementById("demolastname").value = lastname;
@@ -119,8 +157,8 @@ function checkInfo1() {
 
 }
 function checkInfo2() {
-    var fristname = document.getElementById("fristname").value;
-    document.getElementById("demofristname").value = fristname;
+    var firstname = document.getElementById("firstname").value;
+    document.getElementById("demofirstname").value = firstname;
 
     var lastname = document.getElementById("lastname").value;
     document.getElementById("demolastname").value = lastname;
@@ -146,13 +184,7 @@ function checkInfo2() {
 
 }
 
-function validateForm() {
-    var fname = document.getElementById("fristname");
 
-    if (fname == "") {
-        alert("Name must be filled out");
-    }
-}
 //banner--------------------------------------------------------------------------------------------------------------  
 $(document).ready(function () {
     $("#myTable").DataTable({

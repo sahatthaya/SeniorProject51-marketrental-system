@@ -22,7 +22,7 @@ include "../backend/1-import-link.php";
     <div class="wrap">
         <div class="top">
             <h1 id="headline">ตลาดทั้งหมด</h1>
-            <form name="Searchbox" method="POST" class="search_box">
+            <!-- <form name="Searchbox" method="POST" class="search_box">
                 <div class="search-input">
                     <label for="#search">
                         <h5>ค้นหา : </h5>
@@ -33,23 +33,7 @@ include "../backend/1-import-link.php";
                     <input class="btn btn-primary " id="search" type="submit" name="searchsubmit" value="ค้นหา">
                     <input class="btn btn-danger" id="reset" type="submit" name="reset" value="รีเซ็ต">
                 </div>
-            </form>
-            <!-- <div class=" topmkr">
-                <div class="typemkr">
-                    <button class="quick " id="partner-btn" style="background-color: #317DD9;">
-                        <p> ตลาดสด</p>
-                    </button>
-                    <button class="quick" id="partner-btn" style="background-color: #005DB5;">
-                        <p> ตลาดเปิดท้าย</p>
-                    </button>
-                    <button class="quick" id="partner-btn"style="background-color: #004091;">
-                        <p> ตลาดค้าส่ง</p>
-                    </button>
-                    <button class="quick" id="partner-btn"style="background-color: #00256F;">
-                        <p> อื่นๆ</p>
-                    </button>
-                </div>
-            </div> -->
+            </form> -->
         </div>
         <hr>
         <div class="box">
@@ -75,6 +59,30 @@ include "../backend/1-import-link.php";
             endwhile ?>
         </div>
     </div>
+    <hr>
+    <?php
+    $sql2 = "SELECT * FROM market_detail WHERE (a_id='1')";
+    $query2 = mysqli_query($conn, $sql2);
+    $total_record = mysqli_num_rows($query2);
+    $total_page = ceil($total_record / $perpage);
+    ?>
+    <nav aria-label="Page navigation example" style="height: 38px;">
+        <ul class="pagination justify-content-end">
+            <li class="page-item">
+                <a class="page-link" href="all-market.php?page=1" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                <li class="page-item"><a class="page-link" href="all-market.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></a></li>
+            <?php } ?>
+            <li class="page-item">
+                <a class="page-link" href="all-market.php?page=<?php echo $total_page; ?>" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     <!-- <script type="text/javascript">
         $(document).ready(function() {
             $("#search").keyup(function() {

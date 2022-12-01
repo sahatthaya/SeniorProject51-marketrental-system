@@ -21,9 +21,9 @@ if ($_GET) {
     $rowstall = mysqli_fetch_array($qrystallinfo);
     extract($rowstall);
 }
-
+$curr_date = date("Y-m-d");
 // ตลาดที่เป็นรอบ
-$qryrentperiod= mysqli_query($conn,"SELECT * FROM opening_period LEFT JOIN booking_period ON (booking_period.op_id = opening_period.id) WHERE mkr_id = $mkr_id  ORDER BY `start` ASC");
+$qryrentperiod= mysqli_query($conn,"SELECT * FROM opening_period WHERE mkr_id = $mkr_id AND '$curr_date' >= `start` AND '$curr_date' <= `end` ORDER BY `start` ASC");
 
 // วันที่ถูกจองไปแล้ว
 $qryinvalid = mysqli_query($conn,"SELECT * FROM `booking_range` WHERE `stall_id`= $s_id");

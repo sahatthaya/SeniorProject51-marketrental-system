@@ -13,7 +13,7 @@
     include "profilebar.php";
     include "nav.php";
     include "../backend/1-connectDB.php";
-    include "../backend/qry-booking.php";
+    include "../backend/qry-booking-period.php";
     ?>
 
 </head>
@@ -31,18 +31,22 @@
     <div class="plan">
         <form method="POST">
             <div class="d-flex justify-content-between px-3">
-                <div class="hstack  px-1 gap-2">
+                <div class="hstack px-1 gap-2">
                     <label><span class="text-secondary text-decoration-underline">ค้นหา</span> แผงค้าว่างในวันที่ : </label>
-                    <div class="range-slider hstack gap-2">
-                        <input type="date" name="datefilter" value="<?php echo $datefilter ?>" min="<?php echo date("Y-m-d") ?>" class="form-control" required />บาท
+                    <div>
+                        <select name="op_id" id="daterangerent" class="form-select">
+                            <?php while ($rowcalen = mysqli_fetch_assoc($qryrentperiod)) : ?>
+                                <option value="<?php echo $rowcalen['id'] ?>">รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
+                            <?php endwhile; ?>
+                        </select>
                     </div>
                     <label>และ ราคาค่าเช่าไม่เกิน : </label>
                     <div class="hstack gap-2">
                         <input id='first' type="text" name="rangeinput" class="form-control w-50" value="<?php echo number_format($range) ?>" autocomplete="off" required />บาท
-                        <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
+                        <button type="submit" class="btn btn-outline-primary save-stall " name="save-period"><i class='bx bx-search'></i> ค้นหา </button>
                     </div>
                 </div>
-                <div class="">
+                <div>
                     <i class='ms-1 bx bx-info-circle text-primary fs-4 my-3 mx-2' data-bs-toggle="modal" data-bs-target="#stalltypemodal"></i>
                 </div>
             </div>
@@ -65,18 +69,22 @@
                 $sKey =  $row1['sKey'];
 
                 if ($row1['sRent'] <= $val) {
-                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_range ON (stall.sKey = booking_range.stall_id) JOIN zone ON (zone.z_id = stall.z_id)  WHERE (`sKey` = '$sKey'  AND '$datefilter' >= `start` AND '$datefilter' <= `end`)");
+                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_period ON (stall.sKey = booking_period.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id')");
                     $numRows = mysqli_num_rows($rsrange);
                     if ($numRows > 0) {
                         $opc = "0.2";
+                        $free = "ไม่ว่าง";
                     } else {
                         $opc = "1";
+                        $free = "ว่าง";
                     }
                 } else {
                     $opc = "0.2";
+                    $free = "";
                 }
                 ?>
-                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo $opc ?>;" id="<?php echo $count_n ?>">
+
+                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo $opc ?>" id="<?php echo $count_n ?>">
                     <div class="stallnum">
                         <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?>
                         </div>

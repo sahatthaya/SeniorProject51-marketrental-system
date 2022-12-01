@@ -48,7 +48,7 @@ require "../backend/qry-market-info.php"
     </div>
 
     <div id="quick-menu2" class="guide">
-        <a type="button" class="quick-menu2 " id="merchant-btn" href="booking.php?mkr_id=<?php echo $row['mkr_id']; ?>">
+        <a type="button" class="quick-menu2 " id="merchant-btn" href="<?php echo $pathbook ?>?mkr_id=<?php echo $row['mkr_id']; ?>">
             <i class='bx bxs-message-square-edit'></i>
             <p> สนใจเช่าจองพื้นที่ </p>
         </a>
