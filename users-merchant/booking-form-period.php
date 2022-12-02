@@ -67,7 +67,7 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input" style="display:<?php echo $display ?> ;">รอบที่ต้องการจอง</div>
                 <?php
                 $skey = $rowstall['sKey'];
-                $rsp = mysqli_query($conn, "SELECT * FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE (`stall_id` = '$skey' AND '$curr_date' >= `start` AND '$curr_date' <= `end`)");
+                $rsp = mysqli_query($conn, "SELECT * FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE (`stall_id` = '$skey' AND '$curr_date' <= `start` )");
                 $numRowscalen = mysqli_num_rows($qryrentperiod);
                 $numRowsrsp = mysqli_num_rows($rsp);
                 if ($numRowscalen == $numRowsrsp) {
