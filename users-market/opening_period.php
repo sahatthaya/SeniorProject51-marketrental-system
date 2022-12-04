@@ -166,7 +166,7 @@ if (isset($_GET['delop_id'])) {
 
     //detail req popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
+        $("body").on("click", ".modal_data1", function(event) {
             var anid = $(this).attr("id");
             $.ajax({
                 url: "../backend/modal-edit-opening-period.php",

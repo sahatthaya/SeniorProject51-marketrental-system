@@ -168,7 +168,7 @@
 <script>
     //detail popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
+        $("body").on("click", ".modal_data1", function(event) {
             var s_id = $(this).attr("id");
             $.ajax({
                 url: "../backend/modal-stallinfo.php",

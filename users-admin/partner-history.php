@@ -71,7 +71,7 @@ require "../backend/manage-applicant.php";
 <script>
     // apply detail popup
     $(document).ready(function() {
-        $('.modal_data1').on('click', function(e) {
+        $("body").on("click", ".modal_data1", function(event) {
             var mkrdid = $(this).attr("id");
             $.ajax({
                 type: 'POST',

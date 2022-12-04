@@ -69,7 +69,7 @@ $result3 = mysqli_query($conn, $data2);
 <script>
     //detail req popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
+        $("body").on("click", ".modal_data1", function(event) {
             var anid = $(this).attr("id");
             $.ajax({
                 url: "../backend/manage-annouce.php",

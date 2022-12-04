@@ -96,7 +96,7 @@ if (isset($_GET['mkr_id'])) {
 <script>
     // apply detail popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
+        $("body").on("click", ".modal_data1", function(event) {
             var id = $(this).attr("id");
             $.ajax({
                 url: "../backend/manage-complain.php",

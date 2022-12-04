@@ -80,6 +80,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     ปฏิทินการจองของ <?php echo $_SESSION['username']; ?>
                 </button>
+                <a type="button" class="btn btn-primary" href="./reciept.php">
+                    พิมพ์
+                </a>
             </div>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -124,14 +127,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                 $curr_date = date('Y/m/d');
                                 $start = strtotime(str_replace('-', '/', $row['start']));
                                 $startdate = date("Y/m/d", strtotime("-7 day", $start));
-                                if (strtotime($curr_date) < strtotime($startdate)) {
+                                if (strtotime($curr_date) <= strtotime($startdate)) {
                                     $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=range">ยกเลิกการจอง</a>';
                                 } else {
                                     $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
                                 }
                                 ?>
                                 <td>
-                                    <button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</button>
+                                    <!-- <button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</button> -->
+                                    <a name="view" type="button" class="btn btn-outline-primary" href="./reciept.php?b_id=<?php echo $row['b_id']; ?>" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
                                 </td>
                                 <td>
                                     <?php echo $cancel; ?>
@@ -172,48 +176,48 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             </div>
         </div>
     </div>
-    <?php require '../backend/modal-bookdetail.php' ?>
+    <!-- <?php require '../backend/modal-bookdetail.php' ?> -->
 </body>
 <script src="../backend/script.js"></script>
 
 <script>
-    $(document).ready(function() {
-        $('.modal_data').click(function() {
-            var b_id = $(this).attr("id");
-            $.ajax({
-                url: "../backend/modal-bookdetail.php",
-                method: "POST",
-                data: {
-                    b_id: b_id
-                },
-                success: function(data) {
-                    $('#bannerdetail').html(data);
-                    $('#bannerdataModal').modal('show');
-                }
-            });
+    // $(document).ready(function() {
+    //     $('.modal_data').click(function() {
+    //         var b_id = $(this).attr("id");
+    //         $.ajax({
+    //             url: "../backend/modal-bookdetail.php",
+    //             method: "POST",
+    //             data: {
+    //                 b_id: b_id
+    //             },
+    //             success: function(data) {
+    //                 $('#bannerdetail').html(data);
+    //                 $('#bannerdataModal').modal('show');
+    //             }
+    //         });
 
-        })
+    //     })
 
-    });
+    // });
 
-    $(document).ready(function() {
-        $('.modal_data2').click(function() {
-            var b_id2 = $(this).attr("id");
-            $.ajax({
-                url: "../backend/modal-bookdetail.php",
-                method: "POST",
-                data: {
-                    b_id2: b_id2
-                },
-                success: function(data) {
-                    $('#bannerdetail').html(data);
-                    $('#bannerdataModal').modal('show');
-                }
-            });
+    // $(document).ready(function() {
+    //     $('.modal_data2').click(function() {
+    //         var b_id2 = $(this).attr("id");
+    //         $.ajax({
+    //             url: "../backend/modal-bookdetail.php",
+    //             method: "POST",
+    //             data: {
+    //                 b_id2: b_id2
+    //             },
+    //             success: function(data) {
+    //                 $('#bannerdetail').html(data);
+    //                 $('#bannerdataModal').modal('show');
+    //             }
+    //         });
 
-        })
+    //     })
 
-    });
+    // });
     mobiscroll.setOptions({
         locale: mobiscroll.localeTh,
         theme: 'ios',

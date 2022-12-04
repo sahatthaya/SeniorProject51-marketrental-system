@@ -68,11 +68,11 @@ require "../backend/manage-annouce.php";
 <script>
     // detail req popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
-            var anid = $(this).attr("id");
+        $("body").on("click", ".modal_data1", function(event) {
+            var anid = $(this).attr('id');
             $.ajax({
-                url: "../backend/modal-applicant.php",
-                method: "POST",
+                url: '../backend/modal-applicant.php',
+                type: 'post',
                 data: {
                     anid: anid
                 },
@@ -81,8 +81,7 @@ require "../backend/manage-annouce.php";
                     $('#bannerdataModal').modal('show');
                 }
             });
-
-        })
+        });
     });
 </script>
 
