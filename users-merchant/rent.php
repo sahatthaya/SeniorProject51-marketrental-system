@@ -134,8 +134,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                 }
                                 ?>
                                 <td>
-                                    <!-- <button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</button> -->
-                                    <a name="view" type="button" class="btn btn-outline-primary" href="./reciept.php?b_id=<?php echo $row['b_id']; ?>" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
+                                    <a name="view" type="button" class="btn btn-outline-primary" href="../ExportPDF-master/reciept-booking.php?b_id=<?php echo $row['b_id']; ?>" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
                                 </td>
                                 <td>
                                     <?php echo $cancel; ?>
@@ -163,7 +162,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                                 }
                                 ?>
                                 <td>
-                                    <button name="view" type="button" class="modal_data2 btn btn-outline-primary" id="<?php echo $row2['b_id']; ?>">ดูรายละเอียด</button>
+                                    <a name="view" type="button" class="btn btn-outline-primary" href="../ExportPDF-master/reciept-booking-period.php?b_id=<?php echo $row2['b_id']; ?>" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
                                 </td>
                                 <td>
                                     <?php echo $cancel; ?>
@@ -181,43 +180,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 <script src="../backend/script.js"></script>
 
 <script>
-    // $(document).ready(function() {
-    //     $('.modal_data').click(function() {
-    //         var b_id = $(this).attr("id");
-    //         $.ajax({
-    //             url: "../backend/modal-bookdetail.php",
-    //             method: "POST",
-    //             data: {
-    //                 b_id: b_id
-    //             },
-    //             success: function(data) {
-    //                 $('#bannerdetail').html(data);
-    //                 $('#bannerdataModal').modal('show');
-    //             }
-    //         });
-
-    //     })
-
-    // });
-
-    // $(document).ready(function() {
-    //     $('.modal_data2').click(function() {
-    //         var b_id2 = $(this).attr("id");
-    //         $.ajax({
-    //             url: "../backend/modal-bookdetail.php",
-    //             method: "POST",
-    //             data: {
-    //                 b_id2: b_id2
-    //             },
-    //             success: function(data) {
-    //                 $('#bannerdetail').html(data);
-    //                 $('#bannerdataModal').modal('show');
-    //             }
-    //         });
-
-    //     })
-
-    // });
     mobiscroll.setOptions({
         locale: mobiscroll.localeTh,
         theme: 'ios',
