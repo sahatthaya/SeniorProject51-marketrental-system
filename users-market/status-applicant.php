@@ -84,7 +84,7 @@ $result = mysqli_query($conn, $data);
         $("body").on("click", ".modal_data1", function(event) {
             var mkrdid = $(this).attr("id");
             $.ajax({
-                url: "../backend/manage-applicant.php",
+                url: "../backend/modal-applicant.php",
                 method: "POST",
                 data: {
                     mkrdid: mkrdid

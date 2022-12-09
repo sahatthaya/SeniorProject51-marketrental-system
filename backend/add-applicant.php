@@ -43,7 +43,7 @@ if (isset($_POST['submit-apply'])) {
     if (
         isset($_POST["firstName"]) != "" && isset($_POST["lastName"]) != "" && isset($_POST["email"]) != "" && isset($_POST["tel"]) != ""
         && isset($idfilepath) != "" && isset($_POST["mkrName"]) != "" && isset($_POST["mkrtype"]) != "" && isset($mkrfilepath) != ""
-        && isset($opening) !="" && isset($min_rent)!=""
+        && isset($opening) != "" && isset($min_rent) != ""
     ) {
         move_uploaded_file($mkrfiletmp, $mkrpath);
         move_uploaded_file($idfiletmp, $idpath);
@@ -51,11 +51,9 @@ if (isset($_POST['submit-apply'])) {
         VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName',' $email',' $tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent') ";
         if (mysqli_query($conn, $sqlInsert)) {
             echo "<script type='text/javascript'> success(); </script>";
-            echo "<script> alert('เพิ่ท') </script>";
-            mysqli_close($conn);
+            echo '<meta http-equiv="refresh" content="1";/>';
         } else {
             echo "<script type='text/javascript'> error(); </script>";
-
         }
     }
 }

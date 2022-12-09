@@ -125,6 +125,107 @@ function checkform2() {
     }
 }
 
+function checkapp() {
+    var fname = document.getElementById("fname").value;
+    var lname = document.getElementById("lname").value;
+    var email = document.getElementById("email").value;
+    var doc = document.getElementById("doc").value;
+
+
+    if (fname != "") {
+        if (lname != "") {
+            if (email != "") {
+                if (doc != "") {
+                    document.getElementById("next").disabled = false;
+                } else {
+                    document.getElementById("next").disabled = true;
+                }
+            } else {
+                document.getElementById("next").disabled = true;
+            }
+        } else {
+            document.getElementById("next").disabled = true;
+        }
+    } else {
+        document.getElementById("next").disabled = true;
+    }
+}
+
+function checkapp2() {
+    var mkname = document.getElementById("mkname").value;
+    var mktype = document.getElementById("mktype").value;
+    var houseno = document.getElementById("houseno").value;
+    var soi = document.getElementById("soi").value;
+    var moo = document.getElementById("moo").value;
+    var road = document.getElementById("road").value;
+    var province = document.getElementById("province").value;
+    var amphure = document.getElementById("amphure").value;
+    var district = document.getElementById("district").value;
+    var zipcode = document.getElementById("zipcode").value;
+    var open = document.getElementById("open").value;
+    var des = document.getElementById("des").value;
+    var file = document.getElementById("file").value;
+    var min = document.getElementById("min").value;
+
+    if (mkname != "") {
+        if (mktype != "") {
+            if (houseno != "") {
+                if (soi != "") {
+                    if (moo != "") {
+                        if (road != "") {
+                            if (province != "") {
+                                if (amphure != "") {
+                                    if (district != "") {
+                                        if (zipcode != "") {
+                                            if (open != "") {
+                                                if (des != "") {
+                                                    if (file != "") {
+                                                        if (min != "") {
+                                                            document.getElementById("submit").disabled = false;
+                                                        } else {
+                                                            document.getElementById("submit").disabled = true;
+                                                        }
+                                                    } else {
+                                                        document.getElementById("submit").disabled = true;
+                                                    }
+                                                } else {
+                                                    document.getElementById("submit").disabled = true;
+                                                }
+                                            } else {
+                                                document.getElementById("submit").disabled = true;
+                                            }
+                                        } else {
+                                            document.getElementById("submit").disabled = true;
+                                        }
+                                    } else {
+                                        document.getElementById("submit").disabled = true;
+                                    }
+                                } else {
+                                    document.getElementById("submit").disabled = true;
+                                }
+                            } else {
+                                document.getElementById("submit").disabled = true;
+                            }
+                        } else {
+                            document.getElementById("submit").disabled = true;
+                        }
+                    } else {
+                        document.getElementById("submit").disabled = true;
+                    }
+                } else {
+                    document.getElementById("submit").disabled = true;
+                }
+            } else {
+                document.getElementById("submit").disabled = true;
+            }
+        } else {
+            document.getElementById("submit").disabled = true;
+        }
+    } else {
+        document.getElementById("submit").disabled = true;
+    }
+}
+
 // check booking info-------------------------------------------------------------------------------------------------------
 function checkInfo1() {
     var firstname = document.getElementById("firstname").value;

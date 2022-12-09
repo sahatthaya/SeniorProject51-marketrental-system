@@ -22,7 +22,7 @@ require "../backend/edit-profile.php";
 
 <body>
     <h1 id="headline">แก้ไขข้อมูลบัญชีผู้ใช้</h1>
-    <form id="signin" method="POST">
+    <form id="signin" method="POST" class="was-validated">
         <div class="row border shadow-sm pt-5 pb-3 px-4 mt-3 mb-3 rounded">
             <div class="col-12">
                 <label for="inputAddress " class="form-label des_input">ชื่อบัญชีผู้ใช้</label>

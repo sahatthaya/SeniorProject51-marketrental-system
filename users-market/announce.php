@@ -31,7 +31,7 @@ require "../backend/add-applicant.php";
 
 <body class="mt-5">
     <div class="applybox">
-        <form id="applyform" method="POST" enctype="multipart/form-data">
+        <form id="applyform" method="POST" enctype="multipart/form-data" class="was-validated">
             <div class="form-outer" style="overflow: visible;">
                 <h1 id="headline">กรอกข้อมูลเพื่อสร้างคำร้องขอประชาสัมพันธ์</h1>
 
@@ -44,7 +44,7 @@ require "../backend/add-applicant.php";
                     <textarea name="bn_detail" class=" form-control" placeholder="รายละเอียด" id="" cols="30" rows="5" style="border-radius: 5px;resize: none; margin-left:5px;" required></textarea>
 
                     <div class="des_input">รูปภาพ</div>
-                    <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_img" required>
+                    <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_img" accept="image/jpeg,image/gif,image/png" required>
                     <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit" value="ยืนยันคำร้อง">
                 </div>
             </div>
