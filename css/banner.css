@@ -44,6 +44,8 @@ body {
     border-radius: 5px;
 }
 
+
+
 #headline {
     text-align: center;
 }
@@ -56,6 +58,7 @@ a {
 #table thead tr th {
     padding: auto 10px;
 }
+
 
 .parent {
     display: grid;
@@ -107,13 +110,59 @@ input:invalid {
 
 /* ------------------------------------responsive-------------------------- */
 @media(max-width: 992px) {
-    .form-control {
-        width: 30% !important;
-    }
-
     .dataTables_scrollHead {
         overflow: auto !important;
     }
+
+    .dataTables_scrollBody {
+        overflow: auto !important;
+    }
+
+    #headline {
+        font-size: 25px;
+    }
+
+    #labelbn {
+        font-size: 20px;
+    }
+
+    .carousel-inner {
+        height: 15rem;
+        margin-left: 10px;
+    }
+
+    .carousel-item img {
+        height: 15rem;
+    }
+
+    #table {
+        font-size: 14px;
+        padding: auto 2px !important;
+    }
+
+    .modal_data {
+        font-size: 14px;
+    }
+
+    .input-group {
+        margin-top: 5px;
+    }
+
+    .col-md-4 {
+        margin: 7px 2px 0px 1px !important;
+        width: 100% !important;
+    }
+
+    .submit {
+        width: 100% !important;
+    }
+
+    .col-sm-10 {
+        margin: 0px !important;
+    }
+
+
+
 }
 
 @media only screen and (max-width: 768px) {
@@ -136,12 +185,6 @@ input:invalid {
 
     .carousel-item img {
         height: 15rem;
-    }
-
-    #addbn {
-        font-size: 14px;
-        width: 140px;
-        margin-right: 60px;
     }
 
     #table {
@@ -177,31 +220,30 @@ input:invalid {
     body {
         padding-right: 10px;
         margin: 60px 10px 0px 15px !important;
-
     }
 
-    .carousel-inner {
-        height: 13rem;
 
+    .carousel-inner {
+        height: 15rem;
+        width: 100%;
     }
 
     .carousel-item img {
-        height: 13rem;
-    }
+        height: 15rem;
 
-    #addbn {
-        font-size: 14px;
-        width: 140px;
-        margin-right: 70px;
-    }
-
-    #table {
-        font-size: 14px;
-        padding: auto 2px !important;
     }
 
     .modal_data {
         font-size: 14px;
+    }
+
+    #addbn {
+        margin-right: 10px;
+    }
+
+    .btnac {
+        width: 80% !important;
+        margin: 5px auto;
     }
 
     .col-md-4 {
@@ -213,5 +255,36 @@ input:invalid {
         margin-bottom: 10px;
     }
 
+    .pe-0 {
+        margin-top: 7px !important;
+    }
+
+    .me-0 {
+        margin-left: -12px !important;
+    }
+
+    .b-date .form-control {
+        width: 30% !important;
+        margin: 5px;
+    }
+
+}
+
+@media only screen and (max-width: 480px) {
+    .add-btn {
+        width: 100% !important;
+        margin-bottom: 10px;
+    }
+
+    #table {
+        margin-left: 10px;
+        width: 100%;
+    }
+
+    #addbn {
+        font-size: 14px;
+        width: 150px;
+        margin-right: 20px;
+    }
 
 }
