@@ -144,7 +144,7 @@ require "../backend/manage-banner.php";
 <script>
     //detail popup
     $(document).ready(function() {
-        $('.modal_data').click(function() {
+        $("body").on("click", ".modal_data", function(event) {
             var bannerid = $(this).attr("id");
             $.ajax({
                 url: "../backend/modal-banner.php",

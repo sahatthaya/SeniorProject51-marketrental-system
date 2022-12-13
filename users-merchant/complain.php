@@ -70,7 +70,7 @@ require "../backend/add-complain.php";
 
                 <label>หัวเรื่อง : </label>
                 <input class="subject" name="subject" type="text" required>
-                <input class="compfile" name="compfile" type="file">
+                <input class="compfile" name="compfile" type="file" accept="image/png, image/gif, image/jpeg">
                 <br>
                 <label>เรื่องร้องเรียน : </label>
                 <br>

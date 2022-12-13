@@ -25,7 +25,7 @@ require "backend/auth-signup.php";
 ?>
 
 <body>
-    <div class="profileicon" onclick="signIn()">
+    <div class="profileicon prevent-select" onclick="signIn()">
         <p>เข้าสู่ระบบ/สมัครสมาชิก</p>
         <i id="profileicon" class='bx bxs-user-circle bx-md'></i>
     </div>

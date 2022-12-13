@@ -36,14 +36,14 @@ $rowus = mysqli_fetch_array($qry);
             <li class="breadcrumb-item active fs-5" aria-current="page">กรอกข้อมูลเพื่อจองแผงค้า <?php echo $row['mkr_name']; ?></li>
         </ol>
     </nav>
-    <form id="checkoutForm" method="POST" action="../backend/checkout-dept.php" enctype="multipart/form-data" novalidate>
+    <form id="checkoutForm" method="POST" action="../backend/checkout-dept.php" enctype="multipart/form-data" class="was-validated">
         <div class="form-outer form-group " style="overflow: visible;">
             <h1 id="headline">กรอกข้อมูลเพื่อจองแผงค้า</h1>
             <!-- form--1 -->
             <div id="stepOne" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
                 <h4 class="p-0"><span class="text-secondary">ขั้นที่ 1</span> ข้อมูลแผงค้าและเลือกวันที่ต้องการจอง</h4>
                 <div class="progress p-0 my-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width:25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1/4 </div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width:33.3%" aria-valuenow="33.3" aria-valuemin="0" aria-valuemax="100">1/3 </div>
                 </div>
                 <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="opentype" value="<?php echo $opentype ?>" required hidden>
                 <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="stall_id" value="<?php echo $s_id ?>" required hidden>
@@ -66,126 +66,161 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input ">วันที่ต้องการเช่า <span class="fs-6">(การจองขั้นต่ำ <?php echo $row['min_rent'] ?>)</span></div>
                 <div class="w-100 mb-2 p-0">
                     <div id="demo-range-selection" name="daterange"></div>
-                    <input id="datestart" name="start" hidden />
-                    <input id="dateend" name="end" hidden />
+                    <input id="datestart" name="start" onchange="checkform1()" hidden />
+                    <input id="dateend" name="end" onchange="checkform1()" hidden />
                 </div>
-                <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn(),validateForm()" id="next">
+                <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn()" id="next1" disabled>
 
             </div>
             <!-- form--2 -->
             <div id="stepTwo" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
                 <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> กรอกข้อมูลส่วนตัวและข้อมูลร้านค้า</h4>
                 <div class="progress p-0 my-2 mb-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width:  50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">2/4 </div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width:  66.6%" aria-valuenow="66.6" aria-valuemin="0" aria-valuemax="100">2/3 </div>
                 </div>
                 <h5 class="p-0 mt-4 fw-semibold">ข้อมูลส่วนตัว</h5>
                 <hr class="m-1">
                 <div class="des_input">ชื่อ</div>
-                <input class="form-control col-6" type="text" id="fristname" placeholder="ชื่อ" name="firstName" value="<?php echo $rowus['firstName'] ?>" required autofocus>
+                <input class="form-control col-6" type="text" id="firstname" placeholder="ชื่อ" name="firstName" value="<?php echo $rowus['firstName'] ?>" onchange="checkform2()" required autofocus>
                 <div class="des_input">นามสกุล</div>
-                <input class="form-control col-6" type="text" id="lastname" placeholder="นามสกุล" name="lastName" value="<?php echo $rowus['lastName'] ?>" required>
+                <input class="form-control col-6" type="text" id="lastname" placeholder="นามสกุล" name="lastName" value="<?php echo $rowus['lastName'] ?>" onchange="checkform2()" required>
                 <div class="des_input">อีเมล</div>
-                <input class="sqr-input col-12 form-control " id="myemail" type="email" placeholder="อีเมล" name="email" value="<?php echo $rowus['email'] ?>" required>
+                <input class="sqr-input col-12 form-control " id="myemail" type="email" placeholder="อีเมล" name="email" value="<?php echo $rowus['email'] ?>" onchange="checkform2()" required>
                 <div class="des_input">เบอร์โทรศัพท์</div>
-                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="tel" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $rowus['tel'] ?>" required>
+                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="tel" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $rowus['tel'] ?>" onchange="checkform2()" required>
                 <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
-                <input class="sqr-input col-12 form-control" id="imgInp" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" required>
+                <input class="sqr-input col-12 form-control" id="imgInp" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" onchange="checkform2()" required>
                 <h5 class="p-0 mt-4 fw-semibold">ข้อมูลร้านค้า</h5>
                 <hr class="m-1">
                 <div class="des_input">ชื่อร้านค้า</div>
-                <input class=" col-12 form-control" id="stallName" type="text" placeholder="ชื่อร้านค้า" name="storeName" required>
+                <input class=" col-12 form-control" id="stallName" type="text" placeholder="ชื่อร้านค้า" name="storeName" onchange="checkform2()" required>
 
                 <div class="des_input hstack gap-2">รายละเอียดสินค้าโดยสังเขป
-                    <div data-toggle="tooltip" title="เช่น ร้านขายเครื่องดื่มสุขภาพ ทำจากผักและผลไม้" class="mt-1">
+                    <div data-toggle="tooltip" title="เช่น ร้านขายเครื่องดื่มสุขภาพ ทำจากผักและผลไม้" onchange="checkform2()" class="mt-1">
                         <i class='bx bx-info-circle'></i>
                     </div>
                 </div>
                 <div class="form-floating p-0">
-                    <textarea class="form-control mb-2" cols="30" rows="10" id="Infomrk" name="shopdes" style="padding-top:5px !important ; resize: none;" required></textarea>
+                    <textarea class="form-control mb-2" cols="30" rows="10" id="Infomrk" name="shopdes" style="padding-top:5px !important ; resize: none;" onchange="checkform2()" required></textarea>
                 </div>
                 <hr class="m-0 my-3">
                 <input type="button" name="previous" class="btn btn-info" style="color: white;margin-top:0 !important;" value="ย้อนกลับ" onclick="previousbtn()" id="back">
-                <input type="button" name="next" class=" btn btn-primary  mt-3" value="ถัดไป" onclick="gotostep3(),<?php echo ($display == 'block' ? 'checkInfo2()' : 'checkInfo1()'); ?>" id="next">
+                <input type="button" name="next" class=" btn btn-primary  mt-3" value="ถัดไป" onclick="gotostep3(),<?php echo ($display == 'block' ? 'checkInfo2()' : 'checkInfo1()'); ?>" id="next2" disabled>
             </div>
 
             <!-- form--3 -->
             <div id="stepThree" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
-
-                <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 3</span> ตรวจสอบและยืนยันข้อมูล</h4>
+                <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 3 </span>ยืนยันข้อมูลและชำระเงิน</h4>
                 <div class="progress p-0 my-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 75%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">3/4 </div>
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">3/3 </div>
                 </div>
-                <h5 class="p-0 mt-4 fw-semibold">ข้อมูลการจอง</h5>
-                <hr class="m-1">
-                <div class="row p-0 m-0">
-                    <div class="col-6 ps-0">
-                        <div class="des_input">รหัสแผงค้า</div>
-                        <input class="form-control col-6" value="<?php echo $rowstall['sID'] ?>" disabled>
+                <div class="accordion p-0 accordion-flush" id="accordionPanelsStayOpenExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                            <div class="border-bottom" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                <h5 class="p-0 mt-4 fw-semibold d-flex justify-content-between">ข้อมูลการจอง <i class='bx bx-chevron-down fs-2'></i></h5>
+                            </div>
+                        </h2>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                            <div class="accordion-body px-0">
+                                <div class="row p-0 m-0">
+                                    <div class="col-6 ps-0">
+                                        <div class="des_input">รหัสแผงค้า</div>
+                                        <input class="form-control col-6" value="<?php echo $rowstall['sID'] ?>" disabled>
+                                    </div>
+                                    <div class="col-6 pe-0">
+                                        <div class="des_input">ขนาดพื้นที่</div>
+                                        <input class="form-control col-6" value="<?php echo $rowstall['sWidth'] . ' * ' . $rowstall['sHeight'] . ' เมตร' ?>" disabled>
+                                    </div>
+                                </div>
+                                <div class="des_input">ราคาค่าเช่า</div>
+                                <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
+                                <div class="des_input">ราคาค่ามัดจำ</div>
+                                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                                <div class="row px-0 mx-0">
+                                    <div class="col-6 ps-0">
+                                        <div class="des_input" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;">วันที่เริ่มเช่า</div>
+                                        <input class="form-control col-6" type="text" id="demodatestart" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;" disabled>
+                                    </div>
+                                    <div class="col-6 pe-0">
+                                        <div class="des_input" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;">วันที่สิ้นสุดการเช่า</div>
+                                        <input class="form-control col-6" type="text" id="demodateend" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-6 pe-0">
-                        <div class="des_input">ขนาดพื้นที่</div>
-                        <input class="form-control col-6" value="<?php echo $rowstall['sWidth'] . ' * ' . $rowstall['sHeight'] . ' เมตร' ?>" disabled>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                            <div class="border-bottom" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                <h5 class="p-0 mt-4 fw-semibold d-flex justify-content-between">ข้อมูลส่วนตัว <i class='bx bx-chevron-down fs-2'></i></h5>
+                            </div>
+                        </h2>
+                        <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                            <div class="accordion-body px-0">
+                                <div class="row p-0 m-0">
+                                    <div class="col-6 ps-0">
+                                        <div class="des_input">ชื่อ</div>
+                                        <input class="form-control col-6" id="demofirstname" disabled>
+                                    </div>
+                                    <div class="col-6 mw-100 pe-0">
+                                        <div class="des_input">นามสกุล</div>
+                                        <input class="form-control col-6" id="demolastname" disabled>
+                                    </div>
+                                </div>
+                                <div class="row p-0 m-0">
+                                    <div class="col-6 ps-0">
+                                        <div class="des_input">อีเมล</div>
+                                        <input class="form-control col-6" id="demoemail" disabled>
+                                    </div>
+                                    <div class="col-6 pe-0">
+                                        <div class="des_input">เบอร์โทรศัพท์</div>
+                                        <input class="form-control col-6" id="demotel" disabled>
+                                    </div>
+                                </div>
+                                <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
+                                <input class="form-control col-6" id="demoimg" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                            <div class="border-bottom" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                <h5 class="p-0 mt-4 fw-semibold d-flex justify-content-between">ข้อมูลร้านค้า <i class='bx bx-chevron-down fs-2'></i></h5>
+                            </div>
+                        </h2>
+                        <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                            <div class="accordion-body px-0">
+                                <div class="des_input">ชื่อร้านค้า</div>
+                                <input class="form-control col-6" id="demostallName" disabled>
+                                <div class="des_input">รายละเอียดสินค้าโดยสังเขป</div>
+                                <div class="form-floating p-0">
+                                    <textarea class="form-control" cols="30" rows="10" id="demoInfomrk" style="padding-top:5px !important ; resize: none;" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item" hidden>
+                        <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                            <div class="border-bottom" data-bs-toggle="collapse" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                <h5 class="p-0 mt-4 fw-semibold d-flex justify-content-between">ข้อมูลร้านค้า <i class='bx bx-chevron-down fs-2'></i></h5>
+                            </div>
+                        </h2>
+                        <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                            <div class="accordion-body px-0">
+                                <div class="des_input">ชื่อร้านค้า</div>
+                                <input class="form-control col-6" id="demostallName" disabled>
+                                <div class="des_input">รายละเอียดสินค้าโดยสังเขป</div>
+                                <div class="form-floating p-0">
+                                    <textarea class="form-control" cols="30" rows="10" id="demoInfomrk" style="padding-top:5px !important ; resize: none;" disabled></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="des_input">ราคาค่าเช่า</div>
-                <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
-                <div class="des_input">ราคาค่ามัดจำ</div>
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
-                <div class="row px-0 mx-0">
-                    <div class="col-6 ps-0">
-                        <div class="des_input" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;">วันที่เริ่มเช่า</div>
-                        <input class="form-control col-6" type="text" id="demodatestart" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;" disabled>
-                    </div>
-                    <div class="col-6 pe-0">
-                        <div class="des_input" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;">วันที่สิ้นสุดการเช่า</div>
-                        <input class="form-control col-6" type="text" id="demodateend" style="display:<?php echo ($display == 'block' ? 'none' : 'block'); ?>;" disabled>
-                    </div>
-                </div>
-                <h5 class="p-0 mt-4 fw-semibold">ข้อมูลส่วนตัว</h5>
-                <hr class="m-1">
-                <div class="row p-0 m-0">
-                    <div class="col-6 ps-0">
-                        <div class="des_input">ชื่อ</div>
-                        <input class="form-control col-6" id="demofristname" disabled>
-                    </div>
-                    <div class="col-6 mw-100 pe-0">
-                        <div class="des_input">นามสกุล</div>
-                        <input class="form-control col-6" id="demolastname" disabled>
-                    </div>
-                </div>
-                <div class="row p-0 m-0">
-                    <div class="col-6 ps-0">
-                        <div class="des_input">อีเมล</div>
-                        <input class="form-control col-6" id="demoemail" disabled>
-                    </div>
-                    <div class="col-6 pe-0">
-                        <div class="des_input">เบอร์โทรศัพท์</div>
-                        <input class="form-control col-6" id="demotel" disabled>
-                    </div>
-                </div>
-                <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
-                <input class="form-control col-6" id="demoimg" disabled>
 
-                <h5 class="p-0 mt-4 fw-semibold">ข้อมูลร้านค้า</h5>
+                <h5 class="p-0 mt-4 fw-semibold">ข้อมูลการชำระเงิน</h5>
                 <hr class="m-1">
-
-                <div class="des_input">ชื่อร้านค้า</div>
-                <input class="form-control col-6" id="demostallName" disabled>
-                <div class="des_input">รายละเอียดสินค้าโดยสังเขป</div>
-                <div class="form-floating p-0">
-                    <textarea class="form-control" cols="30" rows="10" id="demoInfomrk" style="padding-top:5px !important ; resize: none;" disabled></textarea>
-                </div>
-
-                <hr class="m-0 my-2">
-                <input type="button" name="previous" class="btn btn-info mt-3" style="color: white;" value="ย้อนกลับ" onclick="backtostep2()" id="back">
-                <input type="button" name="next" class=" btn btn-primary  mt-3" value="ถัดไป" onclick="gotostep4()" id="next">
-            </div>
-            <!-- form4 -->
-            <div id="stepFour" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
-                <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 4</span> ชำระค่ามัดจำ</h4>
-                <div class="progress p-0 my-2">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">4/4 </div>
-                </div>
                 <div class="des_input">ชำระไปยัง</div>
                 <input class="form-control col-6" value="<?php echo $row['mkr_name']; ?>" disabled>
                 <div class="des_input">ค่ามัดจำ</div>
@@ -199,7 +234,6 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input">รวมทั้งสิ้น</div>
                 <input class="form-control col-6" value="<?php echo $price . ' บาท' ?>" disabled>
                 <div class="text-danger">*หมายเหตุ* <br />1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br>3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
-                <input type="button" name="previous" class="btn btn-info mt-3" style="color: white;" value="ย้อนกลับ" onclick="backtostep3()" id="back">
                 <input type="hidden" name="omiseToken">
                 <input type="hidden" name="omiseSource">
                 <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept'] ?>">
@@ -209,7 +243,9 @@ $rowus = mysqli_fetch_array($qry);
                 @$totalcal = $price * 100;
                 @$total = $price;
                 ?>
+                 <hr class="m-0 my-2">
                 <input name="total" value="<?php echo $totalcal ?>" hidden>
+                <input type="button" name="previous" class="btn btn-info mt-3" style="color: white;" value="ย้อนกลับ" onclick="backtostep2()" id="back">
                 <input type="submit" id="checkoutButton" class="btn btn-info mt-3" style="background-color: #000374;color:white;" value="ชำระเงิน" />
             </div>
         </div>
@@ -322,6 +358,8 @@ $rowus = mysqli_fetch_array($qry);
         ]
 
     });
+
+
 </script>
 
 

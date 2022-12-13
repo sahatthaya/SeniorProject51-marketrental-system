@@ -13,7 +13,6 @@
     include "profilebar.php";
     include "nav.php";
     include "../backend/1-connectDB.php";
-    include "../backend/1-import-link.php";
     include "../backend/qry-booking.php";
     ?>
 
@@ -31,16 +30,19 @@
     <h1>จองแผงค้า<?php echo $row['mkr_name']; ?><i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
     <div class="plan">
         <form method="POST">
-            <div class="row px-3">
-                <div class="hstack  px-1 gap-2 col-sm-6">
-                    <label>ค้นหา ราคาค่าเช่าไม่เกิน : </label>
+            <div class="d-flex justify-content-between px-3">
+                <div class="hstack  px-1 gap-2">
+                    <label><span class="text-secondary text-decoration-underline">ค้นหา</span> แผงค้าว่างในวันที่ : </label>
                     <div class="range-slider hstack gap-2">
-                        <input id="range" name="rangeinput" class="range-slider__range form-range" type="range" value="<?php echo $range ?>" min="0" step="100" max="<?php echo $max ?>">
-                        <div class="" style="min-width:55px;"><span id="showrangevalue" class="range-slider__value"><?php echo $range ?></span></div>บาท
+                        <input type="date" name="datefilter" value="<?php echo $datefilter ?>" min="<?php echo date("Y-m-d") ?>" class="form-control" required />บาท
                     </div>
-                    <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
+                    <label>และ ราคาค่าเช่าไม่เกิน : </label>
+                    <div class="hstack gap-2">
+                        <input id='first' type="text" name="rangeinput" class="form-control w-50" value="<?php echo number_format($range) ?>" autocomplete="off" required />บาท
+                        <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
+                    </div>
                 </div>
-                <div class="text-end col-sm-6">
+                <div class="">
                     <i class='ms-1 bx bx-info-circle text-primary fs-4 my-3 mx-2' data-bs-toggle="modal" data-bs-target="#stalltypemodal"></i>
                 </div>
             </div>
@@ -59,19 +61,24 @@
                 @$height = ($h * $ratio_plan);
 
                 @$fs = ($ratio_plan / 3);
-                ?>
+                $opc = "";
+                $sKey =  $row1['sKey'];
 
-                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo ($row1['sRent'] < $val ? "1" : "0.2"); ?>;" id="<?php echo $count_n ?>">
+                if ($row1['sRent'] <= $val) {
+                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_range ON (stall.sKey = booking_range.stall_id) JOIN zone ON (zone.z_id = stall.z_id)  WHERE (`sKey` = '$sKey'  AND '$datefilter' >= `start` AND '$datefilter' <= `end`)");
+                    $numRows = mysqli_num_rows($rsrange);
+                    if ($numRows > 0) {
+                        $opc = "0.2";
+                    } else {
+                        $opc = "1";
+                    }
+                } else {
+                    $opc = "0.2";
+                }
+                ?>
+                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo $opc ?>;" id="<?php echo $count_n ?>">
                     <div class="stallnum">
-                        <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?></div>
-                        <div id="despos">
-                            <input type="text" value="<?php echo $row1['sKey'] ?>" id="<?php echo "id" . $count_n ?>" name="<?php echo "id" . $count_n ?>" hidden>
-                            <input type="text" value="<?php echo $row1['left'] ?>" id="<?php echo "left" . $count_n ?>" name="<?php echo "left" . $count_n ?>" hidden>
-                            <input type="text" value="<?php echo $row1['top'] ?>" id="<?php echo "top" . $count_n ?>" name="<?php echo "top" . $count_n ?>" hidden>
-                        </div>
-                        <div id="dessize">
-                            <input type="text" value="<?php echo $row1['w'] ?>" id="<?php echo "w" . $count_n ?>" name="<?php echo "w" . $count_n ?>" hidden>
-                            <input type="text" value="<?php echo $row1['h'] ?>" id="<?php echo "h" . $count_n ?>" name="<?php echo "h" . $count_n ?>" hidden>
+                        <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?>
                         </div>
                     </div>
                 </div>
@@ -161,7 +168,7 @@
 <script>
     //detail popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
+        $("body").on("click", ".modal_data1", function(event) {
             var s_id = $(this).attr("id");
             $.ajax({
                 url: "../backend/modal-stallinfo.php",
@@ -178,26 +185,20 @@
         })
     });
 
-    // range input
-    var rangeSlider = function() {
-        var slider = $('.range-slider'),
-            range = $('.range-slider__range'),
-            value = $('.range-slider__value');
+    $("#first").keyup(function(event) {
 
-        slider.each(function() {
+        // skip for arrow keys
+        if (event.which >= 37 && event.which <= 40) return;
 
-            value.each(function() {
-                var value = $(this).prev().attr('value');
-                $(this).html(value);
-            });
-
-            range.on('input', function() {
-                $(this).next(value).html(this.value);
-            });
+        // format number
+        $(this).val(function(index, value) {
+            return value
+                .replace(/\D/g, "")
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
-    };
 
-    rangeSlider();
+        var firstValue = Number($('#first').val().replace(/,/g, ''));
+    });
 </script>
 
 </html>

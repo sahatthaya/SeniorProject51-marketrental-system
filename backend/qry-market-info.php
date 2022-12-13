@@ -38,9 +38,10 @@ if ($row['opening'] == "เปิดทำการเป็นรอบ") {
         </div>
     </div>
 </div>';
+    $pathbook = "booking-period.php";
 } else {
     $opening_period = '';
+    $pathbook = "booking.php";
 }
 
 mysqli_close($conn);
-?>

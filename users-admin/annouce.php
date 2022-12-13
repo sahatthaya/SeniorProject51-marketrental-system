@@ -71,7 +71,7 @@ require "../backend/manage-annouce.php";
 <script>
     //detail req popup
     $(document).ready(function() {
-        $('.modal_data1').click(function() {
+        $("body").on("click", ".modal_data1", function(event) {
             var anid = $(this).attr("id");
             $.ajax({
                 url: "../backend/modal-applicant.php",

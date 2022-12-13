@@ -24,7 +24,7 @@ extract($lg);
 
 <body>
     <div>
-        <div class="profileicon " type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+        <div class="profileicon prevent-select" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
             <p>ผู้ใช้ทั่วไป : <?php echo $_SESSION['username']; ?></p>
             <i id="profileicon" class='bx bxs-user-circle bx-md'></i>
         </div>

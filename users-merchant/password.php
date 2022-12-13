@@ -19,7 +19,7 @@ include "../backend/edit-profile.php";
 
 <body>
     <h1 id="headline">เปลี่ยนรหัสผ่าน</h1>
-    <form method="POST" id="edtpsw">
+    <form method="POST" id="edtpsw" class="was-validated">
         <div class="row border shadow-sm pt-5 pb-3 px-5 mt-3 mb-3 rounded" id="StepTwo">
             <div class="des_input">รหัสผ่านปัจุบัน</div>
             <input class="input inputcolor form-control" type="password" id="oldpassword" name="oldpassword" placeholder="รหัสผ่าน" pattern=".{8,}" required>

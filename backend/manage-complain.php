@@ -65,8 +65,7 @@ if (isset($_POST["seeid"])) {
         </div>
         <hr>
         <div class="mw-100 mt-3">
-                        <h6>การตอบกลับ : </h6><input type="text" name="reply" class="form-control" placeholder="ตอบกลับการร้องเรียน" value=' . $row['reply'] . ' disabled>
-                        <input type="number" class="form-control" name="comp_id" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" value=' . $row['comp_id'] . ' hidden>         
+                        <h6>การตอบกลับ : ' . $row['reply'] . '</h6> 
         </div>
      ';
     }

@@ -6,6 +6,24 @@ if (isset($_POST['post-btn'])) {
     $subject = $_POST['subject'];
     $comp_detail = $_POST['comp_detail'];
     $users_id = $_SESSION['users_id'];
+
+    $wordchange = ("*");
+    $dbquery = mysqli_query($conn, "SELECT * FROM `rude`");
+    $rude = array();
+    while ($rword = $dbquery->fetch_assoc()) {
+        array_push($rude, $rword['rude_word']);
+    }
+    $num_rows = mysqli_num_rows($dbquery);
+    $i = 0;
+
+    for ($i = 0; $i < count($rude); $i++) {
+        $comp_detail = preg_replace('/' . $rude[$i] . '/', '***', $comp_detail);
+    }
+
+    for ($i = 0; $i < count($rude); $i++) {
+        $subject = preg_replace('/' . $rude[$i] . '/', '***', $subject);
+    }
+
     if ($_FILES['compfile']['size'] > 0) {
         date_default_timezone_set('Asia/Bangkok');
         $date = date("Ymd");
