@@ -17,7 +17,7 @@ require "../backend/manage-banner.php";
 
 
 <body>
-    <h1 id="headline">จัดการแบนเนอร์</h1>
+    <h1 class="head_contact">จัดการแบนเนอร์</h1>
     <!-- carousel -->
     <div id="labelbn" class="col-12 toptb">
         <div id="labelbn" class="col-8">
@@ -92,10 +92,10 @@ require "../backend/manage-banner.php";
                             <div class="modal-body">
                                 <h6 class="mt-2">หัวข้อ</h6>
                                 <input type="text" class="form-control" placeholder="หัวข้อ" name="bn_toppic">
-                                <h6  class="mt-2">รายละเอียด</h6>
+                                <h6 class="mt-2">รายละเอียด</h6>
                                 <textarea type="text" class="form-control" placeholder="รายละเอียด" name="bn_detail"></textarea>
                                 <div class="form-group">
-                                    <h6  class="mt-2">เพิ่มรูปภาพ</h6>
+                                    <h6 class="mt-2">เพิ่มรูปภาพ</h6>
                                     <input type="file" class="form-control" name="bn_img" id="imgInp" accept="image/png, image/gif, image/jpeg" required>
                                     <div class="valid-feedback"></div>
                                     <div class="invalid-feedback">กรุณาเลือกรูปภาพ</div>
@@ -111,31 +111,33 @@ require "../backend/manage-banner.php";
                 </div>
             </div>
 
-            <div id="table" class="bannertb mt-3 border p-3 shadow-sm rounded">
-                <table id="myTable" class="display " style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <th scope="col">ลำดับ</th>
-                            <th scope="col">หัวข้อ</th>
-                            <th scope="col">ดูรายละเอียด</th>
-                            <th scope="col">จัดการ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($row = $result2->fetch_assoc()) : ?>
+            <div class="content">
+                <div id="table" class="bannertb border p-3 shadow-sm rounded">
+                    <table id="myTable" class="display " style="width: 100%;">
+                        <thead>
                             <tr>
-                                <td><?php echo $count_n; ?></td>
-                                <td><?php echo $row['bn_toppic']; ?></td>
-                                <td><button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['bn_id']; ?>">ดูรายละเอียด</button></td>
-                                <td>
-                                    <a  href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning btnac" style="margin-left: 5px; width:30%;">แก้ไข</a>
-                                    <a  href="../backend/manage-banner.php?delbn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger btnac" style="margin-left: 5px; width:30%;">ลบ</a>
-                                </td>
+                                <th scope="col">ลำดับ</th>
+                                <th scope="col">หัวข้อ</th>
+                                <th scope="col">ดูรายละเอียด</th>
+                                <th scope="col">จัดการ</th>
                             </tr>
-                        <?php $count_n++;
-                        endwhile ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $result2->fetch_assoc()) : ?>
+                                <tr>
+                                    <td><?php echo $count_n; ?></td>
+                                    <td><?php echo $row['bn_toppic']; ?></td>
+                                    <td><button name="view" type="button" class="modal_data btn btn-outline-primary" id="<?php echo $row['bn_id']; ?>">ดูรายละเอียด</button></td>
+                                    <td>
+                                        <a href="./banner-edit.php?bn_id=<?php echo $row['bn_id']; ?>" class=" btn btn-outline-warning btnac">แก้ไข</a>
+                                        <a href="../backend/manage-banner.php?delbn_id=<?php echo $row['bn_id']; ?>" onclick="return confirm('คุณต้องการลบแบบเนอร์นี้หรือไม่')" class=" btn btn-outline-danger btnac">ลบ</a>
+                                    </td>
+                                </tr>
+                            <?php $count_n++;
+                            endwhile ?>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

@@ -18,18 +18,18 @@ require "../backend/manage-annouce.php";
 ?>
 
 <body>
-    <h1 class="head_contact">จัดการคำร้องขอประชาสัมพันธ์</h1>
-    <div id="labelbn" class="col-12 toptb">
-        <div id="labelbn" class="col-8">
+    <div class="content">
+        <h1 class="head_contact">จัดการคำร้องขอประชาสัมพันธ์</h1>
+        <div id="labelbn" class="col-12 toptb">
+            <div id="labelbn" class="col-8">
+            </div>
+            <!-- Button modal -->
+            <div id="addbn" class="col-4">
+                <a id="addbn" type="button" class="btn btn-primary" href="./annouce-history.php" style="float: rigth;">
+                    <i class='bx bx-history'></i> ดูประวัติคำร้องประชาสัมพันธ์ทั้งหมด
+                </a>
+            </div>
         </div>
-        <!-- Button modal -->
-        <div id="addbn" class="col-4 " >
-            <a id="addbn" type="button" class="btn btn-primary" href="./annouce-history.php" style="float: rigth;">
-                <i class='bx bx-history'></i> ดูประวัติคำร้องประชาสัมพันธ์ทั้งหมด
-            </a>
-        </div>
-    </div>
-    <div id="content">
         <div id="table2" class="border p-3 shadow-sm rounded">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
