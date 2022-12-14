@@ -8,7 +8,7 @@
     <title> MarketRental - ข้อมูลการเงิน</title>
 
     <!-- css  -->
-    <link rel="stylesheet" href="../css/banner.css" type="text/css">
+    <link rel="stylesheet" href="../css/applicant.css" type="text/css">
 </head>
 
 <?php
@@ -38,31 +38,31 @@ extract($row1);
 <body>
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./index.php?mkr_id=<?php echo $row1['mkr_id']; ?>" class="text-decoration-none">หน้าหลัก</a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">ข้อมูลการเงิน <?php echo $row1['mkr_name'] ?></li>
         </ol>
     </nav>
     <h1 class="head_contact">ข้อมูลการเงิน</h1>
 
-    <form method="POST" enctype="multipart/form-data">
+    <form class="was-validated form-outer" method="POST" enctype="multipart/form-data">
         <input name="p_id" type="text" class="form-control" value="<?php echo $row['p_id']; ?>" hidden>
         <div class="payment-info rounded shadow-sm p-5 mt-3 border">
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">ชื่อ</label>
                 <div class="col-sm-10">
-                    <input name="p_name" type="text" class="form-control" value="<?php echo $row['p_name']; ?>">
+                    <input name="p_name" type="text" class="form-control" value="<?php echo $row['p_name']; ?>" required>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">นามสกุล</label>
                 <div class="col-sm-10">
-                    <input name="p_surname" type="text" class="form-control" value="<?php echo $row['p_surname']; ?>">
+                    <input name="p_surname" type="text" class="form-control" value="<?php echo $row['p_surname']; ?>" required>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">ธนาคาร</label>
                 <div class="col-sm-10 search_select_box">
-                    <select name="p_bank" class="selectpicker" data-live-search="true" data-width="100%" data-size="5">
+                    <select name="p_bank" class="selectpicker" data-live-search="true" data-width="100%" data-size="5" required>
                         <option value="<?php echo $row['p_bank']; ?>" selected><?php echo $row['p_bank']; ?></option>
                         <option value="ธนาคารไทยพาณิชย์ (SCB)">ธนาคารไทยพาณิชย์ (SCB)</option>
                         <option value="ธนาคารกสิกรไทย (KBANK)">ธนาคารกสิกรไทย (KBANK)</option>
@@ -94,17 +94,17 @@ extract($row1);
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">เบอร์ที่ผูกกับพร้อมเพย์</label>
                 <div class="col-sm-10">
-                    <input name="p_promtpay" type="text" id="tel" class="form-control" value="<?php echo $row['p_promtpay']; ?>">
+                    <input name="p_promtpay" type="text" id="tel" class="form-control" value="<?php echo $row['p_promtpay']; ?>" required>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">หมายเลขบัญชี</label>
                 <div class="col-sm-10">
-                    <input name="p_account" type="text" id="accountno" class="form-control" value="<?php echo $row['p_account']; ?>">
+                    <input name="p_account" type="text" id="accountno" class="form-control" value="<?php echo $row['p_account']; ?>" required>
                 </div>
             </div>
-            <div class="d-flex justify-content-end">
-                <input type="submit" name="submit-apply" class="btn btn-primary  submit" id="submit" value="บันทึกข้อมูล">
+            <div class="mt-3">
+                <input type="submit" name="submit-apply" class="btn btn-primary  w-100" id="submit" value="บันทึกข้อมูล">
             </div>
         </div>
 

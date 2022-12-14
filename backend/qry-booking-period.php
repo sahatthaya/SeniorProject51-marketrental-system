@@ -18,7 +18,7 @@ if ($_GET) {
     extract($row);
 }
 
-$curr_date = date("Y-m-d");
+$curr_date = date('Y-m-d');
 $datefilter = $curr_date;
 
 // qry plan
@@ -26,9 +26,18 @@ $count_n = 1;
 $result3 = mysqli_query($conn, "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id' AND `show` = '1')");
 $qryrentperiod = mysqli_query($conn, "SELECT * FROM opening_period WHERE mkr_id = $mkr_id AND '$curr_date' <= `start` ORDER BY `start` ASC");
 $qryrentperiod2 = mysqli_query($conn, "SELECT * FROM opening_period WHERE mkr_id = $mkr_id AND '$curr_date' <= `start` ORDER BY `start` ASC");
-$rowp = mysqli_fetch_array($qryrentperiod2);
-extract($rowp);
-$op_id = $rowp['id'];
+$numRowsid = mysqli_num_rows($qryrentperiod2);
+if ($numRowsid > 0) {
+    $rowp = mysqli_fetch_array($qryrentperiod2);
+    extract($rowp);
+    $op_id = $rowp['id'];
+} else {
+    $qryrentperiod3 = mysqli_query($conn, "SELECT * FROM opening_period WHERE mkr_id = $mkr_id AND '$curr_date' > `start` ORDER BY `start` desc");
+    $rowp = mysqli_fetch_array($qryrentperiod3);
+    extract($rowp);
+    $op_id = $rowp['id'];
+}
+
 // max rent / rent filter
 $maxrentqry = mysqli_query($conn, "SELECT MAX(`sRent`) AS max FROM `stall` WHERE (market_id = '$mkr_id' AND `show` = '1')");
 $maxrent =  mysqli_fetch_array($maxrentqry);

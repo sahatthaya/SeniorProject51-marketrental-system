@@ -37,32 +37,32 @@ extract($row);
 <body>
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./index.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none">หน้าหลัก</a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">จัดการข่าวสาร <?php echo $row['mkr_name']; ?></li>
         </ol>
     </nav>
     <h1 class="head_contact mb-3">จัดการข่าวสารตลาด</h1>
 
-    <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm">
+    <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm was-validated" >
         <h4 class="mb-2">เพิ่มข่าวสารใหม่</h4>
         <hr>
         <div class="mt-4 mb-3 row">
             <label class="col-sm-2 col-form-label">หัวเรื่อง</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="n_sub">
-                <input type="text" class="form-control" value="<?php echo $mkr_id ?>" name="mkr_id" hidden >
+                <input type="text" class="form-control" name="n_sub" required>
+                <input type="text" class="form-control" value="<?php echo $mkr_id ?>" name="mkr_id" hidden>
             </div>
         </div>
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">รายละเอียด</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;" name="n_detail"></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;" name="n_detail" required></textarea>
             </div>
         </div>
         <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">ไฟล์ที่เกี่ยวข้อง</label>
+            <label class="col-sm-2 col-form-label">รูปภาพที่เกี่ยวข้อง</label>
             <div class="col-sm-10">
-                <input class="form-control" type="file" id="formFile" name="n_file">
+                <input class="form-control" type="file" id="formFile" name="n_file" accept="image/jpeg,image/gif,image/png">
             </div>
         </div>
         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -88,7 +88,7 @@ extract($row);
                 <?php while ($row1 = $result3->fetch_assoc()) : ?>
                     <tr>
                         <td><?php echo $count_n; ?></td>
-                        <td><?php echo $row1['timestamp'] ?></td>
+                        <td><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row1['timestamp'])) ?></td>
                         <td><?php echo $row1['n_sub']; ?></td>
                         <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary w-100" id="<?php echo $row1['n_id']; ?>">ดูรายละเอียด</button></td>
                         <td>

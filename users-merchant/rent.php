@@ -205,7 +205,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
         '#fed7c3',
         '#f6eac2',
         '#ecd5e3',
-        'ff968a'
+        
     ];
 
     var colorset1 = [

@@ -56,6 +56,33 @@ require "../backend/add-applicant.php";
         <div class="border rounded mt-3 p-3 shadow-sm">
             <div class="row">
                 <div class="col-3">
+                    <a href="edit-market-info.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bxs-edit-alt"></i>
+                        <span>แก้ไขข้อมูลตลาด</span>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="finance.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bxs-credit-card"></i>
+                        <span>แก้ไขข้อมูลการเงิน</span>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="edit-Stall.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bx-map-alt"></i>
+                        <span>แผนผังตลาด</span>
+                    </a>
+                </div>
+
+                <div class="col-3">
+                    <a href="news.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bxs-news"></i>
+                        <span>ข่าวสาร</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
                     <a href="booking.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary">
                         <i class="bx bx-message-alt-edit"></i>
                         <span>การจอง</span>
@@ -75,41 +102,14 @@ require "../backend/add-applicant.php";
                         <span>ค่าใช้จ่ายเพิ่มเติม</span>
                     </a>
                 </div>
-
-                <div class="col-3">
-                    <a href="edit-Stall.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
-                        <i class="bx bx-map-alt"></i>
-                        <span>แผนผังตลาด</span>
-                    </a>
-                </div>
-            </div>
-            <div class="row mt-2">
-
-                <div class="col-3">
-                    <a href="news.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
-                        <i class="bx bxs-news"></i>
-                        <span>ข่าวสาร</span>
-                    </a>
-                </div>
-
                 <div class="col-3">
                     <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
                         <i class="bx bxs-megaphone"></i>
                         <span>การร้องเรียน</span>
                     </a>
                 </div>
-                <div class="col-3">
-                    <a href="finance.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
-                        <i class="bx bxs-credit-card"></i>
-                        <span>แก้ไขข้อมูลการเงิน</span>
-                    </a>
-                </div>
-                <div class="col-3">
-                    <a href="edit-market-info.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
-                        <i class="bx bxs-edit-alt"></i>
-                        <span>แก้ไขข้อมูลตลาด</span>
-                    </a>
-                </div>
+
+
             </div>
         </div>
         <!-- pie graph -->
@@ -428,7 +428,7 @@ require "../backend/add-applicant.php";
         '#fed7c3',
         '#f6eac2',
         '#ecd5e3',
-        'ff968a'
+        
     ];
 
 

@@ -289,7 +289,6 @@ function checkInfo2() {
 //banner--------------------------------------------------------------------------------------------------------------  
 $(document).ready(function () {
     $("#myTable").DataTable({
-        scrollY: '550px',
         scrollCollapse: true,
         paging: true,
         lengthChange: false,
@@ -312,7 +311,6 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $("#myTable_nosort").DataTable({
-        scrollY: '550px',
         scrollCollapse: true,
         paging: true,
         lengthChange: false,

@@ -25,9 +25,9 @@ require "../backend/qry-market-info.php"
         </ol>
     </nav>
     <div class="mkrpic center">
-        <img src="../<?php echo $row['mkr_pic'] ?>" class="img-fluid img-thumbnail" alt="...">
+        <img src="../<?php echo $row['mkr_pic'] ?>" class="img-fluid img-thumbnail shadow-sm rounded-4" alt="...">
     </div>
-    <div class="mrk_info">
+    <div class="mrk_info border rounded shadow-sm">
         <p id="mkr_name"><?php echo $row['mkr_name']; ?> <span class="fs-5">(<?php echo $row['opening'] ?>)</span></p>
         <h5>รายละเอียด</h5>
         <p class="text_desc">
@@ -48,17 +48,17 @@ require "../backend/qry-market-info.php"
     </div>
 
     <div id="quick-menu2" class="guide">
-        <a type="button" class="quick-menu2 " id="merchant-btn" href="<?php echo $pathbook ?>?mkr_id=<?php echo $row['mkr_id']; ?>">
+        <a type="button" class="quick-menu2 rounded shadow-sm" id="merchant-btn" href="<?php echo $pathbook ?>?mkr_id=<?php echo $row['mkr_id']; ?>">
             <i class='bx bxs-message-square-edit'></i>
             <p> สนใจเช่าจองพื้นที่ </p>
         </a>
-        <a type="button" class="quick-menu2 " href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">
+        <a type="button" class="quick-menu2 rounded shadow-sm" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">
             <i class='bx bxs-paper-plane'></i>
             <p> การร้องเรียน </p>
         </a>
     </div>
     <?php echo $opening_period ?>
-    <div class="mrk_news">
+    <div class="mrk_news border rounded shadow-sm">
         <h5>ข่าวสารตลาด</h5>
         <hr>
         <ul class="list-group list-group-flush">
@@ -115,7 +115,7 @@ require "../backend/qry-market-info.php"
         '#fed7c3',
         '#f6eac2',
         '#ecd5e3',
-        'ff968a'
+        
     ];
     mobiscroll.datepicker('#demo-colored', {
         controls: ['calendar'],

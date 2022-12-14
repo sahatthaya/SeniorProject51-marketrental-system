@@ -23,7 +23,7 @@ if (isset($_POST["id"])) {
         <p> ' . $row['comp_detail'] . '</p>
         <div class="d-flex justify-content-between">
             <p >ผู้ร้องเรียน : ' . $row['username'] . '</p>
-            <p>วันที่ร้องเรียน : ' . $row['timestamp'] . '</p>
+            <p>วันที่ร้องเรียน : ' . date("d/m/Y เวลา h:i a", strtotime($row['timestamp'])) . '</p>
         </div>
     </div>
         </div>

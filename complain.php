@@ -45,7 +45,7 @@ $result = mysqli_query($conn, $data);
 
 ?>
 
-<body onload="plslogin( event );">
+<body>
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
             <li class="breadcrumb-item fs-5 "><a href="./all-market.php" class="text-decoration-none">ตลาดทั้งหมด</a></li>
@@ -55,33 +55,49 @@ $result = mysqli_query($conn, $data);
     </nav>
     <div>
         <h1 id="headline">ระบบร้องเรียน <?php echo $row['mkr_name'] ?></h1>
-        <div class="postbox">
-            <!-- <form method="POST" enctype="multipart/form-data"> -->
+        <div class="border rounded shadow-sm p-3">
             <h5>เพิ่มการร้องเรียนใหม่</h5>
-            <label>หัวข้อ :</label>
-            <select name="toppic" data-width="100%" data-style="btn-outline-secondary" data-size="5" disabled>
-                <?php while ($row1 = mysqli_fetch_array($result_toppic)) :; ?>
-                    <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
-                <?php endwhile; ?>
-            </select>
-
-            <label>หัวเรื่อง : </label>
-            <input class="subject" name="subject" type="text" disabled>
-            <input class="compfile" name="compfile" type="file" disabled>
-            <br>
-            <label>เรื่องร้องเรียน : </label>
-            <br>
-            <textarea name="comp_detail" disabled></textarea>
-            <div class="text-end">
-                <button name="post-btn" class="btn btn-light" onclick="plslogin();signIn();">ส่ง <i class='bx bxs-paper-plane'></i></button>
+            <hr>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">หัวข้อ :</label>
+                <div class="col-sm-10">
+                    <select name="toppic" class="form-select" data-width="100%" data-style="btn-outline-secondary" data-size="5" disabled required>
+                        <?php while ($row1 = mysqli_fetch_array($result_toppic)) :; ?>
+                            <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
             </div>
-            <!-- </form> -->
+
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">หัวเรื่อง :</label>
+                <div class="col-sm-10">
+                    <input class="form-control" name="subject" type="text" disabled required>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">รูปภาพที่เกี่ยวข้อง :</label>
+                <div class="col-sm-10">
+                    <input class="form-control ps-3" name="compfile" type="file" accept="image/png, image/gif, image/jpeg" disabled>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">เรื่องร้องเรียน :</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" name="comp_detail" disabled required></textarea>
+                </div>
+            </div>
+            <div class="text-end">
+                <button name="post-btn" type="submit" class="btn btn-primary w-25" onclick="plslogin();signIn();">ส่ง <i class='bx bxs-paper-plane'></i></button>
+            </div>
+
         </div>
+        <hr>
         <?php while ($row = $result->fetch_assoc()) : ?>
-            <div class="commentbox">
+            <div class="border rounded-top shadow-sm p-3">
                 <div class="row">
                     <div class="col-md-4">
-                        <img src="./<?php echo $row['comp_file']; ?>" class="imgcomment" alt="">
+                        <img src="./<?php echo $row['comp_file']; ?>" class="w-100 img-fluid rounded " alt="">
                     </div>
                     <div class="col-md-8">
                         <p class="float-end" id="timestamp"><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?></p>
@@ -91,9 +107,15 @@ $result = mysqli_query($conn, $data);
                     </div>
                 </div>
             </div>
-            <div class="reply-box">
+            <div class="border rounded-bottom shadow-sm p-3">
                 <label class="reply-head">การตอบกลับจากผู้ดูแล : </label>
-                <label class="reply_detail"><?php echo $row['reply'] ?></label>
+                <label class="reply_detail"><?php
+                                            if ($row['status'] == '1') {
+                                                echo "ยังไม่มีการตอบกลับจากผู้ดูแล";
+                                            } else {
+                                                echo $row['reply'];
+                                            }
+                                            ?></label>
             </div>
         <?php endwhile; ?>
     </div>

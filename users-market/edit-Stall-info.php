@@ -39,7 +39,7 @@ require "../backend/manage-edit-Stall.php";
 <body>
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./index.php?mkr_id=<?php echo $s['mkr_id']; ?>" class="text-decoration-none">หน้าหลัก</a></li>
             <li class="breadcrumb-item fs-5 "><a href="edit-Stall.php?mkr_id=<?php echo $s['mkr_id']; ?>" class="text-decoration-none">จัดการข้อมูลแผงค้า <?php echo $s['mkr_name']; ?></a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">แก้ไขข้อมูลแผงค้า <?php echo $s['mkr_name']; ?></li>
         </ol>
@@ -47,15 +47,15 @@ require "../backend/manage-edit-Stall.php";
     <h1>แก้ไขข้อมูลแผงค้า</h1>
     <!-- content -->
     <div class="border rounded shadow-sm p-3 mt-3">
-        <form method="POST">
+        <form method="POST" class="was-validated">
             <label class="hstack mt-2">รหัสแผงค้า :
                 <div data-toggle="tooltip" title="รหัสแผงค้าภายในตลาดเดียวกัน จะไม่สามารถซ้ำกันได้" class="mt-1 ms-2">
                     <i class='bx bx-info-circle'></i>
                 </div>
             </label>
             <div class="input-group">
-                <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sKey" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" value="<?php echo $s['sKey']; ?>" require hidden>
-                <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" value="<?php echo $s['sID']; ?>" require disabled>
+                <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sKey" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" value="<?php echo $s['sKey']; ?>" required hidden>
+                <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" value="<?php echo $s['sID']; ?>" required disabled>
             </div>
             <label for="" class="mt-2">ประเภทแผงค้า</label>
             <div class="search_select_box">
@@ -68,21 +68,21 @@ require "../backend/manage-edit-Stall.php";
             </div>
             <label class="mt-2">ขนาดพื้นที่ :</label>
             <div class="input-group">
-                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sWidth'] ?>">
+                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sWidth'] ?>">
                 <span class="input-group-text">*</span>
-                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sHeight'] ?>">
+                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sHeight'] ?>">
                 <span class="input-group-text">เมตร</span>
 
             </div>
             <label class="mt-2">ราคามัดจำ :</label>
             <div class="input-group">
-                <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sDept'] ?>">
+                <input type="number" class="form-control" name="sDept" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sDept'] ?>">
                 <span class="input-group-text">บาท</span>
             </div>
             <label class="mt-2">ราคาค่าเช่า :</label>
             <div class="input-group">
-                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" require value="<?php echo $s['sRent'] ?>">
-                <select class="input-group-text" name="sPayRange">
+                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sRent'] ?>">
+                <select class="input-group-text" name="sPayRange" required>
                     <option value="<?php echo $s['sPayRange']; ?>"><?php echo $s['sPayRange']; ?></option>
                     <option value="บาท/วัน">บาท/วัน</option>
                     <option value="บาท/เดือน">บาท/เดือน</option>

@@ -5,20 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MarketRental - จองแผงค้า</title>
+    <title> MarketRental - แก้ไขแผนผังตลาด</title>
     <!-- css  -->
-    <link rel="stylesheet" href="../css/stallplan.css" type="text/css">
+    <link rel="stylesheet" href="./css/stallplan.css" type="text/css">
 
     <?php
     include "profilebar.php";
     include "nav.php";
-    include "../backend/1-connectDB.php";
-    include "../backend/qry-booking-period.php";
+    include "backend/1-connectDB.php";
+    include "backend/1-import-link.php";
+    include "./backend/qry-booking-period.php";
     ?>
 
 </head>
 
-<body>
+<body onload="plslogin( event );">
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
             <li class="breadcrumb-item fs-5 "><a href="./all-market.php" class="text-decoration-none">ตลาดทั้งหมด</a></li>
@@ -26,7 +27,6 @@
             <li class="breadcrumb-item active fs-5" aria-current="page">จองแผงค้า<?php echo $row['mkr_name']; ?></li>
         </ol>
     </nav>
-
     <h1>จองแผงค้า<?php echo $row['mkr_name']; ?><i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
     <div class="plan">
         <form method="POST">
@@ -178,20 +178,21 @@
             </div>
         </div>
     </div>
-    <?php require '../backend/modal-stallinfo.php' ?>
+    <?php require '../backend/modal-stallinfo-nologin.php' ?>
 
 </body>
 
+</html>
 <script>
     //detail popup
     $(document).ready(function() {
         $("body").on("click", ".modal_data1", function(event) {
-            var s_id = $(this).attr("id");
+            var s_id_no = $(this).attr("id");
             $.ajax({
-                url: "../backend/modal-stallinfo.php",
+                url: "./backend/modal-stallinfo-nologin.php",
                 method: "POST",
                 data: {
-                    s_id: s_id
+                    s_id_no: s_id_no
                 },
                 success: function(data) {
                     $('#bannerdetail').html(data);
@@ -202,20 +203,25 @@
         })
     });
 
-    $("#first").keyup(function(event) {
+    // range input
+    var rangeSlider = function() {
+        var slider = $('.range-slider'),
+            range = $('.range-slider__range'),
+            value = $('.range-slider__value');
 
-        // skip for arrow keys
-        if (event.which >= 37 && event.which <= 40) return;
+        slider.each(function() {
 
-        // format number
-        $(this).val(function(index, value) {
-            return value
-                .replace(/\D/g, "")
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            value.each(function() {
+                var value = $(this).prev().attr('value');
+                $(this).html(value);
+            });
+
+            range.on('input', function() {
+                $(this).next(value).html(this.value);
+            });
         });
+    };
 
-        var firstValue = Number($('#first').val().replace(/,/g, ''));
-    });
+    rangeSlider();
+    rangeSlider();
 </script>
-
-</html>

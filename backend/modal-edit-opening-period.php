@@ -5,7 +5,7 @@
                 <h5 class="modal-title">แก้ไขรอบการเปิดทำการ</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form method="post">
+            <form method="post" class="was-validated">
                 <div class="modal-body" id="bannerdetail">
 
                 </div>
@@ -31,18 +31,20 @@ if (isset($_POST["anid"])) {
         $start = date('Y-m-d', strtotime($date1));
         $date2 = strtr($row['end'], '/', '-');
         $end = date('Y-m-d', strtotime($date2));
+        $curr_date = date('Y-m-d');
+        
         $output .= '
             <input type="text" class="form-control" name="id" value="' . $row['id'] . '" hidden>
             <div class=" row p-1 mw-100 m-0">
                 <label for="inputPassword" class="col-sm-2 col-form-label">วันที่เริ่มรอบ</label>
                 <div class="col-sm-10 p-0">
-                    <input type="date" class="form-control" name="start" value="' . $start . '">
+                    <input type="date" class="form-control" name="start" min="'.$curr_date.'" value="' . $start . '" required>
                 </div>
             </div> 
             <div class="row p-1 mw-100 m-0">
                 <label for="inputPassword" class="col-sm-2 col-form-label">วันที่สิ้นสุดรอบ</label>
                 <div class="col-sm-10 p-0">
-                    <input type="date" class="form-control" name="end" value="' . $end . '">
+                    <input type="date" class="form-control" name="end" min="'.$curr_date.'" value="' . $end . '" required>
                 </div>
             </div>
             

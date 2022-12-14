@@ -10,6 +10,11 @@ body {
 }
 
 /* ----------------------------------------1.banner------------------------------------------------------------ */
+.tooltip-inner {
+    min-width: 100px;
+    max-width: 100% !important;
+}
+
 #carouselExampleCaptions {
     margin-bottom: 20px;
 }
@@ -101,11 +106,6 @@ a {
     color: #212529 !important;
     background-color: var(--white) !important;
     border: 1px solid #ced4da !important;
-}
-
-.valid,
-input:invalid {
-    border-color: #429032 !important;
 }
 
 /* ------------------------------------responsive-------------------------- */

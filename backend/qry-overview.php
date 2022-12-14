@@ -60,7 +60,7 @@ if ($numRows <= 0) {
     // qry calendar
     $qrycalendar = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE mkr_id = $mkr_id");
 
-    $qryperiod = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE (mkr_id = $mkr_id) ORDER BY `start` ASC");
+    $qryperiod = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE (mkr_id = $mkr_id) ORDER BY `start` desc");
     if ($row3['opening'] == "เปิดทำการเป็นรอบ") {
         $opening_period = '    <div class="border rounded shadow-sm mt-4 p-3">
         <div class="d-flex justify-content-between ">
