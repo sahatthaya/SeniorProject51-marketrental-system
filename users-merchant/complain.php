@@ -38,13 +38,27 @@ if ($_GET['mkr_id']) {
 $query_toppic = "SELECT * FROM toppic";
 $result_toppic = mysqli_query($conn, $query_toppic);
 
+$perpage = 10;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+$start = ($page - 1) * $perpage;
+
 //qry
 $data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
 JOIN users ON (complain.users_id = users.users_id)
 WHERE (mkr_id = '$mkr_id')
-ORDER BY comp_id DESC";
+ORDER BY comp_id DESC limit {$start} , {$perpage}";
 $result = mysqli_query($conn, $data);
+
+$sql2 = "SELECT complain.*, toppic.toppic,users.username FROM complain 
+JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
+JOIN users ON (complain.users_id = users.users_id)
+WHERE (mkr_id = '$mkr_id')";
+$query2 = mysqli_query($conn, $sql2);
 require "../backend/add-complain.php";
 ?>
 
@@ -96,34 +110,80 @@ require "../backend/add-complain.php";
                 </div>
             </form>
         </div>
-        <hr>
+        <?php
+        $total_record = mysqli_num_rows($query2);
+        $total_page = ceil($total_record / $perpage);
+        ?>
+        <div class="my-3" style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
+            <nav aria-label="Page navigation example " style="height: 38px;">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="complain.php?page=1&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                        <li class="page-item"><a class="page-link" href="complain.php?page=<?php echo $i; ?>&&mkr_id=<?php echo $mkr_id; ?>"><?php echo $i; ?></a></a></li>
+                    <?php } ?>
+                    <li class="page-item">
+                        <a class="page-link" href="complain.php?page=<?php echo $total_page; ?>&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <hr style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
         <?php while ($row = $result->fetch_assoc()) : ?>
-            <div class="border rounded-top shadow-sm p-3">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img src="../<?php echo $row['comp_file']; ?>" class="w-100 img-fluid rounded " alt="">
-                    </div>
-                    <div class="col-md-8">
-                        <p class="float-end" id="timestamp"><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?></p>
-                        <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
-                        <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
-                        <p><?php echo $row['comp_detail'] ?></p>
+            <div class="mb-4">
+                <div class="border rounded-top shadow-sm p-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img src="../<?php echo $row['comp_file']; ?>" class="w-100 img-fluid rounded " alt="">
+                        </div>
+                        <div class="col-md-8">
+                            <p class="float-end" id="timestamp"><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?></p>
+                            <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
+                            <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
+                            <p><?php echo $row['comp_detail'] ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="border rounded-bottom shadow-sm p-3">
-                <label class="reply-head">การตอบกลับจากผู้ดูแล : </label>
-                <label class="reply_detail"><?php
-                if($row['status'] == '1'){
-                    echo "ยังไม่มีการตอบกลับจากผู้ดูแล";
-                }else{
-                    echo $row['reply'];
-                }
-                 ?></label>
+                <div class="border rounded-bottom shadow-sm p-3">
+                    <label class="reply-head">การตอบกลับจากผู้ดูแล : </label>
+                    <label class="reply_detail">
+                        <?php
+                        if ($row['status'] == '1') {
+                            echo "ยังไม่มีการตอบกลับจากผู้ดูแล";
+                        } else {
+                            echo $row['reply'];
+                        }
+                        ?>
+                    </label>
+                </div>
             </div>
         <?php endwhile; ?>
     </div>
-
+    <hr style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
+    <div class="my-3" style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
+        <nav aria-label="Page navigation example " style="height: 38px;">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link" href="complain.php?page=1&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                    <li class="page-item"><a class="page-link" href="complain.php?page=<?php echo $i; ?>&&mkr_id=<?php echo $mkr_id; ?>"><?php echo $i; ?></a></a></li>
+                <?php } ?>
+                <li class="page-item">
+                    <a class="page-link" href="complain.php?page=<?php echo $total_page; ?>&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </body>
 
 

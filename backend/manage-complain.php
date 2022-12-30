@@ -1,6 +1,5 @@
 <?php
 include "../backend/1-connectDB.php";
-
 if (isset($_POST["id"])) {
     $id = $_POST["id"];
     $data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
@@ -11,6 +10,11 @@ if (isset($_POST["id"])) {
     $result = mysqli_query($conn, $data);
     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
     while ($row = mysqli_fetch_array($result)) {
+        if ($row['status'] == '1') {
+            $reply =  "ยังไม่มีการตอบกลับจากผู้ดูแล";
+        } else {
+            $reply = $row['reply'];
+        }
         $output .= '
         <div class="row mw-100">
         <div class="col-4 rounded" style="height:180px;overflow:hidden;">
@@ -28,7 +32,7 @@ if (isset($_POST["id"])) {
     </div>
         </div>
         <div class="mw-100 mt-3">
-                        <h6>การตอบกลับ : </h6><input type="text" name="reply" class="form-control" placeholder="ตอบกลับการร้องเรียน" value=' . $row['reply'] . '>
+                        <h6>การตอบกลับ : </h6><input type="text" name="reply" class="form-control" placeholder="ตอบกลับการร้องเรียน" value=' . $reply . '>
                         <input type="number" class="form-control" name="comp_id" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" value=' . $row['comp_id'] . ' hidden>         
         </div>
      ';
@@ -47,6 +51,11 @@ if (isset($_POST["seeid"])) {
     $result = mysqli_query($conn, $data);
     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
     while ($row = mysqli_fetch_array($result)) {
+        if ($row['status'] == '1') {
+            $reply =  "ยังไม่มีการตอบกลับจากผู้ดูแล";
+        } else {
+            $reply = $row['reply'];
+        }
         $output .= '
         <div class="row mw-100">
                         <div class="col-4 rounded" style="height:180px;overflow:hidden;">
@@ -65,7 +74,7 @@ if (isset($_POST["seeid"])) {
         </div>
         <hr>
         <div class="mw-100 mt-3">
-                        <h6>การตอบกลับ : ' . $row['reply'] . '</h6> 
+                        <h6>การตอบกลับ : ' . $reply . '</h6> 
         </div>
      ';
     }
