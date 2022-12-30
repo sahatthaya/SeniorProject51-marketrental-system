@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - จัดการการจอง</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
+    <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js'></script>
+    <script src='https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13 .2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" />
 </head>
 <script>
     var message = "โปรดทราบ\n หากคุณทำการยกเลิกการจอง\n คุณจะไม่ได้รับเงินมัดจำคืน";
@@ -67,7 +73,13 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
         }
     }
 }
+if (isset($_POST['save-range'])) {
+    $start = $_POST['start'];
+    $end = $_POST['end'];
 
+    $queryrange = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id and status = '1' and '$start' <= `end` and  '$end'  >= `start`");
+    $queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id and status = '1' and '$start' <= `end` and  '$end'  >= `start`");
+}
 ?>
 
 
@@ -75,15 +87,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
     <div class="content">
         <h1 id="headline">จัดการการจอง</h1>
         <div>
-            <div class="text-end mt-3">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    ปฏิทินการจองของ <?php echo $_SESSION['username']; ?>
-                </button>
-                <a type="button" class="btn btn-primary" href="./reciept.php">
-                    พิมพ์
-                </a>
-            </div>
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
@@ -99,6 +102,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                 </div>
             </div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-2">
+                <div class="d-flex justify-content-between">
+                    <div class="hstack gap-2">
+                        <label><span class="text-secondary text-decoration-underline">ค้นหา</span> การเช่าในวันที่ : </label>
+                        <input name="min" id="min" class="form-control w-25" type="text">
+                        <label> ถึง </label>
+                        <input name="max" id="max" class="form-control w-25" type="text">
+                    </div>
+                    <div>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            ปฏิทินการจองของ <?php echo $_SESSION['username']; ?>
+                        </button>
+                    </div>
+                </div>
+                <hr>
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>
@@ -175,7 +193,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             </div>
         </div>
     </div>
-    <!-- <?php require '../backend/modal-bookdetail.php' ?> -->
 </body>
 <script src="../backend/script.js"></script>
 
@@ -205,7 +222,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
         '#fed7c3',
         '#f6eac2',
         '#ecd5e3',
-        
+
     ];
 
     var colorset1 = [
@@ -274,6 +291,53 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             endwhile ?>
 
         ]
+    });
+
+    $(document).ready(function() {
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                var min = $('#min').datepicker("getDate");
+                var max = $('#max').datepicker("getDate");
+                var dateString = data[5];
+                var dateParts = dateString.split('/');
+                var startDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+                var enddateString = data[6];
+                var enddateParts = enddateString.split('/');
+                var endDate = new Date(enddateParts[2], enddateParts[1] - 1, enddateParts[0]);
+
+                if (min == null && max == null) {
+                    return true;
+                }
+                if (min == null && startDate <= max) {
+                    return true;
+                }
+                if (max == null && startDate >= min) {
+                    return true;
+                }
+                if (!(startDate > max || endDate < min)) {
+                    return true;
+                }
+                return false;
+            }
+        );
+
+
+        $("#min").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#max").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        var table = $('#myTable').DataTable();
+
+        $('#min, #max').change(function() {
+            table.draw();
+        });
     });
 </script>
 

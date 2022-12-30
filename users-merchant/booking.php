@@ -29,12 +29,13 @@
 
     <h1>จองแผงค้า<?php echo $row['mkr_name']; ?><i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
     <div class="plan">
-        <form method="POST">
+        <form method="POST" action="booking.php">
             <div class="d-flex justify-content-between px-3">
                 <div class="hstack  px-1 gap-2">
                     <label><span class="text-secondary text-decoration-underline">ค้นหา</span> แผงค้าว่างในวันที่ : </label>
+                    <input type="text" name="mkr_id" value="<?php echo $mkr_id ?>" hidden required />
                     <div class="range-slider hstack gap-2">
-                        <input type="date" name="datefilter" value="<?php echo $datefilter ?>" min="<?php echo date("Y-m-d") ?>" class="form-control" required />บาท
+                        <input type="date" name="datefilter" value="<?php echo $datefilter ?>" min="<?php echo date("Y-m-d") ?>" class="form-control" required />
                     </div>
                     <label>และ ราคาค่าเช่าไม่เกิน : </label>
                     <div class="hstack gap-2">

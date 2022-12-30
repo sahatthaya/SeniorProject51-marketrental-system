@@ -41,10 +41,12 @@
                                 while ($rowcalen = mysqli_fetch_assoc($qryrentperiod)) : ?>
                                     <option value="<?php echo $rowcalen['id'] ?>">รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
                                 <?php endwhile;
+                                $checkop = "1";
                             } else {
                                 ?>
                                 <option selected>ไม่มีรอบเปิดให้จองในขณะนี้</option>
                             <?php
+                                $checkop = "0";
                             }
                             ?>
                         </select>
@@ -76,21 +78,25 @@
                 @$fs = ($ratio_plan / 3);
                 $opc = "";
                 $sKey =  $row1['sKey'];
-
-                if ($row1['sRent'] <= $val) {
-                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_period ON (stall.sKey = booking_period.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id')");
-                    $numRows = mysqli_num_rows($rsrange);
-                    if ($numRows > 0) {
-                        $opc = "0.2";
-                        $free = "ไม่ว่าง";
+                if ($checkop == '1') {
+                    if ($row1['sRent'] <= $val) {
+                        $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_period ON (stall.sKey = booking_period.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id')");
+                        $numRows = mysqli_num_rows($rsrange);
+                        if ($numRows > 0) {
+                            $opc = "0.2";
+                            $free = "ไม่ว่าง";
+                        } else {
+                            $opc = "1";
+                            $free = "ว่าง";
+                        }
                     } else {
-                        $opc = "1";
-                        $free = "ว่าง";
+                        $opc = "0.2";
+                        $free = "";
                     }
                 } else {
                     $opc = "0.2";
-                    $free = "";
                 }
+
                 ?>
 
                 <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo $opc ?>" id="<?php echo $count_n ?>">

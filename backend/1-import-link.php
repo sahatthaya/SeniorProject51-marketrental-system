@@ -202,6 +202,7 @@
             window.location = "../users-merchant/rent.php";
         });
     }
+
     function sentinvoice() {
         Swal.fire({
             title: 'ส่งใบแจ้งค่าเช่าสำเร็จ',

@@ -108,6 +108,10 @@ a {
     border: 1px solid #ced4da !important;
 }
 
+.mbsc-ios.mbsc-form-control-wrapper:after, .mbsc-ios.mbsc-form-control-wrapper:before {
+    border-top: none !important;
+}
+
 /* ------------------------------------responsive-------------------------- */
 @media(max-width: 992px) {
     .dataTables_scrollHead {
