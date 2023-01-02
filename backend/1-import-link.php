@@ -85,6 +85,16 @@
         })
     }
 
+    function partnersuccess() {
+        Swal.fire({
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: 'กรุณารอการตรวจสอบจากผู้ดูแลระบบ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+
     function logoutsuccess() {
         Swal.fire({
             title: 'ออกจากระบบสำเร็จ',
@@ -251,7 +261,7 @@
             showConfirmButton: false,
             timer: 1000
         }).then(function() {
-            window.location = "../index.php";
+            window.location = "./index.php";
         });
     }
     // warning------------------------------------------------------------
