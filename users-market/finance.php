@@ -94,13 +94,13 @@ extract($row1);
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">เบอร์ที่ผูกกับพร้อมเพย์</label>
                 <div class="col-sm-10">
-                    <input name="p_promtpay" type="text" id="tel" class="form-control" value="<?php echo $row['p_promtpay']; ?>" required>
+                    <input name="p_promtpay" type="text" id="tel" class="form-control" value="<?php echo $row['p_promtpay']; ?>" pattern="[0-9]{10}" required>
                 </div>
             </div>
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">หมายเลขบัญชี</label>
                 <div class="col-sm-10">
-                    <input name="p_account" type="text" id="accountno" class="form-control" value="<?php echo $row['p_account']; ?>" required>
+                    <input name="p_account" type="text" id="accountno" class="form-control" value="<?php echo $row['p_account']; ?>" pattern="\b\d{3} \d{1} \d{5} \d{1}\b" required>
                 </div>
             </div>
             <div class="mt-3">
@@ -116,7 +116,7 @@ extract($row1);
     $(":input").inputmask();
 
     $("#tel").inputmask({
-        "mask": "999 999 9999"
+        "mask": "9999999999"
     });
     $("#accountno").inputmask({
         "mask": "999 9 99999 9"

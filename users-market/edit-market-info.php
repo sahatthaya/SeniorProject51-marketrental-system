@@ -127,7 +127,7 @@ $result_province = mysqli_query($conn, $query_province);
         <div class="des_input">อีเมล</div>
         <input type="text" class="form-control" name="email" value="<?php echo $row["email"] ?>" required>
         <div class="des_input">เบอร์โทรศัพท์</div>
-        <input type="text" id="tel" class="form-control" name="tel" value="<?php echo $row["tel"] ?>" required>
+        <input type="text" id="tel" class="form-control" name="tel" value="<?php echo $row["tel"] ?>" pattern="[0-9]{10}" required>
         <div class="des_input">รูปภาพตลาด</div>
         <input type="file" class="form-control" name="ct_logo" id="mkr"  accept="image/jpeg,image/gif,image/png">
         <div class="p-0">

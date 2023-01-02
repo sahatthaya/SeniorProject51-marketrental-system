@@ -11,7 +11,7 @@ if (isset($_POST["id"])) {
     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
     while ($row = mysqli_fetch_array($result)) {
         if ($row['status'] == '1') {
-            $reply =  "ยังไม่มีการตอบกลับจากผู้ดูแล";
+            $reply =  "";
         } else {
             $reply = $row['reply'];
         }
@@ -32,7 +32,7 @@ if (isset($_POST["id"])) {
     </div>
         </div>
         <div class="mw-100 mt-3">
-                        <h6>การตอบกลับ : </h6><input type="text" name="reply" class="form-control" placeholder="ตอบกลับการร้องเรียน" value=' . $reply . '>
+                        <h6>การตอบกลับ : </h6><input type="text" name="reply" class="form-control" placeholder="ตอบกลับการร้องเรียน" value="' . $reply . '" required>
                         <input type="number" class="form-control" name="comp_id" title="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" value=' . $row['comp_id'] . ' hidden>         
         </div>
      ';
@@ -84,6 +84,19 @@ if (isset($_POST["seeid"])) {
 if (isset($_POST['submit'])) {
     $comp_id = $_POST["comp_id"];
     $reply = $_POST['reply'];
+
+    $wordchange = ("*");
+    $dbquery = mysqli_query($conn, "SELECT * FROM `rude`");
+    $rude = array();
+    while ($rword = $dbquery->fetch_assoc()) {
+        array_push($rude, $rword['rude_word']);
+    }
+    $num_rows = mysqli_num_rows($dbquery);
+    $i = 0;
+
+    for ($i = 0; $i < count($rude); $i++) {
+        $reply = preg_replace('/' . $rude[$i] . '/', '***', $reply);
+    }
 
     if (isset($_POST['reply']) != "") {
         $sqlInsert = "UPDATE complain SET reply='$reply',`status`='2' WHERE (comp_id = '$comp_id')";
