@@ -19,7 +19,7 @@ require "../backend/manage-applicant.php";
 
 <body>
     <div class="content">
-        <h1 id="headline">จัดการคำร้องเพิ่มตลาด</h1>
+        <h1 class="head_contact">จัดการคำร้องเพิ่มตลาด</h1>
         <div id="labelbn" class="col-12 toptb">
             <div id="labelbn" class="col-8">
             </div>
