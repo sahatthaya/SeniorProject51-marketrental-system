@@ -178,7 +178,7 @@
             </div>
         </div>
     </div>
-    <?php require '../backend/modal-stallinfo-nologin.php' ?>
+    <?php require './backend/modal-stallinfo-nologin.php' ?>
 
 </body>
 
@@ -203,25 +203,18 @@
         })
     });
 
-    // range input
-    var rangeSlider = function() {
-        var slider = $('.range-slider'),
-            range = $('.range-slider__range'),
-            value = $('.range-slider__value');
+    $("#first").keyup(function(event) {
 
-        slider.each(function() {
+        // skip for arrow keys
+        if (event.which >= 37 && event.which <= 40) return;
 
-            value.each(function() {
-                var value = $(this).prev().attr('value');
-                $(this).html(value);
-            });
-
-            range.on('input', function() {
-                $(this).next(value).html(this.value);
-            });
+        // format number
+        $(this).val(function(index, value) {
+            return value
+                .replace(/\D/g, "")
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         });
-    };
 
-    rangeSlider();
-    rangeSlider();
+        var firstValue = Number($('#first').val().replace(/,/g, ''));
+    });
 </script>

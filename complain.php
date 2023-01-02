@@ -35,6 +35,14 @@ if ($_GET['mkr_id']) {
 $query_toppic = "SELECT * FROM toppic";
 $result_toppic = mysqli_query($conn, $query_toppic);
 
+$perpage = 10;
+if (isset($_GET['page'])) {
+    $page = $_GET['page'];
+} else {
+    $page = 1;
+}
+$start = ($page - 1) * $perpage;
+
 //qry
 $data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
@@ -43,6 +51,11 @@ WHERE (mkr_id = '$mkr_id')
 ORDER BY comp_id DESC";
 $result = mysqli_query($conn, $data);
 
+$sql2 = "SELECT complain.*, toppic.toppic,users.username FROM complain 
+JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
+JOIN users ON (complain.users_id = users.users_id)
+WHERE (mkr_id = '$mkr_id')";
+$query2 = mysqli_query($conn, $sql2);
 ?>
 
 <body>
@@ -92,7 +105,30 @@ $result = mysqli_query($conn, $data);
             </div>
 
         </div>
-        <hr>
+        <?php
+        $total_record = mysqli_num_rows($query2);
+        $total_page = ceil($total_record / $perpage);
+        ?>
+        <div class="my-3" style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
+            <nav aria-label="Page navigation example " style="height: 38px;">
+                <ul class="pagination justify-content-end">
+                    <li class="page-item">
+                        <a class="page-link" href="complain.php?page=1&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                        <li class="page-item"><a class="page-link" href="complain.php?page=<?php echo $i; ?>&&mkr_id=<?php echo $mkr_id; ?>"><?php echo $i; ?></a></a></li>
+                    <?php } ?>
+                    <li class="page-item">
+                        <a class="page-link" href="complain.php?page=<?php echo $total_page; ?>&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <hr style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
         <?php while ($row = $result->fetch_assoc()) : ?>
             <div class="border rounded-top shadow-sm p-3">
                 <div class="row">
@@ -119,7 +155,26 @@ $result = mysqli_query($conn, $data);
             </div>
         <?php endwhile; ?>
     </div>
-
+    <hr style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
+    <div class="my-3" style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
+        <nav aria-label="Page navigation example " style="height: 38px;">
+            <ul class="pagination justify-content-end">
+                <li class="page-item">
+                    <a class="page-link" href="complain.php?page=1&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <?php for ($i = 1; $i <= $total_page; $i++) { ?>
+                    <li class="page-item"><a class="page-link" href="complain.php?page=<?php echo $i; ?>&&mkr_id=<?php echo $mkr_id; ?>"><?php echo $i; ?></a></a></li>
+                <?php } ?>
+                <li class="page-item">
+                    <a class="page-link" href="complain.php?page=<?php echo $total_page; ?>&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </body>
 
 

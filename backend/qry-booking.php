@@ -3,11 +3,16 @@ $curr_date = date("Y-m-d");
 if (isset($_POST['mkr_id']) != '') {
     $mkr_id =  $_POST['mkr_id'];
     $val = str_replace(',', '', $_POST['rangeinput']);
-    $datefilter = $_POST['datefilter'];
-    
+
+    $parts = explode("/", $_POST['startfilter']);
+    $startfilter = sprintf("%s-%s-%s", $parts[2], $parts[1], $parts[0]);
+
+    $parte = explode("/", $_POST['endfilter']);
+    $endfilter = sprintf("%s-%s-%s", $parte[2], $parte[1], $parte[0]);
 } else {
     $mkr_id = $_GET['mkr_id'];
-    $datefilter = $curr_date;
+    $startfilter = $curr_date;
+    $endfilter = $curr_date;
 
     $maxrentqry = mysqli_query($conn, "SELECT MAX(`sRent`) AS max FROM `stall` WHERE (market_id = '$mkr_id' AND `show` = '1')");
     $maxrent =  mysqli_fetch_array($maxrentqry);

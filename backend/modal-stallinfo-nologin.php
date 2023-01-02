@@ -1,6 +1,5 @@
 <?php
 include "./1-connectDB.php";
-
 if (isset($_POST["s_id"])) {
     $id = $_POST["s_id"];
     $data = "SELECT stall.*, zone.*,market_detail.* FROM stall JOIN zone ON (stall.z_id = zone.z_id)  JOIN market_detail ON (stall.market_id = market_detail.mkr_id) WHERE  sKey = '$id'";
