@@ -15,6 +15,7 @@ include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 require "../backend/manage-annouce.php";
+include "../backend/1-import-link.php";
 ?>
 
 <body>
@@ -30,7 +31,7 @@ require "../backend/manage-annouce.php";
                 </a>
             </div>
         </div>
-        <div id="table2" class="border p-3 shadow-sm rounded">
+        <div id="table2" class="bannertb mt-3 border p-3 shadow-sm rounded">
             <table id="myTable" class="display " style="width: 100%;">
                 <thead>
                     <tr>
@@ -65,7 +66,7 @@ require "../backend/manage-annouce.php";
             </table>
         </div>
     </div>
-    <?php require '../backend/modal-applicant.php' ?>
+
 </body>
 
 <script>
