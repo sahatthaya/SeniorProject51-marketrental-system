@@ -33,7 +33,7 @@ require "../backend/add-applicant.php";
 
 <body>
     <div <?php echo $showapp ?>>
-        <h1>กรุณากรอกข้อมูลเพื่อส่งคำร้องเพิ่มตลาด</h1>
+        <h1>ยินดีต้อนรับ! กรอกข้อมูลเพื่อส่งคำร้องเพิ่มตลาดของคุณ</h1>
         <?php
         include_once "./applicant-form.php";
         ?>
@@ -56,6 +56,33 @@ require "../backend/add-applicant.php";
         <div class="border rounded mt-3 p-3 shadow-sm">
             <div class="row">
                 <div class="col-3">
+                    <a href="edit-market-info.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bxs-edit-alt"></i>
+                        <span>แก้ไขข้อมูลตลาด</span>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="finance.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bxs-credit-card"></i>
+                        <span>แก้ไขข้อมูลการเงิน</span>
+                    </a>
+                </div>
+                <div class="col-3">
+                    <a href="edit-Stall.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bx-map-alt"></i>
+                        <span>แผนผังตลาด</span>
+                    </a>
+                </div>
+
+                <div class="col-3">
+                    <a href="news.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bxs-news"></i>
+                        <span>ข่าวสาร</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
                     <a href="booking.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary">
                         <i class="bx bx-message-alt-edit"></i>
                         <span>การจอง</span>
@@ -75,28 +102,14 @@ require "../backend/add-applicant.php";
                         <span>ค่าใช้จ่ายเพิ่มเติม</span>
                     </a>
                 </div>
-                    <div class="item ">
-                        <a href="edit-Stall.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
-                            <i class="bx bx-map-alt"></i>
-                            <span>แผนผังตลาด</span>
-                        </a>
-                    </div>
-                    <div class="item ">
-                        <a href="news.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
-                            <i class="bx bxs-news"></i>
-                            <span>ข่าวสาร</span>
-                        </a>
-                    </div>
-                    <div class="item">
-                        <a href="complain.php?mkr_id=' . $row['mkr_id'] . '" class="vstack gap-2">
-                            <i class="bx bxs-megaphone"></i>
-                            <span>การร้องเรียน</span>
-                        </a>
-                    </div> 
-                    </div>
-              
-                    <hr class="my-2">
-                <a href="overview.php?mkr_id=' . $row['mkr_id'] . '" type="button" class="btn btn-primary " style="width:100%;">ดูภาพรวม ' . $row['mkr_name'] . ' </a>
+                <div class="col-3">
+                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                        <i class="bx bxs-megaphone"></i>
+                        <span>การร้องเรียน</span>
+                    </a>
+                </div>
+
+
             </div>
         </div>
         <!-- pie graph -->
@@ -109,7 +122,7 @@ require "../backend/add-applicant.php";
                 </div>
             </div>
             <div class="border rounded shadow-sm p-3 mt-3">
-                <h3 class="center">ยอดการจองแผงค้าในแต่ละเดือน</h3>
+                <h3 class="center">สรุปการจองแผงค้าในปี <?php echo date("Y") ?></h3>
                 <div class="chartcanvas" id="chart_div"> </div>
                 <div class="text-end">
                     <a href="booking.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> จัดการการจอง</a>
@@ -121,90 +134,65 @@ require "../backend/add-applicant.php";
             <div class="border rounded shadow-sm p-3 mt-3">
                 <h4 class="center">3 อันดับประเภทแผงค้าที่ถูกจองมากที่สุด</h4>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class=" row text-decoration-none">
-                            <div class="col-2 ps-0">
-                                1.
-                            </div>
-                            <div class="col-6">
-                                ประเภทเนื้อสัตว์
-                            </div>
-                            <div class="col-4 text-end pe-0">
-                                จำนวน 5 ครั้ง
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class=" row text-decoration-none">
-                            <div class="col-2 ps-0">
-                                2.
-                            </div>
-                            <div class="col-6">
-                                ประเภทเนื้อสัตว์
-                            </div>
-                            <div class="col-4 text-end pe-0">
-                                จำนวน 5 ครั้ง
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class=" row text-decoration-none">
-                            <div class="col-2 ps-0">
-                                3.
-                            </div>
-                            <div class="col-6">
-                                ประเภทเนื้อสัตว์
-                            </div>
-                            <div class="col-4 text-end pe-0">
-                                จำนวน 5 ครั้ง
-                            </div>
-                        </div>
-                    </li>
+                    <?php
+                    if ($row3['opening'] == 'เปิดทำการทุกวัน') {
+                        $queryz = "SELECT zone.z_name , COUNT(booking_range.b_id) AS countZ  FROM stall JOIN zone ON (zone.z_id = stall.z_id) JOIN booking_range ON (booking_range.stall_id = stall.sKey) WHERE (stall.market_id = '$mkr_id') GROUP BY zone.z_id ORDER BY countZ DESC LIMIT 3";
+                    } else {
+                        $queryz = "SELECT zone.z_name , COUNT(booking_period.b_id) AS countZ  FROM stall JOIN zone ON (zone.z_id = stall.z_id) JOIN booking_period ON (booking_period.stall_id = stall.sKey) WHERE (stall.market_id = '$mkr_id') GROUP BY zone.z_id ORDER BY countZ DESC LIMIT 3";
+                    }
+
+                    $rsz = mysqli_query($conn, $queryz);
+                    $count_type = 1;
+                    foreach ($rsz as $rs_c) {
+                        echo ' <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                    <div class="col-2 ps-0">
+                    ' . $count_type . '.
+                    </div>
+                    <div class="col-6">
+                    ' . $rs_c['z_name'] . '
+                    </div>
+                    <div class="col-4 text-end pe-0">
+                    จำนวน ' . $rs_c['countZ'] . ' ครั้ง
+                    </div>
+                    </ก>
+                </li>';
+                        $count_type++;
+                    }
+                    ?>
+
                 </ul>
             </div>
             <!-- top three user -->
             <div class="border rounded shadow-sm p-3 mt-3">
                 <h4 class="center">3 อันดับผู้ใช้งานที่มีการจองมากที่สุด</h4>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
-                        <div class=" row text-decoration-none">
-                            <div class="col-2 ps-0">
-                                1.
-                            </div>
-                            <div class="col-6">
-                                สหัสทยา เทียนมงคล
-                            </div>
-                            <div class="col-4 text-end pe-0">
-                                จำนวน 5 ครั้ง
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class=" row text-decoration-none">
-                            <div class="col-2 ps-0">
-                                2.
-                            </div>
-                            <div class="col-6">
-                                สหัสทยา เทียนมงคล
-                            </div>
-                            <div class="col-4 text-end pe-0">
-                                จำนวน 5 ครั้ง
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <div class=" row text-decoration-none">
-                            <div class="col-2 ps-0">
-                                3.
-                            </div>
-                            <div class="col-6">
-                                สหัสทยา เทียนมงคล
-                            </div>
-                            <div class="col-4 text-end pe-0">
-                                จำนวน 5 ครั้ง
-                            </div>
-                        </div>
-                    </li>
+                    <?php
+                    if ($row3['opening'] == 'เปิดทำการทุกวัน') {
+                        $queryz = "SELECT users.username,booking_range.b_fname,booking_range.b_lname , COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN users ON (users.users_id = booking_range.users_id) JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
+                    } else {
+                        $queryz = "SELECT users.username,booking_period.b_fname,booking_period.b_lname , COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN users ON (users.users_id = booking_period.users_id) JOIN stall ON (stall.sKey = booking_period.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
+                    }
+
+                    $rsz = mysqli_query($conn, $queryz);
+                    $count_user = 1;
+                    foreach ($rsz as $rs_c) {
+                        echo ' <li class="list-group-item">
+                    <div class=" row text-decoration-none">
+                    <div class="col-2 ps-0">
+                    ' . $count_user . '.
+                    </div>
+                    <div class="col-6">
+                    คุณ ' . $rs_c['b_fname'] . ' ' . $rs_c['b_lname'] . ' ( ชื่อผู้ใช้ : ' . $rs_c['username'] . ' )
+                    </div>
+                    <div class="col-4 text-end pe-0">
+                    จำนวน ' . $rs_c['countZ'] . ' ครั้ง
+                    </div>
+                    </ก>
+                </li>';
+                        $count_user++;
+                    }
+                    ?>
                 </ul>
             </div>
         </div>
@@ -255,8 +243,8 @@ require "../backend/add-applicant.php";
                     </div>
                     </ก>
                 </li>';
+                        $count_n++;
                     }
-                    $count_n++;
                     ?>
                 </ul>
             </div>
@@ -358,18 +346,72 @@ require "../backend/add-applicant.php";
         data.addColumn('number', 'ยอดการจอง');
 
         data.addRows([
-            ['ม.ค.', 10],
-            ['ก.พ.', 23],
-            ['มี.ค.', 17],
-            ['เม.ย.', 18],
-            ['พ.ค.', 9],
-            ['มิ.ย.', 11],
-            ['ก.ค.', 27],
-            ['ส.ค.', 33],
-            ['ก.ย.', 40],
-            ['ต.ค.', 32],
-            ['พ.ย.', 35],
-            ['ธ.ค.', 30],
+            <?php
+            $curr_Y = date("Y");
+            if ($row3['opening'] == 'เปิดทำการทุกวัน') {
+                $query1 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-01-31' AND  '$curr_Y-01-01' <=`end`");
+                $query2 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-02-29' AND  '$curr_Y-02-01' <=`end`");
+                $query3 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-03-31' AND  '$curr_Y-03-01' <=`end`");
+                $query4 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-04-30' AND  '$curr_Y-04-01' <=`end`");
+                $query5 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-05-31' AND  '$curr_Y-05-01' <=`end`");
+                $query6 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-06-30' AND  '$curr_Y-06-01' <=`end`");
+                $query7 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-07-31' AND  '$curr_Y-07-01' <=`end`");
+                $query8 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-08-31' AND  '$curr_Y-08-01' <=`end`");
+                $query9 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-09-30' AND  '$curr_Y-09-01' <=`end`");
+                $query10 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-10-31' AND  '$curr_Y-10-01' <=`end`");
+                $query11 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-11-30' AND  '$curr_Y-11-01' <=`end`");
+                $query12 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-12-31' AND  '$curr_Y-12-01' <=`end`");
+            } else {
+                $query1 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id = '$mkr_id' AND `start` <= '$curr_Y-01-30' AND  '$curr_Y-01-01' <=`end`");
+                $query2 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-02-29' AND  '$curr_Y-02-01' <=`end`");
+                $query3 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-03-31' AND  '$curr_Y-03-01' <=`end`");
+                $query4 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-04-30' AND  '$curr_Y-04-01' <=`end`");
+                $query5 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-05-31' AND  '$curr_Y-05-01' <=`end`");
+                $query6 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-06-30' AND  '$curr_Y-06-01' <=`end`");
+                $query7 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-07-31' AND  '$curr_Y-07-01' <=`end`");
+                $query8 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-08-31' AND  '$curr_Y-08-01' <=`end`");
+                $query9 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-09-30' AND  '$curr_Y-09-01' <=`end`");
+                $query10 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-10-31' AND  '$curr_Y-10-01' <=`end`");
+                $query11 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-11-30' AND  '$curr_Y-11-01' <=`end`");
+                $query12 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-12-31' AND  '$curr_Y-12-01' <=`end`");
+            }
+            foreach ($query1 as $rs_1) {
+                echo "['ม.ค.'," . $rs_1['countZ'] . "],";
+            }
+            foreach ($query2 as $rs_2) {
+                echo "['ก.พ.'," . $rs_2['countZ'] . "],";
+            }
+            foreach ($query3 as $rs_3) {
+                echo "['มี.ค.'," . $rs_3['countZ'] . "],";
+            }
+            foreach ($query4 as $rs_4) {
+                echo "['เม.ย.'," . $rs_4['countZ'] . "],";
+            }
+            foreach ($query5 as $rs_5) {
+                echo "['พ.ค.'," . $rs_5['countZ'] . "],";
+            }
+            foreach ($query6 as $rs_6) {
+                echo "['มิ.ย.'," . $rs_6['countZ'] . "],";
+            }
+            foreach ($query7 as $rs_7) {
+                echo "['ก.ค.'," . $rs_7['countZ'] . "],";
+            }
+            foreach ($query8 as $rs_8) {
+                echo "['ส.ค.'," . $rs_8['countZ'] . "],";
+            }
+            foreach ($query9 as $rs_9) {
+                echo "['ก.ย.'," . $rs_9['countZ'] . "],";
+            }
+            foreach ($query10 as $rs_10) {
+                echo "['ต.ค.'," . $rs_10['countZ'] . "],";
+            }
+            foreach ($query11 as $rs_11) {
+                echo "['พ.ย.'," . $rs_11['countZ'] . "],";
+            }
+            foreach ($query12 as $rs_12) {
+                echo "['ธ.ค.'," . $rs_12['countZ'] . "]";
+            }
+            ?>
         ]);
 
         var options = {
@@ -415,7 +457,7 @@ require "../backend/add-applicant.php";
         '#fed7c3',
         '#f6eac2',
         '#ecd5e3',
-        'ff968a'
+
     ];
 
 

@@ -24,8 +24,6 @@ if (isset($_GET['n_id'])) {
 if (isset($_POST['add-news'])) {
     $n_sub = $_POST['n_sub'];
     $n_detail = $_POST['n_detail'];
-    $n_file = '';
-    $n_file = isset($_POST['n_file']);
 
     $mkr_id = $_POST['mkr_id'];
     date_default_timezone_set('Asia/Bangkok');
@@ -38,7 +36,7 @@ if (isset($_POST['add-news'])) {
     $n_type = $_FILES['n_file']['type'];
     $n_file = 'asset/news/' . $n_name;
     $npath = '../asset/news/' . $n_name;
-    if (isset($_POST["n_sub"]) != "" && isset($_POST["n_detail"]) != "" && isset($_POST["n_file"]) != "") {
+    if (isset($n_tmp) != "") {
         move_uploaded_file($n_tmp, $npath);
         $sqlInsert = "INSERT INTO news(n_sub, n_detail, n_file,mkr_id) VALUES ('$n_sub', '$n_detail', '$n_file', $mkr_id)";
         if (mysqli_query($conn, $sqlInsert)) {
@@ -94,7 +92,7 @@ if (isset($_POST["newsid"])) {
           </tr>  
           <tr>  
           <td width="30%"><label>วันที่เพิ่มข่าวสาร</label></td>  
-          <td width="70%">' . $row["timestamp"] . '</td>  
+          <td width="70%">' .date("d/m/Y เวลา h:i a", strtotime($row['timestamp'])). '</td>  
           </tr>  
           <tr>  
                <td width="30%"><label>รายละเอียด</label></td>  
@@ -127,7 +125,7 @@ if (isset($_POST["news_id"])) {
           </tr>  
           <tr>  
           <td width="30%"><label>วันที่เพิ่มข่าวสาร</label></td>  
-          <td width="70%">' . $row["timestamp"] . '</td>  
+          <td width="70%">' . date("d/m/Y เวลา h:i a", strtotime($row['timestamp'])) . '</td>  
           </tr>  
           <tr>  
                <td width="30%"><label>รายละเอียด</label></td>  
@@ -164,7 +162,7 @@ if (isset($_POST['edit-news-submit'])) {
     $n_detail = $_POST['n_detail'];
     $n_file_post = '';
     $n_file_post = isset($_FILES['n_file']);
-
+    $fileold = $edit["n_file"];
 
     date_default_timezone_set('Asia/Bangkok');
     $date = date("Ymd");
@@ -177,7 +175,7 @@ if (isset($_POST['edit-news-submit'])) {
     $n_file = 'asset/news/' . $n_name;
     $npath = '../asset/news/' . $n_name;
 
-    if ( isset($_FILES["n_file"]) != "") {
+    if ($n_tmp != "") {
         $sqlupdatewithfile = "UPDATE `news` SET `n_file`='$n_file',`n_sub`='$n_sub',`n_detail`='$n_detail' WHERE n_id = '$n_id'";
         $updatewithfile = mysqli_query($conn, $sqlupdatewithfile);
         if ($updatewithfile) {

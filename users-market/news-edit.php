@@ -36,14 +36,14 @@ extract($row);
 <body>
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
-            <li class="breadcrumb-item fs-5 "><a href="news.php?mkr_id=<?php echo $row['mkr_id'] ?>" class="text-decoration-none" >จัดการข่าวสาร <?php echo $row['mkr_name']; ?></a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./index.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="news.php?mkr_id=<?php echo $row['mkr_id'] ?>" class="text-decoration-none">จัดการข่าวสาร <?php echo $row['mkr_name']; ?></a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">แก้ไขข่าวสาร</li>
         </ol>
     </nav>
     <h1 class="head_contact mb-3">แก้ไขข่าวสาร</h1>
 
-    <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm">
+    <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm was-validated">
         <h4 class="mb-2">กรอกข้อมูลที่ต้องการแก้ไข</h4>
         <hr>
         <div class="mt-4 mb-3 row">
@@ -51,13 +51,13 @@ extract($row);
             <input type="text" class="form-control" name="n_id" value="<?php echo $edit['n_id'] ?>" hidden>
 
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="n_sub" value="<?php echo $edit['n_sub'] ?>">
+                <input type="text" class="form-control" name="n_sub" value="<?php echo $edit['n_sub'] ?>" required>
             </div>
         </div>
         <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">รายละเอียด</label>
             <div class="col-sm-10">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;" name="n_detail"><?php echo $edit['n_detail'] ?></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" style="resize: none;" name="n_detail" required><?php echo $edit['n_detail'] ?></textarea>
             </div>
         </div>
         <div class="mb-3 row">

@@ -23,7 +23,7 @@ require "../backend/manage_cost.php";
 <body onload="selecttype()">
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./index.php?mkr_id=<?php echo $row1['mkr_id']; ?>" class="text-decoration-none">หน้าหลัก</a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">ค่าใช้จ่ายเพิ่มเติม <?php echo $row1['mkr_name'] ?></li>
         </ol>
     </nav>

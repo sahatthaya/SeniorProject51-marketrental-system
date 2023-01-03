@@ -161,7 +161,7 @@ if (isset($_GET['delstall'])) {
 <body>
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="./index.php" class="text-decoration-none">หน้าหลัก</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./index.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none">หน้าหลัก</a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">จัดการข้อมูลแผงค้า <?php echo $row['mkr_name']; ?></li>
         </ol>
     </nav>
@@ -182,7 +182,7 @@ if (isset($_GET['delstall'])) {
             <div class="chartcanvas center mt-5 ms-5" id="piechart"  ></div>
         </div>
         <div class="border rounded shadow-sm p-3 mt-3">
-            <form method="POST">
+            <form method="POST" class="was-validated">
                 <h3 class="modal-title">เพิ่มแผงค้า</h3>
                 <label class="hstack mt-2">รหัสแผงค้า :
                     <div data-toggle="tooltip" title="รหัสแผงค้าภายในตลาดเดียวกัน จะไม่สามารถซ้ำกันได้" class="mt-1 ms-2">
@@ -190,7 +190,7 @@ if (isset($_GET['delstall'])) {
                     </div>
                 </label>
                 <div class="input-group">
-                    <input type="text" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" required>
+                    <input type="text" oninput="this.value = this.value.toUpperCase()" class="form-control" id="stallID" aria-label="รหัสแผงค้า" name="sID" placeholder="กรุณากรอกรหัสแผงค้า เช่น รหัสแผงค้า A01" required>
                 </div>
                 <label for="" class="mt-2">ประเภทแผงค้า</label>
                 <div class="search_select_box">

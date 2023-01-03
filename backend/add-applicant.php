@@ -50,7 +50,7 @@ if (isset($_POST['submit-apply'])) {
         $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`)
         VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName',' $email',' $tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent') ";
         if (mysqli_query($conn, $sqlInsert)) {
-            echo "<script type='text/javascript'> success(); </script>";
+            echo "<script type='text/javascript'> partnersuccess(); </script>";
             echo '<meta http-equiv="refresh" content="1";/>';
         } else {
             echo "<script type='text/javascript'> error(); </script>";
@@ -76,7 +76,7 @@ if (isset($_POST['bn-submit'])) {
         move_uploaded_file($bn_tmp, $bnpath);
         $sqlInsert = "INSERT INTO req_annouce(bn_toppic, bn_detail, bn_pic,users_id) VALUES ('$bn_toppic', '$bn_detail', '$bn_img', $users_id)";
         if (mysqli_query($conn, $sqlInsert)) {
-            echo "<script type='text/javascript'> success(); </script>";
+            echo "<script type='text/javascript'> partnersuccess(); </script>";
             echo '<meta http-equiv="refresh" content="1";/>';
             mysqli_close($conn);
         } else {

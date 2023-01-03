@@ -85,6 +85,16 @@
         })
     }
 
+    function partnersuccess() {
+        Swal.fire({
+            title: 'บันทึกข้อมูลสำเร็จ',
+            text: 'กรุณารอการตรวจสอบจากผู้ดูแลระบบ',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 2500
+        })
+    }
+
     function logoutsuccess() {
         Swal.fire({
             title: 'ออกจากระบบสำเร็จ',
@@ -202,6 +212,7 @@
             window.location = "../users-merchant/rent.php";
         });
     }
+
     function sentinvoice() {
         Swal.fire({
             title: 'ส่งใบแจ้งค่าเช่าสำเร็จ',
@@ -250,7 +261,7 @@
             showConfirmButton: false,
             timer: 1000
         }).then(function() {
-            window.location = "../index.php";
+            window.location = "./index.php";
         });
     }
     // warning------------------------------------------------------------

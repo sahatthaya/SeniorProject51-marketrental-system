@@ -61,7 +61,13 @@ include "../backend/1-import-link.php";
     </div>
     <hr>
     <?php
-    $sql2 = "SELECT * FROM market_detail WHERE (a_id='1')";
+    $sql2 = "SELECT * FROM market_detail 
+    JOIN users ON (market_detail.users_id = users.users_id)
+    JOIN provinces ON (market_detail.province_id = provinces.id)
+    JOIN amphures ON (market_detail.	amphure_id = amphures.id)
+    JOIN districts ON (market_detail.district_id = districts.id)
+    JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
+     WHERE a_id='1'";
     $query2 = mysqli_query($conn, $sql2);
     $total_record = mysqli_num_rows($query2);
     $total_page = ceil($total_record / $perpage);

@@ -243,7 +243,7 @@ $rowus = mysqli_fetch_array($qry);
                 @$totalcal = $price * 100;
                 @$total = $price;
                 ?>
-                 <hr class="m-0 my-2">
+                <hr class="m-0 my-2">
                 <input name="total" value="<?php echo $totalcal ?>" hidden>
                 <input type="button" name="previous" class="btn btn-info mt-3" style="color: white;" value="ย้อนกลับ" onclick="backtostep2()" id="back">
                 <input type="submit" id="checkoutButton" class="btn btn-info mt-3" style="background-color: #000374;color:white;" value="ชำระเงิน" />
@@ -358,8 +358,6 @@ $rowus = mysqli_fetch_array($qry);
         ]
 
     });
-
-
 </script>
 
 

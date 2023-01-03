@@ -29,16 +29,25 @@
 
     <h1>จองแผงค้า<?php echo $row['mkr_name']; ?><i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
     <div class="plan">
-        <form method="POST">
+        <form method="POST" action="booking.php">
             <div class="d-flex justify-content-between px-3">
                 <div class="hstack  px-1 gap-2">
-                    <label><span class="text-secondary text-decoration-underline">ค้นหา</span> แผงค้าว่างในวันที่ : </label>
-                    <div class="range-slider hstack gap-2">
-                        <input type="date" name="datefilter" value="<?php echo $datefilter ?>" min="<?php echo date("Y-m-d") ?>" class="form-control" required />บาท
+                    <label><span class="text-secondary text-decoration-underline">ค้นหา</span> แผงค้าว่างในช่วงวันที่ : </label>
+                    <input type="text" name="mkr_id" value="<?php echo $mkr_id ?>" hidden required />
+                    <div id="range"></div>
+                    <div style="width: 10%;">
+                        <input id="start" name="startfilter" value="<?php echo date("d/m/Y", strtotime($startfilter)) ?>" class="form-control bg-white" required />
+                    </div>
+                    <label>ถึง </label>
+                    <div style="width: 10%;">
+                        <input id="end" name="endfilter" value="<?php echo  date("d/m/Y", strtotime($endfilter)) ?>" class="form-control  bg-white" required />
                     </div>
                     <label>และ ราคาค่าเช่าไม่เกิน : </label>
                     <div class="hstack gap-2">
-                        <input id='first' type="text" name="rangeinput" class="form-control w-50" value="<?php echo number_format($range) ?>" autocomplete="off" required />บาท
+                        <div style="width: 35%;">
+                            <input id='first' type="text" name="rangeinput" class="form-control" value="<?php echo number_format($range) ?>" autocomplete="off" required />
+                        </div>
+                        บาท
                         <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
                     </div>
                 </div>
@@ -65,7 +74,7 @@
                 $sKey =  $row1['sKey'];
 
                 if ($row1['sRent'] <= $val) {
-                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_range ON (stall.sKey = booking_range.stall_id) JOIN zone ON (zone.z_id = stall.z_id)  WHERE (`sKey` = '$sKey'  AND '$datefilter' >= `start` AND '$datefilter' <= `end`)");
+                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_range ON (stall.sKey = booking_range.stall_id) JOIN zone ON(zone.z_id = stall.z_id) WHERE (booking_range.`stall_id` = '$sKey' AND `start` <= '$endfilter' AND  '$startfilter' <= `end` )");
                     $numRows = mysqli_num_rows($rsrange);
                     if ($numRows > 0) {
                         $opc = "0.2";
@@ -198,6 +207,18 @@
         });
 
         var firstValue = Number($('#first').val().replace(/,/g, ''));
+    });
+
+    // datepicker
+    mobiscroll.setOptions({
+        locale: mobiscroll.localeTh,
+        theme: 'ios',
+        themeVariant: 'light'
+    });
+    mobiscroll.datepicker('#range', {
+        select: 'range',
+        startInput: '#start',
+        endInput: '#end'
     });
 </script>
 
