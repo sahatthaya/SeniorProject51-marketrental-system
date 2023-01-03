@@ -162,11 +162,6 @@ input:invalid {
         width: 100% !important;
     }
 
-    .col-sm-10 {
-        margin: 0px !important;
-    }
-
-
 }
 
 
@@ -199,6 +194,11 @@ input:invalid {
     .btnac{
         width: 70%;
         margin-bottom: 5px;
+    }
+
+    .btn-calen{
+        margin-left: 10px;
+        font-size: 14px !important;
     }
 
     .modal_data {

@@ -111,7 +111,7 @@ if (isset($_POST['save-range'])) {
                     </div>
                     <div>
                         <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <button type="button" class="btn btn-primary btn-calen" data-bs-toggle="modal" data-bs-target="#exampleModal">
                             ปฏิทินการจองของ <?php echo $_SESSION['username']; ?>
                         </button>
                     </div>

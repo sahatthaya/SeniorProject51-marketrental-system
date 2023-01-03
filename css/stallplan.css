@@ -121,17 +121,6 @@ body {
         margin: 60px 10px 0px 15px !important;
     }
 
-    label {
-        float: left;
-        width: 8em;
-        margin-right: 1em;
-        margin-bottom: 5px !important;
-    }
-
-    .form-control {
-        width: 70% !important;
-        margin: 5px !important;
-    }
 
     button {
         float: right;
@@ -141,10 +130,6 @@ body {
 }
 
 @media(max-width:550px) {
-
-    .form-control {
-        width: 50% !important;
-    }
 
     button {
         float: right;
