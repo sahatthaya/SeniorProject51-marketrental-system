@@ -28,7 +28,7 @@ $qrycalendar = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE mkr_id 
 
 $qryperiod = mysqli_query($conn, "SELECT * FROM `opening_period` WHERE (mkr_id = $mkr_id) ORDER BY `start` ASC");
 if ($row['opening'] == "เปิดทำการเป็นรอบ") {
-    $opening_period = '    <div class="mrk_news border rounded shadow-sm mb-4">
+    $opening_period = '    <div class="mrk_news border rounded shadow-sm mb-4 mt-3">
     <div class="d-flex justify-content-between ">
         <h4 class="mt-2 mb-0">ปฏิทินรอบการเปิดทำการของตลาด</h4>
     </div>

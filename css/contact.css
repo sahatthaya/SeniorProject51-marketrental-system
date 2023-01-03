@@ -11,7 +11,7 @@ body {
 
 .contentbox {
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 5px;
     -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
@@ -20,7 +20,7 @@ body {
 
 .logo_img img {
     height: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     background: #0032B5;
     -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
     -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
@@ -36,7 +36,7 @@ body {
 
 .cardcontact {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 30px;
     background: white;
     overflow: hidden;
@@ -72,21 +72,21 @@ body {
 #cancel {
     background-color: #EF3838;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 #save-data {
     background-color: #004AAD;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .inputct input {
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .inputct span {
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 
