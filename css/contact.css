@@ -140,4 +140,9 @@ body {
         width: 660px !important;
         height: 250px !important;
     }
+
+    .card-body {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
 }

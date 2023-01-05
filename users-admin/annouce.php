@@ -9,6 +9,7 @@
 
     <!-- css  -->
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
+
 </head>
 <?php
 include "profilebar.php";
@@ -32,7 +33,7 @@ include "../backend/1-import-link.php";
             </div>
         </div>
         <div id="table2" class="bannertb mt-3 border p-3 shadow-sm rounded">
-            <table id="myTable" class="display " style="width: 100%;">
+            <table id="myTable" class="display table table-striped dt-responsive " style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
@@ -88,6 +89,7 @@ include "../backend/1-import-link.php";
 
         })
     });
+
 </script>
 
 </html>

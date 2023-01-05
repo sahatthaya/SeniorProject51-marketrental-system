@@ -309,6 +309,8 @@ $(document).ready(function () {
 
 });
 
+
+
 $(document).ready(function () {
     $("#myTable_nosort").DataTable({
         scrollCollapse: true,
@@ -333,6 +335,10 @@ $(document).ready(function () {
     });
 
 });
+
+
+
+
 
 
 

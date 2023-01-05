@@ -112,7 +112,7 @@ require "../backend/manage-banner.php";
             </div>
             <div class="content">
                 <div id="table" class="bannertb mt-3 border p-3 shadow-sm rounded">
-                    <table id="myTable" class="display " style="width: 100%;">
+                    <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th scope="col">ลำดับ</th>
@@ -169,6 +169,7 @@ require "../backend/manage-banner.php";
             blah.src = URL.createObjectURL(file)
         }
     }
+
 </script>
 
 

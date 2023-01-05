@@ -64,9 +64,8 @@ a {
     padding: auto 10px;
 }
 
-
 .parent {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
@@ -112,6 +111,9 @@ a {
 .valid,
 input:invalid {
     border-color: #429032 !important;
+}
+.nowrap{
+    display: block;
 }
 
 /* ------------------------------------responsive-------------------------- */

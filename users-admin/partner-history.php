@@ -15,6 +15,7 @@ include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 require "../backend/manage-applicant.php";
+require "../backend/1-import-link.php";
 ?>
 
 <body>
@@ -32,7 +33,7 @@ require "../backend/manage-applicant.php";
         </div>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded">
-                <table id="myTable" class="display " style="width: 100%;">
+                <table id="myTable" class="display table table-striped dt-responsive " style="width:100% ;">
                     <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>
@@ -54,11 +55,12 @@ require "../backend/manage-applicant.php";
                                 <td><?php echo $row['username']; ?></td>
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                                 <td><?php echo $row['market_name']; ?></td>
-                                <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
+                                <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button></td>
                                 <td>
                                     <div style="background-color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div>
                                 </td>
                             </tr>
+
                         <?php $count_n++;
                         endwhile ?>
                     </tbody>
@@ -66,6 +68,9 @@ require "../backend/manage-applicant.php";
             </div>
         </div>
     </div>
+
+
+
     <?php require '../backend/modal-applicant.php' ?>
 </body>
 <script>
@@ -89,5 +94,6 @@ require "../backend/manage-applicant.php";
         })
     });
 </script>
+
 
 </html>
