@@ -6,8 +6,9 @@ function signIn() {
     document.getElementById("signIn").style.display = "block";
     document.getElementById("forgotpsw").style.display = "none";
     document.getElementById("signUp").style.display = "none";
-    document.getElementById("profilebar").style.transition = "0.5s ease";
 
+    document.getElementById("profilebar").style.transition = "0.5s ease";
+    document.getElementById("resetpsw").style.display = "none";
 }
 // ปิดหน้าโปรไฟล์บาร์
 function closeprofilebar() {
@@ -18,18 +19,28 @@ function showforgotpsw() {
     document.getElementById("signIn").style.display = "none";
     document.getElementById("forgotpsw").style.display = "block";
     document.getElementById("signUp").style.display = "none";
+    document.getElementById("resetpsw").style.display = "none";
 }
 // เปิดหน้าเข้าสู่ระบบ
 function showsignIn() {
     document.getElementById("signIn").style.display = "block";
     document.getElementById("forgotpsw").style.display = "none";
     document.getElementById("signUp").style.display = "none";
+    document.getElementById("resetpsw").style.display = "none";
 }
 // เปิดหน้าลงทะเบียน
 function showsignup() {
     document.getElementById("signIn").style.display = "none";
     document.getElementById("forgotpsw").style.display = "none";
     document.getElementById("signUp").style.display = "block";
+    document.getElementById("resetpsw").style.display = "none";
+}
+// เปิดหน้ารีเซตรหัสผ่าน
+function showresetpsw() {
+    document.getElementById("signIn").style.display = "none";
+    document.getElementById("forgotpsw").style.display = "none";
+    document.getElementById("signUp").style.display = "none";
+    document.getElementById("resetpsw").style.display = "block";
 }
 
 // เชครหัสตรงกัน

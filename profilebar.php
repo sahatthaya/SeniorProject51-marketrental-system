@@ -10,6 +10,8 @@ $sqllg = "SELECT * FROM contact ";
 $resultlg = mysqli_query($conn, $sqllg);
 $lg = mysqli_fetch_array($resultlg);
 extract($lg);
+
+
 ?>
 
 <head>
@@ -22,9 +24,25 @@ extract($lg);
 include "backend/1-import-link.php";
 require "backend/auth-auth.php";
 require "backend/auth-signup.php";
+
+
 ?>
 
 <body>
+    <?php
+    if (isset($_GET['token'])) {
+        $token = $_GET['token'];
+        $query = "SELECT * FROM forgot_password WHERE token = '$token' ";
+        $r = mysqli_query($conn, $query);
+
+        if (mysqli_num_rows($r) > 0) {
+
+            $row = mysqli_fetch_array($r);
+            $email = $row['email'];
+        }
+    } ?>
+
+
     <div class="profileicon prevent-select" onclick="signIn()">
         <p>เข้าสู่ระบบ/สมัครสมาชิก</p>
         <i id="profileicon" class='bx bxs-user-circle bx-md'></i>
@@ -49,23 +67,48 @@ require "backend/auth-signup.php";
             </form>
             <div class="center"><a href="#" onclick="showsignup()" class="link">ยังไม่ได้เป็นสมาชิก? สมัครสมาชิก</a> </div>
         </div>
+
         <!-- ลืมรหัสผ่าน -->
         <div id="forgotpsw">
             <i class='bx bxs-user-circle authicon'></i>
-
             <h1>ลืมรหัสผ่าน</h1>
+            <div class="form-message" id="msg"></div>
             <form method="POST">
-                <div class="des_input">ชื่อบัญชีผู้ใช้
+                <!-- <div class="des_input">ชื่อบัญชีผู้ใช้
                 </div>
                 <input class="input inputcolor" type="text" name="username-forgot" required>
-                <br>
+                <br> -->
                 <div class="des_input">อีเมล</div>
-                <input class="input inputcolor" type="email" name="email-forgot" required>
+                <input class="input inputcolor" type="email" name="email-forgot" id="email-forgot" required>
                 <br>
                 <input class="input submit" type="submit" name="forgot-btn" value="ส่งรหัสผ่านไปยังอีเมล">
             </form>
             <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
         </div>
+
+        <!-- รีเซตรหัสผ่าน -->
+        <div id="resetpsw">
+            <i class='bx bxs-user-circle authicon'></i>
+            <h1>รีเซ็ตรหัสผ่าน</h1>
+            <div class="form-message" id="msg"></div>
+            <form method="POST">
+                <div class="des_input">อีเมล</div>
+                <input class="input inputcolor" type="email" name="email-forgot" id="email-forgot" >
+                <br>
+
+                <div class="des_input">สร้างรหัสผ่านใหม่</div>
+                <input class="input inputcolor" type="password" name="password-forgot" id="passwordforgot" required>
+                <br>
+
+                <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div>
+                <input class="input inputcolor" type="password" name="cfpassword-forgot" id="cfpasswordforgot" required>
+                <br>
+
+                <input class="input submit" type="submit" name="resetpsw-btn" value="รีเซตรหัสผ่าน">
+            </form>
+            <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
+        </div>
+
         <!-- สมัครสมาชิก -->
         <div id="signUp">
             <i class='bx bxs-user-circle authicon'></i>
@@ -116,6 +159,59 @@ require "backend/auth-signup.php";
 
     $("#tel").inputmask({
         "mask": "9999999999"
+    });
+
+    $(document).ready(function() {
+
+        $("#forgotpsw").on('submit', function(e) {
+            e.preventDefault();
+
+            var email = $("#email-forgot").val();
+
+            // alert(email);
+            $.ajax({
+
+                type: "POST",
+                url: "forgot_password_in.php",
+                data: {
+                    email: email
+                },
+
+                success: function(date) {
+
+                    $(".form-message").css("display", "block");
+
+                    $(".form-message").html(date);
+                }
+
+            });
+        });
+
+        $("#resetpsw").on('submit', function(c) {
+
+            c.preventDefault();
+            var email = $("#email-forgot").val();
+            var passwordforgot = $("#passwordforgot").val();
+            var cfpasswordforgot = $("#cfpasswordforgot").val();
+            // alert(email + passwordforgot + Cfpasswordforgot);
+
+            $.ajax({
+
+                type: "POST",
+                url: "reset_password.php",
+                data: {
+                    email: email,
+                    passwordforgot: passwordforgot,
+                    cfpasswordforgot: cfpasswordforgot
+                },
+
+                success: function(date) {
+                    $(".form-message").css("display", "block");
+                    $(".form-message").html(date);
+                }
+            });
+        });
+
     });
 </script>
 
