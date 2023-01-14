@@ -83,7 +83,7 @@ require "backend/auth-signup.php";
         </div>
 
         <!-- รีเซตรหัสผ่าน -->
-        <!-- <div id="resetpsw">
+        <div id="resetpsw">
             <i class='bx bxs-user-circle authicon'></i>
             <h1>รีเซ็ตรหัสผ่าน</h1>
             <div class="form-message" id="msg"></div>
@@ -97,14 +97,13 @@ require "backend/auth-signup.php";
                 <br>
 
                 <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div>
-                <input class="input inputcolor" type="password" name="confirmpassword" id="confirmpassword" required>
+                <input class="input inputcolor" type="password" name="cfpassword" id="cfpassword" required>
                 <br>
 
-                <input class="input submit" type="submit" name="resetpsw-btn" value="รีเซตรหัสผ่าน">
+                <input class="input submit" type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน">
             </form>
             <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
-        </div> -->
-
+        </div>
         <!-- สมัครสมาชิก -->
         <div id="signUp">
             <i class='bx bxs-user-circle authicon'></i>
@@ -184,33 +183,33 @@ require "backend/auth-signup.php";
         return true;
     }
 
-    // $(document).ready(function() {
-    //     $("#resetpsw").on('submit', function(c) {
+    $(document).ready(function() {
+        $("#resetpsw").on('submit', function(c) {
 
-    //         c.preventDefault();
-    //         var email = $("#email").val();
-    //         var password = $("#password").val();
-    //         var confirmpassword = $("#confirmpassword").val();
-    //         // alert(email + passwordforgot + confirmpasswordforgot);
+            c.preventDefault();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var confirmpassword = $("#confirmpassword").val();
+            // alert(email + passwordforgot + confirmpasswordforgot);
 
-    //         $.ajax({
+            $.ajax({
 
-    //             type: "POST",
-    //             url: "reset-password.php",
-    //             data: {
-    //                 email: email,
-    //                 password: password,
-    //                 confirmpassword: confirmpassword
-    //             },
+                type: "POST",
+                url: "reset-password.php",
+                data: {
+                    email: email,
+                    password: password,
+                    confirmpassword: confirmpassword
+                },
 
-    //             success: function(date) {
-    //                 $(".form-message").css("display", "block");
-    //                 $(".form-message").html(date);
-    //             }
-    //         });
-    //     });
+                success: function(date) {
+                    $(".form-message").css("display", "block");
+                    $(".form-message").html(date);
+                }
+            });
+        });
 
-    // });
+    });
 </script>
 
 </html>

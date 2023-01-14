@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>reset password</title>
+    <title>MarketRental - รีเซ็ตรหัสผ่าน</title>
+
 </head>
-<?php 
-require "./reset-password.php"
+<?php
+require "./reset-password.php";
+include "./backend/1-import-link.php";
+
 ?>
+
 <body>
 
     <?php
@@ -27,58 +31,63 @@ require "./reset-password.php"
     }
 
     ?>
-    <!-- รีเซตรหัสผ่าน -->
-    <div id="resetpsw">
-        <i class='bx bxs-user-circle authicon'></i>
-        <h1>รีเซ็ตรหัสผ่าน</h1>
-        <div class="form-message" id="msg">
-            <form method="POST">
-                <div class="des_input">อีเมล</div>
-                <input class="input inputcolor" type="email" name="email" id="email" value=" <?php echo $email;  ?>">
-                <br>
-
-                <div class="des_input">สร้างรหัสผ่านใหม่</div>
-                <input class="input inputcolor" type="password" name="password" id="password" required>
-                <br>
-
-                <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div>
-                <input class="input inputcolor" type="password" name="confirmpassword" id="confirmpassword" required>
-                <br>
-                <input class="input submit" type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน">
-            </form>
-            <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
+    <center>
+        
+        <div id="resetpsw" style="width: 18rem; margin: 50px 150px;">
+            <h1>รีเซ็ตรหัสผ่าน</h1>
+            <div class="form-message" id="msg"></div>
+            <div class="reset-psw">
+                <form method="POST">
+                    <div class="mb-3">
+                        <!-- <div class="des_input">อีเมล</div> -->
+                        <input class="input inputcolor form-control" type="email" name="email" id="email" value="<?php echo $email; ?>" disabled>
+                    </div>
+                    <div class="mb-3">
+                        <!-- <div class="des_input">สร้างรหัสผ่านใหม่</div> -->
+                        <input class="input inputcolor form-control" type="password" name="password" id="password" required placeholder="สร้างรหัสผ่านใหม่">
+                    </div>
+                    <div class="mb-3">
+                        <!-- <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div> -->
+                        <input class="input inputcolor form-control" type="password" name="cfpassword" id="cfpassword" required placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง">
+                    </div>
+                    <input class="input submit btn btn-primary" type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน">
+                </form>
+                <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
+            </div>
         </div>
+    </center>
 
-        <script src="backend/script.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
 
-                $("#resetpsw").on('submit', function(e) {
+    <script src="backend/script.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
 
-                    e.preventDefault();
-                    var email = $("#email").val();
-                    var password = $("#password").val();
-                    var confirmpassword = $("#confirmpassword").val();
-                    // alert(email + password + confirmpassword);
+            ("#resetpsw").on('submit', function(c) {
 
-                    $.ajax({
+                c.preventDefault();
+                var email = $("#email").val();
+                var password = $("#password").val();
+                var cfpassword = $("#cfpassword").val();
+                // alert(email + passwordforgot + Cfpasswordforgot);
 
-                        method: "POST",
-                        url: "reset-password.php",
-                        data: {
-                            email: email,
-                            password: password,
-                            confirmpassword: confirmpassword
-                        },
-                        success: function(data) {
-                            $(".form-message").css("display", "block");
-                            $(".form-message").html(data);
-                            $("#resetpsw")[0].reset();
-                        }
-                    });
+                $.ajax({
+
+                    type: "POST",
+                    url: "reset_password.php",
+                    data: {
+                        email: email,
+                        password: password,
+                        cfpassword: cfpassword
+                    },
+
+                    success: function(date) {
+                        $(".form-message").css("display", "block");
+                        $(".form-message").html(date);
+                    }
                 });
-
             });
-        </script>
+
+        });
+    </script>
 
 </html>
