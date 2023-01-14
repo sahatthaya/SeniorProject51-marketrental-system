@@ -1,5 +1,6 @@
-
+ 
 <?php 
+
 
 include("./backend/1-connectDB.php");
 if(isset($_POST['email'])){
@@ -23,7 +24,7 @@ if(isset($_POST['email'])){
 
             $to = $email;
             $subject = "Password Reset Link";
-            $msg = 'Click <a href="http://localhost/SeniorProject51/#?token='.$token.' "onclick="showresetpsw()" class="link" >here</a>  to reset your password';
+            $msg = 'Click <a href="http://localhost/SeniorProject51/reset_password.php?token='.$token.' "onclick="showresetpsw()" class="link" >here</a>  to reset your password';
 
             $message = "Email: ". $email . "\n\n"." ". $msg;
 
@@ -34,6 +35,8 @@ if(isset($_POST['email'])){
             if(mail($to,$subject,$message,$headers)){
                 echo "Password link is sent to your email";
             }
+
+            
             // echo "Click <a href='#?=token=$token'  onclick='showresetpsw()' class='link'>here</a>  to reset your password";
         }else{
             echo "User not Found";

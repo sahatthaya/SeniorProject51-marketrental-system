@@ -93,15 +93,15 @@ require "backend/auth-signup.php";
             <div class="form-message" id="msg"></div>
             <form method="POST">
                 <div class="des_input">อีเมล</div>
-                <input class="input inputcolor" type="email" name="email-forgot" id="email-forgot" >
+                <input class="input inputcolor" type="email" name="email" id="email" >
                 <br>
 
                 <div class="des_input">สร้างรหัสผ่านใหม่</div>
-                <input class="input inputcolor" type="password" name="password-forgot" id="passwordforgot" required>
+                <input class="input inputcolor" type="password" name="password" id="password" required>
                 <br>
 
                 <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div>
-                <input class="input inputcolor" type="password" name="cfpassword-forgot" id="cfpasswordforgot" required>
+                <input class="input inputcolor" type="password" name="cfpassword" id="cfpassword" required>
                 <br>
 
                 <input class="input submit" type="submit" name="resetpsw-btn" value="รีเซตรหัสผ่าน">
@@ -190,9 +190,9 @@ require "backend/auth-signup.php";
         $("#resetpsw").on('submit', function(c) {
 
             c.preventDefault();
-            var email = $("#email-forgot").val();
-            var passwordforgot = $("#passwordforgot").val();
-            var cfpasswordforgot = $("#cfpasswordforgot").val();
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var cfpassword = $("#cfpassword").val();
             // alert(email + passwordforgot + Cfpasswordforgot);
 
             $.ajax({
@@ -201,8 +201,8 @@ require "backend/auth-signup.php";
                 url: "reset_password.php",
                 data: {
                     email: email,
-                    passwordforgot: passwordforgot,
-                    cfpasswordforgot: cfpasswordforgot
+                    password: password,
+                    cfpassword: cfpassword
                 },
 
                 success: function(date) {

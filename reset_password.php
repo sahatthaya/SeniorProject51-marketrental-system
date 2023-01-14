@@ -1,28 +1,30 @@
-<?php 
+
+<?php
 
 include("./backend/1-connectDB.php");
 
-if(isset($_POST['email']) || ($_POST['passwordforgot']) || ($_POST['cfpasswordforgot']) ){
+if (isset($_POST['email']) || ($_POST['password']) || ($_POST['cfpassword'])) {
 
     $email = $_POST['email'];
-    $passwordforgot = $_POST['passwordforgot'];
-    $cfpasswordforgot = $_POST['cfpasswordforgot'];
+    $password = $_POST['password'];
+    $cfpassword = $_POST['cfpassword'];
 
-    if(empty($passwordforgot) || empty($cfpasswordforgot)){
+    if (empty($password) || empty($cfpassword)) {
 
         echo "Empty Fields";
-    }else{      
-        if($passwordforgot == $cfpasswordforgot){
-            $hashed = md5($passwordforgot);
+    } else {
+        if ($password == $cfpassword) {
+            $hashed = md5($password);
             $query = "UPDATE users SET password = '$hashed' WHERE email = '$email' ";
-            $res = mysqli_query($conn,$query);
+            $res = mysqli_query($conn, $query);
 
             $query_dlt = "DELETE FROM forgot_password WHERE email = '$email' ";
-            $res_dlt = mysqli_query($conn,$query_dlt);
-            
+            $res_dlt = mysqli_query($conn, $query_dlt);
+
             echo "Password is updated successfully! Click <a href='#'  onclick='signIn()' class='link'>here</a> to login again. ";
-        }else{
+        } else {
             echo "Passwords do not match";
         }
     }
 }
+?>
