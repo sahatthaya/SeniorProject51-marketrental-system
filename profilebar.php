@@ -74,26 +74,22 @@ require "backend/auth-signup.php";
             <h1>ลืมรหัสผ่าน</h1>
             <div class="form-message" id="msg"></div>
             <form method="POST">
-                <!-- <div class="des_input">ชื่อบัญชีผู้ใช้
-                </div>
-                <input class="input inputcolor" type="text" name="username-forgot" required>
-                <br> -->
                 <div class="des_input">อีเมล</div>
-                <input class="input inputcolor" type="email" name="email-forgot" id="email-forgot" required>
+                <input class="input inputcolor" type="email" name="email" id="email" required>
                 <br>
-                <input class="input submit" type="submit" name="forgot-btn" value="ส่งรหัสผ่านไปยังอีเมล">
+                <input class="input submit" type="submit" onclick="sendEmail()" value="ส่งรหัสผ่านไปยังอีเมล">
             </form>
             <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
         </div>
 
         <!-- รีเซตรหัสผ่าน -->
-        <div id="resetpsw">
+        <!-- <div id="resetpsw">
             <i class='bx bxs-user-circle authicon'></i>
             <h1>รีเซ็ตรหัสผ่าน</h1>
             <div class="form-message" id="msg"></div>
             <form method="POST">
                 <div class="des_input">อีเมล</div>
-                <input class="input inputcolor" type="email" name="email" id="email" >
+                <input class="input inputcolor" type="email" name="email" id="email">
                 <br>
 
                 <div class="des_input">สร้างรหัสผ่านใหม่</div>
@@ -101,13 +97,13 @@ require "backend/auth-signup.php";
                 <br>
 
                 <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div>
-                <input class="input inputcolor" type="password" name="cfpassword" id="cfpassword" required>
+                <input class="input inputcolor" type="password" name="confirmpassword" id="confirmpassword" required>
                 <br>
 
                 <input class="input submit" type="submit" name="resetpsw-btn" value="รีเซตรหัสผ่าน">
             </form>
             <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
-        </div>
+        </div> -->
 
         <!-- สมัครสมาชิก -->
         <div id="signUp">
@@ -161,58 +157,60 @@ require "backend/auth-signup.php";
         "mask": "9999999999"
     });
 
-    $(document).ready(function() {
-
-        $("#forgotpsw").on('submit', function(e) {
-            e.preventDefault();
-
-            var email = $("#email-forgot").val();
-
-            // alert(email);
+    function sendEmail() {
+        var email = $("#email");
+        if (isNotEmpty(email)) {
             $.ajax({
-
-                type: "POST",
-                url: "forgot_password_in.php",
+                url: 'sendEmail.php',
+                method: 'POST',
+                dataType: 'json',
                 data: {
-                    email: email
+                    email: email.val()
                 },
-
-                success: function(date) {
-
-                    $(".form-message").css("display", "block");
-
-                    $(".form-message").html(date);
-                }
-
-            });
-        });
-
-        $("#resetpsw").on('submit', function(c) {
-
-            c.preventDefault();
-            var email = $("#email").val();
-            var password = $("#password").val();
-            var cfpassword = $("#cfpassword").val();
-            // alert(email + passwordforgot + Cfpasswordforgot);
-
-            $.ajax({
-
-                type: "POST",
-                url: "reset_password.php",
-                data: {
-                    email: email,
-                    password: password,
-                    cfpassword: cfpassword
-                },
-
-                success: function(date) {
-                    $(".form-message").css("display", "block");
-                    $(".form-message").html(date);
+                success: function(response) {
+                    $('#resetpsw')[0].reset();
+                    $('.msg').text("Message send successfully");
                 }
             });
-        });
+        }
+    }
 
-    });
+    function isNotEmpty(caller) {
+        if (caller.val() == "") {
+            caller.css('border', '1px solid red');
+            return false;
+        } else caller.css('border', '');
+
+        return true;
+    }
+
+    // $(document).ready(function() {
+    //     $("#resetpsw").on('submit', function(c) {
+
+    //         c.preventDefault();
+    //         var email = $("#email").val();
+    //         var password = $("#password").val();
+    //         var confirmpassword = $("#confirmpassword").val();
+    //         // alert(email + passwordforgot + confirmpasswordforgot);
+
+    //         $.ajax({
+
+    //             type: "POST",
+    //             url: "reset-password.php",
+    //             data: {
+    //                 email: email,
+    //                 password: password,
+    //                 confirmpassword: confirmpassword
+    //             },
+
+    //             success: function(date) {
+    //                 $(".form-message").css("display", "block");
+    //                 $(".form-message").html(date);
+    //             }
+    //         });
+    //     });
+
+    // });
 </script>
 
 </html>

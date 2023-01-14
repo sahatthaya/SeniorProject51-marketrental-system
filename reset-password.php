@@ -3,19 +3,22 @@
 
 include("./backend/1-connectDB.php");
 
-if (isset($_POST['email']) || ($_POST['password']) || ($_POST['cfpassword'])) {
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $cfpassword = $_POST['cfpassword'];
 
-    if (empty($password) || empty($cfpassword)) {
+if (isset($_POST['submit-resetpsw'])) {
+
+    $email = md5 ($_POST['email']);
+    $password = md5($_POST['password']);
+    $confirmpassword = md5($_POST['confirmpassword']);
+
+    if (empty($password) || empty($confirmpassword)) {
 
         echo "Empty Fields";
     } else {
-        if ($password == $cfpassword) {
+
+        if ($password == $confirmpassword) {
             $hashed = md5($password);
-            $query = "UPDATE users SET password = '$hashed' WHERE email = '$email' ";
+            $query = "UPDATE users SET password = '$hashed' WHERE (email = '$email' )";
             $res = mysqli_query($conn, $query);
 
             $query_dlt = "DELETE FROM forgot_password WHERE email = '$email' ";
@@ -27,4 +30,5 @@ if (isset($_POST['email']) || ($_POST['password']) || ($_POST['cfpassword'])) {
         }
     }
 }
+
 ?>
