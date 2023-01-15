@@ -32,7 +32,7 @@ if (isset($_POST['email'])) {
             $headers = "MIME-Version: 1.0" . "\r\n";
             $headers .= 'Content-type: text/html; charset=UTF-8' . "\r\n";
             $headers .= "From: " . $email;
-        // } else {
+            // } else {
 
             require_once "PHPMailer/PHPMailer.php";
             require_once "PHPMailer/SMTP.php";
@@ -61,16 +61,24 @@ if (isset($_POST['email'])) {
 
             $mail->Body = 'A request for forgot password has been made. If you have not made this request, please ignore this email. 
             If you have made this request, please click on the link below to reset your password. <br> 
-            <a href="http://localhost/SeniorProject51/reset.php/?token=' . $token . '"  > Reset Password </a>' ;
+            <a href="http://localhost/SeniorProject51/reset.php/?token=' . $token . '"  > Reset Password </a>';
 
             if ($mail->send()) {
-                $status = "success";
-                $response = "Email is sent";
+                // $status = "success";
+                // $response = "Email is sent";
+
+                echo "<script>";
+                echo "
+                title: 'Send Email success',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 5000
+                })";
+                echo "</script>";
             } else {
                 $status = "failed";
                 $response = "Something is wrong" . $mail->ErrorInfo;
             }
-            
         }
         exit(json_encode(array("status" => $status, "response" => $response)));
     }

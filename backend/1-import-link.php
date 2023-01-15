@@ -45,7 +45,7 @@
     <!-- css dadatable -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css">
-   
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
@@ -53,11 +53,11 @@
 
 
 
-
-
     <!-- sweetalert -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
     <!-- bootstrap selectpicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
@@ -322,6 +322,26 @@
             icon: 'warning',
             text: 'กรุณาเปลี่ยนชื่อผู้ใช้',
             showConfirmButton: false,
+            timer: 3000
+        })
+    }
+
+
+    function resetpws_success() {
+        Swal.fire({
+            title: 'รีเซ็ตรหัสผ่านเรียบร้อย',
+            icon: 'success',
+            showConfirmButton: false,
+            timer: 3000,
+            footer: '<a href="../index.php">เข้าสู่ระบบ</a>'
+        })
+    }
+
+    function send_email() {
+        Swal.fire({
+            title: 'Send Email success',
+            icon: 'success',
+            showConfirmButton: true,
             timer: 3000
         })
     }

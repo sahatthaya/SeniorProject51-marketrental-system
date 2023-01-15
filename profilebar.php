@@ -77,7 +77,7 @@ require "backend/auth-signup.php";
                 <div class="des_input">อีเมล</div>
                 <input class="input inputcolor" type="email" name="email" id="email" required>
                 <br>
-                <input class="input submit" type="submit" onclick="sendEmail()" value="ส่งรหัสผ่านไปยังอีเมล">
+                <input class="input submit" type="submit" onclick="sendEmail(),send_email() " value="ส่งรหัสผ่านไปยังอีเมล">
             </form>
             <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
         </div>

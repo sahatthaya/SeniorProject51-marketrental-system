@@ -348,6 +348,34 @@ $(document).ready(function () {
 });
 
 
+$(document).ready(function () {
+    $("#myTable_nosort").DataTable({
+        scrollCollapse: true,
+        paging: true,
+        lengthChange: false,
+        "language": {
+            "search": "ค้นหา :",
+            "zeroRecords": "ไม่พบข้อมูลที่ค้นหา",
+            "info": "แสดงผลลัพธ์ _PAGE_ จาก _PAGES_ หน้า",
+            "infoEmpty": "ไม่พบตารางที่ค้นหา",
+            "infoFiltered": "(ค้นหาจากทั้งหมด _MAX_ ตาราง)",
+            "paginate": {
+                "previous": "ก่อนหน้า",
+                "next": "หน้าถัดไป",
+
+            }
+        },
+        "bDestroy": true,
+        "columnDefs": [
+            { "targets": [0], "searchable": false, "orderable": false, "visible": true }
+        ]
+    });
+
+});
+
+
+
+
 
 
 

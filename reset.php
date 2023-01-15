@@ -32,7 +32,7 @@ include "./backend/1-import-link.php";
 
     ?>
     <center>
-        
+
         <div id="resetpsw" style="width: 18rem; margin: 50px 150px;">
             <h1>รีเซ็ตรหัสผ่าน</h1>
             <div class="form-message" id="msg"></div>
@@ -40,7 +40,7 @@ include "./backend/1-import-link.php";
                 <form method="POST">
                     <div class="mb-3">
                         <!-- <div class="des_input">อีเมล</div> -->
-                        <input class="input inputcolor form-control" type="email" name="email" id="email" value="<?php echo $email; ?>" disabled>
+                        <input class="input inputcolor form-control" type="email" name="email" id="email" value="<?php echo $email; ?>">
                     </div>
                     <div class="mb-3">
                         <!-- <div class="des_input">สร้างรหัสผ่านใหม่</div> -->
@@ -50,7 +50,7 @@ include "./backend/1-import-link.php";
                         <!-- <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div> -->
                         <input class="input inputcolor form-control" type="password" name="cfpassword" id="cfpassword" required placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง">
                     </div>
-                    <input class="input submit btn btn-primary" type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน">
+                    <input class="input submit btn btn-primary btn-outline-success" type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน" >
                 </form>
                 <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
             </div>
