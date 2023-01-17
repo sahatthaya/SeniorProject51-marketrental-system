@@ -54,10 +54,7 @@ if (isset($_POST['email'])) {
             $mail->setFrom($email);
             $mail->addAddress($email); // Send to mail
             $mail->Subject = "Forgot password";
-            // $mail->Body = 'A request for forgot password has been made. If you have not made this request, please ignore this email. 
-            // If you have made this request, please click on the link below to reset your password. <br> 
-            // <a href="http://localhost/SeniorProject51/#?token=' . $token . '" onclick="showresetpsw()" > Reset Password </a>' ;
-
+        
 
             $mail->Body = 'A request for forgot password has been made. If you have not made this request, please ignore this email. 
             If you have made this request, please click on the link below to reset your password. <br> 
