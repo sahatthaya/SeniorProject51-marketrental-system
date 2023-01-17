@@ -341,7 +341,7 @@
         Swal.fire({
             title: 'Send Email success',
             icon: 'success',
-            showConfirmButton: true,
+            showConfirmButton: false,
             timer: 3000
         })
     }

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MarketRental - รีเซ็ตรหัสผ่าน</title>
+    <link rel="stylesheet" href="../css/password.css">
 
 </head>
 <?php
@@ -32,8 +33,9 @@ include "./backend/1-import-link.php";
 
     ?>
     <center>
-
-        <div id="resetpsw" style="width: 18rem; margin: 50px 150px;">
+    <div class="reset">
+        <img class="img-resetpws" src="../asset/contact/logo-with-bg.png">
+        <div id="resetpsw">
             <h1>รีเซ็ตรหัสผ่าน</h1>
             <div class="form-message" id="msg"></div>
             <div class="reset-psw">
@@ -50,13 +52,13 @@ include "./backend/1-import-link.php";
                         <!-- <div class="des_input">ยืนยันรหัสผ่านใหม่อีกครั้ง</div> -->
                         <input class="input inputcolor form-control" type="password" name="cfpassword" id="cfpassword" required placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง">
                     </div>
-                    <input class="input submit btn btn-primary btn-outline-success" type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน" >
+                    <input class="input submit btn btn-primary " type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน">
                 </form>
-                <div class="center"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
+                <div class="center reset-btn mt-2 pb-3"><a href="#" onclick="showsignIn()" class="link"> ย้อนกลับไปเข้าสู่ระบบ</a> </div>
             </div>
         </div>
+    </div>
     </center>
-
 
     <script src="backend/script.js" type="text/javascript"></script>
     <script type="text/javascript">
