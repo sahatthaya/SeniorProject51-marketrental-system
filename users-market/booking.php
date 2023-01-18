@@ -62,7 +62,7 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
         </form>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
-                <table id="myTable" class="display " style="width: 100%;">
+                <table id="myTable" class="display table table-striped dt-responsive " style="width: 100%;">
                     <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>

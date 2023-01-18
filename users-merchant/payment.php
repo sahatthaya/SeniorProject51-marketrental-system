@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,9 +46,7 @@ include "../backend/1-import-link.php";
                         <td><button name="view" type="button" class="view_data btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
                         </td>
                         <td>
-                            <div style="justify-content: center;">
-                                <a class=" btn btn-outline-info " style="margin-left: 2px;font-size:14px;" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ชำระค่าเช่า</a>
-                            </div>
+                            <a class=" btn btn-outline-info " style="margin-left: 2px;font: size 14px;" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ชำระค่าเช่า</a>
                         </td>
                     </tr>
 
