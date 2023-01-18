@@ -96,7 +96,7 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
                                             <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
                                             <td>" . $timestamp . "</td>
                                             <td>" . $status . "</td>
-                                            <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-m.php?b_id=". $row['b_id']."' id='". $row['b_id']."'>ดูรายละเอียด</a></td>
+                                            <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-m.php?b_id=" . $row['b_id'] . "' id='" . $row['b_id'] . "'>ดูรายละเอียด</a></td>
                                            ";
                                     echo $table;
                                 } else {
@@ -112,7 +112,7 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
                                 <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
                                 <td>" . $timestamp . "</td>
                                 <td>" . $status . "</td>
-                                <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-period-m.php?b_id=". $row['b_id']."' id='". $row['b_id']."'>ดูรายละเอียด</a></td>
+                                <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-period-m.php?b_id=" . $row['b_id'] . "' id='" . $row['b_id'] . "'>ดูรายละเอียด</a></td>
                                ";
                                     echo $table;
                                 } ?>

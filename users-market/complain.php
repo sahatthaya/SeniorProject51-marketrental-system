@@ -51,7 +51,7 @@ if (isset($_GET['mkr_id'])) {
         <h1 id="headline">จัดการคำร้องเรียน <?php echo $row['mkr_name'] ?></h1>
         <div id="content">
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
-                <table id="myTable" class="display " style="width: 100%;">
+                <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
                     <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>

@@ -56,7 +56,7 @@ require "backend/qry-market-info.php";
             <i class='bx bxs-message-square-edit'></i>
             <p> สนใจเช่าจองพื้นที่ </p>
         </a>
-        <a type="button" class="quick-menu2 rounded shadow-sm" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">
+        <a type="button" class="quick-menu2 rounded shadow-sm " href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">
             <i class='bx bxs-paper-plane'></i>
             <p> การร้องเรียน </p>
         </a>

@@ -311,7 +311,7 @@ $rowus = mysqli_fetch_array($qry);
         '#fed7c3',
         '#f6eac2',
         '#ecd5e3',
-        'ff968a'
+        '#ff968a'
     ];
     // จองตลาดเปิดปกติ
     mobiscroll.datepicker('#demo-range-selection', {

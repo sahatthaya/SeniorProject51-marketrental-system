@@ -132,11 +132,8 @@ require "../backend/manage-contact.php";
                     <div class="card-body">
                         <h2 class="center"><?php echo $row["ct1_fname"] . " " . $row["ct1_lname"] ?></h2>
                         <p class="center"><?php echo $row["ct1_email"] ?>
-
                         </p>
                         <p class="center"> <?php echo $row["ct1_tel"] ?></p>
-
-
                     </div>
                 </div>
             </div>

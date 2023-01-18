@@ -74,7 +74,7 @@ body {
 }
 
 .guide-btn {
-    margin-top: 25px;
+    margin-top: 20px;
 }
 
 .users-guide img {
@@ -243,8 +243,11 @@ body {
         font-size: 16px;
     }
 
-
-
+    
+    .btn-lg{
+        width: 60% !important;
+        margin-top: 5px;
+    }
 
 }
 
@@ -267,7 +270,7 @@ body {
     }
 
     .text-end h5 {
-        display: grid;
-        font-size: 14px !important;
+        font-size: 16px ;
     }
+
 }

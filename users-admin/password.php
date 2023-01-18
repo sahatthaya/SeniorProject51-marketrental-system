@@ -17,7 +17,6 @@ include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 include "../backend/edit-profile.php";
 ?>
-
 <body>
     <h1 id="headline">เปลี่ยนรหัสผ่าน</h1>
     <form method="POST" id="edtpsw">

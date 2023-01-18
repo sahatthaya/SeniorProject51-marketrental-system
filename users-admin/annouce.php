@@ -9,12 +9,14 @@
 
     <!-- css  -->
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
+
 </head>
 <?php
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 require "../backend/manage-annouce.php";
+include "../backend/1-import-link.php";
 ?>
 
 <body>
@@ -30,8 +32,8 @@ require "../backend/manage-annouce.php";
                 </a>
             </div>
         </div>
-        <div id="table2" class="border p-3 shadow-sm rounded">
-            <table id="myTable" class="display " style="width: 100%;">
+        <div id="table2" class="bannertb mt-3 border p-3 shadow-sm rounded">
+            <table id="myTable" class="display table table-striped dt-responsive " style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
@@ -65,7 +67,7 @@ require "../backend/manage-annouce.php";
             </table>
         </div>
     </div>
-    <?php require '../backend/modal-applicant.php' ?>
+
 </body>
 
 <script>
@@ -87,6 +89,7 @@ require "../backend/manage-annouce.php";
 
         })
     });
+
 </script>
 
 </html>

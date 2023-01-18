@@ -11,14 +11,14 @@ body {
 
 /* ----------------------------------------1.banner------------------------------------------------------------ */
 #carouselExampleCaptions {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .carousel-inner {
     position: relative;
     height: 25rem;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .carousel-item img {
@@ -46,7 +46,7 @@ body {
 
 .btnac {
     width: 30%;
-    margin-left: 5px;
+    margin-left: 5px; 
 }
 
 
@@ -64,32 +64,14 @@ a {
     padding: auto 10px;
 }
 
-
 .parent {
-    display: grid;
+    /* display: grid; */
     grid-template-columns: repeat(2, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
 }
 
-.ui-widget-content {
-    border: none !important;
-}
-
 /* datatable plugin */
-.form-outer .dataTables_wrapper .dataTables_filter input {
-    width: 165px !important;
-    padding: 0.2rem 0.6rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    background-color: #fff;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-
 .dataTables_wrapper .dataTables_filter input {
     width: 70%;
     padding: 0.2rem 0.6rem;
@@ -124,6 +106,10 @@ a {
     color: #212529 !important;
     background-color: var(--white) !important;
     border: 1px solid #ced4da !important;
+}
+
+.nowrap{
+    display: block;
 }
 
 /* ------------------------------------responsive-------------------------- */
@@ -174,11 +160,6 @@ a {
         width: 100% !important;
     }
 
-    .col-sm-10 {
-        margin: 0px !important;
-    }
-
-
 }
 
 
@@ -208,9 +189,14 @@ a {
         padding: auto 2px !important;
     }
 
-    .btnac {
+    .btnac{
         width: 70%;
         margin-bottom: 5px;
+    }
+
+    .btn-calen{
+        margin-left: 10px;
+        font-size: 14px !important;
     }
 
     .modal_data {

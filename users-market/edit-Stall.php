@@ -179,7 +179,7 @@ if (isset($_GET['delstall'])) {
     <div class="top">
         <div class="border rounded shadow-sm p-3 mt-3">
             <h3>จำนวนของแผงค้าในแต่ละประเภท</h3>
-            <div class="chartcanvas center mt-5 ms-5" id="piechart"></div>
+            <div class="chartcanvas center mt-5 ms-5" id="piechart"  ></div>
         </div>
         <div class="border rounded shadow-sm p-3 mt-3">
             <form method="POST" class="was-validated">

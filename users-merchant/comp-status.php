@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - ติดตามสถานะคำร้องเรียน</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
+   
 </head>
 <?php
 include "profilebar.php";
@@ -32,7 +33,7 @@ $result = mysqli_query($conn, $data);
         <h1 id="headline">ติดตามสถานะคำร้องเรียน</h1>
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
-                <table id="myTable" class="display " style="width: 100%;">
+                <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
                     <thead>
                         <tr>
                             <th scope="col">ลำดับ</th>

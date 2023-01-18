@@ -44,7 +44,7 @@ require "../backend/manage-banner.php";
                     </div>
                     <input class="form-control col-6" type="text" placeholder="หัวข้อ" name="bn_id" value="<?php echo $row2['bn_id'] ?>" hidden>
 
-                    <input type="submit" class="btn btn-primary" id="add-data" name="bn-submit-edit" value="บันทึกข้อมูล">
+                    <input type="submit" class="btn btn-primary mt-3" id="add-data" name="bn-submit-edit" value="บันทึกข้อมูล">
                 </div>
             </div>
         </form>
