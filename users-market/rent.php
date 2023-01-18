@@ -27,7 +27,7 @@ $open = $row['opening'];
     </nav>
     <h1 class="head_contact">จัดการค่าเช่า</h1>
     <div class="w-100 text-end">
-        <a href="./invoice.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>ส่งใบเรียกเก็บค่าเช่า</a>
+        <a href="./invoice.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>สร้างใบเรียกเก็บค่าเช่า</a>
     </div>
 
     <div id="content">

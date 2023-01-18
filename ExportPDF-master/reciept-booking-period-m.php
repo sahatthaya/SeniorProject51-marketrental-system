@@ -22,8 +22,8 @@ $mpdf = new \Mpdf\Mpdf([
     ],
     'default_font' => 'sarabun'
 ]);
-include "./profilebar-merchant.php";
-include "./nav-merchant.php";
+include "./profilebar-market.php";
+include "./nav-market.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 
@@ -52,7 +52,7 @@ if (isset($_GET["b_id"])) {
 <body>
     <nav aria-label="breadcrumb mb-3">
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="../users-merchant/rent.php" class="text-decoration-none">จัดการการจอง</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="../users-market/booking.php?mkr_id=<?php echo $row['mkr_id'] ?>" class="text-decoration-none">จัดการการจอง</a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">ข้อมูลการจองแผงค้า</li>
         </ol>
     </nav>

@@ -97,11 +97,7 @@ require "../backend/qry-market-info.php"
     });
 
     // datepicker
-    mobiscroll.setOptions({
-        locale: mobiscroll.localeTh,
-        theme: 'ios',
-        themeVariant: 'light'
-    });
+ 
 
     var now = new Date();
     var colorset = [

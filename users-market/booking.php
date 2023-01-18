@@ -6,8 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> MarketRental - การจองทั้งหมด</title>
-
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
+    <script src='https://code.jquery.com/jquery-3.5.1.js'></script>
+    <script src='https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.2/moment.min.js'></script>
+    <script src='https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13 .2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css" />
 </head>
 <?php
 include "profilebar.php";
@@ -51,15 +56,17 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
     </nav>
     <div class="content">
         <h1 id="headline">การจองทั้งหมด</h1>
-        <!-- <form method="POST" class="hstack gap-3 mt-3">
-            <label>การจองในช่วงวันที่ :</label>
-            <input type="date" class="form-control" style="width: 10%;">
-            <label>ถึง : </label>
-            <input type="date" class="form-control" style="width: 10%;">
-            <button type="button" class="btn btn-primary">ค้นหา</button>
-        </form> -->
         <div>
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
+                <div class="d-flex justify-content-between">
+                    <div class="hstack gap-2">
+                        <label><span class="text-secondary text-decoration-underline">ค้นหา</span> การเช่าในวันที่ : </label>
+                        <input name="min" id="min" class="form-control w-25" type="text">
+                        <label> ถึง </label>
+                        <input name="max" id="max" class="form-control w-25" type="text">
+                    </div>
+                </div>
+                <hr>
                 <table id="myTable" class="display " style="width: 100%;">
                     <thead>
                         <tr>
@@ -89,7 +96,7 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
                                             <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
                                             <td>" . $timestamp . "</td>
                                             <td>" . $status . "</td>
-                                            <td><button name='view' type='button' class='modal_data2 btn btn-outline-primary' id='". $row['b_id'] ."'>ดูรายละเอียด</button></td>
+                                            <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-m.php?b_id=". $row['b_id']."' id='". $row['b_id']."'>ดูรายละเอียด</a></td>
                                            ";
                                     echo $table;
                                 } else {
@@ -105,11 +112,11 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
                                 <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
                                 <td>" . $timestamp . "</td>
                                 <td>" . $status . "</td>
-                                <td><button name='view' type='button' class='modal_data2 btn btn-outline-primary' id='". $row['b_id'] ."'>ดูรายละเอียด</button></td>
+                                <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-period-m.php?b_id=". $row['b_id']."' id='". $row['b_id']."'>ดูรายละเอียด</a></td>
                                ";
                                     echo $table;
                                 } ?>
-                                
+
                             </tr>
                         <?php $count_n++;
                         endwhile; ?>
@@ -124,41 +131,50 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
 <script src="../backend/script.js"></script>
 <script>
     $(document).ready(function() {
-        $('.modal_data').click(function() {
-            var b_id = $(this).attr("id");
-            $.ajax({
-                url: "../backend/modal-bookdetail.php",
-                method: "POST",
-                data: {
-                    b_id: b_id
-                },
-                success: function(data) {
-                    $('#bannerdetail').html(data);
-                    $('#bannerdataModal').modal('show');
+        $.fn.dataTable.ext.search.push(
+            function(settings, data, dataIndex) {
+                var min = $('#min').datepicker("getDate");
+                var max = $('#max').datepicker("getDate");
+                var dateString = data[1];
+                var dateParts = dateString.split('/');
+                var startDate = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+
+                var enddateString = data[2];
+                var enddateParts = enddateString.split('/');
+                var endDate = new Date(enddateParts[2], enddateParts[1] - 1, enddateParts[0]);
+
+                if (min == null && max == null) {
+                    return true;
                 }
-            });
-
-        })
-
-    });
-
-    $(document).ready(function() {
-        $('.modal_data2').click(function() {
-            var b_id2 = $(this).attr("id");
-            $.ajax({
-                url: "../backend/modal-bookdetail.php",
-                method: "POST",
-                data: {
-                    b_id2: b_id2
-                },
-                success: function(data) {
-                    $('#bannerdetail').html(data);
-                    $('#bannerdataModal').modal('show');
+                if (min == null && startDate <= max) {
+                    return true;
                 }
-            });
+                if (max == null && startDate >= min) {
+                    return true;
+                }
+                if (!(startDate > max || endDate < min)) {
+                    return true;
+                }
+                return false;
+            }
+        );
 
-        })
 
+        $("#min").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        $("#max").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            dateFormat: 'dd/mm/yy'
+        });
+        var table = $('#myTable').DataTable();
+
+        $('#min, #max').change(function() {
+            table.draw();
+        });
     });
 </script>
 

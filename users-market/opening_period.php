@@ -138,11 +138,7 @@ if (isset($_GET['delop_id'])) {
 
     // datepicker
 
-    mobiscroll.setOptions({
-        locale: mobiscroll.localeTh,
-        theme: 'ios',
-        themeVariant: 'light'
-    });
+ 
     var colorset = [
         '#abdee6',
         '#cbaacb',

@@ -210,11 +210,7 @@
     });
 
     // datepicker
-    mobiscroll.setOptions({
-        locale: mobiscroll.localeTh,
-        theme: 'ios',
-        themeVariant: 'light'
-    });
+ 
     mobiscroll.datepicker('#range', {
         select: 'range',
         startInput: '#start',
