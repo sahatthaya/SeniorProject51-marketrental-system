@@ -95,8 +95,6 @@ require "../backend/add-applicant.php";
                         <span>ค่าเช่า</span>
                     </a>
                 </div>
-
-<<<<<<< HEAD
                 <div class="col-md-3 mrkmenu-item">
                     <a href="cost.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bx-tachometer"></i>
@@ -105,10 +103,7 @@ require "../backend/add-applicant.php";
                 </div>
                 <div class="col-md-3 mrkmenu-item" >
                     <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
-=======
-                <div class="col-3">
-                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
->>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
+
                         <i class="bx bxs-megaphone"></i>
                         <span>การร้องเรียน</span>
                     </a>
@@ -126,13 +121,9 @@ require "../backend/add-applicant.php";
                     <a href="edit-Stall.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary piechart-btn" style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลแผงค้า</a>
                 </div>
             </div>
-<<<<<<< HEAD
             <div class="border rounded shadow-sm p-3 mt-3 "ng-sum>
                 <h3 class="center">สรุปการจองแผงค้าในปี <?php echo date("Y") ?></h3>
-=======
-            <div class="border rounded shadow-sm p-3 mt-3">
-                <h3 class="center">ยอดการจองแผงค้าในปี <?php echo date("Y") ?></h3>
->>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
+
                 <div class="chartcanvas" id="chart_div"> </div>
                 <div class="text-end">
                     <a href="booking.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> จัดการการจอง</a>
