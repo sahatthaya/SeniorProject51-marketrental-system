@@ -111,7 +111,9 @@ a {
 .nowrap{
     display: block;
 }
-
+.ui-widget-content{
+    border: none !important;
+}
 /* ------------------------------------responsive-------------------------- */
 @media(max-width: 992px) {
     .dataTables_scrollHead {
