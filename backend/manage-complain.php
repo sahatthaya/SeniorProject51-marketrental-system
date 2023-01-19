@@ -58,10 +58,10 @@ if (isset($_POST["seeid"])) {
         }
         $output .= '
         <div class="row mw-100">
-                        <div class="col-4 rounded" style="height:180px;overflow:hidden;">
+                        <div class="col-sm-4  rounded" style="height:180px;overflow:hidden;">
                             <img src="../' . $row['comp_file'] . '"class="img-fluid"alt="" style="width:255px;">
                         </div>
-                        <div class="col-8">
+                        <div class="col-sm-8 ">
                             <h2>หัวข้อ : ' . $row['comp_subject'] . '</h2>
                             <p>ประเภท : ' . $row['toppic'] . '</p>
                             รายละเอียด : 

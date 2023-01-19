@@ -126,6 +126,9 @@ if (isset($_GET['delstall'])) {
                 duration: 1000,
                 easing: 'out'
             },
+            Response:{
+                resize:(50,20)
+            },
             backgroundColor: '',
             chartArea: {
                 'left': 15,
@@ -179,7 +182,7 @@ if (isset($_GET['delstall'])) {
     <div class="top">
         <div class="border rounded shadow-sm p-3 mt-3">
             <h3>จำนวนของแผงค้าในแต่ละประเภท</h3>
-            <div class="chartcanvas center mt-5 ms-5" id="piechart"  ></div>
+            <div class="chartcanvas center " id="piechart"></div>
         </div>
         <div class="border rounded shadow-sm p-3 mt-3">
             <form method="POST" class="was-validated">
@@ -238,7 +241,7 @@ if (isset($_GET['delstall'])) {
     <div id="content" class="mt-3">
         <div id="table2" class="bannertb border  p-3 shadow-sm rounded mt-3">
             <h3 class="modal-title">ข้อมูลแผงค้า</h3>
-            <table id="myTable" class="display" style="width: 100%;">
+            <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>

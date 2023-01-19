@@ -55,28 +55,28 @@ $result_province = mysqli_query($conn, $query_province);
           </div>
         </div>
         <div class="row p-0 m-0 mt-2">
-          <div class="col-2 p-0 pt-2">บ้านเลขที่ :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-2 p-0 pt-2">บ้านเลขที่ :</div>
+          <div class="col-md-4 p-0">
             <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" required value="<?php echo $row['house_no']; ?>" required>
           </div>
-          <div class="col-2 pt-2">ซอย :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-2 pt-2">ซอย :</div>
+          <div class="col-md-4 p-0">
             <input class="form-control" type="text" placeholder="ซอย" name="Soi" required value="<?php echo $row['soi']; ?>" required>
           </div>
         </div>
         <div class="row p-0 m-0 mt-2">
-          <div class="col-2 p-0 pt-2">หมู่ :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-2 p-0 pt-2">หมู่ :</div>
+          <div class="col-md-4 p-0">
             <input class="form-control" type="text" placeholder="หมู่" name="Moo" required value="<?php echo $row['moo']; ?>" required>
           </div>
-          <div class="col-2 pt-2">ถนน :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-2 pt-2">ถนน :</div>
+          <div class="col-md-4 p-0">
             <input class="form-control" type="text" placeholder="ถนน" name="Road" required value="<?php echo $row['road']; ?>" required>
           </div>
         </div>
         <div class="row p-0 m-0 mt-2">
-          <div class="col-2 p-0 pt-2">จังหวัด :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-2 p-0 pt-2">จังหวัด :</div>
+          <div class="col-md-4 p-0">
             <select name="province_id" id="province" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกจังหวัด" required>
               <option value="<?php echo $row['province_id']; ?>" selected><?php echo $row['province_name']; ?></option>
               <?php while ($result = mysqli_fetch_assoc($result_province)) : ?>
@@ -84,21 +84,21 @@ $result_province = mysqli_query($conn, $query_province);
               <?php endwhile; ?>
             </select>
           </div>
-          <div class="col-2 pt-2">อำเภอ/เขต :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-2 pt-2">อำเภอ/เขต :</div>
+          <div class="col-md-4 p-0">
             <select name="amphure_id" id="amphure" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกอำเภอ/เขต" required>
               <option value="<?php echo $row['amphure_id']; ?>" selected><?php echo $row['amphure_name']; ?></option>
             </select>
           </div>
         </div>
         <div class="row p-0 m-0 mt-2">
-          <div class="col-2 p-0 pt-2">ตำบล/แขวง :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-2 p-0 pt-2">ตำบล/แขวง :</div>
+          <div class="col-md-4 p-0">
             <select name="district_id" id="district" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกตำบล/แขวง" required>
               <option value="<?php echo $row['district_id']; ?>" selected><?php echo $row['district_name']; ?></option>
             </select>
           </div>
-          <div class="col-2 pt-2">รหัสไปรษณีย์ :</div>
+          <div class="col-md-2 pt-2">รหัสไปรษณีย์ :</div>
           <div class="col-4 p-0">
             <input name="PostalCode" id="zipcode" class="form-control" style="height:45px ;" value="<?php echo $row['postalcode']; ?>" placeholder="รหัสไปรษณีย์" required>
             </input>
