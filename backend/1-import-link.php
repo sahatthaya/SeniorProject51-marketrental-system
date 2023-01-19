@@ -272,19 +272,10 @@
             showConfirmButton: false,
             timer: 1000
         }).then(function() {
-            window.location = "./index.php";
+            window.location = "../index.php";
         });
     }
     // warning------------------------------------------------------------
-    function signIn() {
-        document.getElementById("profilebar").style.right = "0";
-        document.getElementById("signIn").style.display = "block";
-        document.getElementById("forgotpsw").style.display = "none";
-        document.getElementById("signUp").style.display = "none";
-        document.getElementById("profilebar").style.transition = "0.5s ease";
-
-    }
-
     function plslogin() {
         Swal.fire({
             title: 'คุณยังไม่ได้เข้าสู่ระบบ',
@@ -318,7 +309,7 @@
 
     function resetpws_success() {
         Swal.fire({
-            title: 'รีเซ็ตรหัสผ่านเรียบร้อย',
+            title: 'รีเซ็ตรหัสผ่านสำเร็จ',
             icon: 'success',
             showConfirmButton: false,
             timer: 3000,
@@ -328,7 +319,7 @@
 
     function send_email() {
         Swal.fire({
-            title: 'Send Email success',
+            title: 'ส่งอีเมลรีเซ็ตรหัสผ่านสำเร็จ',
             icon: 'success',
             showConfirmButton: false,
             timer: 3000
