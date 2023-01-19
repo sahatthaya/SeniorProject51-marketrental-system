@@ -190,8 +190,6 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
 
-<<<<<<< HEAD
-=======
     #stepTwo {
         display: none;
 
@@ -200,8 +198,6 @@ input[type=file]::file-selector-button:hover {
     #stepThree {
         display: none;
     }
->>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
-
 
 }
 
