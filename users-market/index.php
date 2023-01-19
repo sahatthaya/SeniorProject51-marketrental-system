@@ -96,6 +96,7 @@ require "../backend/add-applicant.php";
                     </a>
                 </div>
 
+<<<<<<< HEAD
                 <div class="col-md-3 mrkmenu-item">
                     <a href="cost.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bx-tachometer"></i>
@@ -104,6 +105,10 @@ require "../backend/add-applicant.php";
                 </div>
                 <div class="col-md-3 mrkmenu-item" >
                     <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
+=======
+                <div class="col-3">
+                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+>>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
                         <i class="bx bxs-megaphone"></i>
                         <span>การร้องเรียน</span>
                     </a>
@@ -121,8 +126,13 @@ require "../backend/add-applicant.php";
                     <a href="edit-Stall.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary piechart-btn" style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลแผงค้า</a>
                 </div>
             </div>
+<<<<<<< HEAD
             <div class="border rounded shadow-sm p-3 mt-3 "ng-sum>
                 <h3 class="center">สรุปการจองแผงค้าในปี <?php echo date("Y") ?></h3>
+=======
+            <div class="border rounded shadow-sm p-3 mt-3">
+                <h3 class="center">ยอดการจองแผงค้าในปี <?php echo date("Y") ?></h3>
+>>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
                 <div class="chartcanvas" id="chart_div"> </div>
                 <div class="text-end">
                     <a href="booking.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> จัดการการจอง</a>
@@ -130,8 +140,8 @@ require "../backend/add-applicant.php";
             </div>
         </div>
         <!-- line graph -->
-        <div class="box">
-            <div class="border rounded shadow-sm p-3 mt-3">
+        <div class="box-mk mb-3">
+            <div class="border rounded shadow-sm p-3 mt-3 h-100">
                 <h4 class="center">3 อันดับประเภทแผงค้าที่ถูกจองมากที่สุด</h4>
                 <ul class="list-group list-group-flush">
                     <?php
@@ -146,10 +156,10 @@ require "../backend/add-applicant.php";
                     foreach ($rsz as $rs_c) {
                         echo ' <li class="list-group-item">
                     <div class=" row text-decoration-none">
-                    <div class="col-2 ps-0">
+                    <div class="col-1 ps-0">
                     ' . $count_type . '.
                     </div>
-                    <div class="col-6">
+                    <div class="col-7">
                     ' . $rs_c['z_name'] . '
                     </div>
                     <div class="col-4 text-end pe-0">
@@ -164,7 +174,9 @@ require "../backend/add-applicant.php";
                 </ul>
             </div>
             <!-- top three user -->
+
             <div class="border rounded shadow-sm pt-3 mt-3">
+
                 <h4 class="center">3 อันดับผู้ใช้งานที่มีการจองมากที่สุด</h4>
                 <ul class="list-group list-group-flush list-group-topuser">
                     <?php
@@ -178,11 +190,12 @@ require "../backend/add-applicant.php";
                     $count_user = 1;
                     foreach ($rsz as $rs_c) {
                         echo ' <li class="list-group-item">
-                    <div class=" row text-decoration-none">
+                    <div class=" row text-decoration-none"></div>
                     <div class="col-2">
+
                     ' . $count_user . '.
                     </div>
-                    <div class="col-6">
+                    <div class="col-7">
                     คุณ ' . $rs_c['b_fname'] . ' ' . $rs_c['b_lname'] . ' ( ชื่อผู้ใช้ : ' . $rs_c['username'] . ' )
                     </div>
                     <div class="col-4 text-end pe-3">
@@ -199,7 +212,7 @@ require "../backend/add-applicant.php";
         <?php echo $opening_period ?>
         <!-- complain -->
         <div class="box-3">
-            <div class="border rounded shadow-sm mt-3 p-3 ">
+            <div class="border rounded shadow-sm mt-3 p-3 h-100">
                 <h4 class="center">จำนวนคำร้องเรียนทั้งหมด</h4>
                 <h1>
                     <?php
@@ -209,7 +222,7 @@ require "../backend/add-applicant.php";
                     ?>
                 </h1>
             </div>
-            <div class="border rounded shadow-sm mt-3 p-3 ">
+            <div class="border rounded shadow-sm mt-3 p-3 h-100">
                 <h4 class="center">คำร้องเรียนที่ยังไม่ได้ตอบกลับ</h4>
                 <h1>
                     <?php
@@ -218,11 +231,11 @@ require "../backend/add-applicant.php";
                     echo $countcomp = mysqli_num_rows($rsz);
                     ?>
                 </h1>
-                <div class="text-end">
+                <div class="text-end mt-4">
                     <a href="complain.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class='bx bxs-send'></i> ตอบกลับ</a>
                 </div>
             </div>
-            <div class="border rounded shadow-sm mt-3 p-3 ">
+            <div class="border rounded shadow-sm mt-3 p-3 h-100">
                 <h4 class="center">3 อันดับหัวข้อที่มีการร้องเรียนที่มากที่สุด</h4>
                 <ul class="list-group list-group-flush">
                     <?php
@@ -232,10 +245,10 @@ require "../backend/add-applicant.php";
                     foreach ($rsz as $rs_c) {
                         echo ' <li class="list-group-item">
                     <div class=" row text-decoration-none">
-                    <div class="col-2 ps-0">
+                    <div class="col-1 ps-0">
                     ' . $count_n . '.
                     </div>
-                    <div class="col-6">
+                    <div class="col-7">
                     ' . $rs_c['toppic'] . '
                     </div>
                     <div class="col-4 text-end pe-0">
@@ -439,12 +452,6 @@ require "../backend/add-applicant.php";
     });
 
     // datepicker
-    mobiscroll.setOptions({
-        locale: mobiscroll.localeTh,
-        theme: 'ios',
-        themeVariant: 'light'
-    });
-
     var now = new Date();
     var colorset = [
         '#abdee6',

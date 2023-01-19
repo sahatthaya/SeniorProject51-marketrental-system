@@ -3,6 +3,13 @@ body {
     min-width: 370px;
 }
 
+.box-mk {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 193px;
+    grid-column-gap: 20px;
+    grid-row-gap: 0px;
+}
 .box {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -10,11 +17,10 @@ body {
     grid-column-gap: 20px;
     grid-row-gap: 0px;
 }
-
 .box-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
+    grid-template-rows: 193px;
     grid-column-gap: 10px;
     grid-row-gap: 0px;
 }

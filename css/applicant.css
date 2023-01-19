@@ -32,10 +32,15 @@ body {
     padding: 0.5em 10px;
 }
 
+.form-outer-lg .form-outer {
+    padding: 0;
+}
+
 
 .form-outer {
     padding: 0 250px;
 }
+
 
 #applyform input {
     margin: 5px auto;
@@ -46,6 +51,7 @@ body {
 #stepThree,
 #stepFour {
     display: none;
+
 }
 
 #stepTwo input,
@@ -184,6 +190,17 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
 
+<<<<<<< HEAD
+=======
+    #stepTwo {
+        display: none;
+
+    }
+
+    #stepThree {
+        display: none;
+    }
+>>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
 
 
 }
@@ -200,7 +217,10 @@ input[type=file]::file-selector-button:hover {
         font-size: 24px;
         margin: 0px 30px;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
 
     .form-outer {
         padding: 10px;
@@ -211,6 +231,10 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
 
+    .row {
+        display: flex !important;
+    }
+
     .form-control {
         width: 200% !important;
     }
@@ -219,6 +243,7 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
 
+<<<<<<< HEAD
     .mrkmenu {
         display: grid;
         gap: .5rem;
@@ -231,9 +256,14 @@ input[type=file]::file-selector-button:hover {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 
     }
+=======
+    #stepTwo {
+        display: none;
+>>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
 
-}
+    }
 
+<<<<<<< HEAD
 
 @media(max-width: 436px) {
 
@@ -255,4 +285,9 @@ input[type=file]::file-selector-button:hover {
         margin-left: -5px;
     }
 
+=======
+    #stepThree {
+        display: none;
+    }
+>>>>>>> e150e2e4bc0c41fbdc9c735809df137cf57bfd57
 }

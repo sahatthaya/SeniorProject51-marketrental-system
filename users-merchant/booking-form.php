@@ -296,11 +296,7 @@ $rowus = mysqli_fetch_array($qry);
     });
 
     // datepicker
-    mobiscroll.setOptions({
-        locale: mobiscroll.localeTh,
-        theme: 'ios',
-        themeVariant: 'light'
-    });
+ 
     // ประกาษตัวแปรและธีมสี
     const today = new Date()
     const tomorrow = new Date(today)

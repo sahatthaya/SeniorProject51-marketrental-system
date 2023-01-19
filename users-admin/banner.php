@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MarketRental - หน้าหลักสำหรับผู้ดูแลระบบ</title>
+    <title> MarketRental - หน้าหลัก(ผู้ดูแลระบบ)</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 </head>
 <?php
@@ -112,7 +112,7 @@ require "../backend/manage-banner.php";
             </div>
             <div class="content">
                 <div id="table" class="bannertb mt-3 border p-3 shadow-sm rounded">
-                    <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
+                    <table id="myTable" class="display " style="width: 100%;">
                         <thead>
                             <tr>
                                 <th scope="col">ลำดับ</th>
@@ -169,7 +169,6 @@ require "../backend/manage-banner.php";
             blah.src = URL.createObjectURL(file)
         }
     }
-
 </script>
 
 
