@@ -42,9 +42,9 @@ require "../backend/add-applicant.php";
     <div class="market" <?php echo $showmarket ?>>
         <h1>ตลาดของคุณ <?php echo $_SESSION['username'] ?></h1>
         <!-- market tap -->
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs list-group list-group-horizontal-sm">
             <?php while ($row1 = mysqli_fetch_assoc($taps)) : ?>
-                <li class="nav-item">
+                <li class="nav-item list-group">
                     <a href="./index.php?mkr_id=<?php echo $row1['mkr_id'] ?>" class="nav-link fs-5 <?php echo ($row1['mkr_id'] == $first_market) ? 'active' : ''; ?>">
                         <?php echo $row1['mkr_name'] ?>
                     </a>
@@ -53,57 +53,57 @@ require "../backend/add-applicant.php";
             endwhile ?>
         </ul>
         <!-- market menu -->
-        <div class="border rounded mt-3 p-3 shadow-sm">
-            <div class="row">
-                <div class="col-3">
-                    <a href="edit-market-info.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+        <div class="border rounded mt-3 p-3 shadow-sm mrkmenu">
+            <div class="row mrkmenu">
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="edit-market-info.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bxs-edit-alt"></i>
                         <span>แก้ไขข้อมูลตลาด</span>
                     </a>
                 </div>
-                <div class="col-3">
-                    <a href="finance.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="finance.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bxs-credit-card"></i>
                         <span>แก้ไขข้อมูลการเงิน</span>
                     </a>
                 </div>
-                <div class="col-3">
-                    <a href="edit-Stall.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="edit-Stall.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bx-map-alt"></i>
                         <span>แผนผังตลาด</span>
                     </a>
                 </div>
 
-                <div class="col-3">
-                    <a href="news.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="news.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bxs-news"></i>
                         <span>ข่าวสาร</span>
                     </a>
                 </div>
             </div>
-            <div class="row mt-2">
-                <div class="col-3">
-                    <a href="booking.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary">
+            <div class="row mrkmenu2">
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="booking.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
                         <i class="bx bx-message-alt-edit"></i>
                         <span>การจอง</span>
                     </a>
                 </div>
 
-                <div class="col-3">
-                    <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bx-message-alt-detail"></i>
                         <span>ค่าเช่า</span>
                     </a>
                 </div>
 
-                <div class="col-3">
-                    <a href="cost.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="cost.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bx-tachometer"></i>
                         <span>ค่าใช้จ่ายเพิ่มเติม</span>
                     </a>
                 </div>
-                <div class="col-3">
-                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="text-center w-100 btn btn-outline-primary ">
+                <div class="col-md-3 mrkmenu-item" >
+                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
                         <i class="bx bxs-megaphone"></i>
                         <span>การร้องเรียน</span>
                     </a>
@@ -114,14 +114,14 @@ require "../backend/add-applicant.php";
         </div>
         <!-- pie graph -->
         <div class="box-2-1">
-            <div class="border rounded shadow-sm p-3 mt-3">
+            <div class="border rounded shadow-sm p-3 mt-3 " >
                 <h3 class="center">จำนวนของแผงค้าในแต่ละประเภท</h3>
-                <div class="chartcanvas center mt-5 ms-5" id="piechart"></div>
+                <div class="chartcanvas center " id="piechart"></div>
                 <div class="text-end">
-                    <a href="edit-Stall.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลแผงค้า</a>
+                    <a href="edit-Stall.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary piechart-btn" style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลแผงค้า</a>
                 </div>
             </div>
-            <div class="border rounded shadow-sm p-3 mt-3">
+            <div class="border rounded shadow-sm p-3 mt-3 "ng-sum>
                 <h3 class="center">สรุปการจองแผงค้าในปี <?php echo date("Y") ?></h3>
                 <div class="chartcanvas" id="chart_div"> </div>
                 <div class="text-end">
@@ -164,9 +164,9 @@ require "../backend/add-applicant.php";
                 </ul>
             </div>
             <!-- top three user -->
-            <div class="border rounded shadow-sm p-3 mt-3">
+            <div class="border rounded shadow-sm pt-3 mt-3">
                 <h4 class="center">3 อันดับผู้ใช้งานที่มีการจองมากที่สุด</h4>
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush list-group-topuser">
                     <?php
                     if ($row3['opening'] == 'เปิดทำการทุกวัน') {
                         $queryz = "SELECT users.username,booking_range.b_fname,booking_range.b_lname , COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN users ON (users.users_id = booking_range.users_id) JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
@@ -179,13 +179,13 @@ require "../backend/add-applicant.php";
                     foreach ($rsz as $rs_c) {
                         echo ' <li class="list-group-item">
                     <div class=" row text-decoration-none">
-                    <div class="col-2 ps-0">
+                    <div class="col-2">
                     ' . $count_user . '.
                     </div>
                     <div class="col-6">
                     คุณ ' . $rs_c['b_fname'] . ' ' . $rs_c['b_lname'] . ' ( ชื่อผู้ใช้ : ' . $rs_c['username'] . ' )
                     </div>
-                    <div class="col-4 text-end pe-0">
+                    <div class="col-4 text-end pe-3">
                     จำนวน ' . $rs_c['countZ'] . ' ครั้ง
                     </div>
                     </ก>
