@@ -15,7 +15,6 @@ include "nav.php";
 include "./backend/1-connectDB.php";
 require "./backend/qry-index.php";
 include "./backend/1-import-link.php";
-
 ?>
 
 <body>
@@ -134,5 +133,4 @@ include "./backend/1-import-link.php";
         </div>
     </div>
 </body>
-
 </html>

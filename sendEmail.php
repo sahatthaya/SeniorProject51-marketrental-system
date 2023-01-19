@@ -3,6 +3,7 @@
 use PHPMailer\PHPMailer\PHPMailer;
 
 include("./backend/1-connectDB.php");
+include("./backend/1-import-link.php");
 
 if (isset($_POST['email'])) {
 
@@ -24,8 +25,8 @@ if (isset($_POST['email'])) {
             $res = mysqli_query($conn, $insert_query);
 
             $to = $email;
-            $subject = "Password Reset Link";
-            $msg = 'Click <a href="http://localhost/SeniorProject51/reset_password.php?token=' . $token . ' "onclick="showresetpsw()" class="link" >here</a>  to reset your password';
+            $subject = "รีเซ็ตรหัสผ่านด้วยลิงก์";
+            $msg = 'ไปที่ลิงก์นี้ <a href="http://localhost/SeniorProject51/reset_password.php?token=' . $token . ' "onclick="showresetpsw()" class="link" ></a>  เพื่อรีเซตรหัสผ่านของคุณ';
 
             $message = "Email: " . $email . "\n\n" . " " . $msg;
 
@@ -44,8 +45,8 @@ if (isset($_POST['email'])) {
             $mail->isSMTP();
             $mail->Host = "smtp.gmail.com";
             $mail->SMTPAuth = true;
-            $mail->Username = "sunisa.pampam@gmail.com"; // enter your email address
-            $mail->Password = "ukafrmijmluowpns"; // enter your password
+            $mail->Username = "marketrentalproject@gmail.com"; // enter your email address
+            $mail->Password = "dmziddrwoslowmmo"; // enter your password
             $mail->Port = 465;
             $mail->SMTPSecure = "ssl";
 
@@ -54,24 +55,16 @@ if (isset($_POST['email'])) {
             $mail->setFrom($email);
             $mail->addAddress($email); // Send to mail
             $mail->Subject = "Forgot password";
-        
 
-            $mail->Body = 'A request for forgot password has been made. If you have not made this request, please ignore this email. 
-            If you have made this request, please click on the link below to reset your password. <br> 
-            <a href="http://localhost/SeniorProject51/reset.php/?token=' . $token . '"  > Reset Password </a>';
+
+            $mail->Body = 'เราได้รับคำขอให้รีเซ็ตรหัสผ่าน บัญชี marketrentalproject.com ของคุณ
+            <br>หากคุณไม่ได้ขอรหัสผ่านใหม่ ไม่ต้องสนใจอีเมลฉบับนี้และจะไม่มีอะไรเกิดขึ้น
+            <br>หากคุณต้องการเปลี่ยนรหัสผ่านใหม่ คุณต้องเข้าที่ลิงก์ต่อไปนี้ <br> 
+            <a href="http://localhost/SeniorProject51/reset.php/?token=' . $token . '"> รีเซ็ตรหัสผ่าน </a>';
 
             if ($mail->send()) {
-                // $status = "success";
-                // $response = "Email is sent";
-
-                echo "<script>";
-                echo "
-                title: 'Send Email success',
-                icon: 'success',
-                showConfirmButton: false,
-                timer: 5000
-                })";
-                echo "</script>";
+                $status = "success";
+                $response = "Email is sent";
             } else {
                 $status = "failed";
                 $response = "Something is wrong" . $mail->ErrorInfo;
