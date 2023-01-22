@@ -48,10 +48,6 @@ if ($numRows <= 0) {
     $data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
     $result3 = mysqli_query($conn, $data2);
 
-    // qry cost/unit
-    $costunit = "SELECT * FROM `cost/unit` WHERE mkr_id = '$mkr_id'";
-    $resultCU = mysqli_query($conn, $costunit);
-    $numCU = mysqli_num_rows($resultCU);
 
     // qry zone
     $z_qry = "SELECT * FROM `zone`";
