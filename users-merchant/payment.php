@@ -17,6 +17,9 @@ include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
+$userid = $_SESSION['users_id'];
+$qrybill = mysqli_query($conn, "SELECT `invoice`.*,booking_range.b_fname,booking_range.b_lname,stall.sID,market_detail.mkr_name FROM `invoice`,booking_range,stall,market_detail WHERE (booking_range.b_id = invoice.b_id AND stall.sKey = booking_range.stall_id AND market_detail.mkr_id = invoice.mkr_id AND booking_range.`users_id`= '$userid')");
+$qrybill2 = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booking_period.b_lname,stall.sID,market_detail.mkr_name FROM `invoice`,booking_period,stall,market_detail WHERE (booking_period.b_id = invoice.b_id AND stall.sKey = booking_period.stall_id  AND market_detail.mkr_id = invoice.mkr_id AND booking_period.`users_id`= '$userid')");
 
 ?>
 
@@ -28,74 +31,85 @@ include "../backend/1-import-link.php";
                 <thead>
                     <tr>
                         <th scope="col">ลำดับ</th>
+                        <th scope="col">วันที่ส่งใบเรียกเก็บค่าเช่า</th>
+                        <th scope="col">รหัสใบเรียกเก็บค่าเช่า</th>
+                        <th scope="col">ตลาด</th>
                         <th scope="col">รหัสแผงค้า</th>
-                        <th scope="col">ระยะเวลาเช่า</th>
-                        <th scope="col">งวดวันที่</th>
-                        <th scope="col">สถานะ</th>
                         <th scope="col">ราคาค่าเช่า</th>
-                        <th scope="col">ชำระค่าเช่า</th>
+                        <th scope="col">สถานะ</th>
+                        <th scope="col">รายละเอียด/ชำระค่าเช่า</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>A01</td>
-                        <td>2 เดือน</td>
-                        <td>08/08/2022</td>
-                        <td>ยังไม่ชำระ</td>
-                        <td><button name="view" type="button" class="view_data btn btn-outline-primary  " id="<?php echo $row['req_partner_id']; ?>">ดูรายละเอียด</button>
-                        </td>
-                        <td>
-                            <a class=" btn btn-outline-info " style="margin-left: 2px;font: size 14px;" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">ชำระค่าเช่า</a>
-                        </td>
-                    </tr>
+                    <?php
+                    $count_n = 1;
+                    while ($row = $qrybill->fetch_assoc()) :
+                        @$fee = number_format((4.07 / 100) * $row["INV_rentprice"], 2, '.', '');
+                        $INV_id = $row['INV_id'];
+                        $qrycost = mysqli_query($conn, "SELECT * FROM `inv_cost` WHERE `INV_id`= '$INV_id'");
+                        $numRowsop = mysqli_num_rows($qrycost);
+                        if ($numRowsop > 0) {
+                            $cost = 0;
+                            while ($rowc = mysqli_fetch_assoc($qrycost)) {
+                                $cost = $cost + $rowc["price"];
+                            }
+                        }
+                        $total = $row["INV_rentprice"] - $row["INV_discount"] + $cost + $fee;
+                    ?>
+                        <tr>
+                            <td><?php echo $count_n ?></td>
+                            <td><?php echo  date("d/m/Y", strtotime($row['INV_created'])) ?></td>
+                            <td><?php echo $row['mkr_name'] ?></td>
+                            <td><?php echo $row['INV_id'] ?></td>
+                            <td><?php echo $row['sID'] ?></td>
+                            <td><?php echo number_format(round($total)) ?> บาท</td>
+                            </td>
+                            <?php
+                            if ($row['INV_status'] == '1') {
+                                echo '<td class="text-danger">ยังไม่ชำระ</td>';
+                            } else {
+                                echo '<td class="text-success">ชำระแล้ว</td>';
+                            }
+                            ?>
+                            <td><a type="button" href="../ExportPDF-master/inv_info.php?INV_id=<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary">ดูรายละเอียด</a></td>
 
+                        <?php $count_n++;
+                    endwhile; ?>
+                        <?php
+                        while ($row = $qrybill2->fetch_assoc()) :
+                            @$fee = number_format((4.07 / 100) * $row["INV_rentprice"], 2, '.', '');
+                            $INV_id = $row['INV_id'];
+                            $qrycost = mysqli_query($conn, "SELECT * FROM `inv_cost` WHERE `INV_id`= '$INV_id'");
+                            $numRowsop = mysqli_num_rows($qrycost);
+                            if ($numRowsop > 0) {
+                                $cost = 0;
+                                while ($rowc = mysqli_fetch_assoc($qrycost)) {
+                                    $cost = $cost + $rowc["price"];
+                                }
+                            }
+                            $total = $row["INV_rentprice"] - $row["INV_discount"] + $cost + $fee;
+                        ?>
+                        <tr>
+                            <td><?php echo $count_n ?></td>
+                            <td><?php echo  date("d/m/Y", strtotime($row['INV_created'])) ?></td>
+                            <td><?php echo $row['mkr_name'] ?></td>
+                            <td><?php echo $row['INV_id'] ?></td>
+                            <td><?php echo $row['sID'] ?></td>
+                            <td><?php echo number_format(round($total)) ?> บาท</td>
+                            </td>
+                            <?php
+                            if ($row['INV_status'] == '1') {
+                                echo '<td class="text-danger">ยังไม่ชำระ</td>';
+                            } else {
+                                echo '<td class="text-success">ชำระแล้ว</td>';
+                            }
+                            ?>
+                            <td><a type="button" href="../ExportPDF-master/inv_info.php?INV_id=<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary">ดูรายละเอียด</a></td>
+
+                        <?php $count_n++;
+                        endwhile; ?>
                 </tbody>
             </table>
-        </div>
-        <!-- Modal -->
-        <div class="modal fade modal-payment" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">ชำระค่าเช่าแผงค้า</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="content">
-                        <div class="pay-rent-info">
-                            <div class="hstack gap-3">
-                                <p class="des-pay">งวดวันที่</p>:<input type="date" class="form-control" value="01/08/2022" disabled>
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">ผู้เช่า</p>:<input type="text" class="form-control" value="สหัสทยา เทียนมงคล" disabled>
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">รหัสแผงค้า</p>:<input type="text" class="form-control" value="A10" disabled>
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">ตลาด</p>:<input type="text" class="form-control" value="เปิดท้าย มข" disabled>
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">ราคา</p>:<input type="text" class="form-control" value="1000 บาท/เดือน" disabled>
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">ค่าใช้จ่ายอื่นๆ</p>:<input type="text" class="form-control" value="- " disabled>
-                            </div>
-                            <div class="hstack gap-3">
-                                <p class="des-pay">รวมทั้งสิ้น</p>:<input type="text" class="form-control" value="1000 บาท" disabled>
-                            </div>
-
-                        </div>
-
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button id="confirm" type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">เสร็จสิ้น</button>
-
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
 </body>

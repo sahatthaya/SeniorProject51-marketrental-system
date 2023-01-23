@@ -127,7 +127,16 @@
             window.location = "../users-merchant/rent.php";
         });
     }
-
+    function pay_rent_success() {
+        Swal.fire({
+            title: 'ชำระเงินสำเร็จ',
+            text: 'สามารถตรวจสอบใบเรียกเก็บค่าเช่าได้ที่เมนูชำระค่าเช่า',
+            icon: 'success',
+            confirmButtonText: "ตกลง",
+        }).then(function() {
+            window.location = "../users-merchant/payment.php";
+        });
+    }
     function delsuccess() {
         Swal.fire({
             title: 'ลบข้อมูลสำเร็จ',
