@@ -90,48 +90,41 @@ require "../backend/add-applicant.php";
                 </div>
 
                 <div class="col-md-3 mrkmenu-item">
-                    <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
+                    <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item mrkmenu-itemrent w-100 btn btn-outline-primary ">
                         <i class="bx bx-message-alt-detail"></i>
                         <span>ค่าเช่า</span>
                     </a>
                 </div>
-                <div class="col-md-3 mrkmenu-item">
-                    <a href="cost.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
-                        <i class="bx bx-tachometer"></i>
-                        <span>ค่าใช้จ่ายเพิ่มเติม</span>
-                    </a>
-                </div>
-                <div class="col-md-3 mrkmenu-item" >
-                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
+                <div class="col-md-3 mrkmenu-item">
+                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item mrkmenu-itemcomp w-100 btn btn-outline-primary ">
                         <i class="bx bxs-megaphone"></i>
                         <span>การร้องเรียน</span>
                     </a>
                 </div>
-
-
             </div>
         </div>
+        
         <!-- pie graph -->
         <div class="box-2-1">
-            <div class="border rounded shadow-sm p-3 mt-3 " >
+            <div class="border rounded shadow-sm p-3 mt-3 ">
                 <h3 class="center">จำนวนของแผงค้าในแต่ละประเภท</h3>
                 <div class="chartcanvas center " id="piechart"></div>
                 <div class="text-end">
                     <a href="edit-Stall.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary piechart-btn" style="height: fit-content;"><i class="bx bxs-edit-alt"></i> แก้ไขข้อมูลแผงค้า</a>
                 </div>
             </div>
-            <div class="border rounded shadow-sm p-3 mt-3 "ng-sum>
+            <div class="border rounded shadow-sm p-3 mt-3 " ng-sum>
                 <h3 class="center">สรุปการจองแผงค้าในปี <?php echo date("Y") ?></h3>
-
                 <div class="chartcanvas" id="chart_div"> </div>
                 <div class="text-end">
                     <a href="booking.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class="bx bxs-edit-alt"></i> จัดการการจอง</a>
                 </div>
             </div>
         </div>
+
         <!-- line graph -->
-        <div class="box-mk mb-3">
+        <div class="box-mk">
             <div class="border rounded shadow-sm p-3 mt-3 h-100">
                 <h4 class="center">3 อันดับประเภทแผงค้าที่ถูกจองมากที่สุด</h4>
                 <ul class="list-group list-group-flush">
@@ -151,12 +144,12 @@ require "../backend/add-applicant.php";
                     ' . $count_type . '.
                     </div>
                     <div class="col-7">
-                    ' . $rs_c['z_name'] . '
+                     ' . $rs_c['z_name'] . '
                     </div>
                     <div class="col-4 text-end pe-0">
-                    จำนวน ' . $rs_c['countZ'] . ' ครั้ง
+                        จำนวน ' . $rs_c['countZ'] . ' ครั้ง
                     </div>
-                    </ก>
+            
                 </li>';
                         $count_type++;
                     }
@@ -164,10 +157,9 @@ require "../backend/add-applicant.php";
 
                 </ul>
             </div>
+
             <!-- top three user -->
-
-            <div class="border rounded shadow-sm pt-3 mt-3">
-
+            <div class="border rounded shadow-sm p-3 mt-3 h-100 top-user">
                 <h4 class="center">3 อันดับผู้ใช้งานที่มีการจองมากที่สุด</h4>
                 <ul class="list-group list-group-flush list-group-topuser">
                     <?php
@@ -181,18 +173,17 @@ require "../backend/add-applicant.php";
                     $count_user = 1;
                     foreach ($rsz as $rs_c) {
                         echo ' <li class="list-group-item">
-                    <div class=" row text-decoration-none"></div>
-                    <div class="col-2">
-
+                    <div class=" row text-decoration-none">
+                    <div class="col-1 ps-0">
                     ' . $count_user . '.
                     </div>
                     <div class="col-7">
                     คุณ ' . $rs_c['b_fname'] . ' ' . $rs_c['b_lname'] . ' ( ชื่อผู้ใช้ : ' . $rs_c['username'] . ' )
                     </div>
-                    <div class="col-4 text-end pe-3">
+                    <div class="col-4 text-end pe-0">
                     จำนวน ' . $rs_c['countZ'] . ' ครั้ง
                     </div>
-                    </ก>
+                 
                 </li>';
                         $count_user++;
                     }
@@ -245,7 +236,7 @@ require "../backend/add-applicant.php";
                     <div class="col-4 text-end pe-0">
                     จำนวน ' . $rs_c['countZ'] . ' ครั้ง
                     </div>
-                    </ก>
+                   
                 </li>';
                         $count_n++;
                     }
