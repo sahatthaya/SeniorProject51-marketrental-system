@@ -234,7 +234,7 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input">รวมทั้งสิ้น</div>
                 <input class="form-control col-6" value="<?php echo $price . ' บาท' ?>" disabled>
                 <div class="text-danger">*หมายเหตุ* <br />1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br>3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
-                <input type="hidden" name="omiseToken">
+                <input type="" name="omiseToken">
                 <input type="hidden" name="omiseSource">
                 <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept'] ?>">
                 <input type="hidden" name="fee_pay" value="<?php echo $fee ?>">

@@ -25,7 +25,7 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
 }
 
 if (isset($_POST['submit-inv'])) {
-    $INV_created = $_POST['INV_created'];
+    // $INV_created = $_POST['INV_create'];
     $INV_expired = $_POST['INV_expired'];
 
     $numcost = $_POST['numcost'] + 1;
@@ -41,7 +41,7 @@ if (isset($_POST['submit-inv'])) {
         $rentprice = $_POST[$rentprice_i];
         $discount = $_POST[$discount_i];
 
-        $inset_inv = mysqli_query($conn, "INSERT INTO `invoice`(`INV_created`,`INV_rentprice`, `INV_discount`, `INV_created`, `INV_expired`, `b_id`, `mkr_id`) VALUES ('$INV_created','$rentprice',' $discount','$INV_created',' $INV_expired','$b_id','$mkr_id')");
+        $inset_inv = mysqli_query($conn, "INSERT INTO `invoice`(`INV_rentprice`, `INV_discount`, `INV_expired`, `b_id`, `mkr_id`) VALUES ('$rentprice',' $discount',' $INV_expired','$b_id','$mkr_id')");
 
         $last_id = mysqli_query($conn, "SELECT MAX(INV_id) AS maxid FROM invoice");
         $mid = mysqli_fetch_array($last_id);

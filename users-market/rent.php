@@ -16,7 +16,7 @@ include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 require "../backend/invoice.php";
 $open = $row['opening'];
-if ($open = 'เปิดทำการทุกวัน') {
+if ($open == 'เปิดทำการทุกวัน') {
     $querystatusinv = mysqli_query($conn, "SELECT `invoice`.*,booking_range.b_fname,booking_range.b_lname,stall.sID FROM `invoice`,booking_range,stall WHERE (booking_range.b_id = invoice.b_id AND stall.sKey = booking_range.stall_id AND `mkr_id`= $mkr_id )");
 } else {
     $querystatusinv = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booking_period.b_lname,stall.sID FROM `invoice`,booking_period,stall WHERE (booking_period.b_id = invoice.b_id AND stall.sKey = booking_period.stall_id AND `mkr_id`= $mkr_id )");
@@ -66,7 +66,7 @@ if ($open = 'เปิดทำการทุกวัน') {
                                 echo '<td class="text-success">ชำระแล้ว</td>';
                             }
                             ?>
-                            <td><a type="button" href="./inv_info.php?INV_id=<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary">ดูรายละเอียด</a></td>
+                            <td><a type="button" href="../ExportPDF-master/inv_info-m.php?INV_id=<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary">ดูรายละเอียด</a></td>
                         </tr>
                     <?php $count_n++;
                     endwhile; ?>
