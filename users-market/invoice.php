@@ -15,30 +15,7 @@ include "./profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
-
-$mkr_id = $_GET['mkr_id'];
-$sql = "SELECT market_detail.*,users.username ,
-    provinces.province_name,
-    amphures.amphure_name,
-    districts.district_name , 
-    market_type.market_type
-    FROM market_detail 
-        JOIN users ON (market_detail.users_id = users.users_id)
-        JOIN provinces ON (market_detail.province_id = provinces.id)
-        JOIN amphures ON (market_detail.	amphure_id = amphures.id)
-        JOIN districts ON (market_detail.district_id = districts.id)
-        JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
-         WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($result);
-extract($row);
-
-$count_n = 1;
-if ($row['opening'] == 'เปิดทำการทุกวัน') {
-    $query = mysqli_query($conn, "SELECT * FROM `booking_range`JOIN `stall` ON (booking_range.stall_id = stall.sKey) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-} else {
-    $query = mysqli_query($conn, "SELECT * FROM `booking_period`JOIN `stall` ON (booking_period.stall_id = stall.sKey)JOIN `opening_period` ON (booking_period.op_id = opening_period.id) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-}
+require "../backend/invoice.php";
 ?>
 
 <body>
@@ -114,28 +91,34 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                                         $ps = "หักค่ามัดจำแล้ว -" . $row['dept_pay'] . " บาท";
                                     }
                                 } else {
-                                    $rowinv = mysqli_fetch_array($qryinv);
-                                    extract($rowinv);
-
+                                    $qryinvinfo = mysqli_query($conn, "SELECT * FROM invoice WHERE (`b_id` = '$b_id') ORDER BY `b_id` DESC LIMIT 1");
+                                    $rowii = mysqli_fetch_array($qryinvinfo);
+                                    extract($rowii);
                                     if ($row['end'] <  $now) {
-                                        $date1 = date_create($row['end']);
-                                        $date2 = date_create($rowinv['INV_created']);
-                                        $diff = date_diff($date1, $date2);
-                                        $day = $diff->format("%a") + 1;
+                                        if ($row['end'] < $rowii['INV_created']) {
+                                            $day = 0;
+                                            $ps = "บิลค่าเช่าครบรอบบิลแล้ว";
+                                        } else {
+                                            $date1 = date_create($row['end']);
+                                            $date2 = date_create($rowii['INV_created']);
+                                            $diff = date_diff($date1, $date2);
+                                            $day = $diff->format("%a") + 1;
+                                            $ps = "-";
+                                        }
                                     } else {
                                         $date1 = date_create($now);
-                                        $date2 = date_create($rowinv['INV_created']);
+                                        $date2 = date_create($rowii['INV_created']);
                                         $diff = date_diff($date1, $date2);
                                         $day = $diff->format("%a") + 1;
+                                        $ps = "-";
                                     }
 
                                     $rentbill =  $day * $row['sRent'];
-                                    $ps = "-";
                                 }
                             ?>
                                 <tr>
                                     <td class='text-center'><input type='checkbox' class='form-check-input table-checked chk' name="chk[]" value="<?php echo $row['b_id'] ?>" checked></td>
-                                    <td>BK<?php echo $row['b_id'] ?></td>
+                                    <td><?php echo $row['b_id'] ?></td>
                                     <td><?php echo $row['sID'] ?></td>
                                     <td><?php echo  date('d/m/Y', strtotime($row['start'])) ?></td>
                                     <td><?php echo  date('d/m/Y', strtotime($row['end'])) ?></td>
@@ -183,20 +166,21 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                 <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="GetSelected();nextbtn();" id="next">
             </div>
             <!-- form--2 -->
-            <div id="stepTwo" class="row border shadow-sm p-3 mt-3 mb-3 rounded">
+            <form method="post" class="was-validated">
+                <div id="stepTwo" class="row border shadow-sm p-3 mt-3 mb-3 rounded">
+                    <input type="text" class="form-control" name="mkr_id" id="createdate" value="<?php echo $mkr_id ?>" style="width: 165px;margin:5px 0 !important;" hidden required>
 
-                <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> ตรวจสอบและแก้ไขข้อมูล</h4>
-                <div class="progress p-0 my-2 mb-3">
-                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">2/2 </div>
-                </div>
-                <form action="" class="was-validated">
+                    <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> ตรวจสอบและแก้ไขข้อมูล</h4>
+                    <div class="progress p-0 my-2 mb-3">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-label="Basic example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">2/2 </div>
+                    </div>
                     <div class="hstack gap-2">
                         <div style="width: 165px;">วันที่สร้าง :</div>
-                        <input type="date" class="form-control" name="" id="createdate" value="<?php echo date("Y-m-d") ?>" style="width: 165px;margin:5px 0 !important;" required>
+                        <input type="date" class="form-control" name="INV_created" id="createdate" value="<?php echo date("Y-m-d") ?>" style="width: 165px;margin:5px 0 !important;" required disabled>
                     </div>
                     <div class="hstack gap-2 mb-3">
                         <div style="width: 165px;">วันครบกำหนดชำระ :</div>
-                        <input type="date" class="form-control" name="" id="exp" min="<?php echo date("Y-m-d") ?>" value="<?php echo date('Y-m-d', strtotime(date("Y-m-d"). ' + 10 days')) ?>" style="width: 165px;margin:5px 0 !important;" required>
+                        <input type="date" class="form-control" name="INV_expired" id="exp" min="<?php echo date("Y-m-d") ?>" value="<?php echo date('Y-m-d', strtotime(date("Y-m-d") . ' + 10 days')) ?>" style="width: 165px;margin:5px 0 !important;" required>
                     </div>
                     <div class="d-flex mb-3">
                         <div style="width: 165px;">ค่าใช้จ่ายเพิ่มเติม :</div>
@@ -206,15 +190,16 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                     <hr>
                     <div id="parsed_csv_list" class="border rounded p-3">
                     </div>
-                </form>
-                <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn()" id="back">
-                <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง" disabled>
-            </div>
+                    <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn()" id="back">
+                    <button type="submit" name="submit-inv" class="btn btn-success submitBtn" id="submit">สร้างและส่งใบแจ้งค่าเช่า</button>
+                </div>
+            </form>
         </div>
     </div>
     <script src="../backend/script.js"></script>
-
 </body>
+
+</html>
 <script type="text/javascript">
     function GetSelected() {
         //Reference the Table.
@@ -225,6 +210,8 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
         var checkBoxes = grid.getElementsByTagName("INPUT");
 
         var costinfo = '<div class="px-3">';
+        var numcostcal = numcost - 1;
+        costinfo += '<input type="number" name="numcost" id="" class="form-control" value="' + numcostcal + '" required hidden />';
         if (document.getElementById("cost").getElementsByClassName('costtag').length == 0) {
             costinfo += '<div class="text-center">ไม่พบข้อมูลค่าใช้จ่ายเพิ่มเติม</div>';
         } else {
@@ -232,6 +219,10 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                 var costname = document.getElementById("cost" + i).innerHTML;
                 var price = document.getElementById("price" + i).innerHTML;
                 var unit = document.getElementById("unit" + i).innerHTML;
+                costinfo += '<input type="text" name="costname' + i + '" id="" class="form-control" value="' + costname.replace(/-/g, '') + '" required hidden>';
+                costinfo += '<input type="text" name="price' + i + '" id="" class="form-control" value="' + price + '" required hidden>';
+                costinfo += '<input type="text" name="unit' + i + '" id="" class="form-control" value="' + unit + '" required hidden>';
+
                 costinfo += '<div class="hstack gap-2">';
                 costinfo += '<div id="" style="width: 165px;">';
                 costinfo += costname;
@@ -243,11 +234,9 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                 costinfo += unit;
                 costinfo += '</div>';
                 costinfo += '</div>';
-
             }
         }
         costinfo += "</div>";
-        // costinfo += "<hr>";
 
         var table = "<table id='example' class='table display' style='width: 100%;'>";
         var header = "<thead><tr>";
@@ -271,7 +260,7 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
         header += "</tr></thead>";
         table += header;
         table += "<tbody>";
-
+        var countr = 0;
         // //Loop through the CheckBoxes.
         for (var i = 1; i < checkBoxes.length; i++) {
             if (checkBoxes[i].checked) {
@@ -281,6 +270,8 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                 table += "<tr>";
                 table += "<td>";
                 table += row.cells[1].innerHTML;
+                var bid = row.cells[1].innerHTML.replace(/BK/g, '');
+                table += '<input type="text" name="b_id' + countr + '" id="" class="form-control" value="' + bid + '" required hidden/>';
                 table += "</td>";
                 table += "<td>";
                 table += row.cells[2].innerHTML;
@@ -295,10 +286,17 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                 table += row.cells[6].innerHTML;
                 table += "</td>";
                 table += "<td>";
-                table += '<input type="number" name="" id="" class="form-control" value="' + rent + '" required>';
+                table += '<input type="number" name="rentprice' + countr + '" id="" class="form-control" value="' + rent + '" required>';
                 table += "</td>";
                 table += "<td>";
                 table += row.cells[8].innerHTML;
+                var discount = row.cells[8].innerHTML.match(/\d+/);
+                if (discount > 0) {
+                    var dc = discount;
+                } else {
+                    var dc = 0;
+                }
+                table += '<input type="text" name="discount' + countr + '" id="" class="form-control" value="' + dc + '" required hidden>';
                 table += "</td>";
                 for (var x = 1; x < numcost; x++) {
                     var unit = document.getElementById("unit" + x).innerHTML;
@@ -310,14 +308,17 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
                     }
 
                     table += "<td>";
-                    table += '<input type="number" name="" id="" class="form-control" value="' + price + '" required/>';
+                    table += '<input type="number" name="bill' + countr + 'price' + x + '" id="" class="form-control" value="' + price + '" required/>';
                     table += "</td>";
                 }
                 table += "</tr>";
+                countr += 1;
             }
         }
         table += "</tbody>";
         table += "</table>";
+        table += '<input type="number" name="numtbrow" id="" class="form-control" value="' + countr + '"  required hidden/>';
+
         $("#costlist").html(costinfo);
         $("#parsed_csv_list").html(table);
         $(document).ready(function() {
@@ -508,5 +509,3 @@ if ($row['opening'] == 'เปิดทำการทุกวัน') {
         });
     });
 </script>
-
-</html>

@@ -63,7 +63,7 @@ $rowus = mysqli_fetch_array($qry);
                 <div class="des_input">ราคาค่ามัดจำ</div>
                 <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
 
-                <div class="des_input ">วันที่ต้องการเช่า <span class="fs-6">(การจองขั้นต่ำ <?php echo $row['min_rent'] ?>)</span></div>
+                <div class="des_input ">วันที่ต้องการเช่า </div>
                 <div class="w-100 mb-2 p-0">
                     <div id="demo-range-selection" name="daterange"></div>
                     <input id="datestart" name="start" onchange="checkform1()" hidden />
@@ -324,21 +324,6 @@ $rowus = mysqli_fetch_array($qry);
         startInput: '#datestart',
         endInput: '#dateend',
         min: tomorrow.setDate(tomorrow.getDate() + 1),
-        minRange: <?php $rentrange = $row['min_rent'];
-                    if ($rentrange == "1 วัน") {
-                        echo $rr = 1;
-                    } else {
-                        if ($rentrange == "1 สัปดาห์") {
-                            echo $rr = 7;
-                        } else {
-                            if ($rentrange == "1 เดือน") {
-                                echo $rr = 28;
-                            } else {
-                                echo $rr = 365;
-                            }
-                        }
-                    }
-                    ?>,
         invalid: [<?php while ($q1 = $qryinvalid->fetch_assoc()) : ?> {
                     start: new Date(<?php
                                     $start1 = strtotime(str_replace('-', '/', $q1['start']));
