@@ -35,7 +35,7 @@ if ($row['opening'] == "เปิดทำการเป็นรอบ") {
 } else {
     $display = "none";
     $opening_period = '
-    <div class="des_input ">วันที่ต้องการเช่า <span class="fs-6">(การจองขั้นต่ำ ' . $row['min_rent'] . ')</span></div>
+    <div class="des_input ">วันที่ต้องการเช่า</div>
         <div class="w-100 mb-2 p-0">
             <div id="demo-range-selection" name="daterange"></div>
                 <input id="datestart"  hidden/>

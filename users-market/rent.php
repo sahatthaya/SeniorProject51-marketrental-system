@@ -16,6 +16,12 @@ include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 require "../backend/invoice.php";
 $open = $row['opening'];
+if ($open = 'เปิดทำการทุกวัน') {
+    $querystatusinv = mysqli_query($conn, "SELECT `invoice`.*,booking_range.b_fname,booking_range.b_lname,stall.sID FROM `invoice`,booking_range,stall WHERE (booking_range.b_id = invoice.b_id AND stall.sKey = booking_range.stall_id AND `mkr_id`= $mkr_id )");
+} else {
+    $querystatusinv = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booking_period.b_lname,stall.sID FROM `invoice`,booking_period,stall WHERE (booking_period.b_id = invoice.b_id AND stall.sKey = booking_period.stall_id AND `mkr_id`= $mkr_id )");
+}
+
 ?>
 
 <body>
@@ -36,10 +42,9 @@ $open = $row['opening'];
                 <thead>
                     <tr>
                         <th style=" width:4% ; ">ลำดับ</th>
-                        <th style=" width:5% ; ">วันที่ส่งใบเรียกเก็บค่าเช่า</th>
-                        <th style=" width:5% ; ">รหัสใบเรียกเก็บค่าเช่า</th>
+                        <th style=" width:8% ; ">วันที่สร้าง</th>
+                        <th style=" width:10% ; ">รหัสใบเรียกเก็บค่าเช่า</th>
                         <th style=" width:8% ; ">รหัสแผงค้า</th>
-                        <th style=" width:10% ; ">จำนวนเงิน (บาท)</th>
                         <th style=" width:10% ; ">ผู้จอง</th>
                         <th style=" width:8% ; ">สถานะ</th>
                         <th style=" width:8% ; ">ดูรายละเอียด</th>
@@ -50,19 +55,18 @@ $open = $row['opening'];
                     ?>
                         <tr>
                             <td><?php echo  $count_n ?></td>
-                            <td><?php echo  date("วันที่ d/m/Y เวลา h:ia", strtotime($row['INV_created'])) ?></td>
+                            <td><?php echo  date("วันที่ d/m/Y", strtotime($row['INV_created'])) ?></td>
                             <td><?php echo $row['INV_id'] ?></td>
                             <td><?php echo $row['sID'] ?></td>
-                            <td><?php echo $row['INV_total'] ?></td>
                             <td><?php echo $row['b_fname'] . ' ' . $row['b_lname'] ?></td>
                             <?php
-                            if ($row['status'] == '1') {
+                            if ($row['INV_status'] == '1') {
                                 echo '<td class="text-danger">ยังไม่ชำระ</td>';
                             } else {
                                 echo '<td class="text-success">ชำระแล้ว</td>';
                             }
                             ?>
-                            <td><button type="button" id="<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary modal_data2">ดูรายละเอียด</button></td>
+                            <td><a type="button" href="./inv_info.php?INV_id=<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary">ดูรายละเอียด</a></td>
                         </tr>
                     <?php $count_n++;
                     endwhile; ?>
@@ -72,27 +76,5 @@ $open = $row['opening'];
     </div>
     <script src="../backend/script.js"></script>
 </body>
-<?php require '../backend/modal-invoice.php' ?>
-
-<script>
-    $(document).ready(function() {
-        $('.modal_data2').click(function() {
-            var INV_id = $(this).attr("id");
-            $.ajax({
-                url: "../backend/modal-invoice.php",
-                method: "POST",
-                data: {
-                    INV_id: INV_id
-                },
-                success: function(data) {
-                    $('#bannerdetail').html(data);
-                    $('#bannerdataModal').modal('show');
-                }
-            });
-
-        })
-
-    });
-</script>
 
 </html>

@@ -127,13 +127,6 @@ require "../backend/add-applicant.php"
                     <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
                     <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
                 </select>
-                <div class="des_input hstack gap-2">ระยะเวลาขั้นต่ำที่เปิดให้จอง</div>
-                <select class="form-select" name="min_rent" aria-label="Default select example">
-                    <option value="1 วัน">1 วัน</option>
-                    <option value="1 สัปดาห์">1 สัปดาห์</option>
-                    <option value="1 เดือน">1 เดือน</option>
-                    <option value="1 ปี">1 ปี</option>
-                </select>
                 <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
                     <div data-toggle="tooltip" title="เช่น ตลาดค้าส่ง ทำเลดี ติดถนนใหญ่ใกล้สี่แยกไฟแดง" class="mt-1">
                         <i class='bx bx-info-circle'></i>

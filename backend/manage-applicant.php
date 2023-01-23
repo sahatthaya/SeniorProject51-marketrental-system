@@ -54,7 +54,6 @@ if (isset($_GET['approve'])) {
      $email = $row['email'];
      $tel = $row['tel'];
      $opening = $row['opening'];
-     $min_rent = $row['min_rent'];
 
      $house_no = $row['house_no'];
      $soi = $row['soi'];
@@ -66,15 +65,8 @@ if (isset($_GET['approve'])) {
      $postalcode = $row['postalcode'];
 
      $approve = "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)";
-     $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`min_rent`) 
-     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$min_rent')";
-
-     $ql = mysqli_query($conn, $approve);
-     $isql = mysqli_query($conn, $insert);
-     $mkr_id =  mysqli_insert_id($conn);
-
-     $InsertcostUnit = "INSERT INTO `cost/unit`(`cu_name`, `cu_price`, `mkr_id`) VALUES ('ค่าน้ำ','0','$mkr_id'),('ค่าไฟ','0','$mkr_id'),('ค่าขยะ','0','$mkr_id')";
-     $sqlCU = mysqli_query($conn, $InsertcostUnit);
+     $insert = "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`) 
+     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening')";
 
      $user_info = "SELECT * FROM `users` WHERE(users_id = $users_id)";
      $qryuser_info = mysqli_query($conn, $user_info);
