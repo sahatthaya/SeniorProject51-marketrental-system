@@ -22,8 +22,8 @@ $mpdf = new \Mpdf\Mpdf([
     ],
     'default_font' => 'sarabun'
 ]);
-include "../users-market/profilebar.php";
-include "../users-market/nav.php";
+include "./profilebar-market.php";
+include "./nav-market.php";
 include "../backend/1-connectDB.php";
 include "../backend/1-import-link.php";
 
