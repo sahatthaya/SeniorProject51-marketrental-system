@@ -172,6 +172,13 @@ input[type=file]::file-selector-button:hover {
     margin-bottom: 1px;
 }
 
+.hstack .cost {
+    width: 165px;
+}
+
+.hstack .cost-formselect {
+    width: 155px;
+}
 
 /* -------------------responsive-------------- */
 @media(max-width: 1400px) {
@@ -225,10 +232,6 @@ input[type=file]::file-selector-button:hover {
         width: 100%;
     }
 
-    .row {
-        display: flex !important;
-    }
-
     .form-control {
         width: 100% !important;
     }
@@ -263,7 +266,14 @@ input[type=file]::file-selector-button:hover {
         margin-top: -55px;
     }
 
+    .cost-formselect {
+        margin-top: -10px !important ;
+    }
 
+    .cost-btn{
+        margin-top: -10px !important ;
+
+    }
 
 }
 
@@ -292,5 +302,21 @@ input[type=file]::file-selector-button:hover {
 
     .list-group-topuser li {
         margin-left: -5px;
+    }
+
+    .cost {
+        flex-wrap: wrap !important;
+
+    }
+
+    .cost-formselect {
+        margin-top: 0px !important ;
+        width: 100% !important  ;
+    }
+
+    .cost-btn{
+        margin-top: 0px !important ;
+      display: block;
+      text-align: center !important;
     }
 }

@@ -16,7 +16,7 @@ include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
 require "../backend/manage-annouce.php";
-include "../backend/1-import-link.php";
+// include "../backend/1-import-link.php";
 ?>
 
 <body>
@@ -67,6 +67,7 @@ include "../backend/1-import-link.php";
             </table>
         </div>
     </div>
+    <?php require '../backend/modal-applicant.php' ?>
 
 </body>
 
@@ -89,7 +90,6 @@ include "../backend/1-import-link.php";
 
         })
     });
-
 </script>
 
 </html>

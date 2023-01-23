@@ -46,7 +46,7 @@ body {
 
 .btnac {
     width: 30%;
-    margin-left: 5px; 
+    margin-left: 5px;
 }
 
 
@@ -108,12 +108,16 @@ a {
     border: 1px solid #ced4da !important;
 }
 
-.nowrap{
+.nowrap {
     display: block;
 }
-.ui-widget-content{
+
+.ui-widget-content {
     border: none !important;
 }
+
+
+
 /* ------------------------------------responsive-------------------------- */
 @media(max-width: 992px) {
     .dataTables_scrollHead {
@@ -191,12 +195,12 @@ a {
         padding: auto 2px !important;
     }
 
-    .btnac{
+    .btnac {
         width: 70%;
         margin-bottom: 5px;
     }
 
-    .btn-calen{
+    .btn-calen {
         margin-left: 10px;
         font-size: 14px !important;
     }
@@ -210,4 +214,12 @@ a {
         margin-bottom: 10px;
     }
 
+}
+
+
+@media only screen and (max-width: 470px) {
+    .inv-info {
+        display: flex !important;
+        width: 200px !important;
+    }
 }

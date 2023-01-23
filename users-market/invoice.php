@@ -27,7 +27,7 @@ require "../backend/invoice.php";
         </ol>
     </nav>
     <h1 class="head_contact">สร้างใบเรียกเก็บค่าเช่า</h1>
-    <div class="form-outer-lg">
+    <div class="form-outer-lg ms-2 me-2">
         <div class="form-outer form-group " style="overflow: visible;">
             <!-- form--1 -->
             <div id="stepOne" class="row border shadow-sm p-3 mt-3 mb-3 rounded">
@@ -46,7 +46,7 @@ require "../backend/invoice.php";
                     </div>
                 </div>
                 <div class=" mb-3 border p-3">
-                    <table id="myTable" class="display px-0" style="width: 100%;">
+                    <table id="myTable" class="display table table-striped dt-responsive px-0" style="width: 100%;">
                         <thead>
                             <tr>
                                 <th style=" width:4%;" class="text-center"> <input type="checkbox" id="checkall" onClick="toggle(this)" class='form-check-input table-checked' checked /></th>
@@ -149,15 +149,15 @@ require "../backend/invoice.php";
                 </div>
                 <h5 class="px-0">2. กรอกค่าใช้จ่ายเพิ่มเติม <span class="text-secondary fs-6">(หากไม่มีค่าใช้จ่ายเพิ่มเติม สามารถเว้นไว้ได้)</span></h5>
                 <hr>
-                <div class="hstack gap-2 mb-2 px-0">
-                    <label style="width: 165px;">ค่าใช้จ่ายเพิ่มเติม :</label>
-                    <input style="width: 165px;" id="costname" type="text" class="form-control" placeholder="เช่น ค่าไฟ ค่าน้ำ" onchange="canclick()">
-                    <input style="width: 165px;" id="price" type="number" class="form-control" placeholder="จำนวนเงิน" onchange="canclick()">
-                    <select class="form-select" id="unit" style="width: 155px;" onchange="checkunit()">
+                <div class="hstack cost gap-2 mb-2 px-0">
+                    <label class="cost" >ค่าใช้จ่ายเพิ่มเติม :</label>
+                    <input  id="costname" type="text" class="form-control cost" placeholder="เช่น ค่าไฟ ค่าน้ำ" onchange="canclick()">
+                    <input  id="price" type="number" class="form-control cost" placeholder="จำนวนเงิน" onchange="canclick()">
+                    <select class="form-select cost-formselect" id="unit" style="width: 155px;" onchange="checkunit()">
                         <option value="1">เหมาจ่าย</option>
                         <option value="2">บาท/หน่วย</option>
                     </select>
-                    <button id="addcost" type="button" class="btn btn-primary" disabled> เพิ่ม</button>
+                    <but ton id="addcost" type="button" class="btn btn-primary cost-btn" disabled> เพิ่ม</but>
                     <label id="lebelunit" class="text-danger" style="display: none;">เนื่องจากเป็นรายการที่ราคาแตกต่างกันในแต่ละแผงค้า <br>คุณสามารถกรอกข้อมูลแต่ละแผงค้าได้ในขั้นตอนถัดไป</label>
                 </div>
                 <div id="cost" class="px-0">
@@ -238,7 +238,7 @@ require "../backend/invoice.php";
         }
         costinfo += "</div>";
 
-        var table = "<table id='example' class='table display' style='width: 100%;'>";
+        var table = "<table id='example' class='display table table-striped dt-responsive' style='width: 100%;'>";
         var header = "<thead><tr>";
         header += "<th>รหัสการจอง</th>";
         header += "<th>รหัสแผงค้า</th>";
