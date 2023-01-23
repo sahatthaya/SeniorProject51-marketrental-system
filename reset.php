@@ -34,21 +34,21 @@ include "./backend/1-import-link.php";
 
     ?>
     <center>
-        <div class="reset m-4 p-5">
+        <div class="reset m-4 p-5 " >
             <img class="img-resetpws" src="../asset/contact/logo-with-bg.png">
             <div id="resetpsw">
                 <h1>รีเซ็ตรหัสผ่าน</h1>
                 <div class="form-message" id="msg"></div>
-                <div class="reset-psw px-5">
+                <div class="reset-psw ">
                     <form method="POST">
                         <div class="mb-3">
-                            <input class="input inputcolor form-control" type="email" name="email" id="email" value="<?php echo $email; ?>">
+                            <input class="input inputcolor form-control reset-input " type="email" name="email" id="email" value="<?php echo $email; ?>">
                         </div>
                         <div class="mb-3">
-                            <input class="input inputcolor form-control" type="password" name="password" id="password" required placeholder="สร้างรหัสผ่านใหม่">
+                            <input class="input inputcolor form-control reset-input" type="password" name="password" id="password" required placeholder="สร้างรหัสผ่านใหม่">
                         </div>
                         <div class="mb-3">
-                            <input class="input inputcolor form-control" type="password" name="cfpassword" id="cfpassword" required placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง">
+                            <input class="input inputcolor form-control reset-input" type="password" name="cfpassword" id="cfpassword" required placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง">
                         </div>
                         <input class="input submit btn btn-primary w-100" type="submit" name="submit-resetpsw" value="รีเซตรหัสผ่าน">
                     </form>
