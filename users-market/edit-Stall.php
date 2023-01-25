@@ -22,7 +22,7 @@ $count_n = 1;
 $data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
 $result3 = mysqli_query($conn, $data2);
 
-$z_qry = "SELECT * FROM `zone`";
+$z_qry = "SELECT * FROM zone";
 $z = mysqli_query($conn, $z_qry);
 $sql = "SELECT market_detail.*,users.username ,
     provinces.province_name,
@@ -50,7 +50,7 @@ if (isset($_POST['stall-submit'])) {
     $sWidth = $_POST['sWidth'];
     $sHeight = $_POST['sHeight'];
     $sDept = $_POST['sDept'];
-    $sPayRange = $_POST['sPayRange'];
+    $sPayRange ='บาท/วัน';
     $sRent = $_POST['sRent'];
     $z_id = $_POST['z_id'];
     if (!isset($_POST['show'])) {
@@ -59,7 +59,7 @@ if (isset($_POST['stall-submit'])) {
         $show = "1";
     }
 
-    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sDept']) != "" && isset($_POST['sPayRange']) != "" && isset($_POST['z_id']) != "" && $show != "") {
+    if (isset($_POST['sID']) != "" && isset($_POST['sWidth']) != "" && isset($_POST['sHeight']) != "" && isset($_POST['sDept']) != "" && isset($_POST['z_id']) != "" && $show != "") {
         $sqlCheck = "SELECT * FROM stall WHERE (market_id = '$mkr_id')AND (sID = '$sID')";
         $rsCheck = mysqli_query($conn, $sqlCheck);
         $rowCheck = mysqli_num_rows($rsCheck);
@@ -67,17 +67,21 @@ if (isset($_POST['stall-submit'])) {
             echo "<script type='text/javascript'> stalldoubly(); </script>";
             echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
         } else {
-            $sqlInsert = "INSERT INTO stall (sID,sWidth,sHeight,sDept,sPayRange,market_id,sRent,z_id,`show`) VALUES ('$sID','$sWidth','$sHeight','$sDept','$sPayRange', $mkr_id,$sRent,$z_id,$show) ";
+            $sqlInsert = "INSERT INTO stall (sID, sWidth, sHeight, sDept, sRent, sPayRange, market_id, z_id, show, left, top) VALUES ('$sID','$sWidth','$sHeight','$sDept','$sRent','$sPayRange', '$mkr_id','$z_id','$show','','') ";
             $sql = mysqli_query($conn, $sqlInsert);
             if ($sql) {
                 echo "<script type='text/javascript'> success(); </script>";
                 echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
             } else {
                 echo "<script>error();</script>";
+                // echo "<script>alert('1');</script>";
+
             }
         }
     } else {
         echo "<script>error();</script>";
+        // echo "<script>alert('2');</script>";
+
     }
 }
 
@@ -86,7 +90,7 @@ if (isset($_GET['delstall'])) {
     $sKey = $_GET['delstall'];
     $mkr_id = $_GET['mkr_id'];
 
-    $qrybooking = mysqli_query($conn, "SELECT * FROM `booking_range` WHERE sKey = ' $sKey' ");
+    $qrybooking = mysqli_query($conn, "SELECT * FROM booking_range WHERE sKey = ' $sKey' ");
     $numRows = mysqli_num_rows($qrybooking);
     if ($numRows > 0) {
         echo "<script>";
@@ -120,18 +124,17 @@ if (isset($_GET['delstall'])) {
 
     function drawChart() {
         var options = {
-            width: 500,
-            height: 300,
+            height: 300,    
             animation: {
                 duration: 1000,
                 easing: 'out'
             },
-            Response:{
-                resize:(50,20)
+            Response: {
+                resize: (50,20)
             },
             backgroundColor: '',
             chartArea: {
-                'left': 15,
+                'left': 20,
                 'top': 15,
                 'right': 0,
                 'bottom': 0
@@ -219,10 +222,7 @@ if (isset($_GET['delstall'])) {
                 <label class="mt-2">ราคาค่าเช่า :</label>
                 <div class="input-group">
                     <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
-                    <select class="input-group-text" name="sPayRange">
-                        <option value="บาท/วัน">บาท/วัน</option>
-                        <option value="บาท/เดือน">บาท/เดือน</option>
-                    </select>
+                    <span class="input-group-text">บาท/วัน</span>
                 </div>
                 <div class="mt-2 hstack gap-2">
                     <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="show" checked>

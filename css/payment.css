@@ -1,72 +1,72 @@
-.modal-payment .content {
-    padding: 10px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 10px;
-}
-
-.modal-payment .content p {
-    margin: 10px 0px;
-}
-
-.modal-payment .des-pay {
-    width: 100px;
-}
-
-.modal-payment .form-control {
-    width: 70% !important;
-}
-
-
-.modal-payment .pay {
-    border-left: 1px solid black;
-    padding: 15px;
-    padding-top: 0px;
-
-}
-
-.modal-payment #qr-code {
-    width: 145px;
-    margin: 0px 30%;
-}
-
-.modal-payment .pay input {
-    width: 60% !important;
-}
-
-
-/* ------------------------------------responsive-------------------------- */
-@media(max-width: 992px) {
-
-
-    .content {
-        display: block !important;
-    }
-
-    .pay {
-        border-left: none;
-        border-top: 1px solid rgb(205, 205, 205);
-        padding: 15px;
-        padding-top: 15px;
-        margin-top: 10px;
-    
-    }
-
-}
-
-@media only screen and (max-width: 768px) {
-    .dataTables_scrollBody {
-        overflow: auto !important;
-    }
-
-    #headline {
-        font-size: 25px;
-    }
-
-    .content {
-        display: block !important;
-    }
-
-
-
-}
+.modal-payment .content {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 10px;
+}
+
+.modal-payment .content p {
+    margin: 10px 0px;
+}
+
+.modal-payment .des-pay {
+    width: 100px;
+}
+
+.modal-payment .form-control {
+    width: 70% !important;
+}
+
+
+.modal-payment .pay {
+    border-left: 1px solid black;
+    padding: 15px;
+    padding-top: 0px;
+
+}
+
+.modal-payment #qr-code {
+    width: 145px;
+    margin: 0px 30%;
+}
+
+.modal-payment .pay input {
+    width: 60% !important;
+}
+
+
+/* ------------------------------------responsive-------------------------- */
+@media(max-width: 992px) {
+
+
+    .content {
+        display: block !important;
+    }
+
+    .pay {
+        border-left: none;
+        border-top: 1px solid rgb(205, 205, 205);
+        padding: 15px;
+        padding-top: 15px;
+        margin-top: 10px;
+    
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    .dataTables_scrollBody {
+        overflow: auto !important;
+    }
+
+    #headline {
+        font-size: 25px;
+    }
+
+    .content {
+        display: block !important;
+    }
+
+
+
+}

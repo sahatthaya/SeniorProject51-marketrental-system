@@ -1,134 +1,134 @@
-:root {
-    --white: white;
-    --purple: #4B2ED7;
-    --lightblue: #38B6FF;
-    --primaryblue: #006bfa;
-    --freshblue: #0daafd;
-    --margenta: #8e18d7;
-    --dark: #02155A;
-}
-
-body {
-    margin: 30px 68px 20px 146px !important;
-    min-width: 370px;
-
-}
-
-.add-btn i {
-    color: white !important;
-    margin: 2px;
-    font-size: 1em;
-}
-
-.add-btn {
-    width: 200px;
-    margin-right: 10px;
-}
-
-.selectlabel {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-}
-
-/* ผังแผงค้า */
-.content {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 20px;
-}
-
-.plan {
-    padding: 10px;
-    border-radius: 10px;
-    margin: 1rem 0;
-    height: 100vh;
-    background-color: white;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-}
-
-.list {
-    padding: 10px;
-    border-radius: 10px;
-    margin: 1rem 0;
-    width: 260px !important;
-    height: 100vh;
-    background-color: white;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-}
-
-.list li,
-.plan li {
-    list-style: none;
-}
-
-.liststall {
-    padding: 0 4%;
-    min-height: 100%;
-
-}
-
-#plan {
-    min-width: 100%;
-    min-height: 100%;
-}
-
-.save-change {
-    display: inline-flex !important;
-    padding: 0 !important;
-}
-
-/* แผงค้า */
-.stallbox {
-    color: white !important;
-    border-radius: 5px;
-    padding: 2px;
-    width: 200px;
-    height: 30px;
-    font-size: 15px;
-    overflow: hidden;
-}
-
-.stallnum {
-    font-size: 15px;
-}
-
-/* responsive--------------------------------------------------------------------- */
-
-@media (max-width:720px) {
-    body {
-        padding-right: 10px;
-        margin: 60px 10px 0px 15px !important;
-    }
-
-    .searchlabel {
-        display: grid !important;
-    }
-
-    .selectlabel{
-        grid-template-columns: 1fr 4fr;
-    }
-    .form-control {
-        width: 100% !important;
-    }
-
-    .form-select {
-        width: 100% !important;
-    }
-
-}
-@media (max-width:560px) {
-    .selectlabel{
-        grid-template-columns: 1fr 3fr;
-    } 
-}
-@media (max-width:475px) {
-    .selectlabel{
-        grid-template-columns: 1fr 2fr;
-    } 
+:root {
+    --white: white;
+    --purple: #4B2ED7;
+    --lightblue: #38B6FF;
+    --primaryblue: #006bfa;
+    --freshblue: #0daafd;
+    --margenta: #8e18d7;
+    --dark: #02155A;
+}
+
+body {
+    margin: 30px 68px 20px 146px !important;
+    min-width: 370px;
+
+}
+
+.add-btn i {
+    color: white !important;
+    margin: 2px;
+    font-size: 1em;
+}
+
+.add-btn {
+    width: 200px;
+    margin-right: 10px;
+}
+
+.selectlabel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+}
+
+/* ผังแผงค้า */
+.content {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 20px;
+}
+
+.plan {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 1rem 0;
+    height: 100vh;
+    background-color: white;
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+}
+
+.list {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 1rem 0;
+    width: 260px !important;
+    height: 100vh;
+    background-color: white;
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+}
+
+.list li,
+.plan li {
+    list-style: none;
+}
+
+.liststall {
+    padding: 0 4%;
+    min-height: 100%;
+
+}
+
+#plan {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.save-change {
+    display: inline-flex !important;
+    padding: 0 !important;
+}
+
+/* แผงค้า */
+.stallbox {
+    color: white !important;
+    border-radius: 5px;
+    padding: 2px;
+    width: 200px;
+    height: 30px;
+    font-size: 15px;
+    overflow: hidden;
+}
+
+.stallnum {
+    font-size: 15px;
+}
+
+/* responsive--------------------------------------------------------------------- */
+
+@media (max-width:720px) {
+    body {
+        padding-right: 10px;
+        margin: 60px 10px 0px 15px !important;
+    }
+
+    .searchlabel {
+        display: grid !important;
+    }
+
+    .selectlabel{
+        grid-template-columns: 1fr 4fr;
+    }
+    .form-control {
+        width: 100% !important;
+    }
+
+    .form-select {
+        width: 100% !important;
+    }
+
+}
+@media (max-width:560px) {
+    .selectlabel{
+        grid-template-columns: 1fr 3fr;
+    } 
+}
+@media (max-width:475px) {
+    .selectlabel{
+        grid-template-columns: 1fr 2fr;
+    } 
 }
