@@ -60,7 +60,7 @@ body {
 
   display: grid;
 
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
 
   grid-template-rows: 1fr;
 
@@ -385,7 +385,6 @@ input[type=number] {
     display: inline-block;
 
     margin-top: 10px
-
   }
 
 
