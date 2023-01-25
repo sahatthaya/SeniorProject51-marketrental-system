@@ -29,7 +29,7 @@ body {
 
 .top {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
   grid-template-rows: 1fr;
   grid-column-gap: 10px;
 }
@@ -104,7 +104,13 @@ input[type=number] {
 #piechart {
   margin-top: 57px;
   margin-left: -20px;
+
 }
+
+.dropdown-menu.show {
+  left: -10px !important;
+}
+
 
 /* ------------------------------------responsive-------------------------- */
 @media only screen and (max-width: 1190px) {
@@ -213,8 +219,6 @@ input[type=number] {
 }
 
 
-
-
 @media only screen and (max-width: 600px) {
 
   .input-group {
@@ -243,14 +247,6 @@ input[type=number] {
     margin: 5px 0px;
   }
 
-  /* .chartcanvas {
-    width: 5px !important;
-  } */
-
-  #piechart {
-    margin-top: 0px;
-    margin-left: 150px !important;
-    width: 20% ;
-}
+ 
 
 }

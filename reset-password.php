@@ -2,6 +2,7 @@
 <?php
 
 include("./backend/1-connectDB.php");
+include ("./backend/1-import-link.php");
 
 if (isset($_POST['submit-resetpsw'])) {
 
@@ -20,20 +21,28 @@ if (isset($_POST['submit-resetpsw'])) {
 
             $query_dlt = "DELETE FROM forgot_password WHERE email = '$email' ";
             $res_dlt = mysqli_query($conn, $query_dlt);
+
             echo "<script>";
             echo "
         Swal.fire({
             icon: 'success',
             title: 'รีเซ็ตรหัสผ่านเรียบร้อย',
             showConfirmButton: false,
-            timer:3000,
-            footer: '<a href='../index.php'>เข้าสู่ระบบ</a>'
+            timer:3000
           })";
             echo "</script>";
 
-            // echo "Password is updated successfully! Click <a href='http://localhost/SeniorProject51/' > here </a> to login again. ";
         } else {
-            echo "Passwords do not match";
+            echo "<script>";
+            echo "
+        Swal.fire({
+            icon: 'error',
+            title: 'Passwords do not match',
+            showConfirmButton: false,
+            timer:3000
+          })";
+            echo "</script>";
+
            
         }
     }

@@ -99,7 +99,7 @@ $result_province = mysqli_query($conn, $query_province);
             </select>
           </div>
           <div class="col-md-2 pt-2">รหัสไปรษณีย์ :</div>
-          <div class="col-4 p-0">
+          <div class="col-md-4 p-0">
             <input name="PostalCode" id="zipcode" class="form-control" style="height:45px ;" value="<?php echo $row['postalcode']; ?>" placeholder="รหัสไปรษณีย์" required>
             </input>
           </div>

@@ -39,50 +39,49 @@
             </div>
             <div class="des_input mt-3">สถานที่ตั้ง</div>
             <div class="row p-0 m-0 mt-2">
-                <div class="col-2 p-0 pt-2">บ้านเลขที่ :</div>
-                <div class="col-4 p-0">
+                <div class="col-md-2 pt-2">บ้านเลขที่ :</div>
+                <div class="col-md-4 p-0">
                     <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" id="houseno" onchange="checkapp2()" required>
                 </div>
-                <div class="col-2 pt-2">ซอย :</div>
-                <div class="col-4 p-0">
+                <div class="col-md-2 pt-2">ซอย :</div>
+                <div class="col-md-4 p-0">
                     <input class="form-control" type="text" placeholder="ซอย" name="Soi" id="soi" onchange="checkapp2()" required>
                 </div>
             </div>
-            <div class="row p-0 m-0 mt-2">
-                <div class="col-2 p-0 pt-2">หมู่ :</div>
-                <div class="col-4 p-0">
+            <div class="row p-0 m-0">
+                <div class="col-md-2 pt-2">หมู่ :</div>
+                <div class="col-md-4 p-0">
                     <input class="form-control" type="text" placeholder="หมู่" name="Moo" id="moo" onchange="checkapp2()" required>
                 </div>
-                <div class="col-2 pt-2">ถนน :</div>
-                <div class="col-4 p-0">
+                <div class="col-md-2 pt-2">ถนน :</div>
+                <div class="col-md-4 p-0">
                     <input class="form-control" type="text" placeholder="ถนน" name="Road" id="road" onchange="checkapp2()" required>
                 </div>
             </div>
             <div class="row p-0 m-0 mt-2">
-                <div class="col-2 p-0 pt-2">จังหวัด :</div>
-                <div class="col-4 p-0">
+                <div class="col-md-2 pt-2">จังหวัด :</div>
+                <div class="col-md-4 p-0">
                     <select name="province_id" id="province" onchange="checkapp2()" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกจังหวัด" required>
                         <?php while ($result = mysqli_fetch_assoc($result_province)) : ?>
                             <option value="<?php echo $result['id'] ?>"><?php echo $result['province_name'] ?></option>
                         <?php endwhile; ?>
                     </select>
                 </div>
-                <div class="col-2 pt-2">อำเภอ/เขต :</div>
-                <div class="col-4 p-0">
+                <div class="col-md-2 pt-2">อำเภอ/เขต :</div>
+                <div class="col-md-4 p-0">
                     <select name="amphure_id" id="amphure" onchange="checkapp2()" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกอำเภอ/เขต" required>
                     </select>
                 </div>
             </div>
             <div class="row p-0 m-0 mt-2">
-                <div class="col-2 p-0 pt-2">ตำบล/แขวง :</div>
-                <div class="col-4 p-0">
+                <div class="col-md-2 pt-2">ตำบล/แขวง :</div>
+                <div class="col-md-4 p-0 mt-1 ">
                     <select name="district_id" id="district" onchange="checkapp2()" class="form-control selectpicker" data-live-search="true" data-width="100%" data-size="5" title="เลือกตำบล/แขวง" required>
                     </select>
                 </div>
-                <div class="col-2 pt-2">รหัสไปรษณีย์ :</div>
-                <div class="col-4 p-0">
+                <div class="col-md-2 pt-2">รหัสไปรษณีย์ :</div>
+                <div class="col-md-4 p-0">
                     <input name="PostalCode" id="zipcode" onchange="checkapp2()" class="form-control" placeholder="รหัสไปรษณีย์" required>
-                    </input>
                 </div>
             </div>
 
@@ -101,7 +100,7 @@
             </div>
             <input class="sqr-input col-12 form-control" type="file" id="file" onchange="checkapp2()" placeholder="เช่น ตลาดขายปลีก ใจกลางเมือง ทำเลดี ติดถนนใหญ่" name="mkrFile" accept="image/jpeg,image/gif,image/png" required>
             <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn()" id="back">
-            <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง" disabled>
+            <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง" >
         </div>
     </div>
 </form>

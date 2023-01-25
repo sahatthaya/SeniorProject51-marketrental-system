@@ -61,7 +61,7 @@ extract($row1);
             </div>
             <div class="mb-3 row">
                 <label class="col-sm-2 col-form-label">ธนาคาร</label>
-                <div class="col-sm-10 search_select_box">
+                <div class="col-sm-10 search_select_box ">
                     <select name="p_bank" class="selectpicker" data-live-search="true" data-width="100%" data-size="5" required>
                         <option value="<?php echo $row['p_bank']; ?>" selected><?php echo $row['p_bank']; ?></option>
                         <option value="ธนาคารไทยพาณิชย์ (SCB)">ธนาคารไทยพาณิชย์ (SCB)</option>

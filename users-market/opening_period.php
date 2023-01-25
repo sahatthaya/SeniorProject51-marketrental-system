@@ -60,7 +60,7 @@ if (isset($_GET['delop_id'])) {
         <h4 class="mt-2">รอบการเปิดทำการ</h4>
         <hr>
         <div class="table-responsive-lg">
-            <table id="myTable" class="display table" style="width: 100%;">
+            <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col">รอบที่</th>
@@ -96,7 +96,7 @@ if (isset($_GET['delop_id'])) {
                                     if ($numRows > 0) {
                                         $cancel = '
                                         <div data-toggle="tooltip" title="ไม่สามารถแก้ไขได้ เนื่องจากมีผู้เช่า/จองในรอบนี้อยู่">
-                                        <button type="button" class="btn btn-outline-secondary w-100"disabled>แก้ไข</button>
+                                        <button type="button" class="btn btn-outline-secondary w-100 "disabled>แก้ไข</button>
                                         </div>
                                         <div data-toggle="tooltip" title="ไม่สามารถลบได้ เนื่องจากมีผู้เช่า/จองในรอบนี้อยู่">
                                         <button type="button" class="btn btn-outline-secondary w-100"disabled>ลบ</button>
@@ -107,10 +107,10 @@ if (isset($_GET['delop_id'])) {
                                             <div data-toggle="tooltip" title="ไม่สามารถแก้ไขได้ เนื่องจากรอบนี้ได้เริ่มทำการไปแล้ว">
                                         <button type="button" class="btn btn-outline-secondary w-100"disabled>แก้ไข</button>
                                         </div>
-                                            <a type="button" class="btn btn-outline-danger" href="./opening_period.php?delop_id=' . $row1['id'] . '&mkr_id=' . $row1['mkr_id'] . '" onclick="return confirm("คุณต้องการลบรอบวันที่ ' . date('d/m/Y', strtotime($row1['start'])) . ' - ' . date('d/m/Y', strtotime($row1['start'])) . ' หรือไม่")">ลบ</a>';
+                                            <a type="button" class="btn btn-outline-danger  w-100" href="./opening_period.php?delop_id=' . $row1['id'] . '&mkr_id=' . $row1['mkr_id'] . '" onclick="return confirm("คุณต้องการลบรอบวันที่ ' . date('d/m/Y', strtotime($row1['start'])) . ' - ' . date('d/m/Y', strtotime($row1['start'])) . ' หรือไม่")">ลบ</a>';
                                         } else {
-                                            $cancel = ' <button type="button" class="btn btn-outline-warning modal_data1" id="' . $row1["id"] . '"  >แก้ไข</button>
-                                            <a type="button" class="btn btn-outline-danger" href="./opening_period.php?delop_id=' . $row1['id'] . '&mkr_id=' . $row1['mkr_id'] . '" onclick="return confirm("คุณต้องการลบรอบวันที่ ' . date('d/m/Y', strtotime($row1['start'])) . ' - ' . date('d/m/Y', strtotime($row1['start'])) . ' หรือไม่")">ลบ</a>';
+                                            $cancel = ' <button type="button" class="btn btn-outline-warning modal_data1  w-100" id="' . $row1["id"] . '"  >แก้ไข</button>
+                                            <a type="button" class="btn btn-outline-danger  w-100" href="./opening_period.php?delop_id=' . $row1['id'] . '&mkr_id=' . $row1['mkr_id'] . '" onclick="return confirm("คุณต้องการลบรอบวันที่ ' . date('d/m/Y', strtotime($row1['start'])) . ' - ' . date('d/m/Y', strtotime($row1['start'])) . ' หรือไม่")">ลบ</a>';
                                         }
                                     }
                                     echo $cancel;

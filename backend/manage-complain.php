@@ -17,17 +17,17 @@ if (isset($_POST["id"])) {
         }
         $output .= '
         <div class="row mw-100">
-        <div class="col-4 rounded" style="height:180px;overflow:hidden;">
-        <img src="../' . $row['comp_file'] . '"class="img-fluid"alt="" style="width:255px;">
-    </div>
-    <div class="col-8">
+            <div class="col-md-4 rounded com-file" style="height:180px;overflow:hidden;">
+            <img src="../' . $row['comp_file'] . '"class="img-fluid"alt="" style="width:255px;">
+        </div>
+    <div class="col-md-8 ">
         <h2>หัวข้อ : ' . $row['comp_subject'] . '</h2>
         <p>ประเภท : ' . $row['toppic'] . '</p>
         รายละเอียด : 
         <p> ' . $row['comp_detail'] . '</p>
-        <div class="d-flex justify-content-between">
-            <p >ผู้ร้องเรียน : ' . $row['username'] . '</p>
-            <p>วันที่ร้องเรียน : ' . date("d/m/Y เวลา h:i a", strtotime($row['timestamp'])) . '</p>
+        <div class="d-flex justify-content-between row mw-100">
+            <p  class="col-md-4">ผู้ร้องเรียน : ' . $row['username'] . '</p>
+            <p  class="col-md-8">วันที่ร้องเรียน : ' . date("d/m/Y เวลา h:i a", strtotime($row['timestamp'])) . '</p>
         </div>
     </div>
         </div>
