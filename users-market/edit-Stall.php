@@ -16,7 +16,6 @@
 include "profilebar.php";
 include "nav.php";
 include "../backend/1-connectDB.php";
-include "../backend/1-import-link.php";
 $mkr_id = $_GET['mkr_id'];
 $count_n = 1;
 $data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
