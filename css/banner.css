@@ -1,225 +1,449 @@
 body {
+
     margin: 30px 68px 20px 146px !important;
+
     min-width: 370px;
 
+
+
 }
+
+
 
 :root {
+
     --light: #6dd4f7;
+
     --purple: #4B2ED7;
+
 }
+
+
 
 /* ----------------------------------------1.banner------------------------------------------------------------ */
+
 #carouselExampleCaptions {
+
     margin-bottom: 5px;
+
 }
+
+
 
 .carousel-inner {
+
     position: relative;
+
     height: 25rem;
+
     align-items: center;
+
     border-radius: 5px;
+
 }
+
+
 
 .carousel-item img {
+
     height: 25rem;
+
 }
+
+
 
 .carousel-caption {
+
     background-color: rgba(0, 0, 0, 0.603) !important;
+
     color: #fff;
+
     border-radius: 10px;
+
     padding: auto 1rem;
+
 }
+
+
 
 /* ----------------------------------------2.table------------------------------------------------------------ */
+
 .toptb {
+
     display: inline-flex !important;
+
     padding: 0 !important;
+
     margin-bottom: 15px;
+
 }
+
+
 
 #addbn {
+
     float: right;
+
     border-radius: 5px;
+
 }
 
+
+
 .btnac {
+
     width: 30%;
+
     margin-left: 5px;
+
 }
+
+
+
+
 
 
 
 #headline {
+
     text-align: center;
+
 }
+
+
 
 a {
+
     text-decoration: none;
 
+
+
 }
+
+
 
 #table thead tr th {
+
     padding: auto 10px;
+
 }
+
+
 
 .parent {
+
     /* display: grid; */
+
     grid-template-columns: repeat(2, 1fr);
+
     grid-column-gap: 5px;
+
     grid-row-gap: 5px;
+
 }
+
+
 
 /* datatable plugin */
+
 .dataTables_wrapper .dataTables_filter input {
+
     width: 70%;
+
     padding: 0.2rem 0.6rem;
+
     font-size: 1rem;
+
     font-weight: 400;
+
     line-height: 1.5;
+
     color: #212529;
+
     background-color: #fff;
+
     border: 1px solid #ced4da;
+
     border-radius: 0.25rem;
+
     transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
 }
+
+
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+
     background: var(--light) !important;
+
     border: none !important;
 
+
+
 }
+
+
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+
     border: none !important;
+
 }
+
+
 
 .dataTables_scrollBody {
 
+
+
     overflow: hidden !important;
+
 }
+
+
 
 .btn-light {
+
     padding: 8px 24px;
+
     color: #212529 !important;
+
     background-color: var(--white) !important;
+
     border: 1px solid #ced4da !important;
+
 }
+
+
 
 .nowrap {
+
     display: block;
+
 }
 
+
+
 .ui-widget-content {
+
     border: none !important;
+
 }
+
+
+
+
 
 
 
 /* ------------------------------------responsive-------------------------- */
+
 @media(max-width: 992px) {
+
     .dataTables_scrollHead {
+
         overflow: auto !important;
+
     }
+
+
 
     .dataTables_scrollBody {
+
         overflow: auto !important;
+
     }
+
+
 
     #headline {
+
         font-size: 25px;
+
     }
+
+
 
     #labelbn {
+
         font-size: 20px;
+
     }
+
+
 
     .carousel-inner {
+
         height: 15rem;
 
+
+
     }
+
+
 
     .carousel-item img {
+
         height: 15rem;
+
     }
+
+
 
     #addbn {
+
         font-size: 14px;
+
     }
+
+
 
     #table {
+
         font-size: 14px;
+
         padding: auto 2px !important;
+
     }
+
+
 
     .modal_data {
+
         font-size: 14px;
+
     }
+
+
 
     .form-control {
+
         width: 100% !important;
+
     }
+
+
 
     .submit {
+
         width: 100% !important;
+
     }
 
+
+
 }
+
+
+
 
 
 @media only screen and (max-width: 720px) {
+
     body {
+
         padding-right: 10px;
+
         margin: 60px 10px 0px 15px !important;
 
+
+
     }
+
+
 
     .carousel-inner {
+
         height: 15rem;
+
         width: 100%;
+
     }
+
+
 
     .carousel-item img {
+
         height: 15rem;
 
+
+
     }
 
+
+
     .modal_data {
+
         font-size: 14px;
+
     }
+
+
 
     #table {
+
         font-size: 14px;
+
         padding: auto 2px !important;
+
     }
+
+
 
     .btnac {
+
         width: 70%;
+
         margin-bottom: 5px;
+
     }
+
+
 
     .btn-calen {
+
         margin-left: 10px;
+
         font-size: 14px !important;
+
     }
+
+
 
     .modal_data {
+
         font-size: 14px;
+
     }
 
+
+
     .form-control {
+
         width: 100% !important;
+
         margin-bottom: 10px;
+
     }
+
+
 
 }
 
 
+
+
+
 @media only screen and (max-width: 470px) {
+
     .inv-info {
+
         display: flex !important;
+
         width: 200px !important;
+
     }
+
 }

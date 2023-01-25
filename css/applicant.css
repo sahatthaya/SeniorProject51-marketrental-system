@@ -1,335 +1,669 @@
 * {
+
     margin: 0;
+
 }
+
+
 
 body {
+
     margin: 30px 68px 20px 146px !important;
+
     min-width: 370px;
+
 }
+
+
 
 :root {
+
     --white: white;
+
     --purple: #4B2ED7;
+
     --lightblue: #38B6FF;
+
     --primaryblue: #006bfa;
+
     --freshblue: #0daafd;
+
     --margenta: #8e18d7;
+
     --dark: #02155A;
+
 }
+
+
 
 /* ----------------------------------------2.กล่องฟอร์ม------------------------------------------------------------ */
+
 #headline {
+
     text-align: center;
+
 }
+
+
 
 .first-des-address {
+
     margin: 5px auto;
+
     padding: 0.5em 10px 0.5em 0;
+
 }
+
+
 
 .des-address {
+
     margin: 5px auto;
+
     padding: 0.5em 10px;
+
 }
 
+
+
 .form-outer-lg .form-outer {
+
     padding: 0;
+
 }
+
+
+
 
 
 .form-outer {
+
     padding: 0 250px;
+
 }
+
+
+
 
 
 #applyform input {
+
     margin: 5px auto;
+
     padding: .5em 1.5rem;
+
 }
+
+
 
 #stepTwo,
+
 #stepThree,
+
 #stepFour {
+
     display: none;
 
+
+
 }
 
+
+
 #stepTwo input,
+
 #stepThree input,
+
 #stepFour input {
+
     margin: 5px auto !important;
+
     padding: .5em 1.5rem !important;
+
 }
+
+
+
 
 
 #applyform .des_input {
+
     margin: 5px 0 !important;
+
     padding: 0 0 0 5px !important;
+
     font-size: 20px;
+
     color: #031f87;
 
+
+
 }
+
+
 
 #checkoutForm .des_input {
+
     margin: 5px 0 !important;
+
     padding: 0 0 0 5px !important;
+
     font-size: 20px;
+
     color: #031f87;
 
+
+
 }
 
+
+
 .action-button {
+
     margin-top: 20px !important;
+
 }
+
+
+
 
 
 .submitBtn {
+
     margin-top: 10px !important;
+
 }
+
+
 
 #next {
+
     background: var(--primaryblue) !important;
+
     border: none;
+
 }
+
+
 
 #next:hover {
+
     background: var(--lightblue) !important;
+
     border: none;
 
+
+
 }
+
+
 
 #back {
+
     border: none;
+
 }
+
+
 
 #back:hover {
+
     background-color: var(--lightblue);
+
 }
+
+
 
 #submit {
+
     background-color: var(--dark);
+
     border: none;
+
 }
+
+
 
 #submit:hover {
+
     background-color: var(--purple);
+
 }
+
+
 
 input[type=file]::file-selector-button {
+
     color: var(--white);
+
     border-style: none;
+
     padding: .2em .4em;
+
     border-radius: 5px;
+
     background-color: #ff9910 !important;
+
     transition: ease 1s;
+
 }
+
+
 
 input[type=file]::file-selector-button:hover {
+
     background-color: var(--lightblue) !important;
+
 }
+
+
 
 .btn-light {
+
     padding: 8px 24px;
+
     color: #212529 !important;
+
     background-color: var(--white) !important;
+
     border: 1px solid #ced4da !important;
+
     height: 42px;
+
 }
+
+
 
 #mkrtype {
+
     padding: 0 !important;
+
 }
+
+
 
 #provincebox {
+
     padding: 0 !important;
+
     padding-left: 4px !important;
+
 }
 
+
+
 #dropdown {
+
     margin: 0 !important;
+
     padding: 0 !important;
+
 }
+
+
+
 
 
 .dropdown-menu.show {
+
     left: -10px !important;
+
 }
+
+
 
 .tooltip-inner {
+
     max-width: 5000px !important;
+
 }
+
+
 
 .mrkmenu {
+
     margin-bottom: 15px;
+
 }
+
+
 
 .mrkmenu2 {
+
     margin-bottom: 15px;
+
 }
+
+
 
 #piechart {
+
     margin-top: 57px;
+
     margin-left: 35px;
+
     margin-right: 25px;
+
 }
+
+
 
 .piechart-btn {
+
     margin-bottom: 1px;
+
 }
+
+
 
 .hstack .cost {
+
     width: 165px;
+
 }
 
+
+
 .hstack .cost-formselect {
+
     width: 155px;
+
 }
+
+
+
+
 
 
 
 /* -------------------responsive-------------- */
+
 @media(max-width: 1400px) {
+
     .form-outer {
+
         padding: 0px;
+
     }
 
+
+
 }
+
+
 
 @media(max-width: 992px) {
+
     .form-outer {
+
         margin: 0px;
+
         padding: 0px;
+
     }
+
+
 
     pt-5 {
+
         width: 100%;
+
     }
+
+
 
     #stepTwo {
+
         display: none;
 
+
+
     }
+
+
 
     #stepThree {
+
         display: none;
+
     }
+
+
+
 
 
 }
+
+
 
 @media(max-width: 720px) {
 
+
+
     body {
+
         padding-right: 10px;
+
         margin: 60px 10px 0px 15px !important;
 
+
+
     }
+
+
 
     #headline {
+
         font-size: 24px;
+
         margin: 0px 30px;
+
     }
+
+
 
     .form-outer {
+
         padding: 10px;
+
         margin: 0 !important;
+
     }
+
+
 
     pt-5 {
+
         width: 100%;
+
     }
+
+
 
     .form-control {
+
         width: 100% !important;
-    } 
+
+    }
+
+
 
     .nav-tabs {
+
         width: 100%;
+
     }
+
+
 
     #stepTwo {
+
         display: none;
 
+
+
     }
 
+
+
     .mrkmenu {
+
         display: grid;
+
         gap: .5rem;
+
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
     }
+
+
+
 
 
     .mrkmenu2 {
+
         display: grid;
+
         gap: .5rem;
+
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+
     }
+
+
 
     .mrkmenu-itemrent {
+
         margin-top: -35px;
+
     }
+
+
 
     .mrkmenu-itemcomp {
+
         margin-top: -55px;
+
     }
+
+
 
     .cost-formselect {
+
         margin-top: -10px !important;
+
     }
+
+
 
     .cost-btn {
+
         margin-top: -10px !important;
 
+
+
     }
+
   
+
+
 
 }
 
+
+
 @media(max-width: 436px) {
 
+
+
     .mrkmenu2 {
+
         margin-top: -15px !important;
+
     }
+
+
 
     .mrkmenu-item {
+
         text-align: left !important;
+
     }
+
+
 
     #piechart {
+
         margin-top: 0px;
+
         margin-left: 0px;
+
     }
+
+
 
     .mrkmenu-itemrent {
+
         margin-top: 0px;
+
     }
+
+
 
     .mrkmenu-itemcomp {
+
         margin-top: 0px;
+
     }
+
+
 
     .list-group-topuser li {
+
         margin-left: -5px;
+
     }
+
+
 
     .cost {
+
         flex-wrap: wrap !important;
 
+
+
     }
+
+
 
     .cost-formselect {
+
         margin-top: 0px !important;
+
         width: 100% !important;
+
     }
+
+
 
     .cost-btn {
+
         margin-top: 0px !important;
+
         display: block;
+
         text-align: center !important;
+
     }
 
+
+
     .dropdown-menu.show {
+
         width: 50px;
+
     }
+
+
 
 }
