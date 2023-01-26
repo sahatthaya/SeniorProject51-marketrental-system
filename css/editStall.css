@@ -1,252 +1,500 @@
 :root {
+
   --white: white;
+
   --purple: #4B2ED7;
+
   --lightblue: #38B6FF;
+
   --primaryblue: #006bfa;
+
   --freshblue: #0daafd;
+
   --margenta: #8e18d7;
+
   --dark: #02155A;
+
   --light: #6dd4f7;
 
+
+
 }
+
+
 
 body {
+
   margin: 30px 68px 20px 146px !important;
+
   min-width: 370px;
+
 }
+
+
 
 /* ปุ่มเมนู */
+
 .add-btn i {
+
   color: white !important;
+
   margin: 2px;
+
   font-size: 1em;
+
 }
+
+
 
 .add-btn {
+
   width: 200px;
+
   margin-right: 10px;
+
 }
+
+
 
 .top {
+
   display: grid;
+
   grid-template-columns: 2fr 3fr;
+
   grid-template-rows: 1fr;
+
   grid-column-gap: 10px;
+
 }
+
+
 
 /* form add stall ------------------------*/
+
 /* Chrome, Safari, Edge, Opera */
+
 input::-webkit-outer-spin-button,
+
 input::-webkit-inner-spin-button {
+
   -webkit-appearance: none;
+
   margin: 0;
+
 }
+
+
 
 /* Firefox */
+
 input[type=number] {
+
   -moz-appearance: textfield;
+
 }
+
+
 
 .tooltip-inner {
+
   max-width: 5000px !important;
+
 }
+
+
 
 .btn-light {
+
   padding: 8px 24px;
+
   color: #212529 !important;
+
   background-color: var(--white) !important;
+
   border: 1px solid #ced4da !important;
+
   height: 42px;
+
 }
+
+
 
 /* datatable plugin */
+
 .dataTables_wrapper .dataTables_filter input {
+
   width: 70%;
+
   padding: 0.2rem 0.6rem;
+
   font-size: 1rem;
+
   font-weight: 400;
+
   line-height: 1.5;
+
   color: #212529;
+
   background-color: #fff;
+
   border: 1px solid #ced4da;
+
   border-radius: 0.25rem;
+
   transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+
 }
+
+
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+
   background: var(--light) !important;
+
   border: none !important;
 
+
+
 }
+
+
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+
   border: none !important;
+
 }
+
+
 
 .editbtn {
+
   display: grid;
+
   grid-template-columns: repeat(2, 1fr);
+
   grid-template-rows: 1fr;
+
   grid-column-gap: 10px;
+
   grid-row-gap: px;
+
 }
+
+
 
 .editbtn .btn {
+
   width: 100% !important;
+
 }
+
+
 
 .col-md-4 .btn {
+
   width: 100% !important;
 
+
+
 }
+
+
 
 #piechart {
+
   margin-top: 57px;
+
   margin-left: -20px;
 
+
+
 }
 
+
+
 .dropdown-menu.show {
+
   left: -10px !important;
+
 }
+
+
+
 
 
 /* ------------------------------------responsive-------------------------- */
+
 @media only screen and (max-width: 1190px) {
+
   .top {
+
     display: contents !important;
+
   }
+
+
 
   .dataTables_scrollHead {
+
     overflow: auto !important;
+
   }
+
 }
+
+
 
 @media only screen and (max-width: 992px) {
+
   .editbtn {
+
     margin-top: 10px !important;
 
+
+
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     grid-template-rows: 1fr;
+
     grid-column-gap: 10px;
+
     grid-row-gap: px;
+
   }
+
+
 
   .editbtn .btn {
+
     width: 100% !important;
+
   }
+
+
 
   .col-md-4 {
+
     width: 100% !important;
 
+
+
   }
+
+
 
   .col-lg-3 {
+
     flex: 0 0 auto;
+
     width: 100% !important;
+
     margin-bottom: 10px;
+
   }
+
 }
+
+
 
 @media only screen and (max-width: 720px) {
 
+
+
   body {
+
     padding-right: 10px;
+
     margin: 60px 10px 0px 15px !important;
 
+
+
   }
+
+
 
   .col-md-2 {
+
     width: 100% !important;
+
   }
+
+
 
   .col-lg-3 {
+
     flex: 0 0 auto;
+
     width: 100% !important;
+
     margin-bottom: 10px;
 
+
+
   }
+
+
 
   .col-md-4 .btn {
+
     width: 100% !important;
 
+
+
   }
+
+
 
   .col-md-7 {
+
     flex: 0 0 auto;
+
     width: 100% !important;
+
   }
+
+
 
   .add-btn {
+
     width: 100%;
+
     text-align: left !important;
+
     margin-bottom: 15px;
+
   }
+
+
 
   .input-group {
+
     width: 100% !important;
+
   }
 
+
+
   label {
+
     display: inline-block;
+
     margin-top: 10px
   }
 
+
+
   .editbtn {
+
     margin-top: 10px !important;
 
+
+
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     grid-template-rows: 1fr;
+
     grid-column-gap: 10px;
+
     grid-row-gap: px;
+
   }
+
+
 
   .editbtn .btn {
+
     width: 100% !important;
+
   }
+
+
 
   button,
+
   input,
+
   optgroup,
+
   select,
+
   textarea {
+
     margin: 5px 0px;
+
   }
 
+
+
 }
+
+
+
 
 
 @media only screen and (max-width: 600px) {
 
+
+
   .input-group {
+
     width: 100% !important;
+
     top: 10px !important;
+
   }
+
+
 
   .col-md-2 {
+
     width: 100% !important;
+
   }
+
+
 
   .col-md-7 {
+
     flex: 0 0 auto;
+
     width: 100% !important;
+
   }
+
+
 
   .editbtn {
+
     margin-top: 20px !important;
+
   }
+
+
 
   button,
+
   input,
+
   optgroup,
+
   select,
+
   textarea {
+
     margin: 5px 0px;
+
   }
 
- 
+
+
+
 
 }
