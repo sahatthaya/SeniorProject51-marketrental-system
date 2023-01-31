@@ -581,7 +581,7 @@
 
         }).then(function() {
 
-            window.location = "../index.php";
+            window.location = "http://localhost/SeniorProject51/index.php";
 
         });
 
@@ -605,7 +605,7 @@
 
         }).then(function() {
 
-            window.location = "https://market-rental.000webhostapp.com/";
+            window.location = "http://localhost/SeniorProject51/index.php";
 
         });
     }
@@ -652,11 +652,11 @@
 
         Swal.fire({
 
-            title: 'ชื่อผู้ใช้ซ้ำ',
+            title: 'ชื่อผู้ใช้ หรือ อีเมลซ้ำ',
 
             icon: 'warning',
 
-            text: 'กรุณาเปลี่ยนชื่อผู้ใช้',
+            text: 'กรุณาเปลี่ยนชื่อผู้ใช้ หรีอ อีเมลใหม่',
 
             showConfirmButton: false,
 
@@ -666,7 +666,103 @@
 
     }
 
+    function stallerror() {
 
+        Swal.fire({
+
+            title: 'ไม่มีแผงค้าตรงกับเงื่อนไขในขณะนี้',
+
+            icon: 'warning',
+
+            showConfirmButton: false,
+
+            timer: 3000
+
+        })
+
+    }
+
+    function nostallerror() {
+
+        Swal.fire({
+
+            title: 'ไม่มีแผงค้าในขณะนี้',
+
+            icon: 'warning',
+
+            showConfirmButton: false,
+
+            timer: 3000
+
+        })
+
+    }
+
+    function errdelmkb() {
+
+        Swal.fire({
+
+            title: 'ไม่สามารถลบตลาดนี้ได้',
+
+            icon: 'error',
+
+            text: 'เนื่องจากมีผู้เช่า/จองแผงค้าของตลาดนี้อยู่',
+
+            showConfirmButton: false,
+
+            timer: 3000
+
+        }).then(function() {
+
+            window.location = "../users-market/index.php";
+
+        });
+
+    }
+
+    function errdelmk() {
+
+        Swal.fire({
+
+            title: 'ผิดพลาด',
+
+            icon: 'warning',
+
+            text: 'กรุณาลองอีกครั้ง',
+
+            showConfirmButton: false,
+
+            timer: 3000
+
+        }).then(function() {
+
+            window.location = "../users-market/index.php";
+
+        });
+
+    }
+
+    function delmk() {
+
+        Swal.fire({
+
+            title: 'ลบตลาดสำเร็จ',
+
+            icon: 'success',
+
+            text: 'ขอบคุณสำหรับการใช้บริการ',
+
+            showConfirmButton: false,
+
+            timer: 3000
+
+        }).then(function() {
+
+            window.location = "../users-market/index.php";
+
+        });
+
+    }
 
     function resetpws_success() {
 
@@ -682,7 +778,7 @@
 
         }).then(function() {
 
-            window.location = "../index.php";
+            window.location = "http://localhost/SeniorProject51/index.php";
 
         });
 

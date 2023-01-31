@@ -7,7 +7,7 @@
 <head>
 
     <meta charset="UTF-8">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,6 @@ include "profilebar.php";
 include "nav.php";
 
 include "../backend/1-connectDB.php";
-
 
 require "../backend/graph-market.php";
 
@@ -59,6 +58,25 @@ $result_province = mysqli_query($conn, $query_province);
 
 require "../backend/add-applicant.php";
 
+
+if (isset($_GET['del_id'])) {
+    $mkr_id = $_GET['del_id'];
+    $qrybr = mysqli_query($conn, "SELECT booking_range.*,stall.market_id FROM `booking_range`JOIN stall ON (booking_range.stall_id = stall.sKey) WHERE market_id = $mkr_id");
+    $qrybp = mysqli_query($conn, "SELECT booking_period .*,market_id FROM booking_period JOIN stall ON (booking_period.stall_id = stall.sKey) WHERE market_id = $mkr_id");
+    $br = mysqli_num_rows($qrybr);
+    $bp = mysqli_num_rows($qrybp);
+
+    if ($br > 0 or $bp > 0) {
+        echo "<script>errdelmkb();</script>";
+    } else {
+        $del = mysqli_query($conn, "UPDATE `market_detail` SET `a_id`='2' WHERE mkr_id = $mkr_id");
+        if ($del) {
+            echo "<script>delmk();</script>";
+        } else {
+            echo "<script>errdelmk();</script>";
+        }
+    }
+}
 ?>
 
 
@@ -204,12 +222,22 @@ require "../backend/add-applicant.php";
                     </a>
 
                 </div>
+                <div class="col-md-3 mrkmenu-item">
 
+                    <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item mrkmenu-itemcomp w-100 btn btn-outline-danger ">
+
+                        <i class='bx bxs-minus-square'></i>
+
+                        <span>ลบตลาด</span>
+
+                    </a>
+
+                </div>
             </div>
 
         </div>
 
-        
+
 
         <!-- pie graph -->
 
@@ -262,11 +290,9 @@ require "../backend/add-applicant.php";
                     if ($row3['opening'] == 'เปิดทำการทุกวัน') {
 
                         $queryz = "SELECT zone.z_name , COUNT(booking_range.b_id) AS countZ  FROM stall JOIN zone ON (zone.z_id = stall.z_id) JOIN booking_range ON (booking_range.stall_id = stall.sKey) WHERE (stall.market_id = '$mkr_id') GROUP BY zone.z_id ORDER BY countZ DESC LIMIT 3";
-
                     } else {
 
                         $queryz = "SELECT zone.z_name , COUNT(booking_period.b_id) AS countZ  FROM stall JOIN zone ON (zone.z_id = stall.z_id) JOIN booking_period ON (booking_period.stall_id = stall.sKey) WHERE (stall.market_id = '$mkr_id') GROUP BY zone.z_id ORDER BY countZ DESC LIMIT 3";
-
                     }
 
 
@@ -304,7 +330,6 @@ require "../backend/add-applicant.php";
                 </li>';
 
                         $count_type++;
-
                     }
 
                     ?>
@@ -330,11 +355,9 @@ require "../backend/add-applicant.php";
                     if ($row3['opening'] == 'เปิดทำการทุกวัน') {
 
                         $queryz = "SELECT users.username,booking_range.b_fname,booking_range.b_lname , COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN users ON (users.users_id = booking_range.users_id) JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
-
                     } else {
 
                         $queryz = "SELECT users.username,booking_period.b_fname,booking_period.b_lname , COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN users ON (users.users_id = booking_period.users_id) JOIN stall ON (stall.sKey = booking_period.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
-
                     }
 
 
@@ -372,7 +395,6 @@ require "../backend/add-applicant.php";
                 </li>';
 
                         $count_user++;
-
                     }
 
                     ?>
@@ -478,7 +500,6 @@ require "../backend/add-applicant.php";
                 </li>';
 
                         $count_n++;
-
                     }
 
                     ?>
@@ -582,7 +603,6 @@ require "../backend/add-applicant.php";
 <script src="../backend/script.js"></script>
 
 <script>
-
     google.charts.load('current', {
 
         'packages': ['corechart']
@@ -642,7 +662,6 @@ require "../backend/add-applicant.php";
             foreach ($rsz as $rs_c) {
 
                 echo "['" . $rs_c['z_name'] . "'," . $rs_c['countZ'] . "],";
-
             }
 
             ?>
@@ -712,7 +731,6 @@ require "../backend/add-applicant.php";
                 $query11 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-11-30' AND  '$curr_Y-11-01' <=`end`");
 
                 $query12 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-12-31' AND  '$curr_Y-12-01' <=`end`");
-
             } else {
 
                 $query1 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id = '$mkr_id' AND `start` <= '$curr_Y-01-30' AND  '$curr_Y-01-01' <=`end`");
@@ -738,79 +756,66 @@ require "../backend/add-applicant.php";
                 $query11 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-11-30' AND  '$curr_Y-11-01' <=`end`");
 
                 $query12 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-12-31' AND  '$curr_Y-12-01' <=`end`");
-
             }
 
             foreach ($query1 as $rs_1) {
 
                 echo "['ม.ค.'," . $rs_1['countZ'] . "],";
-
             }
 
             foreach ($query2 as $rs_2) {
 
                 echo "['ก.พ.'," . $rs_2['countZ'] . "],";
-
             }
 
             foreach ($query3 as $rs_3) {
 
                 echo "['มี.ค.'," . $rs_3['countZ'] . "],";
-
             }
 
             foreach ($query4 as $rs_4) {
 
                 echo "['เม.ย.'," . $rs_4['countZ'] . "],";
-
             }
 
             foreach ($query5 as $rs_5) {
 
                 echo "['พ.ค.'," . $rs_5['countZ'] . "],";
-
             }
 
             foreach ($query6 as $rs_6) {
 
                 echo "['มิ.ย.'," . $rs_6['countZ'] . "],";
-
             }
 
             foreach ($query7 as $rs_7) {
 
                 echo "['ก.ค.'," . $rs_7['countZ'] . "],";
-
             }
 
             foreach ($query8 as $rs_8) {
 
                 echo "['ส.ค.'," . $rs_8['countZ'] . "],";
-
             }
 
             foreach ($query9 as $rs_9) {
 
                 echo "['ก.ย.'," . $rs_9['countZ'] . "],";
-
             }
 
             foreach ($query10 as $rs_10) {
 
                 echo "['ต.ค.'," . $rs_10['countZ'] . "],";
-
             }
 
             foreach ($query11 as $rs_11) {
 
                 echo "['พ.ย.'," . $rs_11['countZ'] . "],";
-
             }
 
             foreach ($query12 as $rs_12) {
 
                 echo "['ธ.ค.'," . $rs_12['countZ'] . "]";
-
             }
 
             ?>
@@ -946,7 +951,6 @@ require "../backend/add-applicant.php";
                 if ($countcolor > 10) {
 
                     $countcolor = 0;
-
                 }
 
             endwhile ?>
@@ -956,7 +960,6 @@ require "../backend/add-applicant.php";
 
 
     });
-
 </script>
 
 
