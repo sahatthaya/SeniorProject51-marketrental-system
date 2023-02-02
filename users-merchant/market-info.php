@@ -123,25 +123,23 @@ require "../backend/qry-market-info.php"
         <hr>
 
         <ul class="list-group list-group-flush">
-
-            <?php while ($row1 = $result3->fetch_assoc()) : ?>
-
+            <?php
+            if (mysqli_num_rows($result3) == 0) { ?>
                 <li class="list-group-item">
-
-                    <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
-
-                        <p><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></p>
-
-                        <p><?php echo $row1['n_sub']; ?></p>
-
-
-
-                    </a>
-
+                    <i class="text-secondary">ไม่มีข่าวสารสำหรับตลาด<?php echo $row['mkr_name']; ?>ในขณะนี้</i>
                 </li>
-
-            <?php endwhile ?>
-
+                <?php
+            } else {
+                while ($row1 = $result3->fetch_assoc()) : ?>
+                    <li class="list-group-item">
+                        <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
+                            <p><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></p>
+                            <p><?php echo $row1['n_sub']; ?></p>
+                        </a>
+                    </li>
+            <?php
+                endwhile;
+            } ?>
         </ul>
 
     </div>
@@ -153,7 +151,6 @@ require "../backend/qry-market-info.php"
 </body>
 
 <script>
-
     //detail popup
 
     $(document).ready(function() {
@@ -194,7 +191,7 @@ require "../backend/qry-market-info.php"
 
     // datepicker
 
- 
+
 
 
 
@@ -222,7 +219,7 @@ require "../backend/qry-market-info.php"
 
         '#ecd5e3',
 
-        
+
 
     ];
 
@@ -269,7 +266,6 @@ require "../backend/qry-market-info.php"
                 if ($countcolor > 10) {
 
                     $countcolor = 0;
-
                 }
 
             endwhile ?>
@@ -279,7 +275,6 @@ require "../backend/qry-market-info.php"
 
 
     });
-
 </script>
 
 

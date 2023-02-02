@@ -6,26 +6,13 @@
 
 function signIn() {
 
-    document.getElementById("profilebar").style.right = "0";
-
     document.getElementById("signIn").style.display = "block";
 
     document.getElementById("forgotpsw").style.display = "none";
 
     document.getElementById("signUp").style.display = "none";
-
-
-
-    document.getElementById("profilebar").style.transition = "0.5s ease";
 }
 
-// ปิดหน้าโปรไฟล์บาร์
-
-function closeprofilebar() {
-
-    document.getElementById("profilebar").style.right = "-450px";
-
-}
 
 // เปิดหน้าลืมรหัสผ่าน
 

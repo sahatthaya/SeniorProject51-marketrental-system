@@ -28,8 +28,6 @@
 
     include "./backend/1-connectDB.php";
 
-    include "./backend/1-import-link.php";
-
     include "./backend/qry-booking.php";
 
     $numRowstall = mysqli_num_rows($result3);
