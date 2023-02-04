@@ -622,10 +622,11 @@
 
             showConfirmButton: false,
 
-            timer: 3000
+            timer: 2000
 
-        }).then(signIn(event))
-
+        }).then(function() {
+            $('#showoff').trigger('click');
+        });
     }
 
     function stalldoubly() {
@@ -682,21 +683,6 @@
 
     }
 
-    function nostallerror() {
-
-        Swal.fire({
-
-            title: 'ไม่มีแผงค้าในขณะนี้',
-
-            icon: 'warning',
-
-            showConfirmButton: false,
-
-            timer: 3000
-
-        })
-
-    }
 
     function errdelmkb() {
 

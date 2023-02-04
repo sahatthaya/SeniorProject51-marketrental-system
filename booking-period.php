@@ -30,13 +30,6 @@
 
     include "./backend/qry-booking-period.php";
 
-    $numRowstall = mysqli_num_rows($result3);
-    if ($numRowstall = 0) {
-        $nostall =  "nostallerror();";
-    } else {
-        $nostall = "";
-    }
-
     ?>
 
 
@@ -45,7 +38,7 @@
 
 
 
-<body onload="plslogin( event );signIn();<?php echo $nostall ?>">
+<body>
 
     <nav aria-label="breadcrumb mb-3">
 
@@ -61,17 +54,17 @@
 
     </nav>
 
-    <h1>จองแผงค้า<?php echo $row['mkr_name']; ?><i class='ms-1 bx bx-info-circle text-primary fs-4' data-bs-toggle="modal" data-bs-target="#exampleModal"></i></h1>
+    <h1>จองแผงค้า<?php echo $row['mkr_name']; ?></h1>
 
     <div class="plan">
 
-        <form method="POST">
+        <form method="POST" class="border rounded py-1">
 
             <div class="d-flex justify-content-between px-3">
 
                 <div class="hstack px-1 gap-2">
 
-                    <label><span class="text-secondary text-decoration-underline">ค้นหา</span> แผงค้าว่างในวันที่ : </label>
+                    <label><span class="text-secondary text-decoration-underline">ค้นหา</span> แผงค้าว่างในรอบวันที่ : </label>
 
                     <div>
 
@@ -85,7 +78,7 @@
 
                                 while ($rowcalen = mysqli_fetch_assoc($qryrentperiod)) : ?>
 
-                                    <option value="<?php echo $rowcalen['id'] ?>">รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
+                                    <option value="<?php echo $rowcalen['id'] ?>"><?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> - <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
 
                                 <?php endwhile;
                             } else {
@@ -111,7 +104,7 @@
                         <input id='first' type="text" name="rangeinput" class="form-control w-50" value="<?php echo number_format($range) ?>" autocomplete="off" required />บาท
 
                         <button type="submit" class="btn btn-outline-primary save-stall " name="save-period"><i class='bx bx-search'></i> ค้นหา </button>
-
+                        <a class="btn btn-outline-danger save-stall " href="booking-period.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bx-reset'></i> รีเซ็ต</a>
                     </div>
 
                 </div>
@@ -130,159 +123,92 @@
 
         <hr>
 
-        <div id="plan">
+        <?php
+        $numRowstall = mysqli_num_rows($result3);
+        if ($numRowstall == 0) { ?>
+            <h2 class="text-inline mt-10 ">
+                <i><span class="text-secondary fs-3 "> ยังไม่มีแผงค้าในขณะนี้ </span></i>
+            </h2>
+            <div id="plan">
 
-            <?php while ($row1 = $result3->fetch_assoc()) : ?>
+                <?php } else {
+                while ($row1 = $result3->fetch_assoc()) : ?>
 
-                <?php
+                    <?php
 
-                $w = $row1['sWidth'];
+                    $w = $row1['sWidth'];
 
-                $h = $row1['sHeight'];
-
-
-
-                $ratio_plan = $row['ratio_plan'];
-
-
-
-                @$width = ($w * $ratio_plan);
-
-                @$height = ($h * $ratio_plan);
+                    $h = $row1['sHeight'];
 
 
 
-                @$fs = ($ratio_plan / 3);
-
-                $opc = "";
-
-                $sKey =  $row1['sKey'];
+                    $ratio_plan = $row['ratio_plan'];
 
 
 
-                if ($row1['sRent'] <= $val) {
+                    @$width = ($w * $ratio_plan);
+
+                    @$height = ($h * $ratio_plan);
+
+
+
+                    @$fs = ($ratio_plan / 3);
+
+                    $opc = "";
+
+                    $sKey =  $row1['sKey'];
+
+
+
+
 
                     $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_period ON (stall.sKey = booking_period.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id')");
 
                     $numRows = mysqli_num_rows($rsrange);
-
                     if ($numRows > 0) {
-
-                        $opc = "0.2";
-
-                        $free = "ไม่ว่าง";
+                        if ($row1['sRent'] <= $val) {
+                            $free = "";
+                            $opc = "0.1";
+                            $border = "";
+                            $status = "ไม่ว่าง";
+                        } else {
+                            $opc = "0.1";
+                            $free = "";
+                            $border = "";
+                            $status = "ไม่ว่าง";
+                        }
                     } else {
-
-                        $opc = "1";
-
-                        $free = "ว่าง";
+                        if ($row1['sRent'] <= $val) {
+                            $opc = "1";
+                            $free = "modal_data1";
+                            $border = "border border-primary border-3 text-decoration-underline fw-bold";
+                            $status = "ว่าง";
+                        } else {
+                            $free = "modal_data1";
+                            $opc = "1";
+                            $border = "border border-3 text-decoration-underline fw-bold";
+                            $status = "ว่าง";
+                        }
                     }
-                } else {
 
-                    $opc = "0.2";
+                    ?>
+                    <div id="<?php echo $row1['sKey']; ?>" name="<?php echo $status; ?>" class="stallbox <?php echo $free; ?> <?php echo $border; ?>" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo $opc ?>;" id="<?php echo $count_n ?>">
 
-                    $free = "";
-                }
-
-                ?>
-
-
-
-                <div id="<?php echo $row1['sKey']; ?>" class="stallbox modal_data1" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo $opc ?>" id="<?php echo $count_n ?>">
-
-                    <div class="stallnum">
-
-                        <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?>
-
+                        <div class="stallnum">
+                            <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?>
+                            </div>
                         </div>
 
                     </div>
-
-                </div>
 
             <?php
 
-                $count_n++;
+                    $count_n++;
 
-            endwhile ?>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- tutorial modal -->
-
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-
-            <div class="modal-content">
-
-                <div class="modal-header">
-
-                    <h3 class="modal-title" id="exampleModalLabel">ขั้นตอนการจองแผงค้า</h3>
-
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                </div>
-
-                <div class="modal-body">
-
-                    <div class="parent">
-
-                        <div>
-
-                            <h5 class="center">1.เข้าสู่ระบบ</h5>
-
-                            <img src="../asset/booking_tutorial/login.jpg" class="w-100">
-
-                        </div>
-
-                        <div>
-
-                            <h5 class="center">2.เลือกตลาดที่สนใจ</h5>
-
-                            <img src="../asset/booking_tutorial/choosemarket.jpg" class="w-100">
-
-                        </div>
-
-                        <div>
-
-                            <h5 class="center">3.เลือกแผงค้าที่ต้องการ</h5>
-
-                            <img src="../asset/booking_tutorial/choosestall.jpg" class="w-100">
-
-                        </div>
-
-                        <div>
-
-                            <h5 class="center">4.กรอกข้อมูล</h5>
-
-                            <img src="../asset/booking_tutorial/fillform.jpg" class="w-100">
-
-                        </div>
-
-                        <div>
-
-                            <h5 class="center">5.ชำระค่ามัดจำ</h5>
-
-                            <img src="../asset/booking_tutorial/pay.jpg" class="w-100">
-
-                        </div>
-
-                    </div>
-
-
-
-                </div>
-
-
+                endwhile;
+            } ?>
 
             </div>
-
-        </div>
 
     </div>
 
@@ -290,7 +216,7 @@
 
     <div class="modal fade" id="stalltypemodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
 
             <div class="modal-content">
 
@@ -303,22 +229,23 @@
                 </div>
 
                 <div class="modal-body">
+                    <div class="text-break">
+                        เมื่อทำการค้นหาแผงค้าหากแผงค้าที่ไม่เกินราคาที่ค้นหา แผงค้าจะมีขอบสีน้ำเงิน เช่น <button disabled class="bg-secondary border border-primary text-light p-1 rounded border-3 text-decoration-underline fw-bold">ตัวอย่างแผงค้า</button>
+                        หรือ หากแผงค้าไม่ว่างในวันเวลาที่ค้นหา แผงค้าจะจางลง เช่น <button disabled class="bg-secondary text-light p-1 rounded opacity-25 ">ตัวอย่างแผงค้า</button>
+                    </div>
+                    <div class="text-break mt-3">
+                        ซึ่งแผงค้าในแผนผังจะมีสีตามประเภทที่ได้กำหนดไว้ดังนี้
+                    </div>
 
-                    แผงค้าจะมีสีตามประเภทที่ได้กำหนดไว้ดังนี้
 
-                    <br>
 
-                    <table class="table">
 
-                        <thead>
+                    <table class="table table-bordered rounded mt-1">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col">ประเภท</th>
 
-                            <tr></tr>
-
-                            <th scope="col">#</th>
-
-                            <th scope="col">ประเภท</th>
-
-                            <th scope="col">สี</th>
+                                <th scope="col">สี</th>
 
                             </tr>
 
@@ -329,8 +256,6 @@
                             <?php while ($z = $zone->fetch_assoc()) : ?>
 
                                 <tr>
-
-                                    <td> <?php echo $count_zone ?></td>
 
                                     <td><?php echo $z['z_name'] ?></td>
 
@@ -376,6 +301,7 @@
         $("body").on("click", ".modal_data1", function(event) {
 
             var s_id_no = $(this).attr("id");
+            var status = $(this).attr("name");
 
             $.ajax({
 
@@ -385,8 +311,8 @@
 
                 data: {
 
-                    s_id_no: s_id_no
-
+                    s_id_no: s_id_no,
+                    status: status
                 },
 
                 success: function(data) {

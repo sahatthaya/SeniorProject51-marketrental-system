@@ -711,25 +711,6 @@ $(document).ready(function () {
 });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 mobiscroll.setOptions({
 
     locale: mobiscroll.localeTh,

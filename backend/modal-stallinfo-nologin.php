@@ -89,7 +89,12 @@ if (isset($_POST["s_id"])) {
 if (isset($_POST["s_id_no"])) {
 
     $id = $_POST["s_id_no"];
-
+    $status = $_POST["status"];
+    if($status =='ว่าง'){
+        $stext = "text-success";
+    }else{
+        $stext = "text-danger";
+    }
     $data = "SELECT stall.*, zone.*,market_detail.* FROM stall JOIN zone ON (stall.z_id = zone.z_id)  JOIN market_detail ON (stall.market_id = market_detail.mkr_id) WHERE  sKey = '$id'";
 
     $output = '';
@@ -152,7 +157,7 @@ if (isset($_POST["s_id_no"])) {
 
             <td>สถานะ</td>
 
-            <td>ว่าง</td>
+            <td class="' . $stext . '">' . $status . '</td>
 
         </tr>
 

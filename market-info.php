@@ -14,8 +14,6 @@ require "backend/qry-market-info.php";
     <title> MarketRental - ข้อมูลตลาด</title>
     <!-- css  -->
     <link rel="stylesheet" href="css/market-info.css">
-    <link href="./asset/mobiscroll/css/mobiscroll.javascript.min.css" rel="stylesheet" />
-    <script src="./asset/mobiscroll/js/mobiscroll.javascript.min.js"></script>
 </head>
 
 <body>
@@ -67,7 +65,7 @@ require "backend/qry-market-info.php";
             <?php
             if (mysqli_num_rows($result3) == 0) { ?>
                 <li class="list-group-item">
-                  <i class="text-secondary">ไม่มีข่าวสารสำหรับตลาด<?php echo $row['mkr_name']; ?>ในขณะนี้</i> 
+                    <i class="text-secondary">ไม่มีข่าวสารสำหรับตลาด<?php echo $row['mkr_name']; ?>ในขณะนี้</i>
                 </li>
                 <?php
             } else {
@@ -120,23 +118,30 @@ require "backend/qry-market-info.php";
         '#fed7c3',
         '#f6eac2',
         '#ecd5e3',
-    ];
 
+    ];
     mobiscroll.datepicker('#demo-colored', {
+        dataTimezone: 'utc',
+        displayTimezone: 'Asia/Bangkok',
         controls: ['calendar'],
         display: 'inline',
+        showOuterDays: false,
         colors: [
             <?php
             $countcolor = 0;
-            while ($q = $qrycalendar->fetch_assoc()) : ?> {
-                    start: new Date(<?php
-                                    $start = strtotime(str_replace('-', '/', $q['start']));
-                                    echo date("Y,m,d", strtotime("-1 month", $start))
-                                    ?>),
-                    end: new Date(<?php
-                                    $end = strtotime(str_replace('-', '/', $q['end']));
-                                    echo date("Y,m,d", strtotime("-1 month", $end))
-                                    ?>),
+            while ($q = $qrycalendar->fetch_assoc()) :
+                $sdate = str_replace('-', ',', $q['start']);
+                $sa = explode(',', $sdate);
+                $sm = $sa[1] - 1;
+                $startr = $sa[0] . "," . $sm . "," . $sa[2];
+
+                $edate = str_replace('-', ',', $q['end']);
+                $ea = explode(',', $edate);
+                $em = $ea[1] - 1;
+                $endr = $ea[0] . "," . $em . "," . $ea[2];
+            ?> {
+                    start: new Date(<?php echo $startr; ?>),
+                    end: new Date(<?php echo $endr ?>),
                     background: colorset[<?php echo $countcolor; ?>]
                 },
             <?php

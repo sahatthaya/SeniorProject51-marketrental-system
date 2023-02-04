@@ -133,7 +133,7 @@ $query2 = mysqli_query($conn, $sql2);
 
         <h1 id="headline">ระบบร้องเรียน <?php echo $row['mkr_name'] ?></h1>
 
-        <div class="border rounded shadow-sm p-3">
+        <form class="border rounded shadow-sm p-3" enctype="multipart/form-data">
 
             <h3>เพิ่มการร้องเรียนใหม่</h3>
 
@@ -145,7 +145,7 @@ $query2 = mysqli_query($conn, $sql2);
 
                 <div class="col-sm-10">
 
-                    <select name="toppic" class="form-select" data-width="100%" data-style="btn-outline-secondary" data-size="5" disabled required>
+                    <select name="toppic" class="form-select" data-width="100%" data-style="btn-outline-secondary" data-size="5"  required>
 
                         <?php while ($row1 = mysqli_fetch_array($result_toppic)) :; ?>
 
@@ -167,7 +167,7 @@ $query2 = mysqli_query($conn, $sql2);
 
                 <div class="col-sm-10">
 
-                    <input class="form-control" name="subject" type="text" disabled required>
+                    <input class="form-control" name="subject" type="text"  required>
 
                 </div>
 
@@ -179,7 +179,7 @@ $query2 = mysqli_query($conn, $sql2);
 
                 <div class="col-sm-10">
 
-                    <input class="form-control ps-3" name="compfile" type="file" accept="image/png, image/gif, image/jpeg" disabled>
+                    <input class="form-control" name="compfile" type="file"  accept="image/png, image/gif, image/jpeg" title="สามารถเลือกได้หลายไฟล์" multiple>
 
                 </div>
 
@@ -191,7 +191,7 @@ $query2 = mysqli_query($conn, $sql2);
 
                 <div class="col-sm-10">
 
-                    <textarea class="form-control" name="comp_detail" disabled required></textarea>
+                    <textarea class="form-control" name="comp_detail" required></textarea>
 
                 </div>
 
@@ -199,13 +199,13 @@ $query2 = mysqli_query($conn, $sql2);
 
             <div class="text-end">
 
-                <button name="post-btn" type="submit" class="btn btn-primary w-25" onclick="plslogin();showoff();">ส่ง <i class='bx bxs-paper-plane'></i></button>
+                <button name="post-btn" type="button" class="btn btn-primary w-25" onclick="plslogin();">ส่ง <i class='bx bxs-paper-plane'></i></button>
 
             </div>
 
 
 
-        </div>
+        </form>
 
         <?php
 
@@ -255,53 +255,62 @@ $query2 = mysqli_query($conn, $sql2);
 
         <hr style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
 
-        <?php while ($row = $result->fetch_assoc()) : ?>
+        <?php
+        if (mysqli_num_rows($result) == 0) { ?>
+            <h2 class="text-inline mt-5">
+               <i><span class="text-secondary fs-5"> ยังไม่มีการร้องเรียนในขณะนี้ </span></i> 
+            </h2>
 
-            <div class="border rounded-top shadow-sm p-3">
+            <?php
+        } else {
+            while ($row = $result->fetch_assoc()) : ?>
 
-                <div class="row">
+                <div class="border rounded-top shadow-sm p-3">
 
-                    <div class="col-md-4">
+                    <div class="row">
 
-                        <img src="./<?php echo $row['comp_file']; ?>" class="w-100 img-fluid rounded " alt="">
+                        <div class="col-md-4">
 
-                    </div>
+                            <img src="./<?php echo $row['comp_file']; ?>" class="w-100 img-fluid rounded " alt="">
 
-                    <div class="col-md-8">
+                        </div>
 
-                        <p class="float-end" id="timestamp"><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?></p>
+                        <div class="col-md-8">
 
-                        <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
+                            <p class="float-end" id="timestamp"><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?></p>
 
-                        <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
+                            <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
 
-                        <p><?php echo $row['comp_detail'] ?></p>
+                            <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
+
+                            <p><?php echo $row['comp_detail'] ?></p>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            </div>
+                <div class="border rounded-bottom shadow-sm p-3">
 
-            <div class="border rounded-bottom shadow-sm p-3">
+                    <label class="reply-head">การตอบกลับจากผู้ดูแล : </label>
 
-                <label class="reply-head">การตอบกลับจากผู้ดูแล : </label>
+                    <label class="reply_detail"><?php
 
-                <label class="reply_detail"><?php
+                                                if ($row['status'] == '1') {
 
-                                            if ($row['status'] == '1') {
+                                                    echo "ยังไม่มีการตอบกลับจากผู้ดูแล";
+                                                } else {
 
-                                                echo "ยังไม่มีการตอบกลับจากผู้ดูแล";
-                                            } else {
+                                                    echo $row['reply'];
+                                                }
 
-                                                echo $row['reply'];
-                                            }
+                                                ?></label>
 
-                                            ?></label>
+                </div>
 
-            </div>
-
-        <?php endwhile; ?>
+        <?php endwhile;
+        } ?>
 
     </div>
 
