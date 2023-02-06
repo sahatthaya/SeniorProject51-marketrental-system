@@ -99,7 +99,7 @@ $numimg = mysqli_num_rows($img);
 $data = "SELECT reply.*,users.username FROM reply 
 JOIN users ON (reply.users_id = users.users_id) 
 WHERE (comp_id = '$comp_id')
-ORDER BY rp_id desc limit {$start} , {$perpage}";
+ORDER BY rp_id ASC limit {$start} , {$perpage}";
 $result = mysqli_query($conn, $data);
 
 $sql2 = "SELECT reply.*,users.username FROM reply 
@@ -221,7 +221,7 @@ $query2 = mysqli_query($conn, $sql2);
 
             <?php
         } else {
-            $countrp = mysqli_num_rows($result);
+            $countrp =1;
             while ($row2 = $result->fetch_assoc()) :
                 $comp_id = $row2['comp_id'];
                 if ($row2['mkr_name'] != '') {
@@ -295,7 +295,7 @@ $query2 = mysqli_query($conn, $sql2);
                     </div>
                 </div>
         <?php
-                $countrp--;
+                $countrp++;
             endwhile;
         } ?>
     </div>
