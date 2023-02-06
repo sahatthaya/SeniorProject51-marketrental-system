@@ -116,6 +116,19 @@ $query2 = mysqli_query($conn, $sql2);
 
 
 <body>
+    <nav aria-label="breadcrumb mb-3">
+
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item fs-5 "><a href="./all-market.php" class="text-decoration-none">ตลาดทั้งหมด</a></li>
+
+            <li class="breadcrumb-item fs-5 "><a href="market-info.php?mkr_id=<?php echo $row['mkr_id']; ?>" class="text-decoration-none"><?php echo $row['mkr_name']; ?></a></li>
+
+            <li class="breadcrumb-item active fs-5" aria-current="page">ระบบร้องเรียน<?php echo $row['mkr_name']; ?></li>
+
+        </ol>
+
+    </nav>
     <div>
 
         <h1 id="headline">ระบบร้องเรียน <?php echo $row['mkr_name'] ?></h1>
