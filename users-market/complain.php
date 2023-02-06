@@ -34,8 +34,6 @@ include "nav.php";
 
 include "../backend/1-connectDB.php";
 
-require "../backend/manage-complain.php";
-
 if (isset($_GET['mkr_id'])) {
 
     $mkr_id = $_GET['mkr_id'];
@@ -73,9 +71,7 @@ if (isset($_GET['mkr_id'])) {
     WHERE (mkr_id = '$mkr_id') ";
 
     $result = mysqli_query($conn, $data);
-
 }
-
 ?>
 
 
@@ -111,8 +107,9 @@ if (isset($_GET['mkr_id'])) {
                             <th scope="col">ลำดับ</th>
 
                             <th scope="col">วันที่ร้องเรียน</th>
+                            <th scope="col">จำนวนการโต้ตอบ</th>
 
-                            <th scope="col">เวลาร้องเรียน</th>
+                            <th scope="col">วันที่มีการโต้ตอบล่าสุด</th>
 
                             <th scope="col">ประเภทการร้องเรียน</th>
 
@@ -130,7 +127,23 @@ if (isset($_GET['mkr_id'])) {
 
                     <tbody>
 
-                        <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result->fetch_assoc()) :
+                            $comp_id = $row['comp_id'];
+                            $sql2 = "SELECT reply.*,users.username FROM reply 
+                              JOIN users ON (reply.users_id = users.users_id) 
+                              WHERE (comp_id = '$comp_id')";
+                            $query2 = mysqli_query($conn, $sql2);
+                            $total_record = mysqli_num_rows($query2);
+                            if ($total_record > 0) {
+                                $last_id = mysqli_query($conn, "SELECT MAX(timestamp) AS maxid FROM reply WHERE comp_id = $comp_id");
+                                $mid = mysqli_fetch_array($last_id);
+                                extract($mid);
+                                $comp_id = $mid['maxid'];
+                                $rpdate = date("d/m/Y", strtotime($comp_id));
+                            } else {
+                                $rpdate = '-';
+                            }
+                        ?>
 
                             <tr>
 
@@ -138,7 +151,9 @@ if (isset($_GET['mkr_id'])) {
 
                                 <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 
-                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
+                                <td><?php echo $total_record; ?></td>
+
+                                <td><?php echo $rpdate ?></td>
 
                                 <td><?php echo $row['toppic'] ?></td>
 
@@ -148,18 +163,14 @@ if (isset($_GET['mkr_id'])) {
 
                                 <td>
 
-                                    <div style="background-color: <?php echo $row['cs_color']; ?>;" class="p-1 rounded text-center"><?php echo $row['cs_name']; ?></div>
+                                    <div class="p-1 rounded text-center <?php echo $row['cs_color']; ?>"><?php echo $row['cs_name']; ?></div>
 
                                 </td>
 
                                 <td>
-
-                                    <button type="button" class="btn btn-primary modal_data1" id="<?php echo $row['comp_id']; ?>">
-
-                                        ตอบกลับ
-
-                                    </button>
-
+                                    <a type="button" class="btn btn-outline-primary" id="<?php echo $row['comp_id']; ?>" href="./thread.php?mkr_id=<?php echo $mkr_id ?>&&comp_id=<?php echo $row['comp_id'] ?>">
+                                        ดูรายละเอียด
+                                    </a>
                                 </td>
 
                             </tr>
@@ -181,51 +192,6 @@ if (isset($_GET['mkr_id'])) {
 
 
 </body>
-
-<?php require '../backend/modal-complain.php' ?>
-
 <script src="../backend/script.js"></script>
-
-<script>
-
-    // apply detail popup
-
-    $(document).ready(function() {
-
-        $("body").on("click", ".modal_data1", function(event) {
-
-            var id = $(this).attr("id");
-
-            $.ajax({
-
-                url: "../backend/manage-complain.php",
-
-                method: "POST",
-
-                data: {
-
-                    id: id
-
-                },
-
-                success: function(data) {
-
-                    $('#bannerdetail').html(data);
-
-                    $('#bannerdataModal').modal('show');
-
-                }
-
-            });
-
-
-
-        })
-
-    });
-
-</script>
-
-
 
 </html>

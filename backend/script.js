@@ -720,3 +720,14 @@ mobiscroll.setOptions({
     themeVariant: 'light'
 
 });
+
+// no spaces
+$(function () {
+    $(":input").on({
+        keydown: function (e) {
+            if (e.which === 32 && e.target.selectionStart === 0) {
+                return false;
+            }
+        }
+    });
+})

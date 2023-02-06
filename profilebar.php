@@ -96,7 +96,7 @@ if (isset($_GET['token'])) {
                         <input class="form-control" pattern="^[ก-๏\s]+$" placeholder="ชื่อนามสกุล" style="width: 48%;" type="text" name="lastName-reg" title="กรุณากรอกนามสกุลเป็นภาษาไทย" required>
                     </div>
                     <div class="mb-1">อีเมล</div>
-                    <input class="form-control mb-2" type="email" name="email-reg" placeholder="อีเมล" required>
+                    <input class="form-control mb-2" type="email" name="email-reg" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="กรุณากรอกอีเมลให้ถูกต้อง" placeholder="อีเมล" required>
                     <div class="mb-1">เบอร์โทรศัพท์</div>
                     <input class="form-control mb-2" id="tel" type="tel" name="tel-reg" placeholder="เบอร์โทรศัพท์" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
                     <div class="mb-1">รหัสผ่าน</div>
@@ -247,17 +247,6 @@ if (isset($_GET['token'])) {
 <script src="backend/script.js" type="text/javascript"></script>
 
 <script>
-    // no spaces
-    $(function() {
-        $(":input").on({
-            keydown: function(e) {
-                if (e.which === 32 && e.target.selectionStart === 0) {
-                    return false;
-                }
-            }
-        });
-    })
-
     // tel input mask
     $(":input").inputmask();
     $("#tel").inputmask({

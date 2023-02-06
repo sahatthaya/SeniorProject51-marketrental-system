@@ -20,9 +20,9 @@ extract($lg);
 
     <meta charset="UTF-8">
 
-    <title> MarketRental -  sidebar menu</title>
+    <title> MarketRental - sidebar menu</title>
 
-    
+
 
     <link rel="stylesheet" href="../css/nav.css">
 
@@ -69,7 +69,7 @@ extract($lg);
 
                 <a href="all-market.php">
 
-                    <i class='bx bxs-file-find' style='color:#ffffff'></i>
+                    <i class='bx bx-store text-light'></i>
 
                     <span class="link_name">ตลาดทั้งหมด</span>
 
@@ -82,39 +82,61 @@ extract($lg);
                 </ul>
 
             </li>
+            <li class="navlink">
 
-            <li class="navlink arrowdrop">
+                <a href="rent.php">
 
-                <a class="iocn-link">
+                    <i class='bx bx-calendar-edit text-light'></i>
 
-                    <i class='bx bxs-cog'></i>
-
-                    <span class="link_name">การจัดการ</span><i class='bx bxs-chevron-down arrow'></i>
+                    <span class="link_name">จัดการการจอง</span>
 
                 </a>
 
+                <ul class="sub-menu blank">
 
+                    <li><a class="link_name" href="rent.php">จัดการการจอง</a></li>
 
-                <ul class="sub-menu dropdown">
+                </ul>
 
-                    <li class="drop"><a href="rent.php"><i class='bx bxs-edit-alt'></i>จัดการการจอง</a></li>
+            </li>
+            <li class="navlink">
 
-                    <li class="drop"><a href="payment.php"><i class='bx bx-wallet'></i>ชำระค่าเช่า</a></li>
+                <a href="payment.php">
+                    <i class='bx bx-wallet' style='color:#ffffff'></i>
 
-                    <li class="drop"><a href="comp-status.php"><i class='bx bx-circle'></i>ติดตามคำร้องเรียน</a></li>
+                    <span class="link_name">ชำระค่าเช่า</span>
+
+                </a>
+
+                <ul class="sub-menu blank">
+
+                    <li><a class="link_name" href="payment.php">ชำระค่าเช่า</a></li>
+
+                </ul>
+
+            </li>
+            <li class="navlink">
+                <a href="comp-status.php">
+
+                    <i class='bx bxs-megaphone'></i>
+
+                    <span class="link_name">ติดตามคำร้องเรียน</span>
+
+                </a>
+
+                <ul class="sub-menu blank">
+
+                    <li><a class="link_name" href="comp-status.php">ติดตามคำร้องเรียน</a></li>
 
                 </ul>
 
             </li>
 
-
-
             <li class="navlink">
 
                 <a href="contact.php">
 
-                    <i class='bx bxs-contact'></i>
-
+                    <img src="../asset/contact/logo-icon.png" alt="" style="width:25px;">
                     <span class="link_name">เกี่ยวกับเว็บไซต์</span>
 
                 </a>
@@ -134,7 +156,6 @@ extract($lg);
 
 
     <script>
-
         let sidebar = document.querySelector(".sidebar");
 
         let sidebarBtn = document.querySelector(".img-menu");
@@ -160,7 +181,6 @@ extract($lg);
             });
 
         }
-
     </script>
 
 </body>

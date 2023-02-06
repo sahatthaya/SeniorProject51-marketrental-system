@@ -134,7 +134,7 @@ include "../backend/1-import-link.php";
 
                 <a href="contact.php">
 
-                    <i class='bx bxs-contact'></i>
+                    <img src="../asset/contact/logo-icon.png" alt="" style="width:25px;">
 
                     <span class="link_name">เกี่ยวกับเว็บไซต์</span>
 
@@ -157,7 +157,6 @@ include "../backend/1-import-link.php";
 </body>
 
 <script>
-
     let sidebar = document.querySelector(".sidebar");
 
     let sidebarBtn = document.querySelector(".img-menu");
@@ -183,7 +182,6 @@ include "../backend/1-import-link.php";
         });
 
     }
-
 </script>
 
 

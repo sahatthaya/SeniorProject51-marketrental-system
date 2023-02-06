@@ -47,11 +47,11 @@ require "backend/qry-market-info.php";
 
     <div id="quick-menu2" class="guide ">
         <a type="button" class="quick-menu2 rounded shadow-sm" id="merchant-btn" href="<?php echo $pathbook ?>?mkr_id=<?php echo $row['mkr_id']; ?>">
-            <i class='bx bxs-message-square-edit'></i>
+            <i class='bx bx-calendar-edit text-light'></i>
             <p> สนใจเช่าจองพื้นที่ </p>
         </a>
         <a type="button" class="quick-menu2 rounded shadow-sm " href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">
-            <i class='bx bxs-paper-plane'></i>
+            <i class='bx bxs-megaphone'></i>
             <p> การร้องเรียน </p>
         </a>
     </div>

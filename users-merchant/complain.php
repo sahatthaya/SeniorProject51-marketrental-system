@@ -66,7 +66,6 @@ if ($_GET['mkr_id']) {
     $row = mysqli_fetch_array($result);
 
     extract($row);
-
 }
 
 
@@ -82,11 +81,9 @@ $perpage = 10;
 if (isset($_GET['page'])) {
 
     $page = $_GET['page'];
-
 } else {
 
     $page = 1;
-
 }
 
 $start = ($page - 1) * $perpage;
@@ -95,12 +92,12 @@ $start = ($page - 1) * $perpage;
 
 //qry
 
-$data = "SELECT complain.*, toppic.toppic,users.username FROM complain 
+$data = "SELECT complain.*, toppic.toppic,users.username,comp_status.* FROM complain 
 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
 
 JOIN users ON (complain.users_id = users.users_id)
-
+JOIN comp_status ON (comp_status.cs_id = complain.status)
 WHERE (mkr_id = '$mkr_id')
 
 ORDER BY comp_id DESC limit {$start} , {$perpage}";
@@ -181,19 +178,7 @@ require "../backend/add-complain.php";
 
                     <div class="col-sm-10">
 
-                        <input class="form-control" name="subject" type="text" required>
-
-                    </div>
-
-                </div>
-
-                <div class="mb-3 row">
-
-                    <label for="staticEmail" class="col-sm-2 col-form-label">รูปภาพที่เกี่ยวข้อง :</label>
-
-                    <div class="col-sm-10">
-
-                        <input class="form-control ps-3" name="compfile" type="file" accept="image/png, image/gif, image/jpeg">
+                        <input class="form-control" name="subject" type="text" maxlength="85" required>
 
                     </div>
 
@@ -210,7 +195,17 @@ require "../backend/add-complain.php";
                     </div>
 
                 </div>
+                <div class="mb-3 row">
 
+                    <label for="staticEmail" class="col-sm-2 col-form-label">รูปภาพที่เกี่ยวข้อง : <br> <span class="text-secondary fs-6">(สามารถเลือกได้หลายไฟล์)</span></label>
+
+                    <div class="col-sm-10">
+
+                        <input class="form-control" name="upload[]" type="file" accept="image/png, image/gif, image/jpeg" title="สามารถเลือกได้หลายไฟล์" multiple>
+
+                    </div>
+
+                </div>
                 <div class="text-end">
 
                     <button name="post-btn" type="submit" class="btn btn-primary w-25">ส่ง <i class='bx bxs-paper-plane'></i></button>
@@ -229,109 +224,56 @@ require "../backend/add-complain.php";
 
         ?>
 
-        <div class="my-3" style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
+        <hr style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
 
-            <nav aria-label="Page navigation example " style="height: 38px;">
+        <?php
+        if (mysqli_num_rows($result) == 0) { ?>
+            <h2 class="text-inline mt-5">
+                <i><span class="text-secondary fs-5"> ยังไม่มีการร้องเรียนในขณะนี้ </span></i>
+            </h2>
 
-                <ul class="pagination justify-content-end">
-
-                    <li class="page-item">
-
-                        <a class="page-link" href="complain.php?page=1&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Previous">
-
-                            <span aria-hidden="true">&laquo;</span>
-
-                        </a>
-
-                    </li>
-
-                    <?php for ($i = 1; $i <= $total_page; $i++) { ?>
-
-                        <li class="page-item"><a class="page-link" href="complain.php?page=<?php echo $i; ?>&&mkr_id=<?php echo $mkr_id; ?>"><?php echo $i; ?></a></a></li>
-
-                    <?php } ?>
-
-                    <li class="page-item">
-
-                        <a class="page-link" href="complain.php?page=<?php echo $total_page; ?>&&mkr_id=<?php echo $mkr_id; ?>" aria-label="Next">
-
-                            <span aria-hidden="true">&raquo;</span>
-
-                        </a>
-
-                    </li>
-
-                </ul>
-
-            </nav>
-
-        </div>
-
-        <hr style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
-
-        <?php while ($row = $result->fetch_assoc()) : ?>
-
-            <div class="mb-4">
-
-                <div class="border rounded-top shadow-sm p-3">
-
-                    <div class="row">
-
-                        <div class="col-md-4">
-
-                            <img src="../<?php echo $row['comp_file']; ?>" class="w-100 img-fluid rounded " alt="">
-
+            <?php
+        } else {
+            while ($row = $result->fetch_assoc()) :
+                $comp_id = $row['comp_id'];
+                $reply = mysqli_query($conn, "SELECT * FROM `reply` WHERE `comp_id` = '$comp_id'");
+                $numRowr = mysqli_num_rows($reply);
+            ?>
+                <a href="thread.php?comp_id=<?php echo $comp_id; ?>&&mkr_id=<?php echo $mkr_id ?>" class="text-decoration-none text-reset hover-card">
+                    <div class="border rounded shadow-sm p-3 my-2 comp-card">
+                        <div class="d-flex justify-content-between">
+                            <h4 class=""><?php echo $row['comp_subject']; ?></h4>
+                            <div class="<?php echo $row['cs_color']; ?>">
+                                <?php echo $row['cs_name']; ?>
+                                <i class='bx bxs-circle'></i>
+                            </div>
                         </div>
-
-                        <div class="col-md-8">
-
-                            <p class="float-end" id="timestamp"><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?></p>
-
-                            <h2 id="subj"><?php echo $row['comp_subject']; ?></h2>
-
-                            <p id="toppic">หัวข้อ : <?php echo $row['toppic'] ?></p>
-
-                            <p><?php echo $row['comp_detail'] ?></p>
-
+                        <div class="">
+                            <?php echo $row['toppic']; ?>
                         </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex hstck gap-2">
 
+                                <div>
+                                    โดย: <?php echo $row['username']; ?>
+                                </div>
+                                <div class="text-secondary opacity-50">
+                                    <?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?>
+                                </div>
+                            </div>
+                            <div class="text-secondary">
+                                <i class='bx bx-message-square-dots'></i> <?php echo $numRowr ?>
+                            </div>
+                        </div>
                     </div>
-
-                </div>
-
-                <div class="border rounded-bottom shadow-sm p-3">
-
-                    <label class="reply-head">การตอบกลับจากผู้ดูแล : </label>
-
-                    <label class="reply_detail">
-
-                        <?php
-
-                        if ($row['status'] == '1') {
-
-                            echo "ยังไม่มีการตอบกลับจากผู้ดูแล";
-
-                        } else {
-
-                            echo $row['reply'];
-
-                        }
-
-                        ?>
-
-                    </label>
-
-                </div>
-
-            </div>
-
-        <?php endwhile; ?>
-
+                </a>
+        <?php endwhile;
+        } ?>
     </div>
 
-    <hr style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
+    <hr style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
 
-    <div class="my-3" style="display: <?php echo $total_record > 0 ? 'block': 'none'; ?>;">
+    <div class="my-3" style="display: <?php echo $total_record > 0 ? 'block' : 'none'; ?>;">
 
         <nav aria-label="Page navigation example " style="height: 38px;">
 

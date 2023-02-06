@@ -94,7 +94,7 @@ include "backend/1-import-link.php";
 
                 <a href="contact.php">
 
-                    <i class='bx bxs-info-square'></i>
+                    <img src="./asset/contact/logo-icon.png" alt="" style="width:25px;">
 
                     <span class="link_name">เกี่ยวกับเว็บไซต์</span>
 
