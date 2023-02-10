@@ -415,7 +415,7 @@ if (isset($_GET['del_id'])) {
 
                 <h4 class="center">จำนวนคำร้องเรียนทั้งหมด</h4>
 
-                <h1>
+                <h1 class="my-4">
 
                     <?php
 
@@ -428,33 +428,32 @@ if (isset($_GET['del_id'])) {
                     ?>
 
                 </h1>
-
+                <a href="complain.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary w-100" style="height: fit-content;"><i class='bx bxs-send'></i> จัดการคำร้องเรียน</a>
             </div>
 
             <div class="border rounded shadow-sm mt-3 p-3 h-100">
-
-                <h4 class="center">คำร้องเรียนที่ยังไม่ได้ตอบกลับ</h4>
-
-                <h1>
-
+                <h4 class="center">จำนวนคำร้องเรียนในแต่ละสถานะ</h4>
+                <ul class="list-group list-group-flush">
                     <?php
-
-                    $queryz = "SELECT * FROM complain  WHERE (mkr_id = $mkr_id AND status = 1)";
-
-                    $rsz = mysqli_query($conn, $queryz);
-
-                    echo $countcomp = mysqli_num_rows($rsz);
-
-                    ?>
-
-                </h1>
-
-                <div class="text-end mt-4">
-
-                    <a href="complain.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class='bx bxs-send'></i> ตอบกลับ</a>
-
-                </div>
-
+                    for ($i = 1; $i <= 3; $i++) {
+                        $qrycs[$i] = mysqli_query($conn, "SELECT COUNT(complain.comp_id) AS countZ, comp_status.*  FROM comp_status  JOIN complain ON (complain.status = comp_status.cs_id) WHERE (mkr_id = $mkr_id AND cs_id = $i)");
+                        foreach ($qrycs[$i] as $cs[$i]) { ?>
+                            <li class="list-group-item">
+                                <div class=" row text-decoration-none">
+                                    <div class="col-1 ps-0  <?php echo $cs[$i]['cs_color'] ?>">
+                                        <i class='bx bxs-circle'></i>
+                                    </div>
+                                    <div class="col-7 <?php echo $cs[$i]['cs_color'] ?>">
+                                        <?php echo $cs[$i]['cs_name'] ?>
+                                    </div>
+                                    <div class="col-4 text-end pe-0">
+                                        <?php echo $cs[$i]['countZ'] ?>
+                                    </div>
+                                </div>
+                            </li>
+                    <?php }
+                    } ?>
+                </ul>
             </div>
 
             <div class="border rounded shadow-sm mt-3 p-3 h-100">
@@ -911,6 +910,7 @@ if (isset($_GET['del_id'])) {
         controls: ['calendar'],
 
         display: 'inline',
+        calendarType: 'month',
 
         colors: [
 
