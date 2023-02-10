@@ -421,7 +421,6 @@ require "backend/auth-signup.php";
 
 
     });
-
 </script>
 
 

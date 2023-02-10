@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title> MarketRental - จัดการค่าเช่า</title>
@@ -122,7 +122,7 @@ require "../backend/invoice.php";
 
                         </thead>
 
-                        <tbody>
+                        <tbody id="tbo">
 
                             <?php while ($row = $query->fetch_assoc()) :
 
@@ -145,7 +145,6 @@ require "../backend/invoice.php";
                                         $rentbill =  0;
 
                                         $ps = "-";
-
                                     } else {
 
                                         if ($row['end'] <  $now) {
@@ -157,7 +156,6 @@ require "../backend/invoice.php";
                                             $diff = date_diff($date1, $date2);
 
                                             $day = $diff->format("%a") + 1;
-
                                         } else {
 
                                             $date1 = date_create($now);
@@ -167,7 +165,6 @@ require "../backend/invoice.php";
                                             $diff = date_diff($date1, $date2);
 
                                             $day = $diff->format("%a") + 1;
-
                                         }
 
 
@@ -177,9 +174,7 @@ require "../backend/invoice.php";
                                         $rentbill = $rent - $row['dept_pay'];
 
                                         $ps = "หักค่ามัดจำแล้ว -" . $row['dept_pay'] . " บาท";
-
                                     }
-
                                 } else {
 
                                     $qryinvinfo = mysqli_query($conn, "SELECT * FROM invoice WHERE (`b_id` = '$b_id') ORDER BY `b_id` DESC LIMIT 1");
@@ -195,7 +190,6 @@ require "../backend/invoice.php";
                                             $day = 0;
 
                                             $ps = "บิลค่าเช่าครบรอบบิลแล้ว";
-
                                         } else {
 
                                             $date1 = date_create($row['end']);
@@ -207,9 +201,7 @@ require "../backend/invoice.php";
                                             $day = $diff->format("%a") + 1;
 
                                             $ps = "-";
-
                                         }
-
                                     } else {
 
                                         $date1 = date_create($now);
@@ -221,13 +213,11 @@ require "../backend/invoice.php";
                                         $day = $diff->format("%a") + 1;
 
                                         $ps = "-";
-
                                     }
 
 
 
                                     $rentbill =  $day * $row['sRent'];
-
                                 }
 
                             ?>
@@ -261,19 +251,15 @@ require "../backend/invoice.php";
                                         if ($row['start'] >  $curr_date) {
 
                                             echo '<div class="p-1 rounded text-center bg-secondary text-light">ยังไม่เริ่ม</div>';
-
                                         } else {
 
                                             if ($row['end'] <  $curr_date) {
 
                                                 echo '<div class="p-1 rounded text-center bg-danger text-light">สิ้นสุดแล้ว</div>';
-
                                             } else {
 
                                                 echo '<div class="p-1 rounded text-center bg-primary text-light">ดำเนินการอยู่</div>';
-
                                             }
-
                                         }
 
                                         ?>
@@ -300,11 +286,11 @@ require "../backend/invoice.php";
 
                 <div class="hstack cost gap-2 mb-2 px-0">
 
-                    <label class="cost" >ค่าใช้จ่ายเพิ่มเติม :</label>
+                    <label class="cost">ค่าใช้จ่ายเพิ่มเติม :</label>
 
-                    <input  id="costname" type="text" class="form-control cost" placeholder="เช่น ค่าไฟ ค่าน้ำ" onchange="canclick()">
+                    <input id="costname" type="text" class="form-control cost" placeholder="เช่น ค่าไฟ ค่าน้ำ" onchange="canclick()">
 
-                    <input  id="price" type="number" class="form-control cost" placeholder="จำนวนเงิน" onchange="canclick()">
+                    <input id="price" type="number" class="form-control cost" placeholder="จำนวนเงิน" onchange="canclick()">
 
                     <select class="form-select cost-formselect" id="unit" style="width: 155px;" onchange="checkunit()">
 
@@ -326,7 +312,7 @@ require "../backend/invoice.php";
 
                 </div>
 
-                <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="GetSelected();nextbtn();" id="next">
+                <input id="checkBtn" type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="" id="next">
 
             </div>
 
@@ -401,6 +387,41 @@ require "../backend/invoice.php";
 </html>
 
 <script type="text/javascript">
+    $(document).ready(function() {
+        $('#checkBtn').click(function() {
+            let grid = document.getElementById("myTable");
+            let checkBoxes = grid.getElementsByTagName("INPUT");
+
+            let checked = 0;
+
+            for (var i = 1; i < checkBoxes.length; i++) {
+
+                if (checkBoxes[i].checked) {
+                    checked += 1;
+                }
+            }
+            if (checked == '0') {
+                Swal.fire({
+
+                    title: 'กรุณาเลือกแผงค้า',
+
+                    icon: 'warning',
+
+                    text: 'กรุณาเลือกแผงค้าที่ต้องการสร้างใบเรียกเก็บค่าเช่า',
+
+                    showConfirmButton: false,
+
+                    timer: 3000
+
+                });
+            } else {
+                GetSelected();
+                nextbtn();
+
+            }
+
+        });
+    });
 
     function GetSelected() {
 
@@ -1015,5 +1036,4 @@ require "../backend/invoice.php";
         });
 
     });
-
 </script>

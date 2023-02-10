@@ -98,7 +98,7 @@ require "../backend/qry-market-info.php"
 
         <a type="button" class="quick-menu2 rounded shadow-sm" id="merchant-btn" href="<?php echo $pathbook ?>?mkr_id=<?php echo $row['mkr_id']; ?>">
 
-            <i class='bx bxs-message-square-edit'></i>
+            <i class='bx bx-calendar-edit text-light'></i>
 
             <p> สนใจเช่าจองพื้นที่ </p>
 
@@ -106,7 +106,7 @@ require "../backend/qry-market-info.php"
 
         <a type="button" class="quick-menu2 rounded shadow-sm" href="complain.php?mkr_id=<?php echo $row['mkr_id']; ?>">
 
-            <i class='bx bxs-paper-plane'></i>
+            <i class='bx bxs-megaphone'></i>
 
             <p> การร้องเรียน </p>
 
@@ -123,25 +123,23 @@ require "../backend/qry-market-info.php"
         <hr>
 
         <ul class="list-group list-group-flush">
-
-            <?php while ($row1 = $result3->fetch_assoc()) : ?>
-
+            <?php
+            if (mysqli_num_rows($result3) == 0) { ?>
                 <li class="list-group-item">
-
-                    <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
-
-                        <p><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></p>
-
-                        <p><?php echo $row1['n_sub']; ?></p>
-
-
-
-                    </a>
-
+                    <i class="text-secondary">ไม่มีข่าวสารสำหรับตลาด<?php echo $row['mkr_name']; ?>ในขณะนี้</i>
                 </li>
-
-            <?php endwhile ?>
-
+                <?php
+            } else {
+                while ($row1 = $result3->fetch_assoc()) : ?>
+                    <li class="list-group-item">
+                        <a class="hstack gap-3 text-decoration-none modal_data1" id="<?php echo $row1['n_id']; ?>">
+                            <p><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></p>
+                            <p><?php echo $row1['n_sub']; ?></p>
+                        </a>
+                    </li>
+            <?php
+                endwhile;
+            } ?>
         </ul>
 
     </div>
@@ -153,7 +151,6 @@ require "../backend/qry-market-info.php"
 </body>
 
 <script>
-
     //detail popup
 
     $(document).ready(function() {
@@ -193,93 +190,52 @@ require "../backend/qry-market-info.php"
 
 
     // datepicker
-
- 
-
-
-
     var now = new Date();
-
     var colorset = [
-
         '#abdee6',
-
         '#cbaacb',
-
         '#ffffb5',
-
         '#ffccb6',
-
         '#f3b0c3',
-
         '#c6dbda',
-
         '#fee1e8',
-
         '#fed7c3',
-
         '#f6eac2',
-
         '#ecd5e3',
 
-        
-
     ];
-
     mobiscroll.datepicker('#demo-colored', {
-
+        dataTimezone: 'utc',
+        displayTimezone: 'Asia/Bangkok',
         controls: ['calendar'],
-
         display: 'inline',
-
+        showOuterDays: false,
         colors: [
-
             <?php
-
             $countcolor = 0;
+            while ($q = $qrycalendar->fetch_assoc()) :
+                $sdate = str_replace('-', ',', $q['start']);
+                $sa = explode(',', $sdate);
+                $sm = $sa[1] - 1;
+                $startr = $sa[0] . "," . $sm . "," . $sa[2];
 
-            while ($q = $qrycalendar->fetch_assoc()) : ?> {
-
-                    start: new Date(<?php
-
-                                    $start = strtotime(str_replace('-', '/', $q['start']));
-
-                                    echo date("Y,m,d", strtotime("-1 month", $start))
-
-                                    ?>),
-
-                    end: new Date(<?php
-
-                                    $end = strtotime(str_replace('-', '/', $q['end']));
-
-                                    echo date("Y,m,d", strtotime("-1 month", $end))
-
-                                    ?>),
-
+                $edate = str_replace('-', ',', $q['end']);
+                $ea = explode(',', $edate);
+                $em = $ea[1] - 1;
+                $endr = $ea[0] . "," . $em . "," . $ea[2];
+            ?> {
+                    start: new Date(<?php echo $startr; ?>),
+                    end: new Date(<?php echo $endr ?>),
                     background: colorset[<?php echo $countcolor; ?>]
-
-
-
                 },
-
             <?php
-
                 $countcolor++;
-
                 if ($countcolor > 10) {
-
                     $countcolor = 0;
-
                 }
-
             endwhile ?>
-
         ]
-
-
-
     });
-
 </script>
 
 

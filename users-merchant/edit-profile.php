@@ -32,7 +32,6 @@ include "nav.php";
 
 include "../backend/1-connectDB.php";
 
-
 $username = $_SESSION['username'];
 
 require "../backend/edit-profile.php";
@@ -59,9 +58,9 @@ require "../backend/edit-profile.php";
 
             <div class="col-md-6">
 
-                <label for="inputEmail4" class="form-label des_input">ชื่อ</label>
+                <label for="inputEmail4" class="form-label des_input">ชื่อ <span class="text-secondary fs-6">(ภาษาไทย)</span></label>
 
-                <input class="input inputcolor form-control" placeholder="ชื่อ" type="text" name="firstName-reg" value="<?php echo $row['firstName'] ?>" required>
+                <input class="input inputcolor form-control" placeholder="ชื่อ" type="text" name="firstName-reg" value="<?php echo $row['firstName'] ?>"  pattern="^[ก-๏\s]+$" required>
 
 
 
@@ -69,9 +68,9 @@ require "../backend/edit-profile.php";
 
             <div class="col-md-6">
 
-                <label for="inputPassword4" class="form-label des_input">นามสกุล</label>
+                <label for="inputPassword4" class="form-label des_input">นามสกุล <span class="text-secondary fs-6">(ภาษาไทย)</span></label>
 
-                <input class="input inputcolor form-control" placeholder="ชื่อนามสกุล" type="text" name="lastName-reg" value="<?php echo $row['lastName'] ?>" required>
+                <input class="input inputcolor form-control" placeholder="ชื่อนามสกุล" type="text" name="lastName-reg" value="<?php echo $row['lastName'] ?>"  pattern="^[ก-๏\s]+$" required>
 
             </div>
 
@@ -79,7 +78,7 @@ require "../backend/edit-profile.php";
 
                 <label for="inputAddress" class="form-label des_input">อีเมล</label>
 
-                <input class="input inputcolor form-control" type="email" name="email-reg" placeholder="อีเมล" value="<?php echo $row['email'] ?>" required>
+                <input class="input inputcolor form-control" type="email" name="email-reg" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="กรุณากรอกอีเมลให้ถูกต้อง" placeholder="อีเมล" value="<?php echo $row['email'] ?>" required>
 
             </div>
 
@@ -95,7 +94,7 @@ require "../backend/edit-profile.php";
 
             <div class="col-12">
 
-                <input class="input submit btn btn-primary" type="submit" name="submit-edt" value="บันทึกการแก้ไข">
+                <input class="input submit btn btn-primary w-100" type="submit" name="submit-edt" value="บันทึกการแก้ไข">
 
             </div>
 

@@ -60,7 +60,7 @@ include "../backend/1-import-link.php";
                 </a>
 
                 <ul class="sub-menu dropdown">
-                    <li class="drop"><a href="../users-market/status-applicant.php"><i class='bx bxs-edit-alt'></i>สถานะคำขอพาร์ทเนอร์</a></li>
+                    <li class="drop"><a href="../users-market/status-applicant.php"><i class='bx bxs-edit-alt'></i>สถานะคำขอเพิ่มตลาดใหม่</a></li>
                     <li class="drop"><a href="../users-market/status-announce.php"><i class='bx bx-wallet'></i>สถานะคำขอประชาสัมพันธ์</a></li>
                 </ul>
             </li>

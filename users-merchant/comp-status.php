@@ -16,7 +16,7 @@
 
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 
-   
+
 
 </head>
 
@@ -42,13 +42,14 @@ $userid = $_SESSION['users_id'];
 
 $count_n = 1;
 
-$data = "SELECT complain.*, toppic.toppic , comp_status.* FROM complain 
+$data = "SELECT complain.*, toppic.toppic , comp_status.*,market_detail.* FROM complain 
 
 JOIN toppic ON (complain.toppic_id = toppic.toppic_id)
 
 JOIN comp_status ON (complain.status = comp_status.cs_id)
+JOIN market_detail ON (market_detail.mkr_id = complain.mkr_id)
 
- WHERE (users_id = '$userid') ";
+ WHERE (complain.users_id = '$userid') ORDER BY `timestamp` DESC";
 
 $result = mysqli_query($conn, $data);
 
@@ -76,7 +77,9 @@ $result = mysqli_query($conn, $data);
 
                             <th scope="col">วันที่ร้องเรียน</th>
 
-                            <th scope="col">เวลาที่ร้องเรียน</th>
+                            <th scope="col">ตลาด</th>
+
+                            <th scope="col">วันที่มีการโต้ตอบล่าสุด</th>
 
                             <th scope="col">ประเภทการร้องเรียน</th>
 
@@ -92,7 +95,23 @@ $result = mysqli_query($conn, $data);
 
                     <tbody>
 
-                        <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result->fetch_assoc()) :
+                            $comp_id = $row['comp_id'];
+                            $sql2 = "SELECT reply.*,users.username FROM reply 
+                               JOIN users ON (reply.users_id = users.users_id) 
+                               WHERE (comp_id = '$comp_id')";
+                            $query2 = mysqli_query($conn, $sql2);
+                            $total_record = mysqli_num_rows($query2);
+                            if ($total_record > 0) {
+                                $last_id = mysqli_query($conn, "SELECT MAX(timestamp) AS maxid FROM reply WHERE comp_id = $comp_id");
+                                $mid = mysqli_fetch_array($last_id);
+                                extract($mid);
+                                $comp_id = $mid['maxid'];
+                                $rpdate = date("d/m/Y", strtotime($comp_id));
+                            } else {
+                                $rpdate = '<i class="text-secondary">ยังไม่มีการโต้ตอบ</i>';
+                            }
+                        ?>
 
                             <tr>
 
@@ -100,7 +119,9 @@ $result = mysqli_query($conn, $data);
 
                                 <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 
-                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
+                                <td><?php echo $row['mkr_name'] ?></td>
+
+                                <td><?php echo $rpdate ?></td>
 
                                 <td><?php echo $row['toppic'] ?></td>
 
@@ -108,18 +129,14 @@ $result = mysqli_query($conn, $data);
 
                                 <td>
 
-                                    <div style="background-color: <?php echo $row['cs_color']; ?>;" class="p-1 rounded text-center"><?php echo $row['cs_name']; ?></div>
+                                    <div class="p-1 rounded <?php echo $row['cs_color']; ?>"><?php echo $row['cs_name']; ?></div>
 
                                 </td>
 
                                 <td>
-
-                                    <button type="button" class="btn btn-outline-primary modal_data1" id="<?php echo $row['comp_id']; ?>">
-
+                                    <a type="button" class="btn btn-outline-primary modal_data1" href="thread.php?comp_id=<?php echo $row['comp_id']; ?>&&mkr_id=<?php echo $row['mkr_id'] ?>&&my_thread=yes">
                                         ดูรายละเอียด
-
-                                    </button>
-
+                                    </a>
                                 </td>
 
                             </tr>
@@ -141,51 +158,5 @@ $result = mysqli_query($conn, $data);
 </body>
 
 <script src="../backend/script.js"></script>
-
-<?php require '../backend/modal-seecomplain.php' ?>
-
-
-
-<script>
-
-    // apply detail popup
-
-    $(document).ready(function() {
-
-        $("body").on("click", ".modal_data1", function(event) {
-
-            var seeid = $(this).attr("id");
-
-            $.ajax({
-
-                url: "../backend/manage-complain.php",
-
-                method: "POST",
-
-                data: {
-
-                    seeid: seeid
-
-                },
-
-                success: function(data) {
-
-                    $('#bannerdetail').html(data);
-
-                    $('#bannerdataModal').modal('show');
-
-                }
-
-            });
-
-
-
-        })
-
-    });
-
-</script>
-
-
 
 </html>

@@ -1,63 +1,32 @@
 * {
-
     margin: 0;
-
     padding: 0;
-
     box-sizing: border-box;
-
     font-family: 'Mitr', sans-serif;
-
 }
 
-
-
 .prevent-select {
-
     -webkit-user-select: none;
-
     /* Safari */
-
     -ms-user-select: none;
-
     /* IE 10 and IE 11 */
-
     user-select: none;
-
     /* Standard syntax */
 
 } 
 
-
-
 :root {
-
     --white: white;
-
     --purple: #4B2ED7;
-
     --main: #0032b5;
-
     --light: #6dd4f7;
-
     --dark: #02155A;
-
     --freshblue: #0daafd;
-
-
-
     --icon: #00288F;
-
     --link: #0d6efd;
-
     --linkhover: #02155A;
-
-
-
     --white: #fff;
-
     --yellow: #FCBC41;
-
     --input: #EDEEFF;
 
 }
@@ -71,17 +40,11 @@
 }
 
 h1 {
-
     text-align: center;
-
 }
 
-
-
 .marginform {
-
     margin: 10px 10%;
-
 }
 
 
@@ -180,11 +143,9 @@ h1 {
 
     background: var(--white);
 
-    z-index: 1000;
-
     transition: all 0.5s ease;
 
-    border-top-left-radius: 15px;
+    border-top-left-radius: 10px;
 
     box-shadow: 5px 10px 10px 8px #5c5c5c8c, -5px -10px 10px #0000001c;
 
@@ -196,7 +157,7 @@ h1 {
 
     margin: 10px;
 
-    font-size: 50px;
+    font-size: 25px;
 
     color: var(--dark);
 
@@ -221,46 +182,6 @@ h1 {
     margin: 0 40%;
 
 }
-
-
-
-.profilebar .input {
-
-    height: 35px;
-
-    width: 100%;
-
-    padding: 0 10px;
-
-    border-radius: 25px;
-
-    border: none;
-
-    font-size: 15px;
-
-    margin-bottom: 5px;
-
-}
-
-
-
-.inputcolor {
-
-    background: var(--input) !important;
-
-}
-
-
-
-.des_input {
-
-    font-size: 15px;
-
-    margin: 0 10px;
-
-}
-
-
 
 .submit {
 
@@ -343,30 +264,6 @@ a.link:hover {
     margin: 10px 10%;
 
 }
-
-
-
-.forgotpsw {
-
-    font-size: 15px;
-
-    margin-left: 75%;
-
-    color: var(--link);
-
-}
-
-
-
-.forgotpsw:hover {
-
-    color: var(--yellow);
-
-    transition: 0.5s ease;
-
-}
-
-
 
 /* ----------------------------------------5.forgotpsw------------------------------------------------------------ */
 

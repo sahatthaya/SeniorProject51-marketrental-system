@@ -66,7 +66,7 @@ if (isset($_POST['stall-submit'])) {
             echo "<script type='text/javascript'> stalldoubly(); </script>";
             echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-stall.php" />';
         } else {
-            $sqlInsert = "INSERT INTO stall (sID, sWidth, sHeight, sDept, sRent, sPayRange, market_id, z_id, show, left, top) VALUES ('$sID','$sWidth','$sHeight','$sDept','$sRent','$sPayRange', '$mkr_id','$z_id','$show','','') ";
+            $sqlInsert = "INSERT INTO `stall` (`sID`, `sWidth`, `sHeight`, `sDept`, `sRent`, `sPayRange`, `market_id`, `z_id`, `show`, `left`, `top`) VALUES ('$sID','$sWidth','$sHeight','$sDept','$sRent','$sPayRange', '$mkr_id','$z_id','$show','','') ";
             $sql = mysqli_query($conn, $sqlInsert);
             if ($sql) {
                 echo "<script type='text/javascript'> success(); </script>";

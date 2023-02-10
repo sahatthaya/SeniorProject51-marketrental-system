@@ -43,6 +43,32 @@
 </head>
 
 <script type="text/javascript">
+    function checkmediawidth() {
+0 
+        let details = navigator.userAgent;
+
+        let regexp = /android|iphone|kindle|ipad/i;
+
+        let isMobileDevice = regexp.test(details);
+
+        if (isMobileDevice) {
+            Swal.fire({
+
+                title: 'กรุณาเปิดผ่านคอมพิวเตอร์',
+                text: 'ฟังก์ชันการแก้ไขแผนผังแผงค้ารองรับบนคอมพิวเตอร์เท่านั้น',
+
+                icon: 'warning',
+
+                showConfirmButton: false,
+
+                timer: 3000
+
+            })
+        } else {
+
+        }
+
+    }
 
     $(document).ready(function() {
 
@@ -147,12 +173,11 @@
         // });
 
     });
-
 </script>
 
 
 
-<body>
+<body onload="checkmediawidth()">
 
     <nav aria-label="breadcrumb mb-3">
 
@@ -205,7 +230,6 @@
                     <button type="submit" class="btn btn-outline-success save-stall" id="saveplan" name="save">บันทึกแผนผัง</button>
 
             </div>
-
             <hr>
 
             <div id="plan">

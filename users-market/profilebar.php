@@ -1,5 +1,4 @@
 <?php 
-include "../backend/1-import-link.php";
 session_start();
 if ($_SESSION['userstype'] == "") {
     echo "<script>plslogin2();</script>;";
@@ -9,6 +8,8 @@ if ($_SESSION['userstype'] == "") {
         echo "<script>plslogin2();</script>;";
     }
 }
+include "../backend/1-import-link.php";
+
 ?>
 
 <!DOCTYPE html>
