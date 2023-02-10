@@ -26,7 +26,7 @@
 
     /* Standard syntax */
 
-}
+} 
 
 
 
@@ -61,10 +61,14 @@
     --input: #EDEEFF;
 
 }
+/* 
+.bi-x-circle{
+    background-color: #0032b5 !important;
+} */
 
-
-
-
+.bi-x-circle{
+    background-color: #0032b5;
+}
 
 h1 {
 

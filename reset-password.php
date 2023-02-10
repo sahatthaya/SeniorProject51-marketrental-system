@@ -12,23 +12,17 @@ include("./backend/1-import-link.php");
 
 if (isset($_POST['submit-resetpsw'])) {
 
-
-
     $email = $_POST['email'];
 
     $password = $_POST['password'];
 
     $cfpassword = $_POST['cfpassword'];
 
-
-
     $hashed = md5($password);
 
     $query = "UPDATE users SET password = '$hashed' WHERE email = '$email' ";
 
     $res = mysqli_query($conn, $query);
-
-
 
     $query_dlt = "DELETE FROM forgot_password WHERE email = '$email' ";
 
