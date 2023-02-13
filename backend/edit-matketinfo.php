@@ -36,10 +36,6 @@ if ($_GET) {
 
 }
 
-
-
-
-
 if (isset($_POST['bn-submit'])) {
 
   $mkr_name = $_POST['mkr_name'];
@@ -72,6 +68,8 @@ if (isset($_POST['bn-submit'])) {
 
   $opening = $_POST['opening'];
 
+  $rent_type = ( $opening=="เปิดทำการเป็นรอบ") ? '0' : $_POST['rent_type'];
+
 
 
   date_default_timezone_set('Asia/Bangkok');
@@ -102,7 +100,7 @@ if (isset($_POST['bn-submit'])) {
 
 
 
-  if (($mkr_name && $mkrtype && $mkr_descrip && $email && $tel && $house_no && $soi && $moo && $road && $province_id && $amphure_id && $district_id  && $postalcode && $opening ) != '') {
+  if (($mkr_name && $mkrtype && $mkr_descrip && $email && $tel && $house_no && $soi && $moo && $road && $province_id && $amphure_id && $district_id  && $postalcode && $opening) != '') {
 
 
 
@@ -110,7 +108,7 @@ if (isset($_POST['bn-submit'])) {
 
       $udlogo = "UPDATE market_detail  SET mkr_pic='$ct_logo'WHERE (mkr_id = '$mkr_id')";
 
-      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening' WHERE (`mkr_id` = '$mkr_id') ";
+      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening',`rent_type`='$rent_type' WHERE (`mkr_id` = '$mkr_id') ";
 
       if (mysqli_query($conn, $sqlInsert) && mysqli_query($conn, $udlogo)) {
 
@@ -119,37 +117,27 @@ if (isset($_POST['bn-submit'])) {
         echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
 
         echo "<script type='text/javascript'> success(); </script>";
-
       } else {
 
         echo "<script>error();</script>";
-
       }
-
     } else {
 
-      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening' WHERE (`mkr_id` = '$mkr_id') ";
+      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening',`rent_type`='$rent_type' WHERE (`mkr_id` = '$mkr_id') ";
 
       if (mysqli_query($conn, $sqlInsert)) {
 
         echo '<meta http-equiv="refresh" content="1"; URL=../users-market/edit-market-info.php" />';
 
         echo "<script type='text/javascript'> success(); </script>";
-
       } else {
 
         echo "<script>error();</script>";
-        // echo $mkr_descrip;
 
       }
-
     }
-
   } else {
 
     echo "<script>error();</script>";
-
   }
-
 }
-

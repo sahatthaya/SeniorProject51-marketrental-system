@@ -62,7 +62,7 @@ $result_province = mysqli_query($conn, $query_province);
 
   </nav>
 
-  <form id="applyform" method="POST" enctype="multipart/form-data"  class="was-validated">
+  <form id="applyform" method="POST" enctype="multipart/form-data" class="was-validated">
 
     <div class="form-outer" style="overflow: visible;">
 
@@ -84,11 +84,11 @@ $result_province = mysqli_query($conn, $query_province);
 
             <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
 
-              <option value="<?php echo $row['market_type_id']; ?>" selected="selected"><?php echo $row['market_type']; ?></option>
+              <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :;
+                $select = ($row['market_type_id'] == $row1[0]) ? 'selected' : '';
+              ?>
 
-              <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :; ?>
-
-                <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
+                <option value="<?php echo $row1[0]; ?>" <?Php echo $select ?>><?php echo $row1[1]; ?></option>
 
               <?php endwhile; ?>
 
@@ -208,17 +208,22 @@ $result_province = mysqli_query($conn, $query_province);
 
           <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
 
-          <select class="form-select" name="opening" aria-label="Default select example" required>
+          <select class="form-select" name="opening" aria-label="Default select example" id="open" required onchange="minrent()">
 
-            <option value="<?php echo $row['opening'] ?>" selected hidden><?php echo $row['opening'] ?></option>
+            <option value="เปิดทำการทุกวัน" <?php echo ($row['opening'] == "เปิดทำการทุกวัน") ? 'selected' : ''; ?>>เปิดทำการทุกวัน</option>
 
-            <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
-
-            <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
+            <option value="เปิดทำการเป็นรอบ" <?php echo ($row['opening'] == "เปิดทำการเป็นรอบ") ? 'selected' : ''; ?>>เปิดทำการเป็นรอบ</option>
 
           </select>
 
-        
+          <div id="min_rent" style="display: <?php echo ($row['opening'] == "เปิดทำการเป็นรอบ") ? 'none' : 'block'; ?>;" class="p-0">
+            <div class="des_input hstack gap-2">รูปแบบการจอง</div>
+            <select class="form-select" name="rent_type" aria-label="Default select example">
+              <option value="1" <?php echo ($row['rent_type'] == "1") ? 'selected' : ''; ?>>รายวัน <span class="text-secondary">(จองขั้นต่ำ 1 วัน)</span></option>
+              <option value="2" <?php echo ($row['rent_type'] == "2") ? 'selected' : ''; ?>>รายเดือน <span class="text-secondary">(จองขั้นต่ำ 1 เดือน)</span></option>
+              <option value="3" <?php echo ($row['rent_type'] == "3") ? 'selected' : ''; ?>>ทั้งรายวันและรายเดือน </option>
+            </select>
+          </div>
 
         </div>
 
@@ -244,7 +249,7 @@ $result_province = mysqli_query($conn, $query_province);
 
         <div class="des_input">รูปภาพตลาด</div>
 
-        <input type="file" class="form-control" name="ct_logo" id="mkr"  accept="image/jpeg,image/gif,image/png">
+        <input type="file" class="form-control" name="ct_logo" id="mkr" accept="image/jpeg,image/gif,image/png">
 
         <div class="p-0">
 
@@ -267,7 +272,16 @@ $result_province = mysqli_query($conn, $query_province);
 </body>
 
 <script>
-
+  function minrent() {
+    var sel = document.getElementById("open").value
+    var selmin = document.getElementById("min_rent")
+    if (sel == 'เปิดทำการทุกวัน') {
+      selmin.style.display = "block";
+    } else {
+      selmin.style.display = "none";
+    }
+  }
+  
   $(document).ready(function() {
 
     $("body").tooltip({
@@ -309,7 +323,6 @@ $result_province = mysqli_query($conn, $query_province);
     }
 
   }
-
 </script>
 
 
