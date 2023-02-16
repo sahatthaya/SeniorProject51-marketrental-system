@@ -22,7 +22,6 @@ if (isset($_POST['submit-apply'])) {
 
     $opening = $_POST['opening'];
 
-    $rent_type = ( $opening=="เปิดทำการเป็นรอบ") ? '0' : $_POST['rent_type'];
 
     $house_no = $_POST['HouseNo'];
 
@@ -92,9 +91,9 @@ if (isset($_POST['submit-apply'])) {
 
         move_uploaded_file($idfiletmp, $idpath);
 
-        $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`rent_type`)
+        $sqlInsert = "INSERT INTO req_partner (`market_name`, `market_descrip`, `market_pic`, `market_type_id`, `req_status_id`, `firstName`, `lastName`, `email`, `tel`, `cardIDcpy`, `users_id`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`)
 
-        VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName','$email','$tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$rent_type') ";
+        VALUES ('$mkrName','$mkrDes','$mkrfilepath',' $mkrtype','1','$firstName','$laststName','$email','$tel', '$idfilepath','$userlogin','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening') ";
 
         if (mysqli_query($conn, $sqlInsert)) {
 

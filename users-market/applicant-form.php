@@ -174,19 +174,10 @@
 
             <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
 
-            <select class="form-select" id="open" onchange="minrent()" name="opening" aria-label="Default select example">
+            <select class="form-select" id="open" name="opening" aria-label="Default select example">
                 <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
                 <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
             </select>
-            <div id="min_rent" style="display: none;" class="p-0">
-                <div class="des_input hstack gap-2">รูปแบบการจอง</div>
-                <select class="form-select" name="rent_type" aria-label="Default select example">
-                    <option value="1">รายวัน <span class="text-secondary">(จองขั้นต่ำ 1 วัน)</span></option>
-                    <option value="2">รายเดือน <span class="text-secondary">(จองขั้นต่ำ 1 เดือน)</span></option>
-                    <option value="3">ทั้งรายวันและรายเดือน </option>
-                </select>
-
-            </div>
 
             <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
 
@@ -215,14 +206,3 @@
     </div>
 
 </form>
-<script>
-    function minrent() {
-        var sel = document.getElementById("open").value
-        var selmin = document.getElementById("min_rent")
-        if (sel == 'เปิดทำการทุกวัน') {
-            selmin.style.display = "block";
-        } else {
-            selmin.style.display = "none";
-        }
-    }
-</script>

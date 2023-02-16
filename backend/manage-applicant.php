@@ -109,7 +109,6 @@ if (isset($_GET['approve'])) {
      $tel = $row['tel'];
 
      $opening = $row['opening'];
-     $rent_type = $row['rent_type'];
      
 
 
@@ -134,9 +133,9 @@ if (isset($_GET['approve'])) {
 
      $approve = mysqli_query($conn, "UPDATE req_partner SET req_status_id = '2' WHERE (req_partner_id = $approveid)");
 
-     $insert =  mysqli_query($conn, "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`,`rent_type`) 
+     $insert =  mysqli_query($conn, "INSERT INTO `market_detail`( `mkr_name`, `mkr_descrip`, `mkr_pic`, `market_type_id`, `users_id`, `email`, `tel`, `house_no`, `soi`, `moo`, `road`, `district_id`, `amphure_id`, `province_id`, `postalcode`,`opening`) 
 
-     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening','$rent_type')");
+     VALUES ('$market_name','$market_descrip','$market_pic','$market_type_id','$users_id','$email','$tel','$house_no','$soi','$moo','$road','$district_id','$amphure_id','$province_id','$postalcode','$opening')");
 
 
 

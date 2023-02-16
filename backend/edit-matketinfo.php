@@ -68,7 +68,6 @@ if (isset($_POST['bn-submit'])) {
 
   $opening = $_POST['opening'];
 
-  $rent_type = ( $opening=="เปิดทำการเป็นรอบ") ? '0' : $_POST['rent_type'];
 
 
 
@@ -108,7 +107,7 @@ if (isset($_POST['bn-submit'])) {
 
       $udlogo = "UPDATE market_detail  SET mkr_pic='$ct_logo'WHERE (mkr_id = '$mkr_id')";
 
-      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening',`rent_type`='$rent_type' WHERE (`mkr_id` = '$mkr_id') ";
+      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening' WHERE (`mkr_id` = '$mkr_id') ";
 
       if (mysqli_query($conn, $sqlInsert) && mysqli_query($conn, $udlogo)) {
 
@@ -123,7 +122,7 @@ if (isset($_POST['bn-submit'])) {
       }
     } else {
 
-      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening',`rent_type`='$rent_type' WHERE (`mkr_id` = '$mkr_id') ";
+      $sqlInsert = "UPDATE `market_detail`  SET `mkr_name`='$mkr_name',`market_type_id`='$mkrtype',`mkr_descrip`='$mkr_descrip',`email`='$email',`tel`='$tel', `house_no`='$house_no',`soi`='$soi',`moo`='$moo',`road`='$road',`district_id`='$district_id',`amphure_id`='$amphure_id',`province_id`='$province_id',`postalcode`='$postalcode',`opening`='$opening' WHERE (`mkr_id` = '$mkr_id') ";
 
       if (mysqli_query($conn, $sqlInsert)) {
 

@@ -100,7 +100,6 @@
 
                         <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
                         <a class="btn btn-outline-danger save-stall " href="booking.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bx-reset'></i> รีเซ็ต</a>
-
                     </div>
 
                 </div>
@@ -361,12 +360,10 @@
 
 
     mobiscroll.datepicker('#range', {
-
         select: 'range',
-
+        controls: ['calendar'],
         startInput: '#start',
-
-        endInput: '#end'
+        endInput: '#end',
 
     });
 </script>

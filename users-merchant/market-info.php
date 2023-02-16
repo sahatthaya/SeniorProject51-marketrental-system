@@ -59,7 +59,7 @@ require "../backend/qry-market-info.php"
         <p id="mkr_name"><?php echo $row['mkr_name']; ?> <span class="fs-5">(<?php echo $row['opening'] ?>)</span></p>
 
         <h5>รายละเอียด</h5>
-
+       
         <p class="text_desc">
 
             <?php echo $row['mkr_descrip']; ?>

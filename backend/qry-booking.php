@@ -7,8 +7,6 @@ if (isset($_POST['mkr_id']) != '') {
 
     $val = str_replace(',', '', $_POST['rangeinput']);
 
-
-
     $parts = explode("/", $_POST['startfilter']);
 
     $startfilter = sprintf("%s-%s-%s", $parts[2], $parts[1], $parts[0]);
