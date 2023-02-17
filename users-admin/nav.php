@@ -112,13 +112,13 @@ include "../backend/1-import-link.php";
 
                     <img src="../asset/contact/logo-icon.png" alt="" style="width:25px;">
 
-                    <span class="link_name">จัดการข้อมูลติดต่อ</span>
+                    <span class="link_name">แก้ไขข้อมูลเกี่ยวกับเว็บไซต์</span>
 
                 </a>
 
                 <ul class="sub-menu blank">
 
-                    <li><a class="link_name" href="contact.php">จัดการข้อมูลติดต่อ</a></li>
+                    <li><a class="link_name" href="contact.php">แก้ไขข้อมูลเกี่ยวกับเว็บไซต์</a></li>
 
                 </ul>
 

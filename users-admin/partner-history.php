@@ -38,30 +38,20 @@ require "../backend/manage-applicant.php";
 
 
 <body>
+    <nav aria-label="breadcrumb mb-3">
 
+        <ol class="breadcrumb ">
+
+            <li class="breadcrumb-item fs-5 "><a href="./partner.php" class="text-decoration-none">จัดการคำร้องเพิ่มตลาด</a></li>
+
+            <li class="breadcrumb-item active fs-5" aria-current="page">ประวัติคำร้องเพิ่มตลาดทั้งหมด</li>
+
+        </ol>
+
+    </nav>
     <div class="content">
 
         <h1 id="headline">ประวัติคำร้องเพิ่มตลาดทั้งหมด</h1>
-
-        <div id="labelbn" class="col-12 toptb">
-
-            <div id="labelbn" class="col-8">
-
-            </div>
-
-            <!-- Button modal -->
-
-            <div id="addbn" class="col-4">
-
-                <a id="addbn" type="button" class="btn btn-primary" href="./partner.php">
-
-                    <i class='bx bxs-store-alt'></i> จัดการคำร้องเพิ่มตลาด
-
-                </a>
-
-            </div>
-
-        </div>
 
         <div>
 
@@ -115,7 +105,7 @@ require "../backend/manage-applicant.php";
 
                                 <td>
 
-                                    <div style="background-color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div>
+                                    <div style="color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div>
 
                                 </td>
 
@@ -148,7 +138,6 @@ require "../backend/manage-applicant.php";
 </body>
 
 <script>
-
     // apply detail popup
 
     $(document).ready(function() {
@@ -186,7 +175,6 @@ require "../backend/manage-applicant.php";
         })
 
     });
-
 </script>
 
 

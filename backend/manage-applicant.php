@@ -36,7 +36,7 @@ $data = "SELECT req_partner.*,
 
         JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id) WHERE (req_partner.req_status_id = '1')
 
-        ORDER BY `timestamp` ASC";
+        ORDER BY `timestamp` DESC";
 
 $result = mysqli_query($conn, $data);
 
@@ -68,7 +68,7 @@ $data1 = "SELECT req_partner.*,
 
         JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id)
 
-        ORDER BY `timestamp` ASC";
+        ORDER BY `timestamp` DESC";
 
 $result2 = mysqli_query($conn, $data1);
 
