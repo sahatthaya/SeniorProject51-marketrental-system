@@ -31,9 +31,7 @@
 </head>
 
 <script>
-
     var message = "โปรดทราบ\n หากคุณทำการยกเลิกการจอง\n คุณจะไม่ได้รับเงินมัดจำคืน";
-
 </script>
 
 <?php
@@ -49,18 +47,10 @@ include "nav.php";
 include "../backend/1-connectDB.php";
 
 $users_id = $_SESSION['users_id'];
-
 $count_n = 1;
+$querycalendar = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking.users_id = $users_id and status = '1'");
+$queryrent = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking.users_id = $users_id and status = '1' ORDER BY `timestamp` DESC");
 
-$queryrangecalen = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id and status = '1'");
-
-$queryperiodcalen = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id and status = '1'");
-
-
-
-$queryrange = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id and status = '1'");
-
-$queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id and status = '1'");
 
 
 
@@ -103,63 +93,21 @@ if (isset($_GET['id-del']) != '') {
       })";
 
     echo "</script>";
-
 }
 
 if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
     $id = $_GET['id'];
+    $sql = mysqli_query($conn, "UPDATE `booking` SET `status`='0' WHERE `b_id`=$id");
 
-    $type = $_GET['type'];
+    if ($sql) {
 
-
-
-    if ($type == 'range') {
-
-        $sql = mysqli_query($conn, "UPDATE `booking_range` SET `status`='0' WHERE `b_id`=$id");
-
-        if ($sql) {
-
-            echo "<script>cancelsuccess()</script>";
-
-        } else {
-
-            echo "<script>alert('error range')</script>";
-
-        }
-
+        echo "<script>cancelsuccess()</script>";
     } else {
 
-        $sql = mysqli_query($conn, "UPDATE `booking_period` SET `status`='0' WHERE `bp_id`=$id");
-
-        if ($sql) {
-
-            echo "<script>cancelsuccess()</script>";
-
-        } else {
-
-            echo "<script>alert('error period')</script>";
-
-        }
-
+        echo "<script>alert('error range')</script>";
     }
-
 }
-
-if (isset($_POST['save-range'])) {
-
-    $start = $_POST['start'];
-
-    $end = $_POST['end'];
-
-
-
-    $queryrange = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking_range.users_id = $users_id and status = '1' and '$start' <= `end` and  '$end'  >= `start`");
-
-    $queryperiod = mysqli_query($conn, "SELECT * FROM market_detail,booking_period,opening_period,stall WHERE booking_period.op_id=opening_period.id and opening_period.mkr_id = market_detail.mkr_id and booking_period.stall_id = stall.sKey and booking_period.users_id = $users_id and status = '1' and '$start' <= `end` and  '$end'  >= `start`");
-
-}
-
 ?>
 
 
@@ -264,7 +212,7 @@ if (isset($_POST['save-range'])) {
 
                     <tbody>
 
-                        <?php while ($row = $queryrange->fetch_assoc()) : ?>
+                        <?php while ($row = $queryrent->fetch_assoc()) : ?>
 
                             <tr>
 
@@ -272,32 +220,30 @@ if (isset($_POST['save-range'])) {
 
                                 <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 
-                                <td><?php echo $row['shopname']; ?></td>
+                                <td><?php echo $row['b_shopname']; ?></td>
 
                                 <td><?php echo $row['mkr_name']; ?></td>
 
                                 <td><?php echo $row['sID']; ?></td>
 
-                                <td><?php echo date("d/m/Y", strtotime($row['start'])) ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['b_start'])) ?></td>
 
-                                <td><?php echo date("d/m/Y", strtotime($row['end'])) ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
 
                                 <?php
 
                                 $curr_date = date('Y/m/d');
 
-                                $start = strtotime(str_replace('-', '/', $row['start']));
+                                $start = strtotime(str_replace('-', '/', $row['b_start']));
 
                                 $startdate = date("Y/m/d", strtotime("-7 day", $start));
 
                                 if (strtotime($curr_date) <= strtotime($startdate)) {
 
                                     $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=range">ยกเลิกการจอง</a>';
-
                                 } else {
 
                                     $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
-
                                 }
 
                                 ?>
@@ -319,63 +265,6 @@ if (isset($_POST['save-range'])) {
                         <?php $count_n++;
 
                         endwhile; ?>
-
-                        <?php while ($row2 = $queryperiod->fetch_assoc()) : ?>
-
-                            <tr>
-
-                                <td><?php echo $count_n; ?></td>
-
-                                <td><?php echo date("d/m/Y", strtotime($row2['timestamp'])) ?></td>
-
-                                <td><?php echo $row2['b_shopname']; ?></td>
-
-                                <td><?php echo $row2['mkr_name']; ?></td>
-
-                                <td><?php echo $row2['sID']; ?></td>
-
-                                <td><?php echo date("d/m/Y", strtotime($row2['start'])) ?></td>
-
-                                <td><?php echo date("d/m/Y", strtotime($row2['end'])) ?></td>
-
-                                <?php
-
-                                $curr_date = date('Y/m/d');
-
-                                $start = strtotime(str_replace('-', '/', $row2['start']));
-
-                                $startdate = date("Y/m/d", strtotime("-7 day", $start));
-
-                                if (strtotime($curr_date) < strtotime($startdate)) {
-
-                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row2['b_id'] . '&type=period">ยกเลิกการจอง</a>';
-
-                                } else {
-
-                                    $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
-
-                                }
-
-                                ?>
-
-                                <td>
-
-                                    <a name="view" type="button" class="btn btn-outline-primary" href="../ExportPDF-master/reciept-booking-period.php?b_id=<?php echo $row2['b_id']; ?>" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
-
-                                </td>
-
-                                <td>
-
-                                    <?php echo $cancel; ?>
-
-                                </td>
-
-                            </tr>
-
-                        <?php $count_n++;
-
-                        endwhile; ?>
-
                     </tbody>
 
                 </table>
@@ -393,7 +282,7 @@ if (isset($_POST['save-range'])) {
 
 
 <script>
-
+    // rent calendar
     mobiscroll.setOptions({
 
         locale: mobiscroll.localeTh,
@@ -490,11 +379,11 @@ if (isset($_POST['save-range'])) {
 
             $countcolor1 = 0;
 
-            while ($q2 = $queryperiodcalen->fetch_assoc()) : ?> {
+            while ($q2 = $querycalendar->fetch_assoc()) : ?> {
 
                     start: new Date(<?php
 
-                                    $start1 = strtotime(str_replace('-', '/', $q2['start']));
+                                    $start1 = strtotime(str_replace('-', '/', $q2['b_start']));
 
                                     echo date("Y,m,d", strtotime("-1 month", $start1))
 
@@ -502,7 +391,7 @@ if (isset($_POST['save-range'])) {
 
                     end: new Date(<?php
 
-                                    $end1 = strtotime(str_replace('-', '/', $q2['end']));
+                                    $end1 = strtotime(str_replace('-', '/', $q2['b_end']));
 
                                     echo date("Y,m,d", strtotime("-1 month", $end1))
 
@@ -527,65 +416,15 @@ if (isset($_POST['save-range'])) {
                 if ($countcolor1 > 10) {
 
                     $countcolor1 = 0;
-
                 }
 
             endwhile ?>
-
-            <?php
-
-            $countcolor = 0;
-
-            while ($q1 = $queryrangecalen->fetch_assoc()) : ?> {
-
-                    start: new Date(<?php
-
-                                    $start1 = strtotime(str_replace('-', '/', $q1['start']));
-
-                                    echo date("Y,m,d", strtotime("-1 month", $start1))
-
-                                    ?>),
-
-                    end: new Date(<?php
-
-                                    $end1 = strtotime(str_replace('-', '/', $q1['end']));
-
-                                    echo date("Y,m,d", strtotime("-1 month", $end1))
-
-                                    ?>),
-
-                    title: 'ตลาด<?php echo $q1['mkr_name'] . ' รหัสแผงค้า: ' . $q1['sID']; ?>',
-
-                    color: colorset[<?php echo $countcolor; ?>],
-
-                    allDay: true,
-
-                    accepted: false
-
-
-
-                },
-
-            <?php
-
-                $countcolor++;
-
-                if ($countcolor > 10) {
-
-                    $countcolor = 0;
-
-                }
-
-            endwhile ?>
-
-
-
         ]
 
     });
 
 
-
+    // table date filter
     $(document).ready(function() {
 
         $.fn.dataTable.ext.search.push(
@@ -677,7 +516,6 @@ if (isset($_POST['save-range'])) {
         });
 
     });
-
 </script>
 
 

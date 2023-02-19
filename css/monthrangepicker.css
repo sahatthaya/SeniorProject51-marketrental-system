@@ -1,0 +1,75 @@
+.form-field {
+    width: 270px;
+    padding: 20px;
+}
+
+.form-field label {
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.popover {
+    max-width: 400px;
+}
+
+.popover .popover-body {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.mpr-calendarholder .col-6 {
+    border-right: 1px solid #ced4da;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.mpr-calendarholder .col-6:last-child {
+    border: none;
+}
+
+.mpr-calendar .row {
+    margin: 0;
+}
+
+.mpr-calendar h5 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.mpr-calendar h5 .fa-chevron-left {
+    float: left;
+}
+
+.mpr-calendar h5 .fa-chevron-right {
+    float: right;
+}
+
+.mpr-calendar h5 .fa-chevron-left,
+.mpr-calendar h5 .fa-chevron-right {
+    font-size: 14px;
+    margin-top: 4px;
+    color: #0d6efd;
+    cursor: pointer;
+}
+
+.mpr-calendar .mpr-month {
+    padding: 10px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.mpr-calendar .mpr-month:hover {
+    background: #f1f1f1;
+}
+
+.mpr-calendar .mpr-month-val {
+    display: none;
+}
+
+.mpr-calendar .mpr-selected {
+    background-color: #cfe2ff;
+}

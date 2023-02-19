@@ -150,7 +150,7 @@
 
                     $sKey =  $row1['sKey'];
 
-                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_range ON (stall.sKey = booking_range.stall_id) JOIN zone ON(zone.z_id = stall.z_id) WHERE (booking_range.`stall_id` = '$sKey' AND `start` <= '$endfilter' AND  '$startfilter' <= `end` )");
+                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking ON (stall.sKey = booking.stall_id) JOIN zone ON(zone.z_id = stall.z_id) WHERE (booking.`stall_id` = '$sKey' AND `b_start` <= '$endfilter' AND  '$startfilter' <= `b_end` )");
 
                     $numRows = mysqli_num_rows($rsrange);
 

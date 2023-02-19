@@ -62,7 +62,7 @@ $result_province = mysqli_query($conn, $query_province);
 
   </nav>
 
-  <form id="applyform" method="POST" enctype="multipart/form-data"  class="was-validated">
+  <form id="applyform" method="POST" enctype="multipart/form-data" class="was-validated">
 
     <div class="form-outer" style="overflow: visible;">
 
@@ -84,11 +84,11 @@ $result_province = mysqli_query($conn, $query_province);
 
             <select class="selectpicker " title="เลือกประเภท" name="mkrtype" data-width="100%" data-size="5" required>
 
-              <option value="<?php echo $row['market_type_id']; ?>" selected="selected"><?php echo $row['market_type']; ?></option>
+              <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :;
+                $select = ($row['market_type_id'] == $row1[0]) ? 'selected' : '';
+              ?>
 
-              <?php while ($row1 = mysqli_fetch_array($result_mkrType)) :; ?>
-
-                <option value="<?php echo $row1[0]; ?>"><?php echo $row1[1]; ?></option>
+                <option value="<?php echo $row1[0]; ?>" <?Php echo $select ?>><?php echo $row1[1]; ?></option>
 
               <?php endwhile; ?>
 
@@ -208,17 +208,14 @@ $result_province = mysqli_query($conn, $query_province);
 
           <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
 
-          <select class="form-select" name="opening" aria-label="Default select example" required>
+          <select class="form-select" name="opening" aria-label="Default select example" id="open" required>
 
-            <option value="<?php echo $row['opening'] ?>" selected hidden><?php echo $row['opening'] ?></option>
+            <option value="เปิดทำการทุกวัน" <?php echo ($row['opening'] == "เปิดทำการทุกวัน") ? 'selected' : ''; ?>>เปิดทำการทุกวัน</option>
 
-            <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
-
-            <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
+            <option value="เปิดทำการเป็นรอบ" <?php echo ($row['opening'] == "เปิดทำการเป็นรอบ") ? 'selected' : ''; ?>>เปิดทำการเป็นรอบ</option>
 
           </select>
 
-        
 
         </div>
 
@@ -244,7 +241,7 @@ $result_province = mysqli_query($conn, $query_province);
 
         <div class="des_input">รูปภาพตลาด</div>
 
-        <input type="file" class="form-control" name="ct_logo" id="mkr"  accept="image/jpeg,image/gif,image/png">
+        <input type="file" class="form-control" name="ct_logo" id="mkr" accept="image/jpeg,image/gif,image/png">
 
         <div class="p-0">
 
@@ -267,7 +264,7 @@ $result_province = mysqli_query($conn, $query_province);
 </body>
 
 <script>
-
+ 
   $(document).ready(function() {
 
     $("body").tooltip({
@@ -309,7 +306,6 @@ $result_province = mysqli_query($conn, $query_province);
     }
 
   }
-
 </script>
 
 

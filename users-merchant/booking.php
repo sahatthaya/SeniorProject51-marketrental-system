@@ -100,7 +100,6 @@
 
                         <button type="submit" class="btn btn-outline-primary save-stall " name="save-range"><i class='bx bx-search'></i> ค้นหา </button>
                         <a class="btn btn-outline-danger save-stall " href="booking.php?mkr_id=<?php echo $row['mkr_id']; ?>"><i class='bx bx-reset'></i> รีเซ็ต</a>
-
                     </div>
 
                 </div>
@@ -153,7 +152,7 @@
 
                     $sKey =  $row1['sKey'];
 
-                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_range ON (stall.sKey = booking_range.stall_id) JOIN zone ON(zone.z_id = stall.z_id) WHERE (booking_range.`stall_id` = '$sKey' AND `start` <= '$endfilter' AND  '$startfilter' <= `end` )");
+                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking ON (stall.sKey = booking.stall_id) JOIN zone ON(zone.z_id = stall.z_id) WHERE (booking.`stall_id` = '$sKey' AND `b_start` <= '$endfilter' AND  '$startfilter' <= `b_end` )");
 
                     $numRows = mysqli_num_rows($rsrange);
 
@@ -361,12 +360,10 @@
 
 
     mobiscroll.datepicker('#range', {
-
         select: 'range',
-
+        controls: ['calendar'],
         startInput: '#start',
-
-        endInput: '#end'
+        endInput: '#end',
 
     });
 </script>

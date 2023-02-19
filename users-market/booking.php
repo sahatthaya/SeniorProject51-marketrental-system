@@ -78,17 +78,7 @@ extract($row1);
 
 $count_n = 1;
 
-if ($row1['opening'] == 'เปิดทำการทุกวัน') {
-
-    $query = mysqli_query($conn, "SELECT * FROM `booking_range`JOIN `stall` ON (booking_range.stall_id = stall.sKey) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-
-} else {
-
-    $query = mysqli_query($conn, "SELECT * FROM `booking_period`JOIN `stall` ON (booking_period.stall_id = stall.sKey)JOIN `opening_period` ON (booking_period.op_id = opening_period.id) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-
-}
-
-
+$query = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and `stall`.market_id = $mkr_id and status = '1' ORDER BY `timestamp` DESC");
 
 ?>
 
@@ -142,7 +132,9 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
 
                             <th scope="col">ลำดับ</th>
 
-                            <th scope="col">วันที่เริ่มจอง</th>
+                            <th scope="col">จองเมื่อวันที่</th>
+
+                            <th scope="col">วันที่เริ่มเช่า</th>
 
                             <th scope="col">วันที่สิ้นสุด</th>
 
@@ -150,7 +142,6 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
 
                             <th scope="col">ชื่อผู้จอง</th>
 
-                            <th scope="col">จองเมื่อวันที่</th>
 
                             <th scope="col">หมายเหตุ</th>
 
@@ -165,75 +156,19 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
                         <?php while ($row = $query->fetch_assoc()) : ?>
 
                             <tr>
+                                <td><?php echo $count_n; ?></td>
 
-                                <?php if ($row1['opening'] == 'เปิดทำการทุกวัน') {
+                                <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 
-                                    $start = date('d/m/Y', strtotime($row['start']));
+                                <td><?php echo date("d/m/Y", strtotime($row['b_start'])) ?></td>
 
-                                    $end = date('d/m/Y', strtotime($row['end']));
+                                <td><?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
 
-                                    $timestamp = date('d/m/Y', strtotime($row['timestamp']));
+                                <td><?php echo $row['sID']; ?></td>
+                                <td><?php echo $row['b_fname'] . ' ' . $row['b_lname'] ?></td>
+                                <td><?php echo $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก' ?></td>
 
-                                    $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
-
-                                    $table = " 
-
-                                            <td>" . $count_n . "</td>
-
-                                            <td> " . $start . " </td>
-
-                                            <td>" . $end . "</td>
-
-                                            <td>" . $row['sID'] . "</td>
-
-                                            <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
-
-                                            <td>" . $timestamp . "</td>
-
-                                            <td>" . $status . "</td>
-
-                                            <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-m.php?b_id=" . $row['b_id'] . "' id='" . $row['b_id'] . "'>ดูรายละเอียด</a></td>
-
-                                           ";
-
-                                    echo $table;
-
-                                } else {
-
-                                    $start = date('d/m/Y', strtotime($row['start']));
-
-                                    $end = date('d/m/Y', strtotime($row['end']));
-
-                                    $timestamp = date('d/m/Y', strtotime($row['timestamp']));
-
-                                    $status =  $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก';
-
-                                    $table = "  
-
-                                <td>" . $count_n . "</td>
-
-                                <td> " . $start . " </td>
-
-                                <td>" . $end . "</td>
-
-                                <td>" . $row['sID'] . "</td>
-
-                                <td>" . $row['b_fname'] . ' ' . $row['b_lname'] . "</td>
-
-                                <td>" . $timestamp . "</td>
-
-                                <td>" . $status . "</td>
-
-                                <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='" . $row['b_id'] . "' href='../ExportPDF-master/reciept-booking-period-m.php?b_id=" . $row['b_id'] . "' id='" . $row['b_id'] . "'>ดูรายละเอียด</a></td>
-
-                               ";
-
-                                    echo $table;
-
-                                } ?>
-
-
-
+                                <td><a name='view' type='button' class='modal_data2 btn btn-outline-primary' id='<?php echo $row['b_id']; ?>' href='../ExportPDF-master/reciept-booking-m.php?b_id=<?php echo $row['b_id']; ?>'>ดูรายละเอียด</a></td>
                             </tr>
 
                         <?php $count_n++;
@@ -259,7 +194,6 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
 <script src="../backend/script.js"></script>
 
 <script>
-
     $(document).ready(function() {
 
         $.fn.dataTable.ext.search.push(
@@ -351,7 +285,6 @@ if ($row1['opening'] == 'เปิดทำการทุกวัน') {
         });
 
     });
-
 </script>
 
 

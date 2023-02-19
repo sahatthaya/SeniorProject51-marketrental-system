@@ -29,11 +29,10 @@ include "../backend/1-import-link.php";
 
 if (isset($_GET["b_id"])) {
   $id = $_GET["b_id"];
-  $resultdata = mysqli_query($conn, "SELECT * FROM market_detail,booking_range,stall,provinces,amphures,districts WHERE booking_range.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id AND market_detail.province_id = provinces.id and market_detail.	amphure_id = amphures.id and market_detail.district_id = districts.id and b_id = '$id'");
+  $resultdata = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall,provinces,amphures,districts WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id AND market_detail.province_id = provinces.id and market_detail.	amphure_id = amphures.id and market_detail.district_id = districts.id and b_id = '4'");
   $row = mysqli_fetch_array($resultdata);
   extract($row);
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -77,11 +76,11 @@ if (isset($_GET["b_id"])) {
           </tr>
           <tr>
             <td width="30%"><label>ช่วงวันที่จอง</label></td>
-            <td width="70%"><?php echo date("d/m/Y", strtotime($row['start'])) ?> - <?php echo date("d/m/Y", strtotime($row['end'])) ?></td>
+            <td width="70%"><?php echo date("d/m/Y", strtotime($row['b_start'])) ?> - <?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
           </tr>
           <tr>
             <td width="30%"><label>ระยะเวลาที่จอง</label></td>
-            <td width="70%"><?php echo $row["day"] ?> วัน</td>
+            <td width="70%"><?php echo $row["b_day"] ?> วัน</td>
           </tr>
           <tr>
             <td width="30%"><label>ราคาค่าเช่าแผง</label></td>
@@ -100,7 +99,7 @@ if (isset($_GET["b_id"])) {
       <table class="table">
         <tr>
           <td width="30%"><label>รหัสการชำระ</label></td>
-          <td width="70%"><?php echo $row["code_pay"] ?></td>
+          <td width="70%"><?php echo $row["b_codepay"] ?></td>
         </tr>
         <tr>
           <td width="30%"><label>ชำระเงินเมื่อวันที่</label></td>
@@ -108,15 +107,15 @@ if (isset($_GET["b_id"])) {
         </tr>
         <tr>
           <td width="30%"><label>ค่ามัดจำ</label></td>
-          <td width="70%"><?php echo number_format($row["dept_pay"]) ?> บาท</td>
+          <td width="70%"><?php echo number_format($row["b_deptpay"]) ?> บาท</td>
         </tr>
         <tr>
           <td width="30%"><label>ค่าบริการและภาษี <span class="text-secondary">(4.07%)</span></label></td>
-          <td width="70%"><?php echo number_format($row["fee_pay"]) ?> บาท</td>
+          <td width="70%"><?php echo number_format($row["b_feepay"]) ?> บาท</td>
         </tr>
         <tr>
           <td width="30%"><label>รวมทั้งสิ้น</label></td>
-          <td width="70%"><?php echo number_format($row["total_pay"]) ?> บาท</td>
+          <td width="70%"><?php echo number_format($row["b_totalpay"]) ?> บาท</td>
         </tr>
       </table>
     </div>
@@ -146,8 +145,8 @@ if (isset($_GET["b_id"])) {
       <div style="font-size:22px;"><strong style="font-weight: bold;">ข้อมูลการจองแผงค้า</strong></div>
       <strong style="font-weight: bold;">ตลาด</strong> <?php echo $row['mkr_name'] ?><br>
       <strong style="font-weight: bold;">รหัสแผงค้า</strong> <?php echo  $row["sID"] ?> <br>
-      <strong style="font-weight: bold;">วันที่จอง</strong> <?php echo date("d/m/Y", strtotime($row['start'])) ?> - <?php echo date("d/m/Y", strtotime($row['end'])) ?> <br>
-      <strong style="font-weight: bold;">ระยะเวลาที่จอง</strong> <?php echo $row["day"] ?> วัน <br>
+      <strong style="font-weight: bold;">วันที่จอง</strong> <?php echo date("d/m/Y", strtotime($row['b_start'])) ?> - <?php echo date("d/m/Y", strtotime($row['b_end'])) ?> <br>
+      <strong style="font-weight: bold;">ระยะเวลาที่จอง</strong> <?php echo $row["b_day"] ?> วัน <br>
       <strong style="font-weight: bold;">ราคาค่าเช่าแผง</strong> <?php echo number_format($row["sRent"]) ?> <?php echo $row["sPayRange"] ?> <br>
       <strong style="font-weight: bold;">ราคาค่ามัดจำ</strong> <?php echo number_format($row["sDept"]) ?> บาท
     </div>
@@ -167,16 +166,16 @@ if (isset($_GET["b_id"])) {
           <tr>
             <td style="border: 1px solid #dddddd;padding: 8px;text-align:center;">1</td>
             <td style="border: 1px solid #dddddd;padding: 8px;"><strong style="font-weight: bold;">ค่ามัดจำ</strong></td>
-            <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><?php echo number_format($row["dept_pay"]) ?></td>
+            <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><?php echo number_format($row["b_deptpay"]) ?></td>
           </tr>
           <tr>
             <td style="border: 1px solid #dddddd;padding: 8px;text-align:center;">2</td>
             <td style="border: 1px solid #dddddd;padding: 8px;"><strong style="font-weight: bold;">ค่าบริการและภาษี</strong> (4.07%)</td>
-            <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><?php echo number_format($row["fee_pay"]) ?></td>
+            <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><?php echo number_format($row["b_feepay"]) ?></td>
           </tr>
           <tr style="border: 1px solid #dddddd;">
             <td style="border: 1px solid #dddddd;padding: 8px;" colspan="2"><strong style="font-weight: bold;">รวมทั้งสิ้น</strong> </td>
-            <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><strong style="font-weight: bold;"><?php echo number_format($row["total_pay"]) ?></strong></td>
+            <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><strong style="font-weight: bold;"><?php echo number_format($row["b_totalpay"]) ?></strong></td>
           </tr>
         </tbody>
       </table>
@@ -185,7 +184,7 @@ if (isset($_GET["b_id"])) {
     <table class="w-100" style="font-size:20px;margin-top:10px;">
       <tr>
         <td>
-          <strong style="font-weight: bold;">รหัสการชำระเงิน</strong> <?php echo $row["code_pay"] ?>
+          <strong style="font-weight: bold;">รหัสการชำระเงิน</strong> <?php echo $row["b_codepay"] ?>
         </td>
         <td align="right">
           <strong style="font-weight: bold;">ชำระเมื่อ</strong> <?php echo  date("d/m/Y เวลา h:ia", strtotime($row['timestamp'])) ?>

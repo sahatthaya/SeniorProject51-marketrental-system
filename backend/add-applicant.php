@@ -23,7 +23,6 @@ if (isset($_POST['submit-apply'])) {
     $opening = $_POST['opening'];
 
 
-
     $house_no = $_POST['HouseNo'];
 
     $soi = $_POST['Soi'];
@@ -84,7 +83,7 @@ if (isset($_POST['submit-apply'])) {
 
         && isset($idfilepath) != "" && isset($_POST["mkrName"]) != "" && isset($_POST["mkrtype"]) != "" && isset($mkrfilepath) != ""
 
-        && isset($opening) != "" 
+        && isset($opening) != ""
 
     ) {
 
@@ -101,15 +100,11 @@ if (isset($_POST['submit-apply'])) {
             echo "<script type='text/javascript'> partnersuccess(); </script>";
 
             echo '<meta http-equiv="refresh" content="1";/>';
-
         } else {
 
             echo "<script type='text/javascript'> error(); </script>";
-
         }
-
     }
-
 }
 
 
@@ -155,18 +150,12 @@ if (isset($_POST['bn-submit'])) {
             echo '<meta http-equiv="refresh" content="1";/>';
 
             mysqli_close($conn);
-
         } else {
 
             echo "<script type='text/javascript'> error(); </script>";
-
         }
-
     } else {
 
         echo "<script type='text/javascript'> error(); </script>";
-
     }
-
 }
-

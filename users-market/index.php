@@ -61,11 +61,9 @@ require "../backend/add-applicant.php";
 
 if (isset($_GET['del_id'])) {
     $mkr_id = $_GET['del_id'];
-    $qrybr = mysqli_query($conn, "SELECT booking_range.*,stall.market_id FROM `booking_range`JOIN stall ON (booking_range.stall_id = stall.sKey) WHERE market_id = $mkr_id");
-    $qrybp = mysqli_query($conn, "SELECT booking_period .*,market_id FROM booking_period JOIN stall ON (booking_period.stall_id = stall.sKey) WHERE market_id = $mkr_id");
-    $br = mysqli_num_rows($qrybr);
-    $bp = mysqli_num_rows($qrybp);
 
+    $qrybr = mysqli_query($conn, "SELECT booking.*,stall.market_id FROM `booking`JOIN stall ON (booking.stall_id = stall.sKey) WHERE market_id = $mkr_id");
+    $br = mysqli_num_rows($qrybr);
     if ($br > 0 or $bp > 0) {
         echo "<script>errdelmkb();</script>";
     } else {
@@ -287,15 +285,7 @@ if (isset($_GET['del_id'])) {
 
                     <?php
 
-                    if ($row3['opening'] == 'เปิดทำการทุกวัน') {
-
-                        $queryz = "SELECT zone.z_name , COUNT(booking_range.b_id) AS countZ  FROM stall JOIN zone ON (zone.z_id = stall.z_id) JOIN booking_range ON (booking_range.stall_id = stall.sKey) WHERE (stall.market_id = '$mkr_id') GROUP BY zone.z_id ORDER BY countZ DESC LIMIT 3";
-                    } else {
-
-                        $queryz = "SELECT zone.z_name , COUNT(booking_period.b_id) AS countZ  FROM stall JOIN zone ON (zone.z_id = stall.z_id) JOIN booking_period ON (booking_period.stall_id = stall.sKey) WHERE (stall.market_id = '$mkr_id') GROUP BY zone.z_id ORDER BY countZ DESC LIMIT 3";
-                    }
-
-
+                    $queryz = "SELECT zone.z_name , COUNT(booking.b_id) AS countZ  FROM stall JOIN zone ON (zone.z_id = stall.z_id) JOIN booking ON (booking.stall_id = stall.sKey) WHERE (stall.market_id = '$mkr_id') GROUP BY zone.z_id ORDER BY countZ DESC LIMIT 3";
 
                     $rsz = mysqli_query($conn, $queryz);
 
@@ -352,15 +342,7 @@ if (isset($_GET['del_id'])) {
 
                     <?php
 
-                    if ($row3['opening'] == 'เปิดทำการทุกวัน') {
-
-                        $queryz = "SELECT users.username,booking_range.b_fname,booking_range.b_lname , COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN users ON (users.users_id = booking_range.users_id) JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
-                    } else {
-
-                        $queryz = "SELECT users.username,booking_period.b_fname,booking_period.b_lname , COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN users ON (users.users_id = booking_period.users_id) JOIN stall ON (stall.sKey = booking_period.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
-                    }
-
-
+                    $queryz = "SELECT users.username,booking.b_fname,booking.b_lname , COUNT(booking.b_id) AS countZ  FROM booking JOIN users ON (users.users_id = booking.users_id) JOIN stall ON (stall.sKey = booking.stall_id) WHERE (stall.market_id = '$mkr_id') GROUP BY users.users_id ORDER BY countZ DESC LIMIT 3";
 
                     $rsz = mysqli_query($conn, $queryz);
 
@@ -415,7 +397,7 @@ if (isset($_GET['del_id'])) {
 
                 <h4 class="center">จำนวนคำร้องเรียนทั้งหมด</h4>
 
-                <h1>
+                <h1 class="my-4">
 
                     <?php
 
@@ -428,33 +410,32 @@ if (isset($_GET['del_id'])) {
                     ?>
 
                 </h1>
-
+                <a href="complain.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary w-100" style="height: fit-content;"><i class='bx bxs-send'></i> จัดการคำร้องเรียน</a>
             </div>
 
             <div class="border rounded shadow-sm mt-3 p-3 h-100">
-
-                <h4 class="center">คำร้องเรียนที่ยังไม่ได้ตอบกลับ</h4>
-
-                <h1>
-
+                <h4 class="center">จำนวนคำร้องเรียนในแต่ละสถานะ</h4>
+                <ul class="list-group list-group-flush">
                     <?php
-
-                    $queryz = "SELECT * FROM complain  WHERE (mkr_id = $mkr_id AND status = 1)";
-
-                    $rsz = mysqli_query($conn, $queryz);
-
-                    echo $countcomp = mysqli_num_rows($rsz);
-
-                    ?>
-
-                </h1>
-
-                <div class="text-end mt-4">
-
-                    <a href="complain.php?mkr_id=<?php echo $row3['mkr_id'] ?>" type="button" class="btn btn-primary " style="height: fit-content;"><i class='bx bxs-send'></i> ตอบกลับ</a>
-
-                </div>
-
+                    for ($i = 1; $i <= 3; $i++) {
+                        $qrycs[$i] = mysqli_query($conn, "SELECT COUNT(complain.comp_id) AS countZ, comp_status.*  FROM comp_status  JOIN complain ON (complain.status = comp_status.cs_id) WHERE (mkr_id = $mkr_id AND cs_id = $i)");
+                        foreach ($qrycs[$i] as $cs[$i]) { ?>
+                            <li class="list-group-item">
+                                <div class=" row text-decoration-none">
+                                    <div class="col-1 ps-0  <?php echo $cs[$i]['cs_color'] ?>">
+                                        <i class='bx bxs-circle'></i>
+                                    </div>
+                                    <div class="col-7 <?php echo $cs[$i]['cs_color'] ?>">
+                                        <?php echo $cs[$i]['cs_name'] ?>
+                                    </div>
+                                    <div class="col-4 text-end pe-0">
+                                        <?php echo $cs[$i]['countZ'] ?>
+                                    </div>
+                                </div>
+                            </li>
+                    <?php }
+                    } ?>
+                </ul>
             </div>
 
             <div class="border rounded shadow-sm mt-3 p-3 h-100">
@@ -703,121 +684,19 @@ if (isset($_GET['del_id'])) {
         data.addRows([
 
             <?php
-
             $curr_Y = date("Y");
-
-            if ($row3['opening'] == 'เปิดทำการทุกวัน') {
-
-                $query1 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-01-31' AND  '$curr_Y-01-01' <=`end`");
-
-                $query2 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-02-29' AND  '$curr_Y-02-01' <=`end`");
-
-                $query3 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-03-31' AND  '$curr_Y-03-01' <=`end`");
-
-                $query4 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-04-30' AND  '$curr_Y-04-01' <=`end`");
-
-                $query5 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-05-31' AND  '$curr_Y-05-01' <=`end`");
-
-                $query6 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-06-30' AND  '$curr_Y-06-01' <=`end`");
-
-                $query7 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-07-31' AND  '$curr_Y-07-01' <=`end`");
-
-                $query8 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-08-31' AND  '$curr_Y-08-01' <=`end`");
-
-                $query9 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-09-30' AND  '$curr_Y-09-01' <=`end`");
-
-                $query10 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-10-31' AND  '$curr_Y-10-01' <=`end`");
-
-                $query11 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-11-30' AND  '$curr_Y-11-01' <=`end`");
-
-                $query12 = mysqli_query($conn, "SELECT  COUNT(booking_range.b_id) AS countZ  FROM booking_range JOIN stall ON (stall.sKey = booking_range.stall_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-12-31' AND  '$curr_Y-12-01' <=`end`");
-            } else {
-
-                $query1 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id = '$mkr_id' AND `start` <= '$curr_Y-01-30' AND  '$curr_Y-01-01' <=`end`");
-
-                $query2 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-02-29' AND  '$curr_Y-02-01' <=`end`");
-
-                $query3 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-03-31' AND  '$curr_Y-03-01' <=`end`");
-
-                $query4 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-04-30' AND  '$curr_Y-04-01' <=`end`");
-
-                $query5 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-05-31' AND  '$curr_Y-05-01' <=`end`");
-
-                $query6 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-06-30' AND  '$curr_Y-06-01' <=`end`");
-
-                $query7 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-07-31' AND  '$curr_Y-07-01' <=`end`");
-
-                $query8 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-08-31' AND  '$curr_Y-08-01' <=`end`");
-
-                $query9 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-09-30' AND  '$curr_Y-09-01' <=`end`");
-
-                $query10 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-10-31' AND  '$curr_Y-10-01' <=`end`");
-
-                $query11 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-11-30' AND  '$curr_Y-11-01' <=`end`");
-
-                $query12 = mysqli_query($conn, "SELECT  COUNT(booking_period.b_id) AS countZ  FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE stall.market_id ='$mkr_id'  AND `start` <= '$curr_Y-12-31' AND  '$curr_Y-12-01' <=`end`");
+            $months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+            $lastday = ['31', '29', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
+            $mth = ["ม.ค.", "ก.พ.", "มี.ค.", "เม.ย.", "พ.ค.", "มิ.ย.", "ก.ค.", "ส.ค.", "ก.ย.", "ต.ค.", "พ.ย.", "ธ.ค."];
+            $rows = [];
+            for ($i = 0; $i < 12; $i++) {
+                $startdate = $curr_Y . "-" . $months[$i] . "-1";
+                $enddate = $curr_Y . "-" . $months[$i] . "-" . $lastday[$i];
+                $query = mysqli_query($conn, "SELECT  COUNT(booking.b_id) AS countZ FROM booking JOIN stall ON (stall.sKey = booking.stall_id) WHERE stall.market_id ='$mkr_id'  AND `b_start` <= '$enddate' AND  '$startdate' <=`b_end` AND `status`='1'");
+                foreach ($query as $rs) {
+                    echo "['" . $mth[$i] . "'," . $rs['countZ'] . "],";
+                }
             }
-
-            foreach ($query1 as $rs_1) {
-
-                echo "['ม.ค.'," . $rs_1['countZ'] . "],";
-            }
-
-            foreach ($query2 as $rs_2) {
-
-                echo "['ก.พ.'," . $rs_2['countZ'] . "],";
-            }
-
-            foreach ($query3 as $rs_3) {
-
-                echo "['มี.ค.'," . $rs_3['countZ'] . "],";
-            }
-
-            foreach ($query4 as $rs_4) {
-
-                echo "['เม.ย.'," . $rs_4['countZ'] . "],";
-            }
-
-            foreach ($query5 as $rs_5) {
-
-                echo "['พ.ค.'," . $rs_5['countZ'] . "],";
-            }
-
-            foreach ($query6 as $rs_6) {
-
-                echo "['มิ.ย.'," . $rs_6['countZ'] . "],";
-            }
-
-            foreach ($query7 as $rs_7) {
-
-                echo "['ก.ค.'," . $rs_7['countZ'] . "],";
-            }
-
-            foreach ($query8 as $rs_8) {
-
-                echo "['ส.ค.'," . $rs_8['countZ'] . "],";
-            }
-
-            foreach ($query9 as $rs_9) {
-
-                echo "['ก.ย.'," . $rs_9['countZ'] . "],";
-            }
-
-            foreach ($query10 as $rs_10) {
-
-                echo "['ต.ค.'," . $rs_10['countZ'] . "],";
-            }
-
-            foreach ($query11 as $rs_11) {
-
-                echo "['พ.ย.'," . $rs_11['countZ'] . "],";
-            }
-
-            foreach ($query12 as $rs_12) {
-
-                echo "['ธ.ค.'," . $rs_12['countZ'] . "]";
-            }
-
             ?>
 
         ]);
@@ -911,6 +790,7 @@ if (isset($_GET['del_id'])) {
         controls: ['calendar'],
 
         display: 'inline',
+        calendarType: 'month',
 
         colors: [
 

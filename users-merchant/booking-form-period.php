@@ -28,14 +28,11 @@
 
 <?php
 
-
-
 include "profilebar.php";
 
 include "nav.php";
 
 include "../backend/1-connectDB.php";
-
 
 include "../backend/qry-bookingform.php";
 

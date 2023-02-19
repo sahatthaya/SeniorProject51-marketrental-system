@@ -162,7 +162,7 @@
 
 
 
-                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_period ON (stall.sKey = booking_period.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id')");
+                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking ON (stall.sKey = booking.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id')");
 
                     $numRows = mysqli_num_rows($rsrange);
                     if ($numRows > 0) {

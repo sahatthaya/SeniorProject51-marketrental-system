@@ -469,7 +469,7 @@ $rowus = mysqli_fetch_array($qry);
 
                 <div class="text-danger">*หมายเหตุ* <br />1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br>3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
 
-                <input type="" name="omiseToken">
+                <input type="hidden" name="omiseToken">
 
                 <input type="hidden" name="omiseSource">
 
@@ -508,7 +508,6 @@ $rowus = mysqli_fetch_array($qry);
 
 
     <script>
-
         OmiseCard.configure({
 
             publicKey: "pkey_test_5tl2v3azqsf7i7u6hlm",
@@ -560,13 +559,11 @@ $rowus = mysqli_fetch_array($qry);
             });
 
         });
-
     </script>
 
 </body>
 
 <script>
-
     $(document).ready(function() {
 
         $("body").tooltip({
@@ -593,7 +590,7 @@ $rowus = mysqli_fetch_array($qry);
 
     // datepicker
 
- 
+
 
     // ประกาษตัวแปรและธีมสี
 
@@ -639,8 +636,6 @@ $rowus = mysqli_fetch_array($qry);
 
         select: 'range',
 
-        selectSize: 10,
-
         showOuterDays: false,
 
         startInput: '#datestart',
@@ -649,7 +644,8 @@ $rowus = mysqli_fetch_array($qry);
 
         min: tomorrow.setDate(tomorrow.getDate() + 1),
 
-        invalid: [<?php while ($q1 = $qryinvalid->fetch_assoc()) : ?> {
+        invalid: [
+            <?php while ($q1 = $qryinvalid->fetch_assoc()) : ?> {
 
                     start: new Date(<?php
 
@@ -678,7 +674,6 @@ $rowus = mysqli_fetch_array($qry);
 
 
     });
-
 </script>
 
 
