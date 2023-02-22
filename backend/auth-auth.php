@@ -32,17 +32,17 @@
 
             if ($fRows[7] == 1) {
 
-                echo "<script>window.location='http://localhost/SeniorProject51/users-merchant/index.php';</script>";
+                echo "<script>window.location='../users-merchant/index.php';</script>";
 
             } else {
 
                 if ($fRows[7] == 2) {
 
-                    echo "<script>window.location='http://localhost/SeniorProject51/users-market/index.php';</script>";
+                    echo "<script>window.location='../users-market/index.php';</script>";
 
                 } else {
 
-                    echo "<script>window.location='http://localhost/SeniorProject51/users-admin/banner.php';</script>";
+                    echo "<script>window.location='..//users-admin/banner.php';</script>";
 
                 }
 
