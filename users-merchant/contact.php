@@ -53,13 +53,13 @@ require "../backend/qry-contact.php";
 
     <div class="parent mt-3">
 
-        <div class="logo_img">
+        <div class="logo_img rounded">
 
             <img src="../<?php echo $row["ct_logo"] ?>" alt="logo_marketremtal" class="img-fluid p-3">
 
         </div>
 
-        <div class="contentbox web-info">
+        <div class="contentbox web-info  border shadow-sm rounded">
 
             <figure class="text-center">
 
@@ -83,7 +83,7 @@ require "../backend/qry-contact.php";
 
     <div class="boxcard">
 
-        <div class=" cardcontact" id="ct1">
+        <div class=" cardcontact  border shadow-sm rounded" id="ct1">
 
             <div class="row g-0">
 
@@ -127,7 +127,7 @@ require "../backend/qry-contact.php";
 
 
 
-        <div class=" cardcontact" id="ct2">
+        <div class=" cardcontact  border shadow-sm rounded" id="ct2">
 
             <div class="row g-0">
 
