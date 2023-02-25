@@ -67,7 +67,7 @@ if ($row['INV_status'] == '2') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MarketRental - ข้อมูลการจองแผงค้า</title>
+    <title> MarketRental - ข้อมูลใบเรียกเก็บค่าเช่า</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
     <link rel="stylesheet" href="../css/reciept.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Sarabun&;display=swap" rel="stylesheet">

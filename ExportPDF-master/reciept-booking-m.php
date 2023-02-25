@@ -58,67 +58,69 @@ if (isset($_GET["b_id"])) {
   </nav>
   <div class="content">
     <h1 id="headline">ข้อมูลการจองแผงค้า</h1>
-    <div class="text-end">
-      <a href="reciept-booking.pdf" target="blank" class="btn btn-primary mt-3">ดาวน์โหลดใบเสร็จการจองแผงค้า (pdf)</a>
-    </div>
     <h1 id="headline" hidden>ข้อมูลการจองแผงค้า</h1>
-    <div id="table" class="bannertb border p-3 shadow-sm rounded mt-2">
-      <div class="fs-5">ข้อมูลการจอง</div>
-      <hr>
-      <table class="display table" style="width: 100%;">
-        <tbody>
+    <div class="border p-3 shadow-sm rounded mt-2">
+      <div id="table" class="bannertb ">
+        <div class="d-flex justify-content-between">
+          <div class="fs-5">ข้อมูลการจอง</div>
+          <a href="reciept-booking.pdf" target="blank" class="btn btn-primary">ดาวน์โหลดใบเสร็จการจองแผงค้า (pdf)</a>
+        </div>
+        <hr>
+        <table class="display table" style="width: 100%;">
+          <tbody>
+            <tr>
+              <td width="30%"><label>ตลาด</label></td>
+              <td width="70%"><?php echo $row['mkr_name'] ?></td>
+            </tr>
+            <tr>
+              <td width="30%"><label>รหัสแผงค้า</label></td>
+              <td width="70%"><?php echo  $row["sID"] ?></td>
+            </tr>
+            <tr>
+              <td width="30%"><label>ช่วงวันที่จอง</label></td>
+              <td width="70%"><?php echo date("d/m/Y", strtotime($row['b_start'])) ?> - <?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
+            </tr>
+            <tr>
+              <td width="30%"><label>ระยะเวลาที่จอง</label></td>
+              <td width="70%"><?php echo $row["b_day"] ?> วัน</td>
+            </tr>
+            <tr>
+              <td width="30%"><label>ราคาค่าเช่าแผง</label></td>
+              <td width="70%"><?php echo number_format($row["sRent"]) ?> <?php echo $row["sPayRange"] ?></td>
+            </tr>
+            <tr>
+              <td width="30%"><label>ราคาค่ามัดจำ</label></td>
+              <td width="70%"><?php echo number_format($row["sDept"]) ?> บาท</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="table" class="bannertb" style="margin-top:20px ;">
+        <div class="fs-5">ข้อมูลการชำระเงิน</div>
+        <hr>
+        <table class="table">
           <tr>
-            <td width="30%"><label>ตลาด</label></td>
-            <td width="70%"><?php echo $row['mkr_name'] ?></td>
+            <td width="30%"><label>รหัสการชำระ</label></td>
+            <td width="70%"><?php echo $row["b_codepay"] ?></td>
           </tr>
           <tr>
-            <td width="30%"><label>รหัสแผงค้า</label></td>
-            <td width="70%"><?php echo  $row["sID"] ?></td>
+            <td width="30%"><label>ชำระเงินเมื่อวันที่</label></td>
+            <td width="70%"><?php echo  date("d/m/Y เวลา h:ia", strtotime($row['timestamp'])) ?></td>
           </tr>
           <tr>
-            <td width="30%"><label>ช่วงวันที่จอง</label></td>
-            <td width="70%"><?php echo date("d/m/Y", strtotime($row['b_start'])) ?> - <?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
+            <td width="30%"><label>ค่ามัดจำ</label></td>
+            <td width="70%"><?php echo number_format($row["b_deptpay"]) ?> บาท</td>
           </tr>
           <tr>
-            <td width="30%"><label>ระยะเวลาที่จอง</label></td>
-            <td width="70%"><?php echo $row["b_day"] ?> วัน</td>
+            <td width="30%"><label>ค่าบริการและภาษี <span class="text-secondary">(4.07%)</span></label></td>
+            <td width="70%"><?php echo number_format($row["b_feepay"]) ?> บาท</td>
           </tr>
           <tr>
-            <td width="30%"><label>ราคาค่าเช่าแผง</label></td>
-            <td width="70%"><?php echo number_format($row["sRent"]) ?> <?php echo $row["sPayRange"] ?></td>
+            <td width="30%"><label>รวมทั้งสิ้น</label></td>
+            <td width="70%"><?php echo number_format($row["b_totalpay"]) ?> บาท</td>
           </tr>
-          <tr>
-            <td width="30%"><label>ราคาค่ามัดจำ</label></td>
-            <td width="70%"><?php echo number_format($row["sDept"]) ?> บาท</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div id="table" class="bannertb border p-3 shadow-sm rounded mt-2" style="margin-top:20px ;">
-      <div class="fs-5">ข้อมูลการชำระเงิน</div>
-      <hr>
-      <table class="table">
-        <tr>
-          <td width="30%"><label>รหัสการชำระ</label></td>
-          <td width="70%"><?php echo $row["b_codepay"] ?></td>
-        </tr>
-        <tr>
-          <td width="30%"><label>ชำระเงินเมื่อวันที่</label></td>
-          <td width="70%"><?php echo  date("d/m/Y เวลา h:ia", strtotime($row['timestamp'])) ?></td>
-        </tr>
-        <tr>
-          <td width="30%"><label>ค่ามัดจำ</label></td>
-          <td width="70%"><?php echo number_format($row["b_deptpay"]) ?> บาท</td>
-        </tr>
-        <tr>
-          <td width="30%"><label>ค่าบริการและภาษี <span class="text-secondary">(4.07%)</span></label></td>
-          <td width="70%"><?php echo number_format($row["b_feepay"]) ?> บาท</td>
-        </tr>
-        <tr>
-          <td width="30%"><label>รวมทั้งสิ้น</label></td>
-          <td width="70%"><?php echo number_format($row["b_totalpay"]) ?> บาท</td>
-        </tr>
-      </table>
+        </table>
+      </div>
     </div>
   </div>
 

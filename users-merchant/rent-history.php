@@ -12,7 +12,7 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> MarketRental - จัดการการจอง</title>
+    <title> MarketRental - ประวัติการจองแผงค้า</title>
 
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
 
@@ -30,10 +30,6 @@
 
 </head>
 
-<script>
-    var message = "โปรดทราบ\n หากคุณทำการยกเลิกการจอง\n คุณจะไม่ได้รับเงินมัดจำคืน";
-</script>
-
 <?php
 
 include "profilebar.php";
@@ -48,66 +44,7 @@ include "../backend/1-connectDB.php";
 
 $users_id = $_SESSION['users_id'];
 $count_n = 1;
-$querycalendar = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking.users_id = $users_id and status = '1'");
-$queryrent = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking.users_id = $users_id and status = '1' ORDER BY `timestamp` DESC");
-
-
-
-
-if (isset($_GET['id-del']) != '') {
-
-    $id = $_GET['id-del'];
-
-    $type = $_GET['type'];
-
-    echo "<script>";
-
-    echo "
-
-    Swal.fire({
-
-        title: 'ต้องการยกเลิกการจอง?',
-
-        html: '<strong>โปรดทราบ !</strong> หากผู้จองทำการยกเลิกการจอง<br />ผู้จองจะ<strong><u>ไม่ได้รับเงินมัดจำคืน</u></strong>',
-
-        text: message,
-
-        icon: 'warning',
-
-        confirmButtonColor: '#d33',
-
-        confirmButtonText: 'ฉันต้องการยกเลิกการจอง',
-
-      }).then((result) => {
-
-        if (result.isConfirmed) {
-
-          window.location.href = 'rent.php?action=confirm&id=" . $id . "&type=" . $type . "'
-
-        } else{
-
-            window.location.href = './rent.php'
-
-        }
-
-      })";
-
-    echo "</script>";
-}
-
-if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
-
-    $id = $_GET['id'];
-    $sql = mysqli_query($conn, "UPDATE `booking` SET `status`='0' WHERE `b_id`=$id");
-
-    if ($sql) {
-
-        echo "<script>cancelsuccess()</script>";
-    } else {
-
-        echo "<script>alert('error range')</script>";
-    }
-}
+$queryrent = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id and booking.users_id = $users_id ORDER BY `timestamp` DESC");
 ?>
 
 
@@ -115,10 +52,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
 
 <body>
-
+    <nav aria-label="breadcrumb mb-3">
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="../users-merchant/rent.php" class="text-decoration-none">จัดการการจอง</a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">ประวัติการจองแผงค้า</li>
+        </ol>
+    </nav>
     <div class="content">
 
-        <h1 id="headline">จัดการการจอง</h1>
+        <h1 id="headline">ประวัติการจองแผงค้า</h1>
 
         <div>
 
@@ -166,23 +108,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
                     </div>
 
-                    <div>
-
-                        <!-- Button trigger modal -->
-                        <a type="button" class="btn btn-primary btn-calen" href="./rent-history.php">
-
-                            ประวัติการจองแผงค้า
-
-                        </a>
-
-                        <button type="button" class="btn btn-primary btn-calen" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-                            ปฏิทินการจองของ <?php echo $_SESSION['username']; ?>
-
-                        </button>
-
-                    </div>
-
                 </div>
 
                 <hr>
@@ -209,7 +134,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
                             <th scope="col">รายละเอียด</th>
 
-                            <th scope="col">จัดการ</th>
+                            <th scope="col">หมายเหตุ</th>
 
                         </tr>
 
@@ -235,33 +160,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
                                 <td><?php echo date("d/m/Y", strtotime($row['b_end'])) ?></td>
 
-                                <?php
-
-                                $curr_date = date('Y/m/d');
-
-                                $start = strtotime(str_replace('-', '/', $row['b_start']));
-
-                                $startdate = date("Y/m/d", strtotime("-7 day", $start));
-
-                                if (strtotime($curr_date) <= strtotime($startdate)) {
-
-                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=range">ยกเลิกการจอง</a>';
-                                } else {
-
-                                    $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
-                                }
-
-                                ?>
-
                                 <td>
 
-                                    <a name="view" type="button" class="btn btn-outline-primary" href="../ExportPDF-master/reciept-booking.php?b_id=<?php echo $row['b_id']; ?>&&nav=r" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
+                                    <a name="view" type="button" class="btn btn-outline-primary" href="../ExportPDF-master/reciept-booking.php?b_id=<?php echo $row['b_id']; ?>&&nav=rh" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
 
                                 </td>
 
                                 <td>
 
-                                    <?php echo $cancel; ?>
+                                    <?php echo $row['status'] == '1' ? '-' : 'การจองถูกยกเลิก' ?>
 
                                 </td>
 
@@ -287,148 +194,6 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
 
 <script>
-    // rent calendar
-    mobiscroll.setOptions({
-
-        locale: mobiscroll.localeTh,
-
-        theme: 'ios',
-
-        themeVariant: 'light',
-
-        clickToCreate: false,
-
-        dragToCreate: false,
-
-        dragToMove: false,
-
-        dragToResize: false,
-
-        eventDelete: false
-
-    });
-
-
-
-    var now = new Date();
-
-    var day = now.getDay();
-
-    var monday = now.getDate() - day + (day == 0 ? -6 : 1);
-
-    var colorset = [
-
-        '#abdee6',
-
-        '#cbaacb',
-
-        '#ffffb5',
-
-        '#ffccb6',
-
-        '#f3b0c3',
-
-        '#c6dbda',
-
-        '#fee1e8',
-
-        '#fed7c3',
-
-        '#f6eac2',
-
-        '#ecd5e3',
-
-
-
-    ];
-
-
-
-    var colorset1 = [
-
-        '#998888',
-
-        '#f0e4d7',
-
-        '#f3d8d1',
-
-        '#ced6e0',
-
-        '#c7bbbc',
-
-        '#d5cdde',
-
-        '#f2efef',
-
-        '#f4ded9',
-
-        '#c6d5c2',
-
-        '#f2cbf2',
-
-        'ad80a2'
-
-    ];
-
-    mobiscroll.eventcalendar('#demo-events-labels', {
-
-        eventOrder: function(event) {
-
-            return event.accepted ? 1 : -1;
-
-        },
-
-        data: [
-
-            <?php
-
-            $countcolor1 = 0;
-
-            while ($q2 = $querycalendar->fetch_assoc()) : ?> {
-
-                    start: new Date(<?php
-
-                                    $start1 = strtotime(str_replace('-', '/', $q2['b_start']));
-
-                                    echo date("Y,m,d", strtotime("-1 month", $start1))
-
-                                    ?>),
-
-                    end: new Date(<?php
-
-                                    $end1 = strtotime(str_replace('-', '/', $q2['b_end']));
-
-                                    echo date("Y,m,d", strtotime("-1 month", $end1))
-
-                                    ?>),
-
-                    title: 'ตลาด<?php echo $q2['mkr_name'] . ' รหัสแผงค้า: ' . $q2['sID']; ?>',
-
-                    color: colorset1[<?php echo $countcolor1; ?>],
-
-                    allDay: true,
-
-                    accepted: false
-
-
-
-                },
-
-            <?php
-
-                $countcolor1++;
-
-                if ($countcolor1 > 10) {
-
-                    $countcolor1 = 0;
-                }
-
-            endwhile ?>
-        ]
-
-    });
-
-
     // table date filter
     $(document).ready(function() {
 

@@ -65,7 +65,7 @@ if ($row['INV_status'] == '2') {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> MarketRental - ข้อมูลการจองแผงค้า</title>
+    <title> MarketRental - ข้อมูลใบเรียกเก็บค่าเช่า</title>
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
     <link rel="stylesheet" href="../css/reciept.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Sarabun&;display=swap" rel="stylesheet">
@@ -86,7 +86,7 @@ if ($row['INV_status'] == '2') {
                 <div class="fs-5">ข้อมูลใบเรียกเก็บค่าเช่า</div>
                 <?php
                 if ($row['INV_status'] == '2') { ?>
-                    <a type="button" class="btn mt-0" style="background-color: #000374;color:white;" href="./reciept-billrent.pdf">ดาวน์โหลดฐานการชำระเงิน</a>
+                    <a type="button" class="btn mt-0" style="background-color: #000374;color:white;" href="./reciept-billrent.pdf" target="_blank">ดาวน์โหลดฐานการชำระเงิน</a>
                 <?php
                 } else {
                     echo '';
@@ -100,6 +100,10 @@ if ($row['INV_status'] == '2') {
             <div class="row mb-2">
                 <div class="col-2">หมดเขตชำระภายในวันที่</div>
                 <div class="col-3"><?php echo date("d/m/Y", strtotime($row['INV_expired'])) ?></div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2">ตลาด</div>
+                <div class="col-3"> <?php echo $row['mkr_name'] ?></div>
             </div>
             <div class="row mb-2">
                 <div class="col-2">รหัสแผงค้า</div>
@@ -149,13 +153,13 @@ if ($row['INV_status'] == '2') {
                         <td>1</td>
                         <td>ค่าธรรมเนียม (4.07%)</td>
                         <td>- </td>
-                        <td>+ <?php echo number_format($fee) ?> บาท</td>
+                        <td><span class="opacity-0">- </span><?php echo number_format($fee) ?> บาท</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>ค่าเช่า</td>
                         <td>- </td>
-                        <td>+ <?php echo number_format($row["INV_rentprice"]) ?> บาท</td>
+                        <td><span class="opacity-0">- </span><?php echo number_format($row["INV_rentprice"]) ?> บาท</td>
                     </tr>
                     <?php
                     if ($row["INV_discount"] != 0) {
@@ -165,7 +169,7 @@ if ($row['INV_status'] == '2') {
                             <td>3</td>
                             <td>คืนค่ามัดจำ</td>
                             <td>-</td>
-                            <td>- <?php echo number_format($row["INV_discount"]) ?> บาท</td>
+                            <td><span>- </span><?php echo number_format($row["INV_discount"]) ?> บาท</td>
                         </tr>
                         <?php
                     } else {
@@ -186,7 +190,7 @@ if ($row['INV_status'] == '2') {
                                 <td><?php echo $count + 1 ?></td>
                                 <td><?php echo $rowc["cost_name"] ?></td>
                                 <td><?php echo number_format($rowc["price/unit"]) . " " . $rowc["unit"] . $detail ?></td>
-                                <td>+ <?php echo number_format($rowc["price"]) ?> บาท</td>
+                                <td><span class="opacity-0">- </span><?php echo number_format($rowc["price"]) ?> บาท</td>
                             </tr>
                     <?php
                             $cost = $cost + $rowc["price"];
@@ -205,7 +209,7 @@ if ($row['INV_status'] == '2') {
                         <td>#</td>
                         <td>รวมทั้งสิ้น</td>
                         <td>-</td>
-                        <td>= <?php echo number_format($total) ?> บาท</td>
+                        <td><span class="opacity-0">- </span><?php echo number_format($total) ?> บาท</td>
                     </tr>
                 </tbody>
             </table>
