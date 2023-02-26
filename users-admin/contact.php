@@ -30,7 +30,7 @@ include "nav.php";
 
 include "../backend/1-connectDB.php";
 
-include "../backend/1-import-link.php";
+// include "../backend/1-import-link.php";
 
 require "../backend/manage-contact.php";
 

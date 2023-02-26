@@ -51,8 +51,61 @@ extract($lg);
 
 <body>
 
-    <div>
-
+    <div class="d-flex justify-content-end gap-2 bar">
+        <div class="notiicon  dropdown p-2 " type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            <div class="position-relative px-1 pt-1">
+                <i class='bx bx-bell fs-5'></i>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    99+
+                    <span class="visually-hidden">unread messages</span>
+            </div>
+        </div>
+        <ul class="dropdown-menu mt-2 me-2" style=" max-height: 300px;overflow-y: auto;">
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
+            <li>
+                <hr>
+            </li>
+        </ul>
         <div class="profileicon prevent-select" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 
             <p>ผู้ใช้ทั่วไป : <?php echo $_SESSION['username']; ?></p>

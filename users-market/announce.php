@@ -59,8 +59,15 @@ require "../backend/add-applicant.php";
 
 
 
-<body class="mt-5">
+<body>
+    <nav aria-label="breadcrumb mb-3">
 
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="./status-announce.php" class="text-decoration-none">คำร้องขอประชาสัมพันธ์</a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">ส่งคำร้องขอประชาสัมพันธ์</li>
+        </ol>
+
+    </nav>
     <div class="applybox">
 
         <form id="applyform" method="POST" enctype="multipart/form-data" class="was-validated">

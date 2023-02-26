@@ -66,7 +66,7 @@ FROM req_partner
 
     JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id)
 
-    WHERE (req_partner.users_id = '$userid')";
+    WHERE (req_partner.users_id = '$userid') ORDER BY `timestamp` DESC";
 
 $result = mysqli_query($conn, $data);
 
@@ -78,12 +78,16 @@ $result = mysqli_query($conn, $data);
 
     <div class="content">
 
-        <h1 id="headline">ติดตามสถานะคำร้องขอเพิ่มตลาด</h1>
+        <h1 id="headline">คำร้องขอเพิ่มตลาด</h1>
 
         <div>
 
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
-
+                <div class="d-flex justify-content-between">
+                    <h3>ประวัติคำร้องขอเพิ่มตลาด</h3>
+                    <a class="btn btn-primary" href="./applicant.php"> ส่งคำร้องขอเพิ่มตลาดใหม่</a>
+                </div>
+                <hr>
                 <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
 
                     <thead>
@@ -157,7 +161,6 @@ $result = mysqli_query($conn, $data);
 <?php require '../backend/modal-applicant.php' ?>
 
 <script>
-
     // apply detail popup
 
     $(document).ready(function() {
@@ -193,7 +196,6 @@ $result = mysqli_query($conn, $data);
         })
 
     });
-
 </script>
 
 

@@ -764,7 +764,7 @@
 
         }).then(function() {
 
-            window.location = "http://localhost/SeniorProject51/index.php";
+            window.location = "../index.php";
 
         });
 

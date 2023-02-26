@@ -1,247 +1,491 @@
-body {
-    margin: 30px 68px 20px 146px !important;
-    min-width: 370px;
-}
-
-:root {
-    --white: white;
-    --purple: #4B2ED7;
-    --lightblue: #38B6FF;
-    --lightpurple: #619FFF;
-}
-
-.btn-light {
-    padding: 8px 24px;
-    color: #212529 !important;
-    background-color: var(--white) !important;
-    border: 1px solid #ced4da !important;
-    height: 42px;
-}
-
-/* ประเภทตลาด */
-.typemkr {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 0px;
-}
-
-.quick {
-    color: var(--white);
-    border-radius: 5px;
-    border: none;
-    transition: ease .3s;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    transition: ease 0.5s;
-    float: right !important;
-    height: 80px;
-}
-
-.quick:hover {
-    background: var(--lightblue) !important;
-    transition: .3s ease;
-}
-
-.quick p {
-    margin: 0;
-    margin-top: 5px;
-    font-size: 1.5em;
-}
-
-/* Market item ---------------------------------------------------- */
-.search_box {
-    margin-top: 25px;
-    margin-bottom: 20px;
-    display: flex;
-    gap: 0.5rem;
-}
-
-.box {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
-
-}
-
-.marketcard {
-    width: 100%;
-    height: 197px;
-    overflow: hidden;
-    border-radius: 5px;
-    text-decoration: none !important;
-    color: var(--white);
-
-}
-
-.mkrimg {
-    width: 100%;
-    height: 197px;
-}
-
-.overlay {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border-top-left-radius: 0px !important;
-    border-top-right-radius: 0px !important;
-    width: 100%;
-    height: 197px;
-    background: rgba(1, 33, 102, 0.5);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(2.5px);
-    -webkit-backdrop-filter: blur(2.5px);
-    transform: translate(0%, -45%);
-    color: var(--white);
-
-}
-
-.marketcard:hover .overlay {
-    border-top-left-radius: 5px !important;
-    border-top-right-radius: 5px !important;
-    transform: translate(0%, -100%);
-    transition: 0.5s ease;
-    background: rgba(1, 33, 102, 0.55);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(7.5px);
-    -webkit-backdrop-filter: blur(7.5px);
-    border-radius: 5px;
-}
-
-/* textในoverlay */
-.markettag {
-    margin-bottom: 10px;
-}
-
-.ptext {
-    font-size: 15px !important;
-    margin: 0;
-    text-decoration: none;
-    width: fit-content;
-
-}
-
-.ptext i {
-    margin: 5px;
-    ;
-}
-
-
-/* responsive--------------------------------------------------------------------- */
-
-@media(max-width: 1400px) {
-
-    .box, .typemkr {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(3, minmax(100px, 1fr));
-    }
-
-
-}
-
-@media(max-width: 1200px) {
-
-    .box, .typemkr {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(2, minmax(100px, 1fr));
-    }
-
-}
-
-@media(max-width: 992px) {
-    .box, .typemkr {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(1, 1fr);
-        text-align: center;
-    }
-
-
-}
-
-@media(max-width:720px) {
-    body {
-        margin: 60px 10px 0px 15px !important;
-        padding-right: 10px;
-    }
-
-    .quick {
-        height: 40px;
-
-    }
-
-    .quick p {
-        font-size: 18px;
-    }
-
-    #search {
-        margin-top: 5px;
-        margin-bottom: 2px;
-    }
-
-    #reset {
-        margin-top: 5px;
-        margin-bottom: 2px;
-    }
-}
-
-@media(max-width: 495px) {
-    .search-input {
-        display: grid;
-        grid-template-columns: 1fr 4fr;
-    }
-
-    .search-input label {
-        margin-top: 6px;
-    }
-
-    .search_box {
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 0px;
-    }
-
-    .search-btn {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-column-gap: 10px;
-    }
-}
-
-@media(max-width:375px) {
-
-
-    .quick {
-        height: 40px;
-
-    }
-
-    .quick p {
-        font-size: 18px;
-    }
-
-    #search {
-        margin-top: 5px;
-        margin-bottom: 2px;
-    }
-
-    #reset {
-        margin-top: 5px;
-        margin-bottom: 2px;
-    }
-
-    .box, .typemkr {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(1, 1fr);
-        text-align: center;
-    }
-
-
-
+body {
+
+    margin: 50px 68px 20px 146px !important;
+
+    min-width: 370px;
+
+}
+
+
+
+:root {
+
+    --white: white;
+
+    --purple: #4B2ED7;
+
+    --lightblue: #38B6FF;
+
+    --lightpurple: #619FFF;
+
+}
+
+
+
+.btn-light {
+
+    padding: 8px 24px;
+
+    color: #212529 !important;
+
+    background-color: var(--white) !important;
+
+    border: 1px solid #ced4da !important;
+
+    height: 42px;
+
+}
+
+
+
+/* ประเภทตลาด */
+
+.typemkr {
+
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-rows: 1fr;
+
+    grid-column-gap: 10px;
+
+    grid-row-gap: 0px;
+
+}
+
+
+
+.quick {
+
+    color: var(--white);
+
+    border-radius: 5px;
+
+    border: none;
+
+    transition: ease .3s;
+
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    transition: ease 0.5s;
+
+    float: right !important;
+
+    height: 80px;
+
+}
+
+
+
+.quick:hover {
+
+    background: var(--lightblue) !important;
+
+    transition: .3s ease;
+
+}
+
+
+
+.quick p {
+
+    margin: 0;
+
+    margin-top: 5px;
+
+    font-size: 1.5em;
+
+}
+
+
+
+/* Market item ---------------------------------------------------- */
+
+.search_box {
+
+    margin-top: 25px;
+
+    margin-bottom: 20px;
+
+    display: flex;
+
+    gap: 0.5rem;
+
+}
+
+
+
+.box {
+
+    display: grid;
+
+    grid-gap: 10px;
+
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+
+
+
+}
+
+
+
+.marketcard {
+
+    width: 100%;
+
+    height: 197px;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+
+    text-decoration: none !important;
+
+    color: var(--white);
+
+
+
+}
+
+
+
+.mkrimg {
+
+    width: 100%;
+
+    height: 197px;
+
+}
+
+
+
+.overlay {
+
+    padding: 10px 20px;
+
+    border-radius: 5px;
+
+    border-top-left-radius: 0px !important;
+
+    border-top-right-radius: 0px !important;
+
+    width: 100%;
+
+    height: 197px;
+
+    background: rgba(1, 33, 102, 0.5);
+
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    backdrop-filter: blur(2.5px);
+
+    -webkit-backdrop-filter: blur(2.5px);
+
+    transform: translate(0%, -45%);
+
+    color: var(--white);
+
+
+
+}
+
+
+
+.marketcard:hover .overlay {
+
+    border-top-left-radius: 5px !important;
+
+    border-top-right-radius: 5px !important;
+
+    transform: translate(0%, -100%);
+
+    transition: 0.5s ease;
+
+    background: rgba(1, 33, 102, 0.55);
+
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    backdrop-filter: blur(7.5px);
+
+    -webkit-backdrop-filter: blur(7.5px);
+
+    border-radius: 5px;
+
+}
+
+
+
+/* textในoverlay */
+
+.markettag {
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.ptext {
+
+    font-size: 15px !important;
+
+    margin: 0;
+
+    text-decoration: none;
+
+    width: fit-content;
+
+
+
+}
+
+
+
+.ptext i {
+
+    margin: 5px;
+
+    ;
+
+}
+
+
+
+
+
+/* responsive--------------------------------------------------------------------- */
+
+
+
+@media(max-width: 1400px) {
+
+
+
+    .box, .typemkr {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+
+    }
+
+
+
+
+
+}
+
+
+
+@media(max-width: 1200px) {
+
+
+
+    .box, .typemkr {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+
+    }
+
+
+
+}
+
+
+
+@media(max-width: 992px) {
+
+    .box, .typemkr {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(1, 1fr);
+
+        text-align: center;
+
+    }
+
+
+
+
+
+}
+
+
+
+@media(max-width:720px) {
+
+    body {
+
+        margin: 80px 10px 0px 10px !important;
+
+    }
+
+
+
+    .quick {
+
+        height: 40px;
+
+
+
+    }
+
+
+
+    .quick p {
+
+        font-size: 18px;
+
+    }
+
+
+
+    #search {
+
+        margin-top: 5px;
+
+        margin-bottom: 2px;
+
+    }
+
+
+
+    #reset {
+
+        margin-top: 5px;
+
+        margin-bottom: 2px;
+
+    }
+
+}
+
+
+
+@media(max-width: 495px) {
+
+    .search-input {
+
+        display: grid;
+
+        grid-template-columns: 1fr 4fr;
+
+    }
+
+
+
+    .search-input label {
+
+        margin-top: 6px;
+
+    }
+
+
+
+    .search_box {
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        grid-template-rows: repeat(2, 1fr);
+
+        grid-column-gap: 0px;
+
+        grid-row-gap: 0px;
+
+    }
+
+
+
+    .search-btn {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        grid-column-gap: 10px;
+
+    }
+
+}
+
+
+
+@media(max-width:375px) {
+
+
+
+
+
+    .quick {
+
+        height: 40px;
+
+
+
+    }
+
+
+
+    .quick p {
+
+        font-size: 18px;
+
+    }
+
+
+
+    #search {
+
+        margin-top: 5px;
+
+        margin-bottom: 2px;
+
+    }
+
+
+
+    #reset {
+
+        margin-top: 5px;
+
+        margin-bottom: 2px;
+
+    }
+
+
+
+    .box, .typemkr {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(1, 1fr);
+
+        text-align: center;
+
+    }
+
+
+
+
+
+
+
 }

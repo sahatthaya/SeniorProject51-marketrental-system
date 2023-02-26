@@ -548,11 +548,25 @@
 
 }
 
+.nv-bar {
+    display: none !important;
+}
 
+.img-menu-bar {
+    height: 37px;
+}
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 720px) {
+
+    .nv-bar {
+        display: block !important;
+        background: #0033b5e6;
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
 
     .sidebar.close {
+        display: none;
 
         height: 50px;
 
