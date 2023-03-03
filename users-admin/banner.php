@@ -140,7 +140,7 @@ require "../backend/manage-banner.php";
 
             <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog  modal-dialog-scrollable modal-dialog-centered">
 
                     <div class="modal-content">
 
