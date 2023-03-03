@@ -216,15 +216,6 @@ input[type=number] {
 
 
 
-.dropdown-menu.show {
-
-  left: -10px !important;
-
-}
-
-
-
-
 
 /* ------------------------------------responsive-------------------------- */
 
@@ -309,7 +300,7 @@ input[type=number] {
   body {
 
 
-     margin: 80px 10px 0px 10px !important;
+     margin: 55px 10px 0px 10px !important;
 
 
 

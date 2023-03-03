@@ -549,24 +549,14 @@
 }
 
 .nv-bar {
-    display: none !important;
+    display: none;
 }
 
-.img-menu-bar {
-    height: 37px;
-}
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 768px) {
 
-    .nv-bar {
-        display: block !important;
-        background: #0033b5e6;
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-    }
 
     .sidebar.close {
-        display: none;
 
         height: 50px;
 
@@ -589,14 +579,14 @@
     .sidebar.close .logo-details {
 
         height: 55px;
-
+        display:block;
     }
 
 
 
     .sidebar.close .logo-details img {
 
-        margin: -4px 7px;
+        margin: 8px 7px;
 
         width: 35px;
 

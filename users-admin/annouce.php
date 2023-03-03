@@ -34,7 +34,11 @@ include "../backend/1-connectDB.php";
 
 require "../backend/manage-annouce.php";
 
-
+if (isset($_GET['fk_id'])) {
+    $an_id = $_GET['fk_id'];
+} else {
+    $an_id = '';
+}
 ?>
 
 
@@ -83,11 +87,17 @@ require "../backend/manage-annouce.php";
 
                 <tbody>
 
-                    <?php while ($row1 = $result3->fetch_assoc()) : ?>
+                    <?php while ($row1 = $result3->fetch_assoc()) :
+                        if ($an_id == $row1['req_an_id']) {
+                            $bg = 'bg-info bg-opacity-10';
+                        } else {
+                            $bg = '';
+                        }
+                    ?>
 
-                        <tr>
+                        <tr class="<?php echo $bg ?>">
 
-                            <td><?php echo $count_n; ?></td>
+                            <td class="<?php echo $bg ?>"><?php echo $count_n; ?></td>
 
                             <td><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></td>
 

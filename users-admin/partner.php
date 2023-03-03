@@ -32,6 +32,12 @@ include "../backend/1-connectDB.php";
 
 require "../backend/manage-applicant.php";
 
+if (isset($_GET['fk_id'])) {
+    $an_id = $_GET['fk_id'];
+}else{
+    $an_id = '';
+}
+
 ?>
 
 
@@ -84,11 +90,17 @@ require "../backend/manage-applicant.php";
 
                     <tbody>
 
-                        <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result->fetch_assoc()) :
+                            if ($an_id == $row['req_partner_id']) {
+                               $bg = 'bg-info bg-opacity-10';
+                            }else{
+                                $bg = '';
+                            }
+                            ?>
 
-                            <tr>
+                            <tr class="<?php echo $bg ?>">
 
-                                <td><?php echo $count_n; ?></td>
+                                <td class="<?php echo $bg ?>"><?php echo $count_n; ?></td>
 
                                 <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 

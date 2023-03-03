@@ -12,7 +12,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> MarketRental - ส่งคำร้องขอเพิ่มตลาดใหม่</title>
+    <title> MarketRental - คำร้องขอเพิ่มตลาดใหม่</title>
 
 
 
@@ -65,7 +65,7 @@ require "../backend/add-applicant.php"
     <nav aria-label="breadcrumb mb-3">
 
         <ol class="breadcrumb ">
-            <li class="breadcrumb-item fs-5 "><a href="./status-applicant.php" class="text-decoration-none">คำร้องขอเพิ่มตลาดใหม่</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./status-applicant.php" class="text-decoration-none">คำร้องขอเพิ่มตลาด</a></li>
             <li class="breadcrumb-item active fs-5" aria-current="page">ส่งคำร้องขอเพิ่มตลาดใหม่</li>
         </ol>
 

@@ -291,27 +291,6 @@ input[type=file]::file-selector-button:hover {
 }
 
 
-
-#dropdown {
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-}
-
-
-
-
-
-.dropdown-menu.show {
-
-    left: -10px !important;
-
-}
-
-
-
 .tooltip-inner {
 
     max-width: 5000px !important;
@@ -443,7 +422,7 @@ input[type=file]::file-selector-button:hover {
     body {
 
 
-         margin: 80px 10px 0px 10px !important;
+         margin: 55px 10px 0px 10px !important;
 
 
 
@@ -654,15 +633,5 @@ input[type=file]::file-selector-button:hover {
         text-align: center !important;
 
     }
-
-
-
-    .dropdown-menu.show {
-
-        width: 50px;
-
-    }
-
-
 
 }

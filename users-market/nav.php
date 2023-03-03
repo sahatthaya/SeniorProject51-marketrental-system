@@ -160,7 +160,7 @@ include "../backend/1-import-link.php";
     }
 </script>
 
-<nav class="nv-bar navbar navbar-expand-lg bg-body-tertiary fixed-top ">
+<!-- <nav class="nv-bar navbar navbar-expand-lg bg-body-tertiary fixed-top ">
     <div class="container-fluid">
         <div class="d-flex">
             <button class="navbar-toggler border-0 me-2 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -241,6 +241,6 @@ include "../backend/1-import-link.php";
             </ul>
         </div>
     </div>
-</nav>
+</nav> -->
 
 </html>

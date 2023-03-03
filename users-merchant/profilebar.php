@@ -29,6 +29,7 @@ $lg = mysqli_fetch_array($resultlg);
 
 extract($lg);
 
+$users_id = $_SESSION['users_id'];
 ?>
 
 
@@ -52,59 +53,15 @@ extract($lg);
 <body>
 
     <div class="d-flex justify-content-end gap-2 bar">
-        <div class="notiicon  dropdown p-2 " type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-            <div class="position-relative px-1 pt-1">
+        <div class="notiicon  dropdown updatenoti" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" id="<?php echo $users_id ?>">
+            <a class="position-relative m-1 px-1 pt-1">
                 <i class='bx bx-bell fs-5'></i>
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                    99+
-                    <span class="visually-hidden">unread messages</span>
-            </div>
+                <div id="link_wrapper">
+
+                </div>
+            </a>
         </div>
-        <ul class="dropdown-menu mt-2 me-2" style=" max-height: 300px;overflow-y: auto;">
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
-            <li><a class="dropdown-item" href="#"><span class="text-secondary">10/10/2023 15:25 </span><br>ตลาดโดมเขียว <br> มีการจองใหม่แผงค้า A01 </a></li>
-            <li>
-                <hr>
-            </li>
+        <ul class="dropdown-menu mt-2 p-0" style=" max-height: 300px;overflow-y: auto;" id="link_wrapper_2">
         </ul>
         <div class="profileicon prevent-select" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 
@@ -137,3 +94,71 @@ extract($lg);
 
 
 </html>
+
+<script>
+    function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("link_wrapper").innerHTML =
+                    this.responseText;
+            }
+        };
+        xhttp.open("GET", "notification_num.php", true);
+        xhttp.send();
+    }
+    setInterval(function() {
+        loadXMLDoc();
+        // 1sec
+    }, 5000);
+
+    window.onload = loadXMLDoc;
+
+    function loadXMLDoc2() {
+        var xhttp2 = new XMLHttpRequest();
+        xhttp2.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("link_wrapper_2").innerHTML =
+                    this.responseText;
+            }
+        };
+        xhttp2.open("GET", "notification_detail.php", true);
+        xhttp2.send();
+    }
+    setInterval(function() {
+        loadXMLDoc2();
+        // 1sec
+    }, 5000);
+
+    window.onload = loadXMLDoc2;
+
+    $(document).ready(function() {
+
+        $("body").on("click", ".updatenoti", function(event) {
+
+            var userid = $(this).attr("id");
+
+            $.ajax({
+
+                url: "../backend/notification.php",
+
+                method: "POST",
+
+                data: {
+
+                    userid: userid
+
+                },
+                success: function(data) {
+
+                },
+                //on error
+                error: function() {}
+            });
+
+
+
+        })
+
+    });
+</script>
