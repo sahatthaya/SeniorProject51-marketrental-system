@@ -104,6 +104,18 @@ if ($status == 'successful') {
         VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id', '$b_start', '$b_end', '$b_day', '$op_id','$dept_pay','$fee_pay','$total_pay','$code_id','$users_id')");
 
 
+        $last_id = mysqli_query($conn, "SELECT MAX(b_id) AS maxid FROM booking");
+        $mid = mysqli_fetch_array($last_id);
+        extract($mid);
+        $fk_id = $mid['maxid'];
+        $start = date("d/m/Y", strtotime($b_start));
+        $end = date("d/m/Y", strtotime($b_end));
+        $n_detail = 'มีการจองใหม่ในช่วงวันที่ ' . $start . '-' . $end;
+        $market_name = $_POST['market_name'] . ' (แผงค้า : ' . $stall_id . ' )';
+        $usersmkr_id = $_POST['usersmkr_id'];
+        $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+        VALUES ('$market_name','$n_detail','1','5','$fk_id','$usersmkr_id')");
+
 
         if ($insertbooking) {
 
@@ -111,9 +123,7 @@ if ($status == 'successful') {
 
             echo '<script>pay_dept_success()</script>';
         } else {
-
-            // echo '<script>errorpay()</script>';
-            echo $b_fname.','.$b_lname.','.$cardID_copy.','.$b_tel.','.$b_email.','.$shopname.','.$shop_detail.','.$stall_id.', '.$b_start.', '.$b_end.', '.$b_day.', '.$op_id.','.$dept_pay.','.$fee_pay.','.$total_pay.','.$code_id.','.$users_id;
+            echo '<script>errorpay()</script>';
         }
     } else {
 

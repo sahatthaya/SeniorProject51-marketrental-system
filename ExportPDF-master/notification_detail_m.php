@@ -20,17 +20,17 @@ if ($numRownt == 0) { ?>
         }
 
         if ($rown['type'] == '1') {
-            $path = './annouce.php?fk_id=' . $rown['fk_id'];
+            $path = '../users-market/annouce.php?fk_id=' . $rown['fk_id'];
         } else {
-            $path = './partner.php?fk_id=' . $rown['fk_id'];
+            $path = '../users-market/partner.php?fk_id=' . $rown['fk_id'];
         }
 
         switch ($rown['type']) {
             case "1":
-                $path = './status-applicant.php?fk_id=' . $rown['fk_id'];
+                $path = '../users-market/status-applicant.php?fk_id=' . $rown['fk_id'];
                 break;
             case "2":
-                $path = './status-applicant.php?fk_id=' . $rown['fk_id'];
+                $path = '../users-market/status-applicant.php?fk_id=' . $rown['fk_id'];
                 break;
             case "3":
                 $comp_id = $rown['fk_id'];
@@ -38,7 +38,7 @@ if ($numRownt == 0) { ?>
                 $mid = mysqli_fetch_array($mkrid);
                 extract($mid);
                 $fk_id = $mid['mkr_id'];
-                $path = './thread.php?comp_id=' . $rown['fk_id'] . '&&mkr_id=' . $fk_id . '&&newpost=1';
+                $path = '../users-market/thread.php?comp_id=' . $rown['fk_id'] . '&&mkr_id=' . $fk_id . '&&newpost=1';
                 break;
             case "4":
                 $reply_id = $rown['fk_id'];
@@ -48,13 +48,13 @@ if ($numRownt == 0) { ?>
                 $fk_id = $mid['mkr_id'];
                 $comp_id = $mid['comp_id'];
                 $mkr_id = $mid['mkr_id'];
-                $path = './thread.php?comp_id=' . $comp_id . '&&mkr_id=' . $mkr_id . '&&newreply=' . $reply_id;
+                $path = '../users-market/thread.php?comp_id=' . $comp_id . '&&mkr_id=' . $mkr_id . '&&newreply=' . $reply_id;
                 break;
             case "5":
-                $path = '../ExportPDF-master/reciept-booking-m.php?b_id=' . $rown['fk_id'];
+                $path = './reciept-booking-m.php?b_id=' . $rown['fk_id'];
                 break;
             case "6":
-                $path = '../ExportPDF-master/inv_info-m.php?INV_id=' . $rown['fk_id'];
+                $path = './inv_info-m.php?INV_id=' . $rown['fk_id'];
                 break;
             case "7":
                 $path = './index.php?mkr_id=' . $rown['fk_id'];

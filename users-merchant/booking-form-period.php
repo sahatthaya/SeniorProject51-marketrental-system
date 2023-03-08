@@ -71,7 +71,8 @@ $rowus = mysqli_fetch_array($qry);
     </nav>
 
     <form id="checkoutForm" method="POST" action="../backend/checkout-dept-period.php" enctype="multipart/form-data" class="was-validated">
-
+        <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="market_name" value="<?php echo  $row['mkr_name']; ?>" required hidden>
+        <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="usersmkr_id" value="<?php echo  $row['users_id']; ?>" required hidden>
         <div class="form-outer form-group " style="overflow: visible;">
 
             <h1 id="headline">กรอกข้อมูลเพื่อจองแผงค้า</h1>
@@ -145,7 +146,6 @@ $rowus = mysqli_fetch_array($qry);
                     <option value="no" selected>ไม่มีรอบที่ว่าง</option>
 
                   </select>';
-
                 } else {
 
                 ?>
@@ -165,11 +165,9 @@ $rowus = mysqli_fetch_array($qry);
                             if ($numRows > 0) {
 
                                 $disalbed = 'hidden disabled';
-
                             } else {
 
                                 $disalbed = '';
-
                             }
 
                             ?>
@@ -514,7 +512,7 @@ $rowus = mysqli_fetch_array($qry);
 
                 ?>
 
-                 <hr class="m-0 my-2">
+                <hr class="m-0 my-2">
 
                 <input name="total" value="<?php echo $totalcal ?>" hidden>
 
@@ -535,7 +533,6 @@ $rowus = mysqli_fetch_array($qry);
 
 
     <script>
-
         OmiseCard.configure({
 
             publicKey: "pkey_test_5tl2v3azqsf7i7u6hlm",
@@ -587,13 +584,11 @@ $rowus = mysqli_fetch_array($qry);
             });
 
         });
-
     </script>
 
 </body>
 
 <script>
-
     $(document).ready(function() {
 
         $("body").tooltip({
@@ -631,7 +626,6 @@ $rowus = mysqli_fetch_array($qry);
         }
 
     }
-
 </script>
 
 

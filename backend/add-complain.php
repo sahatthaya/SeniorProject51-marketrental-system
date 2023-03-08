@@ -9,6 +9,10 @@ if (isset($_POST['post-btn'])) {
     $comp_detail = $_POST['comp_detail'];
     $users_id = $_SESSION['users_id'];
 
+    $usermkr = $_POST['usermkr'];
+    $mkrname = $_POST['mkrname'];
+
+
     $wordchange = ("*");
     $dbquery = mysqli_query($conn, "SELECT * FROM `rude`");
     $rude = array();
@@ -27,11 +31,16 @@ if (isset($_POST['post-btn'])) {
     if (isset($toppic) != "" && isset($subject) != "" && isset($comp_detail) != "") {
         $sqlInsert = mysqli_query($conn, "INSERT INTO complain (comp_subject,comp_detail,mkr_id,toppic_id,users_id) 
         VALUES ('$subject','$comp_detail','$mkr_id','$toppic','$users_id')");
+
         if ($sqlInsert) {
             $last_id = mysqli_query($conn, "SELECT MAX(comp_id) AS maxid FROM complain");
             $mid = mysqli_fetch_array($last_id);
             extract($mid);
             $comp_id = $mid['maxid'];
+            $username = $_SESSION['username'];
+            $n_detail = 'มีคำร้องเรียนใหม่จาก ' . $username;
+            $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+            VALUES ('$mkrname','$n_detail','1','3','$comp_id','$usermkr')");
 
             if ($_FILES['upload']['size'] > 0) {
 
@@ -149,6 +158,9 @@ if (isset($_POST['reply'])) {
     $users_id = $_SESSION['users_id'];
     $mkr_name = '';
 
+    $usermkr = $_POST['usermkr'];
+    $mkrname = $_POST['mkrname'];
+
     $wordchange = ("*");
     $dbquery = mysqli_query($conn, "SELECT * FROM `rude`");
     $rude = array();
@@ -166,6 +178,10 @@ if (isset($_POST['reply'])) {
         $mid = mysqli_fetch_array($last_id);
         extract($mid);
         $comp_id = $mid['maxid'];
+        $username = $_SESSION['username'];
+        $n_detail = $username.' ได้ตอบกลับการร้องเรียนของเขา';
+        $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+        VALUES ('$mkrname','$n_detail','1','4','$comp_id','$usermkr')");
 
         if ($_FILES['upload']['size'] > 0) {
 

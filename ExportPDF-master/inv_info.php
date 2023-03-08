@@ -25,7 +25,6 @@ $mpdf = new \Mpdf\Mpdf([
 include "./profilebar-merchant.php";
 include "./nav-merchant.php";
 include "../backend/1-connectDB.php";
-include "../backend/1-import-link.php";
 
 if (isset($_GET["INV_id"])) {
     $INV_id = $_GET["INV_id"];
@@ -221,6 +220,8 @@ if ($row['INV_status'] == '2') {
                         <input type="hidden" name="omiseToken">
                         <input type="hidden" name="omiseSource">
                         <input type="hidden" name="price" value="<?php echo $price ?>">
+                        <input type="hidden" name="market_name" value="<?php echo $row['mkr_name'] ?>">
+                        <input type="hidden" name="usersmkr" value="<?php echo $row['users_id'] ?>">
                         <input type="hidden" name="users_id" value="<?php echo $userid ?>">
                         <input type="hidden" name="fee" value="<?php echo $fee ?>">
                         <input type="hidden" name="total" value="<?php echo $total ?>">

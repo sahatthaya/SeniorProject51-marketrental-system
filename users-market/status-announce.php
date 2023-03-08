@@ -108,7 +108,7 @@ $result3 = mysqli_query($conn, $data2);
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
 
                                 <td>
-                                    <div style="background-color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row1['req_status']; ?></div>
+                                    <div style="color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row1['req_status']; ?></div>
                                 </td>
 
                             </tr>

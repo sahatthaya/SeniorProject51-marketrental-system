@@ -25,7 +25,6 @@ $mpdf = new \Mpdf\Mpdf([
 include "./profilebar-merchant.php";
 include "./nav-merchant.php";
 include "../backend/1-connectDB.php";
-include "../backend/1-import-link.php";
 
 if (isset($_GET["b_id"])) {
   $id = $_GET["b_id"];

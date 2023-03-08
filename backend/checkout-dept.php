@@ -102,6 +102,18 @@ if ($status == 'successful') {
         INSERT INTO `booking`(`b_fname`, `b_lname`, `b_cardID`, `b_tel`, `b_email`, `b_shopname`, `b_shopdetail`, `stall_id`, `b_start`, `b_end`, `b_day`, `op_id`, `b_deptpay`, `b_feepay`, `b_totalpay`, `b_codepay`, `users_id`)
         VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id', '$b_start', '$b_end', '$day', '0','$dept_pay','$fee_pay','$total_pay','$id','$users_id')");
 
+        $last_id = mysqli_query($conn, "SELECT MAX(b_id) AS maxid FROM booking");
+        $mid = mysqli_fetch_array($last_id);
+        extract($mid);
+        $fk_id = $mid['maxid'];
+        $start = date("d/m/Y", strtotime($b_start));
+        $end = date("d/m/Y", strtotime($b_end));
+        $n_detail = 'มีการจองใหม่ในช่วงวันที่ ' . $start . '-' . $end;
+        $market_name = $_POST['market_name'] . ' (แผงค้า : ' . $stall_id . ' )';
+        $usersmkr_id = $_POST['usersmkr_id'];
+        $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+        VALUES ('$market_name','$n_detail','1','5','$fk_id','$usersmkr_id')");
+
         if ($insertbooking) {
 
             move_uploaded_file($cardID_copytmp, $cardID_copypath);

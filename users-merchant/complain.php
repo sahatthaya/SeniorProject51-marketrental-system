@@ -177,9 +177,9 @@ require "../backend/add-complain.php";
                     <label for="staticEmail" class="col-sm-2 col-form-label">หัวเรื่อง :</label>
 
                     <div class="col-sm-10">
-
                         <input class="form-control" name="subject" type="text" maxlength="85" required>
-
+                        <input class="form-control" name="usermkr" type="text" maxlength="85" value="<?php echo $row['users_id'] ?>" hidden>
+                        <input class="form-control" name="mkrname" type="text" maxlength="85" value="<?php echo $row['mkr_name'] ?>" hidden>
                     </div>
 
                 </div>
