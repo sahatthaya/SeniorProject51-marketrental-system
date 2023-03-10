@@ -1,6 +1,7 @@
 <?php
 
 include "../backend/1-connectDB.php";
+require_once "../backend/1-import-link.php";
 
 
 // corusel query
@@ -71,7 +72,7 @@ if (isset($_POST['bn-submit'])) {
 
         move_uploaded_file($bn_tmp, $bn_img);
 
-        $sqlInsert = "INSERT INTO banner (`bn_toppic`,`bn_detail`,`bn_pic`) VALUES ('$bn_toppic','$bn_detail','$path') ";
+        $sqlInsert = "INSERT INTO banner (`bn_toppic`,`bn_detail`,`bn_pic`,`bn_link`) VALUES ('$bn_toppic','$bn_detail','$path','#') ";
 
         if (mysqli_query($conn, $sqlInsert)) {
 
@@ -111,9 +112,9 @@ if (isset($_GET['delbn_id'])) {
 
     $sqlDelUsers = "DELETE FROM banner WHERE bn_id = '$bn_id'";
 
-    if ($rsDelUsers = mysqli_query($conn, $sqlDelUsers)) {
+    if ($sqlDelUsers = mysqli_query($conn, $sqlDelUsers)) {
 
-        echo "<script>delbannersuccess().then(window.location='../users-admin/banner.php');</script>";
+        echo "<script type='text/javascript'>delbannersuccess()</script>";
 
     } else {
 

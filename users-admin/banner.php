@@ -92,7 +92,7 @@ require "../backend/manage-banner.php";
 
                     </div>
 
-                    <a href="<?php echo $row['bn_link'] ?>">
+                    <a href="<?php echo $retVal = ($row["bn_link"] == "") ?  '#' :  '../'.$row["bn_link"];?>">
 
                         <img class="d-block w-100" src="../<?php echo $row['bn_pic']; ?>">
 
@@ -140,7 +140,7 @@ require "../backend/manage-banner.php";
 
             <div class="modal fade" id="staticBackdrop" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 
-                <div class="modal-dialog  modal-dialog-scrollable modal-dialog-centered">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
 
                     <div class="modal-content">
 
@@ -166,7 +166,7 @@ require "../backend/manage-banner.php";
 
                                 <div class="form-group">
 
-                                    <h6 class="mt-2">เพิ่มรูปภาพ</h6>
+                                    <h6 class="mt-2">เพิ่มรูปภาพ <span class="text-secondary fs-8">( ขนาดแนะนำ 1978 x 400 )</span></h6>
 
                                     <input type="file" class="form-control" name="bn_img" id="imgInp" accept="image/png, image/gif, image/jpeg" required>
 

@@ -66,6 +66,8 @@ require "../backend/manage-annouce.php";
 
                         <th scope="col">เวลาที่ส่งคำร้อง</th>
 
+                        <th scope="col">ตลาด</th>
+
                         <th scope="col">หัวข้อ</th>
 
                         <th scope="col">ผู้ส่งคำร้อง</th>
@@ -89,6 +91,8 @@ require "../backend/manage-annouce.php";
                             <td><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></td>
 
                             <td><?php echo date("h:i a", strtotime($row1['timestamp'])) ?></td>
+
+                            <td><?php echo $row1['mkr_name']; ?></td>
 
                             <td><?php echo $row1['bn_toppic']; ?></td>
 

@@ -17,9 +17,20 @@ if (isset($_POST["bannerid"])) {
     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
 
     while ($row = mysqli_fetch_array($resultdata)) {
+        if ($row["bn_link"] == "") {
+            $path = '#';
+        } else {
+            $path = '../' . $row["bn_link"];
+        }
 
         $output .= '
+        <tr>  
 
+        <td width="30%"><label>ลิงก์ที่เกี่ยวข้อง</label></td>  
+
+        <td width="70%"><a href="' . $path . '">คลิกเพื่อไปยังลิงก์ที่เกี่ยวข้อง</a></td>  
+
+        </tr>
           <tr>  
 
                <td width="30%"><label>หัวข้อเรื่อง</label></td>  
@@ -47,7 +58,6 @@ if (isset($_POST["bannerid"])) {
           
 
      ';
-
     }
 
     $output .= '  
@@ -59,7 +69,6 @@ if (isset($_POST["bannerid"])) {
 ';
 
     echo $output;
-
 }
 
 ?>

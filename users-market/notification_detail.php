@@ -27,7 +27,7 @@ if ($numRownt == 0) { ?>
 
         switch ($rown['type']) {
             case "1":
-                $path = './status-applicant.php?fk_id=' . $rown['fk_id'];
+                $path = './status-announce.php?fk_id=' . $rown['fk_id'];
                 break;
             case "2":
                 $path = './status-applicant.php?fk_id=' . $rown['fk_id'];

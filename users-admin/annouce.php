@@ -73,6 +73,8 @@ if (isset($_GET['fk_id'])) {
 
                         <th scope="col">เวลาที่ส่งคำร้อง</th>
 
+                        <th scope="col">ตลาด</th>
+
                         <th scope="col">หัวข้อ</th>
 
                         <th scope="col">ผู้ส่งคำร้อง</th>
@@ -103,6 +105,8 @@ if (isset($_GET['fk_id'])) {
 
                             <td><?php echo date("h:i a", strtotime($row1['timestamp'])) ?></td>
 
+                            <td><?php echo $row1['mkr_name']; ?></td>
+
                             <td><?php echo $row1['bn_toppic']; ?></td>
 
                             <td><?php echo $row1['username']; ?></td>
@@ -113,9 +117,9 @@ if (isset($_GET['fk_id'])) {
 
                                 <div class="parent" style="justify-content: center;">
 
-                                    <a href="../backend/manage-annouce.php?approve=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success mw-100 text-center">อนุมัติ</a>
+                                    <a href="../backend/manage-annouce.php?approve=<?php echo $row1['req_an_id']; ?>&&mkrname=<?php echo $row1['mkr_name']; ?>&&usersid=<?php echo $row1['users_id']; ?>" onclick="return confirm('คุณต้องการอนุมัติคำร้องนี้หรือไม่')" class=" btn btn-outline-success mw-100 text-center">อนุมัติ</a>
 
-                                    <a href="../backend/manage-annouce.php?denied=<?php echo $row1['req_an_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger mw-100 text-center">ปฏิเสธ</a>
+                                    <a href="../backend/manage-annouce.php?denied=<?php echo $row1['req_an_id']; ?>&&mkrname=<?php echo $row1['mkr_name']; ?>&&usersid=<?php echo $row1['users_id']; ?>" onclick="return confirm('คุณต้องการปฏิเสธคำร้องนี้หรือไม่')" class=" btn btn-outline-danger mw-100 text-center">ปฏิเสธ</a>
 
                                 </div>
 

@@ -123,6 +123,8 @@ if (isset($_POST['bn-submit'])) {
 
     $bn_detail = $_POST['bn_detail'];
 
+    $mkr_id = $_POST['mkr_id'];
+
 
 
     date_default_timezone_set('Asia/Bangkok');
@@ -145,11 +147,20 @@ if (isset($_POST['bn-submit'])) {
 
     $bnpath = '../asset/banner/' . $bn_name;
 
-    if (isset($_POST["bn_toppic"]) != "" && isset($_POST["bn_detail"]) != "" && isset($_POST["bn_toppic"]) != "" && isset($bn_img) != "") {
+    if (isset($_POST["bn_toppic"]) != "" && isset($_POST["bn_detail"]) != "" && isset($bn_img) != "") {
 
         move_uploaded_file($bn_tmp, $bnpath);
 
-        $sqlInsert = "INSERT INTO `req_annouce`(`bn_toppic`, `bn_detail`, `bn_pic`,`users_id`,`req_status_id`) VALUES ('$bn_toppic', '$bn_detail', '$bn_img', '$users_id','1')";
+        $sqlInsert = "INSERT INTO `req_annouce`(`bn_toppic`, `bn_detail`, `bn_pic`,`users_id`,`req_status_id`,`mkr_id`) VALUES ('$bn_toppic', '$bn_detail', '$bn_img', '$users_id','1','$mkr_id')";
+
+        $last_id = mysqli_query($conn, "SELECT MAX(req_an_id) AS maxid FROM req_annouce");
+        $mid = mysqli_fetch_array($last_id);
+        extract($mid);
+        $username = $_SESSION['username'];
+        $fk_id = $mid['maxid'];
+        $n_detail = $username . " ได้ส่งคำร้องขอประชาสัมพันธ์ตลาด ";
+        $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+        VALUES ('คำร้องขอประชาสัมพันธ์ใหม่','$n_detail','1','1','$fk_id','0')");
 
         if (mysqli_query($conn, $sqlInsert)) {
 
