@@ -35,7 +35,6 @@ if (isset($_GET["bn_id"])) {
     $row2 = mysqli_fetch_array($resultdata);
 
     extract($row2);
-
 }
 
 
@@ -79,23 +78,14 @@ if (isset($_POST['bn-submit'])) {
             echo "<script type='text/javascript'> success(); </script>";
 
             echo '<meta http-equiv="refresh" content="1"; />';
-
         } else {
 
             echo "<script type='text/javascript'> error(); </script>";
-
-
-
         }
-
     } else {
 
         echo "<script type='text/javascript'> error(); </script>";
-
-
-
     }
-
 }
 
 
@@ -115,13 +105,10 @@ if (isset($_GET['delbn_id'])) {
     if ($sqlDelUsers = mysqli_query($conn, $sqlDelUsers)) {
 
         echo "<script type='text/javascript'>delbannersuccess()</script>";
-
     } else {
 
         echo "<script type='text/javascript'> error(); </script>";
-
     }
-
 }
 
 
@@ -162,41 +149,31 @@ if (isset($_POST['bn-submit-edit'])) {
 
 
 
-        if ($bn_pic_tmp != '') {
+    if (empty($_FILES['bn_pic']['tmp_name'])) {
 
-            $update = "UPDATE `banner` SET `bn_toppic`='$bn_toppic',`bn_detail`='$bn_detail',`bn_pic`='$bn_pic' WHERE 'bn_id'='$bn_id'";
+        $update = "UPDATE `banner` SET `bn_toppic`='$bn_toppic',`bn_detail`='$bn_detail' WHERE `bn_id`='$bn_id'";
 
-            if (mysqli_query($conn, $update)) {
+        if (mysqli_query($conn, $update)) {
 
-                move_uploaded_file($bn_pic_tmp, $path);
-
-                echo "<script type='text/javascript'> success(); </script>";
-
-                echo '<meta http-equiv="refresh" content="1";/>';
-
-            } else {
-
-                echo "<script type='text/javascript'> error(); </script>";
-
-            }
-
+            echo "<script type='text/javascript'> success(); </script>";
+            echo '<meta http-equiv="refresh" content="1";/>';
         } else {
 
-            $update = "UPDATE `banner` SET `bn_toppic`='$bn_toppic',`bn_detail`='$bn_detail' WHERE 'bn_id'='$bn_id'";
-
-            if (mysqli_query($conn, $update)) {
-
-                echo "<script type='text/javascript'> success(); </script>";
-
-                echo '<meta http-equiv="refresh" content="1";/>';
-
-            } else {
-
-                echo "<script type='text/javascript'> error(); </script>";
-
-            }
-
+            echo "<script type='text/javascript'> error(); </script>";
         }
+    } else {
+        $update = "UPDATE `banner` SET `bn_toppic`='$bn_toppic',`bn_detail`='$bn_detail',`bn_pic`='$bn_pic' WHERE `bn_id`='$bn_id'";
 
+        if (mysqli_query($conn, $update)) {
+
+            move_uploaded_file($bn_pic_tmp, $path);
+
+            echo "<script type='text/javascript'> success(); </script>";
+
+            echo '<meta http-equiv="refresh" content="1";/>';
+        } else {
+
+            echo "<script type='text/javascript'> error(); </script>";
+        }
+    }
 }
-
