@@ -110,8 +110,6 @@ require "./backend/qry-index.php";
 
                 }
 
-                mysqli_close($conn);
-
                 ?>
 
             </div>
