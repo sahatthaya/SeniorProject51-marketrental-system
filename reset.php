@@ -165,13 +165,7 @@ extract($lg);
         }
 
         $(document).ready(function() {
-
-
-
             ("#resetpsw").on('submit', function(c) {
-
-
-
                 c.preventDefault();
 
                 var email = $("#email").val();
@@ -180,42 +174,22 @@ extract($lg);
 
                 var cfpassword = $("#cfpassword").val();
 
-
-
                 $.ajax({
-
-
-
                     type: "POST",
-
                     url: "reset_password.php",
-
                     data: {
-
                         email: email,
-
                         password: password,
-
                         cfpassword: cfpassword
-
                     },
 
-
-
                     success: function(date) {
-
                         $(".form-message").css("display", "block");
-
                         $(".form-message").html(date);
-
                     }
-
                 });
 
             });
-
-
-
         });
 
     </script>

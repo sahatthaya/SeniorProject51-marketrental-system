@@ -145,7 +145,7 @@ require "../backend/add-complain.php";
         <div class="border rounded shadow-sm p-3">
 
             <form method="POST" enctype="multipart/form-data" class="was-validated">
-
+                <div class="msg"></div>
                 <h5>เพิ่มการร้องเรียนใหม่</h5>
 
                 <hr>
@@ -156,7 +156,7 @@ require "../backend/add-complain.php";
 
                     <div class="col-sm-10">
 
-                        <select name="toppic" class="form-select" data-width="100%" data-style="btn-outline-secondary" data-size="5" required>
+                        <select name="toppic" id="compToppic" class="form-select" data-width="100%" data-style="btn-outline-secondary" data-size="5" required>
 
                             <?php while ($row1 = mysqli_fetch_array($result_toppic)) :; ?>
 
@@ -171,14 +171,13 @@ require "../backend/add-complain.php";
                 </div>
 
 
-
                 <div class="mb-3 row">
 
                     <label for="staticEmail" class="col-sm-2 col-form-label">หัวเรื่อง :</label>
 
                     <div class="col-sm-10">
 
-                        <input class="form-control" name="subject" type="text" maxlength="85" required>
+                        <input class="form-control" name="subject" id="compSubject" type="text" maxlength="85" required>
 
                     </div>
 
@@ -190,25 +189,26 @@ require "../backend/add-complain.php";
 
                     <div class="col-sm-10">
 
-                        <textarea class="form-control" name="comp_detail" required></textarea>
+                        <textarea class="form-control" name="comp_detail" id="compDetail" required></textarea>
 
                     </div>
 
                 </div>
+
                 <div class="mb-3 row">
 
                     <label for="staticEmail" class="col-sm-2 col-form-label">รูปภาพที่เกี่ยวข้อง : <br> <span class="text-secondary fs-6">(สามารถเลือกได้หลายไฟล์)</span></label>
 
                     <div class="col-sm-10">
 
-                        <input class="form-control" name="upload[]" type="file" accept="image/png, image/gif, image/jpeg" title="สามารถเลือกได้หลายไฟล์" multiple>
+                        <input class="form-control" name="upload[]" type="file" id="compUpload" accept="image/png, image/gif, image/jpeg" title="สามารถเลือกได้หลายไฟล์" multiple>
 
                     </div>
 
                 </div>
                 <div class="text-end">
 
-                    <button name="post-btn" type="submit" class="btn btn-primary w-25">ส่ง <i class='bx bxs-paper-plane'></i></button>
+                    <button name="post-btn" type="submit" class="btn btn-primary w-25" onclick="sendEmailcomp()">ส่ง <i class='bx bxs-paper-plane'></i></button>
 
                 </div>
 
@@ -311,9 +311,45 @@ require "../backend/add-complain.php";
 
     </div>
 
+
+    <script>
+        function sendEmailcomp() {
+            var compToppic = $("#compToppic");
+            var compSubject = $("#compSubject");
+            var compDetail = $("#compDetail");
+            var compUpload = $("#compUpload");
+
+            if (isNotEmpty(compToppic) && isNotEmpty(compSubject) && isNotEmpty(compDetail) && isNotEmpty(email) && isNotEmpty(compUpload)) {
+                $.ajax({
+                    url: './sendEmail-comp.php',
+                    method: 'POST',
+                    dataType: 'json',
+                    data: {
+                        compToppic: compToppic.val(),
+                        compSubject: compSubject.val(),
+                        compDetail: compDetail.val(),
+                        compUpload: compUpload.val()
+                    },
+                    success: function(response) {
+                        $('#myForm')[0].reset();
+                        $('.msg').text("Message send successfully");
+                    }
+                });
+            }
+        }
+
+        function isNotEmpty(caller) {
+            if (caller.val() == "") {
+                caller.css('border', '1px solid red');
+                return false;
+            } else caller.css('border', '');
+
+            return true;
+        }
+    </script>
+
+
 </body>
-
-
 
 
 
