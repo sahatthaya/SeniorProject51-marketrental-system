@@ -548,9 +548,13 @@
 
 }
 
+.nv-bar {
+    display: none;
+}
 
 
 @media only screen and (max-width: 768px) {
+
 
     .sidebar.close {
 
@@ -575,14 +579,14 @@
     .sidebar.close .logo-details {
 
         height: 55px;
-
+        display:block;
     }
 
 
 
     .sidebar.close .logo-details img {
 
-        margin: -4px 7px;
+        margin: 8px 7px;
 
         width: 35px;
 

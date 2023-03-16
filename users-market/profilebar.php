@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if ($_SESSION['userstype'] == "") {
     echo "<script>plslogin2();</script>;";
@@ -23,7 +23,6 @@ include "../backend/1-import-link.php";
 if (($_SESSION["userstype"] != "2")) {
 
     echo "<script>plslogin();window.location='../index.php';";
-
 }
 
 include "../backend/1-connectDB.php";
@@ -36,6 +35,7 @@ $lg = mysqli_fetch_array($resultlg);
 
 extract($lg);
 
+$users_id = $_SESSION['users_id'];
 ?>
 
 
@@ -56,8 +56,17 @@ extract($lg);
 
 <body>
 
-    <div>
+    <div class="d-flex justify-content-end gap-2 bar">
+        <div class="notiicon  dropdown updatenoti" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside" id="<?php echo $users_id ?>">
+            <a class="position-relative m-1 px-1 pt-1">
+                <i class='bx bx-bell fs-5'></i>
+                <div id="link_wrapper">
 
+                </div>
+            </a>
+        </div>
+        <ul class="dropdown-menu mt-2 p-0" style=" max-height: 300px;overflow-y: auto;" id="link_wrapper_2">
+        </ul>
         <div class="profileicon prevent-select" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 
             <p>เจ้าของตลาด : <?php echo $_SESSION['username']; ?></p>
@@ -66,7 +75,7 @@ extract($lg);
 
         </div>
 
-        <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickableInside">
+        <ul class="dropdown-menu dropdownuser" aria-labelledby="dropdownMenuClickableInside">
 
             <li><a class="dropdown-item" href="edit-profile.php"><i class='bx bxs-user-detail'></i>แก้ไขโปรไฟล์</a></li>
 
@@ -89,5 +98,70 @@ extract($lg);
 
 
 </html>
+<script>
+    function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("link_wrapper").innerHTML =
+                    this.responseText;
+            }
+        };
+        xhttp.open("GET", "notification_num.php", true);
+        xhttp.send();
+    }
+    setInterval(function() {
+        loadXMLDoc();
+        // 1sec
+    }, 1000);
 
-<? ob_end_flush() ?>
+    window.onload = loadXMLDoc;
+
+    function loadXMLDoc2() {
+        var xhttp2 = new XMLHttpRequest();
+        xhttp2.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("link_wrapper_2").innerHTML =
+                    this.responseText;
+            }
+        };
+        xhttp2.open("GET", "notification_detail.php", true);
+        xhttp2.send();
+    }
+    setInterval(function() {
+        loadXMLDoc2();
+        // 1sec
+    }, 1000);
+
+    window.onload = loadXMLDoc2;
+
+    $(document).ready(function() {
+
+        $("body").on("click", ".updatenoti", function(event) {
+
+            var userid = $(this).attr("id");
+
+            $.ajax({
+
+                url: "../backend/notification.php",
+
+                method: "POST",
+
+                data: {
+
+                    userid: userid
+
+                },
+                success: function(data) {
+
+                },
+                //on error
+                error: function() {}
+            });
+
+
+
+        })
+
+    });
+</script>

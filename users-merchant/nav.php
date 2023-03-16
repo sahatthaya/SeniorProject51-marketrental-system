@@ -182,9 +182,6 @@ extract($lg);
 
         }
     </script>
-
 </body>
-
-
 
 </html>

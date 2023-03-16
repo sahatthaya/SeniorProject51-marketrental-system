@@ -1,276 +1,551 @@
-* {
-    font-family: 'Mitr', sans-serif;
-}
-
-:root {
-    --white: white;
-    --purple: #4B2ED7;
-    --lightblue: #38B6FF;
-    --lightpurple: #619FFF;
-}
-
-body {
-    margin: 30px 68px 20px 146px !important;
-    padding-top: 40px;
-    min-width: 370px;
-}
-
-.radius10 {
-    border-radius: 5px !important;
-}
-
-/* ----------------------------------------1.banner------------------------------------------------------------ */
-
-.carousel-inner {
-    position: relative;
-    height: 25rem;
-    align-items: center;
-    border-radius: 5px;
-}
-
-.carousel-item img {
-    height: 25rem;
-}
-
-.carousel-caption {
-    color: var(--white);
-    border-radius: 5px;
-    padding: auto 1rem !important;
-
-    background: rgba(0, 0, 0, 0.25);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 10px;
-}
-
-#slidelabel {
-    margin-bottom: 25px;
-}
-
-/* ----------------------------------------2.users-guide------------------------------------------------------------ */
-
-.contentbox {
-    margin-top: 3%;
-    padding: 30px;
-    border-radius: 5px;
-    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
-}
-
-.web-info {
-    background: var(--lightpurple);
-    color: var(--white) !important;
-}
-
-.users-guide {
-    margin-top: 3%;
-}
-
-.users-guide button {
-    width: 650px;
-
-}
-
-.guide-btn {
-    margin-top: 20px;
-}
-
-.users-guide img {
-    border-radius: 5px;
-
-}
-
-.guide {
-    margin-top: 15px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 10px;
-}
-
-.quide h5 {
-    margin-bottom: 10px;
-}
-
-/* ----------------------------------------3.ตลาดขายดี------------------------------------------------------------ */
-#all-mrk {
-    text-decoration: none !important;
-    color: var(--lightblue);
-}
-
-#all-mrk h5 {
-    margin: 5px 0 !important;
-}
-
-#all-mrk:hover {
-    color: var(--purple);
-    text-decoration: underline !important;
-}
-
-.topmkr {
-    margin: 15px 0;
-    width: 100%;
-}
-
-.topmkr .text {
-    justify-content: space-between;
-    margin: 15px 0px;
-    margin-right: 10px;
-    padding-top: 20px !important;
-}
-
-/* Market item ---------------------------------------------------- */
-.box {
-    display: grid;
-    grid-gap: 10px;
-    grid-template-columns: repeat(4, minmax(100px, 1fr));
-
-}
-
-.marketcard {
-    width: 100%;
-    height: 197px;
-    overflow: hidden;
-    border-radius: 5px;
-    text-decoration: none !important;
-    color: var(--white);
-
-}
-
-.mkrimg {
-    width: 100%;
-    height: 197px;
-}
-
-.overlay {
-    padding: 10px 20px;
-    border-radius: 5px;
-    border-top-left-radius: 0px !important;
-    border-top-right-radius: 0px !important;
-    width: 100%;
-    height: 197px;
-    background: rgba(1, 33, 102, 0.5);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(2.5px);
-    -webkit-backdrop-filter: blur(2.5px);
-    border-radius: 5px;
-    transform: translate(0%, -45%);
-    color: var(--white);
-
-}
-
-.marketcard:hover .overlay {
-    border-top-left-radius: 10px !important;
-    border-top-right-radius: 10px !important;
-    transform: translate(0%, -100%);
-    transition: 0.5s ease;
-    background: rgba(1, 33, 102, 0.55);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(7.5px);
-    -webkit-backdrop-filter: blur(7.5px);
-    border-radius: 5px;
-}
-
-/* textในoverlay */
-.markettag {
-    margin-bottom: 10px;
-}
-
-.ptext {
-    font-size: 15px !important;
-    margin: 0;
-    text-decoration: none;
-    width: fit-content;
-
-}
-
-.ptext i {
-    margin: 5px;
-    ;
-}
-
-
-/* responsive--------------------------------------------------------------------- */
-
-@media(max-width: 1400px) {
-
-    .box {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(2, minmax(100px, 1fr));
-    }
-
-    .banner {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(1, minmax(100px, 1fr));
-    }
-
-
-    #merchant-btn {
-        margin-top: 0px !important;
-    }
-}
-
-@media(max-width: 992px) {
-
-    .box {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(1, 1fr);
-        text-align: center;
-    }
-
-    .guide {
-        display: grid;
-        grid-gap: 10px;
-        grid-template-columns: repeat(1, 1fr);
-        text-align: center;
-    }
-
-    .users-guide button {
-        width: fit-content;
-        font-size: large;
-    }
-
-    .guide-btn {
-        margin-top: 10px;
-    }
-
-    .contentbox p {
-        font-size: 16px;
-    }
-
-    
-    .btn-lg{
-        width: 60% !important;
-        margin-top: 5px;
-    }
-
-}
-
-@media(max-width:720px) {
-    #users-guide {
-        display: grid;
-        grid-gap: 20px;
-        grid-template-columns: repeat(1, minmax(100px, 1fr));
-    }
-
-    body {
-        padding-right: 10px;
-        margin: 60px 10px 0px 15px !important;
-    }
-
-
-    h3 .col-10 {
-        font-size: 14px !important;
-        width: fit-content !important;
-    }
-
-    .text-end h5 {
-        font-size: 16px ;
-    }
-
-}
+* {
+
+    font-family: 'Mitr', sans-serif;
+
+}
+
+
+
+:root {
+
+    --white: white;
+
+    --purple: #4B2ED7;
+
+    --lightblue: #38B6FF;
+
+    --lightpurple: #619FFF;
+
+}
+
+
+
+body {
+
+    margin: 50px 68px 20px 146px !important;
+
+    padding-top: 40px;
+
+    min-width: 370px;
+
+}
+
+
+
+.radius10 {
+
+    border-radius: 5px !important;
+
+}
+
+
+
+/* ----------------------------------------1.banner------------------------------------------------------------ */
+
+
+
+.carousel-inner {
+
+    position: relative;
+
+    height: 25rem;
+
+    align-items: center;
+
+    border-radius: 5px;
+
+}
+
+
+
+.carousel-item img {
+
+    height: 25rem;
+
+}
+
+
+
+.carousel-caption {
+
+    color: var(--white);
+
+    border-radius: 5px;
+
+    padding: auto 1rem !important;
+
+
+
+    background: rgba(0, 0, 0, 0.25);
+
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    backdrop-filter: blur(10px);
+
+    -webkit-backdrop-filter: blur(10px);
+
+    border-radius: 10px;
+
+}
+
+
+
+#slidelabel {
+
+    margin-bottom: 25px;
+
+}
+
+
+
+/* ----------------------------------------2.users-guide------------------------------------------------------------ */
+
+
+
+.contentbox {
+
+    margin-top: 3%;
+
+    padding: 30px;
+
+    border-radius: 5px;
+
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+}
+
+
+
+.web-info {
+
+    background: var(--lightpurple);
+
+    color: var(--white) !important;
+
+}
+
+
+
+.users-guide {
+
+    margin-top: 3%;
+
+}
+
+
+
+.users-guide button {
+
+    width: 650px;
+
+
+
+}
+
+
+
+.guide-btn {
+
+    margin-top: 20px;
+
+}
+
+
+
+.users-guide img {
+
+    border-radius: 5px;
+
+
+
+}
+
+
+
+.guide {
+
+    margin-top: 15px;
+
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    grid-template-rows: 1fr;
+
+    grid-column-gap: 10px;
+
+}
+
+
+
+.quide h5 {
+
+    margin-bottom: 10px;
+
+}
+
+
+
+/* ----------------------------------------3.ตลาดขายดี------------------------------------------------------------ */
+
+#all-mrk {
+
+    text-decoration: none !important;
+
+    color: var(--lightblue);
+
+}
+
+
+
+#all-mrk h5 {
+
+    margin: 5px 0 !important;
+
+}
+
+
+
+#all-mrk:hover {
+
+    color: var(--purple);
+
+    text-decoration: underline !important;
+
+}
+
+
+
+.topmkr {
+
+    margin: 15px 0;
+
+    width: 100%;
+
+}
+
+
+
+.topmkr .text {
+
+    justify-content: space-between;
+
+    margin: 15px 0px;
+
+    margin-right: 10px;
+
+    padding-top: 20px !important;
+
+}
+
+
+
+/* Market item ---------------------------------------------------- */
+
+.box {
+
+    display: grid;
+
+    grid-gap: 10px;
+
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+
+
+
+}
+
+
+
+.marketcard {
+
+    width: 100%;
+
+    height: 197px;
+
+    overflow: hidden;
+
+    border-radius: 5px;
+
+    text-decoration: none !important;
+
+    color: var(--white);
+
+
+
+}
+
+
+
+.mkrimg {
+
+    width: 100%;
+
+    height: 197px;
+
+}
+
+
+
+.overlay {
+
+    padding: 10px 20px;
+
+    border-radius: 5px;
+
+    border-top-left-radius: 0px !important;
+
+    border-top-right-radius: 0px !important;
+
+    width: 100%;
+
+    height: 197px;
+
+    background: rgba(1, 33, 102, 0.5);
+
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    backdrop-filter: blur(2.5px);
+
+    -webkit-backdrop-filter: blur(2.5px);
+
+    border-radius: 5px;
+
+    transform: translate(0%, -45%);
+
+    color: var(--white);
+
+
+
+}
+
+
+
+.marketcard:hover .overlay {
+
+    border-top-left-radius: 10px !important;
+
+    border-top-right-radius: 10px !important;
+
+    transform: translate(0%, -100%);
+
+    transition: 0.5s ease;
+
+    background: rgba(1, 33, 102, 0.55);
+
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+
+    backdrop-filter: blur(7.5px);
+
+    -webkit-backdrop-filter: blur(7.5px);
+
+    border-radius: 5px;
+
+}
+
+
+
+/* textในoverlay */
+
+.markettag {
+
+    margin-bottom: 10px;
+
+}
+
+
+
+.ptext {
+
+    font-size: 15px !important;
+
+    margin: 0;
+
+    text-decoration: none;
+
+    width: fit-content;
+
+
+
+}
+
+
+
+.ptext i {
+
+    margin: 5px;
+
+    ;
+
+}
+
+
+
+
+
+/* responsive--------------------------------------------------------------------- */
+
+
+
+@media(max-width: 1400px) {
+
+
+
+    .box {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+
+    }
+
+
+
+    .banner {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+
+    }
+
+
+
+
+
+    #merchant-btn {
+
+        margin-top: 0px !important;
+
+    }
+
+}
+
+
+
+@media(max-width: 992px) {
+
+
+
+    .box {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(1, 1fr);
+
+        text-align: center;
+
+    }
+
+
+
+    .guide {
+
+        display: grid;
+
+        grid-gap: 10px;
+
+        grid-template-columns: repeat(1, 1fr);
+
+        text-align: center;
+
+    }
+
+
+
+    .users-guide button {
+
+        width: fit-content;
+
+        font-size: large;
+
+    }
+
+
+
+    .guide-btn {
+
+        margin-top: 10px;
+
+    }
+
+
+
+    .contentbox p {
+
+        font-size: 16px;
+
+    }
+
+
+
+    
+
+    .btn-lg{
+
+        width: 60% !important;
+
+        margin-top: 5px;
+
+    }
+
+
+
+}
+
+
+
+@media(max-width:720px) {
+
+    #users-guide {
+
+        display: grid;
+
+        grid-gap: 20px;
+
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+
+    }
+
+
+
+    body {
+
+
+         margin: 55px 10px 0px 10px !important;
+
+    }
+
+
+
+
+
+    h3 .col-10 {
+
+        font-size: 14px !important;
+
+        width: fit-content !important;
+
+    }
+
+
+
+    .text-end h5 {
+
+        font-size: 16px ;
+
+    }
+
+
+
+}
+

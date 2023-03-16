@@ -40,28 +40,40 @@ $userid = $_SESSION['users_id'];
 
 
 
-$data2 = "SELECT req_annouce.*, users.username , req_status.req_status,req_status.color FROM req_annouce 
+$data2 = "SELECT * FROM req_annouce 
 
 JOIN users ON (req_annouce.users_id = users.users_id) 
 
-JOIN req_status ON (req_annouce.req_status_id = req_status.req_status_id) WHERE (req_annouce.users_id = '$userid')";
+JOIN req_status ON (req_annouce.req_status_id = req_status.req_status_id)
+
+JOIN market_detail ON (market_detail.mkr_id = req_annouce.mkr_id)
+
+ WHERE (req_annouce.users_id = '$userid') ORDER BY `timestamp` DESC";
 
 $result3 = mysqli_query($conn, $data2);
 
+if (isset($_GET['fk_id'])) {
+    $an_id = $_GET['fk_id'];
+} else {
+    $an_id = '';
+}
 ?>
 
 
 
 <body>
-
     <div class="content">
 
-        <h1 id="headline">ติดตามสถานะคำร้องขอประชาสัมพันธ์</h1>
+        <h1 id="headline">คำร้องขอประชาสัมพันธ์</h1>
 
         <div>
 
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
-
+                <div class="d-flex justify-content-between">
+                    <h3>ประวัติคำร้องขอประชาสัมพันธ์</h3>
+                    <a class="btn btn-primary" href="./announce.php"> ส่งคำร้องขอประชาสัมพันธ์</a>
+                </div>
+                <hr>
                 <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
 
                     <thead>
@@ -73,6 +85,8 @@ $result3 = mysqli_query($conn, $data2);
                             <th scope="col">วันที่ส่งคำร้อง</th>
 
                             <th scope="col">เวลาที่ส่งคำร้อง</th>
+
+                            <th scope="col">ตลาด</th>
 
                             <th scope="col">หัวข้อ</th>
 
@@ -88,15 +102,23 @@ $result3 = mysqli_query($conn, $data2);
 
                     <tbody>
 
-                        <?php while ($row1 = $result3->fetch_assoc()) : ?>
+                        <?php while ($row1 = $result3->fetch_assoc()) :
+                            if ($an_id == $row1['req_an_id']) {
+                                $bg = 'bg-info bg-opacity-10';
+                            } else {
+                                $bg = '';
+                            }
+                        ?>
 
-                            <tr>
+                            <tr class="<?php echo $bg ?>">
 
-                                <td><?php echo $count_n; ?></td>
+                                <td class="<?php echo $bg ?>"><?php echo $count_n; ?></td>
 
-                                <td><?php echo date( "d/m/Y", strtotime($row1['timestamp'])) ?></td>
+                                <td><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></td>
 
-                                <td><?php echo date( "h:i a", strtotime($row1['timestamp'])) ?></td>
+                                <td><?php echo date("h:i a", strtotime($row1['timestamp'])) ?></td>
+
+                                <td><?php echo $row1['mkr_name']; ?></td>
 
                                 <td><?php echo $row1['bn_toppic']; ?></td>
 
@@ -104,7 +126,9 @@ $result3 = mysqli_query($conn, $data2);
 
                                 <td><button name="view" type="button" class="modal_data1 btn btn-outline-primary" id="<?php echo $row1['req_an_id']; ?>">ดูรายละเอียด</button></td>
 
-                                <td> <div style="background-color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row1['req_status']; ?></div></td>
+                                <td>
+                                    <div style="color: <?php echo $row1['color']; ?>;" class="p-1 rounded text-center"><?php echo $row1['req_status']; ?></div>
+                                </td>
 
                             </tr>
 
@@ -124,14 +148,13 @@ $result3 = mysqli_query($conn, $data2);
 
     <script src="../backend/script.js"></script>
 
-    
+
 
     <?php require '../backend/modal-applicant.php' ?>
 
 </body>
 
 <script>
-
     //detail req popup
 
     $(document).ready(function() {
@@ -167,7 +190,6 @@ $result3 = mysqli_query($conn, $data2);
         })
 
     });
-
 </script>
 
 

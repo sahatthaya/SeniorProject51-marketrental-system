@@ -31,11 +31,12 @@ if (isset($_GET['token'])) {
     <title> MarketRental - user-profile</title>
     <link rel="stylesheet" href="./css/profilebar.css" type="text/css">
     <link rel="shortcut icon" type="image/x-icon" href="./<?php echo $lg['ct_logo'] ?>" />
+
 </head>
 
 <body>
 
-    <div class="profileicon prevent-select" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="showoff">
+    <div class="bar profileicon prevent-select" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="showoff">
         <p>เข้าสู่ระบบ/สมัครสมาชิก</p>
         <i id="profileicon" class='bx bxs-user-circle bx-md'></i>
     </div>
@@ -66,8 +67,9 @@ if (isset($_GET['token'])) {
             <form method="POST" class="was-validated">
                 <div class="mb-1">อีเมล</div>
                 <input class="form-control mb-2" type="email" name="email" id="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="กรุณากรอกอีเมลให้ถูกต้อง" required>
-                <button class="btn btn-primary w-100 mt-2" onclick="sendEmail(),send_email()" type="submit" name="login-btn">ส่งรหัสผ่านไปยังอีเมล</button>
+                <button class="btn btn-primary w-100 mt-2" onclick="sendEmail(),send_email()" type="submit" name="resetpsw-btn">ส่งรหัสผ่านไปยังอีเมล</button>
             </form>
+            <!-- ,send_email() -->
             <hr class="mx-5 mb-0">
             <div class="center"><button href="#" onclick="showsignIn()" class="btn btn-link">ย้อนกลับไปเข้าสู่ระบบ</button> </div>
         </div>
@@ -269,8 +271,9 @@ if (isset($_GET['token'])) {
                     $('#resetpsw')[0].reset();
                     $('.msg').text("Message send successfully");
                 }
-            });
+            })
         }
+
     }
     function isNotEmpty(caller) {
         if (caller.val() == "") {

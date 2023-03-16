@@ -84,7 +84,6 @@ if (isset($_POST['email'])) {
             $mail->SMTPAuth = true;
 
             $mail->Username = "1st.sunghoon@gmail.com"; // enter your email address
-
             $mail->Password = "zxhxuybfiqwxpzux"; // enter your password
 
             $mail->Port = 465;

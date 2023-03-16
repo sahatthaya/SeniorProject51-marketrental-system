@@ -105,7 +105,7 @@ if (isset($_POST["s_id"])) {
 
 <div id="bannerdataModal" class="modal fade" role="dialog">
 
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog  modal-dialog-scrollable modal-dialog-centered modal-lg">
 
         <div class="modal-content">
 

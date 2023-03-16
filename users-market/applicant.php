@@ -12,7 +12,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> MarketRental - ส่งคำร้องขอเพิ่มตลาดใหม่</title>
+    <title> MarketRental - คำร้องขอเพิ่มตลาดใหม่</title>
 
 
 
@@ -61,8 +61,15 @@ require "../backend/add-applicant.php"
 
 
 
-<body class="mt-5">
+<body>
+    <nav aria-label="breadcrumb mb-3">
 
+        <ol class="breadcrumb ">
+            <li class="breadcrumb-item fs-5 "><a href="./status-applicant.php" class="text-decoration-none">คำร้องขอเพิ่มตลาด</a></li>
+            <li class="breadcrumb-item active fs-5" aria-current="page">ส่งคำร้องขอเพิ่มตลาดใหม่</li>
+        </ol>
+
+    </nav>
     <h1 id="headline">กรอกข้อมูลเพื่อส่งคำร้องขอเพิ่มตลาดใหม่</h1>
 
     <?php
@@ -80,7 +87,6 @@ require "../backend/add-applicant.php"
 </body>
 
 <script>
-
     $(document).ready(function() {
 
         $("body").tooltip({
@@ -108,7 +114,6 @@ require "../backend/add-applicant.php"
         "mask": "99999"
 
     });
-
 </script>
 
 

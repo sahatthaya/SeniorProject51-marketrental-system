@@ -356,6 +356,8 @@ $query2 = mysqli_query($conn, $sql2);
 
                     <div class="col-sm-10">
                         <input type="text" name="comp_id" id="" value="<?php echo $comp_id ?>" hidden>
+                        <input type="text" name="mkrname" id="" value="<?php echo $row['mkr_name'] ?>" hidden>
+                        <input type="text" name="usermkr" id="" value="<?php echo $row['users_id'] ?>" hidden>
                         <textarea class="form-control" name="comp_detail" required></textarea>
                     </div>
 

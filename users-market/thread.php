@@ -71,6 +71,12 @@ $sql2 = "SELECT reply.*,users.username FROM reply
 JOIN users ON (reply.users_id = users.users_id) 
 WHERE (comp_id = '$comp_id')";
 $query2 = mysqli_query($conn, $sql2);
+
+if (isset($_GET['newpost'])) {
+    $bgpost = 'bg-info bg-opacity-10';
+} else {
+    $bgpost = '';
+}
 ?>
 
 
@@ -89,7 +95,7 @@ $query2 = mysqli_query($conn, $sql2);
     <div>
 
         <!-- คำร้องเรียน -->
-        <div class="border rounded shadow-sm p-3">
+        <div class="border rounded shadow-sm p-3 <?php echo $bgpost ?>">
             <div class="d-flex justify-content-between">
                 <h4 class=""><?php echo $c['comp_subject']; ?></h4>
 
@@ -183,10 +189,13 @@ $query2 = mysqli_query($conn, $sql2);
                     $admin = ' (' . $row2['mkr_name'] . ')';
                     $bg = "bg-primary bg-opacity-10";
                 } else {
+                    if (isset($_GET['newreply']) && $row2['rp_id'] == $_GET['newreply']) {
+                        $bg = 'bg-info bg-opacity-10';
+                    } else {
+                        $bg = '';
+                    }
                     $admin = "";
-                    $bg = '';
                 }
-
             ?>
                 <div>
                     <div class="border rounded shadow-sm p-3 my-2 comp-card <?php echo $bg ?>">

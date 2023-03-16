@@ -59,6 +59,7 @@ if (isset($_GET['id-del']) != '') {
     $id = $_GET['id-del'];
 
     $type = $_GET['type'];
+    $sKey = $_GET['sKey'];
 
     echo "<script>";
 
@@ -82,7 +83,7 @@ if (isset($_GET['id-del']) != '') {
 
         if (result.isConfirmed) {
 
-          window.location.href = 'rent.php?action=confirm&id=" . $id . "&type=" . $type . "'
+          window.location.href = 'rent.php?action=confirm&id=" . $id . "&type=" . $type . "&sKey=" . $sKey . "'
 
         } else{
 
@@ -99,6 +100,30 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
     $id = $_GET['id'];
     $sql = mysqli_query($conn, "UPDATE `booking` SET `status`='0' WHERE `b_id`=$id");
+
+    // $stall_id = $_GET['stall_id'];
+
+    $sKeys = $_GET['sKey'];
+    $last_id = mysqli_query($conn, "SELECT *  FROM stall JOIN market_detail ON (market_detail.mkr_id = stall.market_id) WHERE sKey = $sKeys");
+    $mid = mysqli_fetch_array($last_id);
+    extract($mid);
+
+    $binfo = mysqli_query($conn, "SELECT *  FROM booking WHERE `b_id`=$id");
+    $bf = mysqli_fetch_array($binfo);
+    extract($bf);
+    $b_start = date("d/m/Y", strtotime($bf['b_start']));
+    $b_end = date("d/m/Y", strtotime($bf['b_end']));
+    $sql = mysqli_query($conn, "UPDATE `booking` SET `status`='0' WHERE `b_id`=$id");
+
+    $mkr_name = $mid['mkr_name'];
+    $usersmkr_id = $mid['users_id'];
+    $sID = $mid['sID'];
+    $n_sub = $mkr_name . ' (แผงค้า :' . $sID . ' )';
+    $n_detail = 'การจองช่วงวันที่' . $b_start . '-' . $b_end . 'ถูกยกเลิก';
+
+    $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+    VALUES ('$n_sub','$n_detail','1','5','$id','$usersmkr_id')");
+
 
     if ($sql) {
 
@@ -169,6 +194,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
                     <div>
 
                         <!-- Button trigger modal -->
+                        <a type="button" class="btn btn-primary btn-calen" href="./rent-history.php">
+
+                            ประวัติการจองแผงค้า
+
+                        </a>
 
                         <button type="button" class="btn btn-primary btn-calen" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
@@ -240,7 +270,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
                                 if (strtotime($curr_date) <= strtotime($startdate)) {
 
-                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&type=range">ยกเลิกการจอง</a>';
+                                    $cancel = '<a type="button" class=" btn btn-outline-danger w-100" href="rent.php?id-del=' . $row['b_id'] . '&sKey=' . $row['sKey'] . '&type=range">ยกเลิกการจอง</a>';
                                 } else {
 
                                     $cancel = '<button type="button" class="btn btn-outline-secondary w-100" disabled>ไม่สามารถยกเลิกได้</button>';
@@ -250,7 +280,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
                                 <td>
 
-                                    <a name="view" type="button" class="btn btn-outline-primary" href="../ExportPDF-master/reciept-booking.php?b_id=<?php echo $row['b_id']; ?>" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
+                                    <a name="view" type="button" class="btn btn-outline-primary" href="../ExportPDF-master/reciept-booking.php?b_id=<?php echo $row['b_id']; ?>&&nav=r" id="<?php echo $row['b_id']; ?>">ดูรายละเอียด</a>
 
                                 </td>
 

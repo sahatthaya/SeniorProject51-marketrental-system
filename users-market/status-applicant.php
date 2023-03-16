@@ -66,10 +66,15 @@ FROM req_partner
 
     JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id)
 
-    WHERE (req_partner.users_id = '$userid')";
+    WHERE (req_partner.users_id = '$userid') ORDER BY `timestamp` DESC";
 
 $result = mysqli_query($conn, $data);
 
+if (isset($_GET['fk_id'])) {
+    $an_id = $_GET['fk_id'];
+} else {
+    $an_id = '';
+}
 ?>
 
 
@@ -78,12 +83,16 @@ $result = mysqli_query($conn, $data);
 
     <div class="content">
 
-        <h1 id="headline">ติดตามสถานะคำร้องขอเพิ่มตลาด</h1>
+        <h1 id="headline">คำร้องขอเพิ่มตลาด</h1>
 
         <div>
 
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-3">
-
+                <div class="d-flex justify-content-between">
+                    <h3>ประวัติคำร้องขอเพิ่มตลาด</h3>
+                    <a class="btn btn-primary" href="./applicant.php"> ส่งคำร้องขอเพิ่มตลาดใหม่</a>
+                </div>
+                <hr>
                 <table id="myTable" class="display table table-striped dt-responsive" style="width: 100%;">
 
                     <thead>
@@ -110,11 +119,17 @@ $result = mysqli_query($conn, $data);
 
                     <tbody>
 
-                        <?php while ($row = $result->fetch_assoc()) : ?>
+                        <?php while ($row = $result->fetch_assoc()) :
+                            if ($an_id == $row['req_partner_id']) {
+                                $bg = 'bg-info bg-opacity-10';
+                            } else {
+                                $bg = '';
+                            }
+                        ?>
 
-                            <tr>
+                            <tr class="<?php echo $bg ?>">
 
-                                <td><?php echo $count_n; ?></td>
+                                <td class="<?php echo $bg ?>"><?php echo $count_n; ?></td>
 
                                 <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 
@@ -130,7 +145,7 @@ $result = mysqli_query($conn, $data);
 
                                 <td>
 
-                                    <div style="background-color: <?php echo $row['color']; ?>;" class="p-1 rounded text-center"><?php echo $row['req_status']; ?></div>
+                                    <div style="color: <?php echo $row['color']; ?>;" class="p-1 text-center"><?php echo $row['req_status']; ?></div>
 
                                 </td>
 
@@ -157,7 +172,6 @@ $result = mysqli_query($conn, $data);
 <?php require '../backend/modal-applicant.php' ?>
 
 <script>
-
     // apply detail popup
 
     $(document).ready(function() {
@@ -193,7 +207,6 @@ $result = mysqli_query($conn, $data);
         })
 
     });
-
 </script>
 
 

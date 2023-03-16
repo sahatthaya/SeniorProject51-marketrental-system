@@ -50,20 +50,35 @@ h1 {
 
 
 /* ----------------------------------------2.ปุ่มโปรไฟล์------------------------------------------------------------ */
-
-
-
-.profileicon {
-
+.bar {
     position: fixed;
 
-    top: 0;
+    top: 10px;
 
-    right: 0;
+    right: 10px;
+    z-index: 600;
+}
+
+.notiicon {
 
     padding: 5px;
 
-    margin: 10px;
+    color: var(--dark);
+
+    z-index: 600;
+
+    display: flex;
+
+    border-radius: 50px;
+
+    background: var(--white);
+
+    box-shadow: 1.5px 1.5px 2.5px #5c5c5c8c;
+}
+
+.profileicon {
+
+    padding: 5px;
 
     color: var(--dark);
 
@@ -91,7 +106,7 @@ h1 {
 
 
 
-.profileicon:hover {
+.profileicon:hover, .notiicon:hover {
 
     color: var(--link);
 
@@ -104,15 +119,6 @@ h1 {
         inset -2.5px -2.5px 5px #ffffff;
 
 }
-
-
-
-.dropdown-menu.show {
-
-    margin-left: 10px !important;
-
-}
-
 
 
 .dropdown-item i {
@@ -373,7 +379,10 @@ a.link:hover {
 
 
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 720px) {
+    .notiicon i{
+        font-size: 25px !important;
+    }
 
     .profileicon p {
 
@@ -383,7 +392,8 @@ a.link:hover {
 
 
 
-    .profileicon {
+    .profileicon ,.notiicon {
+        /* display: none; */
 
         height: 50px;
 

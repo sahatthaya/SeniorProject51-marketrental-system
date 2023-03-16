@@ -74,6 +74,9 @@ $rowus = mysqli_fetch_array($qry);
     </nav>
 
     <form id="checkoutForm" method="POST" action="../backend/checkout-dept.php" enctype="multipart/form-data" class="was-validated">
+        <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="market_name" value="<?php echo  $row['mkr_name']; ?>" required hidden>
+        <input class="form-control col-6" type="text" id="opentype" placeholder="ชื่อ" name="usersmkr_id" value="<?php echo  $row['users_id']; ?>" required hidden>
+
 
         <div class="form-outer form-group " style="overflow: visible;">
 

@@ -130,6 +130,44 @@ include "backend/1-import-link.php";
         });
     </script>
 
+
+    <nav class="nv-bar navbar navbar-expand-lg bg-body-tertiary fixed-top ">
+        <div class="container-fluid">
+            <div class="d-flex">
+                <button class="navbar-toggler border-0 me-2 " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class='bx bx-menu text-white fs-2'></i>
+                </button>
+            </div>
+            <a class="navbar-brand text-white" href="index.php">Market-Rental</a>
+
+            <div class="d-flex">
+                <div class="d-flex prevent-select py-2  border-0" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" id="showoff">
+                    <i class='bx bx-user fs-3 text-white'></i>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-3 mt-2">
+                        <a href="index.php" class="text-decoration-none text-white">
+                            <span class="link_name">หน้าหลัก</span>
+                        </a>
+                    </li>
+                    <hr class="text-white">
+                    <li class="nav-item mx-3 mt-2">
+                        <a href="all-market.php" class="text-decoration-none text-white">
+                            <span class="link_name">ตลาดทั้งหมด</span>
+                        </a>
+                    </li>
+                    <hr class="text-white">
+                    <li class="nav-item mx-3 mt-2">
+                        <a href="contact.php" class="text-decoration-none text-white">
+                            <span class="link_name">เกี่ยวกับเว็บไซต์</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </body>
 
 

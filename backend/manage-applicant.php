@@ -2,7 +2,7 @@
 
 include "../backend/1-connectDB.php";
 
-include "../backend/1-import-link.php";
+require_once "../backend/1-import-link.php";
 
 
 
@@ -36,7 +36,7 @@ $data = "SELECT req_partner.*,
 
         JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id) WHERE (req_partner.req_status_id = '1')
 
-        ORDER BY `timestamp` ASC";
+        ORDER BY `timestamp` DESC";
 
 $result = mysqli_query($conn, $data);
 
@@ -68,7 +68,7 @@ $data1 = "SELECT req_partner.*,
 
         JOIN req_status ON (req_partner.req_status_id = req_status.req_status_id)
 
-        ORDER BY `timestamp` ASC";
+        ORDER BY `timestamp` DESC";
 
 $result2 = mysqli_query($conn, $data1);
 
@@ -109,7 +109,7 @@ if (isset($_GET['approve'])) {
      $tel = $row['tel'];
 
      $opening = $row['opening'];
-     
+
 
 
 
@@ -165,18 +165,17 @@ if (isset($_GET['approve'])) {
 
      $sqlInsertpayment = mysqli_query($conn, $Insertpayment);
 
+     $fk_id = $mid['maxid'];
+     $n_detail = "คำร้องขอเพิ่มตลาดได้รับการอนุมัติ";
+     $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+      VALUES ('$market_name','$n_detail','1','7','$fk_id','$users_id')");
 
-
-     if ($approve && $insert && $sqlInsertpayment) {
-
+     if ($approve && $insert && $sqlInsertpayment && $insertnoti) {
           echo "<script>Approvesuccess();</script>";
-
      } else {
 
           echo "<script>error();</script>";
-
      }
-
 }
 
 
@@ -189,17 +188,23 @@ if (isset($_GET['denied'])) {
 
      $denied = "UPDATE req_partner SET req_status_id = '3' WHERE (req_partner_id = $deniedid)";
 
-     if (mysqli_query($conn, $denied)) {
+     $last_id = mysqli_query($conn, "SELECT MAX(req_partner_id) AS maxid,`market_name`,`users_id` FROM req_partner");
+     $mid = mysqli_fetch_array($last_id);
+     extract($mid);
+     $fk_id = $mid['maxid'];
+     $users_id = $mid['users_id'];
+     $market_name = $mid['market_name'];
+     $n_detail = "คำร้องขอเพิ่มตลาดถูกปฎิเสธ";
+     $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+      VALUES ('$market_name','$n_detail','1','2','$fk_id','$users_id')");
+
+     if (mysqli_query($conn, $denied) && $insertnoti) {
 
           echo "<script>Deninedsuccess();</script>";
-
      } else {
 
           echo "<script>error();</script>";
-
      }
-
 }
 
 mysqli_close($conn);
-
