@@ -425,15 +425,9 @@ require "../backend/invoice.php";
 
     function GetSelected() {
 
-        //Reference the Table.
-
         var grid = document.getElementById("myTable");
 
         var numcost = document.getElementById("cost").getElementsByClassName('costtag').length + 1;
-
-
-
-        //Reference the CheckBoxes in Table.
 
         var checkBoxes = grid.getElementsByTagName("INPUT");
 

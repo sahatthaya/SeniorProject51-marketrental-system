@@ -121,9 +121,9 @@ $rowus = mysqli_fetch_array($qry);
 
                 <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
 
-                <div class="des_input">ราคาค่ามัดจำ</div>
+                <!-- <div class="des_input">ราคาค่ามัดจำ</div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled> -->
 
 
 
@@ -172,7 +172,7 @@ $rowus = mysqli_fetch_array($qry);
 
                             ?>
 
-                            <option value="<?php echo $rowcalen['id'] ?>" <?php echo $disalbed; ?>>รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
+                            <option value="<?php echo $rowcalen['id'] ?>" <?php echo $disalbed; ?> id="<?php echo $rowcalen['day'] ?>">รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
 
                         <?php endwhile; ?>
 
@@ -313,10 +313,10 @@ $rowus = mysqli_fetch_array($qry);
                                 <div class="des_input">ราคาค่าเช่า</div>
 
                                 <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
-
+                                <!-- 
                                 <div class="des_input">ราคาค่ามัดจำ</div>
 
-                                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled> -->
 
                                 <div class="des_input" style="display:<?php echo $display ?> ;">รอบที่เลือกเช่า</div>
 
@@ -474,9 +474,11 @@ $rowus = mysqli_fetch_array($qry);
 
                 <input class="form-control col-6" value="<?php echo $row['mkr_name']; ?>" disabled>
 
-                <div class="des_input">ค่ามัดจำ</div>
+                <div class="des_input">ค่าเช่า</div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                <input class="form-control col-6" value="<?php
+                                                            $rent = $sRent;
+                                                            echo $rowstall['sRent'] . ' บาท' ?>" disabled>
 
                 <?php
 
