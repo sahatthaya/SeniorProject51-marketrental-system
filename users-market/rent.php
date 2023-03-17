@@ -75,9 +75,7 @@ if ($open == 'เปิดทำการทุกวัน') {
     <div id="content">
 
         <div id="table2" class="border mt-3 p-3 shadow-sm rounded">
-
             <table id="myTable" class="display table table-striped dt-responsive " style="width: 100%;">
-
                 <thead>
 
                     <tr>

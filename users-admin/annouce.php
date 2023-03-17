@@ -138,6 +138,7 @@ if (isset($_GET['fk_id'])) {
         </div>
 
     </div>
+    <?php require '../backend/modal-applicant.php' ?>
 
     <?php require '../backend/modal-applicant.php' ?>
 

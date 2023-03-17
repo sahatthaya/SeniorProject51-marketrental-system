@@ -97,20 +97,20 @@ if ($row['INV_status'] == '2') {
             </div>
             <hr>
             <div class="row mb-2">
-                <div class="col-2">วันที่สร้าง</div>
+                <div class="col-2 inv-info">วันที่สร้าง</div>
                 <div class="col-3"><?php echo date("d/m/Y", strtotime($row['INV_created'])) ?></div>
             </div>
             <div class="row mb-2">
-                <div class="col-2">หมดเขตชำระภายในวันที่</div>
+                <div class="col-2 inv-info">หมดเขตชำระภายในวันที่</div>
                 <div class="col-3"><?php echo date("d/m/Y", strtotime($row['INV_expired'])) ?></div>
             </div>
             <div class="row mb-2">
-                <div class="col-2">รหัสแผงค้า</div>
+                <div class="col-2 inv-info">รหัสแผงค้า</div>
                 <div class="col-3"><?php echo  $row["sID"] ?></div>
             </div>
 
             <div class="row mb-3">
-                <div class="col-2">รายละเอียดค่าใช้จ่ายเพิ่มเติม</div>
+                <div class="col-2 inv-info">รายละเอียดค่าใช้จ่ายเพิ่มเติม</div>
                 <div class="col-3">
                     <?php
                     $numRowsop2 = mysqli_num_rows($qrycost2);
@@ -127,7 +127,7 @@ if ($row['INV_status'] == '2') {
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-2">สถานะ</div>
+                <div class="col-2 inv-info">สถานะ</div>
                 <div class="col-3">
                     <?php
                     if ($row['INV_status'] == '1') {

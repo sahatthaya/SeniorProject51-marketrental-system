@@ -333,6 +333,13 @@ input[type=file]::file-selector-button:hover {
 
 }
 
+.hstack .cost {
+    width: 165px;
+}
+
+.hstack .cost-formselect {
+    width: 155px;
+}
 
 
 .hstack .cost {
@@ -524,7 +531,14 @@ input[type=file]::file-selector-button:hover {
 
     }
 
+    .cost-formselect {
+        margin-top: -10px !important ;
+    }
 
+    .cost-btn{
+        margin-top: -10px !important ;
+
+    }
 
     .cost-formselect {
 
