@@ -6,7 +6,7 @@ include '../backend/1-connectDB.php';
 
 
 
-$total = $_POST['total'];
+$users_id = $_POST['users_id'];
 
 $stall_id = $_POST['stall_id'];
 
@@ -26,10 +26,15 @@ $shop_detail = $_POST['shopdes'];
 
 $dept_pay = $_POST['dept_pay'];
 
-$users_id = $_POST['users_id'];
-
 $fee_pay = $_POST['fee_pay'];
 
+// ค่าเช่า
+
+$total = $_POST['total'];
+
+$fee = $_POST['fee'];
+
+$rentprice = $_POST['rentprice'];
 
 
 // ไฟล์ภาพบัตรปชช
@@ -80,9 +85,6 @@ $status = ($charge['status']);
 
 $code_id = ($charge['id']);
 
-@$total_pay = $total / 100;
-
-
 
 if ($status == 'successful') {
 
@@ -97,12 +99,12 @@ if ($status == 'successful') {
         $b_start = $rowop['start'];
         $b_end = $rowop['end'];
         $b_day = $rowop['day'];
+        $mkr_id = $rowop['mkr_id'];
 
 
         $insertbooking = mysqli_query($conn, "
         INSERT INTO `booking`(`b_fname`, `b_lname`, `b_cardID`, `b_tel`, `b_email`, `b_shopname`, `b_shopdetail`, `stall_id`, `b_start`, `b_end`, `b_day`, `op_id`, `b_deptpay`, `b_feepay`, `b_totalpay`, `b_codepay`, `users_id`)
-        VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id', '$b_start', '$b_end', '$b_day', '$op_id','$dept_pay','$fee_pay','$total_pay','$code_id','$users_id')");
-
+        VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id', '$b_start', '$b_end', '$b_day', '$op_id','$dept_pay','$fee_pay','0','-','$users_id')");
 
         $last_id = mysqli_query($conn, "SELECT MAX(b_id) AS maxid FROM booking");
         $mid = mysqli_fetch_array($last_id);
@@ -117,7 +119,19 @@ if ($status == 'successful') {
         VALUES ('$market_name','$n_detail','1','5','$fk_id','$usersmkr_id')");
 
 
-        if ($insertbooking) {
+        $totalcal = $total / 100;
+        $INV_expired = date("Y-m-d");
+        $inset_inv = mysqli_query($conn, "INSERT INTO `invoice`(`INV_rentprice`, `INV_discount`, `INV_expired`, `b_id`, `mkr_id`, `INV_status`) VALUES ('$totalcal','0',' $INV_expired','$fk_id','$mkr_id','2')");
+
+        $lastinv_id = mysqli_query($conn, "SELECT MAX(INV_id) AS maxid FROM invoice");
+        $invid = mysqli_fetch_array($lastinv_id);
+        extract($invid);
+
+        $inv_id = $invid['maxid'];
+        $insertpaid = mysqli_query($conn, "INSERT INTO `invoice_paid`(`inv_id`, `price`, `fee`, `total`, `token_pay`, `users_id`) 
+        VALUES ('$inv_id','$rentprice','$fee','$totalcal','$code_id','$users_id')");
+
+        if ($insertbooking && $inset_inv && $insertpaid && $insertnoti) {
 
             move_uploaded_file($cardID_copytmp, $cardID_copypath);
 

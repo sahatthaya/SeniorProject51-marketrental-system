@@ -122,11 +122,11 @@ $rowus = mysqli_fetch_array($qry);
 
                 <div class="des_input">ราคาค่าเช่า</div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
+                <input class="form-control col-6" value="<?php echo number_format($rowstall['sRent']) . ' ' . $rowstall['sPayRange'] ?>" disabled>
 
                 <div class="des_input">ราคาค่ามัดจำ</div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                <input class="form-control col-6" value="<?php echo number_format($rowstall['sDept']) . ' บาท' ?>" disabled>
 
 
 
@@ -142,7 +142,7 @@ $rowus = mysqli_fetch_array($qry);
 
                 </div>
 
-                <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn()" id="next1" disabled>
+                <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn(),calday()" id="next1" disabled>
 
 
 
@@ -272,11 +272,11 @@ $rowus = mysqli_fetch_array($qry);
 
                                 <div class="des_input">ราคาค่าเช่า</div>
 
-                                <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
+                                <input class="form-control col-6" value="<?php echo number_format($rowstall['sRent']) . ' ' . $rowstall['sPayRange'] ?>" disabled>
 
                                 <div class="des_input">ราคาค่ามัดจำ</div>
 
-                                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                                <input class="form-control col-6" value="<?php echo number_format($rowstall['sDept']) . ' บาท' ?>" disabled>
 
                                 <div class="row px-0 mx-0">
 
@@ -452,7 +452,7 @@ $rowus = mysqli_fetch_array($qry);
 
                 <div class="des_input">ค่ามัดจำ</div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                <input class="form-control col-6" value="<?php echo number_format($rowstall['sDept']) . ' บาท' ?>" disabled>
 
                 <?php
 
@@ -470,8 +470,10 @@ $rowus = mysqli_fetch_array($qry);
 
                 <input class="form-control col-6" value="<?php echo $price . ' บาท' ?>" disabled>
 
-                <div class="text-danger">*หมายเหตุ* <br />1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br>3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
-
+                <div class="text-danger">*หมายเหตุ* <br /> 1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่า
+                    <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน
+                    <br>3. คุณสามารถ<span class="text-decoration-underline">ยกเลิกการจอง</span>ได้ถึงวันที่ <span class="text-decoration-underline" id="expdate2"></span>
+                </div>
                 <input type="hidden" name="omiseToken">
 
                 <input type="hidden" name="omiseSource">
@@ -567,6 +569,10 @@ $rowus = mysqli_fetch_array($qry);
 </body>
 
 <script>
+    function calday() {
+        const formattedDate = document.getElementById("datestart").value;
+        document.getElementById("expdate2").innerHTML = formattedDate;
+    }
     $(document).ready(function() {
 
         $("body").tooltip({
