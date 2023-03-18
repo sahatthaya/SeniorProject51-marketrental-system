@@ -100,11 +100,12 @@ if ($status == 'successful') {
         $b_end = $rowop['end'];
         $b_day = $rowop['day'];
         $mkr_id = $rowop['mkr_id'];
+        $totalcal = $total / 100;
 
 
         $insertbooking = mysqli_query($conn, "
         INSERT INTO `booking`(`b_fname`, `b_lname`, `b_cardID`, `b_tel`, `b_email`, `b_shopname`, `b_shopdetail`, `stall_id`, `b_start`, `b_end`, `b_day`, `op_id`, `b_deptpay`, `b_feepay`, `b_totalpay`, `b_codepay`, `users_id`)
-        VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id', '$b_start', '$b_end', '$b_day', '$op_id','$dept_pay','$fee_pay','0','-','$users_id')");
+        VALUES ('$b_fname','$b_lname','$cardID_copy','$b_tel','$b_email','$shopname','$shop_detail','$stall_id', '$b_start', '$b_end', '$b_day', '$op_id','$rentprice','$fee','$totalcal','$code_id','$users_id')");
 
         $last_id = mysqli_query($conn, "SELECT MAX(b_id) AS maxid FROM booking");
         $mid = mysqli_fetch_array($last_id);
@@ -118,8 +119,6 @@ if ($status == 'successful') {
         $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
         VALUES ('$market_name','$n_detail','1','5','$fk_id','$usersmkr_id')");
 
-
-        $totalcal = $total / 100;
         $INV_expired = date("Y-m-d");
         $inset_inv = mysqli_query($conn, "INSERT INTO `invoice`(`INV_rentprice`, `INV_discount`, `INV_expired`, `b_id`, `mkr_id`, `INV_status`) VALUES ('$totalcal','0',' $INV_expired','$fk_id','$mkr_id','2')");
 

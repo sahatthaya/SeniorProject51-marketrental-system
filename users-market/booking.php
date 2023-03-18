@@ -189,8 +189,6 @@ $query = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE bo
 
 </body>
 
-<?php require '../backend/modal-bookdetail.php' ?>
-
 <script src="../backend/script.js"></script>
 
 <script>

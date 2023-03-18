@@ -133,7 +133,7 @@ $rowus = mysqli_fetch_array($qry);
 
                 $skey = $rowstall['sKey'];
 
-                $rsp = mysqli_query($conn, "SELECT * FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE (`stall_id` = '$skey' AND '$curr_date' <= `start` )");
+                $rsp = mysqli_query($conn, "SELECT * FROM booking JOIN stall ON (stall.sKey = booking.stall_id) JOIN opening_period ON (opening_period.id = booking.op_id) WHERE (`stall_id` = '$skey' AND '$curr_date' <= `start` )");
 
                 $numRowscalen = mysqli_num_rows($qryrentperiod);
 
@@ -158,7 +158,7 @@ $rowus = mysqli_fetch_array($qry);
 
                             $op_id = $rowcalen['id'];
 
-                            $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_period ON (stall.sKey = booking_period.stall_id) WHERE (`stall_id` = '$skey' AND `op_id` = '$op_id')");
+                            $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking ON (stall.sKey = booking.stall_id) WHERE (`stall_id` = '$skey' AND `op_id` = '$op_id')");
 
                             $numRows = mysqli_num_rows($rsrange);
 
