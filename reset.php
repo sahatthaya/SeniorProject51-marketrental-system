@@ -171,9 +171,6 @@ extract($lg);
         }
 
         $(document).ready(function() {
-<<<<<<< HEAD
-            ("#resetpsw").on('submit', function(c) {
-=======
 
 
 
@@ -181,7 +178,6 @@ extract($lg);
 
 
 
->>>>>>> origin/master
                 c.preventDefault();
 
                 var email = $("#email").val();
@@ -193,12 +189,9 @@ extract($lg);
 
 
                 $.ajax({
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> origin/master
                     type: "POST",
 
                     url: "reset_password.php",
@@ -224,16 +217,11 @@ extract($lg);
                     }
 
                 });
-<<<<<<< HEAD
-
-            });
-=======
 
             });
 
 
 
->>>>>>> origin/master
         });
 
     </script>
