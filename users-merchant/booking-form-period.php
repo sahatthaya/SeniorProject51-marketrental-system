@@ -486,8 +486,9 @@ $rowus = mysqli_fetch_array($qry);
 
                 <input class="form-control col-6" id="total" disabled>
 
-                <div class="text-danger">*หมายเหตุ* <br /> 1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่า
-                    <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน
+                <div class="text-danger">*หมายเหตุ* 
+                    <br /> 1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น
+                    <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่าเช่าคืน
                     <br>3. คุณสามารถ<span class="text-decoration-underline">ยกเลิกการจอง</span>ได้ถึงวันที่ <span class="text-decoration-underline" id="expdate2"></span>
                 </div>
 
