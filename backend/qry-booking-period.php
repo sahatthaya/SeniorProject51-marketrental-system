@@ -71,7 +71,7 @@ if ($numRowsid > 0) {
         extract($rowp);
         $op_id = $rowp['id'];
     }else{
-        
+        $op_id = '';
     }
 }
 

@@ -38,9 +38,8 @@ include "../backend/1-connectDB.php";
 
 $userid = $_SESSION['users_id'];
 
-$qrybill = mysqli_query($conn, "SELECT `invoice`.*,booking_range.b_fname,booking_range.b_lname,stall.sID,market_detail.mkr_name FROM `invoice`,booking_range,stall,market_detail WHERE (booking_range.b_id = invoice.b_id AND stall.sKey = booking_range.stall_id AND market_detail.mkr_id = invoice.mkr_id AND booking_range.`users_id`= '$userid')");
+$qrybill = mysqli_query($conn, "SELECT `invoice`.*,booking.b_fname,booking.b_lname,stall.sID,market_detail.mkr_name FROM `invoice`,booking,stall,market_detail WHERE (booking.b_id = invoice.b_id AND stall.sKey = booking.stall_id AND market_detail.mkr_id = invoice.mkr_id AND booking.`users_id`= '$userid')");
 
-$qrybill2 = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booking_period.b_lname,stall.sID,market_detail.mkr_name FROM `invoice`,booking_period,stall,market_detail WHERE (booking_period.b_id = invoice.b_id AND stall.sKey = booking_period.stall_id  AND market_detail.mkr_id = invoice.mkr_id AND booking_period.`users_id`= '$userid')");
 
 
 
@@ -105,12 +104,13 @@ $qrybill2 = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booki
                             while ($rowc = mysqli_fetch_assoc($qrycost)) {
 
                                 $cost = $cost + $rowc["price"];
-
                             }
 
+                            $total = $row["INV_rentprice"] - $row["INV_discount"] + $cost + $fee;
+                        } else {
+                            $total = $row["INV_rentprice"] - $row["INV_discount"] + $fee;
                         }
 
-                        $total = $row["INV_rentprice"] - $row["INV_discount"] + $cost + $fee;
 
                     ?>
 
@@ -135,11 +135,9 @@ $qrybill2 = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booki
                             if ($row['INV_status'] == '1') {
 
                                 echo '<td class="text-danger">ยังไม่ชำระ</td>';
-
                             } else {
 
                                 echo '<td class="text-success">ชำระแล้ว</td>';
-
                             }
 
                             ?>
@@ -151,72 +149,6 @@ $qrybill2 = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booki
                         <?php $count_n++;
 
                     endwhile; ?>
-
-                        <?php
-
-                        while ($row = $qrybill2->fetch_assoc()) :
-
-                            @$fee = number_format((4.07 / 100) * $row["INV_rentprice"], 2, '.', '');
-
-                            $INV_id = $row['INV_id'];
-
-                            $qrycost = mysqli_query($conn, "SELECT * FROM `inv_cost` WHERE `INV_id`= '$INV_id'");
-
-                            $numRowsop = mysqli_num_rows($qrycost);
-
-                            if ($numRowsop > 0) {
-
-                                $cost = 0;
-
-                                while ($rowc = mysqli_fetch_assoc($qrycost)) {
-
-                                    $cost = $cost + $rowc["price"];
-
-                                }
-
-                            }
-
-                            $total = $row["INV_rentprice"] - $row["INV_discount"] + $cost + $fee;
-
-                        ?>
-
-                        <tr>
-
-                            <td><?php echo $count_n ?></td>
-
-                            <td><?php echo  date("d/m/Y", strtotime($row['INV_created'])) ?></td>
-
-                            <td><?php echo $row['INV_id'] ?></td>
-
-                            <td><?php echo $row['mkr_name'] ?></td>
-
-                            <td><?php echo $row['sID'] ?></td>
-
-                            <td><?php echo number_format(round($total)) ?> บาท</td>
-
-                            </td>
-
-                            <?php
-
-                            if ($row['INV_status'] == '1') {
-
-                                echo '<td class="text-danger">ยังไม่ชำระ</td>';
-
-                            } else {
-
-                                echo '<td class="text-success">ชำระแล้ว</td>';
-
-                            }
-
-                            ?>
-
-                            <td><a type="button" href="../ExportPDF-master/inv_info.php?INV_id=<?php echo $row['INV_id'] ?>" class="btn btn-outline-primary">ดูรายละเอียด</a></td>
-
-
-
-                        <?php $count_n++;
-
-                        endwhile; ?>
 
                 </tbody>
 
@@ -233,7 +165,6 @@ $qrybill2 = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booki
 
 
 <script>
-
     // apply detail popup
 
     $(document).ready(function() {
@@ -269,7 +200,6 @@ $qrybill2 = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booki
         })
 
     });
-
 </script>
 
 

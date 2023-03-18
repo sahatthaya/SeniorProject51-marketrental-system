@@ -119,11 +119,11 @@ $rowus = mysqli_fetch_array($qry);
 
                 <div class="des_input">ราคาค่าเช่า</div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
+                <input class="form-control col-6" value="<?php echo number_format($rowstall['sRent']) . ' ' . $rowstall['sPayRange'] ?>" disabled>
 
-                <div class="des_input">ราคาค่ามัดจำ</div>
+                <!-- <div class="des_input">ราคาค่ามัดจำ</div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                <input class="form-control col-6" value="<?php echo number_format($rowstall['sDept']) . ' บาท' ?>" disabled> -->
 
 
 
@@ -133,7 +133,7 @@ $rowus = mysqli_fetch_array($qry);
 
                 $skey = $rowstall['sKey'];
 
-                $rsp = mysqli_query($conn, "SELECT * FROM booking_period JOIN stall ON (stall.sKey = booking_period.stall_id) JOIN opening_period ON (opening_period.id = booking_period.op_id) WHERE (`stall_id` = '$skey' AND '$curr_date' <= `start` )");
+                $rsp = mysqli_query($conn, "SELECT * FROM booking JOIN stall ON (stall.sKey = booking.stall_id) JOIN opening_period ON (opening_period.id = booking.op_id) WHERE (`stall_id` = '$skey' AND '$curr_date' <= `start` )");
 
                 $numRowscalen = mysqli_num_rows($qryrentperiod);
 
@@ -158,7 +158,7 @@ $rowus = mysqli_fetch_array($qry);
 
                             $op_id = $rowcalen['id'];
 
-                            $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking_period ON (stall.sKey = booking_period.stall_id) WHERE (`stall_id` = '$skey' AND `op_id` = '$op_id')");
+                            $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking ON (stall.sKey = booking.stall_id) WHERE (`stall_id` = '$skey' AND `op_id` = '$op_id')");
 
                             $numRows = mysqli_num_rows($rsrange);
 
@@ -172,7 +172,7 @@ $rowus = mysqli_fetch_array($qry);
 
                             ?>
 
-                            <option value="<?php echo $rowcalen['id'] ?>" <?php echo $disalbed; ?>>รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
+                            <option value="<?php echo $rowcalen['id'] ?>" <?php echo $disalbed; ?> id="<?php echo $rowcalen['start'] ?>" data="<?php echo $rowcalen['day'] ?>">รอบวันที่ <?php echo date("d/m/Y", strtotime($rowcalen['start'])) ?> ถึง <?php echo date("d/m/Y", strtotime($rowcalen['end']))  ?> ( จำนวน <?php echo $rowcalen['day'] ?> วัน )</option>
 
                         <?php endwhile; ?>
 
@@ -182,7 +182,7 @@ $rowus = mysqli_fetch_array($qry);
 
                 <hr class="m-0 my-3 ">
 
-                <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn(),validateForm()" id="next1">
+                <input type="button" name="next" class=" btn btn-primary" value="ถัดไป" onclick="nextbtn(),calday()" id="next1">
 
 
 
@@ -312,11 +312,11 @@ $rowus = mysqli_fetch_array($qry);
 
                                 <div class="des_input">ราคาค่าเช่า</div>
 
-                                <input class="form-control col-6" value="<?php echo $rowstall['sRent'] . ' ' . $rowstall['sPayRange'] ?>" disabled>
-
+                                <input class="form-control col-6" value="<?php echo number_format($rowstall['sRent']) . ' ' . $rowstall['sPayRange'] ?>" disabled>
+                                <!-- 
                                 <div class="des_input">ราคาค่ามัดจำ</div>
 
-                                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
+                                <input class="form-control col-6" value="<?php echo number_format($rowstall['sDept']) . ' บาท' ?>" disabled> -->
 
                                 <div class="des_input" style="display:<?php echo $display ?> ;">รอบที่เลือกเช่า</div>
 
@@ -474,47 +474,39 @@ $rowus = mysqli_fetch_array($qry);
 
                 <input class="form-control col-6" value="<?php echo $row['mkr_name']; ?>" disabled>
 
-                <div class="des_input">ค่ามัดจำ</div>
+                <div class="des_input">ค่าเช่า <span class="text-secondary" style="font-size: 15px;" id="spanrent"></span></div>
 
-                <input class="form-control col-6" value="<?php echo $rowstall['sDept'] . ' บาท' ?>" disabled>
-
-                <?php
-
-                @$fee = (4.07 / 100) * $rowstall['sDept'];
-
-                @$price = $rowstall['sDept'] + $fee;
-
-                ?>
+                <input class="form-control col-6" id="rentpriceperday" disabled>
 
                 <div class="des_input">ค่าธรรมเนียม <span class="text-secondary" style="font-size: 15px;">(4.07%)</span></div>
 
-                <input class="form-control col-6" value="<?php echo $fee ?>  บาท" disabled>
+                <input class="form-control col-6" id="fee" disabled>
 
                 <div class="des_input">รวมทั้งสิ้น</div>
 
-                <input class="form-control col-6" value="<?php echo $price . ' บาท' ?>" disabled>
+                <input class="form-control col-6" id="total" disabled>
 
-                <div class="text-danger">*หมายเหตุ* <br /> 1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น โดยค่ามัดจำจะถูกคืนให้แก่ผู้จองโดยจะหักกับค่าเช่าในงวดแรก <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่ามัดจำคืน <br> 3. คุณจะไม่สามารถยกเลิกการจองได้เมื่อถึง 7 วันก่อนวันเริ่มเช่า</div>
+                <div class="text-danger">*หมายเหตุ* 
+                    <br /> 1. การจองจะสำเร็จเมื่อการชำระเงินเสร็จสิ้น
+                    <br>2. หากทำการยกเลิกการจองจะไม่ได้รับค่าเช่าคืน
+                    <br>3. คุณสามารถ<span class="text-decoration-underline">ยกเลิกการจอง</span>ได้ถึงวันที่ <span class="text-decoration-underline" id="expdate2"></span>
+                </div>
 
                 <input type="hidden" name="omiseToken">
 
                 <input type="hidden" name="omiseSource">
 
-                <input type="hidden" name="dept_pay" value="<?php echo $rowstall['sDept'] ?>">
+                <input type="hidden" name="dept_pay" value="0">
 
-                <input type="hidden" name="fee_pay" value="<?php echo $fee ?>">
+                <input type="hidden" name="fee_pay" value="0">
 
-                <?php
+                <input type="hidden" name="rentprice" id="rentprice">
 
-                @$totalcal = $price * 100;
+                <input type="hidden" name="fee" id="feer">
 
-                @$total = $price;
-
-                ?>
+                <input name="total" id="totalcal" hidden>
 
                 <hr class="m-0 my-2">
-
-                <input name="total" value="<?php echo $totalcal ?>" hidden>
 
                 <input type="button" name="previous" class="btn btn-info mt-3" style="color: white;" value="ย้อนกลับ" onclick="backtostep2()" id="back">
 
@@ -533,6 +525,36 @@ $rowus = mysqli_fetch_array($qry);
 
 
     <script>
+        function calday() {
+            const dnd = document.querySelector('#daterangerent');
+
+            // date
+            var d = new Date(dnd.options[dnd.selectedIndex].id);
+            const pastDate = new Date(d.setDate(d.getDate() - 7));
+            const day = pastDate.getDate().toString().padStart(2, '0');
+            const month = (pastDate.getMonth() + 1).toString().padStart(2, '0');
+            const year = pastDate.getFullYear().toString();
+            const formattedDate = `${day}/${month}/${year}`;
+
+            document.getElementById("expdate2").innerHTML = formattedDate;
+
+            // day
+            const daynum = dnd.options[dnd.selectedIndex].getAttribute("data");
+            const rentpriceperday = <?php echo $rowstall['sRent'] ?>;
+            const rentprice = rentpriceperday * daynum;
+            const fee = (4.07 / 100) * rentprice;
+            const total = rentprice + fee;
+            const totalcal = total * 100;
+
+            document.getElementById("spanrent").innerHTML = "( " + rentpriceperday.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " บาท/วัน * " + daynum + " วัน )";
+            document.getElementById("rentpriceperday").value = rentprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " บาท";
+            document.getElementById("fee").value = fee.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " บาท";
+            document.getElementById("rentprice").value = rentprice;
+            document.getElementById("feer").value = fee;
+            document.getElementById("total").value = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + " บาท";
+            document.getElementById("totalcal").value = totalcal;
+        }
+
         OmiseCard.configure({
 
             publicKey: "pkey_test_5tl2v3azqsf7i7u6hlm",
@@ -555,11 +577,13 @@ $rowus = mysqli_fetch_array($qry);
 
         button.addEventListener("click", (event) => {
 
+            const totalcal = document.getElementById("totalcal").value
+
             event.preventDefault();
 
             OmiseCard.open({
 
-                amount: <?php echo $totalcal ?>,
+                amount: totalcal,
 
                 currency: "THB",
 

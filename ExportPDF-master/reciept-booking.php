@@ -29,7 +29,7 @@ include "../backend/1-connectDB.php";
 if (isset($_GET["b_id"])) {
   $id = $_GET["b_id"];
   $nav = $_GET["nav"];
-  $resultdata = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall,provinces,amphures,districts WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id AND market_detail.province_id = provinces.id and market_detail.	amphure_id = amphures.id and market_detail.district_id = districts.id and b_id = '4'");
+  $resultdata = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall,provinces,amphures,districts WHERE booking.stall_id=stall.sKey and stall.market_id = market_detail.mkr_id AND market_detail.province_id = provinces.id and market_detail.	amphure_id = amphures.id and market_detail.district_id = districts.id and b_id = '$id'");
   $row = mysqli_fetch_array($resultdata);
   extract($row);
 }
@@ -93,10 +93,14 @@ if (isset($_GET["b_id"])) {
               <td width="30%"><label>ราคาค่าเช่าแผง</label></td>
               <td width="70%"><?php echo number_format($row["sRent"]) ?> <?php echo $row["sPayRange"] ?></td>
             </tr>
-            <tr>
-              <td width="30%"><label>ราคาค่ามัดจำ</label></td>
-              <td width="70%"><?php echo number_format($row["sDept"]) ?> บาท</td>
-            </tr>
+            <?php
+            if ($row['opening'] == 'เปิดทำการทุกวัน') {
+            ?>
+              <tr>
+                <td width="30%"><label>ราคาค่ามัดจำ</label></td>
+                <td width="70%"><?php echo number_format($row["sDept"]) ?> บาท</td>
+              </tr>
+            <?php } ?>
           </tbody>
         </table>
       </div>
@@ -113,7 +117,7 @@ if (isset($_GET["b_id"])) {
             <td width="70%"><?php echo  date("d/m/Y เวลา h:ia", strtotime($row['timestamp'])) ?></td>
           </tr>
           <tr>
-            <td width="30%"><label>ค่ามัดจำ</label></td>
+            <td width="30%"><label><?php echo ($row['opening'] == 'เปิดทำการทุกวัน') ? 'ค่ามัดจำ' : 'ค่าเช่า'; ?></label></td>
             <td width="70%"><?php echo number_format($row["b_deptpay"]) ?> บาท</td>
           </tr>
           <tr>
@@ -155,8 +159,13 @@ if (isset($_GET["b_id"])) {
       <strong style="font-weight: bold;">รหัสแผงค้า</strong> <?php echo  $row["sID"] ?> <br>
       <strong style="font-weight: bold;">วันที่จอง</strong> <?php echo date("d/m/Y", strtotime($row['b_start'])) ?> - <?php echo date("d/m/Y", strtotime($row['b_end'])) ?> <br>
       <strong style="font-weight: bold;">ระยะเวลาที่จอง</strong> <?php echo $row["b_day"] ?> วัน <br>
-      <strong style="font-weight: bold;">ราคาค่าเช่าแผง</strong> <?php echo number_format($row["sRent"]) ?> <?php echo $row["sPayRange"] ?> <br>
-      <strong style="font-weight: bold;">ราคาค่ามัดจำ</strong> <?php echo number_format($row["sDept"]) ?> บาท
+      <strong style="font-weight: bold;">ราคาค่าเช่าแผง</strong> <?php echo number_format($row["sRent"]) ?> <?php echo $row["sPayRange"] ?>
+      <?php
+      if ($row['opening'] == 'เปิดทำการทุกวัน') {
+      ?>
+        <br>
+        <strong style="font-weight: bold;">ราคาค่ามัดจำ</strong> <?php echo number_format($row["sDept"]) ?> บาท
+      <?php } ?>
     </div>
     <div>
       <table style="width:100%;border-collapse: collapse;font-size:20px;margin-top:10px;border: 1px solid #dddddd;">
@@ -173,7 +182,7 @@ if (isset($_GET["b_id"])) {
         <tbody>
           <tr>
             <td style="border: 1px solid #dddddd;padding: 8px;text-align:center;">1</td>
-            <td style="border: 1px solid #dddddd;padding: 8px;"><strong style="font-weight: bold;">ค่ามัดจำ</strong></td>
+            <td style="border: 1px solid #dddddd;padding: 8px;"><strong style="font-weight: bold;"><?php echo ($row['opening'] == 'เปิดทำการทุกวัน') ? 'ค่ามัดจำ' : 'ค่าเช่า'; ?></strong></td>
             <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><?php echo number_format($row["b_deptpay"]) ?></td>
           </tr>
           <tr>

@@ -62,7 +62,11 @@ extract($lg);
 
         $r = mysqli_query($conn, $query);
 
+
+
         if (mysqli_num_rows($r) > 0) {
+
+
 
             $row = mysqli_fetch_array($r);
 
@@ -71,6 +75,8 @@ extract($lg);
         }
 
     }
+
+
 
     ?>
 
@@ -165,7 +171,17 @@ extract($lg);
         }
 
         $(document).ready(function() {
+<<<<<<< HEAD
             ("#resetpsw").on('submit', function(c) {
+=======
+
+
+
+            ("#resetpsw").on('submit', function(c) {
+
+
+
+>>>>>>> origin/master
                 c.preventDefault();
 
                 var email = $("#email").val();
@@ -174,22 +190,50 @@ extract($lg);
 
                 var cfpassword = $("#cfpassword").val();
 
+
+
                 $.ajax({
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> origin/master
                     type: "POST",
+
                     url: "reset_password.php",
+
                     data: {
+
                         email: email,
+
                         password: password,
+
                         cfpassword: cfpassword
+
                     },
 
+
+
                     success: function(date) {
+
                         $(".form-message").css("display", "block");
+
                         $(".form-message").html(date);
+
                     }
+
                 });
+<<<<<<< HEAD
 
             });
+=======
+
+            });
+
+
+
+>>>>>>> origin/master
         });
 
     </script>
