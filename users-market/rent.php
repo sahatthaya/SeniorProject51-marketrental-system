@@ -35,11 +35,9 @@ $open = $row['opening'];
 if ($open == 'เปิดทำการทุกวัน') {
 
     $querystatusinv = mysqli_query($conn, "SELECT `invoice`.*,booking_range.b_fname,booking_range.b_lname,stall.sID FROM `invoice`,booking_range,stall WHERE (booking_range.b_id = invoice.b_id AND stall.sKey = booking_range.stall_id AND `mkr_id`= $mkr_id )");
-
 } else {
 
     $querystatusinv = mysqli_query($conn, "SELECT `invoice`.*,booking_period.b_fname,booking_period.b_lname,stall.sID FROM `invoice`,booking_period,stall WHERE (booking_period.b_id = invoice.b_id AND stall.sKey = booking_period.stall_id AND `mkr_id`= $mkr_id )");
-
 }
 
 
@@ -63,13 +61,13 @@ if ($open == 'เปิดทำการทุกวัน') {
     </nav>
 
     <h1 class="head_contact">จัดการค่าเช่า</h1>
+    <?php if ($open == 'เปิดทำการทุกวัน') { ?>
+        <div class="w-100 text-end">
 
-    <div class="w-100 text-end">
+            <a href="./invoice.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>สร้างใบเรียกเก็บค่าเช่า</a>
 
-        <a href="./invoice.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>สร้างใบเรียกเก็บค่าเช่า</a>
-
-    </div>
-
+        </div>
+    <?php } ?>
 
 
     <div id="content">
@@ -121,11 +119,9 @@ if ($open == 'เปิดทำการทุกวัน') {
                             if ($row['INV_status'] == '1') {
 
                                 echo '<td class="text-danger">ยังไม่ชำระ</td>';
-
                             } else {
 
                                 echo '<td class="text-success">ชำระแล้ว</td>';
-
                             }
 
                             ?>
