@@ -115,6 +115,8 @@
         </form>
 
         <hr>
+        
+        
 
         <?php
         $numRowstall = mysqli_num_rows($result3);

@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 <form id="applyform" method="post" enctype="multipart/form-data" class="was-validated">
 
     <div class="form-outer form-group " style="overflow: visible;">
@@ -47,10 +43,7 @@
         <div id="stepTwo" class="row border shadow-sm p-5 mt-3 mb-3 rounded">
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
             <h4 class="p-0"><span class="text-secondary"> ขั้นที่ 2</span> กรอกข้อมูลตลาด</h4>
 
             <div class="progress p-0 my-2">
@@ -177,16 +170,6 @@
 
             </div>
 
-<<<<<<< HEAD
-            <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
-
-            <select class="form-select" id="open" onchange="checkapp2()" name="opening" aria-label="Default select example" onchange="myFunction()">
-
-                <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
-
-                <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
-
-=======
 
 
             <div class="des_input hstack gap-2">วันที่เปิดทำการ</div>
@@ -194,7 +177,6 @@
             <select class="form-select" id="open" name="opening" aria-label="Default select example">
                 <option value="เปิดทำการเป็นรอบ">เปิดทำการเป็นรอบ</option>
                 <option value="เปิดทำการทุกวัน">เปิดทำการทุกวัน</option>
->>>>>>> origin/master
             </select>
 
             <div class="des_input hstack gap-2">รายละเอียดตลาดโดยสังเขป
@@ -217,18 +199,10 @@
 
             <input type="button" name="previous" class="btn btn-primary action-button" value="ย้อนกลับ" onclick="previousbtn()" id="back">
 
-<<<<<<< HEAD
-            <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง" >
-=======
             <input type="submit" name="submit-apply" class="btn btn-success submitBtn" id="submit" value="ยืนยันการส่งคำร้อง">
->>>>>>> origin/master
 
         </div>
 
     </div>
 
-<<<<<<< HEAD
 </form>
-=======
-</form>
->>>>>>> origin/master
