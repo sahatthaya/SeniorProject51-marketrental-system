@@ -41,6 +41,7 @@ body {
 .logo_img img {
 
     /* height: 100%; */
+    width: 100%;
 
     border-radius: 5px;
 
@@ -185,8 +186,6 @@ body {
 @media(max-width: 1200px) {
 
     .logo_img {
-
-        display: flex;
 
         justify-content: center;
 

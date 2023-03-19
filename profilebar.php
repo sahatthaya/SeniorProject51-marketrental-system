@@ -5,6 +5,7 @@ include "backend/1-connectDB.php";
 include "backend/1-import-link.php";
 require "backend/auth-auth.php";
 require "backend/auth-signup.php";
+require "./sendEmail.php";
 $sqllg = "SELECT * FROM contact ";
 $resultlg = mysqli_query($conn, $sqllg);
 $lg = mysqli_fetch_array($resultlg);
@@ -67,7 +68,7 @@ if (isset($_GET['token'])) {
             <form method="POST" class="was-validated">
                 <div class="mb-1">อีเมล</div>
                 <input class="form-control mb-2" type="email" name="email" id="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="กรุณากรอกอีเมลให้ถูกต้อง" required>
-                <button class="btn btn-primary w-100 mt-2" onclick="sendEmail(),send_email()" type="submit" name="resetpsw-btn">ส่งรหัสผ่านไปยังอีเมล</button>
+                <button class="btn btn-primary w-100 mt-2" onclick="sendEmail()" type="submit" name="resetpsw-btn">ส่งรหัสผ่านไปยังอีเมล</button>
             </form>
             <!-- ,send_email() -->
             <hr class="mx-5 mb-0">

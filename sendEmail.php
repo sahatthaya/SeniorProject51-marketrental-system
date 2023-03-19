@@ -558,18 +558,11 @@ if (isset($_POST['email'])) {
 
 
             if ($mail->send()) {
-
-                $status = "success";
-
-                $response = "Email is sent";
+                echo "<script>send_email()</script>";
             } else {
-
-                $status = "failed";
-
-                $response = "Something is wrong" . $mail->ErrorInfo;
             }
+        } else {
+            echo "<script>send_email_error()</script>";
         }
-
-        exit(json_encode(array("status" => $status, "response" => $response)));
     }
 }
