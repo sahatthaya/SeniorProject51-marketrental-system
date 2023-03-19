@@ -785,22 +785,6 @@
         })
 
     }
-
-    function send_email_error() {
-
-        Swal.fire({
-
-            title: 'กรุณากรอกอีเมลให้ถูกต้อง',
-
-            icon: 'warning',
-
-            showConfirmButton: false,
-
-            timer: 3000
-
-        })
-
-    }
 </script>
 
 

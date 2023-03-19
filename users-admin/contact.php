@@ -40,13 +40,17 @@ require "../backend/manage-contact.php";
 
 <body>
 
+
     <form method="POST" enctype="multipart/form-data" class="was-validated">
+
         <h1>แก้ไขข้อมูลเกี่ยวกับเว็บไซต์</h1>
+
         <div class="parent mt-3">
             <div class="logo_img border shadow-sm rounded p-3">
                 <label for="logo" class="mb-2">รูปภาพโลโก้ : </label>
                 <input type="file" class="form-control mb-3" name="ct_logo" id="logo" accept="image/png, image/gif, image/jpeg">
                 <img src="../<?php echo $row["ct_logo"] ?>" alt="logo_marketremtal" class="img-fluid p-3" id="logoex">
+
             </div>
 
             <div class="contentbox web-info border shadow-sm rounded p-3">
@@ -54,9 +58,13 @@ require "../backend/manage-contact.php";
                 <figure class="text-center">
 
                     <blockquote class="blockquote">
+
                         <div class="input-group mb-3">
+
                             <textarea rows="11" class="form-control" name="ct_webinfo" style=" resize: none;"><?php echo $row["ct_webinfo"] ?></textarea>
+
                         </div>
+
 
                     </blockquote>
 

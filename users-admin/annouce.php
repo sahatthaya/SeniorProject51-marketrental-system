@@ -89,7 +89,7 @@ if (isset($_GET['fk_id'])) {
 
                 <tbody>
 
-                    <?php while ($row1 = $result3->fetch_assoc()):
+                    <?php while ($row1 = $result3->fetch_assoc()) :
                         if ($an_id == $row1['req_an_id']) {
                             $bg = 'bg-info bg-opacity-10';
                         } else {

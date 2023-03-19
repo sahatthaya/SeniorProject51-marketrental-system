@@ -8,7 +8,7 @@
 
 body {
 
-    margin: 30px 68px 20px 146px !important;
+    margin: 50px 68px 20px 146px !important;
 
     min-width: 370px;
 
@@ -291,27 +291,6 @@ input[type=file]::file-selector-button:hover {
 }
 
 
-
-#dropdown {
-
-    margin: 0 !important;
-
-    padding: 0 !important;
-
-}
-
-
-
-
-
-.dropdown-menu.show {
-
-    left: -10px !important;
-
-}
-
-
-
 .tooltip-inner {
 
     max-width: 5000px !important;
@@ -354,6 +333,13 @@ input[type=file]::file-selector-button:hover {
 
 }
 
+.hstack .cost {
+    width: 165px;
+}
+
+.hstack .cost-formselect {
+    width: 155px;
+}
 
 
 .hstack .cost {
@@ -442,9 +428,8 @@ input[type=file]::file-selector-button:hover {
 
     body {
 
-        padding-right: 10px;
 
-        margin: 60px 10px 0px 15px !important;
+         margin: 55px 10px 0px 10px !important;
 
 
 
@@ -546,7 +531,14 @@ input[type=file]::file-selector-button:hover {
 
     }
 
+    .cost-formselect {
+        margin-top: -10px !important ;
+    }
 
+    .cost-btn{
+        margin-top: -10px !important ;
+
+    }
 
     .cost-formselect {
 
@@ -656,17 +648,4 @@ input[type=file]::file-selector-button:hover {
 
     }
 
-<<<<<<< HEAD
-
-
-    .dropdown-menu.show {
-
-        width: 50px;
-
-    }
-
-
-
-=======
->>>>>>> origin/master
 }

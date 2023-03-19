@@ -25,6 +25,12 @@ body {
     padding: 30px;
 
     border-radius: 5px;
+/* 
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1); */
 
 }
 
@@ -34,11 +40,22 @@ body {
 
 .logo_img img {
 
-    width: 100% ;
+    /* height: 100%; */
+
     border-radius: 5px;
+
     background: #0032B5;
+/* 
+    -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1); */
+
+
 
 }
+
 
 
 .boxcard {
@@ -52,11 +69,25 @@ body {
 }
 
 
+
 .cardcontact {
 
     width: 100%;
+
+    /* border-radius: 5px; */
+
     margin-top: 30px;
+
+    /* background: white; */
+
     overflow: hidden;
+
+    /* -webkit-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    -moz-box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1);
+
+    box-shadow: 1px 2px 5px 1px rgba(207, 207, 207, 1); */
+
 }
 
 
@@ -96,11 +127,14 @@ body {
 }
 
 
+
 /* ขนาดรูปในฟอร์ม */
 
 .ctimg {
 
     width: 300px !important;
+
+
 
 }
 
@@ -145,13 +179,20 @@ body {
 }
 
 
+
+
+
 @media(max-width: 1200px) {
 
     .logo_img {
 
+        display: flex;
+
         justify-content: center;
 
     }
+
+
 
     .parent {
 
@@ -163,6 +204,8 @@ body {
 
     }
 
+
+
     .boxcard {
 
         display: grid;
@@ -173,17 +216,26 @@ body {
 
     }
 
+
+
     .card-body h2 {
 
         font-size: 20px;
 
     }
 
+
+
     .card-body p {
 
         font-size: 16px;
 
     }
+
+
+
+
+
 }
 
 
@@ -202,6 +254,8 @@ body {
 
     }
 
+
+
     body {
 
 
@@ -209,11 +263,15 @@ body {
 
     }
 
+
+
     h1 {
 
         font-size: 24px !important;
 
     }
+
+
 
     .cardcontact img {
 
@@ -222,6 +280,8 @@ body {
         height: 250px !important;
 
     }
+
+
 
     .card-body {
 

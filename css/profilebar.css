@@ -12,8 +12,7 @@
     /* IE 10 and IE 11 */
     user-select: none;
     /* Standard syntax */
-
-} 
+}
 
 :root {
     --white: white;
@@ -29,14 +28,6 @@
     --yellow: #FCBC41;
     --input: #EDEEFF;
 
-}
-/* 
-.bi-x-circle{
-    background-color: #0032b5 !important;
-} */
-
-.bi-x-circle{
-    background-color: #0032b5;
 }
 
 h1 {

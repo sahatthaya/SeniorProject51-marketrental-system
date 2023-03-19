@@ -1,4 +1,4 @@
-                                                                                              :root {
+:root {
 
     --white: white;
 
@@ -91,11 +91,12 @@ body {
 
     padding: 10px;
 
-    margin: 2rem 0;
+    margin: 1rem 0;
 
     height: 100vh;
 
 }
+
 
 
 .list {
