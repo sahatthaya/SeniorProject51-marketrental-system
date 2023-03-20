@@ -9,7 +9,7 @@
     --primaryblue: #006bfa;
 
     --freshblue: #0daafd;
- margin: 50px 68px 20px 146px !important;
+
     --margenta: #8e18d7;
 
     --dark: #02155A;
@@ -62,7 +62,7 @@ body {
 
     margin: 1rem 0;
 
-    height: 100vh !important;
+    /* height: 100vh !important; */
 
     background-color: white;
 

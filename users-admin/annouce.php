@@ -95,6 +95,7 @@ if (isset($_GET['fk_id'])) {
                         } else {
                             $bg = '';
                         }
+                    
                     ?>
 
                         <tr class="<?php echo $bg ?>">
@@ -129,7 +130,7 @@ if (isset($_GET['fk_id'])) {
 
                     <?php $count_n++;
 
-                    endwhile ?>
+                    endwhile  ?>
 
                 </tbody>
 

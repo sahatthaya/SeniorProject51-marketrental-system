@@ -345,13 +345,9 @@ a {
     body {
 
 
-         margin: 55px 10px 0px 10px !important;
-
-
+        margin: 55px 10px 0px 10px !important;
 
     }
-
-
 
     .carousel-inner {
 
@@ -361,24 +357,16 @@ a {
 
     }
 
-
-
     .carousel-item img {
 
         height: 15rem;
 
-
-
     }
-
-
 
     .modal_data {
 
         font-size: 14px;
-
     }
-
 
 
     #table {
@@ -390,7 +378,6 @@ a {
     }
 
 
-
     .btnac {
 
         width: 70%;
@@ -399,17 +386,17 @@ a {
 
     }
 
-
+    
 
     .btn-calen {
-
-        margin-left: 10px;
 
         font-size: 14px !important;
 
     }
 
-
+    .float-end{
+        margin-left: 0px !important;
+    }
 
     .modal_data {
 
@@ -448,9 +435,3 @@ a {
 }
 
 
-@media only screen and (max-width: 470px) {
-    .inv-info {
-        display: flex !important;
-        width: 200px !important;
-    }
-}
