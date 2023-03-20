@@ -18,13 +18,6 @@ if ($numRownt == 0) { ?>
         } else {
             $bg = '';
         }
-
-        if ($rown['type'] == '1') {
-            $path = './annouce.php?fk_id=' . $rown['fk_id'];
-        } else {
-            $path = './partner.php?fk_id=' . $rown['fk_id'];
-        }
-
         switch ($rown['type']) {
             case "1":
                 $path = './status-announce.php?fk_id=' . $rown['fk_id'];

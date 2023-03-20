@@ -41,11 +41,9 @@ $count_n = 1;
 if ($row['opening'] == 'เปิดทำการทุกวัน') {
 
     $query = mysqli_query($conn, "SELECT * FROM `booking_range`JOIN `stall` ON (booking_range.stall_id = stall.sKey) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-
 } else {
 
     $query = mysqli_query($conn, "SELECT * FROM `booking_period`JOIN `stall` ON (booking_period.stall_id = stall.sKey)JOIN `opening_period` ON (booking_period.op_id = opening_period.id) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-
 }
 
 
@@ -72,6 +70,8 @@ if (isset($_POST['submit-inv'])) {
         $rentprice_i = "rentprice$i";
 
         $discount_i = "discount$i";
+        $sID_i = "sid$i";
+        $usersb_id_i = "usersb_id$i";
 
 
 
@@ -81,23 +81,25 @@ if (isset($_POST['submit-inv'])) {
 
         $discount = $_POST[$discount_i];
 
+        $sID = $_POST[$sID_i];
+        $usersb_id = $_POST[$usersb_id_i];
+
 
 
         $inset_inv = mysqli_query($conn, "INSERT INTO `invoice`(`INV_rentprice`, `INV_discount`, `INV_expired`, `b_id`, `mkr_id`) VALUES ('$rentprice',' $discount',' $INV_expired','$b_id','$mkr_id')");
 
 
 
-        $last_id = mysqli_query($conn, "SELECT MAX(INV_id) AS maxid FROM invoice");
-
+        $last_id = mysqli_query($conn, "SELECT MAX(INV_id) AS maxid, market_detail.mkr_name FROM invoice JOIN market_detail ON (market_detail.mkr_id = invoice.mkr_id) LIMIT 1");
         $mid = mysqli_fetch_array($last_id);
-
         extract($mid);
 
         $inv_id = $mid['maxid'];
+        $mkrname = $mid['mkr_name'];
 
-        
+        $sub = $mkrname . " แผงค้า: " . $sID;
         $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
-        VALUES ('$mkrname','$n_detail','1','6','$inv_id','$usermkr')");
+        VALUES ('$sub','คุณได้รับใบเรียกเก็บค่าเช่า กรุณาชำระภายในวันที่กำหนด','1','6','$inv_id','$usersb_id')");
 
         if ($numcost != '0') {
 
@@ -124,13 +126,9 @@ if (isset($_POST['submit-inv'])) {
                 $insert_cost = mysqli_query($conn, "INSERT INTO `inv_cost`(`INV_id`, `cost_name`, `price/unit`, `unit`, `price`) 
 
                 VALUES ('$inv_id','$cost_name','$priceunit','$unit','$price')");
-
             }
-
         } else {
-
         }
-
     }
 
     echo "<script>";
@@ -151,6 +149,5 @@ if (isset($_POST['submit-inv'])) {
 
     echo "</script>";
 
-    echo '<meta http-equiv="refresh" content="1"; />';
-
+    // echo '<meta http-equiv="refresh" content="1"; />';
 }

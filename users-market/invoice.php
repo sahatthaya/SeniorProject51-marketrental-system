@@ -234,7 +234,7 @@ require "../backend/invoice.php";
 
                                     <td><?php echo  date('d/m/Y', strtotime($row['end'])) ?></td>
 
-                                    <td><?php echo $row['b_fname'] . ' ' . $row['b_lname'] ?></td>
+                                    <td id="<?php echo $row['users_id'] ?>"><?php echo $row['b_fname'] . ' ' . $row['b_lname'] ?></td>
 
                                     <td><?php echo number_format($row['sRent']) . ' ' . $row['sPayRange'] ?></td>
 
@@ -537,8 +537,6 @@ require "../backend/invoice.php";
 
         var countr = 0;
 
-        // //Loop through the CheckBoxes.
-
         for (var i = 1; i < checkBoxes.length; i++) {
 
             if (checkBoxes[i].checked) {
@@ -564,6 +562,8 @@ require "../backend/invoice.php";
                 table += "<td>";
 
                 table += row.cells[2].innerHTML;
+                table += '<input type="text" name="sid' + countr + '" id="" class="form-control" value="' + row.cells[2].innerHTML + '" required hidden/>';
+                table += '<input type="text" name="usersb_id' + countr + '" id="" class="form-control" value="' + row.cells[5].id + '" required hidden/>';
 
                 table += "</td>";
 
