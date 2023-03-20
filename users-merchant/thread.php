@@ -227,10 +227,17 @@ $query2 = mysqli_query($conn, $sql2);
                 $comp_id = $row2['comp_id'];
                 if ($row2['mkr_name'] != '') {
                     $admin = ' (' . $row2['mkr_name'] . ')';
-                    $bg = "bg-primary bg-opacity-10";
+                    $text = "text-primary";
+                    if (isset($_GET['newreply']) && $row2['rp_id'] == $_GET['newreply']) {
+                        $bg = 'bg-info bg-opacity-10';
+                    } else {
+                        $bg = '';
+                    }
                 } else {
                     $admin = "";
+                    $text = "";
                     $bg = '';
+                    $admin = "";
                 }
 
             ?>
@@ -285,9 +292,8 @@ $query2 = mysqli_query($conn, $sql2);
                         <div class="d-flex justify-content-between">
                             <div class="d-flex hstck gap-2">
                                 <div>
-                                    โดย: <?php echo $row2['username']; ?>
+                                    โดย: <span class="<?php echo $text ?>"><?php echo $row2['username']; ?><?php echo $admin ?></span>
                                 </div>
-                                <div class="text-secondary"><?php echo $admin ?></div>
                             </div>
                             <div>
                                 <?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row2['timestamp'])) ?>

@@ -28,7 +28,7 @@ if ($numRownt == 0) { ?>
                 $fk_id = $mid['mkr_id'];
                 $comp_id = $mid['comp_id'];
                 $mkr_id = $mid['mkr_id'];
-                $path = './thread.php?comp_id=' . $comp_id . '&&mkr_id=' . $mkr_id . '&&my_thread=yes';
+                $path = './thread.php?comp_id=' . $comp_id . '&&mkr_id=' . $mkr_id . '&&my_thread=yes&&newreply=' . $reply_id;
                 break;
             case "6":
                 $path = './inv_info.php?INV_id=' . $rown['fk_id'];
