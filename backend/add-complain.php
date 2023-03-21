@@ -109,7 +109,17 @@ if (isset($_POST['reply-btn'])) {
             $last_id = mysqli_query($conn, "SELECT MAX(rp_id) AS maxid FROM reply");
             $mid = mysqli_fetch_array($last_id);
             extract($mid);
-            $comp_id = $mid['maxid'];
+            $rp_id = $mid['maxid'];
+
+            $merchantid = mysqli_query($conn, "SELECT * FROM `complain` WHERE `comp_id` = $comp_id");
+            $mcid = mysqli_fetch_array($merchantid);
+            extract($mcid);
+            $usersmc = $mcid['users_id'];
+
+
+            $n_detail = $mkr_name . ' ได้ตอบกลับการร้องเรียนของคุณ';
+            $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
+            VALUES ('การร้องเรียน','$n_detail','1','4','$rp_id','$usersmc')");
 
             if ($_FILES['upload']['size'] > 0) {
 
@@ -179,7 +189,7 @@ if (isset($_POST['reply'])) {
         extract($mid);
         $comp_id = $mid['maxid'];
         $username = $_SESSION['username'];
-        $n_detail = $username.' ได้ตอบกลับการร้องเรียนของเขา';
+        $n_detail = $username . ' ได้ตอบกลับการร้องเรียนของเขา';
         $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
         VALUES ('$mkrname','$n_detail','1','4','$comp_id','$usermkr')");
 

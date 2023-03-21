@@ -221,20 +221,20 @@ $query2 = mysqli_query($conn, $sql2);
 
             <?php
         } else {
-            $countrp =1;
+            $countrp = 1;
             while ($row2 = $result->fetch_assoc()) :
                 $comp_id = $row2['comp_id'];
                 if ($row2['mkr_name'] != '') {
                     $admin = ' (' . $row2['mkr_name'] . ')';
-                    $bg = "bg-primary bg-opacity-10";
+                    $text = "text-primary";
                 } else {
                     $admin = "";
-                    $bg = '';
+                    $text = "";
                 }
 
             ?>
                 <div>
-                    <div class="border rounded shadow-sm p-3 my-2 comp-card <?php echo $bg ?>">
+                    <div class="border rounded shadow-sm p-3 my-2 comp-card">
                         <div class="text-end">
                             <h6>การตอบกลับที่ #<?php echo $countrp ?></h6>
                         </div>
@@ -284,9 +284,8 @@ $query2 = mysqli_query($conn, $sql2);
                         <div class="d-flex justify-content-between">
                             <div class="d-flex hstck gap-2">
                                 <div>
-                                    โดย: <?php echo $row2['username']; ?>
+                                    โดย: <span class="<?php echo $text ?>"><?php echo $row2['username']; ?><?php echo $admin ?></span>
                                 </div>
-                                <div class="text-secondary"><?php echo $admin ?></div>
                             </div>
                             <div>
                                 <?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row2['timestamp'])) ?>
@@ -339,7 +338,7 @@ $query2 = mysqli_query($conn, $sql2);
         </nav>
 
     </div>
-  
+
 </body>
 
 

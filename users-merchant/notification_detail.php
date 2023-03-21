@@ -18,9 +18,27 @@ if ($numRownt == 0) { ?>
         } else {
             $bg = '';
         }
+
+        switch ($rown['type']) {
+            case "4":
+                $reply_id = $rown['fk_id'];
+                $mkrid = mysqli_query($conn, "SELECT * FROM `reply`JOIN complain ON (complain.comp_id = reply.comp_id) WHERE `rp_id` = $reply_id");
+                $mid = mysqli_fetch_array($mkrid);
+                extract($mid);
+                $fk_id = $mid['mkr_id'];
+                $comp_id = $mid['comp_id'];
+                $mkr_id = $mid['mkr_id'];
+                $path = './thread.php?comp_id=' . $comp_id . '&&mkr_id=' . $mkr_id . '&&my_thread=yes&&newreply=' . $reply_id;
+                break;
+            case "6":
+                $path = './inv_info.php?INV_id=' . $rown['fk_id'];
+                break;
+            default:
+                $path = '#';
+        }
     ?>
         <li class="<?php echo $bg ?> border-bottom">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="<?php echo $path ?>">
                 <span class="text-secondary"><?php echo date("d/m/Y h:ia", strtotime($rown['timestamp'])) ?></span>
                 <br><span class="fw-bold"><?php echo $rown['n_sub'] ?></span>
                 <br><?php echo $rown['n_detail'] ?>
