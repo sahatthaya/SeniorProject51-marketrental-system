@@ -53,17 +53,16 @@ $querystatusinv = mysqli_query($conn, "SELECT `invoice`.*,booking.b_fname,bookin
     </nav>
 
     <h1 class="head_contact">จัดการค่าเช่า</h1>
-        <div class="w-100 text-end">
-
-            <a href="./invoice.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>สร้างใบเรียกเก็บค่าเช่า</a>
-
-        </div>
-
-
 
     <div id="content">
 
         <div id="table2" class="border mt-3 p-3 shadow-sm rounded">
+            <div class="w-100 d-flex justify-content-between">
+                <h5>ตารางข้อมูลใบเรียกเก็บค่าเช่าทั้งหมด</h5>
+                <a href="./invoice.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-file-plus me-2'></i>สร้างใบเรียกเก็บค่าเช่า</a>
+
+            </div>
+            <hr>
             <table id="myTable" class="display table table-striped dt-responsive " style="width: 100%;">
                 <thead>
 
