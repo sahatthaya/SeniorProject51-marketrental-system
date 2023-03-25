@@ -89,7 +89,7 @@ if (isset($_GET['delstall'])) {
     $sKey = $_GET['delstall'];
     $mkr_id = $_GET['mkr_id'];
 
-    $qrybooking = mysqli_query($conn, "SELECT * FROM booking_range WHERE sKey = ' $sKey' ");
+    $qrybooking = mysqli_query($conn, "SELECT * FROM booking WHERE sKey = ' $sKey' ");
     $numRows = mysqli_num_rows($qrybooking);
     if ($numRows > 0) {
         echo "<script>";

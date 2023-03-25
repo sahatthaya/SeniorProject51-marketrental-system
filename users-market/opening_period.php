@@ -182,7 +182,7 @@ if (isset($_GET['delop_id'])) {
 
                                     $op_id = $row1['id'];
 
-                                    $rsrange = mysqli_query($conn, "SELECT * FROM `booking_period` WHERE op_id = '$op_id'");
+                                    $rsrange = mysqli_query($conn, "SELECT * FROM `booking` WHERE op_id = '$op_id'");
 
                                     $numRows = mysqli_num_rows($rsrange);
 

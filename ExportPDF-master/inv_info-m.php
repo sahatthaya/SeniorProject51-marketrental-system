@@ -31,12 +31,9 @@ if (isset($_GET["INV_id"])) {
     $result = mysqli_query($conn, "SELECT market_detail.* FROM `invoice` JOIN market_detail ON (market_detail.mkr_id = invoice.mkr_id) WHERE INV_id = $INV_id");
     $rowm = mysqli_fetch_array($result);
     extract($rowm);
-    $open = $rowm['opening'];
-    if ($open == 'เปิดทำการทุกวัน') {
-        $resultdata = mysqli_query($conn, "SELECT invoice.INV_id AS invid,`invoice`.*,booking_range.*,stall.*,market_detail.*,amphures.*,districts.*,provinces.* FROM `invoice`,`booking_range`,`stall`,`market_detail`,`provinces`,`amphures`,`districts` WHERE (booking_range.b_id = invoice.b_id AND stall.sKey = booking_range.stall_id AND market_detail.mkr_id = invoice.mkr_id AND market_detail.province_id = provinces.id AND market_detail.district_id = districts.id AND market_detail.amphure_id = amphures.id AND invoice.INV_id= $INV_id)");
-    } else {
-        $resultdata = mysqli_query($conn, "SELECT invoice.INV_id AS invid,`invoice`.*,booking_period.*,stall.*,market_detail.*,amphures.*,districts.*,provinces.* FROM `invoice`,`booking_period`,`stall`,`market_detail`,`provinces`,`amphures`,`districts` WHERE (booking_period.b_id = invoice.b_id AND stall.sKey = booking_period.stall_id AND market_detail.mkr_id = invoice.mkr_id AND market_detail.province_id = provinces.id AND market_detail.district_id = districts.id AND market_detail.amphure_id = amphures.id AND invoice.INV_id= $INV_id)");
-    }
+
+    $resultdata = mysqli_query($conn, "SELECT invoice.INV_id AS invid,`invoice`.*,booking.*,stall.*,market_detail.*,amphures.*,districts.*,provinces.* FROM `invoice`,`booking`,`stall`,`market_detail`,`provinces`,`amphures`,`districts` WHERE (booking.b_id = invoice.b_id AND stall.sKey = booking.stall_id AND market_detail.mkr_id = invoice.mkr_id AND market_detail.province_id = provinces.id AND market_detail.district_id = districts.id AND market_detail.amphure_id = amphures.id AND invoice.INV_id= $INV_id)");
+
     
     $row = mysqli_fetch_array($resultdata);
     extract($row);
@@ -89,7 +86,7 @@ if ($row['INV_status'] == '2') {
                 <div class="fs-5">ข้อมูลใบเรียกเก็บค่าเช่า</div>
                 <?php
                 if ($row['INV_status'] == '2') { ?>
-                    <a type="button" class="btn mt-0" style="background-color: #000374;color:white;" href="./reciept-billrent.pdf">ดาวน์โหลดฐานการชำระเงิน</a>
+                    <a type="button" class="btn mt-0" style="background-color: #000374;color:white;" href="./reciept-billrent.pdf" target="_blank">ดาวน์โหลดฐานการชำระเงิน</a>
                 <?php
                 } else {
                     echo '';
@@ -263,7 +260,7 @@ if ($row['INV_status'] == '2') {
                     <tr>
                         <td style="border: 1px solid #dddddd;padding: 8px;text-align:center;">1</td>
                         <td style="border: 1px solid #dddddd;padding: 8px;"><strong style="font-weight: bold;">ค่าบริการและภาษี</strong> (4.07%)</td>
-                        <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><?php echo number_format($row["fee_pay"]) ?></td>
+                        <td style="border: 1px solid #dddddd;padding: 8px;" class="text-center"><?php echo number_format($fee) ?></td>
                     </tr>
                     <tr>
                         <td style="border: 1px solid #dddddd;padding: 8px;text-align:center;">2</td>
