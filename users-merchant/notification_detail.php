@@ -33,15 +33,18 @@ if ($numRownt == 0) { ?>
             case "6":
                 $path = './inv_info.php?INV_id=' . $rown['fk_id'];
                 break;
+            case "8":
+                $path = './news_forrenter.php?mkr_id=' . $rown['fk_id'] . '&&n_id=' . $rown['n_id'];
+                break;
             default:
                 $path = '#';
         }
     ?>
-        <li class="<?php echo $bg ?> border-bottom">
+        <li class="<?php echo $bg ?> border-bottom ">
             <a class="dropdown-item" href="<?php echo $path ?>">
                 <span class="text-secondary"><?php echo date("d/m/Y h:ia", strtotime($rown['timestamp'])) ?></span>
                 <br><span class="fw-bold"><?php echo $rown['n_sub'] ?></span>
-                <br><?php echo $rown['n_detail'] ?>
+                <br><span class=""><?php echo $rown['n_detail'] ?></span>
             </a>
         </li>
     <?php
