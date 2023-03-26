@@ -38,15 +38,15 @@ extract($row);
 
 $count_n = 1;
 
-if ($row['opening'] == 'เปิดทำการทุกวัน') {
+// if ($row['opening'] == 'เปิดทำการทุกวัน') {
 
-    $query = mysqli_query($conn, "SELECT * FROM `booking_range`JOIN `stall` ON (booking_range.stall_id = stall.sKey) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-} else {
+//     $query = mysqli_query($conn, "SELECT * FROM `booking_range`JOIN `stall` ON (booking_range.stall_id = stall.sKey) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
+// } else {
 
-    $query = mysqli_query($conn, "SELECT * FROM `booking_period`JOIN `stall` ON (booking_period.stall_id = stall.sKey)JOIN `opening_period` ON (booking_period.op_id = opening_period.id) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
-}
+//     $query = mysqli_query($conn, "SELECT * FROM `booking_period`JOIN `stall` ON (booking_period.stall_id = stall.sKey)JOIN `opening_period` ON (booking_period.op_id = opening_period.id) WHERE `stall`.market_id = $mkr_id ORDER BY `start` DESC");
+// }
 
-
+$query = mysqli_query($conn, "SELECT * FROM `booking`JOIN `stall` ON (booking.stall_id = stall.sKey) WHERE `stall`.market_id = $mkr_id ORDER BY `b_start` DESC");
 
 if (isset($_POST['submit-inv'])) {
 
@@ -149,5 +149,5 @@ if (isset($_POST['submit-inv'])) {
 
     echo "</script>";
 
-    // echo '<meta http-equiv="refresh" content="1"; />';
+    echo '<meta http-equiv="refresh" content="1"; />';
 }

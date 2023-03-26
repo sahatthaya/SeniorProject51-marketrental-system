@@ -45,7 +45,14 @@ $users_id = $_SESSION['users_id'];
     <link rel="stylesheet" href="../css/profilebar.css" type="text/css">
 
 </head>
-
+<style>
+    .noti {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 450px;
+    }
+</style>
 
 
 
@@ -61,7 +68,7 @@ $users_id = $_SESSION['users_id'];
                 </div>
             </a>
         </div>
-        <ul class="dropdown-menu mt-2 p-0" style=" max-height: 300px;overflow-y: auto;" id="link_wrapper_2">
+        <ul class="dropdown-menu mt-2 p-0 noti" style=" max-height: 300px;overflow-y: auto;" id="link_wrapper_2">
         </ul>
         <div class="profileicon prevent-select" type="button" id="dropdownMenuClickableInside" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
 

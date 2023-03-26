@@ -76,7 +76,7 @@ extract($lg);
 
                 <a href="./annouce.php">
 
-                    <i class='bx bx-clipboard'></i>
+                    <i class='bx bxs-megaphone'></i>
 
                     <span class="link_name">คำร้องประชาสัมพันธ์</span>
 

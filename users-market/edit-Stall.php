@@ -49,7 +49,7 @@ if (isset($_POST['stall-submit'])) {
     $sWidth = $_POST['sWidth'];
     $sHeight = $_POST['sHeight'];
     $sDept = $_POST['sDept'];
-    $sPayRange ='บาท/วัน';
+    $sPayRange = 'บาท/วัน';
     $sRent = $_POST['sRent'];
     $z_id = $_POST['z_id'];
     if (!isset($_POST['show'])) {
@@ -89,7 +89,7 @@ if (isset($_GET['delstall'])) {
     $sKey = $_GET['delstall'];
     $mkr_id = $_GET['mkr_id'];
 
-    $qrybooking = mysqli_query($conn, "SELECT * FROM booking_range WHERE sKey = ' $sKey' ");
+    $qrybooking = mysqli_query($conn, "SELECT * FROM booking WHERE sKey = ' $sKey' ");
     $numRows = mysqli_num_rows($qrybooking);
     if ($numRows > 0) {
         echo "<script>";
@@ -123,13 +123,13 @@ if (isset($_GET['delstall'])) {
 
     function drawChart() {
         var options = {
-            height: 300,    
+            height: 300,
             animation: {
                 duration: 1000,
                 easing: 'out'
             },
             Response: {
-                resize: (50,20)
+                resize: (50, 20)
             },
             backgroundColor: '',
             chartArea: {
@@ -249,11 +249,8 @@ if (isset($_GET['delstall'])) {
                         <th scope="col">ขนาดพื้นที่ (เมตร)</th>
                         <th scope="col">ราคามัดจำ</th>
                         <th scope="col">ราคาค่าเช่า</th>
-                        <!-- <th scope="col">(หน่วย)</th> -->
                         <th scope="col">การแสดงแผงค้า</th>
-                        <!-- <th scope="col" style="width:15% ;">ประวัติการจอง</th> -->
                         <th scope="col">แก้ไขข้อมูล</th>
-                        <!-- <th scope="col">ลบข้อมูล</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -277,21 +274,15 @@ if (isset($_GET['delstall'])) {
                                     </div>
                                 </div>
                             </td>
-                            <!-- <td>(<?php echo $row1['sPayRange']; ?>)</td> -->
                             <td>
-                                <div class="p-2 rounded text-center" style="color:white;background-color: <?php echo ($row1['show'] == "1" ? "green" : "grey"); ?> ;">
+                                <div class="p-2 rounded text-center" style="color: <?php echo ($row1['show'] == "1" ? "green" : "grey"); ?> ;">
                                     <?php echo ($row1['show'] == "1" ? "แสดง" : "ซ่อนอยู่"); ?>
                                 </div>
                             </td>
-                            <!-- <td style="width:15% ;">
-                                <button class=" btn btn-outline-info">ดูประวัติการจอง</button>
-                            </td> -->
                             <td>
                                 <a class="btn btn-outline-success modal_data w-100" href="edit-Stall-info.php?sKey=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;">แก้ไข</a>
                             </td>
-                            <!-- <td>
-                                <a href="edit-Stall.php?delstall=<?php echo $row1['sKey']; ?>;&mkr_id=<?php echo $row1['market_id']; ?>;" onclick="return confirm('คุณต้องการลบแผงค้านี้หรือไม่')" class=" btn btn-outline-danger w-100">ลบ</a>
-                            </td> -->
+
                         </tr>
 
                     <?php $count_n++;

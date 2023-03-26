@@ -31,7 +31,6 @@ include "nav.php";
 include "../backend/1-connectDB.php";
 
 require "../backend/invoice.php";
-
 ?>
 
 
@@ -78,13 +77,13 @@ require "../backend/invoice.php";
 
                     <div class="hstack gap-2 px-0 mb-3">
 
-                        <label style="width: 165px;"><span>ค้นหา : </span>การเช่าในวันที่</label>
+                        <label style="width: 165px;"><span class="text-decoration-underline">เลือก</span> การเช่าในวันที่</label>
 
-                        <input name="min" id="min" class="form-control" type="text" style="width: 165px;">
+                        <input name="min" id="min" class="form-control" type="text" style="width: 165px;" value="<?php echo '01/' . date('m/Y') ?>">
 
                         <label> ถึง </label>
 
-                        <input name="max" id="max" class="form-control" type="text" style="width: 165px;">
+                        <input name="max" id="max" class="form-control" type="text" style="width: 165px;" value="<?php echo date('t/m/Y') ?>">
 
                     </div>
 
@@ -102,21 +101,22 @@ require "../backend/invoice.php";
 
                                 <th scope="col">รหัสการจอง</th>
 
-                                <th scope="col">รหัสแผงค้า</th>
-
-                                <th scope="col">วันที่เริ่มจอง</th>
-
-                                <th scope="col">วันที่สิ้นสุด</th>
+                                <th scope="col">แผงค้า</th>
 
                                 <th scope="col">ผู้จอง</th>
 
+                                <th scope="col">วันที่เริ่มเช่า</th>
+
+                                <th scope="col">วันที่สิ้นสุด</th>
+
+                                <!-- <th scope="col">จำนวนวันที่เช่าในเดือนนี้</th> -->
+
                                 <th scope="col">ค่าเช่าแผง</th>
 
-                                <th scope="col">รอบบิลปัจุบัน (บาท)</th>
+                                <!-- <th scope="col">ค่าเช่าในเดือนนี้</th>
 
-                                <th scope="col">หมายเหตุ</th>
+                                <th scope="col">หมายเหตุ</th> -->
 
-                                <th scope="col">สถานะ</th>
 
                             </tr>
 
@@ -132,92 +132,11 @@ require "../backend/invoice.php";
 
                                 $numRowinv = mysqli_num_rows($qryinv);
 
-
-
-                                $now = date('Y-m-d');
-
-
-
+                                // เช็คบิลแรก
                                 if ($numRowinv == 0) {
-
-                                    if ($row['start'] >  $now) {
-
-                                        $rentbill =  0;
-
-                                        $ps = "-";
-                                    } else {
-
-                                        if ($row['end'] <  $now) {
-
-                                            $date1 = date_create($row['end']);
-
-                                            $date2 = date_create($row['start']);
-
-                                            $diff = date_diff($date1, $date2);
-
-                                            $day = $diff->format("%a") + 1;
-                                        } else {
-
-                                            $date1 = date_create($now);
-
-                                            $date2 = date_create($row['start']);
-
-                                            $diff = date_diff($date1, $date2);
-
-                                            $day = $diff->format("%a") + 1;
-                                        }
-
-
-
-                                        $rent =  $day * $row['sRent'];
-
-                                        $rentbill = $rent - $row['dept_pay'];
-
-                                        $ps = "หักค่ามัดจำแล้ว -" . $row['dept_pay'] . " บาท";
-                                    }
+                                    $dept = $row['sDept'];
                                 } else {
-
-                                    $qryinvinfo = mysqli_query($conn, "SELECT * FROM invoice WHERE (`b_id` = '$b_id') ORDER BY `b_id` DESC LIMIT 1");
-
-                                    $rowii = mysqli_fetch_array($qryinvinfo);
-
-                                    extract($rowii);
-
-                                    if ($row['end'] <  $now) {
-
-                                        if ($row['end'] < $rowii['INV_created']) {
-
-                                            $day = 0;
-
-                                            $ps = "บิลค่าเช่าครบรอบบิลแล้ว";
-                                        } else {
-
-                                            $date1 = date_create($row['end']);
-
-                                            $date2 = date_create($rowii['INV_created']);
-
-                                            $diff = date_diff($date1, $date2);
-
-                                            $day = $diff->format("%a") + 1;
-
-                                            $ps = "-";
-                                        }
-                                    } else {
-
-                                        $date1 = date_create($now);
-
-                                        $date2 = date_create($rowii['INV_created']);
-
-                                        $diff = date_diff($date1, $date2);
-
-                                        $day = $diff->format("%a") + 1;
-
-                                        $ps = "-";
-                                    }
-
-
-
-                                    $rentbill =  $day * $row['sRent'];
+                                    $dept = 0;
                                 }
 
                             ?>
@@ -226,45 +145,18 @@ require "../backend/invoice.php";
 
                                     <td class='text-center'><input type='checkbox' class='form-check-input table-checked chk' name="chk[]" value="<?php echo $row['b_id'] ?>" checked></td>
 
-                                    <td><?php echo $row['b_id'] ?></td>
+                                    <td id="<?php echo $dept ?>"><?php echo $row['b_id'] ?></td>
 
                                     <td><?php echo $row['sID'] ?></td>
 
-                                    <td><?php echo  date('d/m/Y', strtotime($row['start'])) ?></td>
-
-                                    <td><?php echo  date('d/m/Y', strtotime($row['end'])) ?></td>
-
                                     <td id="<?php echo $row['users_id'] ?>"><?php echo $row['b_fname'] . ' ' . $row['b_lname'] ?></td>
+
+                                    <td><?php echo  date('d/m/Y', strtotime($row['b_start'])) ?></td>
+
+                                    <td><?php echo  date('d/m/Y', strtotime($row['b_end'])) ?></td>
 
                                     <td><?php echo number_format($row['sRent']) . ' ' . $row['sPayRange'] ?></td>
 
-                                    <td><?php echo number_format($rentbill) ?></td>
-
-                                    <td><i><?php echo $ps ?></i></td>
-
-                                    <td>
-
-                                        <?php
-
-                                        $curr_date = date("Y-m-d");
-
-                                        if ($row['start'] >  $curr_date) {
-
-                                            echo '<div class="p-1 rounded text-center bg-secondary text-light">ยังไม่เริ่ม</div>';
-                                        } else {
-
-                                            if ($row['end'] <  $curr_date) {
-
-                                                echo '<div class="p-1 rounded text-center bg-danger text-light">สิ้นสุดแล้ว</div>';
-                                            } else {
-
-                                                echo '<div class="p-1 rounded text-center bg-primary text-light">ดำเนินการอยู่</div>';
-                                            }
-                                        }
-
-                                        ?>
-
-                                    </td>
 
                                 </tr>
 
@@ -387,6 +279,22 @@ require "../backend/invoice.php";
 </html>
 
 <script type="text/javascript">
+    // date diff
+    function dateDiffInDays(date1, date2) {
+        const oneDay = 24 * 60 * 60 * 1000; // milliseconds in a day
+        const diffInMilliseconds = Math.abs(date2.getTime() - date1.getTime());
+        return Math.floor(diffInMilliseconds / oneDay);
+    }
+    // convert dd/mm/yyyy to yyyy-mm-dd
+    function convertDateFormat(dateString) {
+        const parts = dateString.split("/");
+        const day = parts[0];
+        const month = parts[1];
+        const year = parts[2];
+        const convertedDate = `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        return convertedDate;
+    }
+    // ต้องเลือกแงค้าเพื่อกดถัดไป
     $(document).ready(function() {
         $('#checkBtn').click(function() {
             let grid = document.getElementById("myTable");
@@ -423,19 +331,23 @@ require "../backend/invoice.php";
         });
     });
 
+    // สร้างตารางใหม่
     function GetSelected() {
 
-        var grid = document.getElementById("myTable");
+        let grid = document.getElementById("myTable");
 
-        var numcost = document.getElementById("cost").getElementsByClassName('costtag').length + 1;
+        let numcost = document.getElementById("cost").getElementsByClassName('costtag').length + 1;
 
-        var checkBoxes = grid.getElementsByTagName("INPUT");
+        let checkBoxes = grid.getElementsByTagName("INPUT");
 
+        let datemin = document.getElementById("min").value;
+        let datemax = document.getElementById("max").value;
 
+        // label ค่าใช้จ่าย
 
-        var costinfo = '<div class="px-3">';
+        let numcostcal = numcost - 1;
 
-        var numcostcal = numcost - 1;
+        let costinfo = '<div class="px-3">';
 
         costinfo += '<input type="number" name="numcost" id="" class="form-control" value="' + numcostcal + '" required hidden />';
 
@@ -490,27 +402,28 @@ require "../backend/invoice.php";
         costinfo += "</div>";
 
 
-
-        var table = "<table id='example' class='display table table-striped dt-responsive' style='width: 100%;'>";
+        // headerตารางค่าเช่า
+        var table = "<h5>แผงค้าที่เลือกจากช่วงวันที่ " + datemin + " - " + datemax + " <span class='text-secondary fs-6'>( จำนวนวันเช่า และค่าเช่า จะคำนวนจากช่วงวันที่ได้เลือกไว้ )</span></h5>";
+        table += "<table id='example' class='display table table-striped dt-responsive' style='width: 100%;'>";
 
         var header = "<thead><tr>";
 
         header += "<th>รหัสการจอง</th>";
 
-        header += "<th>รหัสแผงค้า</th>";
+        header += "<th>แผงค้า</th>";
 
-        header += "<th>วันที่เริ่มจอง</th>";
+        header += "<th>วันที่เริ่มเช่า</th>";
 
         header += "<th>วันที่สิ้นสุด</th>";
 
         header += "<th>ค่าเช่าแผง</th>";
 
-        header += "<th>รอบบิลปัจุบัน (บาท)</th>";
+        header += "<th>จำนวนวันเช่า</th>";
 
-        header += "<th>หมายเหตุ</th>";
+        header += "<th>ค่าเช่าในรอบนี้ (บาท)</th>";
 
 
-
+        // header cost loop
         for (var i = 1; i < numcost; i++) {
 
             var cosnameold = document.getElementById("cost" + i).innerHTML;
@@ -528,24 +441,51 @@ require "../backend/invoice.php";
             header += "</th>";
 
         }
-
+        header += "<th>หมายเหตุ</th>";
         header += "</tr></thead>";
 
         table += header;
 
+
+        // body ตารางค่าเช่า
         table += "<tbody>";
 
         var countr = 0;
 
+        // checkbox loop create table
         for (var i = 1; i < checkBoxes.length; i++) {
 
             if (checkBoxes[i].checked) {
-
                 var row = checkBoxes[i].parentNode.parentNode;
 
-                var rentcomma = row.cells[7].innerHTML;
+                // Convert the date strings into Date objects
+                let startdate = new Date(row.cells[4].innerHTML.split("/").reverse().join("-"));
+                let enddate = new Date(row.cells[5].innerHTML.split("/").reverse().join("-"));
+                let mindate = new Date(datemin.split("/").reverse().join("-"));
+                let maxdate = new Date(datemax.split("/").reverse().join("-"));
+                var discount = row.cells[1].id;
 
-                var rent = rentcomma.replace(/,/g, '');
+                let dateString1, dateString2
+
+                if (mindate < startdate) {
+                    date1 = startdate
+                } else {
+                    date1 = mindate
+                }
+
+                if (enddate < maxdate) {
+                    date2 = enddate
+                } else {
+                    date2 = maxdate
+                }
+
+                const diffInMs = date2 - date1;
+
+                const days = Math.floor(diffInMs / (1000 * 60 * 60 * 24)) + 1;
+
+                var rentcomma = row.cells[6].innerHTML.replace(/,/g, '');
+
+                var rent = (parseInt(rentcomma.match(/\d+/)) * days) - discount;
 
                 table += "<tr>";
 
@@ -563,13 +503,7 @@ require "../backend/invoice.php";
 
                 table += row.cells[2].innerHTML;
                 table += '<input type="text" name="sid' + countr + '" id="" class="form-control" value="' + row.cells[2].innerHTML + '" required hidden/>';
-                table += '<input type="text" name="usersb_id' + countr + '" id="" class="form-control" value="' + row.cells[5].id + '" required hidden/>';
-
-                table += "</td>";
-
-                table += "<td>";
-
-                table += row.cells[3].innerHTML;
+                table += '<input type="text" name="usersb_id' + countr + '" id="" class="form-control" value="' + row.cells[3].id + '" required hidden/>';
 
                 table += "</td>";
 
@@ -581,35 +515,29 @@ require "../backend/invoice.php";
 
                 table += "<td>";
 
+                table += row.cells[5].innerHTML;
+
+                table += "</td>";
+
+                table += "<td>";
+
                 table += row.cells[6].innerHTML;
 
                 table += "</td>";
 
                 table += "<td>";
 
-                table += '<input type="number" name="rentprice' + countr + '" id="" class="form-control" value="' + rent + '" required>';
+                table += days + " วัน";
 
                 table += "</td>";
 
                 table += "<td>";
 
-                table += row.cells[8].innerHTML;
-
-                var discount = row.cells[8].innerHTML.match(/\d+/);
-
-                if (discount > 0) {
-
-                    var dc = discount;
-
-                } else {
-
-                    var dc = 0;
-
-                }
-
-                table += '<input type="text" name="discount' + countr + '" id="" class="form-control" value="' + dc + '" required hidden>';
+                table += '<input type="number" name="rentprice' + countr + '" id="" class="form-control w-100" value="' + rent + '" required>';
 
                 table += "</td>";
+
+
 
                 for (var x = 1; x < numcost; x++) {
 
@@ -636,6 +564,22 @@ require "../backend/invoice.php";
                     table += "</td>";
 
                 }
+
+                table += "<td>";
+                let dc
+                if (discount > 0) {
+
+                    dc = "หักค่ามัดจำ " + discount + " บาท";
+
+                } else {
+
+                    dc = "-";
+
+                }
+
+                table += dc;
+                table += '<input type="text" name="discount' + countr + '" id="" class="form-control" value="' + discount + '" hidden required >';
+                table += "</td>";
 
                 table += "</tr>";
 
@@ -703,8 +647,8 @@ require "../backend/invoice.php";
 
 
 
-    const buttons = document.getElementsByTagName("button");
 
+    // ลบค่าใช้จ่าย
     const buttonPressed = e => {
 
         var btnid = e.target.id;
@@ -714,7 +658,7 @@ require "../backend/invoice.php";
     }
 
 
-
+    // กรอกครบกดปุ่มได้
     function canclick() {
 
         var cost = document.getElementById("costname").value;
@@ -736,7 +680,7 @@ require "../backend/invoice.php";
     }
 
 
-
+    // เลือกทั้งหมด
     function toggle(source) {
 
         checkboxes = document.getElementsByClassName('chk');
@@ -750,7 +694,7 @@ require "../backend/invoice.php";
     }
 
 
-
+    // ข้อความ ** สำหรับบาท/หน่วย
     function checkunit() {
 
         var u = document.getElementById("unit").value;
@@ -769,9 +713,8 @@ require "../backend/invoice.php";
 
     }
 
+    // เพิ่มค่าใช้จ่าย
     document.getElementById("addcost").onclick = function() {
-
-
 
         var number = document.getElementById("cost").getElementsByClassName('costtag').length + 1;
 
@@ -926,19 +869,7 @@ require "../backend/invoice.php";
     };
 
 
-
-    mobiscroll.datepicker('#range', {
-
-        select: 'range',
-
-        startInput: '#start',
-
-        endInput: '#end'
-
-    });
-
-
-
+    // ค้นหาวันที่
     $(document).ready(function() {
 
         $.fn.dataTable.ext.search.push(
@@ -949,7 +880,7 @@ require "../backend/invoice.php";
 
                 var max = $('#max').datepicker("getDate");
 
-                var dateString = data[2];
+                var dateString = data[4];
 
                 var dateParts = dateString.split('/');
 
@@ -957,7 +888,7 @@ require "../backend/invoice.php";
 
 
 
-                var enddateString = data[3];
+                var enddateString = data[5];
 
                 var enddateParts = enddateString.split('/');
 
@@ -991,13 +922,16 @@ require "../backend/invoice.php";
 
                 return false;
 
+
             }
 
         );
 
 
-
-
+        window.onload = function curr_m() {
+            $("#min").trigger('change');
+            $("#max").trigger('change');
+        }
 
         $("#min").datepicker({
 
@@ -1024,9 +958,7 @@ require "../backend/invoice.php";
 
 
         $('#min, #max').change(function() {
-
             table.draw();
-
         });
 
     });

@@ -119,7 +119,10 @@ $query = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE bo
                         <input name="max" id="max" class="form-control w-25" type="text">
 
                     </div>
-
+                    <div>
+                        <a href="./news_forrenter_history.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bx-history'></i> ประวัติการสร้างประกาศ</a>
+                        <a href="./news_forrenter.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary"><i class='bx bxs-megaphone'></i> สร้างประกาศถึงผู้เช่าทุกคน</a>
+                    </div>
                 </div>
 
                 <hr>
