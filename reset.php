@@ -75,7 +75,7 @@ extract($lg);
 
         <div class="reset m-4 p-5 ">
 
-            <img class="img-resetpws" src="../asset/contact/logo-with-bg.png">
+            <img class="img-resetpws" src="../<?php echo $lg['ct_logo'] ?>">
 
             <div id="resetpsw">
 
@@ -113,7 +113,7 @@ extract($lg);
 
                     <hr>
 
-                    <div class="center reset-btn mt-2 pb-3"><a href="https://market-rental.000webhostapp.com/index.php#" class="link" disabled> กลับเข้าสู่ระบบ</a> </div>
+                    <div class="center reset-btn mt-2 pb-3"><a href="https://marketrental.online/index.php" class="link" disabled> กลับเข้าสู่ระบบ</a> </div>
 
                 </div>
 
