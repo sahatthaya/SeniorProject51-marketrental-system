@@ -9,7 +9,7 @@
     --primaryblue: #006bfa;
 
     --freshblue: #0daafd;
- margin: 50px 68px 20px 146px !important;
+    margin: 50px 68px 20px 146px !important;
     --margenta: #8e18d7;
 
     --dark: #02155A;
@@ -52,7 +52,9 @@ body {
 
 /* ผังแผงค้า */
 
-
+hr {
+    margin-top: 30px !important;
+}
 
 .plan {
 

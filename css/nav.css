@@ -31,6 +31,9 @@
 }
 
 
+.breadcrumb {
+    margin-top: 4.5rem !important;
+}
 
 .sidebar {
 
@@ -579,7 +582,7 @@
     .sidebar.close .logo-details {
 
         height: 55px;
-        display:block;
+        display: block;
     }
 
 

@@ -44,7 +44,7 @@
 
 <script type="text/javascript">
     function checkmediawidth() {
-0 
+        0
         let details = navigator.userAgent;
 
         let regexp = /android|iphone|kindle|ipad/i;
@@ -199,9 +199,9 @@
 
 
 
-    <div class="content">
+    <div class="content ">
 
-        <div class="plan border shadow-sm rounded">
+        <div class="plan border shadow-sm rounded mt-4">
 
 
 

@@ -101,7 +101,7 @@ if (isset($_GET['del_id'])) {
 
         <!-- market tap -->
 
-        <ul class="nav nav-tabs list-group list-group-horizontal-sm">
+        <ul class="nav nav-tabs list-group list-group-horizontal-sm ">
 
             <?php while ($row1 = mysqli_fetch_assoc($taps)) : ?>
 
@@ -163,8 +163,6 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-
-
                 <div class="col-md-3 mrkmenu-item">
 
                     <a href="news.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
@@ -178,6 +176,7 @@ if (isset($_GET['del_id'])) {
                 </div>
 
             </div>
+
 
             <div class="row mrkmenu2">
 
@@ -193,11 +192,9 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-
-
                 <div class="col-md-3 mrkmenu-item">
 
-                    <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item mrkmenu-itemrent w-100 btn btn-outline-primary ">
+                    <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
                         <i class="bx bx-message-alt-detail"></i>
 
@@ -211,7 +208,7 @@ if (isset($_GET['del_id'])) {
 
                 <div class="col-md-3 mrkmenu-item">
 
-                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item mrkmenu-itemcomp w-100 btn btn-outline-primary ">
+                    <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
 
                         <i class="bx bxs-megaphone"></i>
 
@@ -222,7 +219,7 @@ if (isset($_GET['del_id'])) {
                 </div>
                 <div class="col-md-3 mrkmenu-item">
 
-                    <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item mrkmenu-itemcomp w-100 btn btn-outline-danger ">
+                    <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item w-100 btn btn-outline-danger ">
 
                         <i class='bx bxs-minus-square'></i>
 
