@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="../css/password.css">
 
     <style>
-
         @import url('https://fonts.googleapis.com/css2?family=Mitr:wght@300&display=swap');
-
     </style>
 
     <link rel="shortcut icon" type="image/x-icon" href="./<?php echo $lg['ct_logo'] ?>" />
@@ -62,18 +60,11 @@ extract($lg);
 
         $r = mysqli_query($conn, $query);
 
+        $row = mysqli_fetch_array($r);
 
+        extract($row);
 
-        if (mysqli_num_rows($r) > 0) {
-
-
-
-            $row = mysqli_fetch_array($r);
-
-            $email = $row['email'];
-
-        }
-
+        $email = $row['email'];
     }
 
 
@@ -92,7 +83,7 @@ extract($lg);
 
                 <div class="form-message" id="msg"></div>
 
-                <div class="reset-psw ">
+                <div class="reset-psw" style="margin: 0 25%;">
 
                     <form method="POST" class="was-validated">
 
@@ -104,13 +95,13 @@ extract($lg);
 
                         <div class="mb-3">
 
-                            <input class="input inputcolor form-control reset-input" type="password" name="password"  pattern=".{8,}" id="password" required placeholder="สร้างรหัสผ่านใหม่" onchange="validatePassword()">
+                            <input class="input inputcolor form-control reset-input" type="password" name="password" pattern=".{8,}" id="password" required placeholder="สร้างรหัสผ่านใหม่" onchange="validatePassword()">
 
                         </div>
 
                         <div class="mb-0">
 
-                            <input class="input inputcolor form-control reset-input" type="password" name="cfpassword"  pattern=".{8,}" id="cfpassword" required placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง" onchange="validatePassword()">
+                            <input class="input inputcolor form-control reset-input" type="password" name="cfpassword" pattern=".{8,}" id="cfpassword" required placeholder="ยืนยันรหัสผ่านใหม่อีกครั้ง" onchange="validatePassword()">
 
                         </div>
 
@@ -137,7 +128,6 @@ extract($lg);
     <script src="./backend/script.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-
         function validatePassword() {
 
             var password = document.getElementById("password"),
@@ -223,7 +213,6 @@ extract($lg);
 
 
         });
-
     </script>
 
 

@@ -193,7 +193,7 @@ if (isset($_GET['newpost'])) {
                     if (isset($_GET['newreply']) && $row2['rp_id'] == $_GET['newreply']) {
                         $bg = 'bg-info bg-opacity-10';
                     } else {
-                        $bg = 'bg-info bg-opacity-10';
+                        $bg = '';
                     }
                     $admin = "";
                 }

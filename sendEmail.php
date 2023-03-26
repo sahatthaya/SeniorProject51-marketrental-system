@@ -494,7 +494,7 @@ if (isset($_POST['email'])) {
                                                                             <td align="center" style="padding:0;Margin:0">
                                                                                 <span class="msohide es-button-border"
                                                                                     style="border-style:solid;border-color:#2CB543;background:#7630f3;border-width:0px;display:block;border-radius:30px;width:auto;mso-hide:all"><a
-                                                                                    href="https://market-rental.000webhostapp.com/reset.php?token=' . $token . '" class="es-button msohide"
+                                                                                    href="marketrental.online/reset.php?token=' . $token . '" class="es-button msohide"
                                                                                         target="_blank"
                                                                                         style="mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;color:#FFFFFF;font-size:22px;border-style:solid;border-color:#7630f3;border-width:15px 20px 15px 20px;display:block;background:#7630f3;border-radius:30px;font-family:Imprima, Arial, sans-serif;font-weight:bold;font-style:normal;line-height:26px;width:auto;text-align:center;mso-hide:all;border-left-width:5px;border-right-width:5px">รีเซ็ตรหัสผ่าน</a>
                                                                                 </span>
@@ -532,7 +532,7 @@ if (isset($_POST['email'])) {
                                                                                 <p
                                                                                     style="Margin:0;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:Imprima, Arial, sans-serif;line-height:21px;color:#2D3142;font-size:14px">
                                                                                     ด้วยความเคารพ ,
-                                                                                   <a href="https://market-rental.000webhostapp.com/"> https://market-rental.000webhostapp.com/</a></p>
+                                                                                   <a href="www.marketrental.online"> marketrental.online</a></p>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
