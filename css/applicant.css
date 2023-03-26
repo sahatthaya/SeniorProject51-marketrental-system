@@ -35,13 +35,6 @@ body {
 }
 
 
-.breadcrumb{
-    margin-top: 4.5rem !important;
-}
-
-
-
-
 
 /* ----------------------------------------2.กล่องฟอร์ม------------------------------------------------------------ */
 
@@ -306,9 +299,17 @@ input[type=file]::file-selector-button:hover {
 
 
 
+.mrkmenu {
+
+    margin-bottom: 15px;
+
+}
+
+
+
 .mrkmenu2 {
 
-    margin-top: 15px !important;
+    margin-bottom: 15px;
 
 }
 
@@ -424,10 +425,11 @@ input[type=file]::file-selector-button:hover {
 @media(max-width: 720px) {
 
 
+
     body {
 
 
-        margin: 55px 10px 0px 10px !important;
+         margin: 55px 10px 0px 10px !important;
 
 
 
@@ -511,7 +513,6 @@ input[type=file]::file-selector-button:hover {
 
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 
-        margin-top: 0px !important;
     }
 
 
@@ -531,11 +532,11 @@ input[type=file]::file-selector-button:hover {
     }
 
     .cost-formselect {
-        margin-top: -10px !important;
+        margin-top: -10px !important ;
     }
 
-    .cost-btn {
-        margin-top: -10px !important;
+    .cost-btn{
+        margin-top: -10px !important ;
 
     }
 
@@ -555,7 +556,7 @@ input[type=file]::file-selector-button:hover {
 
     }
 
-
+  
 
 
 
@@ -564,6 +565,16 @@ input[type=file]::file-selector-button:hover {
 
 
 @media(max-width: 436px) {
+
+
+
+    .mrkmenu2 {
+
+        margin-top: -15px !important;
+
+    }
+
+
 
     .mrkmenu-item {
 

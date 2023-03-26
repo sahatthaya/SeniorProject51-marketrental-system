@@ -199,9 +199,9 @@
 
 
 
-    <div class="content ">
+    <div class="content">
 
-        <div class="plan border shadow-sm rounded mt-4">
+        <div class="plan border shadow-sm rounded">
 
 
 
@@ -274,6 +274,13 @@
 
                             </div>
 
+                            <div id="dessize">
+
+                                <input type="text" value="<?php echo $row1['w'] ?>" id="<?php echo "w" . $count_n ?>" name="<?php echo "w" . $count_n ?>" hidden>
+
+                                <input type="text" value="<?php echo $row1['h'] ?>" id="<?php echo "h" . $count_n ?>" name="<?php echo "h" . $count_n ?>" hidden>
+
+                            </div>
 
                         </div>
 

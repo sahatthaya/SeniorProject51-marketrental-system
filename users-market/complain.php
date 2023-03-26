@@ -12,7 +12,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title> MarketRental - คำร้องเรียน</title>
+    <title> MarketRental - Document</title>
 
 
 
@@ -78,7 +78,7 @@ if (isset($_GET['mkr_id'])) {
 
 <body>
 
-    <nav aria-label="breadcrumb mb-3 ">
+    <nav aria-label="breadcrumb mb-3">
 
         <ol class="breadcrumb ">
 
