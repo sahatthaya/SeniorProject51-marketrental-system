@@ -199,9 +199,9 @@
 
 
 
-    <div class="content">
+    <div class="content ">
 
-        <div class="plan border shadow-sm rounded">
+        <div class="plan border shadow-sm rounded mt-4">
 
 
 

@@ -18,6 +18,10 @@ body {
 
 }
 
+.breadcrumb{
+    margin-top: 4.5rem !important;
+}
+
 
 
 /* ----------------------------------------1.banner------------------------------------------------------------ */
@@ -283,21 +287,11 @@ a {
     }
 
 
-
     .carousel-item img {
 
         height: 15rem;
 
     }
-
-
-
-    #addbn {
-
-        font-size: 14px;
-
-    }
-
 
 
     #table {
@@ -413,6 +407,8 @@ a {
         margin-bottom: 10px;
 
     }
+
+    
 
 
 

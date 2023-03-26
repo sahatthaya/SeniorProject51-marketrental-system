@@ -101,7 +101,7 @@ if (isset($_GET['del_id'])) {
 
         <!-- market tap -->
 
-        <ul class="nav nav-tabs list-group list-group-horizontal-sm">
+        <ul class="nav nav-tabs list-group list-group-horizontal-sm ">
 
             <?php while ($row1 = mysqli_fetch_assoc($taps)) : ?>
 
@@ -163,8 +163,6 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-
-
                 <div class="col-md-3 mrkmenu-item">
 
                     <a href="news.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
@@ -180,7 +178,7 @@ if (isset($_GET['del_id'])) {
             </div>
 
     
-            <div class="row mrkmenu ">
+            <div class="row mrkmenu2">
 
                 <div class="col-md-3 mrkmenu-item">
 

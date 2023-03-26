@@ -20,11 +20,16 @@
 
 body {
 
-    /* margin: 30px 68px 20px 146px !important; */
+    margin: 30px 68px 20px 146px !important;
 
     min-width: 1200px;
 
 }
+
+.breadcrumb{
+    margin-top: 4.5rem !important;
+}
+
 
 
 
@@ -52,7 +57,9 @@ body {
 
 /* ผังแผงค้า */
 
-
+hr{
+    margin-top: 30px !important;
+}
 
 .plan {
 

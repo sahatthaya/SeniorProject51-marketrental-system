@@ -14,13 +14,9 @@
 
     <title> MarketRental - คำร้องประชาสัมพันธ์</title>
 
-
-
     <!-- css  -->
 
     <link rel="stylesheet" href="../css/banner.css" type="text/css">
-
-
 
 </head>
 
@@ -54,7 +50,7 @@ if (isset($_GET['fk_id'])) {
                 <h4>
                     คำร้องขอประชาสัมพันธ์ทั้งหมด
                 </h4>
-                <a id="addbn" type="button" class="btn btn-primary" href="./annouce-history.php">
+                <a id="addbn" type="button" class="btn btn-primary justify-content-between" href="./annouce-history.php">
 
                     <i class='bx bx-history'></i> ดูประวัติคำร้องประชาสัมพันธ์ทั้งหมด
 

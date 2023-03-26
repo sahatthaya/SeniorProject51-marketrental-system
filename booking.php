@@ -58,7 +58,7 @@
 
     <h1>จองแผงค้า<?php echo $row['mkr_name']; ?></h1>
 
-    <div class="plan">
+    <div class="plan ">
 
         <form method="POST" class="border rounded py-1">
 

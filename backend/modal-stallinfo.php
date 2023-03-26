@@ -84,7 +84,7 @@ if (isset($_POST["s_id"])) {
 
     <div class="text-end">
 
-        <button type="button" class="btn btn-secondary" id="cancel" data-bs-dismiss="modal">ยกเลิก</button>
+        <button type="button" class="btn btn-secondary ms-2" id="cancel" data-bs-dismiss="modal">ยกเลิก</button>
 
         <a type="button" class="btn btn-primary" href="' . $path . '?s_id=' . $row1['sKey'] . '&&mkr_id=' . $row1['market_id'] . '" >จองแผงค้า</a>
 
