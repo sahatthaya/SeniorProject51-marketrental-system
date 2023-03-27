@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 
 include("./backend/1-connectDB.php");
 
-include("./backend/1-import-link.php");
+require_once("./backend/1-import-link.php");
 
 
 
