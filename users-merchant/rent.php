@@ -178,36 +178,44 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
             <div id="table" class="bannertb border p-3 shadow-sm rounded mt-2">
 
                 <div class="d-flex justify-content-between">
+                    <div class="container text-center">
+                        <div class="row">
+                            <div class="col-sm-7 align-middle">
 
-                    <div class="hstack gap-2">
+                                <div class="hstack gap-2">
 
-                        <label><span class="text-secondary text-decoration-underline">ค้นหา</span> การเช่าในวันที่ : </label>
+                                    <label><span class="text-secondary text-decoration-underline">ค้นหา</span> การเช่าในวันที่ : </label>
 
-                        <input name="min" id="min" class="form-control w-25" type="text">
+                                    <input name="min" id="min" class="form-control" type="text">
 
-                        <label> ถึง </label>
+                                    <label> ถึง </label>
 
-                        <input name="max" id="max" class="form-control w-25" type="text">
+                                    <input name="max" id="max" class="form-control" type="text">
+                                </div>
+                            </div>
 
+
+                            <div class="col">
+                                <div class="hstack gap-2 float-end">
+
+                                    <!-- Button trigger modal -->
+                                    <a type="button" class="btn btn-primary btn-calen" href="./rent-history.php">
+
+                                        ประวัติการจองแผงค้า
+
+                                    </a>
+
+                                    <button type="button" class="btn btn-primary btn-calen" data-bs-toggle="modal" data-bs-target="#exampleModal">
+
+                                        ปฏิทินการจองของ <?php echo $_SESSION['username']; ?>
+
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
-
-                    <div>
-
-                        <!-- Button trigger modal -->
-                        <a type="button" class="btn btn-primary btn-calen" href="./rent-history.php">
-
-                            ประวัติการจองแผงค้า
-
-                        </a>
-
-                        <button type="button" class="btn btn-primary btn-calen" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
-                            ปฏิทินการจองของ <?php echo $_SESSION['username']; ?>
-
-                        </button>
-
-                    </div>
-
                 </div>
 
                 <hr>
