@@ -98,7 +98,35 @@ if (isset($_GET['del_id'])) {
     <div class="market" <?php echo $showmarket ?>>
 
         <h1>ตลาดของคุณ <?php echo $_SESSION['username'] ?></h1>
+        <div class="border rounded shadow-sm mb-3 mt-3 p-3 row mx-1">
+            <div class="col-lg-8">
+                <h4 class="text-center">สรุปการจองแผงค้าในตลาดทั้งหมดของคุณ ปี <?php echo date("Y") ?></h4>
+                <div class="p-0" id="linechart_material" style=" height: 400px"></div>
+            </div>
+            <div class="col-lg-4 border p-3 rounded mw-100">
+                    เรียงลำดับตลาดที่มีการจองมากที่สุด ปี <?php echo date("Y") ?>
+                    <hr>
+                    <ul class="list-group list-group-flush w-100" style="height:100%;">
+                        <?php
+                        $year =  date("Y");
+                        $query = mysqli_query($conn, "SELECT COALESCE(COUNT(booking.b_id), 0) AS countZ, market_detail.mkr_name 
+                        FROM market_detail 
+                        LEFT JOIN stall ON (market_detail.mkr_id = stall.market_id) 
+                        LEFT JOIN booking ON (stall.sKey = booking.stall_id AND booking.status = '1' AND booking.b_start <= '$year-12-31' AND booking.b_end >= '$year-01-01') 
+                        WHERE market_detail.users_id = '$userid' and a_id = 1
+                        GROUP BY market_detail.mkr_id 
+                        ORDER BY countZ DESC
+                        ");
+                        $i = 1;
+                        foreach ($query as $rs) { ?>
+                            <li class="list-group-item"><?php echo $i . ". " . $rs['mkr_name'] ?> จำนวน <?php echo $rs['countZ'] ?> ครั้ง</li>
+                        <?php
+                            $i++;
+                        } ?>
 
+                    </ul>
+            </div>
+        </div>
         <!-- market tap -->
 
         <ul class="nav nav-tabs list-group list-group-horizontal-sm ">
@@ -252,7 +280,7 @@ if (isset($_GET['del_id'])) {
 
             </div>
 
-            <div class="border rounded shadow-sm p-3 mt-3 " ng-sum>
+            <div class="border rounded shadow-sm p-3 mt-3 ">
 
                 <h3 class="center">สรุปการจองแผงค้าในปี <?php echo date("Y") ?></h3>
 
@@ -583,12 +611,84 @@ if (isset($_GET['del_id'])) {
 <script>
     google.charts.load('current', {
 
-        'packages': ['corechart']
+        packages: ['corechart', 'line']
 
     });
 
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(drawall);
 
+
+
+    function drawall() {
+
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', 'เดือน');
+        <?php
+        $userlogin = $_SESSION['users_id'];
+        $qrymkrname = mysqli_query($conn, "SELECT `mkr_name` FROM `market_detail` WHERE `users_id` = '$userlogin' AND `a_id` = '1' ORDER BY `mkr_id` DESC");
+        foreach ($qrymkrname as $rowname) { ?>
+            data.addColumn('number', '<?php echo $rowname['mkr_name'] ?>');
+        <?php
+        }
+        ?>
+
+
+
+        data.addRows([
+
+            <?php
+            $curr_Y = date("Y");
+            $months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+            $lastday = ['31', '29', '31', '30', '31', '30', '31', '31', '30', '31', '30', '31'];
+            $mth = ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'];
+            for ($i = 0; $i < 12; $i++) {
+                $startdate = $curr_Y . "-" . $months[$i] . "-1";
+                $enddate = $curr_Y . "-" . $months[$i] . "-" . $lastday[$i];
+                $arr = [];
+                $query = mysqli_query($conn, "SELECT COALESCE(COUNT(booking.b_id), 0) AS countZ, market_detail.mkr_name 
+                FROM market_detail 
+                LEFT JOIN stall ON (market_detail.mkr_id = stall.market_id) 
+                LEFT JOIN booking ON (stall.sKey = booking.stall_id AND booking.status = '1' AND booking.b_start <= '$enddate' AND booking.b_end >= '$startdate') 
+                WHERE market_detail.users_id = '$userlogin' and a_id = 1
+                GROUP BY market_detail.mkr_id 
+                ORDER BY market_detail.mkr_id DESC
+                ");
+                foreach ($query as $rs) {
+                    array_push($arr, $rs['countZ']);
+                }
+                echo "['" . $mth[$i] . "'," . implode(",", $arr) . "],";
+            }
+
+            ?>
+        ]);
+
+        var options = {
+            hAxis: {
+
+                title: 'เดือน'
+
+            },
+
+            vAxis: {
+
+                title: 'ยอดการจอง'
+
+            },
+            chartArea: {
+                width: "70%",
+                height: "80%"
+            }
+
+        };
+
+
+
+        var chart = new google.visualization.LineChart(document.getElementById('linechart_material'));
+
+        chart.draw(data, options);
+
+    }
 
 
     function drawChart() {
@@ -731,6 +831,8 @@ if (isset($_GET['del_id'])) {
         drawBackgroundColor();
 
         drawChart();
+
+        drawall();
 
     });
 
