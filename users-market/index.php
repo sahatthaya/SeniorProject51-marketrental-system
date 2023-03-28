@@ -104,12 +104,12 @@ if (isset($_GET['del_id'])) {
                 <div class="p-0" id="linechart_material" style=" height: 400px"></div>
             </div>
             <div class="col-lg-4 border p-3 rounded mw-100">
-                    เรียงลำดับตลาดที่มีการจองมากที่สุด ปี <?php echo date("Y") ?>
-                    <hr>
-                    <ul class="list-group list-group-flush w-100" style="height:100%;">
-                        <?php
-                        $year =  date("Y");
-                        $query = mysqli_query($conn, "SELECT COALESCE(COUNT(booking.b_id), 0) AS countZ, market_detail.mkr_name 
+                เรียงลำดับตลาดที่มีการจองมากที่สุด ปี <?php echo date("Y") ?>
+                <hr>
+                <ul class="list-group list-group-flush w-100" style="height:100%;">
+                    <?php
+                    $year =  date("Y");
+                    $query = mysqli_query($conn, "SELECT COALESCE(COUNT(booking.b_id), 0) AS countZ, market_detail.mkr_name 
                         FROM market_detail 
                         LEFT JOIN stall ON (market_detail.mkr_id = stall.market_id) 
                         LEFT JOIN booking ON (stall.sKey = booking.stall_id AND booking.status = '1' AND booking.b_start <= '$year-12-31' AND booking.b_end >= '$year-01-01') 
@@ -117,14 +117,17 @@ if (isset($_GET['del_id'])) {
                         GROUP BY market_detail.mkr_id 
                         ORDER BY countZ DESC
                         ");
-                        $i = 1;
-                        foreach ($query as $rs) { ?>
-                            <li class="list-group-item"><?php echo $i . ". " . $rs['mkr_name'] ?> จำนวน <?php echo $rs['countZ'] ?> ครั้ง</li>
-                        <?php
-                            $i++;
-                        } ?>
+                    $i = 1;
+                    foreach ($query as $rs) { ?>
+                        <li class="list-group-item d-flex justify-content-between">
+                            <div><?php echo $i . ". " . $rs['mkr_name'] ?></div>
+                            <div>จำนวน <?php echo $rs['countZ'] ?> ครั้ง</div>
+                        </li>
+                    <?php
+                        $i++;
+                    } ?>
 
-                    </ul>
+                </ul>
             </div>
         </div>
         <!-- market tap -->
