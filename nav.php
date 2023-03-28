@@ -32,12 +32,6 @@ extract($lg);
 
 </head>
 
-<?
-
-include "backend/1-import-link.php";
-
-?>
-
 
 
 <body>
