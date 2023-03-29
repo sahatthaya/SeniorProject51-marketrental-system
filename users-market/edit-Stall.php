@@ -18,7 +18,7 @@ include "nav.php";
 include "../backend/1-connectDB.php";
 $mkr_id = $_GET['mkr_id'];
 $count_n = 1;
-$data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id')";
+$data2 = "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id') order by `sID` DESC";
 $result3 = mysqli_query($conn, $data2);
 
 $z_qry = "SELECT * FROM zone";

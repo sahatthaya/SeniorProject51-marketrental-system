@@ -61,7 +61,6 @@ require "../backend/add-applicant.php";
 
 if (isset($_GET['del_id'])) {
     $mkr_id = $_GET['del_id'];
-
     $qrybr = mysqli_query($conn, "SELECT booking.*,stall.market_id FROM `booking`JOIN stall ON (booking.stall_id = stall.sKey) WHERE market_id = $mkr_id");
     $br = mysqli_num_rows($qrybr);
     if ($br > 0 or $bp > 0) {
@@ -251,7 +250,7 @@ if (isset($_GET['del_id'])) {
 
                 <div class="col-md-3 mrkmenu-item mrkmenu-item2">
 
-                    <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item w-100 btn btn-outline-danger ">
+                    <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item w-100 btn btn-outline-danger " onclick="return confirm('คุณต้องการลบตลาดหรือไม่')">
 
                         <i class='bx bxs-minus-square'></i>
 

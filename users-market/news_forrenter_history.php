@@ -65,7 +65,7 @@ $row1 = mysqli_fetch_array($result);
 extract($row1);
 
 
-$resultnews = mysqli_query($conn, "select * from `notification` where `fk_id` = $mkr_id ");
+$resultnews = mysqli_query($conn, "select * from `notification` where `fk_id` = $mkr_id order by `n_id` DESC");
 
 
 ?>

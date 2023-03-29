@@ -149,7 +149,7 @@ if ($row['INV_status'] == '2') {
                         <td>1</td>
                         <td>ค่าเช่า</td>
                         <td>- </td>
-                        <td>+ <?php echo number_format($row["INV_rentprice"]) ?> บาท</td>
+                        <td> <?php echo number_format($row["INV_rentprice"]) ?> บาท</td>
                     </tr>
                     <?php
                     if ($row["INV_discount"] != 0) {
@@ -180,7 +180,7 @@ if ($row['INV_status'] == '2') {
                                 <td><?php echo $count + 1 ?></td>
                                 <td><?php echo $rowc["cost_name"] ?></td>
                                 <td><?php echo number_format($rowc["price/unit"]) . " " . $rowc["unit"] . $detail ?></td>
-                                <td>+ <?php echo number_format($rowc["price"]) ?> บาท</td>
+                                <td> <?php echo number_format($rowc["price"]) ?> บาท</td>
                             </tr>
                     <?php
                             $cost = $cost + $rowc["price"];
