@@ -66,7 +66,7 @@ if (isset($_POST["anid"])) {
 
         $curr_date = date('Y-m-d');
 
-        
+
 
         $output .= '
 
@@ -78,7 +78,7 @@ if (isset($_POST["anid"])) {
 
                 <div class="col-sm-10 p-0">
 
-                    <input type="date" class="form-control" name="start" min="'.$curr_date.'" value="' . $start . '" required>
+                    <input type="date" class="form-control" id="startdate" name="start" min="' . $curr_date . '" value="' . $start . '" required onchange="mindate()">
 
                 </div>
 
@@ -90,7 +90,7 @@ if (isset($_POST["anid"])) {
 
                 <div class="col-sm-10 p-0">
 
-                    <input type="date" class="form-control" name="end" min="'.$curr_date.'" value="' . $end . '" required>
+                    <input type="date" class="form-control" id="enddate" name="end" min="' . $curr_date . '" value="' . $end . '" required>
 
                 </div>
 
@@ -99,13 +99,10 @@ if (isset($_POST["anid"])) {
             
 
      ';
-
     }
 
     echo $output;
-
 } else {
-
 }
 
 
@@ -129,19 +126,20 @@ if (isset($_POST['submit-edit'])) {
             echo "<script type='text/javascript'> success(); </script>";
 
             echo '<meta http-equiv="refresh" content="1";/>';
-
         } else {
 
             echo "<script>error();</script>";
-
         }
-
     } else {
 
         echo "<script>error();</script>";
-
     }
-
 }
 
 ?>
+
+<script type="text/javascript">
+    function mindate() {
+        document.getElementById("enddate").min = document.getElementById('startdate').value;
+    }
+</script>

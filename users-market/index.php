@@ -693,6 +693,10 @@ if (isset($_GET['del_id'])) {
 
     }
 
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
 
