@@ -301,15 +301,14 @@ input[type=file]::file-selector-button:hover {
 
 .mrkmenu {
 
-    margin-top: 15px !important;
+    margin-top: 10px;
 
 }
 
 
-
 .mrkmenu2 {
 
-    margin-top: 15px !important;
+    margin-top: 10px !important;
 
 }
 
@@ -355,6 +354,8 @@ input[type=file]::file-selector-button:hover {
     width: 155px;
 
 }
+
+
 
 
 
@@ -413,6 +414,27 @@ input[type=file]::file-selector-button:hover {
         display: none;
 
     }
+
+    .mrkmenu-item {
+
+        /* margin-top: 15px; */
+        height: 60px;
+
+
+    }
+
+    .mrkmenu-item2 {
+        margin-top: 15px !important;
+    }
+
+
+    .mrkmenu2 {
+
+        margin-top: 0px !important;
+
+    }
+
+
 
 
 
@@ -512,9 +534,20 @@ input[type=file]::file-selector-button:hover {
         gap: .5rem;
 
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        margin-top: 0px !important;
+        margin-top: 0px;
     }
 
+    .mrkmenu-item {
+
+        /* margin-top: 15px; */
+        height: auto !important;
+
+
+    }
+
+    .mrkmenu-item2 {
+        margin-top:0px !important;
+    }
 
 
     .mrkmenu-itemrent {
@@ -567,19 +600,10 @@ input[type=file]::file-selector-button:hover {
 @media(max-width: 436px) {
 
 
-
-    .mrkmenu2 {
-
-        margin-top: -15px !important;
-
-    }
-
-
-
     .mrkmenu-item {
 
         text-align: left !important;
-
+        margin-top: 0px !important;
     }
 
 

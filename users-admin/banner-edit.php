@@ -42,7 +42,7 @@ require "../backend/manage-banner.php";
 
         <ol class="breadcrumb mt-4">
 
-            <li class="breadcrumb-item fs-5 "><a href="./banner.php" class="text-decoration-none">จัดการแบนเนอร์</a></li>
+            <li class="breadcrumb-item fs-5 "><a href="./banner2.php" class="text-decoration-none">จัดการแบนเนอร์</a></li>
 
             <li class="breadcrumb-item active fs-5" aria-current="page">แก้ไขข้อมูลแบนเนอร์</li>
 

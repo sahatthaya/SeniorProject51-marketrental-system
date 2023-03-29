@@ -162,35 +162,41 @@
 
 
 
-                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking ON (stall.sKey = booking.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id')");
+                    $rsrange = mysqli_query($conn, "SELECT * FROM stall JOIN booking ON (stall.sKey = booking.stall_id) WHERE (`stall_id` = '$sKey' AND `op_id` = '$op_id' AND `status` = 1)");
 
                     $numRows = mysqli_num_rows($rsrange);
-                    if ($numRows > 0) {
-                        if ($row1['sRent'] <= $val) {
-                            $free = "";
-                            $opc = "0.1";
-                            $border = "";
-                            $status = "ไม่ว่าง";
-                        } else {
-                            $opc = "0.1";
-                            $free = "";
-                            $border = "";
-                            $status = "ไม่ว่าง";
-                        }
+                    if ($numRowsop === 0) {
+                        $free = "";
+                        $opc = "0.1";
+                        $border = "";
+                        $status = "ไม่ว่าง";
                     } else {
-                        if ($row1['sRent'] <= $val) {
-                            $opc = "1";
-                            $free = "modal_data1";
-                            $border = "border border-primary border-3 text-decoration-underline fw-bold";
-                            $status = "ว่าง";
+                        if ($numRows > 0) {
+                            if ($row1['sRent'] <= $val) {
+                                $free = "";
+                                $opc = "0.1";
+                                $border = "";
+                                $status = "ไม่ว่าง";
+                            } else {
+                                $opc = "0.1";
+                                $free = "";
+                                $border = "";
+                                $status = "ไม่ว่าง";
+                            }
                         } else {
-                            $free = "modal_data1";
-                            $opc = "1";
-                            $border = "border border-3 text-decoration-underline fw-bold";
-                            $status = "ว่าง";
+                            if ($row1['sRent'] <= $val) {
+                                $opc = "1";
+                                $free = "modal_data1";
+                                $border = "border border-primary border-3 text-decoration-underline fw-bold";
+                                $status = "ว่าง";
+                            } else {
+                                $free = "modal_data1";
+                                $opc = "1";
+                                $border = "border border-3 text-decoration-underline fw-bold";
+                                $status = "ว่าง";
+                            }
                         }
                     }
-
                     ?>
                     <div id="<?php echo $row1['sKey']; ?>" name="<?php echo $status; ?>" class="stallbox <?php echo $free; ?> <?php echo $border; ?>" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;opacity:<?php echo $opc ?>;" id="<?php echo $count_n ?>">
 

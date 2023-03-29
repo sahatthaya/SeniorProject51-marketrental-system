@@ -107,7 +107,7 @@ require "../backend/add-applicant.php";
 
 
 
-                    <div class="des_input">รูปภาพ <span class="text-secondary fs-8">( ขนาดแนะนำ 1978 x 400 )</span></div>
+                    <div class="des_input">รูปภาพ <span class="text-secondary fs-8">( ขนาดแนะนำ 1278 x 400 )</span></div>
 
                     <input class="sqr-input col-12 form-control" type="file" aria-label="แนบรูปภาพ" name="bn_img" accept="image/jpeg,image/gif,image/png" required>
 

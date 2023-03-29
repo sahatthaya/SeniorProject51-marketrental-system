@@ -309,7 +309,7 @@
 
         }).then(function() {
 
-            window.location = "../users-admin/banner.php";
+            window.location = "../users-admin/banner2.php";
 
         });
 

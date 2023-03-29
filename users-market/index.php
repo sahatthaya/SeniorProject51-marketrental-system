@@ -158,7 +158,7 @@ if (isset($_GET['del_id'])) {
 
             <div class="row mrkmenu">
 
-                <div class="col-md-3 mrkmenu-item">
+                <div class="col-md-3 mrkmenu-item ">
 
                     <a href="edit-market-info.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -211,7 +211,7 @@ if (isset($_GET['del_id'])) {
 
             <div class="row mrkmenu2">
 
-                <div class="col-md-3 mrkmenu-item">
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
 
                     <a href="booking.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
 
@@ -223,7 +223,7 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-                <div class="col-md-3 mrkmenu-item">
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
 
                     <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -237,7 +237,7 @@ if (isset($_GET['del_id'])) {
 
 
 
-                <div class="col-md-3 mrkmenu-item">
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
 
                     <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
 
@@ -248,7 +248,8 @@ if (isset($_GET['del_id'])) {
                     </a>
 
                 </div>
-                <div class="col-md-3 mrkmenu-item">
+
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
 
                     <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item w-100 btn btn-outline-danger ">
 
