@@ -667,6 +667,26 @@
 
     }
 
+    function send_email_error() {
+
+        Swal.fire({
+
+            title: 'ไม่มีอีเมลนี้ในระบบ',
+
+            icon: 'warning',
+
+            text: 'กรุณากรอกอีเมลให้ถูกต้อง',
+
+            showConfirmButton: false,
+
+            timer: 3000
+
+        })
+
+    }
+
+
+
     function stallerror() {
 
         Swal.fire({
