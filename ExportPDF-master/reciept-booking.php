@@ -54,6 +54,7 @@ if (isset($_GET["b_id"])) {
       <?php if ($nav == "r") { ?>
         <li class="breadcrumb-item fs-5 "><a href="../users-merchant/rent.php" class="text-decoration-none">จัดการการจอง</a></li>
       <?php } else { ?>
+        <li class="breadcrumb-item fs-5 "><a href="../users-merchant/rent.php" class="text-decoration-none">จัดการการจอง</a></li>
         <li class="breadcrumb-item fs-5 "><a href="../users-merchant/rent-history.php" class="text-decoration-none">ประวัติการจองแผงค้า</a></li>
       <?php } ?>
 

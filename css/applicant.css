@@ -301,11 +301,21 @@ input[type=file]::file-selector-button:hover {
 
 .mrkmenu {
 
-    margin-top: 15px !important;
+    margin-top: 10px;
 
 }
 
 
+<<<<<<< HEAD
+=======
+.mrkmenu2 {
+
+    margin-top: 10px !important;
+
+}
+
+
+>>>>>>> origin/master
 
 #piechart {
 
@@ -347,6 +357,8 @@ input[type=file]::file-selector-button:hover {
     width: 155px;
 
 }
+
+
 
 
 
@@ -408,10 +420,32 @@ input[type=file]::file-selector-button:hover {
 
     .mrkmenu-item {
 
+<<<<<<< HEAD
         margin-top: 15px;
 
     }
 
+=======
+        /* margin-top: 15px; */
+        height: 60px;
+
+
+    }
+
+    .mrkmenu-item2 {
+        margin-top: 15px !important;
+    }
+
+
+    .mrkmenu2 {
+
+        margin-top: 0px !important;
+
+    }
+
+
+
+>>>>>>> origin/master
 
 
 
@@ -510,9 +544,20 @@ input[type=file]::file-selector-button:hover {
         gap: .5rem;
 
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        margin-top: 0px !important;
+        margin-top: 0px;
     }
 
+    .mrkmenu-item {
+
+        /* margin-top: 15px; */
+        height: auto !important;
+
+
+    }
+
+    .mrkmenu-item2 {
+        margin-top:0px !important;
+    }
 
     .mrkmenu-itemrent {
 

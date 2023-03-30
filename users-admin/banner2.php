@@ -84,7 +84,7 @@ require "../backend/manage-banner.php";
 
                 <div class="carousel-item <?php echo $actives; ?>">
 
-                    <div class="carousel-caption d-none d-md-block">
+                    <div class="carousel-caption d-md-block">
 
                         <h5><?php echo $row['bn_toppic'] ?></h5>
 
@@ -166,7 +166,7 @@ require "../backend/manage-banner.php";
 
                                 <div class="form-group">
 
-                                    <h6 class="mt-2">เพิ่มรูปภาพ <span class="text-secondary fs-8">( ขนาดแนะนำ 1978 x 400 )</span></h6>
+                                    <h6 class="mt-2">เพิ่มรูปภาพ <span class="text-secondary fs-8">( ขนาดแนะนำ 1278 x 400 )</span></h6>
 
                                     <input type="file" class="form-control" name="bn_img" id="imgInp" accept="image/png, image/gif, image/jpeg" required>
 

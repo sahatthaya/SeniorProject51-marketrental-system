@@ -61,7 +61,6 @@ require "../backend/add-applicant.php";
 
 if (isset($_GET['del_id'])) {
     $mkr_id = $_GET['del_id'];
-
     $qrybr = mysqli_query($conn, "SELECT booking.*,stall.market_id FROM `booking`JOIN stall ON (booking.stall_id = stall.sKey) WHERE market_id = $mkr_id");
     $br = mysqli_num_rows($qrybr);
     if ($br > 0 or $bp > 0) {
@@ -158,7 +157,9 @@ if (isset($_GET['del_id'])) {
 
             <div class="row mrkmenu">
 
-                <div class="col-md-6 mrkmenu-item ">
+
+                <div class="col-md-3 mrkmenu-item ">
+
 
                     <a href="edit-market-info.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -211,7 +212,11 @@ if (isset($_GET['del_id'])) {
 
             <div class="row mrkmenu2">
 
+<<<<<<< HEAD
                 <div class="col-md-6 mrkmenu-item">
+=======
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
+>>>>>>> origin/master
 
                     <a href="booking.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
 
@@ -223,7 +228,11 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
+<<<<<<< HEAD
                 <div class="col-md-6 mrkmenu-item">
+=======
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
+>>>>>>> origin/master
 
                     <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -237,7 +246,11 @@ if (isset($_GET['del_id'])) {
 
 
 
+<<<<<<< HEAD
                 <div class="col-md-6 mrkmenu-item">
+=======
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
+>>>>>>> origin/master
 
                     <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
 
@@ -248,9 +261,14 @@ if (isset($_GET['del_id'])) {
                     </a>
 
                 </div>
+<<<<<<< HEAD
                 <div class="col-md-6 mrkmenu-item">
+=======
+>>>>>>> origin/master
 
-                    <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item w-100 btn btn-outline-danger ">
+                <div class="col-md-3 mrkmenu-item mrkmenu-item2">
+
+                    <a href="index.php?del_id=<?php echo $mkr_id ?>" class="mrkmenu-item w-100 btn btn-outline-danger " onclick="return confirm('คุณต้องการลบตลาดหรือไม่')">
 
                         <i class='bx bxs-minus-square'></i>
 
@@ -693,6 +711,10 @@ if (isset($_GET['del_id'])) {
 
     }
 
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
 

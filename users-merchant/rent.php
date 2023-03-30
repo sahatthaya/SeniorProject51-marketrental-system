@@ -186,17 +186,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'confirm') {
 
                                     <label><span class="text-secondary text-decoration-underline">ค้นหา</span> การเช่าในวันที่ : </label>
 
-                                    <input name="min" id="min" class="form-control" type="text">
+
+                                    <input name="min" id="min" class="form-control w-25" type="text">
 
                                     <label> ถึง </label>
 
-                                    <input name="max" id="max" class="form-control" type="text">
+                                    <input name="max" id="max" class="form-control w-25" type="text">
+
                                 </div>
                             </div>
 
 
-                            <div class="col">
-                                <div class="hstack gap-2 float-end">
+
+                            <div class="col-md-5 p-0">
+                                <div class="hstack gap-2 float-xl-end float-lg-start rent-btn mt-lg-0 mt-md-5 ms-0">
+
 
                                     <!-- Button trigger modal -->
                                     <a type="button" class="btn btn-primary btn-calen" href="./rent-history.php">

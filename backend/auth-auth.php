@@ -40,7 +40,7 @@ if (isset($_POST['login-btn'])) {
                 echo "<script>window.location='./users-market/index.php';</script>";
             } else {
 
-                echo "<script>window.location='./users-admin/banner.php';</script>";
+                echo "<script>window.location='./users-admin/banner2.php';</script>";
             }
         }
     } else {

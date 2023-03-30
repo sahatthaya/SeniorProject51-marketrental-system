@@ -56,7 +56,7 @@ extract($lg);
 
             <li class="navlink">
 
-                <a href="../users-admin/banner.php">
+                <a href="../users-admin/banner2.php">
 
                     <i class='bx bxs-home'></i>
 
@@ -66,7 +66,7 @@ extract($lg);
 
                 <ul class="sub-menu blank">
 
-                    <li><a class="link_name" href="../users-admin/banner.php">จัดการแบนเนอร์</a></li>
+                    <li><a class="link_name" href="../users-admin/banner2.php">จัดการแบนเนอร์</a></li>
 
                 </ul>
 
@@ -152,7 +152,7 @@ extract($lg);
                     <i class='bx bx-menu text-white fs-2'></i>
                 </button>
             </div>
-            <a class="navbar-brand text-white" href="banner.php">Market-Rental</a>
+            <a class="navbar-brand text-white" href="banner2.php">Market-Rental</a>
 
             <div class="d-flex">
                 <div class="dropdown dd-show">
@@ -189,7 +189,7 @@ extract($lg);
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item mx-3 mt-2">
-                        <a href="banner.php" class="text-decoration-none text-white">
+                        <a href="banner2.php" class="text-decoration-none text-white">
                             <span class="link_name">จัดการแบนเนอร์</span>
                         </a>
                     </li>

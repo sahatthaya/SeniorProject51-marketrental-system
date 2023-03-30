@@ -115,17 +115,20 @@ $query = mysqli_query($conn, "SELECT * FROM market_detail,booking,stall WHERE bo
 
                                     <label><span class="text-secondary text-decoration-underline">ค้นหา</span> การเช่าในวันที่ : </label>
 
-                                    <input name="min" id="min" class="form-control" type="text">
+
+                                    <input name="min" id="min" class="form-control w-25" type="text">
 
                                     <label> ถึง </label>
 
-                                    <input name="max" id="max" class="form-control" type="text">
+                                    <input name="max" id="max" class="form-control w-25" type="text">
+
 
                                 </div>
                             </div>
 
-                            <div class="col">
-                                <div class="hstack gap-2 float-end">
+                            <div class="col-md-5 p-0">
+                                <div class="hstack gap-2 float-xl-end float-lg-start rent-btn mt-lg-0 mt-md-5 ms-0">
+
                                     <a href="./news_forrenter_history.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary btn-calen"><i class='bx bx-history'></i> ประวัติการสร้างประกาศ</a>
                                     <a href="./news_forrenter.php?mkr_id=<?php echo $mkr_id ?>" type="button" class="btn btn-primary btn-calen"><i class='bx bxs-megaphone'></i> สร้างประกาศถึงผู้เช่าทุกคน</a>
                                 </div>
