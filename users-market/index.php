@@ -171,7 +171,7 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-                <div class="col-md-6 mrkmenu-item">
+                <div class="col-md-3 mrkmenu-item">
 
                     <a href="finance.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -183,7 +183,7 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-                <div class="col-md-6 mrkmenu-item">
+                <div class="col-md-3 mrkmenu-item">
 
                     <a href="edit-Stall.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -195,7 +195,7 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-                <div class="col-md-6 mrkmenu-item">
+                <div class="col-md-3 mrkmenu-item">
 
                     <a href="news.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -212,11 +212,8 @@ if (isset($_GET['del_id'])) {
 
             <div class="row mrkmenu2">
 
-<<<<<<< HEAD
-                <div class="col-md-6 mrkmenu-item">
-=======
                 <div class="col-md-3 mrkmenu-item mrkmenu-item2">
->>>>>>> origin/master
+
 
                     <a href="booking.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
 
@@ -228,11 +225,9 @@ if (isset($_GET['del_id'])) {
 
                 </div>
 
-<<<<<<< HEAD
-                <div class="col-md-6 mrkmenu-item">
-=======
+
                 <div class="col-md-3 mrkmenu-item mrkmenu-item2">
->>>>>>> origin/master
+
 
                     <a href="rent.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary ">
 
@@ -246,11 +241,9 @@ if (isset($_GET['del_id'])) {
 
 
 
-<<<<<<< HEAD
-                <div class="col-md-6 mrkmenu-item">
-=======
+
                 <div class="col-md-3 mrkmenu-item mrkmenu-item2">
->>>>>>> origin/master
+
 
                     <a href="complain.php?mkr_id=<?php echo $first_market ?>" class="mrkmenu-item w-100 btn btn-outline-primary">
 
@@ -261,10 +254,8 @@ if (isset($_GET['del_id'])) {
                     </a>
 
                 </div>
-<<<<<<< HEAD
-                <div class="col-md-6 mrkmenu-item">
-=======
->>>>>>> origin/master
+
+
 
                 <div class="col-md-3 mrkmenu-item mrkmenu-item2">
 
