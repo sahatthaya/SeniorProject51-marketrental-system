@@ -121,7 +121,7 @@ $users_id = '0';
     setInterval(function() {
         loadXMLDoc2();
         // 1sec
-    }, 5000);
+    }, 1000);
 
     window.onload = loadXMLDoc2;
 

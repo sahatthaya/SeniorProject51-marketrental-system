@@ -110,7 +110,7 @@ $users_id = $_SESSION['users_id'];
     setInterval(function() {
         loadXMLDoc();
         // 1sec
-    }, 5000);
+    }, 1000);
 
     window.onload = loadXMLDoc;
 

@@ -188,6 +188,7 @@ if (isset($_GET['newpost'])) {
                 if ($row2['mkr_name'] != '') {
                     $admin = ' (' . $row2['mkr_name'] . ')';
                     $text = "text-primary";
+                    $bg = '';
                 } else {
                     $text = '';
                     if (isset($_GET['newreply']) && $row2['rp_id'] == $_GET['newreply']) {

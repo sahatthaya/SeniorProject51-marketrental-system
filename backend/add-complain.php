@@ -121,7 +121,7 @@ if (isset($_POST['reply-btn'])) {
             $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
             VALUES ('การร้องเรียน','$n_detail','1','4','$rp_id','$usersmc')");
 
-            if ($_FILES['upload']['size'] > 0) {
+            if (isset($_FILES['upload']['size'])) {
 
                 date_default_timezone_set('Asia/Bangkok');
                 $date = date("Ymd");
@@ -145,7 +145,7 @@ if (isset($_POST['reply-btn'])) {
 
                         //Upload the file into the temp dir
                         if (move_uploaded_file($tmpFile, $Path)) {
-                            $insertimg = mysqli_query($conn, "INSERT INTO `img`(`img`, `fk_id`,`type`) VALUES ('$tmpFilename','$comp_id','2')");
+                            $insertimg = mysqli_query($conn, "INSERT INTO `img`(`img`, `fk_id`,`type`) VALUES ('$tmpFilename','$rp_id','2')");
                         }
                     }
                 }
