@@ -103,7 +103,7 @@ if (isset($_GET['del_id'])) {
                 <div class="p-0" id="linechart_material" style=" height: 400px"></div>
             </div>
             <div class="col-lg-4 border p-3 rounded mw-100">
-                เรียงลำดับตลาดที่มีการจองมากที่สุด ปี <?php echo date("Y") ?>
+                10 ลำดับตลาดที่มีการจองมากที่สุดของคุณ ปี <?php echo date("Y") ?>
                 <hr>
                 <ul class="list-group list-group-flush w-100" style="height:100%;">
                     <?php
@@ -115,6 +115,7 @@ if (isset($_GET['del_id'])) {
                         WHERE market_detail.users_id = '$userid' and a_id = 1
                         GROUP BY market_detail.mkr_id 
                         ORDER BY countZ DESC
+                        limit 10
                         ");
                     $i = 1;
                     foreach ($query as $rs) { ?>

@@ -44,7 +44,6 @@
 
 <script type="text/javascript">
     function checkmediawidth() {
-        0
         let details = navigator.userAgent;
 
         let regexp = /android|iphone|kindle|ipad/i;
