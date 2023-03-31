@@ -114,7 +114,7 @@ $result_province = mysqli_query($conn, $query_province);
 
           <div class="col-md-4 p-0">
 
-            <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" required value="<?php echo $row['house_no']; ?>" required>
+            <input class="form-control" type="text" pattern="[0-9]+[/0-9+]*" placeholder="บ้านเลขที่" name="HouseNo" required value="<?php echo $row['house_no']; ?>" required>
 
           </div>
 
@@ -122,7 +122,7 @@ $result_province = mysqli_query($conn, $query_province);
 
           <div class="col-md-4 p-0">
 
-            <input class="form-control" type="text" placeholder="ซอย" name="Soi" required value="<?php echo $row['soi']; ?>" required>
+            <input class="form-control" type="text"pattern="[ก-๙]+.*\S.*[\d]*" placeholder="ซอย" name="Soi" required value="<?php echo $row['soi']; ?>" required>
 
           </div>
 
@@ -134,7 +134,7 @@ $result_province = mysqli_query($conn, $query_province);
 
           <div class="col-md-4 p-0">
 
-            <input class="form-control" type="text" placeholder="หมู่" name="Moo" required value="<?php echo $row['moo']; ?>" required>
+            <input class="form-control" type="text" placeholder="หมู่" pattern="[0-9]{0,}" name="Moo" required value="<?php echo $row['moo']; ?>" required>
 
           </div>
 
@@ -142,7 +142,7 @@ $result_province = mysqli_query($conn, $query_province);
 
           <div class="col-md-4 p-0">
 
-            <input class="form-control" type="text" placeholder="ถนน" name="Road" required value="<?php echo $row['road']; ?>" required>
+            <input class="form-control" type="text" placeholder="ถนน" pattern="[ก-๙]+.*\S.*[\d]*" name="Road" required value="<?php echo $row['road']; ?>" required>
 
           </div>
 
@@ -235,7 +235,7 @@ $result_province = mysqli_query($conn, $query_province);
 
         <input type="text" class="form-control" name="email" value="<?php echo $row["email"] ?>" required>
 
-        <div class="des_input">เบอร์โทรศัพท์</div>
+        <div class="des_input">เบอร์มือถือ</div>
 
         <input type="text" id="tel" class="form-control" name="tel" value="<?php echo $row["tel"] ?>" pattern="[0-9]{10}" required>
 
@@ -264,7 +264,6 @@ $result_province = mysqli_query($conn, $query_province);
 </body>
 
 <script>
- 
   $(document).ready(function() {
 
     $("body").tooltip({
@@ -283,7 +282,7 @@ $result_province = mysqli_query($conn, $query_province);
 
   $("#tel").inputmask({
 
-    "mask": "9999999999"
+    "mask": "0999999999"
 
   });
 

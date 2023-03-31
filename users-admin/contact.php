@@ -102,8 +102,8 @@ require "../backend/manage-contact.php";
                             </div>
                             <div class="mb-1">อีเมล</div>
                             <input class="form-control mb-2" type="email" name="ct1_email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="กรุณากรอกอีเมลให้ถูกต้อง" placeholder="อีเมล" value="<?php echo $row["ct1_email"] ?>" required>
-                            <div class="mb-1">เบอร์โทรศัพท์</div>
-                            <input class="form-control mb-2 tel" id="tel" type="tel" name="ct1_tel" placeholder="เบอร์โทรศัพท์" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $row["ct1_tel"] ?>" required>
+                            <div class="mb-1">เบอร์มือถือ</div>
+                            <input class="form-control mb-2 tel" id="tel" type="tel" name="ct1_tel" placeholder="เบอร์มือถือ" pattern="[0-9]{10}" title="กรุณากรอกเบอร์มือถือ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $row["ct1_tel"] ?>" required>
                             <div class="mb-1">รูปภาพ</div>
                             <input type="file" name="ct1_pic" class="form-control" id="con1" accept="image/png, image/gif, image/jpeg">
                         </div>
@@ -136,8 +136,8 @@ require "../backend/manage-contact.php";
                             </div>
                             <div class="mb-1">อีเมล</div>
                             <input class="form-control mb-2 " type="email" name="ct2_email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="กรุณากรอกอีเมลให้ถูกต้อง" placeholder="อีเมล" value="<?php echo $row["ct2_email"] ?>" required>
-                            <div class="mb-1">เบอร์โทรศัพท์</div>
-                            <input class="form-control mb-2 tel" id="tel" type="tel" name="ct2_tel" placeholder="เบอร์โทรศัพท์" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $row["ct2_tel"] ?>" required>
+                            <div class="mb-1">เบอร์มือถือ</div>
+                            <input class="form-control mb-2 tel" id="tel" type="tel" name="ct2_tel" placeholder="เบอร์มือถือ" pattern="[0-9]{10}" title="กรุณากรอกเบอร์มือถือ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $row["ct2_tel"] ?>" required>
                             <div class="mb-1">รูปภาพ</div>
                             <input type="file" name="ct2_pic" class="form-control" id="con2" accept="image/png, image/gif, image/jpeg">
                         </div>
@@ -166,7 +166,7 @@ require "../backend/manage-contact.php";
     // tel input mask
     $(":input").inputmask();
     $(".tel").inputmask({
-        "mask": "9999999999"
+        "mask": "0999999999"
     });
 
     logo.onchange = evt => {

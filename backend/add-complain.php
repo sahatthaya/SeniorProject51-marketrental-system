@@ -12,6 +12,8 @@ if (isset($_POST['post-btn'])) {
     $usermkr = $_POST['usermkr'];
     $mkrname = $_POST['mkrname'];
 
+    date_default_timezone_set('Asia/Bangkok');
+    $time = date('Y-m-d H:i:s');
 
     $wordchange = ("*");
     $dbquery = mysqli_query($conn, "SELECT * FROM `rude`");
@@ -39,12 +41,11 @@ if (isset($_POST['post-btn'])) {
             $comp_id = $mid['maxid'];
             $username = $_SESSION['username'];
             $n_detail = 'มีคำร้องเรียนใหม่จาก ' . $username;
-            $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`)
-            VALUES ('$mkrname','$n_detail','1','3','$comp_id','$usermkr')");
+            $insertnoti = mysqli_query($conn, "INSERT INTO `notification`(`n_sub`, `n_detail`,`status`, `type`, `fk_id`, `users_id`,`timestamp`)
+            VALUES ('$mkrname','$n_detail','1','3','$comp_id','$usermkr','$time')");
 
             if ($_FILES['upload']['size'] > 0) {
 
-                date_default_timezone_set('Asia/Bangkok');
                 $date = date("Ymd");
                 $numrand = (mt_rand());
 
@@ -81,6 +82,7 @@ if (isset($_POST['post-btn'])) {
         }
     }
 }
+
 
 // ตอบกลับ
 if (isset($_POST['reply-btn'])) {

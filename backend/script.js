@@ -94,6 +94,18 @@ function nextbtn() {
 
 }
 
+function nextbtn2() {
+
+    document.getElementById("stepOne").style.display = "none";
+
+    document.getElementById("stepTwo").style.display = "block";
+
+    // document.getElementById("stepThree").style.display = "none";
+
+    // document.getElementById("stepFour").style.display = "none";
+
+}
+
 // previousbtn
 
 function previousbtn() {
@@ -317,9 +329,6 @@ function checkapp2() {
     var des = document.getElementById("des").value;
 
     var file = document.getElementById("file").value;
-
-    var min = document.getElementById("min").value;
-
 
 
     if (mkname != "") {

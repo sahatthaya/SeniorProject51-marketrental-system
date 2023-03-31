@@ -136,11 +136,11 @@ require "../backend/manage-edit-Stall.php";
 
             <div class="input-group">
 
-                <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sWidth'] ?>">
+                <input type="number" class="form-control " min="1" placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sWidth'] ?>">
 
                 <span class="input-group-text">*</span>
 
-                <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sHeight'] ?>">
+                <input type="number" class="form-control" min="1" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sHeight'] ?>">
 
                 <span class="input-group-text">เมตร</span>
 
@@ -162,7 +162,7 @@ require "../backend/manage-edit-Stall.php";
 
             <div class="input-group">
 
-                <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sRent'] ?>">
+                <input type="number" class="form-control" min="1" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required value="<?php echo $s['sRent'] ?>">
 
                 <span class="input-group-text">บาท/วัน</span>
 

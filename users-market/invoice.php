@@ -175,28 +175,31 @@ require "../backend/invoice.php";
                 <h5 class="px-0">2. กรอกค่าใช้จ่ายเพิ่มเติม <span class="text-secondary fs-6">(หากไม่มีค่าใช้จ่ายเพิ่มเติม สามารถเว้นไว้ได้)</span></h5>
 
                 <hr>
+                <form class="was-validated">
+                    <div class="hstack cost gap-2 mb-2 px-0">
 
-                <div class="hstack cost gap-2 mb-2 px-0">
+                        <label class="cost">ค่าใช้จ่ายเพิ่มเติม :</label>
 
-                    <label class="cost">ค่าใช้จ่ายเพิ่มเติม :</label>
 
-                    <input id="costname" type="text" class="form-control cost" placeholder="เช่น ค่าไฟ ค่าน้ำ" onchange="canclick()">
+                        <input id="costname" type="text" pattern="[ก-๙]+.*\S.*[\d]*" class="form-control cost" placeholder="เช่น ค่าไฟ ค่าน้ำ" onchange="canclick()" required>
 
-                    <input id="price" type="number" class="form-control cost" placeholder="จำนวนเงิน" onchange="canclick()">
+                        <input id="price" type="number" min="1" class="form-control cost" placeholder="จำนวนเงิน" onchange="canclick()" required>
 
-                    <select class="form-select cost-formselect" id="unit" style="width: 155px;" onchange="checkunit()">
+                        <select class="form-select cost-formselect" id="unit" style="width: 155px;" onchange="checkunit()" required>
 
-                        <option value="1">เหมาจ่าย</option>
+                            <option value="1">เหมาจ่าย</option>
 
-                        <option value="2">บาท/หน่วย</option>
+                            <option value="2">บาท/หน่วย</option>
 
-                    </select>
+                        </select>
 
-                    <but ton id="addcost" type="button" class="btn btn-primary cost-btn" disabled> เพิ่ม</but>
+                        <button id="addcost" type="button" class="btn btn-primary cost-btn" disabled> เพิ่ม</button>
 
-                    <label id="lebelunit" class="text-danger" style="display: none;">เนื่องจากเป็นรายการที่ราคาแตกต่างกันในแต่ละแผงค้า <br>คุณสามารถกรอกข้อมูลแต่ละแผงค้าได้ในขั้นตอนถัดไป</label>
 
-                </div>
+                        <label id="lebelunit" class="text-danger" style="display: none;">เนื่องจากเป็นรายการที่ราคาแตกต่างกันในแต่ละแผงค้า <br>คุณสามารถกรอกข้อมูลแต่ละแผงค้าได้ในขั้นตอนถัดไป</label>
+
+                    </div>
+                </form>
 
                 <div id="cost" class="px-0">
 
@@ -533,7 +536,7 @@ require "../backend/invoice.php";
 
                 table += "<td>";
 
-                table += '<input type="number" name="rentprice' + countr + '" id="" class="form-control w-100" value="' + rent + '" required>';
+                table += '<input type="number" min="1" name="rentprice' + countr + '" id="" class="form-control w-100" value="' + rent + '" required>';
 
                 table += "</td>";
 
@@ -559,7 +562,7 @@ require "../backend/invoice.php";
 
                     table += "<td>";
 
-                    table += '<input type="number" name="bill' + countr + 'price' + x + '" id="" class="form-control" value="' + price + '" required/>';
+                    table += '<input type="number" min="1" name="bill' + countr + 'price' + x + '" id="" class="form-control" value="' + price + '" required/>';
 
                     table += "</td>";
 
@@ -666,10 +669,17 @@ require "../backend/invoice.php";
         var price = document.getElementById("price").value;
 
 
+        var regex = /[ก-๙]+.*\S.*[\d]*/;
+
+        let valid = regex.test(cost);
 
         if (cost != "" && price != "") {
-
-            document.getElementById("addcost").disabled = false;
+            
+            if (valid = true && price > 0) {
+                document.getElementById("addcost").disabled = false;
+            } else {
+                document.getElementById("addcost").disabled = true;
+            }
 
         } else {
 

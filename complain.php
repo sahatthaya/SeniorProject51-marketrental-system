@@ -249,7 +249,11 @@ $query2 = mysqli_query($conn, $sql2);
                                     โดย: <?php echo $row['username']; ?>
                                 </div>
                                 <div class="text-secondary opacity-50">
-                                    <?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row['timestamp'])) ?>
+                                    <?php
+                                    $time = date('g:i a', strtotime($row['timestamp']) + 60 * 60 * 7
+);
+                                    echo date("วันที่ d/m/Y", strtotime($row['timestamp'])) . " " . date("เวลา h:i a", strtotime($time))
+                                    ?>
                                 </div>
                             </div>
                             <div class="text-secondary">

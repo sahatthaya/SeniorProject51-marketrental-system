@@ -31,7 +31,7 @@ $sql = "SELECT market_detail.*,users.username ,
     FROM market_detail 
         JOIN users ON (market_detail.users_id = users.users_id)
         JOIN provinces ON (market_detail.province_id = provinces.id)
-        JOIN amphures ON (market_detail.	amphure_id = amphures.id)
+        JOIN amphures ON (market_detail.amphure_id = amphures.id)
         JOIN districts ON (market_detail.district_id = districts.id)
         JOIN market_type ON (market_detail.market_type_id = market_type.market_type_id)
          WHERE (a_id='1' AND mkr_id = '$mkr_id') ";
@@ -207,9 +207,9 @@ if (isset($_GET['delstall'])) {
                 </div>
                 <label class="mt-2">ขนาดพื้นที่ :</label>
                 <div class="input-group">
-                    <input type="number" class="form-control " placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
+                    <input type="number" class="form-control " min="1" placeholder="กว้าง" name="sWidth" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
                     <span class="input-group-text">*</span>
-                    <input type="number" class="form-control" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
+                    <input type="number" class="form-control" min="1" placeholder="ยาว" name="sHeight" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
                     <span class="input-group-text">เมตร</span>
 
                 </div>
@@ -220,7 +220,7 @@ if (isset($_GET['delstall'])) {
                 </div>
                 <label class="mt-2">ราคาค่าเช่า :</label>
                 <div class="input-group">
-                    <input type="number" class="form-control" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
+                    <input type="number" class="form-control" min="1" name="sRent" placeholder="กรุณากรอกจำนวนที่ต้องการเป็นตัวเลข" required>
                     <span class="input-group-text">บาท/วัน</span>
                 </div>
                 <div class="mt-2 hstack gap-2">

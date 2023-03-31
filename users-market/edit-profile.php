@@ -85,9 +85,9 @@ require "../backend/edit-profile.php";
 
             <div class="col-12">
 
-                <label for="inputAddress" class="form-label des_input">เบอร์โทรศัพท์</label>
+                <label for="inputAddress" class="form-label des_input">เบอร์มือถือ</label>
 
-                <input class="input inputcolor form-control" id="tel" type="tel" name="tel-reg" placeholder="เบอร์โทรศัพท์" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $row['tel'] ?>" required>
+                <input class="input inputcolor form-control" id="tel" type="tel" name="tel-reg" placeholder="เบอร์มือถือ" pattern="[0-9]{10}" title="กรุณากรอกเบอร์มือถือ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $row['tel'] ?>" required>
 
             </div>
 
@@ -119,7 +119,7 @@ require "../backend/edit-profile.php";
 
     $("#tel").inputmask({
 
-        "mask": "9999999999"
+        "mask": "0999999999"
 
     });
 

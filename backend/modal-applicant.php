@@ -182,7 +182,7 @@ if (isset($_POST["mkrdid"])) {
 
          <tr>  
 
-              <td width="30%"><label>เบอร์โทรศัพท์</label></td>  
+              <td width="30%"><label>เบอร์มือถือ</label></td>  
 
               <td width="70%">' . $row["tel"] . '</td>  
 

@@ -100,7 +100,7 @@ extract($row1);
 
                 <div class="col-sm-10">
 
-                    <input name="p_name" type="text" class="form-control" value="<?php echo $row['p_name']; ?>" required>
+                    <input name="p_name" type="text" pattern="^[ก-๏\s]+$" class="form-control" value="<?php echo $row['p_name']; ?>" required>
 
                 </div>
 
@@ -112,7 +112,7 @@ extract($row1);
 
                 <div class="col-sm-10">
 
-                    <input name="p_surname" type="text" class="form-control" value="<?php echo $row['p_surname']; ?>" required>
+                    <input name="p_surname" type="text" pattern="^[ก-๏\s]+$" class="form-control" value="<?php echo $row['p_surname']; ?>" required>
 
                 </div>
 
@@ -232,7 +232,7 @@ extract($row1);
 
     $("#tel").inputmask({
 
-        "mask": "9999999999"
+        "mask": "0999999999"
 
     });
 

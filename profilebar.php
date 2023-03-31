@@ -100,8 +100,8 @@ if (isset($_GET['token'])) {
                     </div>
                     <div class="mb-1">อีเมล</div>
                     <input class="form-control mb-2" type="email" name="email-reg" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" title="กรุณากรอกอีเมลให้ถูกต้อง" placeholder="อีเมล" required>
-                    <div class="mb-1">เบอร์โทรศัพท์</div>
-                    <input class="form-control mb-2" id="tel" type="tel" name="tel-reg" placeholder="เบอร์โทรศัพท์" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
+                    <div class="mb-1">เบอร์มือถือ</div>
+                    <input class="form-control mb-2" id="tel" type="tel" name="tel-reg" placeholder="เบอร์มือถือ" pattern="^0[0-9]{9}$" title="กรุณากรอกเบอร์มือถือ หมายเลข (0-9) จำนวน 10 ตัว" required>
                     <div class="mb-1">รหัสผ่าน</div>
                     <input class="form-control mb-2" type="password" id="password" name="password" placeholder="รหัสผ่าน" pattern=".{8,}" title="กรุณากรอกรหัสผ่านให้ถูกต้อง" required>
                     <span class="note">**กรุณาตั้งรหัสผ่านอย่างน้อย 8 ตัวอักษร</span>
@@ -253,7 +253,7 @@ if (isset($_GET['token'])) {
     // tel input mask
     $(":input").inputmask();
     $("#tel").inputmask({
-        "mask": "9999999999"
+        "mask": "0999999999"
     });
 
     // sendEmail

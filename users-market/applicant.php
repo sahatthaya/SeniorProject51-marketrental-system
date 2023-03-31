@@ -9,14 +9,16 @@
     <meta charset="UTF-8">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
 
     <title> MarketRental - คำร้องขอเพิ่มตลาดใหม่</title>
 
 
 
     <link rel="stylesheet" href="../css/applicant.css" type="text/css">
+    <link rel="stylesheet" href="../css/overview.css" type="text/css">
+
 
 </head>
 
@@ -32,6 +34,9 @@ include "nav.php";
 
 include "../backend/1-connectDB.php";
 
+require "../backend/graph-market.php";
+
+include "../backend/qry-overview.php";
 
 
 
@@ -96,22 +101,6 @@ require "../backend/add-applicant.php"
             placement: 'right'
 
         });
-
-    });
-
-    $(":input").inputmask();
-
-
-
-    $("#tel").inputmask({
-
-        "mask": "9999999999"
-
-    });
-
-    $("#zip-code").inputmask({
-
-        "mask": "99999"
 
     });
 </script>

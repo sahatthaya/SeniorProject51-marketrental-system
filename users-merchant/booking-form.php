@@ -176,9 +176,9 @@ $rowus = mysqli_fetch_array($qry);
 
                 <input class="sqr-input col-12 form-control " id="myemail" type="email" placeholder="อีเมล" name="email" value="<?php echo $rowus['email'] ?>" onchange="checkform2()" required>
 
-                <div class="des_input">เบอร์โทรศัพท์</div>
+                <div class="des_input">เบอร์มือถือ</div>
 
-                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="tel" pattern="[0-9]{10}" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $rowus['tel'] ?>" onchange="checkform2()" required>
+                <input name="tel" id="mytel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์มือถือ" name="tel" pattern="[0-9]{10}" title="กรุณากรอกเบอร์มือถือ หมายเลข (0-9) จำนวน 10 ตัว" value="<?php echo $rowus['tel'] ?>" onchange="checkform2()" required>
 
                 <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
 
@@ -352,7 +352,7 @@ $rowus = mysqli_fetch_array($qry);
 
                                     <div class="col-6 pe-0">
 
-                                        <div class="des_input">เบอร์โทรศัพท์</div>
+                                        <div class="des_input">เบอร์มือถือ</div>
 
                                         <input class="form-control col-6" id="demotel" disabled>
 
@@ -591,7 +591,7 @@ $rowus = mysqli_fetch_array($qry);
 
     $("#mytel").inputmask({
 
-        "mask": "9999999999"
+        "mask": "0999999999"
 
     });
 

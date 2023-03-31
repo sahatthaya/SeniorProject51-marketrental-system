@@ -16,25 +16,25 @@
 
             <div class="des_input">ชื่อ</div>
 
-            <input class="form-control col-6" type="text" placeholder="ชื่อ" name="firstName" id="fname" onchange="checkapp()" pattern="[^0-9]+" value="<?php echo $row['firstName']; ?>" required autofocus>
+            <input class="form-control col-6" type="text" placeholder="ชื่อ" name="firstName" id="fname" onchange="checkapp()" pattern="^[ก-๏\s]+$" value="<?php echo $row['firstName']; ?>" required autofocus>
 
             <div class="des_input">นามสกุล</div>
 
-            <input class="form-control col-6" type="text" placeholder="นามสกุล" name="lastName" id="lname" onchange="checkapp()" pattern="[^0-9]+" value="<?php echo $row['lastName']; ?>" required>
+            <input class="form-control col-6" type="text" placeholder="นามสกุล" name="lastName" id="lname" onchange="checkapp()" pattern="^[ก-๏\s]+$" value="<?php echo $row['lastName']; ?>" required>
 
             <div class="des_input">อีเมล</div>
 
-            <input class="sqr-input col-12 form-control " type="email" placeholder="อีเมล" name="email" id="email" onchange="checkapp()" value="<?php echo $row['email']; ?>" required>
+            <input class="sqr-input col-12 form-control " type="email" placeholder="อีเมล" name="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" id="email" onchange="checkapp()" value="<?php echo $row['email']; ?>" required>
 
-            <div class="des_input">เบอร์โทรศัพท์</div>
+            <div class="des_input">เบอร์มือถือ</div>
 
-            <input name="tel" id="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์โทรศัพท์" name="name" pattern="[0-9]{10}" value="<?php echo $row['tel']; ?>" title="กรุณากรอกเบอร์โทรศัพท์ หมายเลข (0-9) จำนวน 10 ตัว" required>
+            <input name="tel" id="tel" class="sqr-input col-12 form-control" type="text" placeholder="เบอร์มือถือ" name="name" pattern="[0-9]{10}" value="<?php echo $row['tel']; ?>" title="กรุณากรอกเบอร์มือถือ หมายเลข (0-9) จำนวน 10 ตัว" required>
 
             <div class="des_input">สำเนาบัตรประจำตัวประชาชน</div>
 
             <input class="sqr-input col-12 form-control" type="file" aria-label="อัปโหลดเอกสาร" name="cardIDcpy" id="doc" onchange="checkapp()" accept="image/jpeg,image/gif,image/png,application/pdf,image/x-eps" required>
 
-            <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn()" id="next" disabled>
+            <input type="button" name="next" class=" btn btn-primary action-button" value="ถัดไป" onclick="nextbtn2()" id="next" disabled>
 
         </div>
 
@@ -84,7 +84,7 @@
 
                 <div class="col-md-4 p-0">
 
-                    <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" id="houseno" onchange="checkapp2()" required>
+                    <input class="form-control" type="text" placeholder="บ้านเลขที่" name="HouseNo" id="houseno" pattern="[0-9]+[/0-9+]*" onchange="checkapp2()" required>
 
                 </div>
 
@@ -92,7 +92,7 @@
 
                 <div class="col-md-4 p-0">
 
-                    <input class="form-control" type="text" placeholder="ซอย" name="Soi" id="soi" onchange="checkapp2()" required>
+                    <input class="form-control" type="text" placeholder="ซอย" name="Soi" id="soi" pattern="[ก-๙]+.*\S.*[\d]*" onchange="checkapp2()" required>
 
                 </div>
 
@@ -104,7 +104,7 @@
 
                 <div class="col-md-4 p-0">
 
-                    <input class="form-control" type="text" placeholder="หมู่" name="Moo" id="moo" onchange="checkapp2()" required>
+                    <input class="form-control" type="text" placeholder="หมู่" name="Moo" id="moo" pattern="[0-9]{0,}" onchange="checkapp2()">
 
                 </div>
 
@@ -112,7 +112,7 @@
 
                 <div class="col-md-4 p-0">
 
-                    <input class="form-control" type="text" placeholder="ถนน" name="Road" id="road" onchange="checkapp2()" required>
+                    <input class="form-control" type="text" placeholder="ถนน" name="Road" id="road" pattern="[ก-๙]+.*\S.*[\d]*" onchange="checkapp2()" required>
 
                 </div>
 
@@ -164,7 +164,7 @@
 
                 <div class="col-md-4 p-0">
 
-                    <input name="PostalCode" id="zipcode" onchange="checkapp2()" class="form-control" placeholder="รหัสไปรษณีย์" required>
+                    <input name="PostalCode" id="zip-code" onchange="checkapp2()" class="form-control" pattern="[0-9].{4}" placeholder="รหัสไปรษณีย์" required>
 
                 </div>
 
@@ -188,8 +188,7 @@
                 </div>
 
             </div>
-
-            <input class="form-control col-12" type="text" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" id="des" onchange="checkapp2()" required>
+            <textarea class="form-control col-12" name="" id="" cols="30" rows="10" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" id="des" onchange="checkapp2()" required></textarea>
 
             <div class="des_input hstack gap-2">อัปโหลดรูปภาพตลาด
 
@@ -206,3 +205,29 @@
     </div>
 
 </form>
+<script>
+    $(document).ready(function() {
+
+        $("body").tooltip({
+
+            selector: '[data-toggle=tooltip]',
+
+            placement: 'right'
+
+        });
+
+    });
+
+    $(":input").inputmask();
+
+    $("#tel").inputmask({
+        "mask": "0999999999"
+    });
+
+
+    $("#zip-code").inputmask({
+
+        "mask": "99999"
+
+    });
+</script>

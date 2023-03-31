@@ -214,7 +214,7 @@
 
                         <div class="hstack gap-2">
 
-                            (กำหนดสัดส่วนขนาดของแผงค้า 1เมตร : <input name="ratio" type="number" class="form-control" style="width:70px;height:30px;" value="<?php echo $rowmkp['ratio_plan']; ?>">พิกเซล
+                            (กำหนดสัดส่วนขนาดของแผงค้า 1เมตร : <input name="ratio" min="1" type="number" class="form-control" style="width:70px;height:30px;" value="<?php echo $rowmkp['ratio_plan']; ?>">พิกเซล
 
                             <button type="submit" class="btn btn-outline-primary p-0" name="save-ratio" style="width:70px;height:30px;">บันทึก</button>)
 

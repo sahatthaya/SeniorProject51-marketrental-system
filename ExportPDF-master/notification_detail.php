@@ -18,6 +18,27 @@ if ($numRownt == 0) { ?>
         } else {
             $bg = '';
         }
+
+        switch ($rown['type']) {
+            case "4":
+                $reply_id = $rown['fk_id'];
+                $mkrid = mysqli_query($conn, "SELECT * FROM `reply`JOIN complain ON (complain.comp_id = reply.comp_id) WHERE `rp_id` = $reply_id");
+                $mid = mysqli_fetch_array($mkrid);
+                extract($mid);
+                $fk_id = $mid['mkr_id'];
+                $comp_id = $mid['comp_id'];
+                $mkr_id = $mid['mkr_id'];
+                $path = '../users-merchant/thread.php?comp_id=' . $comp_id . '&&mkr_id=' . $mkr_id . '&&my_thread=yes&&newreply=' . $reply_id;
+                break;
+            case "6":
+                $path = './ExportPDF-master/inv_info.php?INV_id=' . $rown['fk_id'];
+                break;
+            case "8":
+                $path = '../users-merchant/news_forrenter.php?mkr_id=' . $rown['fk_id'] . '&&n_id=' . $rown['n_id'];
+                break;
+            default:
+                $path = '#';
+        }
     ?>
         <li class="<?php echo $bg ?> border-bottom">
             <a class="dropdown-item" href="#">

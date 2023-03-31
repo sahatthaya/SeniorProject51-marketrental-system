@@ -31,7 +31,7 @@ if ($numRownt == 0) { ?>
                 $path = './thread.php?comp_id=' . $comp_id . '&&mkr_id=' . $mkr_id . '&&my_thread=yes&&newreply=' . $reply_id;
                 break;
             case "6":
-                $path = './inv_info.php?INV_id=' . $rown['fk_id'];
+                $path = '../ExportPDF-master/inv_info.php?INV_id=' . $rown['fk_id'];
                 break;
             case "8":
                 $path = './news_forrenter.php?mkr_id=' . $rown['fk_id'] . '&&n_id=' . $rown['n_id'];
