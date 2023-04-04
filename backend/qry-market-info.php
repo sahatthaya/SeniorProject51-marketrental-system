@@ -90,5 +90,5 @@ if ($row['opening'] == "เปิดทำการเป็นรอบ") {
 
 
 
-mysqli_close($conn);
+
 

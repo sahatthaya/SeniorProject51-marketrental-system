@@ -168,7 +168,7 @@ if (isset($_POST['bn-submit'])) {
 
             echo '<meta http-equiv="refresh" content="1";/>';
 
-            mysqli_close($conn);
+            
         } else {
 
             echo "<script type='text/javascript'> error(); </script>";

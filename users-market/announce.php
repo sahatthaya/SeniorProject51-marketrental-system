@@ -84,14 +84,29 @@ require "../backend/add-applicant.php";
                     <div class="des_input">ตลาดที่ต้องการประชาสัมพันธ์</div>
 
                     <div class="search_select_box p-0">
+                        <?php
+                        if (mysqli_num_rows($qrymymkr) == 0) {
+                            $select = 'disabled';
+                            $title= 'คุณยังไม่มีตลาดในขณะนี้';
+                        } else {
+                            $select = '';
+                            $title= 'เลือกตลาดของคุณ';
 
-                        <select class="selectpicker form-control" title="เลือกตลาดของคุณ" name="mkr_id" id="mkr_id" data-width="100%" data-size="5" required>
+                        }
+                        ?>
+                        <select class="selectpicker form-control" title="<?php echo $title ?>" name="mkr_id" id="mkr_id" data-width="100%" data-size="5" <?php echo $select ?> required>
 
-                            <?php while ($row1 = mysqli_fetch_array($qrymymkr)) :; ?>
+                            <?php
+                            if (mysqli_num_rows($qrymymkr) > 0) {
+                                while ($row1 = mysqli_fetch_array($qrymymkr)) :; ?>
 
-                                <option value="<?php echo $row1['mkr_id']; ?>"><?php echo $row1['mkr_name']; ?></option>
+                                    <option value="<?php echo $row1['mkr_id']; ?>"><?php echo $row1['mkr_name']; ?></option>
 
-                            <?php endwhile; ?>
+                            <?php endwhile;
+                            } else {
+                                echo '<option value="" disabled>คุณยังไม่มีตลาดในขณะนี้</option>';
+                            }
+                            ?>
 
                         </select>
 

@@ -34,7 +34,7 @@ require "../backend/manage-applicant.php";
 
 if (isset($_GET['fk_id'])) {
     $an_id = $_GET['fk_id'];
-}else{
+} else {
     $an_id = '';
 }
 
@@ -92,11 +92,11 @@ if (isset($_GET['fk_id'])) {
 
                         <?php while ($row = $result->fetch_assoc()) :
                             if ($an_id == $row['req_partner_id']) {
-                               $bg = 'bg-info bg-opacity-10';
-                            }else{
+                                $bg = 'bg-info bg-opacity-10';
+                            } else {
                                 $bg = '';
                             }
-                            ?>
+                        ?>
 
                             <tr class="<?php echo $bg ?>">
 
@@ -104,7 +104,11 @@ if (isset($_GET['fk_id'])) {
 
                                 <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 
-                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
+                                <td><?php $time = date(
+                                        'g:i a',
+                                        strtotime($row['timestamp']) + 60 * 60 * 7
+                                    );
+                                    echo date(" h:i a", strtotime($time)) ?></td>
 
                                 <td><?php echo $row['username']; ?></td>
 

@@ -115,7 +115,11 @@ if (isset($_GET["b_id"])) {
           </tr>
           <tr>
             <td width="30%"><label>ชำระเงินเมื่อวันที่</label></td>
-            <td width="70%"><?php echo  date("d/m/Y เวลา h:ia", strtotime($row['timestamp'])) ?></td>
+            <td width="70%"><?php $time = date(
+                              'g:i a',
+                              strtotime($row['timestamp']) + 60 * 60 * 7
+                            );
+                            echo date("วันที่ d/m/Y", strtotime($row['timestamp'])) . " " . date("เวลา h:i a", strtotime($time))  ?></td>
           </tr>
           <tr>
             <td width="30%"><label><?php echo ($row['opening'] == 'เปิดทำการทุกวัน') ? 'ค่ามัดจำ' : 'ค่าเช่า'; ?></label></td>
@@ -205,7 +209,11 @@ if (isset($_GET["b_id"])) {
           <strong style="font-weight: bold;">รหัสการชำระเงิน</strong> <?php echo $row["b_codepay"] ?>
         </td>
         <td align="right">
-          <strong style="font-weight: bold;">ชำระเมื่อ</strong> <?php echo  date("d/m/Y เวลา h:ia", strtotime($row['timestamp'])) ?>
+          <strong style="font-weight: bold;">ชำระเมื่อ</strong> <?php $time = date(
+                                                                  'g:i a',
+                                                                  strtotime($row['timestamp']) + 60 * 60 * 7
+                                                                );
+                                                                echo date("วันที่ d/m/Y", strtotime($row['timestamp'])) . " " . date("เวลา h:i a", strtotime($time))  ?>
         </td>
       </tr>
     </table>

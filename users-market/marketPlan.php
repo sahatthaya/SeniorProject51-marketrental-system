@@ -71,56 +71,29 @@
 
     $(document).ready(function() {
 
+
         $(".stallbox").draggable({
-
             containment: "#plan",
-
             cursor: "move",
-
             grid: [10, 10],
-
             stop: function(event, ui) {
 
                 var elem = $(this),
-
                     id = elem.attr('id'),
-
                     desc = elem.attr('data-desc'),
-
                     pos = elem.position(),
-
                     posleft = pos.left,
-
                     postop = pos.top,
-
                     info = {
-
                         id: id,
-
                         posleft: posleft,
-
                         postop: postop
-
                     };
-
-                // elempos.push(info);
-
                 var
-
                     inputleft = document.getElementById('left' + id),
-
                     inputtop = document.getElementById('top' + id);
-
-
-
                 inputleft.value = posleft;
-
                 inputtop.value = postop;
-
-
-
-
-
             }
 
         });
@@ -232,58 +205,35 @@
             <hr>
 
             <div id="plan">
-
-                <?php while ($row1 = $result3->fetch_assoc()) : ?>
-
-                    <?php
-
-                    $w = $row1['sWidth'];
-
-                    $h = $row1['sHeight'];
-
-
-
-                    $ratio_plan = $rowmkp['ratio_plan'];
-
-
-
-                    @$width = ($w * $ratio_plan);
-
-                    @$height = ($h * $ratio_plan);
-
-
-
-                    @$fs = ($ratio_plan / 3);
-
-                    ?>
-
-                    <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;left:<?php echo $row1['left'] ?>px;top:<?php echo $row1['top'] ?>px;<?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>width:<?php echo $width ?>px;height:<?php echo $height ?>px;" id="<?php echo $count_n ?>">
-
-                        <div class="stallnum">
-
-                            <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?></div>
-
-                            <div id="despos">
-
-                                <input type="text" value="<?php echo $row1['sKey'] ?>" id="<?php echo "id" . $count_n ?>" name="<?php echo "id" . $count_n ?>" hidden>
-
-                                <input type="text" value="<?php echo $row1['left'] ?>" id="<?php echo "left" . $count_n ?>" name="<?php echo "left" . $count_n ?>" hidden>
-
-                                <input type="text" value="<?php echo $row1['top'] ?>" id="<?php echo "top" . $count_n ?>" name="<?php echo "top" . $count_n ?>" hidden>
-
-                            </div>
-
-
-                        </div>
-
-                    </div>
-
                 <?php
-
+                $result3 = mysqli_query($conn, "SELECT stall.*, zone.* FROM stall JOIN zone ON (stall.z_id = zone.z_id) WHERE (market_id = '$mkr_id' AND `show` = '1')");
+                while ($row1 = $result3->fetch_assoc()) : ?>
+                    <?php
+                    $w = $row1['sWidth'];
+                    $h = $row1['sHeight'];
+                    $ratio_plan = $rowmkp['ratio_plan'];
+                    @$width = ($w * $ratio_plan);
+                    @$height = ($h * $ratio_plan);
+                    @$fs = ($ratio_plan / 3);
+                    ?>
+                    <div class="stallbox" style="background-color:<?php echo $row1['z_color'] ?> ;
+                    left:<?php echo $row1['left'] ?>px;
+                    top:<?php echo $row1['top'] ?>px;
+                    <?php echo ($row1['left'] != "" ? "position:absolute;" : ""); ?>
+                    width:<?php echo $width ?>px;
+                    height:<?php echo $height ?>px;" id="<?php echo $count_n ?>">
+                        <div class="stallnum">
+                            <div class="text-center text-break" style="font-size:<?php echo $fs ?>px;"><?php echo $row1['sID'] ?></div>
+                            <div id="despos">
+                                <input type="text" value="<?php echo $row1['sKey'] ?>" id="<?php echo "id" . $count_n ?>" name="<?php echo "id" . $count_n ?>" hidden>
+                                <input type="text" value="<?php echo $row1['left'] ?>" id="<?php echo "left" . $count_n ?>" name="<?php echo "left" . $count_n ?>" hidden>
+                                <input type="text" value="<?php echo $row1['top'] ?>" id="<?php echo "top" . $count_n ?>" name="<?php echo "top" . $count_n ?>" hidden>
+                            </div>
+                        </div>
+                    </div>
+                <?php
                     $count_n++;
-
                 endwhile ?>
-
             </div>
 
             </form>

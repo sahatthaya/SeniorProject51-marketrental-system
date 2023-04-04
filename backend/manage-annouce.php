@@ -86,4 +86,4 @@ if (isset($_GET['denied'])) {
     }
 }
 
-mysqli_close($conn);
+

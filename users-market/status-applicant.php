@@ -133,7 +133,15 @@ if (isset($_GET['fk_id'])) {
 
                                 <td><?php echo date("d/m/Y", strtotime($row['timestamp'])) ?></td>
 
-                                <td><?php echo date("h:i a", strtotime($row['timestamp'])) ?></td>
+                                <td>
+                                    <?php
+                                    $time = date(
+                                        'g:i a',
+                                        strtotime($row['timestamp']) + 60 * 60 * 7
+                                    );
+                                    echo date("เวลา h:i a", strtotime($time))
+                                    ?>
+                                </td>
 
                                 <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
 

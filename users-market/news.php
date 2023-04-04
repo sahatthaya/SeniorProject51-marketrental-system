@@ -86,7 +86,7 @@ extract($row);
 
 
 
-    <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm was-validated" >
+    <form method="POST" enctype="multipart/form-data" class="add-info p-4 mb-5 border rounded shadow-sm was-validated">
 
         <h4 class="mb-2">เพิ่มข่าวสารใหม่</h4>
 
@@ -176,7 +176,11 @@ extract($row);
 
                         <td><?php echo $count_n; ?></td>
 
-                        <td><?php echo date("วันที่ d/m/Y เวลา h:i a", strtotime($row1['timestamp'])) ?></td>
+                        <td><?php $time = date(
+                                'g:i a',
+                                strtotime($row1['timestamp']) + 60 * 60 * 7
+                            );
+                            echo date("วันที่ d/m/Y", strtotime($row1['timestamp'])) . " " . date("เวลา h:i a", strtotime($time)) ?></td>
 
                         <td><?php echo $row1['n_sub']; ?></td>
 
@@ -213,7 +217,6 @@ extract($row);
 </body>
 
 <script>
-
     //detail popup
 
     $(document).ready(function() {
@@ -249,7 +252,6 @@ extract($row);
         })
 
     });
-
 </script>
 
 

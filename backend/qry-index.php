@@ -52,4 +52,4 @@ extract($lg);
 
 
 
-mysqli_close($conn);
+

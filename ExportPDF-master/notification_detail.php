@@ -41,7 +41,7 @@ if ($numRownt == 0) { ?>
         }
     ?>
         <li class="<?php echo $bg ?> border-bottom">
-            <a class="dropdown-item" href="#">
+            <a class="dropdown-item" href="<?php echo $path ?>">
                 <span class="text-secondary"><?php echo date("d/m/Y h:ia", strtotime($rown['timestamp'])) ?></span>
                 <br><span class="fw-bold"><?php echo $rown['n_sub'] ?></span>
                 <br><?php echo $rown['n_detail'] ?>

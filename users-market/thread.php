@@ -155,8 +155,10 @@ if (isset($_GET['newpost'])) {
                     </div>
                     <div class="text-secondary opacity-50">
                         <?php
-                        $time = date('g:i a', strtotime($c['timestamp']) + 60 * 60 * 7
-);
+                        $time = date(
+                            'g:i a',
+                            strtotime($c['timestamp']) + 60 * 60 * 7
+                        );
                         echo date("วันที่ d/m/Y", strtotime($c['timestamp'])) . " " . date("เวลา h:i a", strtotime($time))
                         ?>
                     </div>
@@ -261,8 +263,10 @@ if (isset($_GET['newpost'])) {
                             </div>
                             <div>
                                 <?php
-                                $time = date('g:i a', strtotime($row2['timestamp']) + 60 * 60 * 7
-);
+                                $time = date(
+                                    'g:i a',
+                                    strtotime($row2['timestamp']) + 60 * 60 * 7
+                                );
                                 echo date("วันที่ d/m/Y", strtotime($row2['timestamp'])) . " " . date("เวลา h:i a", strtotime($time))
 
                                 ?>

@@ -90,7 +90,11 @@ require "../backend/manage-annouce.php";
 
                             <td><?php echo date("d/m/Y", strtotime($row1['timestamp'])) ?></td>
 
-                            <td><?php echo date("h:i a", strtotime($row1['timestamp'])) ?></td>
+                            <td><?php $time = date(
+                                    'g:i a',
+                                    strtotime($row1['timestamp']) + 60 * 60 * 7
+                                );
+                                echo date(" h:i a", strtotime($time)) ?></td>
 
                             <td><?php echo $row1['mkr_name']; ?></td>
 

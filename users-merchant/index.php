@@ -64,7 +64,6 @@ require "../backend/qry-index.php";
                     if ($i == 0) {
 
                         $actives = 'active';
-
                     }
 
                 ?>
@@ -72,7 +71,6 @@ require "../backend/qry-index.php";
                     <button type="button" data-bs-target="#banner" data-bs-slide-to="<?php echo $i; ?>" class="<?php echo $actives; ?> "></button>
 
                 <?php $i++;
-
                 } ?>
 
             </div>
@@ -90,7 +88,6 @@ require "../backend/qry-index.php";
                     if ($i == 0) {
 
                         $actives = 'active';
-
                     }
 
                 ?>
@@ -116,10 +113,9 @@ require "../backend/qry-index.php";
                 <?php
 
                     $i++;
-
                 }
 
-                mysqli_close($conn);
+                
 
                 ?>
 

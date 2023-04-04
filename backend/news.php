@@ -17,7 +17,6 @@ if (isset($_GET['mkr_id'])) {
     $data2 = "SELECT * FROM news WHERE mkr_id = '$mkr_id' ORDER BY `n_id` DESC";
 
     $result3 = mysqli_query($conn, $data2);
-
 }
 
 if (isset($_GET['n_id'])) {
@@ -37,7 +36,6 @@ if (isset($_GET['n_id'])) {
     $edit = mysqli_fetch_array($result3);
 
     extract($edit);
-
 }
 
 // add-------------------------------------------------------------------------------------------------------------------
@@ -85,13 +83,10 @@ if (isset($_POST['add-news'])) {
             echo "<script type='text/javascript'> success(); </script>";
 
             echo '<meta http-equiv="refresh" content="1" ; />';
-
         } else {
 
             echo "<script>error();</script>";
-
         }
-
     } else {
 
         $sqlInsert = "INSERT INTO news(n_sub, n_detail, n_file,mkr_id) VALUES ('$n_sub', '$n_detail', 'asset/news/nopicture.png	', $mkr_id)";
@@ -101,15 +96,11 @@ if (isset($_POST['add-news'])) {
             echo "<script type='text/javascript'> success(); </script>";
 
             echo '<meta http-equiv="refresh" content="1" ; />';
-
         } else {
 
             echo "<script>error();</script>";
-
         }
-
     }
-
 }
 
 // delete-------------------------------------------------------------------------------------------------------------------
@@ -145,13 +136,10 @@ if (isset($_GET['del'])) {
       })";
 
         echo "</script>";
-
     } else {
 
         echo "<script>error();</script>";
-
     }
-
 }
 
 // see detail (modal)-------------------------------------------------------------------------------------------------------------------
@@ -171,7 +159,10 @@ if (isset($_POST["newsid"])) {
     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
 
     while ($row = mysqli_fetch_array($result)) {
-
+        $time = date(
+            'g:i a',
+            strtotime($row['timestamp']) + 60 * 60 * 7
+        );
         $output .= '
 
           <tr>  
@@ -186,7 +177,7 @@ if (isset($_POST["newsid"])) {
 
           <td width="30%"><label>วันที่เพิ่มข่าวสาร</label></td>  
 
-          <td width="70%">' .date("d/m/Y เวลา h:i a", strtotime($row['timestamp'])). '</td>  
+          <td width="70%">' . date("วันที่ d/m/Y", strtotime($row['timestamp'])) . " " . date("เวลา h:i a", strtotime($time)) . '</td>  
 
           </tr>  
 
@@ -209,7 +200,6 @@ if (isset($_POST["newsid"])) {
           
 
      ';
-
     }
 
     $output .= '  
@@ -221,7 +211,6 @@ if (isset($_POST["newsid"])) {
 ';
 
     echo $output;
-
 };
 
 if (isset($_POST["news_id"])) {
@@ -237,7 +226,10 @@ if (isset($_POST["news_id"])) {
     $output .= '<div class="table-responsive">  <table class="table table-bordered">';
 
     while ($row = mysqli_fetch_array($result)) {
-
+        $time = date(
+            'g:i a',
+            strtotime($row['timestamp']) + 60 * 60 * 7
+        );
         $output .= '
 
           <tr>  
@@ -252,7 +244,7 @@ if (isset($_POST["news_id"])) {
 
           <td width="30%"><label>วันที่เพิ่มข่าวสาร</label></td>  
 
-          <td width="70%">' . date("d/m/Y เวลา h:i a", strtotime($row['timestamp'])) . '</td>  
+          <td width="70%">' . date("วันที่ d/m/Y", strtotime($row['timestamp'])) . " " . date("เวลา h:i a", strtotime($time)) . '</td>  
 
           </tr>  
 
@@ -275,7 +267,6 @@ if (isset($_POST["news_id"])) {
           
 
      ';
-
     }
 
     $output .= '  
@@ -287,7 +278,6 @@ if (isset($_POST["news_id"])) {
 ';
 
     echo $output;
-
 };
 
 // edit news qry----------------------------------------------------------------------------------------------------
@@ -309,7 +299,6 @@ if (isset($_GET['edit-news'])) {
     $edit = mysqli_fetch_array($result3);
 
     extract($edit);
-
 }
 
 // edit news-------------------------------------------------------------------------------------------------------------------
@@ -365,13 +354,10 @@ if (isset($_POST['edit-news-submit'])) {
             echo "<script type='text/javascript'> success(); </script>";
 
             echo '<meta http-equiv="refresh" content="1" ; />';
-
         } else {
 
             echo "<script>error();</script>";
-
         }
-
     } else {
 
         $sqlupdate = "UPDATE `news` SET `n_sub`='$n_sub',`n_detail`='$n_detail' WHERE n_id = '$n_id'";
@@ -383,14 +369,9 @@ if (isset($_POST['edit-news-submit'])) {
             echo "<script type='text/javascript'> success(); </script>";
 
             echo '<meta http-equiv="refresh" content="1" ; />';
-
         } else {
 
             echo "<script>error();</script>";
-
         }
-
     }
-
 }
-

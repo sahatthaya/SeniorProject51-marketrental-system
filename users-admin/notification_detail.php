@@ -28,7 +28,11 @@ if ($numRownt == 0) { ?>
     ?>
         <li class="<?php echo $bg ?> border-bottom">
             <a class="dropdown-item" href="<?php echo $path ?>">
-                <span class="text-secondary"><?php echo date("d/m/Y h:ia", strtotime($rown['timestamp'])) ?></span>
+                <span class="text-secondary"><?php $time = date(
+                                                    'g:i a',
+                                                    strtotime($rown['timestamp']) + 60 * 60 * 7
+                                                );
+                                                echo date("d/m/Y", strtotime($rown['timestamp'])) . " " . date(" h:i a", strtotime($time)) ?></span>
                 <br><span class="fw-bold"><?php echo $rown['n_sub'] ?></span>
                 <br><?php echo $rown['n_detail'] ?>
             </a>

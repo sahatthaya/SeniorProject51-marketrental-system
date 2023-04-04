@@ -169,23 +169,14 @@ body {
 
 
 /* แผงค้า */
-
 .stallbox {
-
     color: white !important;
-
     border-radius: 5px;
-
     padding: 2px;
-
     width: 200px;
-
     height: 30px;
-
     font-size: 15px;
-
     overflow: hidden;
-
 }
 
 

@@ -164,7 +164,7 @@
 
                 <div class="col-md-4 p-0">
 
-                    <input name="PostalCode" id="zip-code" onchange="checkapp2()" class="form-control" pattern="[0-9].{4}" placeholder="รหัสไปรษณีย์" required>
+                    <input name="PostalCode" id="zipcode" onchange="checkapp2()" class="form-control" pattern="[0-9].{4}" placeholder="รหัสไปรษณีย์" required>
 
                 </div>
 
@@ -188,7 +188,7 @@
                 </div>
 
             </div>
-            <textarea class="form-control col-12" name="" id="" cols="30" rows="10" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" id="des" onchange="checkapp2()" required></textarea>
+            <textarea class="form-control col-12" id="" cols="30" rows="10" placeholder="กรอกข้อมูลตลาดโดยสังเขป" name="mkrDes" id="des" onchange="checkapp2()" required></textarea>
 
             <div class="des_input hstack gap-2">อัปโหลดรูปภาพตลาด
 
@@ -225,7 +225,7 @@
     });
 
 
-    $("#zip-code").inputmask({
+    $("#zipcode").inputmask({
 
         "mask": "99999"
 
